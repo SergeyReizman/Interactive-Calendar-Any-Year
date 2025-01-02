@@ -1,12 +1,13 @@
 # Interactive Calendar
 
-An engaging, user-friendly calendar application that allows users to view monthly calendars, navigate between years, and add events or reminders for specific dates. Built with pure HTML, CSS, and JavaScript, this project is perfect for personal or professional use.
+An engaging, user-friendly calendar application that allows users to view monthly calendars, navigate between years, and add or edit events/reminders for specific dates. Built with pure HTML, CSS, and JavaScript, this project is perfect for personal or professional use.
 
 ## Features
 
 - **Dynamic Year Navigation**: Easily switch between years using "Previous Year" and "Next Year" buttons.
 - **Responsive Design**: Optimized for various devices, including desktops, tablets, and smartphones.
-- **Event Management**: Click on any date to add an event or reminder. Events are displayed within the selected date's cell.
+- **Event Management**: Click on any date to add, edit, or view events or reminders. Events are displayed within the selected date's cell.
+- **Event Editing**: Modify or update existing events directly on the calendar.
 - **Today's Highlight**: The current date is automatically highlighted for quick reference.
 - **Local Storage**: Events are saved locally in the browser and persist between page refreshes.
 - **Accessible Design**: Uses contrasting colors and WCAG-compliant styles for better usability.
@@ -24,33 +25,31 @@ An engaging, user-friendly calendar application that allows users to view monthl
 
 ## How to Use
 
-1. **Open the Application**:
-   - Clone or download the repository.
-   - Open `index.html` in your web browser.
+1. **Download the Application**:
+   - Clone the repository using the command:  
+     ```bash
+     git clone https://github.com/SergeyReizman/Interactive-Calendar-Any-Year.git
+     ```
+   - Alternatively, download the ZIP file and extract it.
 
-2. **Navigate Between Years**:
-   - Use the **Previous Year** and **Next Year** buttons to explore different years.
+2. **Open in Browser**:
+   - Navigate to the extracted folder and open the `index.html` file in your preferred web browser.
 
-3. **Add Events**:
-   - Click on any date to add a custom event or reminder.
-   - Events are displayed within the selected date's cell.
-   - Events are stored in your browser's `localStorage` and persist between sessions.
+3. **Explore Features**:
+   - **Navigate Between Years**: Use the **Previous Year** and **Next Year** buttons to view different years.
+   - **Add Events**: Click on any date to add a custom event or reminder.
+   - **Edit Events**: Modify or update existing events by clicking on the same date.
+   - **View Today**: The current date is automatically highlighted for quick identification.
 
-4. **View Today**:
-   - The current date is automatically highlighted for easy identification.
+4. **Save Events**:
+   - All events are saved in your browser's `localStorage` and persist between sessions.
 
 ## Folder Structure
 
 ```plaintext
 Interactive-Calendar/
 ├── index.html       # Main HTML file
-├── style.css        # Inline CSS for styling
-├── script.js        # Inline JavaScript for functionality
+├── style.css        # CSS for styling
+├── script.js        # JavaScript for functionality
 ├── README.md        # Project documentation
-└── screenshot.png   # Placeholder for project screenshot
-
-Future Improvements
-Event Deletion: Allow users to remove events once they are no longer needed.
-Event Editing: Provide an option to modify or update existing events.
-Monthly Navigation: Add buttons to navigate between months without changing the year.
-Custom Styling: Enable users to choose from different themes for the calendar.
+└── screenshot.png   # Screenshot of the project
