@@ -2,259 +2,269 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Calendar</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fce4ec;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Calendar</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fce4ec;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            margin: 20px auto;
-            padding: 10px;
-            max-width: 95%;
-        }
+    .container {
+      margin: 20px auto;
+      padding: 10px;
+      max-width: 95%;
+    }
 
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 800px;
-        }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
 
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #d1d1d1;
-            text-align: center;
-        }
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #d1d1d1;
+      text-align: center;
+    }
 
-        th {
-            background-color: #ff80ab;
-            color: white;
-        }
+    th {
+      background-color: #ff80ab;
+      color: white;
+    }
 
-        td {
-            background-color: #ffb2dd;
-            cursor: pointer;
-            position: relative;
-        }
+    td {
+      background-color: #ffb2dd;
+      cursor: pointer;
+      position: relative;
+    }
 
-        td:hover {
-            background-color: #ff80ab;
-            color: white;
-        }
+    td:hover {
+      background-color: #ff80ab;
+      color: white;
+    }
 
-        .highlight-today {
-            background-color: #ff4081;
-            color: white;
-        }
+    .highlight-today {
+      background-color: #ff4081;
+      color: white;
+    }
 
-        .event-marker {
-            font-size: 0.8em;
-            color: #333;
-            position: absolute;
-            bottom: 2px;
-            left: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 90%;
-            box-sizing: border-box;
-            padding: 2px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 3px;
-        }
+    .event-marker {
+      font-size: 0.8em;
+      color: #333;
+      position: absolute;
+      bottom: 2px;
+      left: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 90%;
+      box-sizing: border-box;
+      padding: 2px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 3px;
+    }
 
-        footer {
-            margin-top: 30px;
-            font-size: 1em;
-            color: #333;
-        }
+    footer {
+      margin-top: 30px;
+      font-size: 1em;
+      color: #333;
+    }
 
-        .transparent-button {
-            margin: 20px 10px;
-            padding: 10px 20px;
-            background-color: transparent;
-            border: 2px solid #ff80ab;
-            border-radius: 8px;
-            color: #ff80ab;
-            font-size: 1em;
-            text-decoration: none;
-            transition: 0.3s ease;
-            display: inline-block;
-        }
+    .transparent-button {
+      margin: 20px 10px;
+      padding: 10px 20px;
+      background-color: transparent;
+      border: 2px solid #ff80ab;
+      border-radius: 8px;
+      color: #ff80ab;
+      font-size: 1em;
+      text-decoration: none;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
 
-        .transparent-button:hover {
-            background-color: #ff80ab;
-            color: white;
-        }
+    .transparent-button:hover {
+      background-color: #ff80ab;
+      color: white;
+    }
 
-        @media (max-width: 768px) {
-            table {
-                font-size: 0.8em;
-            }
+    @media (max-width: 768px) {
+      table {
+        font-size: 0.8em;
+      }
 
-            .transparent-button {
-                font-size: 0.9em;
-            }
-        }
+      .transparent-button {
+        font-size: 0.9em;
+      }
+    }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5em;
-            }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
+      }
 
-            footer {
-                font-size: 0.9em;
-            }
+      footer {
+        font-size: 0.9em;
+      }
 
-            .transparent-button {
-                font-size: 0.8em;
-                padding: 8px 16px;
-            }
-        }
-    </style>
+      .transparent-button {
+        font-size: 0.8em;
+        padding: 8px 16px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1 id="calendar-title">Interactive Calendar</h1>
-        <div>
-            <button class="transparent-button" id="prev-year-btn">Previous Year</button>
-            <span id="current-year"></span>
-            <button class="transparent-button" id="next-year-btn">Next Year</button>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="7">Calendar</th>
-                </tr>
-            </thead>
-            <tbody id="calendar-body">
-            </tbody>
-        </table>
-
-        <footer>
-            <p>Developed by Sergey Reizman - 2025</p>
-        </footer>
-        <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank"
-            class="transparent-button">Visit My Portfolio</a>
+  <div class="container">
+    <h1 id="calendar-title">Interactive Calendar</h1>
+    <div>
+      <button class="transparent-button" id="prev-year-btn">Previous Year</button>
+      <span id="current-year"></span>
+      <button class="transparent-button" id="next-year-btn">Next Year</button>
     </div>
 
-    <script>
-        const calendarBody = document.getElementById('calendar-body');
-        const currentYearDisplay = document.getElementById('current-year');
-        const today = new Date();
-        let selectedYear = today.getFullYear();
-        let events = {};
+    <table>
+      <thead>
+        <tr>
+          <th colspan="7">Calendar</th>
+        </tr>
+      </thead>
+      <tbody id="calendar-body">
+      </tbody>
+    </table>
 
-        function updateCalendarTitle(year) {
-            currentYearDisplay.textContent = year;
-        }
+    <footer>
+      <p>Developed by Sergey Reizman - 2025</p>
+    </footer>
+    <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank"
+      class="transparent-button">Visit My Portfolio</a>
+  </div>
 
-        function generateCalendar(year) {
-            calendarBody.innerHTML = '';
-            updateCalendarTitle(year);
+  <script>
+    const calendarBody = document.getElementById('calendar-body');
+    const currentYearDisplay = document.getElementById('current-year');
+    const today = new Date();
+    let selectedYear = today.getFullYear();
+    let events = {};
 
-            for (let month = 0; month < 12; month++) {
-                const monthRow = document.createElement('tr');
-                const monthHeader = document.createElement('th');
-                monthHeader.colSpan = 7;
-                monthHeader.textContent = new Date(year, month).toLocaleString('default', { month: 'long' });
-                monthRow.appendChild(monthHeader);
-                calendarBody.appendChild(monthRow);
+    function updateCalendarTitle(year) {
+      currentYearDisplay.textContent = year;
+    }
 
-                const daysRow = document.createElement('tr');
-                ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
-                    const dayCell = document.createElement('th');
-                    dayCell.textContent = day;
-                    daysRow.appendChild(dayCell);
+    function generateCalendar(year) {
+      calendarBody.innerHTML = '';
+      updateCalendarTitle(year);
+
+      // Load events from local storage
+      if (localStorage.getItem('events')) {
+        events = JSON.parse(localStorage.getItem('events'));
+      } else {
+        events = {};
+      }
+
+      for (let month = 0; month < 12; month++) {
+        const monthRow = document.createElement('tr');
+        const monthHeader = document.createElement('th');
+        monthHeader.colSpan = 7;
+        monthHeader.textContent = new Date(year, month).toLocaleString('default', { month: 'long' });
+        monthRow.appendChild(monthHeader);
+        calendarBody.appendChild(monthRow);
+
+        const daysRow = document.createElement('tr');
+        ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+          const dayCell = document.createElement('th');
+          dayCell.textContent = day;
+          daysRow.appendChild(dayCell);
+        });
+        calendarBody.appendChild(daysRow);
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        let dayCounter = 1;
+
+        for (let i = 0; i < 6; i++) {
+          const weekRow = document.createElement('tr');
+          for (let j = 0; j < 7; j++) {
+            const dayCell = document.createElement('td');
+            if (i === 0 && j < firstDay) {
+              dayCell.textContent = '';
+            } else if (dayCounter <= daysInMonth) {
+              dayCell.textContent = dayCounter;
+              const dateString = `${year}-${month + 1}-${dayCounter}`;
+
+              if (year === today.getFullYear() && month === today.getMonth() && dayCounter === today.getDate()) {
+                dayCell.classList.add('highlight-today');
+              }
+
+              // Display events BEFORE attaching the listener
+              if (events[dateString]) {
+                events[dateString].forEach(event => {
+                  const eventMarker = document.createElement('div');
+                  eventMarker.textContent = event;
+                  eventMarker.classList.add('event-marker');
+                  dayCell.appendChild(eventMarker);
                 });
-                calendarBody.appendChild(daysRow);
+              }
 
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-                const firstDay = new Date(year, month, 1).getDay();
-                let dayCounter = 1;
+              const currentDay = dayCounter;
+              const currentMonth = month + 1;
+              const currentYear = year;
 
-                for (let i = 0; i < 6; i++) {
-                    const weekRow = document.createElement('tr');
-                    for (let j = 0; j < 7; j++) {
-                        const dayCell = document.createElement('td');
-                        if (i === 0 && j < firstDay) {
-                            dayCell.textContent = '';
-                        } else if (dayCounter <= daysInMonth) {
-                            dayCell.textContent = dayCounter;
+              dayCell.addEventListener('click', () => {
+                const promptDay = currentDay;
+                const promptMonth = currentMonth;
+                const promptYear = currentYear;
 
-                            const dateString = `${year}-${month + 1}-${dayCounter}`;
+                const event = prompt(`Add or edit an event for ${promptDay}/${promptMonth}/${promptYear}:`);
+                if (event) {
+                  const eventDate = new Date(promptYear, promptMonth - 1, promptDay);
+                  const eventYear = eventDate.getFullYear();
+                  const eventMonth = eventDate.getMonth() + 1;
+                  const eventDay = eventDate.getDate();
+                  const eventDateString = `${eventYear}-${eventMonth}-${eventDay}`;
 
-                            if (year === today.getFullYear() && month === today.getMonth() && dayCounter === today.getDate()) {
-                                dayCell.classList.add('highlight-today');
-                            }
+                  if (!events[eventDateString]) {
+                    events[eventDateString] = [];
+                  }
+                  events[eventDateString].push(event);
 
-                            // Display events BEFORE attaching the listener
-                            if (events[dateString]) {
-                                events[dateString].forEach(event => {
-                                    const eventMarker = document.createElement('div');
-                                    eventMarker.textContent = event;
-                                    eventMarker.classList.add('event-marker');
-                                    dayCell.appendChild(eventMarker);
-                                });
-                            }
+                  // Save to local storage AFTER updating the events object
+                  localStorage.setItem('events', JSON.stringify(events));
 
-                            const currentDay = dayCounter;
-                            const currentMonth = month + 1;
-                            const currentYear = year;
-
-                            dayCell.addEventListener('click', () => {
-                                const promptDay = currentDay;
-                                const promptMonth = currentMonth;
-                                const promptYear = currentYear;
-
-                                const event = prompt(`Add or edit an event for ${promptDay}/${promptMonth}/${promptYear}:`);
-                                if (event) {
-                                    const eventDate = new Date(promptYear, promptMonth - 1, promptDay);
-                                    const eventYear = eventDate.getFullYear();
-                                    const eventMonth = eventDate.getMonth() + 1;
-                                    const eventDay = eventDate.getDate();
-                                    const eventDateString = `${eventYear}-${eventMonth}-${eventDay}`;
-
-                                    if (!events[eventDateString]) {
-                                        events[eventDateString] = [];
-                                    }
-                                    events[eventDateString].push(event);
-                                    generateCalendar(selectedYear);
-                                }
-                            });
-
-                            dayCounter++;
-                        }
-                        weekRow.appendChild(dayCell);
-                    }
-                    calendarBody.appendChild(weekRow);
-                    if (dayCounter > daysInMonth) break;
+                  generateCalendar(selectedYear);
                 }
+              });
+
+              dayCounter++;
             }
+            weekRow.appendChild(dayCell);
+          }
+          calendarBody.appendChild(weekRow);
+          if (dayCounter > daysInMonth) break;
         }
+      }
+    }
 
-        document.getElementById('prev-year-btn').addEventListener('click', () => {
-            selectedYear--;
-            generateCalendar(selectedYear);
-        });
+    document.getElementById('prev-year-btn').addEventListener('click', () => {
+      selectedYear--;
+      generateCalendar(selectedYear);
+    });
 
-        document.getElementById('next-year-btn').addEventListener('click', () => {
-            selectedYear++;
-            generateCalendar(selectedYear);
-        });
+    document.getElementById('next-year-btn').addEventListener('click', () => {
+      selectedYear++;
+      generateCalendar(selectedYear);
+    });
 
-        generateCalendar(selectedYear);
-    </script>
+    generateCalendar(selectedYear);
+  </script>
 </body>
 
 </html>
