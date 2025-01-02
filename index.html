@@ -163,7 +163,6 @@
       calendarBody.innerHTML = '';
       updateCalendarTitle(year);
 
-      // Load events from local storage
       if (localStorage.getItem('events')) {
         events = JSON.parse(localStorage.getItem('events'));
       } else {
@@ -204,7 +203,6 @@
                 dayCell.classList.add('highlight-today');
               }
 
-              // Display events BEFORE attaching the listener
               if (events[dateString]) {
                 events[dateString].forEach(event => {
                   const eventMarker = document.createElement('div');
@@ -219,26 +217,14 @@
               const currentYear = year;
 
               dayCell.addEventListener('click', () => {
-                const promptDay = currentDay;
-                const promptMonth = currentMonth;
-                const promptYear = currentYear;
-
-                const event = prompt(`Add or edit an event for ${promptDay}/${promptMonth}/${promptYear}:`);
+                const event = prompt(`Add or edit an event for ${currentDay}/${currentMonth}/${currentYear}:`);
                 if (event) {
-                  const eventDate = new Date(promptYear, promptMonth - 1, promptDay);
-                  const eventYear = eventDate.getFullYear();
-                  const eventMonth = eventDate.getMonth() + 1;
-                  const eventDay = eventDate.getDate();
-                  const eventDateString = `${eventYear}-${eventMonth}-${eventDay}`;
-
-                  if (!events[eventDateString]) {
-                    events[eventDateString] = [];
+                  const eventDate = `${currentYear}-${currentMonth}-${currentDay}`;
+                  if (!events[eventDate]) {
+                    events[eventDate] = [];
                   }
-                  events[eventDateString].push(event);
-
-                  // Save to local storage AFTER updating the events object
+                  events[eventDate].push(event);
                   localStorage.setItem('events', JSON.stringify(events));
-
                   generateCalendar(selectedYear);
                 }
               });
