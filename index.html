@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Calendar</title>
-
     <style>
-        /* General page styling */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #fce4ec;
@@ -61,8 +59,16 @@
             font-size: 0.8em;
             color: #333;
             position: absolute;
-            bottom: 5px;
-            left: 5px;
+            bottom: 2px;
+            left: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 90%;
+            box-sizing: border-box;
+            padding: 2px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 3px;
         }
 
         footer {
@@ -132,14 +138,14 @@
                 </tr>
             </thead>
             <tbody id="calendar-body">
-                <!-- Calendar content dynamically generated -->
             </tbody>
         </table>
 
         <footer>
             <p>Developed by Sergey Reizman - 2025</p>
         </footer>
-        <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
+        <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank"
+            class="transparent-button">Visit My Portfolio</a>
     </div>
 
     <script>
@@ -147,13 +153,14 @@
         const currentYearDisplay = document.getElementById('current-year');
         const today = new Date();
         let selectedYear = today.getFullYear();
+        let events = {};
 
         function updateCalendarTitle(year) {
             currentYearDisplay.textContent = year;
         }
 
         function generateCalendar(year) {
-            calendarBody.innerHTML = ''; // Clear existing calendar
+            calendarBody.innerHTML = '';
             updateCalendarTitle(year);
 
             for (let month = 0; month < 12; month++) {
@@ -185,23 +192,44 @@
                         } else if (dayCounter <= daysInMonth) {
                             dayCell.textContent = dayCounter;
 
-                            // Highlight today's date
-                            if (
-                                year === today.getFullYear() &&
-                                month === today.getMonth() &&
-                                dayCounter === today.getDate()
-                            ) {
+                            const dateString = `${year}-${month + 1}-${dayCounter}`;
+
+                            if (year === today.getFullYear() && month === today.getMonth() && dayCounter === today.getDate()) {
                                 dayCell.classList.add('highlight-today');
                             }
 
-                            // Add click event to add events/reminders
-                            dayCell.addEventListener('click', () => {
-                                const event = prompt(`Add an event for ${dayCounter}/${month + 1}/${year}:`);
-                                if (event) {
+                            // Display events BEFORE attaching the listener
+                            if (events[dateString]) {
+                                events[dateString].forEach(event => {
                                     const eventMarker = document.createElement('div');
                                     eventMarker.textContent = event;
                                     eventMarker.classList.add('event-marker');
                                     dayCell.appendChild(eventMarker);
+                                });
+                            }
+
+                            const currentDay = dayCounter;
+                            const currentMonth = month + 1;
+                            const currentYear = year;
+
+                            dayCell.addEventListener('click', () => {
+                                const promptDay = currentDay;
+                                const promptMonth = currentMonth;
+                                const promptYear = currentYear;
+
+                                const event = prompt(`Add or edit an event for ${promptDay}/${promptMonth}/${promptYear}:`);
+                                if (event) {
+                                    const eventDate = new Date(promptYear, promptMonth - 1, promptDay);
+                                    const eventYear = eventDate.getFullYear();
+                                    const eventMonth = eventDate.getMonth() + 1;
+                                    const eventDay = eventDate.getDate();
+                                    const eventDateString = `${eventYear}-${eventMonth}-${eventDay}`;
+
+                                    if (!events[eventDateString]) {
+                                        events[eventDateString] = [];
+                                    }
+                                    events[eventDateString].push(event);
+                                    generateCalendar(selectedYear);
                                 }
                             });
 
@@ -210,13 +238,11 @@
                         weekRow.appendChild(dayCell);
                     }
                     calendarBody.appendChild(weekRow);
-
                     if (dayCounter > daysInMonth) break;
                 }
             }
         }
 
-        // Event listeners for navigation buttons
         document.getElementById('prev-year-btn').addEventListener('click', () => {
             selectedYear--;
             generateCalendar(selectedYear);
@@ -227,7 +253,6 @@
             generateCalendar(selectedYear);
         });
 
-        // Initialize the calendar
         generateCalendar(selectedYear);
     </script>
 </body>
