@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Calendar</title>
   <style>
+    /* Same styles as before */
     body {
       font-family: 'Arial', sans-serif;
       background-color: #fce4ec;
@@ -130,7 +131,9 @@
       <span id="current-year"></span>
       <button class="transparent-button" id="next-year-btn">Next Year</button>
     </div>
-
+    <div>
+      <button class="transparent-button" id="clear-events-btn">Clear All Events</button>
+    </div>
     <table>
       <thead>
         <tr>
@@ -264,6 +267,16 @@
     document.getElementById('next-year-btn').addEventListener('click', () => {
       selectedYear++;
       generateCalendar(selectedYear);
+    });
+
+    document.getElementById('clear-events-btn').addEventListener('click', () => {
+      const confirmClearAll = confirm('Are you sure you want to clear all events? This action cannot be undone.');
+      if (confirmClearAll) {
+        events = {}; // Clear the events object
+        localStorage.removeItem('events'); // Remove events from localStorage
+        generateCalendar(selectedYear); // Regenerate the calendar
+        alert('All events have been cleared.');
+      }
     });
 
     generateCalendar(selectedYear);
