@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Calendar</title>
   <style>
-    /* Same styles as before */
+    /* Basic styles for the calendar's layout and appearance */
     body {
       font-family: 'Arial', sans-serif;
       background-color: #fce4ec;
@@ -51,11 +51,13 @@
       color: white;
     }
 
+    /* Highlight the current day */
     .highlight-today {
       background-color: #ff4081;
       color: white;
     }
 
+    /* Style for event markers inside calendar cells */
     .event-marker {
       font-size: 0.8em;
       color: #333;
@@ -72,6 +74,7 @@
       border-radius: 3px;
     }
 
+    /* Style for footer and buttons */
     footer {
       margin-top: 30px;
       font-size: 1em;
@@ -96,6 +99,7 @@
       color: white;
     }
 
+    /* Responsive design for smaller devices */
     @media (max-width: 768px) {
       table {
         font-size: 0.8em;
@@ -127,11 +131,13 @@
   <div class="container">
     <h1 id="calendar-title">Interactive Calendar</h1>
     <div>
+      <!-- Buttons to navigate between years -->
       <button class="transparent-button" id="prev-year-btn">Previous Year</button>
       <span id="current-year"></span>
       <button class="transparent-button" id="next-year-btn">Next Year</button>
     </div>
     <div>
+      <!-- Button to clear all events -->
       <button class="transparent-button" id="clear-events-btn">Clear All Events</button>
     </div>
     <table>
@@ -155,16 +161,19 @@
     const currentYearDisplay = document.getElementById('current-year');
     const today = new Date();
     let selectedYear = today.getFullYear();
-    let events = {};
+    let events = {}; // Object to store events by date
 
+    // Update the displayed year in the calendar header
     function updateCalendarTitle(year) {
       currentYearDisplay.textContent = year;
     }
 
+    // Generate the calendar for a specific year
     function generateCalendar(year) {
-      calendarBody.innerHTML = '';
-      updateCalendarTitle(year);
+      calendarBody.innerHTML = ''; // Clear previous calendar content
+      updateCalendarTitle(year); // Update the year title
 
+      // Load saved events from localStorage, if available
       if (localStorage.getItem('events')) {
         events = JSON.parse(localStorage.getItem('events'));
       } else {
@@ -196,15 +205,17 @@
           for (let j = 0; j < 7; j++) {
             const dayCell = document.createElement('td');
             if (i === 0 && j < firstDay) {
-              dayCell.textContent = '';
+              dayCell.textContent = ''; // Empty cells before the first day of the month
             } else if (dayCounter <= daysInMonth) {
               dayCell.textContent = dayCounter;
               const dateString = `${year}-${month + 1}-${dayCounter}`;
 
+              // Highlight today's date
               if (year === today.getFullYear() && month === today.getMonth() && dayCounter === today.getDate()) {
                 dayCell.classList.add('highlight-today');
               }
 
+              // Add events for this date, if any
               if (events[dateString]) {
                 events[dateString].forEach(event => {
                   const eventMarker = document.createElement('div');
@@ -218,6 +229,7 @@
               const currentMonth = month + 1;
               const currentYear = year;
 
+              // Handle click events for each date
               dayCell.addEventListener('click', () => {
                 const action = prompt(
                   `What would you like to do for ${currentDay}/${currentMonth}/${currentYear}?\n\n1. Add/Edit Event\n2. Clear Events\n\nEnter 1 or 2:`
@@ -259,16 +271,19 @@
       }
     }
 
+    // Event listener for previous year button
     document.getElementById('prev-year-btn').addEventListener('click', () => {
       selectedYear--;
       generateCalendar(selectedYear);
     });
 
+    // Event listener for next year button
     document.getElementById('next-year-btn').addEventListener('click', () => {
       selectedYear++;
       generateCalendar(selectedYear);
     });
 
+    // Event listener to clear all events
     document.getElementById('clear-events-btn').addEventListener('click', () => {
       const confirmClearAll = confirm('Are you sure you want to clear all events? This action cannot be undone.');
       if (confirmClearAll) {
@@ -279,6 +294,7 @@
       }
     });
 
+    // Initialize the calendar on page load
     generateCalendar(selectedYear);
   </script>
 </body>
