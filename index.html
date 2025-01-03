@@ -144,8 +144,7 @@
     <footer>
       <p>Developed by Sergey Reizman - 2025</p>
     </footer>
-    <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank"
-      class="transparent-button">Visit My Portfolio</a>
+    <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
   </div>
 
   <script>
@@ -217,15 +216,33 @@
               const currentYear = year;
 
               dayCell.addEventListener('click', () => {
-                const event = prompt(`Add or edit an event for ${currentDay}/${currentMonth}/${currentYear}:`);
-                if (event) {
-                  const eventDate = `${currentYear}-${currentMonth}-${currentDay}`;
-                  if (!events[eventDate]) {
-                    events[eventDate] = [];
+                const action = prompt(
+                  `What would you like to do for ${currentDay}/${currentMonth}/${currentYear}?\n\n1. Add/Edit Event\n2. Clear Events\n\nEnter 1 or 2:`
+                );
+
+                const eventDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+                if (action === '1') {
+                  const event = prompt(`Add or edit an event for ${currentDay}/${currentMonth}/${currentYear}:`);
+                  if (event) {
+                    if (!events[eventDate]) {
+                      events[eventDate] = [];
+                    }
+                    events[eventDate].push(event);
+                    localStorage.setItem('events', JSON.stringify(events));
+                    generateCalendar(selectedYear);
                   }
-                  events[eventDate].push(event);
-                  localStorage.setItem('events', JSON.stringify(events));
-                  generateCalendar(selectedYear);
+                } else if (action === '2') {
+                  if (events[eventDate]) {
+                    const confirmClear = confirm(`Are you sure you want to clear all events for ${currentDay}/${currentMonth}/${currentYear}?`);
+                    if (confirmClear) {
+                      delete events[eventDate];
+                      localStorage.setItem('events', JSON.stringify(events));
+                      generateCalendar(selectedYear);
+                    }
+                  } else {
+                    alert(`No events to clear for ${currentDay}/${currentMonth}/${currentYear}.`);
+                  }
                 }
               });
 
