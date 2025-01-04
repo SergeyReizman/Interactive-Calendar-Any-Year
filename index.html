@@ -99,13 +99,33 @@
       color: white;
     }
 
+    /* Back to Top button styles */
+    .back-to-top-button {
+      margin: 20px 10px;
+      padding: 10px 20px;
+      background-color: transparent;
+      border: 2px solid #4fc3f7; /* Light blue color */
+      border-radius: 8px;
+      color: #4fc3f7; /* Light blue text */
+      font-size: 1em;
+      text-decoration: none;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
+
+    .back-to-top-button:hover {
+      background-color: #4fc3f7;
+      color: white;
+    }
+
     /* Responsive design for smaller devices */
     @media (max-width: 768px) {
       table {
         font-size: 0.8em;
       }
 
-      .transparent-button {
+      .transparent-button,
+      .back-to-top-button {
         font-size: 0.9em;
       }
     }
@@ -119,7 +139,8 @@
         font-size: 0.9em;
       }
 
-      .transparent-button {
+      .transparent-button,
+      .back-to-top-button {
         font-size: 0.8em;
         padding: 8px 16px;
       }
@@ -146,14 +167,15 @@
           <th colspan="7">Calendar</th>
         </tr>
       </thead>
-      <tbody id="calendar-body">
-      </tbody>
+      <tbody id="calendar-body"></tbody>
     </table>
 
     <footer>
       <p>Developed by Sergey Reizman - 2025</p>
     </footer>
+    <!-- Buttons section -->
     <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
+    <button class="back-to-top-button" onclick="scrollToTop()">Back to Top</button>
   </div>
 
   <script>
@@ -162,6 +184,11 @@
     const today = new Date();
     let selectedYear = today.getFullYear();
     let events = {}; // Object to store events by date
+
+    // Function to scroll back to the top of the page
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     // Update the displayed year in the calendar header
     function updateCalendarTitle(year) {
@@ -289,12 +316,11 @@
       if (confirmClearAll) {
         events = {}; // Clear the events object
         localStorage.removeItem('events'); // Remove events from localStorage
-        generateCalendar(selectedYear); // Regenerate the calendar
-        alert('All events have been cleared.');
+        generateCalendar(selectedYear); // Re-render the calendar
       }
     });
 
-    // Initialize the calendar on page load
+    // Initialize calendar
     generateCalendar(selectedYear);
   </script>
 </body>
