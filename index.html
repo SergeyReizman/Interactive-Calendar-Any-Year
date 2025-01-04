@@ -51,13 +51,11 @@
       color: white;
     }
 
-    /* Highlight the current day */
     .highlight-today {
       background-color: #ff4081;
       color: white;
     }
 
-    /* Style for event markers inside calendar cells */
     .event-marker {
       font-size: 0.8em;
       color: #333;
@@ -74,7 +72,6 @@
       border-radius: 3px;
     }
 
-    /* Style for footer and buttons */
     footer {
       margin-top: 30px;
       font-size: 1em;
@@ -99,14 +96,13 @@
       color: white;
     }
 
-    /* Back to Top button styles */
     .back-to-top-button {
       margin: 20px 10px;
       padding: 10px 20px;
       background-color: transparent;
-      border: 2px solid #4fc3f7; /* Light blue color */
+      border: 2px solid #4fc3f7;
       border-radius: 8px;
-      color: #4fc3f7; /* Light blue text */
+      color: #4fc3f7;
       font-size: 1em;
       text-decoration: none;
       transition: 0.3s ease;
@@ -118,7 +114,6 @@
       color: white;
     }
 
-    /* Responsive design for smaller devices */
     @media (max-width: 768px) {
       table {
         font-size: 0.8em;
@@ -152,13 +147,11 @@
   <div class="container">
     <h1 id="calendar-title">Interactive Calendar</h1>
     <div>
-      <!-- Buttons to navigate between years -->
       <button class="transparent-button" id="prev-year-btn">Previous Year</button>
       <span id="current-year"></span>
       <button class="transparent-button" id="next-year-btn">Next Year</button>
     </div>
     <div>
-      <!-- Button to clear all events -->
       <button class="transparent-button" id="clear-events-btn">Clear All Events</button>
     </div>
     <table>
@@ -173,7 +166,6 @@
     <footer>
       <p>Developed by Sergey Reizman - 2025</p>
     </footer>
-    <!-- Buttons section -->
     <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
     <button class="back-to-top-button" onclick="scrollToTop()">Back to Top</button>
   </div>
@@ -183,29 +175,22 @@
     const currentYearDisplay = document.getElementById('current-year');
     const today = new Date();
     let selectedYear = today.getFullYear();
-    let events = {}; // Object to store events by date
+    let events = JSON.parse(localStorage.getItem('events')) || {};
 
-    // Function to scroll back to the top of the page
+    // Scroll to top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Update the displayed year in the calendar header
+    // Update the year display
     function updateCalendarTitle(year) {
       currentYearDisplay.textContent = year;
     }
 
-    // Generate the calendar for a specific year
+    // Generate the calendar
     function generateCalendar(year) {
-      calendarBody.innerHTML = ''; // Clear previous calendar content
-      updateCalendarTitle(year); // Update the year title
-
-      // Load saved events from localStorage, if available
-      if (localStorage.getItem('events')) {
-        events = JSON.parse(localStorage.getItem('events'));
-      } else {
-        events = {};
-      }
+      calendarBody.innerHTML = '';
+      updateCalendarTitle(year);
 
       for (let month = 0; month < 12; month++) {
         const monthRow = document.createElement('tr');
@@ -232,62 +217,24 @@
           for (let j = 0; j < 7; j++) {
             const dayCell = document.createElement('td');
             if (i === 0 && j < firstDay) {
-              dayCell.textContent = ''; // Empty cells before the first day of the month
+              dayCell.textContent = '';
             } else if (dayCounter <= daysInMonth) {
+              const dateKey = `${year}-${month + 1}-${dayCounter}`;
               dayCell.textContent = dayCounter;
-              const dateString = `${year}-${month + 1}-${dayCounter}`;
-
-              // Highlight today's date
               if (year === today.getFullYear() && month === today.getMonth() && dayCounter === today.getDate()) {
                 dayCell.classList.add('highlight-today');
               }
 
-              // Add events for this date, if any
-              if (events[dateString]) {
-                events[dateString].forEach(event => {
-                  const eventMarker = document.createElement('div');
-                  eventMarker.textContent = event;
-                  eventMarker.classList.add('event-marker');
-                  dayCell.appendChild(eventMarker);
+              if (events[dateKey]) {
+                events[dateKey].forEach(event => {
+                  const marker = document.createElement('div');
+                  marker.textContent = event;
+                  marker.classList.add('event-marker');
+                  dayCell.appendChild(marker);
                 });
               }
 
-              const currentDay = dayCounter;
-              const currentMonth = month + 1;
-              const currentYear = year;
-
-              // Handle click events for each date
-              dayCell.addEventListener('click', () => {
-                const action = prompt(
-                  `What would you like to do for ${currentDay}/${currentMonth}/${currentYear}?\n\n1. Add/Edit Event\n2. Clear Events\n\nEnter 1 or 2:`
-                );
-
-                const eventDate = `${currentYear}-${currentMonth}-${currentDay}`;
-
-                if (action === '1') {
-                  const event = prompt(`Add or edit an event for ${currentDay}/${currentMonth}/${currentYear}:`);
-                  if (event) {
-                    if (!events[eventDate]) {
-                      events[eventDate] = [];
-                    }
-                    events[eventDate].push(event);
-                    localStorage.setItem('events', JSON.stringify(events));
-                    generateCalendar(selectedYear);
-                  }
-                } else if (action === '2') {
-                  if (events[eventDate]) {
-                    const confirmClear = confirm(`Are you sure you want to clear all events for ${currentDay}/${currentMonth}/${currentYear}?`);
-                    if (confirmClear) {
-                      delete events[eventDate];
-                      localStorage.setItem('events', JSON.stringify(events));
-                      generateCalendar(selectedYear);
-                    }
-                  } else {
-                    alert(`No events to clear for ${currentDay}/${currentMonth}/${currentYear}.`);
-                  }
-                }
-              });
-
+              dayCell.addEventListener('click', () => manageEvent(dateKey));
               dayCounter++;
             }
             weekRow.appendChild(dayCell);
@@ -298,29 +245,58 @@
       }
     }
 
-    // Event listener for previous year button
+    // Manage events for a specific date
+function manageEvent(dateKey) {
+  const existingEvents = events[dateKey] || [];
+  const date = new Date(dateKey);
+  const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const action = prompt(
+    `Editing events for: ${formattedDate}\n\n` +
+    `Current Events: ${existingEvents.join(', ') || 'None'}\n\n` +
+    `Choose an action:\n` +
+    `1. Add Event\n` +
+    `2. Clear Events\n`
+  );
+
+  if (action === '1') {
+    const newEvent = prompt('Enter the event:');
+    if (newEvent) {
+      events[dateKey] = [...existingEvents, newEvent];
+      saveEvents();
+    }
+  } else if (action === '2') {
+    if (confirm(`Are you sure you want to clear all events for ${formattedDate}?`)) {
+      delete events[dateKey];
+      saveEvents();
+    }
+  }
+  generateCalendar(selectedYear);
+}
+
+    // Save events to localStorage
+    function saveEvents() {
+      localStorage.setItem('events', JSON.stringify(events));
+    }
+
+    // Navigation buttons
     document.getElementById('prev-year-btn').addEventListener('click', () => {
       selectedYear--;
       generateCalendar(selectedYear);
     });
 
-    // Event listener for next year button
     document.getElementById('next-year-btn').addEventListener('click', () => {
       selectedYear++;
       generateCalendar(selectedYear);
     });
 
-    // Event listener to clear all events
     document.getElementById('clear-events-btn').addEventListener('click', () => {
-      const confirmClearAll = confirm('Are you sure you want to clear all events? This action cannot be undone.');
-      if (confirmClearAll) {
-        events = {}; // Clear the events object
-        localStorage.removeItem('events'); // Remove events from localStorage
-        generateCalendar(selectedYear); // Re-render the calendar
+      if (confirm('Clear all events?')) {
+        events = {};
+        saveEvents();
+        generateCalendar(selectedYear);
       }
     });
 
-    // Initialize calendar
     generateCalendar(selectedYear);
   </script>
 </body>
