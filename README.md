@@ -1,17 +1,19 @@
-# Interactive Calendar ️
+Interactive Calendar ️
 
-I'm thrilled to share the latest version of my **Interactive Calendar** project, now packed with even more features to help you stay organized effortlessly—whether you're managing work tasks, personal events, or both!
+I'm thrilled to share the latest version of my Interactive Calendar project, now packed with even more features to help you stay organized effortlessly—whether you're managing work tasks, personal events, or both!
 
-**This enhanced calendar application boasts:**
+This enhanced calendar application boasts:
 
-* **Dynamic Year Navigation:** Effortlessly switch between years using clear "Previous Year" and "Next Year" buttons.
-* **Responsive Design:** Optimized for a seamless experience on various devices, from desktops to tablets and smartphones.
-* **Intuitive Event Management:** Click on any date to add, edit, or view events/reminders. Events are displayed within the selected date's cell.
-* **Comprehensive Event Editing:** Modify or update existing events directly on the calendar itself.
-* **Today's Highlight:** The current date is automatically highlighted for easy reference.
-* **Persistent Local Storage:** Events are saved locally in the browser and remain intact between page refreshes.
-* **Accessible Design:** Utilizes contrasting colors and WCAG-compliant styles for better usability across diverse user needs.
-* **Event Clearing Options:** Remove all events for a specific date or clear the entire calendar effortlessly.
+Dynamic Year Navigation: Effortlessly switch between years using clear "Previous Year" and "Next Year" buttons.
+Responsive Design: Optimized for a seamless experience on various devices, from desktops to tablets and smartphones.
+Intuitive Event Management: Click on any date to add, edit, or view events/reminders. Events are displayed within the selected date's cell.
+Comprehensive Event Editing: Modify or update existing events directly on the calendar itself.
+Today's Highlight: The current date is automatically highlighted for easy reference.
+Persistent Local Storage: Events are saved locally in the browser and remain intact between page refreshes.
+Accessible Design: Utilizes contrasting colors and WCAG-compliant styles for better usability across diverse user needs.
+Event Clearing Options: Remove all events for a specific date or clear the entire calendar effortlessly.
+Dark Mode Toggle: Switch to dark mode for a more comfortable viewing experience at night. Your preference is saved and persists across sessions.
+Back to Top Button: Easily scroll back to the top of the calendar with one click.
 
 ## Preview
 
@@ -43,17 +45,19 @@ There are two ways to access the project:
 
   - Navigate to the extracted folder and open the `index.html` file in your preferred web browser.
 
-3. **Explore Features**
+3. Explore Features
 
-  - **Year Navigation:** Use the **Previous Year** and **Next Year** buttons to view different years.
-  - **Adding Events:** Click on any date to add a custom event or reminder.
-  - **Editing Events:** Modify or update existing events by clicking on the same date.
-  - **Today's Highlight:** The current date is automatically distinguished for quick identification.
-  - **Clearing Events:** Remove all events for a specific date or reset the calendar entirely with ease.
+Year Navigation: Use the Previous Year and Next Year buttons to view different years.
+Adding Events: Click on any date to add a custom event or reminder.
+Editing Events: Modify or update existing events by clicking on the same date.
+Today's Highlight: The current date is automatically distinguished for quick identification.
+Clearing Events: Remove all events for a specific date or reset the calendar entirely with ease.
+Dark Mode: Toggle dark mode for a night-friendly view, and your preference will be remembered between sessions.
+Back to Top: Use the Back to Top button to smoothly scroll back to the top of the calendar.
 
-4. **Saving Events**
+4.Saving Events
 
-  - All events are saved in your browser's local storage, persisting between sessions.
+All events are saved in your browser's local storage, persisting between sessions.
 
 ## Folder Structure
 
