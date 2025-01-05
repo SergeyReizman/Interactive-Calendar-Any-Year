@@ -2,7 +2,11 @@
  * calendar.js - JavaScript for an interactive calendar.
  * Handles calendar generation, event management, and dark mode.
  */
-
+// Constants
+const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = Array.from({ length: 12 }, (_, i) => 
+    new Date(0, i).toLocaleString('default', { month: 'long' })
+);
 // DOM elements
 const calendarBody = document.getElementById('calendar-body');
 const currentYearDisplay = document.getElementById('current-year');
