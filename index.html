@@ -2,303 +2,40 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Calendar</title>
-  <style>
-    /* Basic styles for the calendar's layout and appearance */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fce4ec;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      margin: 20px auto;
-      padding: 10px;
-      max-width: 95%;
-    }
-
-    table {
-      margin: 20px auto;
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 800px;
-    }
-
-    th,
-    td {
-      padding: 10px;
-      border: 1px solid #d1d1d1;
-      text-align: center;
-    }
-
-    th {
-      background-color: #ff80ab;
-      color: white;
-    }
-
-    td {
-      background-color: #ffb2dd;
-      cursor: pointer;
-      position: relative;
-    }
-
-    td:hover {
-      background-color: #ff80ab;
-      color: white;
-    }
-
-    .highlight-today {
-      background-color: #ff4081;
-      color: white;
-    }
-
-    .event-marker {
-      font-size: 0.8em;
-      color: #333;
-      position: absolute;
-      bottom: 2px;
-      left: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 90%;
-      box-sizing: border-box;
-      padding: 2px;
-      background-color: rgba(255, 255, 255, 0.7);
-      border-radius: 3px;
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 1em;
-      color: #333;
-    }
-
-    .transparent-button {
-      margin: 20px 10px;
-      padding: 10px 20px;
-      background-color: transparent;
-      border: 2px solid #ff80ab;
-      border-radius: 8px;
-      color: #ff80ab;
-      font-size: 1em;
-      text-decoration: none;
-      transition: 0.3s ease;
-      display: inline-block;
-    }
-
-    .transparent-button:hover {
-      background-color: #ff80ab;
-      color: white;
-    }
-
-    .back-to-top-button {
-      margin: 20px 10px;
-      padding: 10px 20px;
-      background-color: transparent;
-      border: 2px solid #4fc3f7;
-      border-radius: 8px;
-      color: #4fc3f7;
-      font-size: 1em;
-      text-decoration: none;
-      transition: 0.3s ease;
-      display: inline-block;
-    }
-
-    .back-to-top-button:hover {
-      background-color: #4fc3f7;
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      table {
-        font-size: 0.8em;
-      }
-
-      .transparent-button,
-      .back-to-top-button {
-        font-size: 0.9em;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5em;
-      }
-
-      footer {
-        font-size: 0.9em;
-      }
-
-      .transparent-button,
-      .back-to-top-button {
-        font-size: 0.8em;
-        padding: 8px 16px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calendar</title>
+    <link rel="stylesheet" href="calendar.css">
 </head>
 
 <body>
-  <div class="container">
-    <h1 id="calendar-title">Interactive Calendar</h1>
-    <div>
-      <button class="transparent-button" id="prev-year-btn">Previous Year</button>
-      <span id="current-year"></span>
-      <button class="transparent-button" id="next-year-btn">Next Year</button>
+    <div class="container">
+        <h1 id="calendar-title">Interactive Calendar</h1>
+        <div class="controls">
+            <button class="transparent-button" id="prev-year-btn" aria-label="Previous Year">Previous Year</button>
+            <span id="current-year"></span>
+            <button class="transparent-button" id="next-year-btn" aria-label="Next Year">Next Year</button>
+        </div>
+        <div class="controls">
+            <button class="transparent-button" id="clear-events-btn" aria-label="Clear All Events">Clear All Events</button>
+            <button class="transparent-button" id="dark-mode-toggle" aria-label="Toggle Dark Mode">Dark Mode</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="7">Calendar</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
+
+        <footer>
+            <p>Developed by Sergey Reizman - 2025</p>
+        </footer>
+        <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
+        <button class="back-to-top-button" onclick="scrollToTop()" aria-label="Back to Top">Back to Top</button>
     </div>
-    <div>
-      <button class="transparent-button" id="clear-events-btn">Clear All Events</button>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th colspan="7">Calendar</th>
-        </tr>
-      </thead>
-      <tbody id="calendar-body"></tbody>
-    </table>
-
-    <footer>
-      <p>Developed by Sergey Reizman - 2025</p>
-    </footer>
-    <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
-    <button class="back-to-top-button" onclick="scrollToTop()">Back to Top</button>
-  </div>
-
-  <script>
-    const calendarBody = document.getElementById('calendar-body');
-    const currentYearDisplay = document.getElementById('current-year');
-    const today = new Date();
-    let selectedYear = today.getFullYear();
-    let events = JSON.parse(localStorage.getItem('events')) || {};
-
-    // Scroll to top
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Update the year display
-    function updateCalendarTitle(year) {
-      currentYearDisplay.textContent = year;
-    }
-
-    // Generate the calendar
-    function generateCalendar(year) {
-      calendarBody.innerHTML = '';
-      updateCalendarTitle(year);
-
-      for (let month = 0; month < 12; month++) {
-        const monthRow = document.createElement('tr');
-        const monthHeader = document.createElement('th');
-        monthHeader.colSpan = 7;
-        monthHeader.textContent = new Date(year, month).toLocaleString('default', { month: 'long' });
-        monthRow.appendChild(monthHeader);
-        calendarBody.appendChild(monthRow);
-
-        const daysRow = document.createElement('tr');
-        ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
-          const dayCell = document.createElement('th');
-          dayCell.textContent = day;
-          daysRow.appendChild(dayCell);
-        });
-        calendarBody.appendChild(daysRow);
-
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const firstDay = new Date(year, month, 1).getDay();
-        let dayCounter = 1;
-
-        for (let i = 0; i < 6; i++) {
-          const weekRow = document.createElement('tr');
-          for (let j = 0; j < 7; j++) {
-            const dayCell = document.createElement('td');
-            if (i === 0 && j < firstDay) {
-              dayCell.textContent = '';
-            } else if (dayCounter <= daysInMonth) {
-              const dateKey = `${year}-${month + 1}-${dayCounter}`;
-              dayCell.textContent = dayCounter;
-              if (year === today.getFullYear() && month === today.getMonth() && dayCounter === today.getDate()) {
-                dayCell.classList.add('highlight-today');
-              }
-
-              if (events[dateKey]) {
-                events[dateKey].forEach(event => {
-                  const marker = document.createElement('div');
-                  marker.textContent = event;
-                  marker.classList.add('event-marker');
-                  dayCell.appendChild(marker);
-                });
-              }
-
-              dayCell.addEventListener('click', () => manageEvent(dateKey));
-              dayCounter++;
-            }
-            weekRow.appendChild(dayCell);
-          }
-          calendarBody.appendChild(weekRow);
-          if (dayCounter > daysInMonth) break;
-        }
-      }
-    }
-
-    // Manage events for a specific date
-function manageEvent(dateKey) {
-  const existingEvents = events[dateKey] || [];
-  const date = new Date(dateKey);
-  const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  const action = prompt(
-    `Editing events for: ${formattedDate}\n\n` +
-    `Current Events: ${existingEvents.join(', ') || 'None'}\n\n` +
-    `Choose an action:\n` +
-    `1. Add Event\n` +
-    `2. Clear Events\n`
-  );
-
-  if (action === '1') {
-    const newEvent = prompt('Enter the event:');
-    if (newEvent) {
-      events[dateKey] = [...existingEvents, newEvent];
-      saveEvents();
-    }
-  } else if (action === '2') {
-    if (confirm(`Are you sure you want to clear all events for ${formattedDate}?`)) {
-      delete events[dateKey];
-      saveEvents();
-    }
-  }
-  generateCalendar(selectedYear);
-}
-
-    // Save events to localStorage
-    function saveEvents() {
-      localStorage.setItem('events', JSON.stringify(events));
-    }
-
-    // Navigation buttons
-    document.getElementById('prev-year-btn').addEventListener('click', () => {
-      selectedYear--;
-      generateCalendar(selectedYear);
-    });
-
-    document.getElementById('next-year-btn').addEventListener('click', () => {
-      selectedYear++;
-      generateCalendar(selectedYear);
-    });
-
-    document.getElementById('clear-events-btn').addEventListener('click', () => {
-      if (confirm('Clear all events?')) {
-        events = {};
-        saveEvents();
-        generateCalendar(selectedYear);
-      }
-    });
-
-    generateCalendar(selectedYear);
-  </script>
+    <script src="calendar.js"></script>
 </body>
 
 </html>
