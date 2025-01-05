@@ -10,6 +10,7 @@ const prevYearBtn = document.getElementById('prev-year-btn');
 const nextYearBtn = document.getElementById('next-year-btn');
 const clearEventsBtn = document.getElementById('clear-events-btn');
 const darkModeToggle = document.getElementById('dark-mode-toggle');
+const backToTopBtn = document.getElementById('backToTopBtn'); // Get the button
 const body = document.body;
 
 // Current date and selected year
@@ -172,6 +173,15 @@ darkModeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
 });
+
+// Event listener for Back to Top button
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 
 // Check for saved dark mode preference on page load
 if (localStorage.getItem('darkMode') === 'true') {
