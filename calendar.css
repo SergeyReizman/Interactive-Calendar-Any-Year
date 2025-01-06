@@ -1,206 +1,223 @@
-/* calendar.css */
-
-/* General body styling */
-body {
-    font-family: 'Arial', sans-serif; /* Set default font */
-    background-color: #fce4ec; /* Light pink background */
-    text-align: center; /* Center text alignment */
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for dark mode */
+/* ========== Variables ========== */
+/* Define CSS variables for colors, fonts, and transitions */
+:root {
+    --primary-color: #ff80ab; /* Primary pink color */
+    --secondary-color: #fce4ec; /* Light pink background */
+    --hover-color: #ff4081; /* Hover color for interactive elements */
+    --dark-bg-color: #333; /* Dark mode background */
+    --dark-text-color: #eee; /* Dark mode text color */
+    --border-color: #d1d1d1; /* Light border color */
+    --font-family: 'Arial', sans-serif; /* Default font family */
+    --transition: 0.3s ease; /* Transition for smooth effects */
 }
 
-/* Dark mode styling */
+/* Dark mode variables */
 body.dark-mode {
-    background-color: #333; /* Dark background for dark mode */
-    color: #eee; /* Light text color for dark mode */
+    --primary-color: #880e4f; /* Darker pink */
+    --secondary-color: #424242; /* Dark mode cell background */
+    --hover-color: #ad1457; /* Hover color in dark mode */
+    --border-color: #616161; /* Darker border color */
+    --dark-text-color: #eee; /* Light text for dark mode */
+}
+
+/* ========== General Styles ========== */
+/* Global body styles */
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    transition: background-color var(--transition), color var(--transition);
 }
 
 /* Container styling */
 .container {
-    margin: 20px auto; /* Center the container with some space around */
+    margin: 20px auto;
     padding: 10px;
-    max-width: 95%; /* Limit the maximum width to 95% of the screen */
+    max-width: 95%;
 }
 
-/* Styling for the calendar table */
+/* ========== Calendar Table ========== */
+/* Table structure */
 table {
     margin: 20px auto;
-    border-collapse: collapse; /* Remove space between borders */
-    width: 100%; /* Full width of container */
-    max-width: 800px; /* Limit table width */
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    font-size: 1em;
 }
 
-/* Table header and cells styling */
+/* Table cells */
 th, td {
-    padding: 10px; /* Space inside cells */
-    border: 1px solid #d1d1d1; /* Light border for table cells */
-    text-align: center; /* Center text within cells */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: background-color var(--transition), color var(--transition);
 }
 
-/* Styling for the header row (days of the week) */
+/* Header row (days of the week) */
 th {
-    background-color: #ff80ab; /* Light pink background for header */
-    color: white; /* White text for header */
+    background-color: var(--primary-color);
+    color: white;
 }
 
-/* Styling for table cells (days in the calendar) */
+/* Calendar cells (days) */
 td {
-    background-color: #ffb2dd; /* Light pink background for days */
-    cursor: pointer; /* Indicate clickable cells */
+    background-color: var(--secondary-color);
+    cursor: pointer;
     position: relative;
 }
 
-/* Hover effect on calendar days */
+/* Hover effect */
 td:hover {
-    background-color: #ff80ab; /* Darker pink when hovering */
-    color: white; /* White text on hover */
+    background-color: var(--hover-color);
+    color: white;
 }
 
-/* Dark mode styling for table header */
-body.dark-mode th {
-    background-color: #880e4f; /* Darker shade of pink for dark mode */
-}
-
-/* Dark mode styling for table cells */
-body.dark-mode td {
-    background-color: #424242; /* Dark gray background for cells */
-    border: 1px solid #616161; /* Darker border in dark mode */
-    color: #eee; /* Light text color in dark mode */
-}
-
-/* Dark mode hover effect for table cells */
-body.dark-mode td:hover {
-    background-color: #880e4f; /* Darker pink hover in dark mode */
-    color: white; /* White text on hover */
-}
-
-/* Styling for the highlighted current day */
+/* Highlight current day */
 .highlight-today {
-    background-color: #ff4081; /* Pink background for today */
-    color: white; /* White text for today */
+    background-color: var(--hover-color);
+    color: white;
 }
 
-/* Dark mode styling for the highlighted current day */
+/* ========== Dark Mode ========== */
+/* Specific dark mode styles */
+body.dark-mode th {
+    background-color: var(--primary-color);
+}
+
+body.dark-mode td {
+    background-color: var(--secondary-color);
+    border-color: var(--border-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode td:hover {
+    background-color: var(--hover-color);
+    color: white;
+}
+
 body.dark-mode .highlight-today {
-    background-color: #ad1457; /* Darker pink for today in dark mode */
+    background-color: var(--hover-color);
 }
 
-/* Event marker styling (small label on the day for events) */
+/* ========== Event Markers ========== */
+/* Markers for events on days */
 .event-marker {
-    font-size: 0.8em; /* Smaller text for event labels */
-    color: #333; /* Dark color for event text */
+    font-size: 0.8em;
+    color: #333;
     position: absolute;
-    bottom: 2px; /* Position at the bottom of the day cell */
-    left: 2px; /* Align to the left side */
+    bottom: 2px;
+    left: 2px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Truncate text with ellipsis if too long */
+    text-overflow: ellipsis;
     max-width: 90%;
     box-sizing: border-box;
     padding: 2px;
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 3px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    transition: background-color var(--transition), color var(--transition);
 }
 
-/* Dark mode styling for event markers */
+/* Dark mode for event markers */
 body.dark-mode .event-marker {
-    background-color: rgba(0, 0, 0, 0.5); /* Darker background for event markers in dark mode */
-    color: #eee; /* Light text color in dark mode */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--dark-text-color);
 }
 
-/* Footer styling */
-footer {
-    margin-top: 30px;
-    font-size: 1em;
-    color: #333; /* Dark text color for footer */
-    transition: color 0.3s ease; /* Smooth transition for dark mode text */
-}
-
-/* Dark mode footer styling */
-body.dark-mode footer {
-    color: #eee; /* Light text color for footer in dark mode */
-}
-
-/* Styling for transparent buttons (navigation and action buttons) */
+/* ========== Buttons ========== */
+/* Transparent buttons */
 .transparent-button {
     margin: 20px 10px;
     padding: 10px 20px;
     background-color: transparent;
-    border: 2px solid #ff80ab; /* Pink border for buttons */
-    border-radius: 8px; /* Rounded corners */
-    color: #ff80ab; /* Pink text */
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
     font-size: 1em;
     text-decoration: none;
-    transition: 0.3s ease;
-    display: inline-block; /* Buttons aligned horizontally */
+    transition: background-color var(--transition), color var(--transition);
+    display: inline-block;
 }
 
-/* Hover effect for transparent buttons */
+/* Hover effect */
 .transparent-button:hover {
-    background-color: #ff80ab; /* Pink background on hover */
-    color: white; /* White text on hover */
+    background-color: var(--primary-color);
+    color: white;
 }
 
-/* Dark mode styling for transparent buttons */
+/* Dark mode buttons */
 body.dark-mode .transparent-button {
-    border-color: #f48fb1; /* Lighter pink border for dark mode */
-    color: #f48fb1; /* Lighter pink text */
+    border-color: var(--hover-color);
+    color: var(--hover-color);
 }
 
-/* Dark mode hover effect for transparent buttons */
 body.dark-mode .transparent-button:hover {
-    background-color: #f48fb1; /* Lighter pink background on hover */
-    color: #333; /* Dark text on hover */
+    background-color: var(--hover-color);
+    color: var(--dark-bg-color);
 }
 
-/* Styling for the "Back to Top" button */
+/* Back to Top button */
 .back-to-top-button {
     margin: 20px 10px;
     padding: 10px 20px;
     background-color: transparent;
-    border: 2px solid #4fc3f7; /* Light blue border */
-    border-radius: 8px; /* Rounded corners */
-    color: #4fc3f7; /* Light blue text */
+    border: 2px solid #4fc3f7;
+    border-radius: 8px;
+    color: #4fc3f7;
     font-size: 1em;
     text-decoration: none;
-    transition: 0.3s ease;
+    transition: var(--transition);
     display: inline-block;
 }
 
-/* Hover effect for "Back to Top" button */
 .back-to-top-button:hover {
-    background-color: #4fc3f7; /* Blue background on hover */
-    color: white; /* White text on hover */
+    background-color: #4fc3f7;
+    color: white;
 }
 
-/* Media query for smaller screens (max-width: 768px) */
+/* ========== Media Queries ========== */
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
     table {
-        font-size: 0.8em; /* Smaller font size for table on smaller screens */
+        font-size: 0.9em;
     }
 
     .transparent-button,
     .back-to-top-button {
-        font-size: 0.9em; /* Slightly smaller font size for buttons */
+        font-size: 0.9em;
     }
 }
 
-/* Media query for very small screens (max-width: 480px) */
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.5em; /* Smaller title font size */
+        font-size: 1.5em;
     }
 
     footer {
-        font-size: 0.9em; /* Smaller footer font size */
+        font-size: 0.9em;
     }
 
     .transparent-button,
     .back-to-top-button {
-        font-size: 0.8em; /* Even smaller buttons */
-        padding: 8px 16px; /* Reduced padding for small screens */
+        font-size: 0.8em;
+        padding: 8px 16px;
     }
+}
+
+/* ========== Footer ========== */
+/* Footer styling */
+footer {
+    margin-top: 30px;
+    font-size: 1em;
+    color: #333;
+    transition: color var(--transition);
+}
+
+/* Dark mode footer */
+body.dark-mode footer {
+    color: var(--dark-text-color);
 }
