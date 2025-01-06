@@ -1,6 +1,6 @@
 /**
  * calendar.js - JavaScript for an interactive calendar.
- * Handles calendar generation, event management, and dark mode.
+ * Handles calendar generation, event management, dark mode, and ocean view theme.
  */
 
 // Constants
@@ -16,6 +16,7 @@ const prevYearBtn = document.getElementById('prev-year-btn');
 const nextYearBtn = document.getElementById('next-year-btn');
 const clearEventsBtn = document.getElementById('clear-events-btn');
 const darkModeToggle = document.getElementById('dark-mode-toggle');
+const oceanViewToggle = document.getElementById('ocean-view-toggle');
 const backToTopBtn = document.getElementById('backToTopBtn');
 const body = document.body;
 
@@ -25,6 +26,9 @@ let selectedYear = today.getFullYear();
 
 // Load events from local storage or initialize an empty object
 let events = JSON.parse(localStorage.getItem('events')) || {};
+
+// Track Ocean View state
+let isOceanView = false;
 
 /**
  * Saves the current events object to local storage.
@@ -121,7 +125,9 @@ function manageEvent(dateKey) {
     const existingEvents = events[dateKey] || [];
     const formattedDate = new Date(dateKey).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    const action = prompt(`Events for ${formattedDate}:\n${existingEvents.join('\n')}\n1. Add Event\n2. Edit Event\n3. Delete Event`, '');
+    const action = prompt(`Events for ${formattedDate}:
+${existingEvents.join('\n')}
+1. Add Event\n2. Edit Event\n3. Delete Event`, '');
 
     if (action === '1') {
         const newEvent = prompt('Enter new event:');
@@ -158,6 +164,15 @@ function manageEvent(dateKey) {
     }
 }
 
+/**
+ * Toggles the Ocean View theme.
+ */
+function toggleOceanView() {
+    isOceanView = !isOceanView;
+    body.classList.toggle('ocean-view', isOceanView);
+    localStorage.setItem('oceanView', isOceanView);
+}
+
 // Event Listeners
 prevYearBtn.addEventListener('click', () => {
     selectedYear--;
@@ -182,13 +197,20 @@ darkModeToggle.addEventListener('click', () => {
     localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
 });
 
+oceanViewToggle.addEventListener('click', toggleOceanView);
+
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Initialize dark mode based on saved preference
+// Initialize themes based on saved preferences
 if (localStorage.getItem('darkMode') === 'true') {
     body.classList.add('dark-mode');
+}
+
+if (localStorage.getItem('oceanView') === 'true') {
+    isOceanView = true;
+    body.classList.add('ocean-view');
 }
 
 // Initial calendar generation
