@@ -135,7 +135,10 @@ function generateCalendar(year) {
  * @param {string} dateKey - The date in YYYY-MM-DD format.
  */
 function manageEvent(dateKey) {
-    modalTitle.textContent = `Events for ${new Date(dateKey).toLocaleDateString()}`;
+    const dateObj = new Date(dateKey);
+    const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
+    modalTitle.textContent = `Events for ${formattedDate}`;
+
     eventInput.value = '';
     eventList.innerHTML = '';
 
