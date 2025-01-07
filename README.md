@@ -15,6 +15,7 @@ This enhanced calendar application boasts:
 - **Dark Mode Toggle:** Switch to dark mode for a more comfortable viewing experience at night. Your preference is saved and persists across sessions.
 - **Back to Top Button:** Easily scroll back to the top of the calendar with one click.
 - **Ocean View Theme:** Toggle to a visually refreshing ocean-inspired theme, designed to enhance your user experience with soothing colors and animations.
+- **Modal Window** for Event Management: An interactive modal window for adding, editing, or deleting events, providing a more refined user interface for event management.
 
 ## Preview
 
@@ -56,6 +57,7 @@ There are two ways to access the project:
 - **Dark Mode:** Toggle dark mode for a night-friendly view, and your preference will be remembered between sessions.
 - **Ocean View Theme:** Activate the Ocean View button for a calming, visually enhanced experience.
 - **Back to Top:** Use the Back to Top button to smoothly scroll back to the top of the calendar.
+- **Event Modal Window** Manage your events with an easy-to-use modal window for adding, editing, and deleting events.
 
 ### 4. **Saving Events**
 

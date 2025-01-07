@@ -1,6 +1,12 @@
 /**
- * calendar.js - JavaScript for an interactive calendar.
- * Handles calendar generation, event management, dark mode, and ocean view theme.
+ * calendar.js - Interactive Calendar with Event Management and Themes
+ * 
+ * Features:
+ * - Calendar generation for any year.
+ * - Event management (add, edit, delete events).
+ * - Persistent storage for events and theme preferences.
+ * - Dark mode and Ocean View theme toggles.
+ * - Smooth scrolling "Back to Top" button.
  */
 
 // Constants
@@ -20,11 +26,19 @@ const oceanViewToggle = document.getElementById('ocean-view-toggle');
 const backToTopBtn = document.getElementById('backToTopBtn');
 const body = document.body;
 
+// Modal Elements
+const modal = document.getElementById('event-modal');
+const modalTitle = document.getElementById('modal-title');
+const eventList = document.getElementById('event-list');
+const eventInput = document.getElementById('event-input');
+const addEventBtn = document.getElementById('add-event-btn');
+const closeButton = document.querySelector('.close-button');
+
 // Current date and selected year
 const today = new Date();
 let selectedYear = today.getFullYear();
 
-// Load events from local storage or initialize an empty object
+// Persistent storage for events
 let events = JSON.parse(localStorage.getItem('events')) || {};
 
 // Track Ocean View state
@@ -93,13 +107,12 @@ function generateCalendar(year) {
                         dayCell.classList.add('highlight-today');
                     }
 
-                    // Add events markers if any exist
+                    // Add event markers if any exist
                     if (events[dateKey]) {
-                        events[dateKey].forEach((event, index) => {
+                        events[dateKey].forEach(event => {
                             const marker = document.createElement('div');
                             marker.textContent = event;
                             marker.classList.add('event-marker');
-                            marker.dataset.index = index; // Store index for editing/deleting
                             dayCell.appendChild(marker);
                         });
                     }
@@ -118,51 +131,60 @@ function generateCalendar(year) {
 }
 
 /**
- * Handles adding, editing, or deleting events for a given date.
+ * Opens the modal for managing events on a specific date.
  * @param {string} dateKey - The date in YYYY-MM-DD format.
  */
 function manageEvent(dateKey) {
+    modalTitle.textContent = `Events for ${new Date(dateKey).toLocaleDateString()}`;
+    eventInput.value = '';
+    eventList.innerHTML = '';
+
     const existingEvents = events[dateKey] || [];
-    const formattedDate = new Date(dateKey).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    existingEvents.forEach((event, index) => {
+        const eventItem = document.createElement('div');
+        eventItem.textContent = `${index + 1}. ${event}`;
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => {
+            existingEvents.splice(index, 1);
+            if (existingEvents.length > 0) {
+                events[dateKey] = existingEvents;
+            } else {
+                delete events[dateKey];
+            }
+            saveEvents();
+            generateCalendar(selectedYear);
+            manageEvent(dateKey); // Refresh modal
+        });
+        eventItem.appendChild(deleteButton);
+        eventList.appendChild(eventItem);
+    });
 
-    const action = prompt(`Events for ${formattedDate}:
-${existingEvents.join('\n')}
-1. Add Event\n2. Edit Event\n3. Delete Event`, '');
-
-    if (action === '1') {
-        const newEvent = prompt('Enter new event:');
+    addEventBtn.onclick = () => {
+        const newEvent = eventInput.value.trim();
         if (newEvent) {
-            existingEvents.push(newEvent.trim());
+            existingEvents.push(newEvent);
             events[dateKey] = existingEvents;
             saveEvents();
             generateCalendar(selectedYear);
+            manageEvent(dateKey); // Refresh modal
         }
-    } else if (action === '2') {
-        const eventIndex = prompt(`Which event number to edit? (1-${existingEvents.length})`);
-        if (eventIndex && existingEvents[eventIndex - 1]) {
-            const editedEvent = prompt('Edit event:', existingEvents[eventIndex - 1]);
-            if (editedEvent) {
-                existingEvents[eventIndex - 1] = editedEvent.trim();
-                saveEvents();
-                generateCalendar(selectedYear);
-            }
-        }
-    } else if (action === '3') {
-        const eventIndex = prompt(`Which event number to delete? (1-${existingEvents.length})`);
-        if (eventIndex && existingEvents[eventIndex - 1]) {
-            if (confirm(`Are you sure you want to delete "${existingEvents[eventIndex - 1]}"?`)) {
-                existingEvents.splice(eventIndex - 1, 1);
-                if (existingEvents.length > 0) {
-                    events[dateKey] = existingEvents;
-                } else {
-                    delete events[dateKey];
-                }
-                saveEvents();
-                generateCalendar(selectedYear);
-            }
-        }
-    }
+    };
+
+    modal.style.display = 'block';
 }
+
+// Close the modal
+closeButton.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close modal on outside click
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
 
 /**
  * Toggles the Ocean View theme.
