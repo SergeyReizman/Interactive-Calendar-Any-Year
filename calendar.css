@@ -1,151 +1,47 @@
+/* ======================
+    Calendar CSS Stylesheet
+    Author: [Your Name]
+    Purpose: Styling for a dynamic calendar with support for themes (Dark Mode, Ocean View)
+    Last Updated: [Date]
+====================== */
+
 /* ========== Variables ========== */
-/* Define CSS variables for colors, fonts, and transitions */
 :root {
-    --primary-color: #ff80ab; /* Primary pink color */
-    --secondary-color: #fce4ec; /* Light pink background */
-    --hover-color: #ff4081; /* Hover color for interactive elements */
-    --dark-bg-color: #333; /* Dark mode background */
-    --dark-text-color: #eee; /* Dark mode text color */
-    --border-color: #d1d1d1; /* Light border color */
-    --font-family: 'Arial', sans-serif; /* Default font family */
-    --transition: 0.3s ease; /* Transition for smooth effects */
+    /* General color palette */
+    --primary-color: #ff80ab;
+    --secondary-color: #fce4ec;
+    --hover-color: #ff4081;
+    --border-color: #d1d1d1;
+    --font-family: 'Arial', sans-serif;
+    --transition: 0.3s ease;
+
+    /* Dark mode variables */
+    --dark-bg-color: #333;
+    --dark-text-color: #eee;
+    --dark-border-color: #616161;
 
     /* Ocean View theme colors */
-    --ocean-primary-color: #0277bd; /* Ocean blue */
-    --ocean-secondary-color: #e1f5fe; /* Light ocean blue */
-    --ocean-hover-color: #01579b; /* Darker ocean blue for hover */
-    --ocean-border-color: #81d4fa; /* Light blue border */
-    --ocean-text-color: #ffffff; /* White text for ocean view */
+    --ocean-primary-color: #0277bd;
+    --ocean-secondary-color: #e1f5fe;
+    --ocean-hover-color: #01579b;
+    --ocean-border-color: #81d4fa;
+    --ocean-text-color: #ffffff;
+
+    /* Modal Yellow Color */
+    --modal-yellow: #ffeb3b;
 }
 
-/* Ocean View theme styles */
-.ocean-mode {
-    background-color: #00bcd4; /* Ocean blue */
-    color: white;
-}
-
-.ocean-mode table {
-    background-color: #00838f; /* Deep blue for the table */
-    color: white;
-}
-
-.ocean-mode th {
-    background-color: var(--ocean-primary-color);
-    color: var(--ocean-text-color);
-}
-
-.ocean-mode td {
-    background-color: var(--ocean-secondary-color);
-    border-color: var(--ocean-border-color);
-    color: #333;
-}
-
-.ocean-mode td:hover {
-    background-color: var(--ocean-hover-color);
-    color: var(--ocean-text-color);
-}
-
-.ocean-mode .highlight-today {
-    background-color: var(--ocean-hover-color);
-    color: white;
-}
-
-/* Event markers for ocean view */
-.ocean-mode .event-marker {
-    background-color: rgba(255, 255, 255, 0.7);
-    color: #333;
-}
-
-/* ========== Apply the Ocean View theme to calendar layout ========== */
-body.ocean-view th {
-    background-color: var(--ocean-primary-color);
-    color: var(--ocean-text-color);
-}
-
-body.ocean-view td {
-    background-color: var(--ocean-secondary-color);
-    border-color: var(--ocean-border-color);
-    color: #333;
-}
-
-body.ocean-view td:hover {
-    background-color: var(--ocean-hover-color);
-    color: var(--ocean-text-color);
-}
-
-body.ocean-view .highlight-today {
-    background-color: var(--ocean-hover-color);
-    color: white;
-}
-
-/* Dark mode variables */
-body.dark-mode {
-    --primary-color: #880e4f; /* Darker pink */
-    --secondary-color: #424242; /* Dark mode cell background */
-    --hover-color: #ad1457; /* Hover color in dark mode */
-    --border-color: #616161; /* Darker border color */
-    --dark-text-color: #eee; /* Light text for dark mode */
-}
-
-/* ========== Theme Switcher ========== */
-/* Base styles for theme switcher */
-.theme-switcher {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.theme-switcher button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 8px;
-    border: 2px solid var(--border-color);
-    background-color: transparent;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: background-color var(--transition), color var(--transition);
-}
-
-.theme-switcher button:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* Buttons for specific themes */
-.theme-switcher .dark-mode-btn {
-    border-color: #616161;
-    color: #616161;
-}
-
-.theme-switcher .dark-mode-btn:hover {
-    background-color: #616161;
-    color: white;
-}
-
-.theme-switcher .ocean-view-btn {
-    border-color: var(--ocean-primary-color);
-    color: var(--ocean-primary-color);
-}
-
-.theme-switcher .ocean-view-btn:hover {
-    background-color: var(--ocean-primary-color);
-    color: white;
-}
-
-/* ========== General Styles ========== */
-/* Global body styles */
+/* ========== Base Styles ========== */
 body {
     font-family: var(--font-family);
     background-color: var(--secondary-color);
     color: #333;
-    text-align: center;
     margin: 0;
     padding: 0;
+    text-align: center;
     transition: background-color var(--transition), color var(--transition);
 }
 
-/* Container styling */
 .container {
     margin: 20px auto;
     padding: 10px;
@@ -153,7 +49,6 @@ body {
 }
 
 /* ========== Calendar Table ========== */
-/* Table structure */
 table {
     margin: 20px auto;
     border-collapse: collapse;
@@ -162,7 +57,6 @@ table {
     font-size: 1em;
 }
 
-/* Table cells */
 th, td {
     padding: 10px;
     border: 1px solid var(--border-color);
@@ -170,40 +64,64 @@ th, td {
     transition: background-color var(--transition), color var(--transition);
 }
 
-/* Header row (days of the week) */
 th {
     background-color: var(--primary-color);
     color: white;
 }
 
-/* Calendar cells (days) */
 td {
     background-color: var(--secondary-color);
     cursor: pointer;
     position: relative;
+    padding-bottom: 20px;
 }
 
-/* Hover effect */
 td:hover {
     background-color: var(--hover-color);
     color: white;
 }
 
-/* Highlight current day */
 .highlight-today {
     background-color: var(--hover-color);
     color: white;
 }
 
-/* ========== Dark Mode ========== */
-/* Specific dark mode styles */
+.event-container {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.event-marker {
+    font-size: 0.8em;
+    padding: 2px 4px;
+    border-radius: 3px;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 2px;
+}
+
+/* ========== Dark Mode Styles ========== */
+body.dark-mode {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+}
+
 body.dark-mode th {
     background-color: var(--primary-color);
 }
 
 body.dark-mode td {
-    background-color: var(--secondary-color);
-    border-color: var(--border-color);
+    background-color: var(--dark-bg-color);
+    border-color: var(--dark-border-color);
     color: var(--dark-text-color);
 }
 
@@ -216,33 +134,134 @@ body.dark-mode .highlight-today {
     background-color: var(--hover-color);
 }
 
-/* ========== Event Markers ========== */
-/* Markers for events on days */
-.event-marker {
-    font-size: 0.8em;
-    color: #333;
-    position: absolute;
-    bottom: 2px;
-    left: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 90%;
-    box-sizing: border-box;
-    padding: 2px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 3px;
-    transition: background-color var(--transition), color var(--transition);
-}
-
-/* Dark mode for event markers */
 body.dark-mode .event-marker {
     background-color: rgba(0, 0, 0, 0.5);
     color: var(--dark-text-color);
 }
 
+/* ========== Ocean View Styles ========== */
+body.ocean-view {
+    background-color: #0277bd;
+    color: var(--ocean-text-color);
+}
+
+body.ocean-view table {
+    background-color: transparent;
+}
+
+body.ocean-view th {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--ocean-text-color);
+    border-color: var(--ocean-border-color);
+}
+
+body.ocean-view td {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--ocean-border-color);
+    color: #333;
+}
+
+body.ocean-view td:hover {
+    background-color: var(--ocean-hover-color);
+    color: white;
+}
+
+body.ocean-view .highlight-today {
+    background-color: var(--ocean-hover-color);
+    color: white;
+}
+
+body.ocean-view .event-marker {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+/* ========== Modal Styles ========== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: var(--modal-yellow); /* Yellow background for all themes */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    position: relative; /* For close button positioning */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333; /* Dark color for close button */
+}
+
+.modal-title {
+    color: #333;
+}
+
+.event-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.event-list div {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-list div:last-child {
+    border-bottom: none;
+}
+
+.event-list div button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.event-list div button:hover {
+    background-color: #c82333;
+}
+
+/* Specific styles for Ocean View in the Modal (If needed) */
+body.ocean-view .modal-content {
+    border: 1px solid var(--ocean-border-color);
+    /* If you want a *different* yellow in ocean view, change it here: */
+    /* background-color: #f0e68c; */ /* Example: Khaki */
+}
+
+body.ocean-view .event-list div {
+    border-bottom: 1px solid var(--ocean-border-color);
+    color: #333;
+}
+
+body.ocean-view .event-list div button {
+    border: 1px solid var(--ocean-border-color);
+}
+
 /* ========== Buttons ========== */
-/* Transparent buttons */
 .transparent-button {
     margin: 20px 10px;
     padding: 10px 20px;
@@ -256,13 +275,11 @@ body.dark-mode .event-marker {
     display: inline-block;
 }
 
-/* Hover effect */
 .transparent-button:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
-/* Dark mode buttons */
 body.dark-mode .transparent-button {
     border-color: var(--hover-color);
     color: var(--hover-color);
@@ -292,7 +309,7 @@ body.dark-mode .transparent-button:hover {
     color: white;
 }
 
-/* Ocean View Button */
+/* Ocean View button */
 .ocean-view-button {
     margin: 20px 10px;
     padding: 10px 20px;
@@ -311,184 +328,40 @@ body.dark-mode .transparent-button:hover {
     color: white;
 }
 
-/* ========== Ocean View Layout ========== */
-body.ocean-view th {
-    background-color: var(--ocean-primary-color);
-    color: var(--ocean-text-color);
-}
-
-body.ocean-view td {
-    background-color: var(--ocean-secondary-color);
-    border-color: var(--ocean-border-color);
-    color: #333;
-}
-
-body.ocean-view td:hover {
-    background-color: var(--ocean-hover-color);
-    color: var(--ocean-text-color);
-}
-
-body.ocean-view .highlight-today {
-    background-color: var(--ocean-hover-color);
-    color: white;
-}
-
 /* ========== Modal Styles ========== */
-/* Modal container, hidden by default */
 .modal {
-    display: none; /* Hide modal by default */
-    position: fixed; /* Fix modal in place */
-    z-index: 1000; /* Ensure modal is on top */
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; /* Full screen width */
-    height: 100%; /* Full screen height */
-    overflow: auto; /* Enable scrolling if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Dimmed background */
 }
 
-/* Modal content box */
 .modal-content {
-    background-color: #fefefe; /* Light background for the content */
-    margin: 15% auto; /* Center the modal vertically */
+    background-color: #fefefe;
+    margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888; /* Border for the modal */
-    width: 80%; /* Modal width */
-    max-width: 400px; /* Max width of the modal */
-    text-align: center; /* Centered text */
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
 }
 
-/* Close button in the modal */
-.close-button {
-    color: #aaa; /* Light color for the close button */
-    float: right; /* Position the close button to the right */
-    font-size: 28px; /* Larger font for visibility */
-    font-weight: bold; /* Bold font */
-    cursor: pointer; /* Pointer cursor to indicate it's clickable */
+.modal-event-marker {
+    background-color: #f39c12;
+    color: #ffffff;
+    border-radius: 50%;
 }
 
-.close-button:hover,
-.close-button:focus {
-    color: black; /* Change color when hovered or focused */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer;
+.modal-event-marker:hover {
+    background-color: #e67e22;
+    color: #000000;
 }
 
-/* ========== Media Queries ========== */
-/* Base styles for larger screens (desktop or tablet) */
-body {
-    font-size: 1em;
-    /* Add any other base styles you might have here */
-}
-
-/* Tablets and larger screens */
-@media (max-width: 1024px) {
-    table {
-        font-size: 1em;
-    }
-
-    .transparent-button,
-    .back-to-top-button,
-    .ocean-view-button {
-        font-size: 1em;
-    }
-}
-
-/* Optimized for screens under 7 inches (600px and smaller, including most smartphones) */
-@media (max-width: 768px) {
-    table {
-        font-size: 0.9em;
-    }
-
-    .transparent-button,
-    .back-to-top-button,
-    .ocean-view-button {
-        font-size: 0.9em;
-    }
-}
-
-/* Screens around 5 inches, under 600px width */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.4em; /* Slightly smaller than default for readability */
-    }
-
-    footer {
-        font-size: 0.85em;
-    }
-
-    .transparent-button,
-    .back-to-top-button,
-    .ocean-view-button {
-        font-size: 0.8em; /* Slightly smaller buttons */
-        padding: 8px 16px;
-    }
-}
-
-/* Phones under 5 inches, 480px or smaller */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.3em; /* Reduce heading size for small screens */
-    }
-
-    footer {
-        font-size: 0.85em;
-    }
-
-    .transparent-button,
-    .back-to-top-button,
-    .ocean-view-button {
-        font-size: 0.75em; /* Smaller button size */
-        padding: 6px 12px; /* Reduced padding for compact layout */
-    }
-}
-
-/* Extra small screens under 4 inches (320px or smaller) */
-@media (max-width: 400px) {
-    h1 {
-        font-size: 1.2em; /* Further reduce heading size */
-    }
-
-    footer {
-        font-size: 0.8em; /* Even smaller footer text */
-    }
-
-    .transparent-button,
-    .back-to-top-button,
-    .ocean-view-button {
-        font-size: 0.7em; /* Smallest button font size */
-        padding: 6px 10px; /* Adjust padding for very small screens */
-    }
-}
-
-/* Portrait mobile devices with very small screens (around 320px) */
-@media (max-width: 320px) {
-    h1 {
-        font-size: 1.1em; /* Further reduce for ultra-small screens */
-    }
-
-    footer {
-        font-size: 0.75em; /* Even smaller footer font */
-    }
-
-    .transparent-button,
-    .back-to-top-button,
-    .ocean-view-button {
-        font-size: 0.65em; /* Extremely small button font size */
-        padding: 5px 10px; /* Further reduce button padding */
-    }
-}
-
-/* ========== Footer ========== */
-/* Footer styling */
-footer {
-    margin-top: 30px;
-    font-size: 1em;
-    color: #333;
-    transition: color var(--transition);
-}
-
-/* Dark mode footer */
-body.dark-mode footer {
-    color: var(--dark-text-color);
-}
+/* ======================
+   End of Stylesheet
+====================== */

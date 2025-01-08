@@ -103,14 +103,17 @@ function generateCalendar(year) {
                         dayCell.classList.add('highlight-today');
                     }
 
-                    // Add event markers if any exist
+                    // Event markers
                     if (events[dateKey]) {
+                        const eventContainer = document.createElement('div');
+                        eventContainer.classList.add('event-container');
                         events[dateKey].forEach(event => {
                             const marker = document.createElement('div');
                             marker.textContent = event;
                             marker.classList.add('event-marker');
-                            dayCell.appendChild(marker);
+                            eventContainer.appendChild(marker);
                         });
+                        dayCell.appendChild(eventContainer);
                     }
 
                     // Add event listener for managing events
@@ -187,14 +190,14 @@ window.addEventListener('click', (event) => {
 
 // Dynamic Theme Switcher
 themeSwitcher.addEventListener('change', (event) => {
-    body.classList.remove('light-mode', 'dark-mode', 'ocean-mode');
+    body.classList.remove('dark-mode', 'ocean-view'); // Corrected class name here
     const selectedTheme = event.target.value;
     if (selectedTheme === 'light') {
-        body.classList.add('light-mode');
+        // No class needed for default light theme
     } else if (selectedTheme === 'dark') {
         body.classList.add('dark-mode');
     } else if (selectedTheme === 'ocean') {
-        body.classList.add('ocean-mode');
+        body.classList.add('ocean-view'); // Corrected class name here
     }
     localStorage.setItem('theme', selectedTheme);
 });
@@ -203,7 +206,12 @@ themeSwitcher.addEventListener('change', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     themeSwitcher.value = savedTheme;
-    body.classList.add(`${savedTheme}-mode`);
+    // Apply the saved theme correctly
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    } else if (savedTheme === 'ocean') {
+        body.classList.add('ocean-view');
+    }
 });
 
 // Event Listeners
