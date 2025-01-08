@@ -1,11 +1,11 @@
 /**
  * calendar.js - Interactive Calendar with Event Management and Themes
- * 
+ *
  * Features:
  * - Calendar generation for any year.
  * - Event management (add, edit, delete events).
  * - Persistent storage for events and theme preferences.
- * - Dark mode and Ocean View theme toggles.
+ * - Dynamic theme switcher with Light, Dark, and Ocean themes.
  * - Smooth scrolling "Back to Top" button.
  */
 
@@ -21,8 +21,7 @@ const currentYearDisplay = document.getElementById('current-year');
 const prevYearBtn = document.getElementById('prev-year-btn');
 const nextYearBtn = document.getElementById('next-year-btn');
 const clearEventsBtn = document.getElementById('clear-events-btn');
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-const oceanViewToggle = document.getElementById('ocean-view-toggle');
+const themeSwitcher = document.getElementById('theme-switcher');
 const backToTopBtn = document.getElementById('backToTopBtn');
 const body = document.body;
 
@@ -40,9 +39,6 @@ let selectedYear = today.getFullYear();
 
 // Persistent storage for events
 let events = JSON.parse(localStorage.getItem('events')) || {};
-
-// Track Ocean View state
-let isOceanView = false;
 
 /**
  * Saves the current events object to local storage.
@@ -189,14 +185,26 @@ window.addEventListener('click', (event) => {
     }
 });
 
-/**
- * Toggles the Ocean View theme.
- */
-function toggleOceanView() {
-    isOceanView = !isOceanView;
-    body.classList.toggle('ocean-view', isOceanView);
-    localStorage.setItem('oceanView', isOceanView);
-}
+// Dynamic Theme Switcher
+themeSwitcher.addEventListener('change', (event) => {
+    body.classList.remove('light-mode', 'dark-mode', 'ocean-mode');
+    const selectedTheme = event.target.value;
+    if (selectedTheme === 'light') {
+        body.classList.add('light-mode');
+    } else if (selectedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    } else if (selectedTheme === 'ocean') {
+        body.classList.add('ocean-mode');
+    }
+    localStorage.setItem('theme', selectedTheme);
+});
+
+// Apply saved theme preference
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    themeSwitcher.value = savedTheme;
+    body.classList.add(`${savedTheme}-mode`);
+});
 
 // Event Listeners
 prevYearBtn.addEventListener('click', () => {
@@ -217,26 +225,9 @@ clearEventsBtn.addEventListener('click', () => {
     }
 });
 
-darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
-});
-
-oceanViewToggle.addEventListener('click', toggleOceanView);
-
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
-// Initialize themes based on saved preferences
-if (localStorage.getItem('darkMode') === 'true') {
-    body.classList.add('dark-mode');
-}
-
-if (localStorage.getItem('oceanView') === 'true') {
-    isOceanView = true;
-    body.classList.add('ocean-view');
-}
 
 // Initial calendar generation
 generateCalendar(selectedYear);
