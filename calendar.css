@@ -1,34 +1,31 @@
 /* ======================
     Calendar CSS Stylesheet
-    Author: [Your Name]
+    Author: Gemini (Based on user input)
     Purpose: Styling for a dynamic calendar with support for themes (Dark Mode, Ocean View)
-    Last Updated: [Date]
+    Last Updated: October 26, 2023
 ====================== */
 
 /* ========== Variables ========== */
 :root {
     /* General color palette */
-    --primary-color: #ff80ab;
-    --secondary-color: #fce4ec;
-    --hover-color: #ff4081;
-    --border-color: #d1d1d1;
+    --primary-color: #ff80ab; /* Pink */
+    --secondary-color: #fce4ec; /* Light Pink */
+    --hover-color: #ff4081; /* Hot Pink */
+    --border-color: #d1d1d1; /* Light Gray */
     --font-family: 'Arial', sans-serif;
     --transition: 0.3s ease;
 
     /* Dark mode variables */
-    --dark-bg-color: #333;
-    --dark-text-color: #eee;
-    --dark-border-color: #616161;
+    --dark-bg-color: #333; /* Dark Gray */
+    --dark-text-color: #eee; /* Light Gray */
+    --dark-border-color: #616161; /* Slightly Lighter Dark Gray */
 
     /* Ocean View theme colors */
-    --ocean-primary-color: #0277bd;
-    --ocean-secondary-color: #e1f5fe;
-    --ocean-hover-color: #01579b;
-    --ocean-border-color: #81d4fa;
-    --ocean-text-color: #ffffff;
-
-    /* Modal Yellow Color */
-    --modal-yellow: #ffeb3b;
+    --ocean-primary-color: #0277bd; /* Blue */
+    --ocean-secondary-color: #e1f5fe; /* Light Blue */
+    --ocean-hover-color: #01579b; /* Darker Blue */
+    --ocean-border-color: #81d4fa; /* Lighter Blue */
+    --ocean-text-color: #ffffff; /* White */
 }
 
 /* ========== Base Styles ========== */
@@ -57,7 +54,8 @@ table {
     font-size: 1em;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     border: 1px solid var(--border-color);
     text-align: center;
@@ -73,14 +71,9 @@ td {
     background-color: var(--secondary-color);
     cursor: pointer;
     position: relative;
-    padding-bottom: 20px;
 }
 
-td:hover {
-    background-color: var(--hover-color);
-    color: white;
-}
-
+td:hover,
 .highlight-today {
     background-color: var(--hover-color);
     color: white;
@@ -88,14 +81,14 @@ td:hover {
 
 .event-container {
     position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
+    bottom: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 2px;
     box-sizing: border-box;
+    overflow: hidden; /* Prevents markers from overflowing */
 }
 
 .event-marker {
@@ -107,94 +100,59 @@ td:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 2px;
-    color: #333; /* Default text color (dark gray) */
+    color: #333;
+    background-color: rgba(255, 128, 171, 0.7); /* Slightly transparent pink */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 /* ========== Dark Mode Styles ========== */
-body.dark-mode {
+.dark-mode {
     background-color: var(--dark-bg-color);
     color: var(--dark-text-color);
 }
 
-body.dark-mode th {
+.dark-mode th {
     background-color: var(--primary-color);
 }
 
-body.dark-mode td {
+.dark-mode td {
     background-color: var(--dark-bg-color);
     border-color: var(--dark-border-color);
     color: var(--dark-text-color);
 }
 
-body.dark-mode td:hover {
-    background-color: var(--hover-color);
-    color: white;
-}
-
-body.dark-mode .highlight-today {
-    background-color: var(--hover-color);
-    color: white;
-}
-
-/* ========== Event Marker Container ========== */
-.event-marker-container {
-    position: absolute;
-    bottom: 5px;  /* Adjust the positioning as needed */
-    left: 5px;
-    width: 100%;
-    z-index: 10; /* Ensure the markers are on top */
-    pointer-events: none;  /* Prevent interfering with clicking the <td> */
-}
-
-/* ========== Dark Mode Event Marker Styles ========== */
-body.dark-mode .event-marker {
-    background-color: #ff80ab; /* Bright, contrasting background */
-    color: #000000; /* Black text for high contrast */
-    font-weight: bold; /* Bold text to improve visibility */
-    border: 1px solid #ffffff; /* White border to outline the marker */
-    padding: 5px 10px;
-    border-radius: 8px;
-    width: 95%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Add a white glow around text for better readability */
+.dark-mode .event-marker {
+    background-color: rgba(255, 128, 171, 0.9);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    box-shadow: none;
 }
 
 /* ========== Ocean View Styles ========== */
-body.ocean-view {
+.ocean-view {
     background-color: #0277bd;
     color: var(--ocean-text-color);
 }
 
-body.ocean-view table {
+.ocean-view table {
     background-color: transparent;
 }
 
-body.ocean-view th {
+.ocean-view th {
     background-color: rgba(255, 255, 255, 0.3);
     color: var(--ocean-text-color);
     border-color: var(--ocean-border-color);
 }
 
-body.ocean-view td {
+.ocean-view td {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--ocean-border-color);
-    color: #333;
+    color: #001f3f;
 }
 
-body.ocean-view td:hover {
-    background-color: var(--ocean-hover-color);
-    color: white;
-}
-
-body.ocean-view .highlight-today {
-    background-color: var(--ocean-hover-color);
-    color: white;
-}
-
-body.ocean-view .event-marker {
-    background-color: rgba(0, 0, 0, 0.7);
+.ocean-view .event-marker {
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
 
@@ -212,27 +170,45 @@ body.ocean-view .event-marker {
 }
 
 .modal-content {
-    background-color: var(--modal-yellow); /* Yellow background for all themes */
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 400px;
     text-align: center;
-    position: relative; /* For close button positioning */
+    position: relative;
+    box-sizing: border-box; /* Added box-sizing */
+}
+
+.dark-mode .modal-content {
+    background-color: #444;
+    color: #eee;
+    border-color: #666;
+}
+
+.ocean-view .modal-content {
+    background-color: rgba(177, 216, 255, 0.8);
+    color: #001f3f;
+    border-color: #81d4fa;
 }
 
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
-    color: #333; /* Dark color for close button */
+    color: #333;
+    font-weight: bold;
 }
 
 .modal-title {
     color: #333;
+}
+
+.dark-mode .modal-title,
+.ocean-view .modal-title {
+    color: inherit; /* Inherit color from modal content */
 }
 
 .event-list {
@@ -250,6 +226,11 @@ body.ocean-view .event-marker {
     align-items: center;
 }
 
+.dark-mode .event-list div,
+.ocean-view .event-list div {
+    border-bottom-color: #666;
+}
+
 .event-list div:last-child {
     border-bottom: none;
 }
@@ -265,22 +246,6 @@ body.ocean-view .event-marker {
 
 .event-list div button:hover {
     background-color: #c82333;
-}
-
-/* Specific styles for Ocean View in the Modal (If needed) */
-body.ocean-view .modal-content {
-    border: 1px solid var(--ocean-border-color);
-    /* If you want a *different* yellow in ocean view, change it here: */
-    /* background-color: #f0e68c; */ /* Example: Khaki */
-}
-
-body.ocean-view .event-list div {
-    border-bottom: 1px solid var(--ocean-border-color);
-    color: #333;
-}
-
-body.ocean-view .event-list div button {
-    border: 1px solid var(--ocean-border-color);
 }
 
 /* ========== Buttons ========== */
