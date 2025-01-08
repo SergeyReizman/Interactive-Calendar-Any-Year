@@ -14,7 +14,7 @@ This enhanced calendar application boasts:
 - **Event Clearing Options:** Remove all events for a specific date or clear the entire calendar effortlessly.
 - **Dark Mode Toggle:** Switch to dark mode for a more comfortable viewing experience at night. Your preference is saved and persists across sessions.
 - **Back to Top Button:** Easily scroll back to the top of the calendar with one click.
-- **Ocean View Theme:** Toggle to a visually refreshing ocean-inspired theme, designed to enhance your user experience with soothing colors and animations.
+- 🌊 **Ocean View Theme:** Toggle to a visually refreshing ocean-inspired theme, designed to enhance your user experience with soothing colors and animations.
 - **Modal Window** for Event Management: An interactive modal window for adding, editing, or deleting events, providing a more refined user interface for event management.
 
 ## Preview
