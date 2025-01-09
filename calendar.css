@@ -1,9 +1,7 @@
-/* ======================
+/* ====================== /*
     Calendar CSS Stylesheet
-    Author: Gemini (Based on user input)
     Purpose: Styling for a dynamic calendar with support for themes (Dark Mode, Ocean View)
-    Last Updated: October 26, 2023
-====================== */
+/* ====================== */
 
 /* ========== Variables ========== */
 :root {
@@ -79,38 +77,13 @@ td:hover,
     color: white;
 }
 
-.event-container {
-    position: absolute;
-    bottom: 2px;
-    left: 2px;
-    width: calc(100% - 4px);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    box-sizing: border-box;
-    overflow: hidden; /* Prevents markers from overflowing */
-}
-
-.event-marker {
-    font-size: 0.8em;
-    padding: 2px 4px;
-    border-radius: 3px;
-    width: 95%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-bottom: 2px;
-    color: #333;
-    background-color: rgba(255, 128, 171, 0.7); /* Slightly transparent pink */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+/* ========== Highlight Current Date ========== */
+td.current-day {
+    background-color: var(--hover-color);
+    color: white;
 }
 
 /* ========== Dark Mode Styles ========== */
-.dark-mode {
-    background-color: var(--dark-bg-color);
-    color: var(--dark-text-color);
-}
-
 .dark-mode th {
     background-color: var(--primary-color);
 }
@@ -119,6 +92,12 @@ td:hover,
     background-color: var(--dark-bg-color);
     border-color: var(--dark-border-color);
     color: var(--dark-text-color);
+}
+
+.dark-mode td.current-day {
+    background-color: var(--hover-color); /* Highlight with hover color */
+    color: white;
+    font-weight: bold; /* Make the current day stand out */
 }
 
 .dark-mode .event-marker {
@@ -148,13 +127,20 @@ td:hover,
 .ocean-view td {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--ocean-border-color);
-    color: #001f3f;
+    color: var(--ocean-text-color); /* Adjusted text color for better contrast */
+}
+
+.ocean-view td.current-day {
+    background-color: var(--ocean-hover-color); /* Ocean theme hover color */
+    color: white;
+    font-weight: bold; /* Make the current day stand out */
 }
 
 .ocean-view .event-marker {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
+
 
 /* ========== Modal Styles ========== */
 .modal {
@@ -177,7 +163,7 @@ td:hover,
     max-width: 400px;
     text-align: center;
     position: relative;
-    box-sizing: border-box; /* Added box-sizing */
+    box-sizing: border-box;
 }
 
 .dark-mode .modal-content {
@@ -208,7 +194,7 @@ td:hover,
 
 .dark-mode .modal-title,
 .ocean-view .modal-title {
-    color: inherit; /* Inherit color from modal content */
+    color: inherit;
 }
 
 .event-list {
