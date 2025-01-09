@@ -32,13 +32,13 @@ This enhanced calendar application boasts:
 - **JavaScript:** Enables dynamic calendar generation and user interaction.
 
 📖 How to Use
+
 1️⃣ Download the Application
+
 Choose one of the following options:
 
 Clone the repository using Git:
 
-bash
-Копировать код
 git clone https://github.com/SergeyReizman/Interactive-Calendar-Any-Year.git  
 Download the ZIP file and extract it to your preferred directory.
 
