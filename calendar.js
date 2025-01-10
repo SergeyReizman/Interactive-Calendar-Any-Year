@@ -100,7 +100,7 @@ function generateCalendar(year) {
 
                     // Highlight today's date
                     if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
-                        dayCell.classList.add('highlight-today');
+                        dayCell.classList.add('highlight-today'); // Adds the 'highlight-today' class to today's date
                     }
 
                     // Create event container for the day
@@ -137,7 +137,7 @@ function generateCalendar(year) {
  */
 function manageEvent(dateKey) {
     const dateObj = new Date(dateKey);
-    const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
+    const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`; // Format date
     modalTitle.textContent = `Events for ${formattedDate}`; // Set the modal title
 
     eventInput.value = ''; // Clear event input field
