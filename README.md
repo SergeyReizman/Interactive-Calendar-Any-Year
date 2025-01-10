@@ -19,9 +19,6 @@ This enhanced calendar application boasts:
 - 🌊 **Ocean View Theme:** Toggle to a visually refreshing ocean-inspired theme, designed to enhance your user experience with soothing colors and animations.
 - **Modal Window** for Event Management: An interactive modal window for adding, editing, or deleting events, providing a more refined user interface for event management.
 
-## 🌍 Live Site
-https://interactive-calendar-any-year.netlify.app/
-
 ## Preview
 
 ![Interactive Calendar Screenshot](screenshot.png)
