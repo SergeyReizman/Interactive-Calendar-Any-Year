@@ -7,7 +7,7 @@
  * - Persistent storage for events and theme preferences.
  * - Dynamic theme switcher with Light, Dark, and Ocean themes.
  * - Smooth scrolling "Back to Top" button.
- * - Current Date highlighted in red
+ * - Current Year in header and Current Date cell highlighted in red.
  */
 
 // Constants
@@ -47,6 +47,13 @@ function saveEvents() {
 
 function updateCalendarTitle(year) {
   currentYearDisplay.textContent = year;
+  if (year === today.getFullYear()) {
+    currentYearDisplay.style.color = 'red';
+    currentYearDisplay.style.fontWeight = 'bold';
+  } else {
+    currentYearDisplay.style.color = '';
+    currentYearDisplay.style.fontWeight = 'normal';
+  }
 }
 
 function generateCalendar(year) {
@@ -84,9 +91,10 @@ function generateCalendar(year) {
           const dateKey = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(dayCounter).padStart(2, '0')}`;
           dayCell.textContent = dayCounter;
 
+          // Highlight CURRENT DATE CELL
           if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
-            dayCell.classList.add('highlight-today');
-            applyTodayCellStyle(dayCell);
+            dayCell.style.backgroundColor = 'red';
+            dayCell.style.color = 'white';
           }
 
           const eventContainer = document.createElement('div');
@@ -105,18 +113,12 @@ function generateCalendar(year) {
           dayCell.addEventListener('click', () => manageEvent(dateKey));
           dayCounter++;
         }
-
         weekRow.appendChild(dayCell);
       }
       calendarBody.appendChild(weekRow);
       if (dayCounter > daysInMonth) break;
     }
   });
-}
-
-function applyTodayCellStyle(dayCell) {
-  dayCell.style.backgroundColor = 'red';
-  dayCell.style.color = 'white';
 }
 
 function manageEvent(dateKey) {
@@ -202,11 +204,13 @@ window.addEventListener('scroll', () => {
 prevYearBtn.addEventListener('click', () => {
   selectedYear--;
   generateCalendar(selectedYear);
+  updateCalendarTitle(selectedYear);
 });
 
 nextYearBtn.addEventListener('click', () => {
   selectedYear++;
   generateCalendar(selectedYear);
+  updateCalendarTitle(selectedYear);
 });
 
 clearEventsBtn.addEventListener('click', () => {
@@ -217,5 +221,14 @@ clearEventsBtn.addEventListener('click', () => {
   }
 });
 
-// Initial calendar generation
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  themeSwitcher.value = savedTheme;
+  applyTheme(savedTheme);
+  generateCalendar(selectedYear);
+  updateCalendarTitle(selectedYear);
+});
+
+// Initial calendar generation and title update
 generateCalendar(selectedYear);
+updateCalendarTitle(selectedYear);
