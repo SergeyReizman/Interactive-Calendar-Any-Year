@@ -98,9 +98,10 @@ function generateCalendar(year) {
                     const dateKey = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(dayCounter).padStart(2, '0')}`; // Key for events
                     dayCell.textContent = dayCounter;
 
-                    // Highlight today's date
+                    // Highlight today's date with dynamic background color based on theme
                     if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
                         dayCell.classList.add('highlight-today'); // Adds the 'highlight-today' class to today's date
+                        applyTodayCellStyle(dayCell); // Apply background color based on theme
                     }
 
                     // Create event container for the day
@@ -129,6 +130,25 @@ function generateCalendar(year) {
             if (dayCounter > daysInMonth) break; // Stop creating rows once the month ends
         }
     });
+}
+
+/**
+ * Applies a background color to the current day's cell based on the active theme.
+ * @param {HTMLElement} dayCell - The table cell for today's date.
+ */
+function applyTodayCellStyle(dayCell) {
+    const theme = localStorage.getItem('theme') || 'light';
+    
+    if (theme === 'dark') {
+        dayCell.style.backgroundColor = '#444'; // Dark theme background for today
+        dayCell.style.color = 'white'; // Light text color for dark mode
+    } else if (theme === 'ocean') {
+        dayCell.style.backgroundColor = '#00aaff'; // Ocean theme background for today
+        dayCell.style.color = 'white'; // Light text color for ocean mode
+    } else {
+        dayCell.style.backgroundColor = ''; // Default background for light mode
+        dayCell.style.color = ''; // Default text color for light mode
+    }
 }
 
 /**
@@ -204,6 +224,7 @@ themeSwitcher.addEventListener('change', (event) => {
         body.classList.add('ocean-view'); // Apply ocean theme
     }
     localStorage.setItem('theme', selectedTheme); // Save theme preference to localStorage
+    generateCalendar(selectedYear); // Regenerate the calendar with the new theme
 });
 
 // Apply saved theme preference on page load
@@ -215,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (savedTheme === 'ocean') {
         body.classList.add('ocean-view'); // Apply ocean theme
     }
+    generateCalendar(selectedYear); // Generate the calendar on load
 });
 
 // Event Listeners for year navigation and other controls
@@ -236,9 +258,17 @@ clearEventsBtn.addEventListener('click', () => {
     }
 });
 
-// Back to Top button functionality
+// "Back to Top" button functionality
+window.onscroll = () => {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        backToTopBtn.style.display = 'block'; // Show button when scrolled down
+    } else {
+        backToTopBtn.style.display = 'none'; // Hide button when at the top
+    }
+};
+
 backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
 });
 
 // Initial calendar generation
