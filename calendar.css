@@ -51,47 +51,16 @@ body {
 }
 
 /* ========== Current Day Highlighting ========== */
-/* Ensure correct application across all themes */
 td.current-day {
-    background-color: var(--hover-color) !important; /* Use !important to override other styles */
-    color: white !important;
-    font-weight: normal !important; /* Resetting font weight to normal */
-    border: 2px solid var(--primary-color) !important; /* Adding a border to make it more prominent */
-}
-
-/* Light Mode: Uses the general settings from above */
-.light-mode td.current-day {
     background-color: var(--hover-color) !important;
     color: white !important;
     font-weight: normal !important;
+    border: 2px solid var(--primary-color) !important;
 }
 
-/* Dark Mode: Overrides for better visibility */
-.dark-mode td.current-day {
-    background-color: var(--primary-color) !important; /* Pink background stands out on dark theme */
-    color: var(--dark-text-color) !important; /* Text color adjusted for visibility */
-    border: 2px solid var(--hover-color) !important; /* Border contrast with the background */
-}
-
-/* Ocean View: Specific styling for the current day */
-.ocean-view td.current-day {
-    background-color: var(--ocean-hover-color) !important; /* Darker blue for better contrast */
-    color: var(--ocean-text-color) !important; /* Text remains white for contrast */
-    border: 2px solid var(--ocean-border-color) !important; /* Border to highlight */
-}
-
-/* ========== Hover and Interaction Enhancements ========== */
-td:hover,
-td.current-day:hover {
-    background-color: var(--hover-color) !important; /* Hover effect for better interaction */
-    color: white !important;
-    box-shadow: 0 0 10px var(--hover-color) !important; /* Subtle glow effect */
-    transform: scale(1.05) !important; /* Slightly enlarges the cell for better interactivity */
-}
-
-/* ========== Accessibility Focus Styles ========== */
+/* Accessibility Focus Styles */
 td.current-day:focus {
-    outline: 3px dashed var(--primary-color) !important; /* Visible focus state for accessibility */
+    outline: 3px dashed var(--primary-color) !important;
     outline-offset: 2px;
 }
 
@@ -121,16 +90,58 @@ th {
 td {
     background-color: var(--secondary-color);
     cursor: pointer;
-    position: relative;
+    position: relative; /* Required for the tooltip */
 }
 
-td:hover, .highlight-today, td.current-day {
-    background-color: var(--hover-color);
-    color: white;
-    font-weight: bold;
+/* ========== Hover and Interaction Enhancements ========== */
+td:hover,
+td.current-day:hover {
+    background-color: var(--hover-color) !important;
+    color: white !important;
+    box-shadow: 0 0 10px var(--hover-color) !important;
+    transform: scale(1.05) !important;
 }
 
-/* ========== Dark Mode ========== */
+/* ========== Hover Tooltip for Events ========== */
+/* Tooltip Container */
+.event-tooltip {
+    position: absolute;
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(-10px); /* Slight offset */
+    pointer-events: none; /* Prevent interaction */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10; /* Ensure it appears above other elements */
+    visibility: hidden; /* Hide by default */
+}
+
+/* Tooltip Arrow */
+.event-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+/* Show Tooltip on Hover */
+td:hover .event-tooltip {
+    opacity: 1;
+    visibility: visible; /* Make tooltip visible */
+    transform: translateY(0); /* Slide into place */
+}
+
+/* ============================
+   Dark Mode
+============================ */
 .dark-mode {
     background-color: var(--dark-bg-color);
     color: var(--dark-text-color);
@@ -145,11 +156,15 @@ td:hover, .highlight-today, td.current-day {
     border-color: var(--dark-border-color);
 }
 
-.dark-mode td.current-day {
-    font-weight: bold;
+/* Tooltip in Dark Mode */
+.dark-mode .event-tooltip {
+    background-color: #555;
+    color: var(--dark-text-color);
 }
 
-/* ========== Ocean View ========== */
+/* ============================
+   Ocean View
+============================ */
 .ocean-view {
     background-color: var(--ocean-primary-color);
     color: var(--ocean-text-color);
@@ -168,8 +183,10 @@ td:hover, .highlight-today, td.current-day {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.ocean-view td.current-day {
+/* Tooltip in Ocean View */
+.ocean-view .event-tooltip {
     background-color: var(--ocean-hover-color);
+    color: var(--ocean-text-color);
 }
 
 /* ============================

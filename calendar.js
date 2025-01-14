@@ -57,17 +57,21 @@ function updateCalendarTitle(year) {
 }
 
 function generateCalendar(year) {
+  // Clear the calendar and update the title with the selected year
   calendarBody.innerHTML = '';
   updateCalendarTitle(year);
 
+  // Loop through each month of the year
   MONTHS.forEach((monthName, monthIndex) => {
+    // Add the month's name as a header
     const monthRow = document.createElement('tr');
     const monthHeader = document.createElement('th');
-    monthHeader.colSpan = 7;
+    monthHeader.colSpan = 7; // Span the entire week
     monthHeader.textContent = monthName;
     monthRow.appendChild(monthHeader);
     calendarBody.appendChild(monthRow);
 
+    // Add the days of the week header row
     const daysRow = document.createElement('tr');
     DAYS_OF_WEEK.forEach(day => {
       const dayCell = document.createElement('th');
@@ -76,46 +80,81 @@ function generateCalendar(year) {
     });
     calendarBody.appendChild(daysRow);
 
+    // Calculate the number of days in the current month
     const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-    const firstDay = new Date(year, monthIndex, 1).getDay();
+    const firstDay = new Date(year, monthIndex, 1).getDay(); // Day of the week the month starts on
+
     let dayCounter = 1;
 
-    for (let week = 0; week < 6; week++) {
+    // Generate calendar rows (weeks) and cells (days)
+    for (let week = 0; week < 6; week++) { // Maximum of 6 weeks in a month
       const weekRow = document.createElement('tr');
-      for (let day = 0; day < 7; day++) {
+
+      for (let day = 0; day < 7; day++) { // Days of the week (Sun to Sat)
         const dayCell = document.createElement('td');
 
+        // Fill blank cells for days before the month starts
         if (week === 0 && day < firstDay) {
           dayCell.textContent = '';
         } else if (dayCounter <= daysInMonth) {
+          // Create the date key for event tracking
           const dateKey = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(dayCounter).padStart(2, '0')}`;
+          
+          // Set the day's number
           dayCell.textContent = dayCounter;
 
-          // Highlight CURRENT DATE CELL
+          // Highlight the current date
           if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
             dayCell.style.backgroundColor = 'red';
             dayCell.style.color = 'white';
           }
 
+          // Create a container for events
           const eventContainer = document.createElement('div');
           eventContainer.classList.add('event-container');
           dayCell.appendChild(eventContainer);
 
+          // Display events for the day with tooltips
           if (events[dateKey]) {
             events[dateKey].forEach(event => {
+              // Create a marker for each event
               const marker = document.createElement('div');
               marker.textContent = event;
               marker.classList.add('event-marker');
+
+              // Create a tooltip for the event
+              const tooltip = document.createElement('div');
+              tooltip.textContent = event;
+              tooltip.classList.add('event-tooltip');
+              tooltip.style.display = 'none'; // Initially hidden
+              marker.appendChild(tooltip);
+
+              // Show the tooltip on hover
+              marker.addEventListener('mouseenter', () => {
+                tooltip.style.display = 'block';
+              });
+
+              // Hide the tooltip when not hovering
+              marker.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+              });
+
               eventContainer.appendChild(marker);
             });
           }
 
+          // Add click event to manage events for the day
           dayCell.addEventListener('click', () => manageEvent(dateKey));
           dayCounter++;
         }
+
         weekRow.appendChild(dayCell);
       }
+
+      // Append the week's row to the calendar
       calendarBody.appendChild(weekRow);
+
+      // Stop creating weeks once all days in the month are processed
       if (dayCounter > daysInMonth) break;
     }
   });
