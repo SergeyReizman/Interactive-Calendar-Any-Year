@@ -1,5 +1,4 @@
-✨ Interactive Calendar 🗓️
-
+✨ Interactive Calendar
 Overwhelmed by your schedule? 😫 Reclaim your time with the Interactive Calendar! 
 Effortless event management, cross-device access, and calming themes like "Ocean View" make scheduling a breeze.
 
