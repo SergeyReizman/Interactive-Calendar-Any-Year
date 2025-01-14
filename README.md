@@ -1,9 +1,12 @@
 ✨ Interactive Calendar
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0e7d8dec2c49d97cfe48d3c2bcd5e1e37c1f972f
 Overwhelmed by your schedule? 😫 Reclaim your time with the Interactive Calendar! 
 Effortless event management, cross-device access, and calming themes like "Ocean View" make scheduling a breeze.
 
-🗓️✨The Interactive Calendar is here to simplify your life. This modern web application combines intuitive design with powerful features to help you stay organized, no matter where you are.
+🗓️✨☕️ The Interactive Calendar is here to simplify your life. This modern web application combines intuitive design with powerful features to help you stay organized, no matter where you are.
 
 Effortlessly organize your tasks, events, and reminders with the Interactive Calendar—a modern, feature-rich application designed to make scheduling stress-free and enjoyable!
 
