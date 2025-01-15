@@ -102,12 +102,15 @@ Your events are stored in your browser's local storage and remain intact between
 
 📂 Folder Structure
 
-Interactive-Calendar/  
-├── index.html        # Main HTML file  
-├── style.css         # CSS for styling  
-├── script.js         # JavaScript for functionality  
-├── README.md         # Project documentation  
-└── screenshot.png    # Screenshot of the project  
+project/
+├── css/
+│   ├── calendar.variables.css   /* Variables and Themes */
+│   ├── calendar.core.css        /* Core Styles and Structure */
+├── calendar.js              /* Calendar Logic */
+│  
+├── index.html                   /* HTML Entry Point */
+├──screenshot.png
+├──README.md
 
 🌟 What’s Next?
 Stay tuned for upcoming updates, including:

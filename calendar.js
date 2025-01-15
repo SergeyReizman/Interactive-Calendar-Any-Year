@@ -41,10 +41,17 @@ let selectedYear = today.getFullYear();
 // Persistent storage for events
 let events = JSON.parse(localStorage.getItem('events')) || {};
 
+/**
+ * Save events to local storage
+ */
 function saveEvents() {
   localStorage.setItem('events', JSON.stringify(events));
 }
 
+/**
+ * Update the calendar's title with the selected year
+ * @param {number} year - The year to display in the calendar header
+ */
 function updateCalendarTitle(year) {
   currentYearDisplay.textContent = year;
   if (year === today.getFullYear()) {
@@ -56,6 +63,10 @@ function updateCalendarTitle(year) {
   }
 }
 
+/**
+ * Generate the calendar for a specific year
+ * @param {number} year - The year for which to generate the calendar
+ */
 function generateCalendar(year) {
   calendarBody.innerHTML = '';
   updateCalendarTitle(year);
@@ -121,6 +132,10 @@ function generateCalendar(year) {
   });
 }
 
+/**
+ * Manage events for a specific date
+ * @param {string} dateKey - The date in YYYY-MM-DD format
+ */
 function manageEvent(dateKey) {
   const dateObj = new Date(dateKey);
   const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
@@ -164,6 +179,7 @@ function manageEvent(dateKey) {
   modal.style.display = 'block';
 }
 
+// Modal Close Logic
 closeButton.onclick = () => {
   modal.style.display = 'none';
 };
@@ -174,12 +190,11 @@ window.addEventListener('click', (event) => {
   }
 });
 
-themeSwitcher.addEventListener('change', (e) => {
-  const selectedTheme = e.target.value;
-  localStorage.setItem('theme', selectedTheme);
-  applyTheme(selectedTheme);
-});
-
+// Theme Management
+/**
+ * Apply the selected theme
+ * @param {string} theme - The theme name ('light', 'dark', 'ocean')
+ */
 function applyTheme(theme) {
   body.classList.remove('dark-mode', 'ocean-view');
   if (theme === 'dark') {
@@ -189,6 +204,13 @@ function applyTheme(theme) {
   }
 }
 
+themeSwitcher.addEventListener('change', (e) => {
+  const selectedTheme = e.target.value;
+  localStorage.setItem('theme', selectedTheme);
+  applyTheme(selectedTheme);
+});
+
+// Back to Top Button Logic
 backToTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
@@ -201,6 +223,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// Year Navigation Logic
 prevYearBtn.addEventListener('click', () => {
   selectedYear--;
   generateCalendar(selectedYear);
@@ -213,6 +236,7 @@ nextYearBtn.addEventListener('click', () => {
   updateCalendarTitle(selectedYear);
 });
 
+// Clear All Events
 clearEventsBtn.addEventListener('click', () => {
   if (confirm('Are you sure you want to clear all events?')) {
     events = {};
@@ -221,6 +245,7 @@ clearEventsBtn.addEventListener('click', () => {
   }
 });
 
+// Initialize Calendar and Theme on Page Load
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme') || 'light';
   themeSwitcher.value = savedTheme;
@@ -228,7 +253,3 @@ document.addEventListener('DOMContentLoaded', () => {
   generateCalendar(selectedYear);
   updateCalendarTitle(selectedYear);
 });
-
-// Initial calendar generation and title update
-generateCalendar(selectedYear);
-updateCalendarTitle(selectedYear);
