@@ -87,15 +87,12 @@ const manageEvent = (dateKey) => {
     saveEvents();
     generateCalendar(selectedYear);
     renderEvents(dateKey);
-<<<<<<< HEAD
     // Clear the input value after adding the event
     eventInput.value = '';
-=======
->>>>>>> a432f2de0311c2596f8493134627a40c9031dc11
   };
-
+  
   modal.style.display = 'block';
-};
+  };
 
 const closeModal = () => (modal.style.display = 'none');
 
