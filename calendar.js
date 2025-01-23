@@ -6,7 +6,27 @@ const MONTHS = Array.from({ length: 12 }, (_, i) =>
   new Date(0, i).toLocaleString('default', { month: 'long' })
 );
 
-// DOM Elements
+// Theme Management
+const applyTheme = (theme) => {
+  body.classList.remove('dark-mode', 'ocean-view', 'greyscale');
+  switch (theme) {
+    case 'dark':
+      body.classList.add('dark-mode');
+      break;
+    case 'ocean':
+      body.classList.add('ocean-view');
+      break;
+    case 'greyscale':
+      body.classList.add('greyscale');
+      break;
+    default:
+      // Handle default case (e.g. 'light')
+      break;
+  }
+  localStorage.setItem('calendarTheme', theme);
+};
+
+// DOM Elements (MUST be defined before use)
 const calendarBody = document.getElementById('calendar-body');
 const currentYearDisplay = document.getElementById('current-year');
 const prevYearBtn = document.getElementById('prev-year-btn');
@@ -14,7 +34,7 @@ const nextYearBtn = document.getElementById('next-year-btn');
 const clearEventsBtn = document.getElementById('clear-events-btn');
 const themeSwitcher = document.getElementById('theme-switcher');
 const backToTopBtn = document.getElementById('backToTopBtn');
-const body = document.body;
+const body = document.body; // Defined here
 
 // Modal Elements
 const modal = document.getElementById('event-modal');
@@ -40,12 +60,6 @@ const updateCalendarTitle = (year) => {
   currentYearDisplay.style.fontWeight = year === today.getFullYear() ? 'bold' : 'normal';
 };
 
-const applyTheme = (theme) => {
-  body.classList.remove('dark-mode', 'ocean-view');
-  if (theme === 'dark') body.classList.add('dark-mode');
-  else if (theme === 'ocean') body.classList.add('ocean-view');
-};
-
 const toggleBackToTopButton = () => {
   backToTopBtn.style.display = window.scrollY > 100 ? 'block' : 'none';
 };
@@ -53,20 +67,25 @@ const toggleBackToTopButton = () => {
 // Event Management Functions
 const renderEvents = (dateKey) => {
   const existingEvents = events[dateKey] || [];
-  eventList.innerHTML = existingEvents
-    .map((event, index) => `
-      <div>
-        ${index + 1}. ${event}
-        <button class="delete-event-btn" data-index="${index}">Delete</button>
-      </div>
-    `)
-    .join('');
+  eventList.innerHTML = "";
+  existingEvents.forEach((event, index) => {
+    const eventDiv = document.createElement('div');
+    eventDiv.textContent = `${index + 1}. ${event}`;
+    const deleteButton = document.createElement('button');
+    deleteButton.className = "delete-event-btn";
+    deleteButton.dataset.index = index;
+    deleteButton.textContent = "Delete";
+    eventDiv.appendChild(deleteButton);
+    eventList.appendChild(eventDiv);
+  });
 
   document.querySelectorAll('.delete-event-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      existingEvents.splice(btn.dataset.index, 1);
-      if (existingEvents.length > 0) events[dateKey] = existingEvents;
-      else delete events[dateKey];
+      const indexToDelete = parseInt(btn.dataset.index);
+      events[dateKey].splice(indexToDelete, 1);
+      if (events[dateKey].length === 0) {
+        delete events[dateKey];
+      }
       saveEvents();
       generateCalendar(selectedYear);
       renderEvents(dateKey);
@@ -90,9 +109,9 @@ const manageEvent = (dateKey) => {
     // Clear the input value after adding the event
     eventInput.value = '';
   };
-  
+
   modal.style.display = 'block';
-  };
+};
 
 const closeModal = () => (modal.style.display = 'none');
 
@@ -127,8 +146,7 @@ const generateCalendar = (year) => {
           dayCell.textContent = dayCounter;
 
           if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
-            dayCell.style.backgroundColor = 'red';
-            dayCell.style.color = 'white';
+            dayCell.classList.add('current-day'); // Use a class for styling
           }
 
           const eventContainer = document.createElement('div');
@@ -139,7 +157,7 @@ const generateCalendar = (year) => {
             events[dateKey].forEach((event) => {
               const marker = document.createElement('div');
               marker.className = 'event-marker';
-              marker.textContent = event;
+              marker.textContent = event; // Correct way to set text
               eventContainer.appendChild(marker);
             });
           }
@@ -187,13 +205,16 @@ window.addEventListener('click', (e) => e.target === modal && closeModal());
 
 themeSwitcher.addEventListener('change', (e) => {
   const selectedTheme = e.target.value;
-  localStorage.setItem('theme', selectedTheme);
+  localStorage.setItem('calendarTheme', selectedTheme); // Correct key
   applyTheme(selectedTheme);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('calendarTheme') || 'light'; // Correct key
   themeSwitcher.value = savedTheme;
   applyTheme(savedTheme);
   generateCalendar(selectedYear);
 });
+
+// Initial calendar generation
+generateCalendar(selectedYear);
