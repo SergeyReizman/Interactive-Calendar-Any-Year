@@ -30,10 +30,47 @@ This isn't just another calendar. It's designed to make staying organized a bree
 Light Mode ☀️
 Dark Mode 🌙 late-night planning.
 Ocean View 🌊
-Grayscale 🖤 
+Grayscale 🖤
+Serene Shores 💙  A calming theme inspired by serene shorelines, featuring a cool blue color scheme and subtle wave-like patterns.
 
-Light, Dark, Grayscale or the calming "Ocean View" theme: enjoy a serene, ocean-inspired theme, 
-bringing a fresh and calming look to your calendar.
+Absolutely! Here's the updated interactive calendar README incorporating the "Serene Shores" theme:
+
+✨ Interactive Calendar 🗓️
+
+Overwhelmed by your schedule? 😫 Reclaim your time with the Interactive Calendar!
+Effortless event management, cross-device access, and calming themes like "Ocean View" and "Serene Shores" make scheduling a breeze.
+
+🗓️✨The Interactive Calendar is here to simplify your life. This modern web application combines intuitive design with powerful features to help you stay organized, no matter where you are.
+
+Effortlessly organize your tasks, events, and reminders with the Interactive Calendar—a modern, feature-rich application designed to make scheduling stress-free and enjoyable!
+
+Whether you’re managing work deadlines, personal appointments, or everything in between, this intuitive calendar ensures you stay on top of your schedule, anytime and anywhere.
+
+🚀 Say Goodbye to Calendar Chaos!
+👋 Introducing My Updated Interactive Calendar 🗓️
+
+Feeling overwhelmed by your schedule? I get it. That's why I've been working hard to revamp my interactive calendar, and I'm excited to share the latest version with you! 🎉
+This isn't just another calendar. It's designed to make staying organized a breeze, whether you're juggling work deadlines, personal appointments, or everything in between.
+
+🚀 What’s New?
+🔄 Dynamic Year Navigation: Easily switch between years using "Previous Year" and "Next Year" buttons. The current Year is always in red color.
+📱 Works on Any Device: From your desktop to your phone, the responsive design ensures a seamless experience.
+📝 Effortless Event Management: Adding, editing, and viewing events is now a snap – just click on any date!
+❌ Event Clearing: Remove all events for a specific date or clear the entire calendar effortlessly.
+📅 Super Smooth Navigation: Jump between years effortlessly with intuitive controls. Plus, "Today's Highlight" keeps you grounded: the current date is automatically highlighted for quick reference.
+💾 Local Storage: Events are saved locally in the browser and persist between page refreshes.
+♿ Built for Everyone: Accessibility is a priority, with WCAG-compliant styles and high contrast for optimal usability. ♿
+🌙 Dark Mode: Toggle between light and dark modes for a more personalized viewing experience, and your preference is saved across sessions.
+⬆️ Back to Top Button: Easily scroll back to the top of the calendar with a smooth click.
+
+🌊 Multiple Themes 🎨: Personalize your calendar with a variety of themes, including:
+Light Mode ☀️
+Dark Mode 🌙 late-night planning.
+Ocean View 🌊
+Grayscale 🖤
+Serene Shores 💙  A calming theme inspired by serene shorelines, featuring a cool blue color scheme and subtle wave-like patterns.
+
+Light, Dark, Grayscale or the calming "Ocean View" and "Serene Shores" themes: enjoy a variety of themes to personalize your calendar experience.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -117,9 +154,11 @@ Your events are stored in your browser's local storage and remain intact between
 
 project/
 ├── css/
-│   ├── calendar.variables.css   /* Variables and Themes */
-│   ├── calendar.core.css        /* Core Styles and Structure */
-│   ├── calendar.greyscale.css   /* Greyscale Styles */
+│   ├── calendar.variables.css     /* Variables and Themes */
+│   ├── calendar.core.css           /* Core Styles and Structure */
+│   ├── calendar.greyscale.css      /* Greyscale Styles */
+│   ├── calendar.serene-shores.css  /* Serene Shores Theme */
+│   └── calendar.autumn-harvest.css /* Autumn Harvest Theme */
 ├── calendar.js                  /* Calendar Logic */
 ├── index.html                   /* HTML Entry Point */
 ├── screenshot.png

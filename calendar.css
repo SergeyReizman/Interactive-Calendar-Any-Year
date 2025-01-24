@@ -1,0 +1,452 @@
+/* ============================
+   Calendar CSS Stylesheet
+   Purpose: Styling for a dynamic calendar with support for themes 
+   (Dark Mode, Ocean View) and modal integration.
+============================ */
+
+/* ========== Variables ========== */
+:root {
+    /* General Palette */
+    --primary-color: #ff80ab; /* Pink */
+    --secondary-color: #fce4ec; /* Light Pink */
+    --hover-color: #ff4081; /* Hot Pink */
+    --border-color: #d1d1d1; /* Light Gray */
+    --font-family: 'Arial', sans-serif;
+    --transition: 0.3s ease;
+
+    /* Dark Mode */
+    --dark-bg-color: #333;
+    --dark-text-color: #eee;
+    --dark-border-color: #616161;
+
+    /* Ocean View */
+    --ocean-primary-color: #0277bd; /* Blue */
+    --ocean-secondary-color: #e1f5fe; /* Light Blue */
+    --ocean-hover-color: #01579b; /* Darker Blue */
+    --ocean-border-color: #81d4fa; /* Lighter Blue */
+    --ocean-text-color: #ffffff; /* White */
+}
+
+/* ========== Base Styles ========== */
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.container {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 95%;
+}
+
+/* Highlight the current year in the calendar header */
+.highlight-current-year {
+    font-weight: bold;
+    color: #ff5722; 
+}
+
+/* ========== Current Day Highlighting ========== */
+/* Ensure correct application across all themes */
+td.current-day {
+    background-color: var(--hover-color) !important; /* Use !important to override other styles */
+    color: white !important;
+    font-weight: normal !important; /* Resetting font weight to normal */
+    border: 2px solid var(--primary-color) !important; /* Adding a border to make it more prominent */
+}
+
+/* Light Mode: Uses the general settings from above */
+.light-mode td.current-day {
+    background-color: var(--hover-color) !important;
+    color: white !important;
+    font-weight: normal !important;
+}
+
+/* Dark Mode: Overrides for better visibility */
+.dark-mode td.current-day {
+    background-color: var(--primary-color) !important; /* Pink background stands out on dark theme */
+    color: var(--dark-text-color) !important; /* Text color adjusted for visibility */
+    border: 2px solid var(--hover-color) !important; /* Border contrast with the background */
+}
+
+/* Ocean View: Specific styling for the current day */
+.ocean-view td.current-day {
+    background-color: var(--ocean-hover-color) !important; /* Darker blue for better contrast */
+    color: var(--ocean-text-color) !important; /* Text remains white for contrast */
+    border: 2px solid var(--ocean-border-color) !important; /* Border to highlight */
+}
+
+/* ========== Hover and Interaction Enhancements ========== */
+td:hover,
+td.current-day:hover {
+    background-color: var(--hover-color) !important; /* Hover effect for better interaction */
+    color: white !important;
+    box-shadow: 0 0 10px var(--hover-color) !important; /* Subtle glow effect */
+    transform: scale(1.05) !important; /* Slightly enlarges the cell for better interactivity */
+}
+
+/* ========== Accessibility Focus Styles ========== */
+td.current-day:focus {
+    outline: 3px dashed var(--primary-color) !important; /* Visible focus state for accessibility */
+    outline-offset: 2px;
+}
+
+/* ============================
+   Calendar Table Styling
+============================ */
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    font-size: 1em;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+td {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+    position: relative;
+}
+
+td:hover, .highlight-today, td.current-day {
+    background-color: var(--hover-color);
+    color: white;
+    font-weight: bold;
+}
+
+/* ========== Dark Mode ========== */
+.dark-mode {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+}
+
+.dark-mode th {
+    background-color: var(--primary-color);
+}
+
+.dark-mode td {
+    background-color: var(--dark-bg-color);
+    border-color: var(--dark-border-color);
+}
+
+.dark-mode td.current-day {
+    font-weight: bold;
+}
+
+/* ========== Ocean View ========== */
+.ocean-view {
+    background-color: var(--ocean-primary-color);
+    color: var(--ocean-text-color);
+}
+
+.ocean-view th, .ocean-view td {
+    border-color: var(--ocean-border-color);
+}
+
+.ocean-view th {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--ocean-text-color);
+}
+
+.ocean-view td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ocean-view td.current-day {
+    background-color: var(--ocean-hover-color);
+}
+
+/* ============================
+   Modal Styling
+============================ */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Dimmed background */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+}
+
+.modal-title {
+    color: #333;
+}
+
+.modal-event-marker {
+    background-color: #f39c12;
+    color: #ffffff;
+    border-radius: 50%;
+}
+
+.modal-event-marker:hover {
+    background-color: #e67e22;
+    color: #000000;
+}
+
+/* ========== Modal Dark Mode ========== */
+.dark-mode .modal-content {
+    background-color: #444;
+    color: #eee;
+    border-color: #666;
+}
+
+.dark-mode .modal-title {
+    color: inherit;
+}
+
+/* ========== Modal Ocean View ========== */
+.ocean-view .modal-content {
+    background-color: rgba(177, 216, 255, 0.8);
+    color: #001f3f;
+    border-color: #81d4fa;
+}
+
+.ocean-view .modal-title {
+    color: inherit;
+}
+
+/* ========== Event List ========== */
+.event-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.event-list div {
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode .event-list div,
+.ocean-view .event-list div {
+    border-bottom-color: #666;
+}
+
+.event-list div:last-child {
+    border-bottom: none;
+}
+
+.event-list div button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.event-list div button:hover {
+    background-color: #c82333;
+}
+
+/* ========== Buttons ========== */
+.transparent-button, .back-to-top-button, .ocean-view-button {
+    margin: 20px 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.transparent-button {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.transparent-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Position the 'Back to Top' button to the right side of the 'Visit My Portfolio' button */
+#backToTopBtn {
+    position: fixed;
+    bottom: 20px;  /* Adjust this value as needed */
+    right: 20px;   /* This aligns it to the right side */
+    display: none; /* Hidden by default */
+    background-color: #007bff; /* Button color */
+    color: white;  /* Text color */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;  /* Make sure it's on top of other content */
+}
+
+/* Optional: Change appearance on hover */
+#backToTopBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+.ocean-view-button {
+    background-color: var(--ocean-primary-color);
+    border: 2px solid var(--ocean-border-color);
+    color: var(--ocean-text-color);
+}
+
+.ocean-view-button:hover {
+    background-color: var(--ocean-hover-color);
+}
+
+/* ========== Media Queries for Responsiveness ========== */
+
+/* Small screens (less than 768px - typical mobile devices) */
+@media (max-width: 767px) {
+    .container {
+        padding: 5px; /* Reduce padding */
+    }
+
+    table {
+        font-size: 0.9em; /* Slightly smaller font */
+    }
+
+    th,
+    td {
+        padding: 8px; /* Reduce cell padding */
+    }
+
+    .transparent-button,
+    .back-to-top-button {
+        font-size: 0.9em;
+        padding: 6px 12px;
+        margin: 5px;
+    }
+
+    .modal-content {
+        width: 90%; /* Wider modal on small screens */
+        margin: 20% auto; /* Adjust margin */
+    }
+}
+
+/* Medium screens (768px to 991px - tablets and smaller laptops) */
+@media (min-width: 768px) and (max-width: 991px) {
+    table {
+        font-size: 1em; /* Maintain normal font size */
+    }
+
+    th,
+    td {
+        padding: 10px; /* Maintain normal cell padding */
+    }
+
+    .modal-content {
+        width: 85%; /* Slightly wider modal */
+    }
+}
+
+/* Large screens (992px and above - desktops and larger laptops) */
+@media (min-width: 992px) {
+    .container {
+        max-width: 80%; /* Limit container width on large screens */
+    }
+}
+
+/* Specific adjustments for very small screens (less than 400px) */
+@media (max-width: 399px) {
+    table {
+        font-size: 0.8em; /* Even smaller font */
+    }
+
+    th,
+    td {
+        padding: 6px; /* Further reduce cell padding */
+    }
+
+    .transparent-button,
+    .back-to-top-button {
+        font-size: 0.8em;
+        padding: 4px 8px;
+        margin: 2px;
+    }
+
+    .modal-content {
+        width: 95%; /* Almost full-width modal */
+        margin: 25% auto; /* Adjust top margin */
+    }
+}
+
+/* Landscape orientation on mobile devices */
+@media (max-height: 450px) and (max-width: 991px) and (orientation: landscape) {
+    .modal-content {
+        margin-top: 5%; /* Less top margin in landscape */
+        overflow-y: auto; /* Add scroll if content is too long */
+        max-height: 90%;
+    }
+}
+
+/* Specific adjustments for very small screens (less than 400px) */
+@media (max-width: 400px) {
+    .container {
+        padding: 3px;
+    }
+
+    table {
+        font-size: 0.8em;
+    }
+
+    th,
+    td {
+        padding: 5px;
+    }
+
+    .transparent-button,
+    .back-to-top-button,
+    .ocean-view-button {
+        font-size: 0.8em;
+        padding: 5px 10px;
+        margin: 3px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 25% auto;
+    }
+}

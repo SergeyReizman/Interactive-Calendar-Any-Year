@@ -1,48 +1,57 @@
-/* calendar.greyscale.css */
+/* ============================
+    Grayscale Theme
+    Purpose: Styles specific to the Grayscale theme.
+    Author: Gemini
+    Date: October 27, 2023
+    Version: 1.1 (Modal Style Update)
+============================ */
 
-/* Variables for the Grayscale Theme */
-:root {
-    --greyscale-bg-color: #f8f8f8; /* Softer light gray background */
-    --greyscale-text-color: #444; /* Slightly lighter dark gray text */
-    --greyscale-border-color: #e0e0e0; /* Slightly darker light gray border */
-    --greyscale-hover-color: #ddd; /* Lighter hover color */
-    --greyscale-current-day-bg: #e6e6e6; /* Distinct background for current day */
-    --greyscale-shadow-color: rgba(0, 0, 0, 0.08); /* Subtle shadow color */
-    --greyscale-border-radius: 4px; /* Consistent border radius */
+.greyscale {
+    --greyscale-background-color: #f8f8f8;
+    --greyscale-text-color: #444;
+    --greyscale-border-color: #e0e0e0;
+    --greyscale-border-color-rgb: 224, 224, 224; /* RGB values for #e0e0e0 - Important for rgba */
+    --greyscale-hover-color: #ddd;
+    --greyscale-current-day-bg: #e6e6e6;
+    --greyscale-shadow-color: rgba(0, 0, 0, 0.08);
+    --greyscale-border-radius: 4px;
+    --transition-duration: 0.3s; /* Transition duration */
+    --transition-easing: ease;     /* Transition easing */
 }
 
-/* Apply Grayscale Theme Styles */
+/* Base Styles */
 .greyscale body {
-    background-color: var(--greyscale-bg-color);
+    background-color: var(--greyscale-background-color);
     color: var(--greyscale-text-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
-    line-height: 1.6; /* Improved readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
 }
 
-.greyscale .container {
+.greyscale .calendar-container {
     padding: 20px;
 }
 
+/* Table Styles */
 .greyscale table {
-    border-collapse: separate;
-    border-spacing: 2px;
-    box-shadow: 3px 3px 8px var(--greyscale-shadow-color); /* Subtle shadow */
+    border-collapse: collapse; /* Use collapse for single borders */
     width: 100%;
-    max-width: 900px;
     margin: 20px auto;
+    box-shadow: 3px 3px 8px var(--greyscale-shadow-color);
 }
 
 .greyscale th,
 .greyscale td {
     border: 1px solid var(--greyscale-border-color);
-    color: var(--greyscale-text-color);
     padding: 12px;
     text-align: center;
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; /* Smooth transitions */
+    transition: background-color var(--transition-duration) var(--transition-easing),
+                color var(--transition-duration) var(--transition-easing),
+                box-shadow var(--transition-duration) var(--transition-easing),
+                transform var(--transition-duration) var(--transition-easing);
 }
 
 .greyscale th {
-    background-color: #eee; /* Even lighter header background */
+    background-color: #eee;
     color: var(--greyscale-text-color);
     font-weight: 600;
 }
@@ -53,22 +62,21 @@
 
 .greyscale td:hover {
     background-color: var(--greyscale-hover-color);
-    transform: scale(1.02); /* Subtle scale on hover */
+    transform: scale(1.02);
     box-shadow: 0 2px 4px var(--greyscale-shadow-color);
 }
 
 .greyscale td.current-day {
-    background-color: var(--greyscale-current-day-bg); /* Distinct current day background */
-    border: 2px solid var(--greyscale-border-color); /* Less contrasting border */
+    background-color: var(--greyscale-current-day-bg);
+    border: 2px solid var(--greyscale-border-color);
     font-weight: 600;
-    box-shadow: inset 0 0 4px var(--greyscale-shadow-color); /* Subtle inner shadow */
+    box-shadow: inset 0 0 4px var(--greyscale-shadow-color);
 }
 
 /* Event Markers */
 .greyscale .event-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center; /* Center event markers */
     margin-top: 6px;
 }
 
@@ -77,8 +85,8 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    margin: 2px 0;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin: 2px;
+    transition: background-color var(--transition-duration) var(--transition-easing), transform var(--transition-duration) var(--transition-easing);
 }
 
 .greyscale .event-marker:hover {
@@ -86,13 +94,14 @@
     transform: scale(1.2);
 }
 
-/* Modal Styles for Grayscale */
+/* Modal Styles for Grayscale - Improved */
 .greyscale .modal-content {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9); /* Mostly white with slight transparency */
+    backdrop-filter: blur(3px); /* Subtle blur */
     color: var(--greyscale-text-color);
-    border: 1px solid var(--greyscale-border-color);
+    border: 1px solid rgba(var(--greyscale-border-color-rgb), 0.5); /* Gray border with opacity */
     border-radius: var(--greyscale-border-radius);
-    box-shadow: 0 4px 10px var(--greyscale-shadow-color);
+    box-shadow: 0 4px 12px rgba(var(--greyscale-border-color-rgb), 0.2); /* Gray-tinted shadow */
     padding: 20px;
 }
 
@@ -103,50 +112,88 @@
 }
 
 .greyscale .event-list {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
+    padding: 0;
+    list-style: none; /* Use list-style: none; for better list control */
 }
 
-.greyscale .event-list div {
-    border-bottom-color: var(--greyscale-border-color);
+.greyscale .event-list li { /* Target list items directly */
     padding: 8px 0;
-    margin-bottom: 8px;
+    border-bottom: 1px solid var(--greyscale-border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.greyscale .event-list div button {
+.greyscale .event-list li:last-child {
+    border-bottom: none;
+}
+
+.greyscale .event-list button {
     background-color: #777;
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: var(--greyscale-border-radius);
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color var(--transition-duration) var(--transition-easing);
 }
 
-.greyscale .event-list div button:hover {
+.greyscale .event-list button:hover {
     background-color: #555;
 }
 
 /* Button Styles for Grayscale */
-.greyscale .transparent-button,
-.greyscale #backToTopBtn {
+.greyscale .button { /* General Button Styles */
     border-radius: var(--greyscale-border-radius);
     padding: 10px 18px;
     font-size: 1em;
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
     cursor: pointer;
-    border: 1px solid var(--greyscale-text-color); /* Added border to transparent button */
+    border: 1px solid var(--greyscale-text-color);
     color: var(--greyscale-text-color);
     background-color: transparent;
     box-shadow: 2px 2px 5px var(--greyscale-shadow-color);
 }
 
-.greyscale .transparent-button:hover,
-.greyscale #backToTopBtn:hover {
+.greyscale .button:hover {
     background-color: var(--greyscale-hover-color);
     color: var(--greyscale-text-color);
     box-shadow: 3px 3px 7px var(--greyscale-shadow-color);
+}
+
+.greyscale .button.secondary{
+    background-color: #ccc; /* Example secondary background color */
+    border: none;
+    color: var(--greyscale-text-color);
+}
+
+.greyscale .button.secondary:hover {
+    background-color: #bbb;
+}
+
+/* Styles for the calendar navigation (prev/next month buttons) */
+.greyscale .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--greyscale-text-color);
+    transition: color var(--transition-duration) var(--transition-easing);
+}
+
+.greyscale .calendar-navigation button:hover {
+    color: #000; /* Darker color on hover for better contrast */
+}
+
+/* Styles for the current month/year display */
+.greyscale .calendar-header {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--greyscale-text-color);
 }

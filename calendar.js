@@ -8,22 +8,25 @@ const MONTHS = Array.from({ length: 12 }, (_, i) =>
 
 // Theme Management
 const applyTheme = (theme) => {
-  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest'); // Remove all theme classes
+  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores'); // Remove all theme classes, including serene-shores
   switch (theme) {
       case 'dark':
           body.classList.add('dark-mode');
           break;
-      case 'ocean':
+      case 'ocean-view': // Corrected case to match HTML and CSS
           body.classList.add('ocean-view');
           break;
       case 'greyscale':
           body.classList.add('greyscale');
           break;
-      case 'autumn-harvest': // Add this case
+      case 'autumn-harvest':
           body.classList.add('autumn-harvest');
           break;
+      case 'serene-shores': // Added case for the new theme
+          body.classList.add('serene-shores');
+          break;
       default:
-          // Default case (e.g., 'light')
+          // Default case (e.g., 'light') - No class added, assumes default styling
           break;
   }
   localStorage.setItem('calendarTheme', theme);
