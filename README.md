@@ -33,8 +33,6 @@ Ocean View 🌊
 Grayscale 🖤
 Serene Shores 💙  A calming theme inspired by serene shorelines, featuring a cool blue color scheme and subtle wave-like patterns.
 
-Absolutely! Here's the updated interactive calendar README incorporating the "Serene Shores" theme:
-
 ✨ Interactive Calendar 🗓️
 
 Overwhelmed by your schedule? 😫 Reclaim your time with the Interactive Calendar!
