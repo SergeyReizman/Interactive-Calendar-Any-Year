@@ -26,12 +26,15 @@ This isn't just another calendar. It's designed to make staying organized a bree
 🌙 Dark Mode: Toggle between light and dark modes for a more personalized viewing experience, and your preference is saved across sessions.
 ⬆️ Back to Top Button: Easily scroll back to the top of the calendar with a smooth click.
 
-🌊 Multiple Themes 🎨: Personalize your calendar with a variety of themes, including:
-Light Mode ☀️
-Dark Mode 🌙 late-night planning.
-Ocean View 🌊
-Grayscale 🖤
-Serene Shores 💙  A calming theme inspired by serene shorelines, featuring a cool blue color scheme and subtle wave-like patterns.
+🎨 Multiple Themes for Your Calendar 📅
+Personalize your planning experience with an array of beautifully crafted themes:
+
+Light Mode ☀️: Bright and crisp for your daytime productivity.
+Dark Mode 🌙: Perfect for late-night planning, easy on the eyes.
+Ocean View 🌊: Immerse yourself in tranquility with a theme inspired by the sea.
+Grayscale 🖤: Sleek and minimalist for a modern aesthetic.
+Serene Shores 💙: A calming theme inspired by serene shorelines, featuring a cool blue palette and gentle wave-like patterns.
+Autumn Harvest 🍂: Embrace the cozy vibes of fall with warm tones, earthy textures, and touches of orange, red, and golden leaves.
 
 ✨ Interactive Calendar 🗓️
 
