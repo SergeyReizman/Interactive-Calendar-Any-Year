@@ -160,12 +160,32 @@ const generateCalendar = (year) => {
           dayCell.appendChild(eventContainer);
 
           if (events[dateKey]) {
+            const eventListElement = document.createElement('ul');
+            eventListElement.className = 'event-list-in-cell';
+            eventContainer.appendChild(eventListElement);
+
             events[dateKey].forEach((event) => {
-              const marker = document.createElement('div');
-              marker.className = 'event-marker';
-              marker.textContent = event; // Correct way to set text
-              eventContainer.appendChild(marker);
+              const listItem = document.createElement('li');
+              listItem.className = 'event-marker';
+              listItem.textContent = event;
+              eventListElement.appendChild(listItem);
             });
+
+            // Check if the event list is overflowing, if so, add a "More..." link
+            if (eventListElement.scrollHeight > eventListElement.clientHeight) {
+              const moreLink = document.createElement('a');
+              moreLink.href = '#';
+              moreLink.textContent = 'More...';
+              moreLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                manageEvent(dateKey);
+              });
+              eventContainer.appendChild(moreLink);
+
+              // Set the height of the list to hide the overflow
+              eventListElement.style.maxHeight = `${eventListElement.clientHeight - moreLink.offsetHeight}px`;
+              eventListElement.style.overflow = 'hidden';
+            }
           }
 
           dayCell.addEventListener('click', () => manageEvent(dateKey));
@@ -180,7 +200,6 @@ const generateCalendar = (year) => {
     }
   });
 };
-
 // Event Listeners
 prevYearBtn.addEventListener('click', () => {
   selectedYear--;
