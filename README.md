@@ -11,8 +11,10 @@ Whether you’re managing work deadlines, personal appointments, or everything i
 
 🚀 Say Goodbye to Calendar Chaos! 
 👋 Introducing My Updated Interactive Calendar 🗓️
+
 Feeling overwhelmed by your schedule? I get it. That's why I've been working hard to revamp my interactive calendar, and I'm excited to share the latest version with you! 🎉
 This isn't just another calendar. It's designed to make staying organized a breeze, whether you're juggling work deadlines, personal appointments, or everything in between.
+
  🚀 What’s New?
 🔄 Dynamic Year Navigation: Easily switch between years using "Previous Year" and "Next Year" buttons. The current Year is always in red color.
 📱 Works on Any Device: From your desktop to your phone, the responsive design ensures a seamless experience.
@@ -23,18 +25,29 @@ This isn't just another calendar. It's designed to make staying organized a bree
 ♿ Built for Everyone: Accessibility is a priority, with WCAG-compliant styles and high contrast for optimal usability. ♿
 🌙 Dark Mode: Toggle between light and dark modes for a more personalized viewing experience, and your preference is saved across sessions.
 ⬆️ Back to Top Button: Easily scroll back to the top of the calendar with a smooth click.
-🌊 Themes to Match Your Mood: Choose between Light Mode, Dark Mode, or the calming new "Ocean View" theme: enjoy a serene, ocean-inspired theme, bringing a fresh and calming look to your calendar.
+
+🌊 Multiple Themes 🎨: Personalize your calendar with a variety of themes, including:
+Light Mode ☀️
+Dark Mode 🌙 late-night planning.
+Ocean View 🌊
+Grayscale 🖤 
+
+Light, Dark, Grayscale or the calming "Ocean View" theme: enjoy a serene, ocean-inspired theme, 
+bringing a fresh and calming look to your calendar.
+
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
 CSS3: For creating a responsive, clean, and visually appealing design.
 JavaScript​: To power the dynamic calendar generation and interactive features.
-🚀 How to Use:
-1️⃣ Navigate Between Years: Use the Previous and Next buttons to explore different years.
-2️⃣ Add Events: Click on any date to add, edit, or view reminders/events.
-3️⃣ View Today: The current date is highlighted automatically for your convenience.
-4️⃣ Toggle Dark Mode: Switch to dark mode for a night-friendly view, and your preference is saved across sessions.
-5️⃣ Back to Top: Click the Back to Top button for easy navigation.
-6️⃣ Your Data Stays Put: Events are saved locally in your browser, so no worries about losing your info.
+
+📖 How to Use
+1️⃣ Navigate Between Years: Use the Previous and Next buttons.
+2️⃣ Add Events: Click on any date to add, edit, or view reminders.
+3️⃣ Highlight Today: The current date is automatically highlighted.
+4️⃣ Toggle Themes: Switch between themes (Light, Dark, Ocean View, or Grayscale).
+5️⃣ Dark Mode: Toggle dark mode for comfortable nighttime viewing.
+6️⃣ Event Clearing: Clear all events for a specific date or reset the calendar.
+7️⃣ Event Persistence: Your events are saved in your browser and stay intact across sessions.
 
 Want to see it in action?
 
@@ -106,11 +119,11 @@ project/
 ├── css/
 │   ├── calendar.variables.css   /* Variables and Themes */
 │   ├── calendar.core.css        /* Core Styles and Structure */
-├── calendar.js              /* Calendar Logic */
-│  
+│   ├── calendar.greyscale.css   /* Greyscale Styles */
+├── calendar.js                  /* Calendar Logic */
 ├── index.html                   /* HTML Entry Point */
-├──screenshot.png
-├──README.md
+├── screenshot.png
+├── README.md
 
 🌟 What’s Next?
 Stay tuned for upcoming updates, including:
