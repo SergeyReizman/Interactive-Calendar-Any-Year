@@ -8,7 +8,7 @@ const MONTHS = Array.from({ length: 12 }, (_, i) =>
 
 // Theme Management
 const applyTheme = (theme) => {
-  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores'); // Remove all theme classes, including serene-shores
+  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice'); // Remove all theme classes, including serene-shores
   switch (theme) {
       case 'dark':
           body.classList.add('dark-mode');
@@ -24,6 +24,9 @@ const applyTheme = (theme) => {
           break;
       case 'serene-shores': // Added case for the new theme
           body.classList.add('serene-shores');
+          break;
+      case 'blue-ice': // Added case for the new theme
+          body.classList.add('blue-ice');
           break;
       default:
           // Default case (e.g., 'light') - No class added, assumes default styling
