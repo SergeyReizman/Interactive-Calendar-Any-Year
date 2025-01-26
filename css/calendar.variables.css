@@ -1,269 +1,54 @@
 /* ============================
-   Calendar CSS Stylesheet
-   Purpose: Styling for a dynamic calendar with support for themes 
-   (Dark Mode, Ocean View) and modal integration.
+    Calendar Variables
+    Purpose: Defines CSS variables for theming and consistent styling.
 ============================ */
 
-/* ========== Variables ========== */
 :root {
-    /* General Palette */
-    --primary-color: #ff80ab; /* Pink */
-    --secondary-color: #fce4ec; /* Light Pink */
-    --hover-color: #ff4081; /* Hot Pink */
-    --border-color: #d1d1d1; /* Light Gray */
-    --font-family: 'Arial', sans-serif;
-    --transition: 0.3s ease;
+    /* Core/Default Palette */
+    --core-primary-color: #ff80ab;
+    --core-secondary-color: #fce4ec;
+    --core-hover-color: #ff4081;
+    --core-border-color: #d1d1d1;
+    --core-font-family: 'Arial', sans-serif;
+    --core-transition: 0.3s ease;
 
-   /* Dark Mode */
-   --dark-bg-color: #333;
-   --dark-text-color: #eee;
-   --dark-border-color: #616161;
+    /* Dark Mode */
+    --dark-background-color: #333;
+    --dark-text-color: #eee;
+    --dark-border-color: #616161;
+    --dark-primary-color: #bb86fc;
+    --dark-hover-color: #3700b3;
 
     /* Ocean View */
-    --ocean-primary-color: #29abe2;
-    --ocean-primary-color-rgb: 41, 171, 230; /* RGB value for rgba() */
-    --ocean-secondary-color: #3498db;
-    --ocean-hover-color: #1abc9c;
-    --ocean-border-color: #d0e1f2;
-    --ocean-text-color: #2c3e50;
-    --ocean-background-color: #e0f2f7;
-    --ocean-event-marker-color: #e74c3c;
-    --ocean-event-marker-hover: #f39c12;
-    --ocean-shadow-color: rgba(0, 0, 0, 0.1);
-    --ocean-border-radius: 6px;
-    --ocean-transition-duration: 0.3s;
-    --ocean-transition-easing: ease;
-}
+    --ocean-view-primary-color: #29abe2;
+    --ocean-view-secondary-color: #3498db;
+    --ocean-view-hover-color: #1abc9c;
+    --ocean-view-border-color: #d0e1f2;
+    --ocean-view-text-color: #2c3e50;
+    --ocean-view-background-color: #e0f2f7;
 
-/* ============================
-   Core Styles
-============================ */
+    /* Autumn Harvest */
+    --autumn-harvest-primary-color: #d35400;
+    --autumn-harvest-secondary-color: #f39c12;
+    --autumn-harvest-text-color: #ecf0f1;
+    --autumn-harvest-background-color: #2c3e50;
 
-/* ========== Base Styles ========== */
-body {
-    font-family: var(--font-family);
-    background-color: var(--secondary-color);
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    transition: background-color var(--transition), color var(--transition);
-}
+    /* Serene Shores */
+    --serene-shores-primary-color: #3498db;
+    --serene-shores-secondary-color: #eaf2f8;
+    --serene-shores-text-color: #2c3e50;
+    --serene-shores-background-color: #ffffff;
 
-.container {
-    margin: 20px auto;
-    padding: 10px;
-    max-width: 95%;
-}
+    /* Blue Ice */
+    --blue-ice-primary-color: #2980b9;
+    --blue-ice-secondary-color: #eaf2f8;
+    --blue-ice-text-color: #2c3e50;
+    --blue-ice-background-color: #ffffff;
 
-/* ============================
-   Calendar Table Styling
-============================ */
-
-table {
-    margin: 20px auto;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    font-size: 1em;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    text-align: center;
-    transition: background-color var(--transition), color var(--transition);
-}
-
-th {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-td {
-    background-color: var(--secondary-color);
-    cursor: pointer;
-    position: relative;
-}
-
-/* Highlighting and Hover Effects */
-td:hover,
-td.current-day:hover {
-    background-color: var(--hover-color) !important;
-    color: white !important;
-    box-shadow: 0 0 10px var(--hover-color) !important;
-    transform: scale(1.05) !important;
-}
-
-td.current-day {
-    background-color: var(--hover-color) !important;
-    color: white !important;
-    border: 2px solid var(--primary-color) !important;
-}
-
-/* ============================
-   Themes
-============================ */
-
-/* ========== Dark Mode ========== */
-.dark-mode {
-    background-color: var(--dark-bg-color);
-    color: var(--dark-text-color);
-}
-
-.dark-mode th {
-    background-color: var(--primary-color);
-}
-
-.dark-mode td {
-    background-color: var(--dark-bg-color);
-    border-color: var(--dark-border-color);
-}
-
-.dark-mode td.current-day {
-    font-weight: bold;
-}
-
-/* ========== Ocean View ========== */
-.ocean-view {
-    background-color: var(--ocean-primary-color);
-    color: var(--ocean-text-color);
-}
-
-.ocean-view th, .ocean-view td {
-    border-color: var(--ocean-border-color);
-}
-
-.ocean-view th {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: var(--ocean-text-color);
-}
-
-.ocean-view td {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.ocean-view td.current-day {
-    background-color: var(--ocean-hover-color);
-}
-
-/* ============================
-   Modal Styling
-============================ */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Dimmed background */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-    box-sizing: border-box;
-    transition: var(--transition); /* Smooth appearance */
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #333;
-    font-weight: bold;
-}
-
-.modal-title {
-    margin-bottom: 10px;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.event-list {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: left;
-    max-height: 200px;
-    overflow-y: auto; /* Scroll if too long */
-}
-
-.event-list div {
-    padding: 5px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.event-list div:last-child {
-    border-bottom: none;
-}
-
-.event-list div button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 3px 6px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.event-list div button:hover {
-    background-color: #c82333;
-}
-
-/* ========== Modal Dark Mode ========== */
-.dark-mode .modal-content {
-    background-color: #444;
-    color: #eee;
-    border-color: #666;
-}
-
-.dark-mode .modal-title {
-    color: var(--dark-text-color);
-}
-
-.dark-mode .event-list div {
-    border-bottom-color: #666;
-}
-
-/* ========== Modal Ocean View ========== */
-.ocean-view .modal-content {
-    background-color: rgba(177, 216, 255, 0.8);
-    color: #001f3f;
-    border-color: var(--ocean-border-color);
-}
-
-.ocean-view .modal-title {
-    color: inherit;
-}
-
-.ocean-view .event-list div {
-    border-bottom-color: var(--ocean-border-color);
-}
-
-/* ============================
-   Utility Classes
-============================ */
-.hidden {
-    display: none !important;
-}
-
-.visible {
-    display: block !important;
+    /* Greyscale */
+    --greyscale-background-color: #f8f8f8;
+    --greyscale-text-color: #444;
+    --greyscale-border-color: #e0e0e0;
+    --greyscale-hover-color: #ddd;
+    --greyscale-current-day-bg: #e6e6e6;
 }

@@ -1,39 +1,28 @@
 /* ============================
     Calendar Core Styles
     Purpose: Core styles for the calendar layout and elements.
-    Author: Gemini
-    Date: October 27, 2023
-    Version: 1.1 (Corrected body styles)
 ============================ */
 
-/*
-    Body Styles (Default styles - themes will override these)
-*/
+/* ========== Base Styles ========== */
 body {
-    font-family: var(--font-family);
+    font-family: var(--core-font-family); /* Use core font family */
+    background-color: var(--core-secondary-color); /* Use core secondary color */
+    color: #333; /* Default text color */
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: var(--secondary-color); /* Default background color */
-    color: #333; /* Default text color */
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing);
+    transition: background-color var(--core-transition), color var(--core-transition); /* Use core transition */
 }
 
-/*
-    Container Styles
-    Styles for the main container that holds the calendar.
-*/
 .container {
     margin: 20px auto;
     padding: 10px;
     max-width: 95%;
 }
 
-/*
-    Table Styles
-    Styles for the main calendar table.
-*/
+/* ============================
+    Calendar Table Styling
+============================ */
 table {
     margin: 20px auto;
     border-collapse: collapse;
@@ -42,68 +31,53 @@ table {
     font-size: 1em;
 }
 
-/*
-    Table Header (<th>) and Cell (<td>) Styles
-*/
-th,
-td {
+th, td {
     padding: 10px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--core-border-color); /* Use core border color */
     text-align: center;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing);
+    transition: background-color var(--core-transition), color var(--core-transition); /* Use core transition */
 }
 
-/*
-    Table Header (<th>) Specific Styles
-*/
 th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: bold;
+    background-color: var(--core-primary-color); /* Use core primary color */
+    color: white; /* Or var(--core-text-color) if needed */
 }
 
-/*
-    Table Cell (<td>) Specific Styles
-*/
 td {
-    background-color: var(--secondary-color);
+    background-color: var(--core-secondary-color); /* Use core secondary color */
+    color: #333; /* Crucial: Default text color for cells */
     cursor: pointer;
     position: relative;
     height: 5em;
     vertical-align: top;
 }
 
-/*
-    Table Cell Hover and Highlight Styles
-*/
+/* Highlighting and Hover Effects */
 td:hover,
 .highlight-today,
 td.current-day {
-    background-color: var(--hover-color);
+    background-color: var(--core-hover-color); /* Use core hover color */
     color: white;
     font-weight: bold;
-    box-shadow: 0 0 10px var(--hover-color);
+    box-shadow: 0 0 10px var(--core-hover-color); /* Use core hover color */
     transform: scale(1.05);
 }
 
-/*
-    Highlight Current Year
-*/
+/* Highlight Current Year */
 .highlight-current-year {
     font-weight: bold;
     color: #ff5722;
 }
 
-/*
-    Accessibility Focus Styles
-*/
+/* Accessibility Focus Styles */
 td:focus {
-    outline: 2px dashed var(--primary-color);
+    outline: 2px dashed var(--core-primary-color); /* Use core primary color */
     outline-offset: 3px;
 }
 
-/* Modal Styles */
+/* ============================
+    Modal Styling
+============================ */
 .modal {
     display: none;
     position: fixed;
@@ -126,6 +100,7 @@ td:focus {
     border-radius: 8px;
     text-align: center;
     box-sizing: border-box;
+    transition: var(--transition); /* Smooth appearance */
 }
 
 .close-button {
@@ -184,7 +159,7 @@ td:focus {
     padding: 3px 6px;
     border-radius: 3px;
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
+    transition: var(--transition);
 }
 
 .event-list div button:hover {
@@ -220,10 +195,10 @@ td:focus {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 0.8em; /* Explicitly set font size */
-    background-color: rgba(0, 0, 0, 0.1); /* Subtle background color */
-    padding: 2px 4px; /* Added some padding */
-    border-radius: 3px; /* Rounded corners */
+    font-size: 0.8em;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
 }
 
 .event-container a {
@@ -233,8 +208,19 @@ td:focus {
     display: block;
     padding: 2px;
     box-sizing: border-box;
-    text-decoration: none; /* Remove underline from link */
-    color: var(--primary-color); /* Use primary color for link */
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* ============================
+    Utility Classes
+============================ */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
 }
 
 /* Buttons */
@@ -246,9 +232,9 @@ td:focus {
     font-size: 1em;
     border-radius: 8px;
     display: inline-block;
-    cursor: pointer; /* Added cursor pointer here */
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing); /* Added color transition */
+    cursor: pointer;
+    transition: background-color var(--transition),
+                color var(--transition);
 }
 
 .transparent-button {
@@ -267,7 +253,7 @@ td:focus {
     bottom: 20px;
     right: 20px;
     display: none;
-    background-color: #007bff; /* This should ideally be a variable */
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
@@ -276,16 +262,16 @@ td:focus {
 }
 
 #backToTopBtn:hover {
-    background-color: #0056b3; /* This should ideally be a variable */
+    background-color: #0056b3;
 }
 
 .ocean-view-button {
     background-color: var(--ocean-primary-color);
-    border: none; /* Removed redundant border - ocean view will handle it */
+    border: none;
     color: var(--ocean-text-color);
 }
 
 .ocean-view-button:hover {
     background-color: var(--ocean-hover-color);
-    color: white; /* Added white color to hover */
+    color: white;
 }

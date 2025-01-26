@@ -3,39 +3,11 @@
 // Constants
 const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = Array.from({ length: 12 }, (_, i) =>
-  new Date(0, i).toLocaleString('default', { month: 'long' })
+    new Date(0, i).toLocaleString('default', { month: 'long' })
 );
 
-// Theme Management
-const applyTheme = (theme) => {
-  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice'); // Remove all theme classes, including serene-shores
-  switch (theme) {
-      case 'dark':
-          body.classList.add('dark-mode');
-          break;
-      case 'ocean-view': // Corrected case to match HTML and CSS
-          body.classList.add('ocean-view');
-          break;
-      case 'greyscale':
-          body.classList.add('greyscale');
-          break;
-      case 'autumn-harvest':
-          body.classList.add('autumn-harvest');
-          break;
-      case 'serene-shores': // Added case for the new theme
-          body.classList.add('serene-shores');
-          break;
-      case 'blue-ice': // Added case for the new theme
-          body.classList.add('blue-ice');
-          break;
-      default:
-          // Default case (e.g., 'light') - No class added, assumes default styling
-          break;
-  }
-  localStorage.setItem('calendarTheme', theme);
-};
-
 // DOM Elements (MUST be defined before use)
+const body = document.body; // Define body *first*
 const calendarBody = document.getElementById('calendar-body');
 const currentYearDisplay = document.getElementById('current-year');
 const prevYearBtn = document.getElementById('prev-year-btn');
@@ -43,7 +15,6 @@ const nextYearBtn = document.getElementById('next-year-btn');
 const clearEventsBtn = document.getElementById('clear-events-btn');
 const themeSwitcher = document.getElementById('theme-switcher');
 const backToTopBtn = document.getElementById('backToTopBtn');
-const body = document.body; // Defined here
 
 // Modal Elements
 const modal = document.getElementById('event-modal');
@@ -53,7 +24,50 @@ const eventInput = document.getElementById('event-input');
 const addEventBtn = document.getElementById('add-event-btn');
 const closeButton = document.querySelector('.close-button');
 
-// Current date and selected year
+// Theme Management
+const applyTheme = (theme) => {
+    body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice');
+
+    switch (theme) {
+        case 'dark-mode': // Correct case!
+            body.classList.add('dark-mode');
+            break;
+        case 'ocean-view':
+            body.classList.add('ocean-view');
+            break;
+        case 'greyscale':
+            body.classList.add('greyscale');
+            break;
+        case 'autumn-harvest':
+            body.classList.add('autumn-harvest');
+            break;
+        case 'serene-shores':
+            body.classList.add('serene-shores');
+            break;
+        case 'blue-ice':
+            body.classList.add('blue-ice');
+            break;
+        default:
+            break; // No class added for default (core/light theme)
+    }
+    localStorage.setItem('calendarTheme', theme);
+};
+
+// Event Listeners for Theme and Initial Theme Application
+themeSwitcher.addEventListener('change', (e) => {
+    const selectedTheme = e.target.value;
+    applyTheme(selectedTheme);
+    generateCalendar(selectedYear); // Important: Regenerate calendar after theme change
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('calendarTheme') || 'core'; // Default to 'core'
+    themeSwitcher.value = savedTheme;
+    applyTheme(savedTheme);
+    generateCalendar(selectedYear); // Generate calendar on load
+});
+
+// Current date and selected year (Moved down after theme setup)
 const today = new Date();
 let selectedYear = today.getFullYear();
 

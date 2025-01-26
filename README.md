@@ -157,11 +157,11 @@ project/
 ├── css/
 │   ├── calendar.variables.css     /* Variables and Themes */
 │   ├── calendar.core.css           /* Core Styles and Structure */
-|   ├── calendar.responsive.css     /* Responsivity adjustments */
+|   ├── calendar.responsive.css     /* Responsivity Adjustments */
 │   ├── calendar.greyscale.css      /* Greyscale Styles */
 │   ├── calendar.serene-shores.css  /* Serene Shores Theme */
 │   ├── calendar.autumn-harvest.css /* Autumn Harvest Theme */
-│   └── calendar.blue-ice.css        /* New! Blue Ice Theme */
+│   └── calendar.blue-ice.css        /* Blue Ice Theme */
 ├── calendar.js                  /* Calendar Logic */
 ├── index.html                   /* HTML Entry Point */
 ├── screenshot.png
