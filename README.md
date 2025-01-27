@@ -160,11 +160,11 @@ project/
 │   ├── calendar.responsive.css        /* Responsivity Adjustments (Media Queries) */
 │   ├── calendar.dark-mode.css          /* Dark Mode Styles */
 │   ├── calendar.greyscale.css          /* Greyscale Styles */
-│   ├── calendar.cherry-garden.css    /* Cherry Garden Theme (New Theme) */
-│   ├── calendar.serene-shores.css     /* Serene Shores Theme */
-│   ├── calendar.autumn-harvest.css    /* Autumn Harvest Theme */
-│   └── calendar.blue-ice.css          /* Blue Ice Theme */
-├── calendar.js                       /* Calendar Logic (JavaScript) */
++   ├── calendar.cherry-garden.css     /* Cherry Garden Theme */ 
+│   ├── calendar.serene-shores.css      /* Serene Shores Theme */
+│   ├── calendar.autumn-harvest.css     /* Autumn Harvest Theme */
+│   └── calendar.blue-ice.css           /* Blue Ice Theme */
+├── calendar.js                         /* Calendar Logic (JavaScript) */
 ├── index.html                         /* HTML Entry Point */
 ├── screenshot.png
 └── README.md
