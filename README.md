@@ -158,6 +158,7 @@ project/
 │   ├── calendar.variables.css     /* Variables and Themes */
 │   ├── calendar.core.css           /* Core Styles and Structure */
 |   ├── calendar.responsive.css     /* Responsivity Adjustments */
+|   ├── calendar.dark-mode.css      /* Dark Mode */
 │   ├── calendar.greyscale.css      /* Greyscale Styles */
 │   ├── calendar.serene-shores.css  /* Serene Shores Theme */
 │   ├── calendar.autumn-harvest.css /* Autumn Harvest Theme */
