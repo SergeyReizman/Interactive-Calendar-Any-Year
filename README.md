@@ -156,16 +156,16 @@ Your events are stored in your browser's local storage and remain intact between
 project/
 ├── css/
 │   ├── calendar.variables.css        /* Variables and Themes */
-│   ├── calendar.core.css              /* Core Styles and Structure */
-│   ├── calendar.responsive.css        /* Responsivity Adjustments (Media Queries) */
-│   ├── calendar.dark-mode.css          /* Dark Mode Styles */
-│   ├── calendar.greyscale.css          /* Greyscale Styles */
-+   ├── calendar.cherry-garden.css     /* Cherry Garden Theme */ 
-│   ├── calendar.serene-shores.css      /* Serene Shores Theme */
-│   ├── calendar.autumn-harvest.css     /* Autumn Harvest Theme */
-│   └── calendar.blue-ice.css           /* Blue Ice Theme */
-├── calendar.js                         /* Calendar Logic (JavaScript) */
-├── index.html                         /* HTML Entry Point */
+│   ├── calendar.core.css             /* Core Styles and Structure */
+│   ├── calendar.responsive.css       /* Responsivity Adjustments (Media Queries) */
+│   ├── calendar.dark-mode.css        /* Dark Mode Styles */
+│   ├── calendar.greyscale.css        /* Greyscale Styles */
+│   ├── calendar.cherry-garden.css    /* Cherry Garden Theme */
+│   ├── calendar.serene-shores.css    /* Serene Shores Theme */
+│   ├── calendar.autumn-harvest.css   /* Autumn Harvest Theme */
+│   └── calendar.blue-ice.css         /* Blue Ice Theme */
+├── calendar.js                       /* Calendar Logic (JavaScript) */
+├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
 └── README.md
 
