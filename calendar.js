@@ -3,7 +3,7 @@
 // Constants
 const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = Array.from({ length: 12 }, (_, i) =>
-    new Date(0, i).toLocaleString('default', { month: 'long' })
+  new Date(0, i).toLocaleString('default', { month: 'long' })
 );
 
 // DOM Elements (MUST be defined before use)
@@ -26,45 +26,48 @@ const closeButton = document.querySelector('.close-button');
 
 // Theme Management
 const applyTheme = (theme) => {
-    body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice');
+  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice', 'cherry-garden');
 
-    switch (theme) {
-        case 'dark-mode': // Correct case!
-            body.classList.add('dark-mode');
-            break;
-        case 'ocean-view':
-            body.classList.add('ocean-view');
-            break;
-        case 'greyscale':
-            body.classList.add('greyscale');
-            break;
-        case 'autumn-harvest':
-            body.classList.add('autumn-harvest');
-            break;
-        case 'serene-shores':
-            body.classList.add('serene-shores');
-            break;
-        case 'blue-ice':
-            body.classList.add('blue-ice');
-            break;
-        default:
-            break; // No class added for default (core/light theme)
-    }
-    localStorage.setItem('calendarTheme', theme);
+  switch (theme) {
+    case 'dark-mode':
+      body.classList.add('dark-mode');
+      break;
+    case 'ocean-view':
+      body.classList.add('ocean-view');
+      break;
+    case 'greyscale':
+      body.classList.add('greyscale');
+      break;
+    case 'autumn-harvest':
+      body.classList.add('autumn-harvest');
+      break;
+    case 'serene-shores':
+      body.classList.add('serene-shores');
+      break;
+    case 'blue-ice':
+      body.classList.add('blue-ice');
+      break;
+    case 'cherry-garden':
+      body.classList.add('cherry-garden');
+      break;
+    default:
+      break; // No class added for default (core/light theme)
+  }
+  localStorage.setItem('calendarTheme', theme);
 };
 
 // Event Listeners for Theme and Initial Theme Application
 themeSwitcher.addEventListener('change', (e) => {
-    const selectedTheme = e.target.value;
-    applyTheme(selectedTheme);
-    generateCalendar(selectedYear); // Important: Regenerate calendar after theme change
+  const selectedTheme = e.target.value;
+  applyTheme(selectedTheme);
+  generateCalendar(selectedYear); // Important: Regenerate calendar after theme change
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('calendarTheme') || 'core'; // Default to 'core'
-    themeSwitcher.value = savedTheme;
-    applyTheme(savedTheme);
-    generateCalendar(selectedYear); // Generate calendar on load
+  const savedTheme = localStorage.getItem('calendarTheme') || 'core'; // Default to 'core'
+  themeSwitcher.value = savedTheme;
+  applyTheme(savedTheme);
+  generateCalendar(selectedYear); // Generate calendar on load
 });
 
 // Current date and selected year (Moved down after theme setup)
