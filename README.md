@@ -163,11 +163,13 @@ project/
 │   ├── calendar.cherry-garden.css    /* Cherry Garden Theme */
 │   ├── calendar.serene-shores.css    /* Serene Shores Theme */
 │   ├── calendar.autumn-harvest.css   /* Autumn Harvest Theme */
-│   └── calendar.blue-ice.css         /* Blue Ice Theme */
+│   ├── calendar.blue-ice.css         /* Blue Ice Theme */
+│   └── calendar.deep-forest.css      /* Deep Forest Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
 └── README.md
+
 
 🌟 What’s Next?
 Stay tuned for upcoming updates, including:
