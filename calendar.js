@@ -26,7 +26,7 @@ const closeButton = document.querySelector('.close-button');
 
 // Theme Management
 const applyTheme = (theme) => {
-  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest'); 
+  body.classList.remove('dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest', 'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest', 'orange-country');
 
   switch (theme) {
     case 'dark-mode':
@@ -52,6 +52,9 @@ const applyTheme = (theme) => {
       break;
     case 'deep-forest':
       body.classList.add('deep-forest');
+      break;
+    case 'orange-country':
+      body.classList.add('orange-country');
       break;
     default:
       break; // No class added for default (core/light theme)
