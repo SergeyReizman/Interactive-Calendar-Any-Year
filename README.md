@@ -40,6 +40,7 @@ Blue Ice ❄️: Crisp and cool, evoking the calmness of winter.
 Deep Forest 🌲: Immerse yourself in a rich, earthy forest theme with deep greens and natural textures.
 Cherry Garden 🌸: A fresh, vibrant theme inspired by the beauty of cherry blossoms in full bloom.
 Orange Country 🍊: A bright and energetic theme inspired by sun-kissed orchards, featuring bold orange hues and a warm, cheerful ambiance.
+Neon Nights 🌟: A vibrant, high-energy theme with bold neon colors that glow against a dark background, perfect for creating an electrifying vibe.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
