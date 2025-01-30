@@ -24,7 +24,7 @@ This isn't just another calendar. It's designed to make staying organized a bree
 💾 Local Storage: Events are saved locally in the browser and persist between page refreshes.
 ♿ Built for Everyone: Accessibility is a priority, with WCAG-compliant styles and high contrast for optimal usability. ♿
 🌙 Dark Mode: Toggle between light and dark modes for a more personalized viewing experience, and your preference is saved across sessions.
-⬆️ Back to Top Button: Easily scroll back to the top of the calendar with a smooth click.
+🔝 Back to Top Button: Easily scroll back to the top of the calendar with a smooth click.
 
 🎨 Multiple Themes for Your Calendar 📅
 
@@ -100,7 +100,7 @@ Navigate to the extracted folder and open the index.html file in your favorite b
 - **Clearing Events:** Remove all events for a specific date or reset the calendar entirely with ease.
 - **Dark Mode:** Toggle dark mode for a night-friendly view, and your preference will be remembered between sessions.
 - **Ocean View Theme:** Activate the Ocean View button for a calming, visually enhanced experience.
-- **Back to Top:** Use the Back to Top button to smoothly scroll back to the top of the calendar.
+- **🔝 Back to Top:** Use the Back to Top button to smoothly scroll back to the top of the calendar.
 - **Event Modal Window** Manage your events with an easy-to-use modal window for adding, editing, and deleting events.
 
 4️⃣ Event Persistence
