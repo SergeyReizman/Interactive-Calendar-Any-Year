@@ -41,6 +41,7 @@ Deep Forest 🌲: Immerse yourself in a rich, earthy forest theme with deep gree
 Cherry Garden 🌸: A fresh, vibrant theme inspired by the beauty of cherry blossoms in full bloom.
 Orange Country 🍊: A bright and energetic theme inspired by sun-kissed orchards, featuring bold orange hues and a warm, cheerful ambiance.
 Neon Nights 🌟: A vibrant, high-energy theme with bold neon colors that glow against a dark background, perfect for creating an electrifying vibe.
+Desert Mirage 🏜️: A warm, sunlit theme inspired by the vast desert landscapes, featuring sandy beige, golden brown, and deep terracotta hues that evoke a sense of adventure and tranquility.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -121,6 +122,7 @@ project/
 │   ├── calendar.deep-forest.css      /* Deep Forest Theme */
 │   ├── calendar.orange-country.css   /* Orange Country Theme */
 │   ├── calendar.neon-nights.css      /* Neon Nights Theme */
+│   ├── calendar.desert-mirage.css    /* Desert Mirage Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png

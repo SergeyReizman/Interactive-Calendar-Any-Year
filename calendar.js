@@ -29,7 +29,7 @@ const applyTheme = (theme) => {
   body.classList.remove(
     'dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest',
     'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest',
-    'orange-country', 'neon-nights'
+    'orange-country', 'neon-nights', 'desert-mirage'
   );
   switch (theme) {
     case 'dark-mode':
@@ -61,6 +61,9 @@ const applyTheme = (theme) => {
       break;
     case 'neon-nights':
       body.classList.add('neon-nights');
+      break;
+    case 'desert-mirage':
+      body.classList.add('desert-mirage');
       break;
     default:
       break; // No class added for default (core/light theme)
