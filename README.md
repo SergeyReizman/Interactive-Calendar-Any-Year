@@ -43,6 +43,7 @@ Orange Country 🍊: A bright and energetic theme inspired by sun-kissed orchard
 Neon Nights 🌟: A vibrant, high-energy theme with bold neon colors that glow against a dark background, perfect for creating an electrifying vibe.
 Desert Mirage 🏜️: A warm, sunlit theme inspired by the vast desert landscapes, featuring sandy beige, golden brown, and deep terracotta hues that evoke a sense of adventure and tranquility.
 Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and calming accents, designed to bring a sense of peace and relaxation.
+Spring Meadow 🍃: A fresh and lively theme inspired by blooming meadows, featuring soft greens, pastel florals, and the gentle warmth of spring sunshine.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -125,6 +126,7 @@ project/
 │   ├── calendar.neon-nights.css      /* Neon Nights Theme */
 │   ├── calendar.desert-mirage.css    /* Desert Mirage Theme */
 │   ├── calendar.lavender-bliss.css   /* Lavender Bliss Theme */
+│   ├── calendar.spring-meadow.css    /* Spring Meadow Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
