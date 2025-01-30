@@ -1,0 +1,243 @@
+/* ============================
+    Neon Nights Theme
+    Purpose: Styles specific to the Neon Nights theme for the calendar.
+    ============================ */
+
+:root {
+    --neon-nights-bg-color: #1a1a1a;
+    /* Dark Charcoal */
+    --neon-nights-text-color: #00ff00;
+    /* Bright Green - Default Text */
+    --neon-nights-primary-color: #ff00ff;
+    /* Vivid Magenta */
+    --neon-nights-secondary-color: #00aaff;
+    /* Slightly darker cyan */
+    --neon-nights-shadow-color: rgba(255, 0, 255, 0.3);
+    /* Subtle Magenta Glow */
+    --neon-nights-border-radius: 8px;
+    /* Rounded corners */
+    --neon-nights-gradient-start: #ff0066;
+    /* Neon Pink Start */
+    --neon-nights-gradient-end: #9900cc;
+    /* Deep Purple End */
+    --neon-nights-hover-color: #ffcc00;
+    /* Electric Yellow */
+    --neon-nights-current-day-bg: #ff4500;
+    /* Fiery Orange */
+    --neon-nights-button-text-color: #00ff00;
+    /* Bright green - customizable */
+    --neon-nights-calendar-nav-text-color: #00ff00;
+    /* Bright green for nav */
+    --neon-nights-calendar-date-color: #00ff00;
+    /* Bright green for dates */
+    --transition-duration: 0.3s;
+    --transition-easing: ease;
+}
+
+/* Apply theme to container */
+.neon-nights .container {
+    background: linear-gradient(to bottom, var(--neon-nights-gradient-start), var(--neon-nights-gradient-end));
+    color: var(--neon-nights-text-color);
+    /* Green text */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    transition: background var(--transition-duration);
+}
+
+.neon-nights .calendar-container {
+    padding: 20px;
+}
+
+.neon-nights table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 3px 3px 8px var(--neon-nights-shadow-color);
+}
+
+.neon-nights th,
+.neon-nights td {
+    border: 1px solid var(--neon-nights-secondary-color);
+    padding: 12px;
+    text-align: center;
+    transition: all var(--transition-duration) var(--transition-easing);
+}
+
+.neon-nights th {
+    background-color: var(--neon-nights-secondary-color);
+    color: #1a1a1a;
+    /* Dark Charcoal text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    /* Subtle text shadow */
+    font-weight: 600;
+}
+
+.neon-nights td {
+    background-color: var(--neon-nights-bg-color);
+    color: var(--neon-nights-calendar-date-color);
+    /* Green dates */
+}
+
+.neon-nights td:hover {
+    background-color: var(--neon-nights-hover-color);
+    color: var(--neon-nights-text-color);
+    /* Green text on hover */
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px var(--neon-nights-shadow-color);
+}
+
+.neon-nights td.current-day {
+    background-color: var(--neon-nights-current-day-bg);
+    color: #000;
+    /* Black for current day text */
+    border: 2px solid var(--neon-nights-primary-color);
+    font-weight: 600;
+    box-shadow: inset 0 0 4px var(--neon-nights-shadow-color);
+}
+
+/* Event Markers */
+.neon-nights .event-marker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+    gap: 2px;
+}
+
+.neon-nights .event-marker {
+    background-color: var(--neon-nights-primary-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all var(--transition-duration) var(--transition-easing);
+}
+
+.neon-nights .event-marker:hover {
+    background-color: #cc00ff;
+    /* Slightly darker Magenta */
+    transform: scale(1.2);
+}
+
+/* Modal Styles */
+.neon-nights .modal .modal-content { /* Note the .modal wrapper */
+    background-color: rgba(26, 26, 26, 0.95);
+    color: var(--neon-nights-text-color);
+    border: 1px solid var(--neon-nights-secondary-color);
+    border-radius: var(--neon-nights-border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    position: relative; /* For absolute positioning of the close button */
+}
+
+.neon-nights .modal .close-button { /* Note the .modal wrapper */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: black; /* Or a semi-transparent black: rgba(0, 0, 0, 0.5) */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 10; /* Ensure it's above modal content */
+}
+
+.neon-nights .modal .close-button::before {
+    content: "\00D7"; /* The "x" character */
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.neon-nights .modal .close-button:hover {
+    background-color: var(--neon-nights-primary-color); /* Magenta on hover */
+    color: black;
+}
+
+.neon-nights .modal-title {
+    color: var(--neon-nights-primary-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.neon-nights .event-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--neon-nights-secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.neon-nights .event-list button {
+    background-color: var(--neon-nights-primary-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--neon-nights-border-radius);
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-easing);
+}
+
+.neon-nights .event-list button:hover {
+    background-color: #cc00ff;
+}
+
+/* Button Styles */
+.neon-nights .button,
+.neon-nights .transparent-button,
+.neon-nights #backToTopBtn {
+    border-radius: var(--neon-nights-border-radius);
+    padding: 10px 18px;
+    font-size: 1em;
+    transition: all var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 2px solid var(--neon-nights-primary-color);
+    color: var(--neon-nights-button-text-color);
+    /* Green button text */
+    background-color: transparent;
+    box-shadow: 2px 2px 5px var(--neon-nights-shadow-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    /* Darker, more visible shadow */
+    font-weight: 600;
+}
+
+.neon-nights .button:hover,
+.neon-nights .transparent-button:hover,
+.neon-nights #backToTopBtn:hover {
+    background-color: var(--neon-nights-hover-color);
+    color: var(--neon-nights-text-color);
+    /* Green text on hover */
+    box-shadow: 3px 3px 7px var(--neon-nights-shadow-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    /* Even darker on hover */
+}
+
+.neon-nights .calendar-navigation button {
+    background-color: var(--neon-nights-primary-color);
+    color: var(--neon-nights-calendar-nav-text-color);
+    /* Green nav text */
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--neon-nights-border-radius);
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-easing);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    /* Darker, more visible shadow */
+    font-weight: 600;
+}
+
+
+
+.neon-nights .calendar-navigation button:hover {
+    background-color: var(--neon-nights-current-day-bg);
+    color: var(--neon-nights-text-color);
+    /* Green text on hover */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+    /* Even darker on hover */
+
+}

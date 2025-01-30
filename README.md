@@ -63,21 +63,6 @@ https://interactive-calendar-any-year.netlify.app/
 🔗Dive into the Code:
 https://github.com/SergeyReizman/Interactive-Calendar-Any-Year
 
-This enhanced calendar application boasts:
-
-- **Dynamic Year Navigation:** Effortlessly switch between years using clear "Previous Year" and "Next Year" buttons.
-- **Responsive Design:** Optimized for a seamless experience on various devices, from desktops to tablets and smartphones.
-- **Intuitive Event Management:** Click on any date to add, edit, or view events/reminders. Events are displayed within the selected date's cell.
-- **Comprehensive Event Editing:** Modify or update existing events directly on the calendar itself.
-- **Today's Highlight:** The current date is automatically highlighted for easy reference.
-- **Persistent Local Storage:** Events are saved locally in the browser and remain intact between page refreshes.
-- **Accessible Design:** Utilizes contrasting colors and WCAG-compliant styles for better usability across diverse user needs.
-- **Event Clearing Options:** Remove all events for a specific date or clear the entire calendar effortlessly.
-- **Dark Mode Toggle:** Switch to dark mode for a more comfortable viewing experience at night. Your preference is saved and persists across sessions.
-- **Back to Top Button:** Easily scroll back to the top of the calendar with one click.
-- 🌊 **Ocean View Theme:** Toggle to a visually refreshing ocean-inspired theme, designed to enhance your user experience with soothing colors and animations.
-- **Modal Window** for Event Management: An interactive modal window for adding, editing, or deleting events, providing a more refined user interface for event management.
-
 ## Preview
 
 ![Interactive Calendar Screenshot](screenshot.png)
@@ -134,11 +119,12 @@ project/
 │   ├── calendar.blue-ice.css         /* Blue Ice Theme */
 │   ├── calendar.deep-forest.css      /* Deep Forest Theme */
 │   ├── calendar.orange-country.css   /* Orange Country Theme */
+│   ├── calendar.neon-nights.css      /* Neon Nights Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
-└── README.md
-
+└── README.md  
+ 
 
 🌟 What’s Next?
 Stay tuned for upcoming updates, including:
