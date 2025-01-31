@@ -6,6 +6,23 @@ const MONTHS = Array.from({ length: 12 }, (_, i) =>
   new Date(0, i).toLocaleString('default', { month: 'long' })
 );
 
+// Function to generate stars for the Galactic Glow theme
+const generateStars = () => {
+  const starsContainer = document.createElement('div');
+  starsContainer.className = 'stars';
+  body.appendChild(starsContainer);
+
+  const starCount = 100; // Number of stars
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.animationDelay = `${Math.random() * 4}s`; // Random delay for twinkling
+    starsContainer.appendChild(star);
+  }
+};
+
 // DOM Elements (MUST be defined before use)
 const body = document.body; // Define body *first*
 const calendarBody = document.getElementById('calendar-body');
@@ -29,60 +46,29 @@ const applyTheme = (theme) => {
   body.classList.remove(
     'dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest',
     'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest',
-    'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss', 
-    'spring-meadow'
+    'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss',
+    'spring-meadow', 'galactic-glow'
   );
-  switch (theme) {
-    case 'dark-mode':
-      body.classList.add('dark-mode');
-      break;
-    case 'ocean-view':
-      body.classList.add('ocean-view');
-      break;
-    case 'greyscale':
-      body.classList.add('greyscale');
-      break;
-    case 'autumn-harvest':
-      body.classList.add('autumn-harvest');
-      break;
-    case 'serene-shores':
-      body.classList.add('serene-shores');
-      break;
-    case 'blue-ice':
-      body.classList.add('blue-ice');
-      break;
-    case 'cherry-garden':
-      body.classList.add('cherry-garden');
-      break;
-    case 'deep-forest':
-      body.classList.add('deep-forest');
-      break;
-    case 'orange-country':
-      body.classList.add('orange-country');
-      break;
-    case 'neon-nights':
-      body.classList.add('neon-nights');
-      break;
-    case 'desert-mirage':
-      body.classList.add('desert-mirage');
-      break;
-    case 'lavender-bliss':
-      body.classList.add('lavender-bliss');
-      break;
-    case 'spring-meadow':  
-      body.classList.add('spring-meadow');
-      break;
-    default:
-      break; // No class added for default (core/light theme)
-  }
+  body.classList.add(theme);
   localStorage.setItem('calendarTheme', theme);
+
+  // Generate stars only for the Galactic Glow theme
+  if (theme === 'galactic-glow') {
+    generateStars();
+  } else {
+    const starsContainer = document.querySelector('.stars');
+    if (starsContainer) {
+      starsContainer.remove(); // Remove stars if switching to another theme
+    }
+  }
+
+  generateCalendar(selectedYear); // Regenerate calendar after theme change
 };
 
 // Event Listeners for Theme and Initial Theme Application
 themeSwitcher.addEventListener('change', (e) => {
   const selectedTheme = e.target.value;
   applyTheme(selectedTheme);
-  generateCalendar(selectedYear); // Important: Regenerate calendar after theme change
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -225,7 +211,7 @@ const generateCalendar = (year) => {
               eventContainer.appendChild(moreLink);
 
               // Set the height of the list to hide the overflow
-              eventListElement.style.maxHeight = `${eventListElement.clientHeight - moreLink.offsetHeight}px`;
+              eventListElement.style.maxHeight = '60px'; // Adjust as needed
               eventListElement.style.overflow = 'hidden';
             }
           }
@@ -242,6 +228,7 @@ const generateCalendar = (year) => {
     }
   });
 };
+
 // Event Listeners
 prevYearBtn.addEventListener('click', () => {
   selectedYear--;
@@ -269,19 +256,6 @@ window.addEventListener('scroll', toggleBackToTopButton);
 
 closeButton.addEventListener('click', closeModal);
 window.addEventListener('click', (e) => e.target === modal && closeModal());
-
-themeSwitcher.addEventListener('change', (e) => {
-  const selectedTheme = e.target.value;
-  localStorage.setItem('calendarTheme', selectedTheme); // Correct key
-  applyTheme(selectedTheme);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('calendarTheme') || 'light'; // Correct key
-  themeSwitcher.value = savedTheme;
-  applyTheme(savedTheme);
-  generateCalendar(selectedYear);
-});
 
 // Initial calendar generation
 generateCalendar(selectedYear);

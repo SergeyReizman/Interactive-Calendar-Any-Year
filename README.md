@@ -44,6 +44,7 @@ Neon Nights 🌟: A vibrant, high-energy theme with bold neon colors that glow a
 Desert Mirage 🏜️: A warm, sunlit theme inspired by the vast desert landscapes, featuring sandy beige, golden brown, and deep terracotta hues that evoke a sense of adventure and tranquility.
 Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and calming accents, designed to bring a sense of peace and relaxation.
 Spring Meadow 🍃: A fresh and lively theme inspired by blooming meadows, featuring soft greens, pastel florals, and the gentle warmth of spring sunshine.
+Galactic Glow ✨: A cosmic theme with vibrant purples, blues, and glowing stars.🚀🌌
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -127,6 +128,7 @@ project/
 │   ├── calendar.desert-mirage.css    /* Desert Mirage Theme */
 │   ├── calendar.lavender-bliss.css   /* Lavender Bliss Theme */
 │   ├── calendar.spring-meadow.css    /* Spring Meadow Theme */
+│   ├── calendar.galactic-glow.css    /* Galactic Glow Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png

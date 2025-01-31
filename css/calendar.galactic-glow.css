@@ -1,0 +1,244 @@
+/* calendar.galactic-glow.css */
+/* ============================
+    Galactic Glow Theme
+    Purpose: Styles specific to the Galactic Glow theme.
+    ============================ */
+
+    .galactic-glow {
+        --primary-color: #8a2be2;
+        --primary-color-rgb: 138, 43, 226;
+        --secondary-color: #4b0082;
+        --hover-color: #9400d3;
+        --border-color: #5d3fd3;
+        --text-color: #e0e0e0;
+        --background-color: #000000;
+        --event-marker-color: #ff00ff;
+        --event-marker-hover: #ff1493;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --border-radius: 8px;
+        --transition-duration: 0.3s;
+        --transition-easing: ease;
+        position: relative;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    
+    /* Background Effects */
+    .galactic-glow::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 10%, rgba(0, 0, 0, 0) 70%);
+        filter: blur(8px);
+        pointer-events: none;
+        z-index: -2;
+    }
+    
+    /* Starry Night Effect */
+    @keyframes twinkle {
+        0%, 100% {
+            opacity: 0.6;
+            transform: scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+    }
+    
+    .galactic-glow .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    /* Star Style */
+    .galactic-glow .star {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.9); /* Bright white stars */
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        box-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.9),
+            0 0 20px 4px rgba(255, 255, 255, 0.6),  /* Slightly bigger glow */
+            0 0 30px 6px rgba(255, 255, 255, 0.3);
+        animation: twinkle 4s infinite alternate ease-in-out;
+    }
+    
+    /* Base Styles */
+    .galactic-glow .container {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 30px auto;
+        padding: 30px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 8px 16px var(--shadow-color), 0 0 10px var(--primary-color);
+        max-width: 95%;
+        transition: box-shadow var(--transition-duration) var(--transition-easing);
+        z-index: 1;
+    }
+    
+    /* Table Styles */
+    .galactic-glow table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-top: 20px;
+    }
+    
+    .galactic-glow th,
+    .galactic-glow td {
+        border: 1px solid var(--border-color);
+        padding: 14px;
+        text-align: center;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            color var(--transition-duration) var(--transition-easing),
+            box-shadow var(--transition-duration) var(--transition-easing);
+    }
+    
+    .galactic-glow th {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .galactic-glow tr:hover td {
+        background-color: rgba(138, 43, 226, 0.1);
+        box-shadow: inset 0 0 5px var(--shadow-color);
+    }
+    
+    .galactic-glow td.current-day {
+        background-color: var(--secondary-color);
+        color: white;
+        font-weight: bold;
+    }
+    
+    /* Modal Styles */
+    .galactic-glow .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+    }
+    
+    .galactic-glow .modal.show {
+        display: flex;
+    }
+    
+    /* Modal Content Styles */
+    .galactic-glow .modal-content {
+        position: relative;
+        background-color: rgba(40, 40, 40, 0.85); /* Semi-transparent dark background */
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        padding-top: 40px;
+        border-radius: var(--border-radius);
+    }
+    
+    /* Modal Title Styles */
+    .galactic-glow .modal-title {
+        color: var(--primary-color); /* Light color for title */
+    }
+    
+    /* Modal Close Button */
+    .galactic-glow .modal .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--text-color);
+        background: transparent;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .galactic-glow .modal .close-button:hover {
+        color: var(--hover-color);
+        transform: scale(1.1);
+    }
+    
+    .galactic-glow .modal .close-button:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--hover-color);
+    }
+    
+    /* Button Styles */
+    .galactic-glow .button,
+    .galactic-glow .transparent-button,
+    .galactic-glow .back-to-top-button,
+    .galactic-glow .calendar-navigation button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 1.1em;
+        font-weight: 500;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing),
+            box-shadow var(--transition-duration) var(--transition-easing);
+        box-shadow: 3px 3px 6px var(--shadow-color);
+    }
+    
+    .galactic-glow .button:hover,
+    .galactic-glow .transparent-button:hover,
+    .galactic-glow .back-to-top-button:hover,
+    .galactic-glow .calendar-navigation button:hover {
+        background-color: darken(var(--hover-color), 5%);
+        transform: translateY(-3px);
+        box-shadow: 4px 5px 8px var(--shadow-color);
+    }
+    
+    .galactic-glow .button:active,
+    .galactic-glow .transparent-button:active,
+    .galactic-glow .back-to-top-button:active,
+    .galactic-glow .calendar-navigation button:active {
+        transform: translateY(-1px);
+        box-shadow: 2px 2px 4px var(--shadow-color);
+    }
+    
+    .galactic-glow .button.secondary {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+    }
+    
+    .galactic-glow .button.secondary:hover {
+        background-color: darken(var(--secondary-color), 10%);
+        color: white;
+    }
+    
+    /* Calendar Header Styles */
+    .galactic-glow .calendar-header {
+        text-align: center;
+        font-size: 1.4em;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+    
+    /* Accessibility */
+    .galactic-glow *:focus {
+        outline: 2px solid var(--hover-color) !important;
+        outline-offset: 2px !important;
+    }
+    
