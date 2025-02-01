@@ -2,14 +2,10 @@
 <html lang="en">
 
 <head>
-    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Title of the page -->
     <title>Interactive Calendar</title>
 
-    <!-- Links to the external CSS files for styling -->
     <link rel="stylesheet" href="css/calendar.variables.css">
     <link rel="stylesheet" href="css/calendar.core.css">
     <link rel="stylesheet" href="css/calendar.responsive.css">
@@ -27,32 +23,43 @@
     <link rel="stylesheet" href="css/calendar.lavender-bliss.css">
     <link rel="stylesheet" href="css/calendar.spring-meadow.css">
     <link rel="stylesheet" href="css/calendar.galactic-glow.css">
+
+    <style>
+        /* Styles for event markers (adjust as needed) */
+        .event-marker-container { /* Added container */
+            position: relative; /* For absolute positioning of markers */
+            display: inline-block;  /* Or block if you want markers on a new line */
+            vertical-align: middle; /* Align with the number */
+            margin-right: 5px; /* Space between marker and number */
+        }
+
+        .event-marker {
+            position: absolute; /* Position within container */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the marker */
+            width: 8px; /* Smaller markers */
+            height: 8px;
+            border-radius: 50%;
+            /* background-color set by JavaScript */
+            z-index: 10; /* Ensure markers are above the number */
+            pointer-events: none; /* So clicks go through to the cell */
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Main container for the calendar content -->
     <div class="container">
-        <!-- Header with the title of the calendar -->
         <h1 id="calendar-title">Interactive Calendar</h1>
 
-        <!-- Controls for navigating the calendar -->
         <div class="controls">
-            <!-- Button to navigate to the previous year -->
             <button class="transparent-button" id="prev-year-btn" aria-label="Previous Year">Previous Year</button>
-
-            <!-- Display current year -->
             <span id="current-year"></span>
-
-            <!-- Button to navigate to the next year -->
             <button class="transparent-button" id="next-year-btn" aria-label="Next Year">Next Year</button>
         </div>
 
-        <!-- Controls for toggling themes and clearing events -->
         <div class="controls">
-            <!-- Button to clear all events from the calendar -->
             <button class="transparent-button" id="clear-events-btn" aria-label="Clear All Events">Clear All Events</button>
-
-            <!-- Theme switcher dropdown -->
             <select id="theme-switcher" aria-label="Theme Switcher">
                 <option value="core">Light Mode</option>
                 <option value="dark-mode">Dark Mode</option>
@@ -72,10 +79,8 @@
             </select>
         </div>
 
-        <!-- Table structure for the calendar -->
         <table>
             <thead>
-                <!-- Table header with days of the week -->
                 <tr>
                     <th>Sunday</th>
                     <th>Monday</th>
@@ -86,27 +91,11 @@
                     <th>Saturday</th>
                 </tr>
             </thead>
-            <!-- Body of the calendar table where the days will be populated -->
             <tbody id="calendar-body">
-                <!-- Example of a populated day with an event marker -->
-                <tr>
-                    <td>
-                        <div class="event-marker-container">
-                            <div class="event-marker" style="background-color: red; z-index: 10;"></div>
-                        </div>
-                        1
-                    </td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                </tr>
+               
             </tbody>
         </table>
 
-        <!-- Modal for managing events -->
         <div id="event-modal" class="modal">
             <div class="modal-content">
                 <span class="close-button" aria-label="Close Modal">&times;</span>
@@ -117,20 +106,29 @@
             </div>
         </div>
 
-        <!-- Footer with developer credits -->
         <footer>
             <p>Developed by Sergey Reizman - © 2025</p>
         </footer>
 
-        <!-- Link to user's portfolio -->
         <a href="https://my-simple-portfolio-sergey.netlify.app/" target="_blank" class="transparent-button">Visit My Portfolio</a>
 
-        <!-- Button to scroll back to the top of the page -->
         <button class="back-to-top-button" id="backToTopBtn" aria-label="Back to Top">Back to Top</button>
     </div>
 
-    <!-- Link to the external JavaScript file for functionality -->
     <script src="calendar.js"></script>
+    <script>
+        const starsContainer = document.querySelector('.galactic-glow .stars');
+        const numStars = 200;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            starsContainer.appendChild(star);
+        }
+    </script>
 </body>
 
 </html>
