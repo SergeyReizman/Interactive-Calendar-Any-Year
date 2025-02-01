@@ -45,6 +45,7 @@ Desert Mirage 🏜️: A warm, sunlit theme inspired by the vast desert landscap
 Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and calming accents, designed to bring a sense of peace and relaxation.
 Spring Meadow 🍃: A fresh and lively theme inspired by blooming meadows, featuring soft greens, pastel florals, and the gentle warmth of spring sunshine.
 Galactic Glow ✨: A cosmic theme with vibrant purples, blues, and glowing stars.🚀🌌
+Golden Horizon 🌅: A radiant and uplifting theme with golden hues, warm gradients, and a horizon-inspired aesthetic that brings a sense of optimism and energy.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -129,6 +130,7 @@ project/
 │   ├── calendar.lavender-bliss.css   /* Lavender Bliss Theme */
 │   ├── calendar.spring-meadow.css    /* Spring Meadow Theme */
 │   ├── calendar.galactic-glow.css    /* Galactic Glow Theme */
+│   ├── calendar.golden-horizon.css   /* Golden Horizon Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
