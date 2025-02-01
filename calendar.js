@@ -47,8 +47,9 @@ const applyTheme = (theme) => {
     'dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest',
     'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest',
     'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss',
-    'spring-meadow', 'galactic-glow', 'golden-horizon'
+    'spring-meadow', 'galactic-glow', 'golden-horizon', 'cyber-pulse'
   );
+
   body.classList.add(theme);
   localStorage.setItem('calendarTheme', theme);
 
