@@ -47,6 +47,8 @@ Spring Meadow 🍃: A fresh and lively theme inspired by blooming meadows, featu
 Galactic Glow ✨: A cosmic theme with vibrant purples, blues, and glowing stars.🚀🌌
 Golden Horizon 🌅: A radiant and uplifting theme with golden hues, warm gradients, and a horizon-inspired aesthetic that brings a sense of optimism and energy.
 Cyber Pulse ⚡: A futuristic, tech-inspired theme with sleek metallic tones, glowing circuits, and dynamic neon accents, perfect for a high-tech, cutting-edge feel.
+Northern Nights ❄️🌌: A mystical and captivating theme inspired by the beauty of the Northern Lights, featuring deep blues, shimmering purples, and a touch of icy brilliance.
+Arctic Glow 🧊: A frosty theme inspired by icebergs and glaciers, with crisp whites, icy blues, and translucent effects.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -133,6 +135,8 @@ project/
 │   ├── calendar.galactic-glow.css    /* Galactic Glow Theme */
 │   ├── calendar.golden-horizon.css   /* Golden Horizon Theme */
 │   ├── calendar.cyber-pulse.css      /* Cyber Pulse Theme */
+│   ├── calendar.nothern-nights.css   /* Northern Nights Theme */
+│   ├── calendar.arctic-glow.css      /* Arctic Glow Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
