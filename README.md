@@ -49,6 +49,7 @@ Golden Horizon 🌅: A radiant and uplifting theme with golden hues, warm gradie
 Cyber Pulse ⚡: A futuristic, tech-inspired theme with sleek metallic tones, glowing circuits, and dynamic neon accents, perfect for a high-tech, cutting-edge feel.
 Northern Nights ❄️🌌: A mystical and captivating theme inspired by the beauty of the Northern Lights, featuring deep blues, shimmering purples, and a touch of icy brilliance.
 Arctic Glow 🧊: A frosty theme inspired by icebergs and glaciers, with crisp whites, icy blues, and translucent effects.
+New AI Theme 🤖: A modern, sleek theme featuring deep blues, soft grays, and vibrant orange accents, perfect for a high-tech, innovative look.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -137,6 +138,7 @@ project/
 │   ├── calendar.cyber-pulse.css      /* Cyber Pulse Theme */
 │   ├── calendar.nothern-nights.css   /* Northern Nights Theme */
 │   ├── calendar.arctic-glow.css      /* Arctic Glow Theme */
+│   ├── calendar.new-ai.css           /* New AI Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png

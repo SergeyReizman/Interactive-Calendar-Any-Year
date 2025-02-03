@@ -48,7 +48,7 @@ const applyTheme = (theme) => {
     'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest',
     'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss',
     'spring-meadow', 'galactic-glow', 'golden-horizon', 'cyber-pulse', 'northern-nights', 
-    'arctic-glow'
+    'arctic-glow', 'new-ai'
   );
 
   body.classList.add(theme);
