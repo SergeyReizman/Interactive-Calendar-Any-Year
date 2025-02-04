@@ -51,6 +51,8 @@ Northern Nights ❄️🌌: A mystical and captivating theme inspired by the bea
 Arctic Glow 🧊: A frosty theme inspired by icebergs and glaciers, with crisp whites, icy blues, and translucent effects.
 New AI Theme 🤖: A modern, sleek theme featuring deep blues, soft grays, and vibrant orange accents, perfect for a high-tech, innovative look.
 Steel Shadows 🏗️: A bold, industrial theme with sleek steel grays, shadowy undertones, and a refined metallic finish, evoking strength, precision, and modern sophistication.
+Tropical Sunset 🌴🌅: A vibrant, exotic theme with warm pinks, deep purples, and golden oranges, capturing the breathtaking beauty of a beachside sunset.
+
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -141,6 +143,7 @@ project/
 │   ├── calendar.arctic-glow.css      /* Arctic Glow Theme */
 │   ├── calendar.new-ai.css           /* New AI Theme */
 │   ├── calendar.steel-shadows.css    /* Steel Shadows Theme */
+│   ├── calendar.tropical-sunset.css  /* Tropical Sunset */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
