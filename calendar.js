@@ -48,7 +48,7 @@ const applyTheme = (theme) => {
     'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest',
     'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss',
     'spring-meadow', 'galactic-glow', 'golden-horizon', 'cyber-pulse', 'northern-nights', 
-    'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island'
+    'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island', 'pink-lake'
   );
 
   body.classList.add(theme);
