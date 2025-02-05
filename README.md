@@ -52,7 +52,7 @@ Arctic Glow 🧊: A frosty theme inspired by icebergs and glaciers, with crisp w
 New AI Theme 🤖: A modern, sleek theme featuring deep blues, soft grays, and vibrant orange accents, perfect for a high-tech, innovative look.
 Steel Shadows 🏗️: A bold, industrial theme with sleek steel grays, shadowy undertones, and a refined metallic finish, evoking strength, precision, and modern sophistication.
 Tropical Sunset 🌴🌅: A vibrant, exotic theme with warm pinks, deep purples, and golden oranges, capturing the breathtaking beauty of a beachside sunset.
-
+Exotic Island 🏝️: A tropical paradise theme with lush greenery, crystal-clear waters, and warm sandy tones, transporting you to a relaxing island escape.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -144,6 +144,7 @@ project/
 │   ├── calendar.new-ai.css           /* New AI Theme */
 │   ├── calendar.steel-shadows.css    /* Steel Shadows Theme */
 │   ├── calendar.tropical-sunset.css  /* Tropical Sunset */
+│   ├── calendar.exotic-island.css    /* Exotic Island Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
