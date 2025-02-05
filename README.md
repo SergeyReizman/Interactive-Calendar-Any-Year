@@ -53,7 +53,10 @@ New AI Theme 🤖: A modern, sleek theme featuring deep blues, soft grays, and v
 Steel Shadows 🏗️: A bold, industrial theme with sleek steel grays, shadowy undertones, and a refined metallic finish, evoking strength, precision, and modern sophistication.
 Tropical Sunset 🌴🌅: A vibrant, exotic theme with warm pinks, deep purples, and golden oranges, capturing the breathtaking beauty of a beachside sunset.
 Exotic Island 🏝️: A tropical paradise theme with lush greenery, crystal-clear waters, and warm sandy tones, transporting you to a relaxing island escape.
-Pink Lake 🌷: A soft and tranquil theme inspired by the stunning beauty of pink lakes, featuring delicate pastel pinks and calm reflections for a peaceful, serene ambiance.
+Pink Lake 🌷: A soft and tranquil theme inspired by the stunning beauty of pink lakes, featuring delicate pastel pinks and calm reflections for a peaceful, serene ambiance.Exotic Island
+Crystal Snowfall :
+Sky Eagle :
+Monochrome Ink 🖋️:A sleek, black-and-white design with ink-brush accents for a timeless look.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
