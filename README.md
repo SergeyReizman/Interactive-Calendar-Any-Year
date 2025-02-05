@@ -57,6 +57,7 @@ Pink Lake 🌷: A soft and tranquil theme inspired by the stunning beauty of pin
 Crystal Snowfall ❄️: A pristine winter wonderland theme featuring soft whites, sparkling blues, and frosty textures that evoke the magic of falling snowflakes.
 Sky Eagle 🦅: A majestic theme inspired by the vast skies, with deep blues and soaring whites, capturing the freedom and power of an eagle in flight.
 Monochrome Ink 🖋️: A sleek, black-and-white design with ink-brush accents for a timeless look, perfect for those who appreciate minimalist elegance with a creative flair.
+Purple Fog 🌫️: A dreamy, ethereal theme with soft purple hues and misty gradients, evoking a calm, mysterious atmosphere perfect for creative inspiration and quiet reflection.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -153,6 +154,7 @@ project/
 │   ├── calendar.crystal-snowfall.css /* Crystal Snowfall Theme */
 │   ├── calendar.sky-eagle.css        /* Sky Eagle Theme */
 │   ├── calendar.monochrome-ink.css   /* Monochrome Ink Theme */
+│   ├── calendar.purple-fog.css       /* Purple Fog Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
