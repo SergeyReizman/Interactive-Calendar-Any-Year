@@ -54,9 +54,9 @@ Steel Shadows 🏗️: A bold, industrial theme with sleek steel grays, shadowy 
 Tropical Sunset 🌴🌅: A vibrant, exotic theme with warm pinks, deep purples, and golden oranges, capturing the breathtaking beauty of a beachside sunset.
 Exotic Island 🏝️: A tropical paradise theme with lush greenery, crystal-clear waters, and warm sandy tones, transporting you to a relaxing island escape.
 Pink Lake 🌷: A soft and tranquil theme inspired by the stunning beauty of pink lakes, featuring delicate pastel pinks and calm reflections for a peaceful, serene ambiance.Exotic Island
-Crystal Snowfall :
-Sky Eagle :
-Monochrome Ink 🖋️:A sleek, black-and-white design with ink-brush accents for a timeless look.
+Crystal Snowfall ❄️: A pristine winter wonderland theme featuring soft whites, sparkling blues, and frosty textures that evoke the magic of falling snowflakes.
+Sky Eagle 🦅: A majestic theme inspired by the vast skies, with deep blues and soaring whites, capturing the freedom and power of an eagle in flight.
+Monochrome Ink 🖋️: A sleek, black-and-white design with ink-brush accents for a timeless look, perfect for those who appreciate minimalist elegance with a creative flair.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -150,6 +150,9 @@ project/
 │   ├── calendar.tropical-sunset.css  /* Tropical Sunset */
 │   ├── calendar.exotic-island.css    /* Exotic Island Theme */
 │   ├── calendar.pink-lake.css        /* Pink Lake Theme */
+│   ├── calendar.crystal-snowfall.css /* Crystal Snowfall Theme */
+│   ├── calendar.sky-eagle.css        /* Sky Eagle Theme */
+│   ├── calendar.monochrome-ink.css   /* Monochrome Ink Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png
