@@ -49,7 +49,7 @@ const applyTheme = (theme) => {
     'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss',
     'spring-meadow', 'galactic-glow', 'golden-horizon', 'cyber-pulse', 'northern-nights', 
     'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island', 
-    'pink-lake', 'crystal-snowfall'
+    'pink-lake', 'crystal-snowfall', 'sky-eagle'
   );
 
   body.classList.add(theme);
