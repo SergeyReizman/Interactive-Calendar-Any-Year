@@ -33,7 +33,7 @@ Personalize your planning experience with an array of beautifully crafted themes
 Light Mode ☀️: Bright and crisp for your daytime productivity.
 Dark Mode 🌙: Perfect for late-night planning, easy on the eyes.
 Ocean View 🌊: Immerse yourself in tranquility with a theme inspired by the sea.
-Grayscale 🖤: Sleek and minimalist for a modern aesthetic.
+Greyscale 🖤: Sleek and minimalist for a modern aesthetic.
 Serene Shores 💙: A calming theme inspired by serene shorelines, featuring a cool blue palette and gentle wave-like patterns.
 Autumn Harvest 🍂: Embrace the cozy vibes of fall with warm tones, earthy textures, and touches of orange, red, and golden leaves.
 Blue Ice ❄️: Crisp and cool, evoking the calmness of winter.
