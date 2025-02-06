@@ -58,6 +58,8 @@ Crystal Snowfall ❄️: A pristine winter wonderland theme featuring soft white
 Sky Eagle 🦅: A majestic theme inspired by the vast skies, with deep blues and soaring whites, capturing the freedom and power of an eagle in flight.
 Monochrome Ink 🖋️: A sleek, black-and-white design with ink-brush accents for a timeless look, perfect for those who appreciate minimalist elegance with a creative flair.
 Purple Fog 🌫️: A dreamy, ethereal theme with soft purple hues and misty gradients, evoking a calm, mysterious atmosphere perfect for creative inspiration and quiet reflection.
+Amazon Dolphin 🐬: A vibrant, nature-inspired theme featuring lush green jungles, clear blue waters, and the playful essence of dolphins swimming freely in the Amazon River, perfect for an exotic, fresh look.
+Stockholm Roofs 🏙️: A modern, urban theme inspired by the beautiful rooftops of Stockholm, featuring sleek, architectural designs, a blend of contemporary and classic tones, and a Scandinavian touch.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
