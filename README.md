@@ -60,6 +60,7 @@ Monochrome Ink 🖋️: A sleek, black-and-white design with ink-brush accents f
 Purple Fog 🌫️: A dreamy, ethereal theme with soft purple hues and misty gradients, evoking a calm, mysterious atmosphere perfect for creative inspiration and quiet reflection.
 Amazon Dolphin 🐬: A vibrant, nature-inspired theme featuring lush green jungles, clear blue waters, and the playful essence of dolphins swimming freely in the Amazon River, perfect for an exotic, fresh look.
 Stockholm Roofs 🏙️: A modern, urban theme inspired by the beautiful rooftops of Stockholm, featuring sleek, architectural designs, a blend of contemporary and classic tones, and a Scandinavian touch.
+Mountain Peak 🏔️: A rugged, adventurous theme inspired by towering mountain landscapes, featuring earthy tones, cool blues, and majestic, snow-capped peaks, evoking a sense of strength, tranquility, and the thrill of reaching new heights.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -161,6 +162,7 @@ project/
 │   ├── calendar.purple-fog.css       /* 🌫️ Purple Fog Theme */
 │   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
+│   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -200,6 +202,7 @@ Implement a modular and maintainable CSS structure.
 HTML5: Structuring the calendar interface.
 CSS3: Styling, themes, and responsive design.
 JavaScript: Handling calendar logic and interactivity.
+
 📂 Folder Structure
 
 project/
@@ -237,6 +240,7 @@ project/
 │   ├── calendar.purple-fog.css       /* 🌫️ Purple Fog Theme */
 │   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
+│   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
