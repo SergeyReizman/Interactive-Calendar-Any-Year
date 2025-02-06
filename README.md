@@ -130,41 +130,42 @@ project/
 ├── css/
 │   ├── calendar.variables.css        /* Variables and Themes */
 │   ├── calendar.core.css             /* Core Styles and Structure */
-│   ├── calendar.responsive.css       /* Responsivity Adjustments (Media Queries) */
+│   ├── calendar.responsive.css       /* Responsiveness Adjustments (Media Queries) */
 │   ├── calendar.light-mode.css       /* Light Mode Theme */
 │   ├── calendar.dark-mode.css        /* Dark Mode Theme */
-│   ├── calendar.ocean-view.css       /* Ocean View Theme */
-│   ├── calendar.greyscale.css        /* Greyscale Theme */
-│   ├── calendar.serene-shores.css    /* Serene Shores Theme */
-│   ├── calendar.autumn-harvest.css   /* Autumn Harvest Theme */
-│   ├── calendar.blue-ice.css         /* Blue Ice Theme */
-│   ├── calendar.deep-forest.css      /* Deep Forest Theme */
-│   ├── calendar.cherry-garden.css    /* Cherry Garden Theme */
-│   ├── calendar.orange-country.css   /* Orange Country Theme */
-│   ├── calendar.neon-nights.css      /* Neon Nights Theme */
-│   ├── calendar.desert-mirage.css    /* Desert Mirage Theme */
-│   ├── calendar.lavender-bliss.css   /* Lavender Bliss Theme */
-│   ├── calendar.spring-meadow.css    /* Spring Meadow Theme */
-│   ├── calendar.galactic-glow.css    /* Galactic Glow Theme */
-│   ├── calendar.golden-horizon.css   /* Golden Horizon Theme */
-│   ├── calendar.cyber-pulse.css      /* Cyber Pulse Theme */
-│   ├── calendar.northern-nights.css  /* Northern Nights Theme */
-│   ├── calendar.arctic-glow.css      /* Arctic Glow Theme */
-│   ├── calendar.new-ai.css           /* New AI Theme */
-│   ├── calendar.steel-shadows.css    /* Steel Shadows Theme */
-│   ├── calendar.tropical-sunset.css  /* Tropical Sunset Theme */
-│   ├── calendar.exotic-island.css    /* Exotic Island Theme */
-│   ├── calendar.pink-lake.css        /* Pink Lake Theme */
-│   ├── calendar.crystal-snowfall.css /* Crystal Snowfall Theme */
-│   ├── calendar.sky-eagle.css        /* Sky Eagle Theme */
-│   ├── calendar.monochrome-ink.css   /* Monochrome Ink Theme */
-│   ├── calendar.purple-fog.css       /* Purple Fog Theme */
-│   ├── calendar.amazon-dolphin.css   /* Amazon Dolphin Theme */
-│   ├── calendar.stockholm-roofs.css  /* Stockholm Roofs Theme */
+│   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
+│   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
+│   ├── calendar.serene-shores.css    /* 🌴 Serene Shores Theme */
+│   ├── calendar.autumn-harvest.css   /* 🍂 Autumn Harvest Theme */
+│   ├── calendar.blue-ice.css         /* ❄️ Blue Ice Theme */
+│   ├── calendar.deep-forest.css      /* 🌳 Deep Forest Theme */
+│   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
+│   ├── calendar.orange-country.css   /* 🍊 Orange Country Theme */
+│   ├── calendar.neon-nights.css      /* 🌙 Neon Nights Theme */
+│   ├── calendar.desert-mirage.css    /* 🏜️ Desert Mirage Theme */
+│   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
+│   ├── calendar.spring-meadow.css    /* 🌸 Spring Meadow Theme */
+│   ├── calendar.galactic-glow.css    /* 🌌 Galactic Glow Theme */
+│   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
+│   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
+│   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
+│   ├── calendar.arctic-glow.css      /* 🧊 Arctic Glow Theme */
+│   ├── calendar.new-ai.css           /* 🤖 New AI Theme */
+│   ├── calendar.steel-shadows.css    /* 🏙️ Steel Shadows Theme */
+│   ├── calendar.tropical-sunset.css  /* 🌴 Tropical Sunset Theme */
+│   ├── calendar.exotic-island.css    /* 🏝️ Exotic Island Theme */
+│   ├── calendar.pink-lake.css        /* 🌸 Pink Lake Theme */
+│   ├── calendar.crystal-snowfall.css /* ❄️ Crystal Snowfall Theme */
+│   ├── calendar.sky-eagle.css        /* 🦅 Sky Eagle Theme */
+│   ├── calendar.monochrome-ink.css   /* 🖤 Monochrome Ink Theme */
+│   ├── calendar.purple-fog.css       /* 🌫️ Purple Fog Theme */
+│   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
+│   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
-├── screenshot.png
-└── README.md
+├── screenshot.png                    /* Project Screenshot */
+└── README.md                         /* Project Documentation */
+
 
 
 
@@ -179,42 +180,26 @@ Enhanced Event Filtering
 Enjoy using the Interactive Calendar to stay organized and productive! 🚀
 
 
-Themed Calendar Web App - Project Specification
+📅 Themed Calendar Web App - Project Specification
 
-Project Overview
-
+📝 Project Overview
 The Themed Calendar Web App is a fully customizable and visually appealing calendar application designed for web use. It offers a diverse selection of themes, a responsive design, and an intuitive interface to streamline scheduling and event management.
 
-Objectives
-
+🎯 Objectives
 Develop a fully functional web-based calendar.
-
 Provide multiple themes for a personalized user experience.
-
 Ensure responsiveness across various devices.
-
 Implement a modular and maintainable CSS structure.
-
-Features
-
-Multiple Themes: Users can switch between a variety of pre-defined themes.
-
-Responsive Design: Adapts seamlessly to different screen sizes and devices.
-
-Event Management: Add, edit, and remove events effortlessly.
-
-Dark/Light Mode Support: Includes distinct styles for light and dark modes.
-
-Minimalist UI: A clean and intuitive interface for easy navigation.
-
-Technologies Used
-
+✨ Features
+🌈 Multiple Themes: Users can switch between a variety of pre-defined themes.
+📱 Responsive Design: Adapts seamlessly to different screen sizes and devices.
+📅 Event Management: Add, edit, and remove events effortlessly.
+🌑 Dark/Light Mode Support: Includes distinct styles for light and dark modes.
+🧭 Minimalist UI: A clean and intuitive interface for easy navigation.
+🛠 Technologies Used
 HTML5: Structuring the calendar interface.
-
 CSS3: Styling, themes, and responsive design.
-
 JavaScript: Handling calendar logic and interactivity.
-
 📂 Folder Structure
 
 project/
@@ -224,65 +209,59 @@ project/
 │   ├── calendar.responsive.css       /* Responsiveness Adjustments (Media Queries) */
 │   ├── calendar.light-mode.css       /* Light Mode Theme */
 │   ├── calendar.dark-mode.css        /* Dark Mode Theme */
-│   ├── calendar.ocean-view.css       /* Ocean View Theme */
-│   ├── calendar.greyscale.css        /* Greyscale Theme */
-│   ├── calendar.serene-shores.css    /* Serene Shores Theme */
-│   ├── calendar.autumn-harvest.css   /* Autumn Harvest Theme */
-│   ├── calendar.blue-ice.css         /* Blue Ice Theme */
-│   ├── calendar.deep-forest.css      /* Deep Forest Theme */
-│   ├── calendar.cherry-garden.css    /* Cherry Garden Theme */
-│   ├── calendar.orange-country.css   /* Orange Country Theme */
-│   ├── calendar.neon-nights.css      /* Neon Nights Theme */
-│   ├── calendar.desert-mirage.css    /* Desert Mirage Theme */
-│   ├── calendar.lavender-bliss.css   /* Lavender Bliss Theme */
-│   ├── calendar.spring-meadow.css    /* Spring Meadow Theme */
-│   ├── calendar.galactic-glow.css    /* Galactic Glow Theme */
-│   ├── calendar.golden-horizon.css   /* Golden Horizon Theme */
-│   ├── calendar.cyber-pulse.css      /* Cyber Pulse Theme */
-│   ├── calendar.northern-nights.css  /* Northern Nights Theme */
-│   ├── calendar.arctic-glow.css      /* Arctic Glow Theme */
-│   ├── calendar.new-ai.css           /* New AI Theme */
-│   ├── calendar.steel-shadows.css    /* Steel Shadows Theme */
-│   ├── calendar.tropical-sunset.css  /* Tropical Sunset Theme */
-│   ├── calendar.exotic-island.css    /* Exotic Island Theme */
-│   ├── calendar.pink-lake.css        /* Pink Lake Theme */
-│   ├── calendar.crystal-snowfall.css /* Crystal Snowfall Theme */
-│   ├── calendar.sky-eagle.css        /* Sky Eagle Theme */
-│   ├── calendar.monochrome-ink.css   /* Monochrome Ink Theme */
-│   ├── calendar.purple-fog.css       /* Purple Fog Theme */
-│   ├── calendar.amazon-dolphin.css   /* Amazon Dolphin Theme */
-│   ├── calendar.stockholm-roofs.css  /* Stockholm Roofs Theme */
+│   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
+│   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
+│   ├── calendar.serene-shores.css    /* 🌴 Serene Shores Theme */
+│   ├── calendar.autumn-harvest.css   /* 🍂 Autumn Harvest Theme */
+│   ├── calendar.blue-ice.css         /* ❄️ Blue Ice Theme */
+│   ├── calendar.deep-forest.css      /* 🌳 Deep Forest Theme */
+│   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
+│   ├── calendar.orange-country.css   /* 🍊 Orange Country Theme */
+│   ├── calendar.neon-nights.css      /* 🌙 Neon Nights Theme */
+│   ├── calendar.desert-mirage.css    /* 🏜️ Desert Mirage Theme */
+│   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
+│   ├── calendar.spring-meadow.css    /* 🌸 Spring Meadow Theme */
+│   ├── calendar.galactic-glow.css    /* 🌌 Galactic Glow Theme */
+│   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
+│   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
+│   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
+│   ├── calendar.arctic-glow.css      /* 🧊 Arctic Glow Theme */
+│   ├── calendar.new-ai.css           /* 🤖 New AI Theme */
+│   ├── calendar.steel-shadows.css    /* 🏙️ Steel Shadows Theme */
+│   ├── calendar.tropical-sunset.css  /* 🌴 Tropical Sunset Theme */
+│   ├── calendar.exotic-island.css    /* 🏝️ Exotic Island Theme */
+│   ├── calendar.pink-lake.css        /* 🌸 Pink Lake Theme */
+│   ├── calendar.crystal-snowfall.css /* ❄️ Crystal Snowfall Theme */
+│   ├── calendar.sky-eagle.css        /* 🦅 Sky Eagle Theme */
+│   ├── calendar.monochrome-ink.css   /* 🖤 Monochrome Ink Theme */
+│   ├── calendar.purple-fog.css       /* 🌫️ Purple Fog Theme */
+│   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
+│   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
-├── screenshot.png                     /* Project Screenshot */
-└── README.md                          /* Project Documentation */
+├── screenshot.png                    /* Project Screenshot */
+└── README.md                         /* Project Documentation */
 
-Setup Instructions
 
+⚙️ Setup Instructions
 Clone the repository.
-
 Open index.html in a web browser.
-
 Modify the CSS files to customize themes.
-
-Future Enhancements
-
-User Authentication: Allow users to save and sync events.
-
-Drag & Drop Functionality: Enhance event management with intuitive interactions.
-
-API Integration: Sync events with Google Calendar or Outlook.
-
-Screenshots
-
+🚀 Future Enhancements
+🔐 User Authentication: Allow users to save and sync events.
+↔️ Drag & Drop Functionality: Enhance event management with intuitive interactions.
+🔗 API Integration: Sync events with Google Calendar or Outlook.
+🧳 Local Storage for Events: Save and persist events even after a page refresh.
+🎨 Custom Theme Creation: Allow users to define their own theme.
+📅 Multiple Views (Day/Week/Month): Improve usability with different calendar views.
+📱 Progressive Web App (PWA) Support: Enable offline use and installation as a web app.
+📸 Screenshots
 (Include images showcasing the calendar UI and various themes)
 
-Conclusion
-
+🏁 Conclusion
 The Themed Calendar Web App offers an aesthetically pleasing and highly functional experience, 
 enabling users to manage their schedules efficiently with a variety of themes and a responsive design. 
-Future updates will focus on enhanced interactivity, user personalization, 
-and seamless event synchronization.
+Future updates will focus on enhanced interactivity, user personalization, and seamless event synchronization.
 
 Local Storage for Events – Save and persist events even after a page refresh.
 Custom Theme Creation – Allow users to define their own theme.
