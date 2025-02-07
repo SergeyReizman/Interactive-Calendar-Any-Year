@@ -46,7 +46,6 @@ Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and cal
 Spring Meadow 🍃: A fresh and lively theme inspired by blooming meadows, featuring soft greens, pastel florals, and the gentle warmth of spring sunshine.
 Galactic Glow ✨: A cosmic theme with vibrant purples, blues, and glowing stars.🚀🌌
 Golden Horizon 🌅: A radiant and uplifting theme with golden hues, warm gradients, and a horizon-inspired aesthetic that brings a sense of optimism and energy.
-Cyber Pulse ⚡: A futuristic, tech-inspired theme with sleek metallic tones, glowing circuits, and dynamic neon accents, perfect for a high-tech, cutting-edge feel.
 Northern Nights ❄️🌌: A mystical and captivating theme inspired by the beauty of the Northern Lights, featuring deep blues, shimmering purples, and a touch of icy brilliance.
 Arctic Glow 🧊: A frosty theme inspired by icebergs and glaciers, with crisp whites, icy blues, and translucent effects.
 New AI Theme 🤖: A modern, sleek theme featuring deep blues, soft grays, and vibrant orange accents, perfect for a high-tech, innovative look.
@@ -61,7 +60,6 @@ Purple Fog 🌫️: A dreamy, ethereal theme with soft purple hues and misty gra
 Amazon Dolphin 🐬: A vibrant, nature-inspired theme featuring lush green jungles, clear blue waters, and the playful essence of dolphins swimming freely in the Amazon River, perfect for an exotic, fresh look.
 Stockholm Roofs 🏙️: A modern, urban theme inspired by the beautiful rooftops of Stockholm, featuring sleek, architectural designs, a blend of contemporary and classic tones, and a Scandinavian touch.
 Mountain Peak 🏔️: A rugged, adventurous theme inspired by towering mountain landscapes, featuring earthy tones, cool blues, and majestic, snow-capped peaks, evoking a sense of strength, tranquility, and the thrill of reaching new heights.
-Black Hacker 🖤: A dark, tech-inspired theme with a sleek black aesthetic, perfect for those who appreciate minimalist design with a hacker vibe.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -149,7 +147,6 @@ project/
 │   ├── calendar.spring-meadow.css    /* 🌸 Spring Meadow Theme */
 │   ├── calendar.galactic-glow.css    /* 🌌 Galactic Glow Theme */
 │   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
-│   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 │   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
 │   ├── calendar.arctic-glow.css      /* 🧊 Arctic Glow Theme */
 │   ├── calendar.new-ai.css           /* 🤖 New AI Theme */
@@ -164,7 +161,6 @@ project/
 │   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
 │   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
-│   ├── calendar.black-hacker.css     /* 🖤 Black Hacker Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -228,7 +224,6 @@ project/
 │   ├── calendar.spring-meadow.css    /* 🌸 Spring Meadow Theme */
 │   ├── calendar.galactic-glow.css    /* 🌌 Galactic Glow Theme */
 │   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
-│   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 │   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
 │   ├── calendar.arctic-glow.css      /* 🧊 Arctic Glow Theme */
 │   ├── calendar.new-ai.css           /* 🤖 New AI Theme */
@@ -243,7 +238,6 @@ project/
 │   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
 │   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
-│   ├── calendar.black-hacker.css     /* 🖤 Black Hacker Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
