@@ -50,7 +50,8 @@ const applyTheme = (theme) => {
     'spring-meadow', 'galactic-glow', 'golden-horizon', 'northern-nights', 
     'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island', 
     'pink-lake', 'crystal-snowfall', 'sky-eagle', 'monochrome-ink', 'purple-fog', 
-    'amazon-dolphin', 'stockholm-roofs', 'mountain-peak', 'secretive-ninja'
+    'amazon-dolphin', 'stockholm-roofs', 'mountain-peak', 'secretive-ninja',
+    'black-hacker'
   );
 
   body.classList.add(theme);

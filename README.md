@@ -61,6 +61,7 @@ Amazon Dolphin 🐬: A vibrant, nature-inspired theme featuring lush green jungl
 Stockholm Roofs 🏙️: A modern, urban theme inspired by the beautiful rooftops of Stockholm, featuring sleek, architectural designs, a blend of contemporary and classic tones, and a Scandinavian touch.
 Mountain Peak 🏔️: A rugged, adventurous theme inspired by towering mountain landscapes, featuring earthy tones, cool blues, and majestic, snow-capped peaks, evoking a sense of strength, tranquility, and the thrill of reaching new heights.
 Secretive Ninja 🥷: A sleek and stealthy theme with deep, shadowy hues, mysterious accents, and a refined aesthetic inspired by the art of the ninja. Perfect for those who appreciate a balance of secrecy, elegance, and focus.
+Black Hacker 🕶️: A bold and enigmatic theme with deep blacks, neon highlights, and cyberpunk aesthetics, inspired by the underground world of ethical hacking and digital intrigue. Perfect for those who love a sleek, high-tech vibe.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -162,12 +163,12 @@ project/
 │   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
 │   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
-│   ├── calendar.secretive-ninja.css  /* 🕶️ Secretive Ninja Theme */
+│   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
+│   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
 └── README.md                         /* Project Documentation */
-
 
 
 
@@ -240,7 +241,8 @@ project/
 │   ├── calendar.amazon-dolphin.css   /* 🐬 Amazon Dolphin Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
 │   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
-│   ├── calendar.secretive-ninja.css  /* 🕶️ Secretive Ninja Theme */
+│   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
+│   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
