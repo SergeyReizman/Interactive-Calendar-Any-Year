@@ -62,6 +62,7 @@ Stockholm Roofs 🏙️: A modern, urban theme inspired by the beautiful rooftop
 Mountain Peak 🏔️: A rugged, adventurous theme inspired by towering mountain landscapes, featuring earthy tones, cool blues, and majestic, snow-capped peaks, evoking a sense of strength, tranquility, and the thrill of reaching new heights.
 Secretive Ninja 🥷: A sleek and stealthy theme with deep, shadowy hues, mysterious accents, and a refined aesthetic inspired by the art of the ninja. Perfect for those who appreciate a balance of secrecy, elegance, and focus.
 Black Hacker 🕶️: A bold and enigmatic theme with deep blacks, neon highlights, and cyberpunk aesthetics, inspired by the underground world of ethical hacking and digital intrigue. Perfect for those who love a sleek, high-tech vibe.
+Cyber Pulse ⚡: A futuristic, electrifying theme with pulsating neon blues, cybernetic accents, and sleek digital aesthetics. Perfect for those who love a high-tech, energetic, and immersive digital experience.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -165,6 +166,7 @@ project/
 │   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
 │   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
 │   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
+│   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -243,6 +245,7 @@ project/
 │   ├── calendar.mountain-peak.css    /* 🏔️ Mountain Peak Theme */
 │   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
 │   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
+│   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
