@@ -63,6 +63,7 @@ Mountain Peak 🏔️: A rugged, adventurous theme inspired by towering mountain
 Secretive Ninja 🥷: A sleek and stealthy theme with deep, shadowy hues, mysterious accents, and a refined aesthetic inspired by the art of the ninja. Perfect for those who appreciate a balance of secrecy, elegance, and focus.
 Black Hacker 🕶️: A bold and enigmatic theme with deep blacks, neon highlights, and cyberpunk aesthetics, inspired by the underground world of ethical hacking and digital intrigue. Perfect for those who love a sleek, high-tech vibe.
 Cyber Pulse ⚡: A futuristic, electrifying theme with pulsating neon blues, cybernetic accents, and sleek digital aesthetics. Perfect for those who love a high-tech, energetic, and immersive digital experience.
+Dragon Flame 🔥: A fiery and intense theme with vibrant oranges, reds, and yellows, evoking the power and beauty of dragon fire. Perfect for those who want a bold, passionate, and energetic look.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -167,6 +168,7 @@ project/
 │   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
 │   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
+│   └── calendar.dragon-flame.css    /* 🔥 Dragon Flame Theme */ 
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -246,6 +248,7 @@ project/
 │   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
 │   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
+│   └── calendar.dragon-flame.css    /* 🔥 Dragon Flame Theme */ 
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
