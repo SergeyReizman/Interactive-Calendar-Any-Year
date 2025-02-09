@@ -66,6 +66,8 @@ Cyber Pulse ⚡: A futuristic, electrifying theme with pulsating neon blues, cyb
 Dragon Flame 🔥: A fiery and intense theme with vibrant oranges, reds, and yellows, evoking the power and beauty of dragon fire. Perfect for those who want a bold, passionate, and energetic look.
 Solar Flare 🌞: A dynamic and energetic theme inspired by the power of solar flares. Featuring bright golden-orange hues and radiant light effects, it creates an atmosphere of warmth, strength, and boundless energy.
 Pure Light ✨: A pristine, luminous theme that combines soft whites, delicate pastels, and subtle gradients for a clean, refreshing aesthetic, designed to create a sense of clarity and inspiration.
+Shaolin Monastery 🏯: A serene and earthy theme inspired by the tranquility and discipline of Shaolin monks. Featuring natural beige tones, deep browns, and subtle textures, this theme brings a sense of calm, focus, and connection to nature. Perfect for those seeking balance and mindfulness in their daily planning.
+
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -173,6 +175,7 @@ project/
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
 │   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
+│   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -254,7 +257,8 @@ project/
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
-│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
+│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */ 
+│   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */ 
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */

@@ -51,7 +51,8 @@ const applyTheme = (theme) => {
     'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island', 
     'pink-lake', 'crystal-snowfall', 'sky-eagle', 'monochrome-ink', 'purple-fog', 
     'amazon-dolphin', 'stockholm-roofs', 'mountain-peak', 'secretive-ninja',
-    'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light'
+    'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light',
+    'shaolin-monastery'
   );
 
   body.classList.add(theme);
