@@ -65,6 +65,7 @@ Black Hacker 🕶️: A bold and enigmatic theme with deep blacks, neon highligh
 Cyber Pulse ⚡: A futuristic, electrifying theme with pulsating neon blues, cybernetic accents, and sleek digital aesthetics. Perfect for those who love a high-tech, energetic, and immersive digital experience.
 Dragon Flame 🔥: A fiery and intense theme with vibrant oranges, reds, and yellows, evoking the power and beauty of dragon fire. Perfect for those who want a bold, passionate, and energetic look.
 Solar Flare 🌞: A dynamic and energetic theme inspired by the power of solar flares. Featuring bright golden-orange hues and radiant light effects, it creates an atmosphere of warmth, strength, and boundless energy.
+Pure Light ✨: A pristine, luminous theme that combines soft whites, delicate pastels, and subtle gradients for a clean, refreshing aesthetic, designed to create a sense of clarity and inspiration.
 
 🔧 Technologies Used:
 HTML5: For structuring the calendar and content.
@@ -169,8 +170,9 @@ project/
 │   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
 │   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
-│   └── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
-│   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */  
+│   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
+│   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
+│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -250,8 +252,9 @@ project/
 │   ├── calendar.secretive-ninja.css  /* 🥷 Secretive Ninja Theme */
 │   ├── calendar.black-hacker.css     /* 🕶️ Black Hacker Theme */
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
-│   └── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
-│   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */  
+│   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
+│   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
+│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
