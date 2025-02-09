@@ -176,6 +176,7 @@ project/
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
 │   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
+│   ├── calendar.black-coffee.css     /* Black Coffee Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
