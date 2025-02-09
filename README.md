@@ -67,6 +67,7 @@ Dragon Flame 🔥: A fiery and intense theme with vibrant oranges, reds, and yel
 Solar Flare 🌞: A dynamic and energetic theme inspired by the power of solar flares. Featuring bright golden-orange hues and radiant light effects, it creates an atmosphere of warmth, strength, and boundless energy.
 Pure Light ✨: A pristine, luminous theme that combines soft whites, delicate pastels, and subtle gradients for a clean, refreshing aesthetic, designed to create a sense of clarity and inspiration.
 Shaolin Monastery 🏯: A serene and earthy theme inspired by the tranquility and discipline of Shaolin monks. Featuring natural beige tones, deep browns, and subtle textures, this theme brings a sense of calm, focus, and connection to nature. Perfect for those seeking balance and mindfulness in their daily planning.
+Black Coffee ☕: A rich, warm theme inspired by the deep, earthy tones of freshly brewed coffee. Featuring dark browns, creamy beiges, and warm copper accents, this theme is perfect for creating a cozy, inviting atmosphere.
 
 
 🔧 Technologies Used:
@@ -176,7 +177,7 @@ project/
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
 │   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
-│   ├── calendar.black-coffee.css     /* Black Coffee Theme */
+│   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -259,7 +260,8 @@ project/
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
 │   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */ 
-│   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */ 
+│   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
+│   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
