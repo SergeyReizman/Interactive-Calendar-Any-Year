@@ -71,7 +71,7 @@ Black Coffee ☕: A rich, warm theme inspired by the deep, earthy tones of fresh
 Forgotten Dreams 💭: A nostalgic and ethereal theme with soft, muted tones, evoking a sense of wistful remembrance and peaceful contemplation.
 Wild Wonders 🌿: Earthy tones and playful accents.
 Candy World 🍬🍭: A sweet and playful theme with vibrant pastel colors, candy-inspired icons, and a whimsical design that evokes the joy and fun of a candy wonderland.
-
+Cracked Ice 🧊: A cool, icy theme with crisp whites, icy blues, and translucent effects, evoking the calmness of winter.
 
 
 🔧 Technologies Used:
@@ -184,8 +184,9 @@ project/
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 │   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 │   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
-│   └── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
-│   └── calendar.candy-world.css      /* 🍬 Candy World Theme */
+│   ├── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
+│   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
+│   └── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -267,12 +268,13 @@ project/
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
-│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */ 
+│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 │   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 │   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
-│   └── calendar.wild-wonders.css     /* 🌿 Wild Wonders Theme */
-│   └── calendar.candy-world.css      /* 🍬 Candy World Theme */
+│   ├── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
+│   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
+│   └── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
