@@ -68,7 +68,8 @@ Solar Flare 🌞: A dynamic and energetic theme inspired by the power of solar f
 Pure Light ✨: A pristine, luminous theme that combines soft whites, delicate pastels, and subtle gradients for a clean, refreshing aesthetic, designed to create a sense of clarity and inspiration.
 Shaolin Monastery 🏯: A serene and earthy theme inspired by the tranquility and discipline of Shaolin monks. Featuring natural beige tones, deep browns, and subtle textures, this theme brings a sense of calm, focus, and connection to nature. Perfect for those seeking balance and mindfulness in their daily planning.
 Black Coffee ☕: A rich, warm theme inspired by the deep, earthy tones of freshly brewed coffee. Featuring dark browns, creamy beiges, and warm copper accents, this theme is perfect for creating a cozy, inviting atmosphere.
-Forgotten Dreams 💭:A nostalgic and ethereal theme with soft, muted tones, evoking a sense of wistful remembrance and peaceful contemplation.
+Forgotten Dreams 💭: A nostalgic and ethereal theme with soft, muted tones, evoking a sense of wistful remembrance and peaceful contemplation.
+Wild Wonders 🌿: Earthy tones and playful accents.
 
 
 
@@ -181,6 +182,7 @@ project/
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 │   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 │   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
+│   └── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -266,6 +268,7 @@ project/
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 │   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 │   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
+│   └── calendar.wild-wonders.css     /* 🌿 Wild Wonders Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */

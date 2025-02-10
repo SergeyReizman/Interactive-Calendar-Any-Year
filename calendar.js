@@ -52,7 +52,7 @@ const applyTheme = (theme) => {
     'pink-lake', 'crystal-snowfall', 'sky-eagle', 'monochrome-ink', 'purple-fog',
     'amazon-dolphin', 'stockholm-roofs', 'mountain-peak', 'secretive-ninja',
     'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light',
-    'shaolin-monastery', 'black-coffee', 'forgotten-dreams'
+    'shaolin-monastery', 'black-coffee', 'forgotten-dreams', 'wild-wonders'
   );
 
   body.classList.add(theme);
