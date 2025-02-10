@@ -47,12 +47,12 @@ const applyTheme = (theme) => {
     'dark-mode', 'ocean-view', 'greyscale', 'autumn-harvest',
     'serene-shores', 'blue-ice', 'cherry-garden', 'deep-forest',
     'orange-country', 'neon-nights', 'desert-mirage', 'lavender-bliss',
-    'spring-meadow', 'galactic-glow', 'golden-horizon', 'northern-nights', 
-    'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island', 
-    'pink-lake', 'crystal-snowfall', 'sky-eagle', 'monochrome-ink', 'purple-fog', 
+    'spring-meadow', 'galactic-glow', 'golden-horizon', 'northern-nights',
+    'arctic-glow', 'new-ai', 'steel-shadows', 'tropical-sunset', 'exotic-island',
+    'pink-lake', 'crystal-snowfall', 'sky-eagle', 'monochrome-ink', 'purple-fog',
     'amazon-dolphin', 'stockholm-roofs', 'mountain-peak', 'secretive-ninja',
     'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light',
-    'shaolin-monastery', 'black-coffee'
+    'shaolin-monastery', 'black-coffee', 'forgotten-dreams'
   );
 
   body.classList.add(theme);

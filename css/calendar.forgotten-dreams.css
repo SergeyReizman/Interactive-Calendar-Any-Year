@@ -1,0 +1,265 @@
+/* ============================
+    Forgotten Dreams Theme
+    Purpose: Styles specific to the Forgotten Dreams theme for the calendar.
+    ============================ */
+
+:root {
+    --forgotten-dreams-bg-color: #f5f0e1;
+    /* Soft beige background (Not used directly on body anymore) */
+    --forgotten-dreams-text-color: #4a4a4a;
+    /* Dark gray text */
+    --forgotten-dreams-primary-color: #8b7355;
+    /* Muted brown accent color */
+    --forgotten-dreams-secondary-color: #d4c8b8;
+    /* Light beige for highlights/borders */
+    --forgotten-dreams-shadow-color: rgba(0, 0, 0, 0.2);
+    /* Subtle shadow color */
+    --forgotten-dreams-border-radius: 8px;
+    /* Border radius for rounded corners */
+    --forgotten-dreams-gradient-start: #f5f0e1;
+    /* Start color for background gradient */
+    --forgotten-dreams-gradient-end: #e0d8c5;
+    /* End color for background gradient */
+    --forgotten-dreams-hover-color: #e0d8c5;
+    /* Hover background color */
+    --forgotten-dreams-current-day-bg: #d4c8b8;
+    /* Background color for the current day */
+    --transition-duration: 0.3s;
+    /* Transition duration for smooth effects */
+    --transition-easing: ease;
+    /* Transition easing function */
+}
+
+/* IMPORTANT CHANGE: Target the .container WITHIN .forgotten-dreams */
+.forgotten-dreams .container {
+    background: linear-gradient(to bottom, var(--forgotten-dreams-gradient-start), var(--forgotten-dreams-gradient-end));
+    color: var(--forgotten-dreams-text-color);
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    padding: 20px;
+    transition: background var(--transition-duration);
+}
+
+/* The rest of the styles are targeted the same way: .forgotten-dreams .element */
+.forgotten-dreams .calendar-container {
+    padding: 20px;
+}
+
+.forgotten-dreams table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 3px 3px 8px var(--forgotten-dreams-shadow-color);
+}
+
+.forgotten-dreams th,
+.forgotten-dreams td {
+    border: 1px solid var(--forgotten-dreams-secondary-color);
+    padding: 12px;
+    text-align: center;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+}
+
+.forgotten-dreams th {
+    background-color: var(--forgotten-dreams-secondary-color);
+    color: var(--forgotten-dreams-text-color);
+    font-weight: 600;
+}
+
+.forgotten-dreams td {
+    background-color: white;
+}
+
+.forgotten-dreams td:hover {
+    background-color: var(--forgotten-dreams-hover-color);
+    transform: scale(1.02);
+    box-shadow: 0 2px 4px var(--forgotten-dreams-shadow-color);
+}
+
+.forgotten-dreams td.current-day {
+    background-color: var(--forgotten-dreams-current-day-bg);
+    border: 2px solid var(--forgotten-dreams-primary-color);
+    font-weight: 600;
+    box-shadow: inset 0 0 4px var(--forgotten-dreams-shadow-color);
+}
+
+/*
+          Event Markers
+          Styles for the small markers that indicate events on a specific day within the calendar cells.
+      */
+.forgotten-dreams .event-marker-container {
+    display: flex;
+    /* Use flexbox for layout */
+    flex-direction: column;
+    /* Stack markers vertically */
+    align-items: center;
+    /* Center markers horizontally within the container */
+    margin-top: 2px;
+    /* Small top margin for spacing from the top of the cell */
+    gap: 2px;
+    /* Space between event markers */
+}
+
+.forgotten-dreams .event-marker {
+    background-color: var(--forgotten-dreams-primary-color);
+    /* Use the primary brown color for the markers */
+    width: 8px;
+    /* Set the width of the markers */
+    height: 8px;
+    /* Set the height of the markers */
+    border-radius: 50%;
+    /* Make markers circular */
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+    /* Smooth transitions for hover effects */
+}
+
+.forgotten-dreams .event-marker:hover {
+    background-color: darken(var(--forgotten-dreams-primary-color), 10%);
+    /* Darken the marker color on hover */
+    transform: scale(1.2);
+    /* Slightly enlarge the marker on hover */
+}
+
+/*
+        Modal Styles
+        Styles for the modal that displays event details when a day is clicked.
+      */
+.forgotten-dreams .modal-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Semi-transparent white background */
+    backdrop-filter: blur(3px);
+    /* Apply a blur effect to the background behind the modal */
+    color: var(--forgotten-dreams-text-color);
+    /* Use the theme's text color */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    /* Subtle gray border */
+    border-radius: var(--forgotten-dreams-border-radius);
+    /* Use the theme's border radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    padding: 20px;
+}
+
+.forgotten-dreams .modal-title {
+    color: var(--forgotten-dreams-primary-color);
+    /* Use the theme's primary color for the title */
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.forgotten-dreams .event-list {
+    margin: 10px 0;
+    /* Top and bottom margins */
+    padding: 0;
+    /* Remove default list padding */
+    list-style: none;
+    /* Remove bullet points from the list */
+}
+
+.forgotten-dreams .event-list li {
+    padding: 8px 0;
+    /* Top and bottom padding for each list item */
+    border-bottom: 1px solid var(--forgotten-dreams-secondary-color);
+    /* Separator line between list items */
+    display: flex;
+    /* Use flexbox for layout */
+    justify-content: space-between;
+    /* Space items to the left and right */
+    align-items: center;
+    /* Vertically align items in the list */
+}
+
+.forgotten-dreams .event-list li:last-child {
+    border-bottom: none;
+    /* Remove border from the last list item */
+}
+
+.forgotten-dreams .event-list button {
+    background-color: var(--forgotten-dreams-primary-color);
+    /* Use the theme's primary color for the button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--forgotten-dreams-border-radius);
+    /* Use the theme's border radius */
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing);
+    /* Smooth transition for hover */
+}
+
+.forgotten-dreams .event-list button:hover {
+    background-color: darken(var(--forgotten-dreams-primary-color), 10%);
+    /* Darken button on hover */
+}
+
+/*
+        Button Styles (General buttons within the forgotten-dreams theme)
+      */
+.forgotten-dreams .button,
+.forgotten-dreams .transparent-button,
+.forgotten-dreams #backToTopBtn {
+    /* Applying to all button types */
+    border-radius: var(--forgotten-dreams-border-radius);
+    padding: 10px 18px;
+    font-size: 1em;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 2px solid var(--forgotten-dreams-primary-color);
+    color: var(--forgotten-dreams-text-color);
+    background-color: transparent;
+    box-shadow: 2px 2px 5px var(--forgotten-dreams-shadow-color);
+}
+
+.forgotten-dreams .button:hover,
+.forgotten-dreams .transparent-button:hover,
+.forgotten-dreams #backToTopBtn:hover {
+    background-color: var(--forgotten-dreams-hover-color);
+    color: var(--forgotten-dreams-text-color);
+    box-shadow: 3px 3px 7px var(--forgotten-dreams-shadow-color);
+}
+
+.forgotten-dreams .button.secondary {
+    background-color: var(--forgotten-dreams-secondary-color);
+    border: none;
+    color: var(--forgotten-dreams-text-color);
+}
+
+.forgotten-dreams .button.secondary:hover {
+    background-color: darken(var(--forgotten-dreams-secondary-color), 10%);
+}
+
+/*
+        Calendar Navigation Styles
+        Styles for the previous and next month/year navigation buttons.
+      */
+.forgotten-dreams .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--forgotten-dreams-primary-color);
+    transition: color var(--transition-duration) var(--transition-easing);
+}
+
+.forgotten-dreams .calendar-navigation button:hover {
+    color: darken(var(--forgotten-dreams-primary-color), 10%);
+}
+
+/*
+        Calendar Header Styles
+        Styles for the calendar header (month and year display).
+      */
+.forgotten-dreams .calendar-header {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--forgotten-dreams-primary-color);
+}
