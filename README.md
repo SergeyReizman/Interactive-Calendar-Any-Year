@@ -132,6 +132,7 @@ Navigate to the extracted folder and open the index.html file in your favorite b
 - **Ocean View Theme:** Activate the Ocean View button for a calming, visually enhanced experience.
 - **🔝 Back to Top:** Use the Back to Top button to smoothly scroll back to the top of the calendar.
 - **Event Modal Window** Manage your events with an easy-to-use modal window for adding, editing, and deleting events.
+- **TAB Enhancement** Easy scroll months with the "TAB" button.
 
 4️⃣ Event Persistence
 Your events are stored in your browser's local storage and remain intact between sessions.
