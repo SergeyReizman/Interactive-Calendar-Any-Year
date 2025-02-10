@@ -53,7 +53,7 @@ const applyTheme = (theme) => {
     'amazon-dolphin', 'stockholm-roofs', 'mountain-peak', 'secretive-ninja',
     'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light',
     'shaolin-monastery', 'black-coffee', 'forgotten-dreams', 'wild-wonders',
-    'secret-night'
+    'secret-night', 'candy-world'
   );
 
   body.classList.add(theme);
