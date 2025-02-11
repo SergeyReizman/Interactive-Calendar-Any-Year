@@ -73,6 +73,7 @@ Wild Wonders 🌿: Earthy tones and playful accents.
 Candy World 🍬🍭: A sweet and playful theme with vibrant pastel colors, candy-inspired icons, and a whimsical design that evokes the joy and fun of a candy wonderland.
 Cracked Ice 🧊: A cool, icy theme with crisp whites, icy blues, and translucent effects, evoking the calmness of winter.
 Fir Balsam 🌲: A fresh and invigorating theme inspired by the scent of balsam fir trees, featuring deep greens, rich browns, and a touch of pinewood texture, bringing the essence of a peaceful forest retreat.
+Sea Diamonds 💎🌊: A mesmerizing oceanic theme with deep sapphire blues, shimmering silvers, and crystal-clear aqua tones, evoking the beauty and mystery of the sea’s hidden treasures
 
 
 🔧 Technologies Used:
@@ -188,7 +189,8 @@ project/
 │   ├── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
-│   └── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
+│   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
+│   └── calendar.sea-diamonds.css     /* 💎🌊 Sea Diamonds Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -276,7 +278,8 @@ project/
 │   ├── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
-│   └── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
+│   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
+│   └── calendar.sea-diamonds.css     /* 💎🌊 Sea Diamonds Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */

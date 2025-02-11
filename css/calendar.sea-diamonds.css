@@ -1,0 +1,331 @@
+/* ============================
+    Sea Diamonds Theme - Revamped with Oceanic Colors and Diamond Features!
+    Purpose: Styles specific to the Sea Diamonds theme for the calendar, with added diamond-inspired elements.
+    ============================ */
+
+:root {
+    --sea-diamonds-bg-color: #e0f7fa;
+    /* Light Aqua */
+    --sea-diamonds-text-color: #2c3e50;
+    /* Deep Navy */
+    --sea-diamonds-primary-color: #26a69a;
+    /* Teal */
+    --sea-diamonds-secondary-color: #80cbc4;
+    /* Soft Aqua */
+    --sea-diamonds-shadow-color: rgba(0, 0, 0, 0.2);
+    /* Slightly darker shadow */
+    --sea-diamonds-border-radius: 15px;
+    /* More rounded corners */
+    --sea-diamonds-gradient-start: #e0f7fa;
+    /* Start gradient */
+    --sea-diamonds-gradient-end: #b2ebf2;
+    /* End gradient - Lighter Aqua */
+    --sea-diamonds-hover-color: #4dd0e1;
+    /* Vibrant Cyan Hover */
+    --sea-diamonds-current-day-bg: #26a69a;
+    /* Teal Current Day */
+    --sea-diamonds-diamond-color: #ffffff;
+    /* Diamond sparkle color */
+    --transition-duration: 0.3s;
+    --transition-easing: ease-in-out;
+}
+
+.sea-diamonds .container {
+    background: linear-gradient(to bottom, var(--sea-diamonds-gradient-start), var(--sea-diamonds-gradient-end));
+    color: var(--sea-diamonds-text-color);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    padding: 30px;
+    border-radius: var(--sea-diamonds-border-radius);
+    box-shadow: 8px 8px 15px var(--sea-diamonds-shadow-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Diamond Sparkle Effect */
+.sea-diamonds .container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.01%);
+    background-size: 20px 20px;
+    animation: sparkle 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.sea-diamonds .calendar-container {
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.sea-diamonds table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 25px auto;
+    box-shadow: 5px 5px 12px var(--sea-diamonds-shadow-color);
+    border-radius: var(--sea-diamonds-border-radius);
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Slightly transparent white */
+}
+
+.sea-diamonds th,
+.sea-diamonds td {
+    border: 1px solid var(--sea-diamonds-secondary-color);
+    padding: 18px;
+    text-align: center;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+}
+
+.sea-diamonds th {
+    background-color: var(--sea-diamonds-secondary-color);
+    color: var(--sea-diamonds-text-color);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.sea-diamonds td {
+    background-color: #ffffff;
+    position: relative;
+}
+
+.sea-diamonds td:hover {
+    background-color: var(--sea-diamonds-hover-color);
+    transform: scale(1.02);
+    box-shadow: 0 5px 8px var(--sea-diamonds-shadow-color);
+}
+
+/* Diamond-shaped current day */
+.sea-diamonds td.current-day {
+    background-color: var(--sea-diamonds-current-day-bg);
+    border: 3px solid var(--sea-diamonds-primary-color);
+    font-weight: 600;
+    color: white;
+    box-shadow: inset 0 0 8px var(--sea-diamonds-shadow-color);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    /* Diamond shape */
+}
+
+.sea-diamonds .event-marker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    gap: 4px;
+}
+
+.sea-diamonds .event-marker {
+    background-color: var(--sea-diamonds-primary-color);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+}
+
+.sea-diamonds .event-marker:hover {
+    background-color: darken(var(--sea-diamonds-primary-color), 20%);
+    transform: scale(1.2);
+}
+
+/* Diamond-shaped modal */
+.sea-diamonds .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    color: var(--sea-diamonds-text-color);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--sea-diamonds-border-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    /* Keep padding for inner content spacing */
+    /* Remove or comment out the clip-path property to make it rectangular */
+    /* clip-path: polygon(50% 2%, 98% 12%, 98% 88%, 50% 98%, 2% 88%, 2% 12%); */
+}
+
+
+.sea-diamonds .modal-title {
+    color: var(--sea-diamonds-primary-color);
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.sea-diamonds .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sea-diamonds .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--sea-diamonds-secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sea-diamonds .event-list li:last-child {
+    border-bottom: none;
+}
+
+.sea-diamonds .event-list button {
+    background-color: var(--sea-diamonds-primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--sea-diamonds-border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing);
+}
+
+.sea-diamonds .event-list button:hover {
+    background-color: darken(var(--sea-diamonds-primary-color), 20%);
+}
+
+.sea-diamonds .button,
+.sea-diamonds .transparent-button,
+.sea-diamonds #backToTopBtn {
+    border-radius: var(--sea-diamonds-border-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 3px solid var(--sea-diamonds-primary-color);
+    color: var(--sea-diamonds-text-color);
+    background-color: transparent;
+    box-shadow: 5px 5px 10px var(--sea-diamonds-shadow-color);
+}
+
+.sea-diamonds .button:hover,
+.sea-diamonds .transparent-button:hover,
+.sea-diamonds #backToTopBtn:hover {
+    background-color: var(--sea-diamonds-hover-color);
+    color: var(--sea-diamonds-text-color);
+    box-shadow: 6px 6px 12px var(--sea-diamonds-shadow-color);
+}
+
+.sea-diamonds .button.secondary {
+    background-color: var(--sea-diamonds-secondary-color);
+    border: none;
+    color: var(--sea-diamonds-text-color);
+}
+
+.sea-diamonds .button.secondary:hover {
+    background-color: darken(var(--sea-diamonds-secondary-color), 20%);
+}
+
+.sea-diamonds .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 7px 14px;
+    cursor: pointer;
+    color: var(--sea-diamonds-primary-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.sea-diamonds .calendar-navigation button:hover {
+    color: darken(var(--sea-diamonds-primary-color), 20%);
+}
+
+.sea-diamonds .calendar-header {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--sea-diamonds-primary-color);
+}
+
+.sea-diamonds th {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    /* Slightly larger */
+    color: #555;
+    padding: 10px;
+    /* Increased padding */
+}
+
+.sea-diamonds .calendar-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #444;
+}
+
+.sea-diamonds .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--sea-diamonds-primary-color);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.2s ease-in-out;
+}
+
+.sea-diamonds .modal-close:hover {
+    color: darken(var(--sea-diamonds-primary-color), 20%);
+}
+
+.sea-diamonds .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 2px 5px;
+    background-color: var(--sea-diamonds-secondary-color);
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.sea-diamonds .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+}
+
+/* Optional: Add some responsive styles if needed */
+@media (max-width: 768px) {
+    .sea-diamonds .container {
+        padding: 20px;
+    }
+
+    .sea-diamonds th,
+    .sea-diamonds td {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+
+    .sea-diamonds .event-marker {
+        width: 10px;
+        height: 10px;
+    }
+
+    .sea-diamonds .button,
+    .sea-diamonds .transparent-button,
+    .sea-diamonds #backToTopBtn {
+        padding: 12px 20px;
+        font-size: 1.1em;
+    }
+}
