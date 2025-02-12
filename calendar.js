@@ -54,7 +54,7 @@ const applyTheme = (theme) => {
     'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light',
     'shaolin-monastery', 'black-coffee', 'forgotten-dreams', 'wild-wonders',
     'secret-night', 'candy-world', 'cracked-ice', 'fir-balsam', 'sea-diamonds',
-    'antarctic-snowdrifts'
+    'antarctic-snowdrifts', 'silicon-valley'
   );
 
   body.classList.add(theme);

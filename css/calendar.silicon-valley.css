@@ -1,0 +1,286 @@
+/* ==========================================================================
+   Silicon Valley Theme - Enhanced Calendar Styles
+   Version: 2.3 (Refactored for maintainability and performance)
+   ========================================================================== */
+
+:root {
+    --silicon-valley-bg: #f5f5f5;
+    --silicon-valley-text: #333;
+    --silicon-valley-primary: #0077b6;
+    --silicon-valley-secondary: #00b4d8;
+    --silicon-valley-shadow: rgba(0, 0, 0, 0.1);
+    --silicon-valley-radius: 12px;
+    --silicon-valley-hover: #90e0ef;
+    /* Lighter hover color */
+    --silicon-valley-current: #0077b6;
+    --silicon-valley-blur: 8px;
+    --silicon-valley-transition: 0.3s ease-in-out;
+}
+
+/* Base Styles */
+.silicon-valley {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--silicon-valley-text);
+}
+
+.silicon-valley .container {
+    background: linear-gradient(to bottom, var(--silicon-valley-bg), #e0e0e0);
+    /* Simplified gradient */
+    padding: 40px;
+    border-radius: var(--silicon-valley-radius);
+    box-shadow: 0 10px 20px var(--silicon-valley-shadow);
+}
+
+/* Calendar Styles */
+.silicon-valley .calendar-container {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--silicon-valley-radius) - 5px);
+    box-shadow: 0 5px 10px var(--silicon-valley-shadow);
+    backdrop-filter: blur(var(--silicon-valley-blur));
+}
+
+.silicon-valley table {
+    width: 100%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: var(--silicon-valley-radius);
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 8px 16px var(--silicon-valley-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.silicon-valley th,
+.silicon-valley td {
+    padding: 20px;
+    text-align: center;
+    border: none;
+    transition: var(--silicon-valley-transition);
+}
+
+.silicon-valley th {
+    background-color: rgba(0, 180, 216, 0.8);
+    color: var(--silicon-valley-text);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.silicon-valley td {
+    background-color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    /* For 3D effect */
+}
+
+.silicon-valley td:hover {
+    background-color: var(--silicon-valley-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    color: var(--silicon-valley-text);
+}
+
+.silicon-valley td.current-day {
+    background-color: var(--silicon-valley-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0, 119, 182, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.silicon-valley .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.silicon-valley .event-marker {
+    background-color: var(--silicon-valley-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--silicon-valley-transition);
+    box-shadow: 0 0 6px rgba(0, 119, 182, 0.6);
+}
+
+.silicon-valley .event-marker:hover {
+    background-color: color-mix(in srgb, var(--silicon-valley-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.silicon-valley .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(var(--silicon-valley-blur));
+    color: var(--silicon-valley-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--silicon-valley-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+}
+
+.silicon-valley .modal-title {
+    color: var(--silicon-valley-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.silicon-valley .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.silicon-valley .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--silicon-valley-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+    /* Simplified transition */
+}
+
+.silicon-valley .event-list li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.silicon-valley .event-list li:last-child {
+    border-bottom: none;
+}
+
+.silicon-valley .event-list button {
+    background-color: var(--silicon-valley-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--silicon-valley-radius);
+    cursor: pointer;
+    transition: var(--silicon-valley-transition);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.silicon-valley .event-list button:hover {
+    background-color: color-mix(in srgb, var(--silicon-valley-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Buttons */
+.silicon-valley .button,
+.silicon-valley .transparent-button,
+.silicon-valley #backToTopBtn {
+    border-radius: var(--silicon-valley-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--silicon-valley-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--silicon-valley-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--silicon-valley-shadow);
+}
+
+.silicon-valley .button:hover,
+.silicon-valley .transparent-button:hover,
+.silicon-valley #backToTopBtn:hover {
+    background-color: var(--silicon-valley-hover);
+    color: var(--silicon-valley-text);
+    box-shadow: 0 8px 16px var(--silicon-valley-shadow);
+    transform: scale(1.02);
+    /* Consistent scale transform */
+}
+
+.silicon-valley .button.secondary {
+    background-color: var(--silicon-valley-secondary);
+    color: var(--silicon-valley-text);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.silicon-valley .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--silicon-valley-secondary), black 15%);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    /* Consistent scale transform */
+}
+
+/* Calendar Navigation */
+.silicon-valley .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--silicon-valley-primary);
+    transition: var(--silicon-valley-transition);
+}
+
+.silicon-valley .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--silicon-valley-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
+.silicon-valley .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--silicon-valley-primary);
+}
+
+/* Week Number */
+.silicon-valley .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(0, 180, 216, 0.7);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.silicon-valley .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.silicon-valley td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.silicon-valley td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+}

@@ -75,6 +75,7 @@ Cracked Ice 🧊: A cool, icy theme with crisp whites, icy blues, and translucen
 Fir Balsam 🌲: A fresh and invigorating theme inspired by the scent of balsam fir trees, featuring deep greens, rich browns, and a touch of pinewood texture, bringing the essence of a peaceful forest retreat.
 Sea Diamonds 💎🌊: A mesmerizing oceanic theme with deep sapphire blues, shimmering silvers, and crystal-clear aqua tones, evoking the beauty and mystery of the sea’s hidden treasures.
 Antarctic Snowdrifts ❄️: A crisp and cool theme inspired by the serene beauty of Antarctic landscapes, featuring a palette of icy blues, soft whites, and subtle gradients that evoke the calmness and tranquility of a snowy winter wonderland.
+Silicon Valley 💻: A sleek and modern theme inspired by the cutting-edge tech hub, featuring clean lines, a minimalist design, and a palette of cool grays, electric blues, and subtle neon accents, reflecting the innovative spirit of Silicon Valley.
 
 
 🔧 Technologies Used:
@@ -187,12 +188,13 @@ project/
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 │   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 │   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
-│   ├── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
+│   ├── calendar.wild-wonders.css     /* 🌿 Wild Wonders Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
 │   ├── calendar.sea-diamonds.css      /* 💎🌊 Sea Diamonds Theme */
-│   └── calendar.antarctic-snowdrifts.css/* ❄️ Antarctic Snowdrifts Theme */
+│   ├── calendar.antarctic-snowdrifts.css/* ❄️ Antarctic Snowdrifts Theme */
+│   └──calendar.silicon-valley.css    /* 🏙️ Silicon Valley Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
@@ -277,12 +279,13 @@ project/
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
 │   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
 │   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
-│   ├── calendar.wild-wonders.css      /* 🌿 Wild Wonders Theme */
+│   ├── calendar.wild-wonders.css     /* 🌿 Wild Wonders Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
 │   ├── calendar.sea-diamonds.css      /* 💎🌊 Sea Diamonds Theme */
-│   └── calendar.antarctic-snowdrifts.css/* ❄️ Antarctic Snowdrifts Theme */
+│   ├── calendar.antarctic-snowdrifts.css/* ❄️ Antarctic Snowdrifts Theme */
+│   └──calendar.silicon-valley.css    /* 🏙️ Silicon Valley Theme */
 ├── calendar.js                       /* Calendar Logic (JavaScript) */
 ├── index.html                        /* HTML Entry Point */
 ├── screenshot.png                    /* Project Screenshot */
