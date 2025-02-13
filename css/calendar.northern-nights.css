@@ -1,140 +1,176 @@
-/* northern-nights.css */
-/* ============================
-    Northern Nights Theme
-    Purpose: Styles specific to the Northern Nights theme.
-    ============================ */
+/* ==========================================================================
+   Northern Nights Theme - Enhanced Calendar Styles
+   Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
-.northern-nights {
-    /* Set theme-specific variables */
-    --primary-color: #5b85aa; /* Deep Arctic Blue */
-    --primary-color-rgb: 91, 133, 170;
-    --secondary-color: #a56cc1; /* Aurora Purple */
-    --hover-color: #3c6e71; /* Icy Teal */
-    --border-color: #84a9ac; /* Soft Ice Blue */
-    --text-color: #ffffff; /* Bright White */
-    --background-color: #0a192f; /* Midnight Sky */
-    --event-marker-color: #b388eb; /* Soft Lavender */
-    --event-marker-hover: #845ec2; /* Deep Aurora Purple */
-    --shadow-color: rgba(91, 133, 170, 0.3);
-    --border-radius: 8px;
-    --transition-duration: 0.3s;
-    --transition-easing: ease;
-    font-family: 'Poppins', sans-serif;
+/* Import the fonts (replace with actual paths if needed) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Oswald:wght@400;700&display=swap'); /* Example: Roboto Condensed and Oswald */
+/* Or, if you have the fonts locally: */
+/* @font-face {
+    font-family: 'Roboto Condensed';
+    src: url('path/to/RobotoCondensed-Regular.woff2') format('woff2'),
+         url('path/to/RobotoCondensed-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+ ... other @font-face rules
+*/
+
+
+:root {
+    --northern-nights-bg: #283747; /* Dark Blue Background */
+    --northern-nights-text: #e0e0e0; /* Light Gray Text */
+    --northern-nights-primary: #5dade2; /* Light Blue Primary */
+    --northern-nights-secondary: #85c1e9; /* Lighter Blue Secondary */
+    --northern-nights-shadow: rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+    --northern-nights-radius: 12px;
+    --northern-nights-hover: #34495e; /* Darker Blue Hover */
+    --northern-nights-current: #f39c12; /* Orange Current */
+    --northern-nights-blur: 3px; /* Subtle Blur */
+    --northern-nights-transition: 0.3s ease-in-out;
+    --northern-nights-table-bg: #34495e; /* Darker Table Background */
 }
 
 /* Base Styles */
-.northern-nights .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
+.northern-nights {
+    font-family: 'Roboto Condensed', sans-serif; /* Use your northern font */
     line-height: 1.6;
-    margin: 30px auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 16px var(--shadow-color);
-    max-width: 95%;
+    color: var(--northern-nights-text);
 }
 
-/* Table Styles */
+.northern-nights .container {
+    background: linear-gradient(to bottom, var(--northern-nights-bg), #34495e); /* Slightly darker gradient */
+    padding: 40px;
+    border-radius: var(--northern-nights-radius);
+    box-shadow: 0 10px 20px var(--northern-nights-shadow);
+}
+
+/* Calendar Styles */
+.northern-nights .calendar-container {
+    padding: 30px;
+    background-color: rgba(52, 73, 94, 0.9); /* Slightly transparent darker background */
+    border-radius: calc(var(--northern-nights-radius) - 5px);
+    box-shadow: 0 5px 10px var(--northern-nights-shadow);
+    backdrop-filter: blur(var(--northern-nights-blur));
+}
+
 .northern-nights table {
     width: 100%;
+    margin: 30px auto;
     border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 20px;
+    border-radius: var(--northern-nights-radius);
+    overflow: hidden;
+    background-color: var(--northern-nights-table-bg);
+    box-shadow: 0 8px 16px var(--northern-nights-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
 }
 
 .northern-nights th,
 .northern-nights td {
-    border: 1px solid var(--border-color);
-    padding: 14px;
+    padding: 10px;
     text-align: center;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
+    border: none;
+    transition: var(--northern-nights-transition);
+    word-wrap: break-word;
+    color: var(--northern-nights-text); /* Ensure text is visible on dark background */
 }
 
 .northern-nights th {
-    background-color: var(--primary-color);
-    color: black;
-    font-weight: 600;
+    background-color: var(--northern-nights-primary);
+    color: white;
+    font-weight: 700; /* Make header bold */
     text-transform: uppercase;
 }
 
-.northern-nights tr:hover td {
-    background-color: rgba(91, 133, 170, 0.1);
-    box-shadow: inset 0 0 5px var(--shadow-color);
-}
-
-.northern-nights td.current-day {
-    background-color: var(--secondary-color);
-    color: black;
-    font-weight: bold;
-}
-
-/* Modal Styles */
-.northern-nights .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.northern-nights .modal.show {
-    display: flex;
-}
-
-.northern-nights .modal-content {
-    background-color: rgba(91, 133, 170, 0.15);
-    backdrop-filter: blur(5px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.2);
-    padding: 20px;
+.northern-nights td {
+    background-color: transparent;
     position: relative;
 }
 
-/* Close Button Styling */
-.northern-nights .modal .close-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 10;
-    transition: color 0.3s ease;
+.northern-nights td:hover {
+    background-color: var(--northern-nights-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    color: var(--northern-nights-text);
 }
 
-.northern-nights .modal .close-button:hover {
-    color: #84a9ac; /* Soft Ice Blue hover effect */
+.northern-nights td.current-day {
+    background-color: var(--northern-nights-current);
+    color: white;
+    font-weight: 700; /* Make current day bold */
+    box-shadow: 0 0 10px rgba(243, 156, 18, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.northern-nights .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.northern-nights .event-marker {
+    background-color: var(--northern-nights-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--northern-nights-transition);
+    box-shadow: 0 0 6px rgba(93, 173, 226, 0.6);
+}
+
+.northern-nights .event-marker:hover {
+    background-color: color-mix(in srgb, var(--northern-nights-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.northern-nights .modal-content {
+    background-color: rgba(52, 73, 94, 0.95); /* Darker modal background */
+    backdrop-filter: blur(var(--northern-nights-blur));
+    color: var(--northern-nights-text);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--northern-nights-radius);
+    box-shadow: 0 8px 20px var(--northern-nights-shadow);
+    padding: 30px;
 }
 
 .northern-nights .modal-title {
-    color: var(--primary-color);
-    font-size: 1.6em;
-    margin-bottom: 15px;
+    color: var(--northern-nights-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
 .northern-nights .event-list {
-    margin: 10px 0;
+    margin: 20px 0;
     padding: 0;
     list-style: none;
 }
 
 .northern-nights .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--northern-nights-secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.2s;
+}
+
+.northern-nights .event-list li:hover {
+    background-color: rgba(85, 193, 233, 0.1); /* Slightly transparent secondary color */
 }
 
 .northern-nights .event-list li:last-child {
@@ -142,53 +178,192 @@
 }
 
 .northern-nights .event-list button {
-    background-color: var(--event-marker-color);
+    background-color: var(--northern-nights-primary);
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: var(--northern-nights-radius);
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
+    transition: var(--northern-nights-transition);
+    box-shadow: 0 4px 8px var(--northern-nights-shadow);
 }
 
 .northern-nights .event-list button:hover {
-    background-color: var(--event-marker-hover);
+    background-color: color-mix(in srgb, var(--northern-nights-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--northern-nights-shadow);
 }
 
-/* Button Styles */
+/* Buttons */
 .northern-nights .button,
 .northern-nights .transparent-button,
-.northern-nights .back-to-top-button,
-.northern-nights .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: black;
-    border: none;
-    padding: 12px 20px;
-    border-radius: var(--border-radius);
+.northern-nights #backToTopBtn {
+    border-radius: var(--northern-nights-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--northern-nights-transition);
     cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 500;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
-    box-shadow: 3px 3px 6px var(--shadow-color);
+    border: none;
+    color: var(--northern-nights-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--northern-nights-shadow);
 }
 
 .northern-nights .button:hover,
 .northern-nights .transparent-button:hover,
-.northern-nights .back-to-top-button:hover,
-.northern-nights .calendar-navigation button:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-3px);
-    box-shadow: 4px 5px 8px var(--shadow-color);
+.northern-nights #backToTopBtn:hover {
+    background-color: var(--northern-nights-hover);
+    color: var(--northern-nights-text);
+    box-shadow: 0 8px 16px var(--northern-nights-shadow);
+    transform: scale(1.02);
 }
 
 .northern-nights .button.secondary {
-    background-color: var(--secondary-color);
-    color: black;
+    background-color: var(--northern-nights-secondary);
+    color: white;
+    box-shadow: 0 4px 8px var(--northern-nights-shadow);
 }
 
 .northern-nights .button.secondary:hover {
-    background-color: var(--event-marker-hover);
-    color: white;
+    background-color: color-mix(in srgb, var(--northern-nights-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--northern-nights-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.northern-nights .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--northern-nights-primary);
+    transition: var(--northern-nights-transition);
+}
+
+.northern-nights .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--northern-nights-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
+.northern-nights .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700; /* Make header more prominent */
+    margin-bottom: 20px;
+    color: var(--northern-nights-primary); /* Use primary color for header */
+}
+
+/* Week Number */
+.northern-nights .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(93, 173, 226, 0.7); /* Slightly transparent light blue */
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.northern-nights .no-events {
+    font-style: italic;
+    color: #99a3a4; /* Lighter gray */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.northern-nights td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.northern-nights td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
+    .northern-nights table {
+        font-size: 0.7em;
+    }
+
+    .northern-nights th,
+    .northern-nights td {
+        padding: 4px;
+    }
+
+    .northern-nights th:nth-child(1),
+    .northern-nights td:nth-child(1) {
+        width: 15%;
+    }
+
+    .northern-nights th:nth-child(2),
+    .northern-nights td:nth-child(2) {
+        width: 20%;
+    }
+
+    .northern-nights th:nth-child(3),
+    .northern-nights td:nth-child(3) {
+        width: 15%;
+    }
+
+    .northern-nights th:nth-child(4),
+    .northern-nights td:nth-child(4) {
+        width: 20%;
+    }
+
+    .northern-nights th:nth-child(5),
+    .northern-nights td:nth-child(5) {
+        width: 15%;
+    }
+
+    .northern-nights th:nth-child(6),
+    .northern-nights td:nth-child(6) {
+        width: 15%;
+    }
+
+    .northern-nights th:nth-child(7),
+    .northern-nights td:nth-child(7) {
+        width: 10%;
+    }
+
+    .northern-nights .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .northern-nights .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .northern-nights .calendar-container {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .northern-nights th,
+    .northern-nights td {
+        padding: 6px;
+    }
+
+    .northern-nights table {
+        font-size: 0.8em;
+    }
 }
