@@ -1,194 +1,284 @@
-/* calendar.greyscale.css */
 /* ============================
     Greyscale Theme
     Purpose: Styles specific to the Greyscale theme.
     ============================ */
 
-    .greyscale {
-        /* Theme-Specific Variables */
-        --primary-color: #4a4a4a; /* Dark Grey */
-        --primary-color-rgb: 74, 74, 74;
-        --secondary-color: #9e9e9e; /* Medium Grey */
-        --hover-color: #333333; /* Very Dark Grey */
-        --border-color: #cccccc; /* Light Grey */
-        --text-color: #1a1a1a; /* Almost Black */
-        --background-color: #f5f5f5; /* Off-White */
-        --event-marker-color: #666666; /* Grey */
-        --event-marker-hover: #4d4d4d; /* Darker Grey */
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --border-radius: 8px;
-        --transition-duration: 0.3s;
-        --transition-easing: ease-in-out;
-    }
-    
-    /* Base Styles */
-    .greyscale .container {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: 'Roboto', sans-serif; /* Neutral, modern font */
-        line-height: 1.6;
-        margin: 30px auto;
-        padding: 30px;
-        border-radius: var(--border-radius);
-        box-shadow: 0 10px 20px var(--shadow-color);
-        max-width: 95%;
-    }
-    
-    /* Table Styles */
+.greyscale {
+    --bg-color: #f0f0f0;
+    /* Light gray background */
+    --text-color: #333333;
+    /* Dark gray text */
+    --border-color: #cccccc;
+    /* Medium gray borders */
+    --table-bg: #ffffff;
+    /* White table background */
+    --hover-color: #e0e0e0;
+    /* Slightly darker gray on hover */
+    --primary-color: #777777;
+    /* Medium gray primary color */
+    --secondary-color: #aaaaaa;
+    /* Light gray secondary color */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    --border-radius: 6px;
+    /* Slightly rounded corners */
+    --transition-duration: 0.3s;
+    --transition-easing: ease;
+}
+
+.greyscale .container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    /* Example font - choose your preferred greyscale-friendly font */
+    line-height: 1.6;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.greyscale .calendar-container {
+    padding: 15px;
+    background-color: var(--table-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    margin-bottom: 20px;
+}
+
+.greyscale table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    table-layout: fixed;
+    /* For even column widths */
+}
+
+.greyscale th,
+.greyscale td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing);
+    word-wrap: break-word;
+}
+
+.greyscale th {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.greyscale td {
+    background-color: var(--table-bg);
+}
+
+.greyscale td:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.greyscale td.current-day {
+    background-color: var(--primary-color);
+    color: var(--table-bg);
+    font-weight: 500;
+}
+
+.greyscale .event-marker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    gap: 3px;
+}
+
+.greyscale .event-marker {
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+}
+
+.greyscale .event-marker:hover {
+    background-color: #999999;
+    /* Slightly lighter gray */
+    transform: scale(1.1);
+}
+
+.greyscale .modal-content {
+    background-color: var(--table-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 20px;
+}
+
+.greyscale .modal-title {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.greyscale .event-list {
+    margin: 15px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.greyscale .event-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.greyscale .event-list li:last-child {
+    border-bottom: none;
+}
+
+.greyscale .event-list button {
+    background-color: var(--primary-color);
+    color: var(--table-bg);
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.greyscale .event-list button:hover {
+    background-color: #666666;
+    /* Slightly darker gray */
+    transform: scale(1.05);
+}
+
+.greyscale .button,
+.greyscale .transparent-button,
+.greyscale #backToTopBtn {
+    background-color: var(--primary-color);
+    color: var(--table-bg);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    box-shadow: 0 3px 8px var(--shadow-color);
+}
+
+.greyscale .button:hover,
+.greyscale .transparent-button:hover,
+.greyscale #backToTopBtn:hover {
+    background-color: #666666;
+    /* Darker gray on hover */
+    color: var(--table-bg);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transform: scale(1.03);
+}
+
+.greyscale .button.secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.greyscale .button.secondary:hover {
+    background-color: #999999;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
     .greyscale table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-top: 20px;
+        font-size: 0.8em;
     }
-    
+
     .greyscale th,
     .greyscale td {
-        border: 1px solid var(--border-color);
-        padding: 14px;
-        text-align: center;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
+        padding: 6px;
     }
-    
-    .greyscale th {
-        background-color: var(--primary-color);
-        color: var(--background-color);
-        font-weight: 600;
-        text-transform: uppercase;
+
+    .greyscale .event-marker-container {
+        flex-direction: row;
+        gap: 2px;
     }
-    
-    .greyscale tr:hover td {
-        background-color: var(--hover-color);
-        color: var(--background-color);
-        box-shadow: inset 0 0 5px var(--shadow-color);
+
+    .greyscale .event-marker {
+        width: 6px;
+        height: 6px;
     }
-    
-    .greyscale td.current-day {
-        background-color: var(--secondary-color);
-        color: var(--background-color);
-        font-weight: bold;
+
+    .greyscale .calendar-container {
+        padding: 10px;
     }
-    
-    /* Modal Styles */
-    .greyscale .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
-    
-    .greyscale .modal.show {
-        display: flex;
-    }
-    
-    .greyscale .modal-content {
-        background-color: rgba(255, 255, 255, 0.95); /* Brighter background for better visibility */
-        backdrop-filter: blur(3px);
-        color: var(--text-color);
-        border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-        border-radius: var(--border-radius);
-        box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
-        padding: 20px;
-        position: relative;
-    }
-    
-    .greyscale .modal-title {
-        color: var(--text-color);
-        font-size: 1.6em;
-        margin-bottom: 15px;
-    }
-    
-    .greyscale .event-list {
-        margin: 10px 0;
-        padding: 0;
-        list-style: none;
-    }
-    
-    .greyscale .event-list li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .greyscale .event-list li:last-child {
-        border-bottom: none;
-    }
-    
-    .greyscale .event-list button {
-        background-color: var(--event-marker-color);
-        color: var(--background-color);
-        border: none;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-easing);
-    }
-    
-    .greyscale .event-list button:hover {
-        background-color: var(--event-marker-hover);
-    }
-    
-    /* Button Styles */
+
     .greyscale .button,
     .greyscale .transparent-button,
-    .greyscale .back-to-top-button,
-    .greyscale .calendar-navigation button {
-        background-color: var(--primary-color);
-        color: var(--background-color);
-        border: none;
-        padding: 12px 20px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 1.1em;
-        font-weight: 500;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        box-shadow: 3px 3px 6px var(--shadow-color);
+    .greyscale #backToTopBtn {
+        padding: 8px 16px;
+        font-size: 0.9em;
     }
-    
-    .greyscale .button:hover,
-    .greyscale .transparent-button:hover,
-    .greyscale .back-to-top-button:hover,
-    .greyscale .calendar-navigation button:hover {
-        background-color: var(--hover-color);
-        transform: translateY(-3px);
-        box-shadow: 4px 5px 8px var(--shadow-color);
+
+    .greyscale .modal-content {
+        padding: 15px;
     }
-    
-    .greyscale .button:active,
-    .greyscale .transparent-button:active,
-    .greyscale .back-to-top-button:active,
-    .greyscale .calendar-navigation button:active {
-        transform: translateY(-1px);
-        box-shadow: 2px 2px 4px var(--shadow-color);
-    }
-    
-    .greyscale .button.secondary {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-    }
-    
-    .greyscale .button.secondary:hover {
-        background-color: var(--hover-color);
-        color: var(--background-color);
-    }
-    
-    /* Calendar Header Styles */
-    .greyscale .calendar-header {
-        text-align: center;
-        font-size: 1.4em;
-        font-weight: 600;
+
+    .greyscale .modal-title {
         margin-bottom: 10px;
-        color: var(--primary-color);
     }
+
+    .greyscale .event-list li {
+        padding: 8px 0;
+    }
+
+    .greyscale .event-list button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .greyscale th,
+    .greyscale td {
+        padding: 8px;
+    }
+
+    .greyscale table {
+        font-size: 0.9em;
+    }
+
+    .greyscale .button,
+    .greyscale .transparent-button,
+    .greyscale #backToTopBtn {
+        padding: 9px 18px;
+        font-size: 1em;
+    }
+
+    .greyscale .modal-content {
+        padding: 18px;
+        /* Slightly more padding on medium screens */
+    }
+
+    .greyscale .modal-title {
+        margin-bottom: 12px;
+    }
+
+    .greyscale .event-list li {
+        padding: 9px 0;
+    }
+
+    .greyscale .event-list button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+}
