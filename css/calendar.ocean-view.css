@@ -1,131 +1,138 @@
-/* calendar.ocean-view.css */
 /* ============================
     Ocean View Theme
     Purpose: Styles specific to the Ocean View theme.
     ============================ */
 
 .ocean-view {
-    /* Set theme-specific variables */
     --primary-color: #3498db;
-    /* Example */
-    --primary-color-rgb: 52, 152, 219;
-    /* Example */
+    /* Blue */
     --secondary-color: #2980b9;
-    /* Example */
-    --hover-color: #2ecc71;
-    /* Example */
-    --border-color: #ecf0f1;
-    /* Example */
-    --text-color: #34495e;
-    /* Example */
+    /* Darker blue */
+    --accent-color: #1abc9c;
+    /* Teal */
+    --text-color: #2c3e50;
+    /* Dark gray/navy */
     --background-color: #e0f2f7;
-    /* Light blueish background */
-    --event-marker-color: #e74c3c;
-    /* Example */
-    --event-marker-hover: #f39c12;
-    /* Example */
+    /* Light blue background */
+    --border-color: #bdc3c7;
+    /* Light gray border */
+    --hover-color: #3498db;
+    /* Blue on hover */
     --shadow-color: rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
     --border-radius: 8px;
     --transition-duration: 0.3s;
     --transition-easing: ease;
 }
 
-/* Base Styles */
 .ocean-view .container {
     background-color: var(--background-color);
     color: var(--text-color);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
+    /* Example font */
     line-height: 1.6;
-    margin: 30px auto;
-    padding: 30px;
+    padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 8px 16px var(--shadow-color);
-    max-width: 95%;
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
-/* Table Styles */
+.ocean-view .calendar-container {
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    margin-bottom: 20px;
+}
+
 .ocean-view table {
     width: 100%;
+    margin: 0 auto;
     border-collapse: collapse;
-    /* Use collapse for consistent borders */
-    border-spacing: 0;
-    margin-top: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    table-layout: fixed;
 }
 
 .ocean-view th,
 .ocean-view td {
-    border: 1px solid var(--border-color);
-    padding: 14px;
+    padding: 10px;
     text-align: center;
+    border: 1px solid var(--border-color);
     transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
+        color var(--transition-duration) var(--transition-easing);
+    word-wrap: break-word;
 }
 
 .ocean-view th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 600;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    font-weight: 500;
     text-transform: uppercase;
+    font-size: 0.9em;
 }
 
-.ocean-view tr:hover td {
-    background-color: lighten(var(--background-color), 5%);
-    box-shadow: inset 0 0 5px var(--shadow-color);
+.ocean-view td {
+    background-color: #ffffff;
+}
+
+.ocean-view td:hover {
+    background-color: #ecf0f1;
+    /* Light gray on hover */
+    cursor: pointer;
 }
 
 .ocean-view td.current-day {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: bold;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 500;
 }
 
-/* Modal Styles - Corrected Initial State */
-.ocean-view .modal {
-    display: none;
-    /* Initially hidden */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.ocean-view .modal.show {
-    /* Class to trigger visibility */
+.ocean-view .event-marker-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    gap: 3px;
+}
+
+.ocean-view .event-marker {
+    background-color: var(--accent-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+}
+
+.ocean-view .event-marker:hover {
+    background-color: #16a085;
+    /* Darker teal */
+    transform: scale(1.1);
 }
 
 .ocean-view .modal-content {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(3px);
+    background-color: #ffffff;
     color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
+    box-shadow: 0 4px 12px var(--shadow-color);
     padding: 20px;
-    position: relative;
-    /* For absolutely positioned children */
 }
 
 .ocean-view .modal-title {
     color: var(--primary-color);
-    font-size: 1.6em;
+    font-weight: 500;
     margin-bottom: 15px;
 }
 
 .ocean-view .event-list {
-    margin: 10px 0;
+    margin: 15px 0;
     padding: 0;
     list-style: none;
 }
 
 .ocean-view .event-list li {
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -137,70 +144,140 @@
 }
 
 .ocean-view .event-list button {
-    background-color: var(--event-marker-color);
-    color: white;
+    background-color: var(--secondary-color);
+    color: #ffffff;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     transition: background-color var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 .ocean-view .event-list button:hover {
-    background-color: darken(var(--event-marker-color), 10%);
+    background-color: var(--primary-color);
+    transform: scale(1.05);
 }
 
-/* Button Styles - Further Refined */
 .ocean-view .button,
 .ocean-view .transparent-button,
-.ocean-view .back-to-top-button,
-.ocean-view .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: white;
+.ocean-view #backToTopBtn {
+    background-color: var(--secondary-color);
+    color: #ffffff;
     border: none;
-    padding: 12px 20px;
+    padding: 10px 20px;
     border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 500;
+    font-size: 1em;
     transition: background-color var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
         box-shadow var(--transition-duration) var(--transition-easing);
-    box-shadow: 3px 3px 6px var(--shadow-color);
+    cursor: pointer;
+    box-shadow: 0 3px 8px var(--shadow-color);
 }
 
 .ocean-view .button:hover,
 .ocean-view .transparent-button:hover,
-.ocean-view .back-to-top-button:hover,
-.ocean-view .calendar-navigation button:hover {
-    background-color: darken(var(--hover-color), 5%);
-    transform: translateY(-3px);
-    box-shadow: 4px 5px 8px var(--shadow-color);
-}
-
-.ocean-view .button:active,
-.ocean-view .transparent-button:active,
-.ocean-view .back-to-top-button:active,
-.ocean-view .calendar-navigation button:active {
-    transform: translateY(-1px);
-    box-shadow: 2px 2px 4px var(--shadow-color);
+.ocean-view #backToTopBtn:hover {
+    background-color: var(--hover-color);
+    color: #ffffff;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transform: scale(1.03);
 }
 
 .ocean-view .button.secondary {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background-color: #e74c3c;
+    /* Red */
+    color: #ffffff;
 }
 
 .ocean-view .button.secondary:hover {
-    background-color: darken(var(--secondary-color), 10%);
-    color: white;
+    background-color: #c0392b;
+    /* Darker red */
 }
 
-/* Calendar Header Styles */
-.ocean-view .calendar-header {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .ocean-view table {
+        font-size: 0.8em;
+    }
+
+    .ocean-view th,
+    .ocean-view td {
+        padding: 6px;
+    }
+
+    .ocean-view .event-marker-container {
+        flex-direction: row;
+        gap: 2px;
+    }
+
+    .ocean-view .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .ocean-view .calendar-container {
+        padding: 10px;
+    }
+
+    .ocean-view .button,
+    .ocean-view .transparent-button,
+    .ocean-view #backToTopBtn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .ocean-view .modal-content {
+        padding: 15px;
+    }
+
+    .ocean-view .modal-title {
+        margin-bottom: 10px;
+    }
+
+    .ocean-view .event-list li {
+        padding: 8px 0;
+    }
+
+    .ocean-view .event-list button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .ocean-view th,
+    .ocean-view td {
+        padding: 8px;
+    }
+
+    .ocean-view table {
+        font-size: 0.9em;
+    }
+
+    .ocean-view .button,
+    .ocean-view .transparent-button,
+    .ocean-view #backToTopBtn {
+        padding: 9px 18px;
+        font-size: 1em;
+    }
+
+    .ocean-view .modal-content {
+        padding: 18px;
+        /* Slightly more padding on medium screens */
+    }
+
+    .ocean-view .modal-title {
+        margin-bottom: 12px;
+    }
+
+    .ocean-view .event-list li {
+        padding: 9px 0;
+    }
+
+    .ocean-view .event-list button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
 }
