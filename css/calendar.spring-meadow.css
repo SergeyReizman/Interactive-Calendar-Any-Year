@@ -1,192 +1,387 @@
-/* calendar.spring-meadow.css */
-/* ============================
-    Spring Meadow Theme
-    ============================ */
+/* ==========================================================================
+   Spring Meadow Theme - Enhanced Calendar Styles
+   Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
-    .spring-meadow {
-        /* Set theme-specific variables */
-        --primary-color: #6ab04c; /* Fresh Green */
-        --primary-color-rgb: 106, 176, 76;
-        --secondary-color: #4a7c59; /* Deep Forest Green */
-        --hover-color: #88c070; /* Soft Lime */
-        --border-color: #cdeac0; /* Light Pastel Green */
-        --text-color: #2c3e50; /* Dark Blue-Green */
-        --background-color: #f0f8e2; /* Soft Meadow Green */
-        --event-marker-color: #9beb86; /* Bright Grass */
-        --event-marker-hover: #5abf6b; /* Darker Spring Green */
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --border-radius: 8px;
-        --transition-duration: 0.3s;
-        --transition-easing: ease;
+/* Import the fonts (replace with actual paths if needed) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap');
+/* Example: Nunito and Pacifico */
+/* Or, if you have the fonts locally: */
+/* @font-face {
+    font-family: 'Nunito';
+    src: url('path/to/Nunito-Regular.woff2') format('woff2'),
+         url('path/to/Nunito-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+ ... other @font-face rules
+*/
+
+:root {
+    --spring-meadow-bg: #e8f5e9;
+    /* Light Green Background */
+    --spring-meadow-text: #212121;
+    /* Dark Gray Text */
+    --spring-meadow-primary: #4caf50;
+    /* Green Primary */
+    --spring-meadow-secondary: #81c784;
+    /* Lighter Green Secondary */
+    --spring-meadow-shadow: rgba(0, 0, 0, 0.1);
+    --spring-meadow-radius: 12px;
+    --spring-meadow-hover: #c8e6c9;
+    /* Lighter Green Hover */
+    --spring-meadow-current: #4caf50;
+    /* Green Current */
+    --spring-meadow-blur: 5px;
+    /* Subtle Blur */
+    --spring-meadow-transition: 0.3s ease-in-out;
+    --spring-meadow-table-bg: #fff;
+}
+
+/* Base Styles */
+.spring-meadow {
+    font-family: 'Nunito', sans-serif;
+    /* Use your spring meadow font */
+    line-height: 1.6;
+    color: var(--spring-meadow-text);
+}
+
+.spring-meadow .container {
+    background: linear-gradient(to bottom, var(--spring-meadow-bg), #dcedc8);
+    /* Slightly darker gradient */
+    padding: 40px;
+    border-radius: var(--spring-meadow-radius);
+    box-shadow: 0 10px 20px var(--spring-meadow-shadow);
+}
+
+/* Calendar Styles */
+.spring-meadow .calendar-container {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--spring-meadow-radius) - 5px);
+    box-shadow: 0 5px 10px var(--spring-meadow-shadow);
+    backdrop-filter: blur(var(--spring-meadow-blur));
+}
+
+.spring-meadow table {
+    width: 100%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: var(--spring-meadow-radius);
+    overflow: hidden;
+    background-color: var(--spring-meadow-table-bg);
+    box-shadow: 0 8px 16px var(--spring-meadow-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
+}
+
+.spring-meadow th,
+.spring-meadow td {
+    padding: 10px;
+    text-align: center;
+    border: none;
+    transition: var(--spring-meadow-transition);
+    word-wrap: break-word;
+}
+
+.spring-meadow th {
+    background-color: var(--spring-meadow-primary);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.spring-meadow td {
+    background-color: transparent;
+    position: relative;
+}
+
+.spring-meadow td:hover {
+    background-color: var(--spring-meadow-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    color: var(--spring-meadow-text);
+}
+
+.spring-meadow td.current-day {
+    background-color: var(--spring-meadow-current);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
     }
-    
-    /* Base Styles */
-    .spring-meadow .container {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        margin: 30px auto;
-        padding: 30px;
-        border-radius: var(--border-radius);
-        box-shadow: 0 8px 16px var(--shadow-color);
-        max-width: 95%;
+
+    50% {
+        transform: scale(1.05);
     }
-    
-    /* Table Styles */
+}
+
+/* Event Markers */
+.spring-meadow .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.spring-meadow .event-marker {
+    background-color: var(--spring-meadow-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--spring-meadow-transition);
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+}
+
+.spring-meadow .event-marker:hover {
+    background-color: color-mix(in srgb, var(--spring-meadow-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.spring-meadow .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(var(--spring-meadow-blur));
+    color: var(--spring-meadow-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--spring-meadow-radius);
+    box-shadow: 0 8px 20px var(--spring-meadow-shadow);
+    padding: 30px;
+}
+
+.spring-meadow .modal-title {
+    color: var(--spring-meadow-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-family: 'Pacifico', cursive;
+    /* Use a script font for the title */
+}
+
+.spring-meadow .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.spring-meadow .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--spring-meadow-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.spring-meadow .event-list li:hover {
+    background-color: rgba(129, 199, 132, 0.1);
+    /* Slightly transparent secondary color */
+}
+
+.spring-meadow .event-list li:last-child {
+    border-bottom: none;
+}
+
+.spring-meadow .event-list button {
+    background-color: var(--spring-meadow-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--spring-meadow-radius);
+    cursor: pointer;
+    transition: var(--spring-meadow-transition);
+    box-shadow: 0 4px 8px var(--spring-meadow-shadow);
+}
+
+.spring-meadow .event-list button:hover {
+    background-color: color-mix(in srgb, var(--spring-meadow-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--spring-meadow-shadow);
+}
+
+/* Buttons */
+.spring-meadow .button,
+.spring-meadow .transparent-button,
+.spring-meadow #backToTopBtn {
+    border-radius: var(--spring-meadow-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--spring-meadow-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--spring-meadow-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--spring-meadow-shadow);
+}
+
+.spring-meadow .button:hover,
+.spring-meadow .transparent-button:hover,
+.spring-meadow #backToTopBtn:hover {
+    background-color: var(--spring-meadow-hover);
+    color: var(--spring-meadow-text);
+    box-shadow: 0 8px 16px var(--spring-meadow-shadow);
+    transform: scale(1.02);
+}
+
+.spring-meadow .button.secondary {
+    background-color: var(--spring-meadow-secondary);
+    color: white;
+    box-shadow: 0 4px 8px var(--spring-meadow-shadow);
+}
+
+.spring-meadow .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--spring-meadow-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--spring-meadow-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.spring-meadow .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--spring-meadow-primary);
+    transition: var(--spring-meadow-transition);
+}
+
+.spring-meadow .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--spring-meadow-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
+.spring-meadow .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--spring-meadow-primary);
+    font-family: 'Pacifico', cursive;
+    /* Use the script font for the header */
+}
+
+/* Week Number */
+.spring-meadow .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(76, 175, 80, 0.7);
+    /* Slightly transparent green */
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.spring-meadow .no-events {
+    font-style: italic;
+    color: #689f38;
+    /* Darker green */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.spring-meadow td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.spring-meadow td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
     .spring-meadow table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-top: 20px;
+        font-size: 0.7em;
     }
-    
+
     .spring-meadow th,
     .spring-meadow td {
-        border: 1px solid var(--border-color);
-        padding: 14px;
-        text-align: center;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
+        padding: 4px;
     }
-    
-    .spring-meadow th {
-        background-color: var(--primary-color);
-        color: white;
-        font-weight: 600;
-        text-transform: uppercase;
+
+    .spring-meadow th:nth-child(1),
+    .spring-meadow td:nth-child(1) {
+        width: 15%;
     }
-    
-    .spring-meadow tr:hover td {
-        background-color: lighten(var(--background-color), 5%);
-        box-shadow: inset 0 0 5px var(--shadow-color);
+
+    .spring-meadow th:nth-child(2),
+    .spring-meadow td:nth-child(2) {
+        width: 20%;
     }
-    
-    .spring-meadow td.current-day {
-        background-color: var(--secondary-color);
-        color: white;
-        font-weight: bold;
+
+    .spring-meadow th:nth-child(3),
+    .spring-meadow td:nth-child(3) {
+        width: 15%;
     }
-    
-    /* Modal Styles */
-    .spring-meadow .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        justify-content: center;
+
+    .spring-meadow th:nth-child(4),
+    .spring-meadow td:nth-child(4) {
+        width: 20%;
+    }
+
+    .spring-meadow th:nth-child(5),
+    .spring-meadow td:nth-child(5) {
+        width: 15%;
+    }
+
+    .spring-meadow th:nth-child(6),
+    .spring-meadow td:nth-child(6) {
+        width: 15%;
+    }
+
+    .spring-meadow th:nth-child(7),
+    .spring-meadow td:nth-child(7) {
+        width: 10%;
+    }
+
+    .spring-meadow .event-marker-container {
+        flex-direction: column;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.6);
+        gap: 2px;
     }
-    
-    .spring-meadow .modal.show {
-        display: flex;
+
+    .spring-meadow .event-marker {
+        width: 6px;
+        height: 6px;
     }
-    
-    .spring-meadow .modal-content {
-        background-color: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(3px);
-        color: var(--text-color);
-        border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-        border-radius: var(--border-radius);
-        box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
-        padding: 20px;
-        position: relative;
+
+    .spring-meadow .calendar-container {
+        padding: 10px;
     }
-    
-    .spring-meadow .modal-title {
-        color: var(--primary-color);
-        font-size: 1.6em;
-        margin-bottom: 15px;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .spring-meadow th,
+    .spring-meadow td {
+        padding: 6px;
     }
-    
-    .spring-meadow .event-list {
-        margin: 10px 0;
-        padding: 0;
-        list-style: none;
+
+    .spring-meadow table {
+        font-size: 0.8em;
     }
-    
-    .spring-meadow .event-list li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .spring-meadow .event-list li:last-child {
-        border-bottom: none;
-    }
-    
-    .spring-meadow .event-list button {
-        background-color: var(--event-marker-color);
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-easing);
-    }
-    
-    .spring-meadow .event-list button:hover {
-        background-color: darken(var(--event-marker-color), 10%);
-    }
-    
-    /* Button Styles */
-    .spring-meadow .button,
-    .spring-meadow .transparent-button,
-    .spring-meadow .back-to-top-button,
-    .spring-meadow .calendar-navigation button {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 1.1em;
-        font-weight: 500;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        box-shadow: 3px 3px 6px var(--shadow-color);
-    }
-    
-    .spring-meadow .button:hover,
-    .spring-meadow .transparent-button:hover,
-    .spring-meadow .back-to-top-button:hover,
-    .spring-meadow .calendar-navigation button:hover {
-        background-color: darken(var(--hover-color), 5%);
-        transform: translateY(-3px);
-        box-shadow: 4px 5px 8px var(--shadow-color);
-    }
-    
-    .spring-meadow .button:active,
-    .spring-meadow .transparent-button:active,
-    .spring-meadow .back-to-top-button:active,
-    .spring-meadow .calendar-navigation button:active {
-        transform: translateY(-1px);
-        box-shadow: 2px 2px 4px var(--shadow-color);
-    }
-    
-    .spring-meadow .button.secondary {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-    }
-    
-    .spring-meadow .button.secondary:hover {
-        background-color: darken(var(--secondary-color), 10%);
-        color: white;
-    }
-    
-    /* Calendar Header Styles */
-    .spring-meadow .calendar-header {
-        text-align: center;
-        font-size: 1.4em;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--primary-color);
-    }
+}
