@@ -10,8 +10,8 @@
     --hover-color: #2ecc71;
     --border-color: #ecf0f1;
     --text-color: #34495e;
-    /* More noticeable background color */
-    --background-color: #e6f2ff; /* Light blue */
+    --background-color: #e6f2ff;
+    /* Light blue */
     --event-marker-color: #e74c3c;
     --event-marker-hover: #f39c12;
     --shadow-color: rgba(0, 0, 0, 0.1);
@@ -20,60 +20,75 @@
     --transition-easing: ease;
 }
 
-/* Base Styles */
 .serene-shores .container {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Arial', sans-serif;
-    line-height: 1.7;
-    margin: 20px auto;
-    padding: 25px;
+    /* Example: Choose a complementary font */
+    line-height: 1.6;
+    padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px var(--shadow-color);
-    max-width: 90%;
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
-/* Table Styles */
+.serene-shores .calendar-container {
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    margin-bottom: 20px;
+}
+
 .serene-shores table {
     width: 100%;
+    margin: 0 auto;
     border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    table-layout: fixed;
+    /* For even column distribution */
 }
 
 .serene-shores th,
 .serene-shores td {
-    border: 1px solid var(--border-color);
-    padding: 12px;
+    padding: 10px;
     text-align: center;
+    border: 1px solid var(--border-color);
     transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
+        color var(--transition-duration) var(--transition-easing);
+    word-wrap: break-word;
 }
 
 .serene-shores th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 600;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    font-weight: 500;
     text-transform: uppercase;
+    font-size: 0.9em;
 }
 
-.serene-shores tr:hover td {
-    background-color: lighten(var(--background-color), 5%);
-    box-shadow: inset 0 0 5px var(--shadow-color);
+.serene-shores td {
+    background-color: #ffffff;
+}
+
+.serene-shores td:hover {
+    background-color: #f0f0f0;
+    /* Light gray on hover */
+    cursor: pointer;
 }
 
 .serene-shores td.current-day {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: bold;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 500;
 }
 
-/* Event Markers */
-.serene-shores .event-container {
+.serene-shores .event-marker-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 5px;
+    gap: 3px;
 }
 
 .serene-shores .event-marker {
@@ -81,40 +96,38 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    margin: 2px;
-    transition: transform var(--transition-duration) var(--transition-easing);
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
 }
 
 .serene-shores .event-marker:hover {
     background-color: var(--event-marker-hover);
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
-/* Modal Styles - Improved with rgba */
 .serene-shores .modal-content {
-    background-color: rgba(255, 255, 255, 0.85); /* Mostly White with slight transparency */
-    backdrop-filter: blur(3px); /* Add a slight blur */
+    background-color: #ffffff;
     color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2); /* Subtle blue border */
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1); /* Blue-tinted shadow */
+    box-shadow: 0 4px 12px var(--shadow-color);
     padding: 20px;
 }
 
 .serene-shores .modal-title {
     color: var(--primary-color);
-    font-size: 1.6em;
+    font-weight: 500;
     margin-bottom: 15px;
 }
 
 .serene-shores .event-list {
-    margin: 10px 0;
+    margin: 15px 0;
     padding: 0;
     list-style: none;
 }
 
 .serene-shores .event-list li {
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -126,70 +139,123 @@
 }
 
 .serene-shores .event-list button {
-    background-color: var(--event-marker-color);
-    color: white;
+    background-color: var(--secondary-color);
+    color: #ffffff;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
     cursor: pointer;
     transition: background-color var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 2px 6px var(--shadow-color);
 }
 
 .serene-shores .event-list button:hover {
-    background-color: darken(var(--event-marker-color), 10%);
+    background-color: var(--primary-color);
+    transform: scale(1.05);
 }
 
-/* Button Styles - Further Refined */
 .serene-shores .button,
 .serene-shores .transparent-button,
-.serene-shores #backToTopBtn, /* Added to the group */
-.serene-shores .calendar-navigation button { /* Added to the group */
-    background-color: var(--primary-color);
-    color: white;
+.serene-shores #backToTopBtn {
+    background-color: var(--secondary-color);
+    color: #ffffff;
     border: none;
-    padding: 12px 20px;
+    padding: 10px 20px;
     border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 500;
+    font-size: 1em;
     transition: background-color var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
         box-shadow var(--transition-duration) var(--transition-easing);
-    box-shadow: 3px 3px 6px var(--shadow-color);
+    cursor: pointer;
+    box-shadow: 0 3px 8px var(--shadow-color);
 }
 
 .serene-shores .button:hover,
 .serene-shores .transparent-button:hover,
-.serene-shores #backToTopBtn:hover,
-.serene-shores .calendar-navigation button:hover {
-    background-color: darken(var(--hover-color), 5%);
-    transform: translateY(-3px);
-    box-shadow: 4px 5px 8px var(--shadow-color);
-}
-
-.serene-shores .button:active,
-.serene-shores .transparent-button:active,
-.serene-shores #backToTopBtn:active,
-.serene-shores .calendar-navigation button:active {
-    transform: translateY(-1px);
-    box-shadow: 2px 2px 4px var(--shadow-color);
+.serene-shores #backToTopBtn:hover {
+    background-color: var(--hover-color);
+    color: #ffffff;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transform: scale(1.03);
 }
 
 .serene-shores .button.secondary {
-    background-color: var(--secondary-color);
+    background-color: #bdc3c7;
+    /* Light gray */
     color: var(--text-color);
 }
 
 .serene-shores .button.secondary:hover {
-    background-color: darken(var(--secondary-color), 10%);
-    color: white;
+    background-color: #95a5a6;
+    /* Darker gray */
 }
 
-/* Calendar Header Styles */
-.serene-shores .calendar-header {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .serene-shores table {
+        font-size: 0.8em;
+    }
+
+    .serene-shores th,
+    .serene-shores td {
+        padding: 6px;
+    }
+
+    .serene-shores .event-marker-container {
+        flex-direction: row;
+        gap: 2px;
+    }
+
+    .serene-shores .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .serene-shores .calendar-container {
+        padding: 10px;
+    }
+
+    .serene-shores .button,
+    .serene-shores .transparent-button,
+    .serene-shores #backToTopBtn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .serene-shores .modal-content {
+        padding: 15px;
+    }
+
+    .serene-shores .modal-title {
+        margin-bottom: 10px;
+    }
+
+    .serene-shores .event-list li {
+        padding: 8px 0;
+    }
+
+    .serene-shores .event-list button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+        /* Slightly smaller font for mobile */
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .serene-shores th,
+    .serene-shores td {
+        padding: 8px;
+    }
+
+    .serene-shores table {
+        font-size: 0.9em;
+    }
+
+    .serene-shores .button,
+    .serene-shores .transparent-button,
+    .serene-shores #backToTopBtn {
+        padding: 9px 18px;
+        font-size: 1em;
+    }
 }
