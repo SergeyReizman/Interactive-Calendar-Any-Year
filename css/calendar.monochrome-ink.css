@@ -1,143 +1,365 @@
-/* ============================
-   Monochrome Ink Theme
-   Purpose: Styles specific to the Monochrome Ink theme for the calendar.
-============================ */
+/* ==========================================================================
+   Monochrome Ink Theme - Enhanced Calendar Styles
+   Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
 :root {
-    --mono-bg-color: #f5f5f5;        /* Light gray background */
-    --mono-text-color: #222222;      /* Dark gray text */
-    --mono-primary-color: #555555;   /* Medium gray accent */
-    --mono-secondary-color: #dddddd; /* Light gray highlights/borders */
-    --mono-shadow-color: rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    --mono-border-radius: 8px;       /* Rounded corners */
-    --mono-gradient-start: #f8f8f8;  /* Gradient start */
-    --mono-gradient-end: #e0e0e0;    /* Gradient end */
-    --mono-hover-color: #cccccc;     /* Hover effect */
-    --mono-current-day-bg: #bbbbbb;  /* Current day background */
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
+    --monochrome-ink-bg: #f8f8f8;
+    /* Off-White Background */
+    --monochrome-ink-text: #333;
+    /* Dark Gray Text */
+    --monochrome-ink-primary: #555;
+    /* Medium Gray Primary */
+    --monochrome-ink-secondary: #888;
+    /* Light Gray Secondary */
+    --monochrome-ink-shadow: rgba(0, 0, 0, 0.1);
+    --monochrome-ink-radius: 12px;
+    --monochrome-ink-hover: #eee;
+    /* Light Gray Hover */
+    --monochrome-ink-current: #555;
+    /* Medium Gray Current */
+    --monochrome-ink-blur: 3px;
+    /* Subtle Blur */
+    --monochrome-ink-transition: 0.3s ease-in-out;
+    --monochrome-ink-table-bg: #fff;
+}
+
+/* Base Styles */
+.monochrome-ink {
+    font-family: 'Arial', sans-serif;
+    /* Simple and Clean */
+    line-height: 1.6;
+    color: var(--monochrome-ink-text);
 }
 
 .monochrome-ink .container {
-    background: linear-gradient(to bottom, var(--mono-gradient-start), var(--mono-gradient-end));
-    color: var(--mono-text-color);
-    font-family: 'Georgia', serif;
-    line-height: 1.6;
-    padding: 20px;
-    border-radius: var(--mono-border-radius);
-    box-shadow: 0 4px 8px var(--mono-shadow-color);
-    transition: background var(--transition-duration) var(--transition-easing);
+    background: linear-gradient(to bottom, var(--monochrome-ink-bg), #f0f0f0);
+    padding: 40px;
+    border-radius: var(--monochrome-ink-radius);
+    box-shadow: 0 10px 20px var(--monochrome-ink-shadow);
 }
 
+/* Calendar Styles */
 .monochrome-ink .calendar-container {
-    padding: 20px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--monochrome-ink-radius) - 5px);
+    box-shadow: 0 5px 10px var(--monochrome-ink-shadow);
+    backdrop-filter: blur(var(--monochrome-ink-blur));
 }
 
 .monochrome-ink table {
-    border-collapse: collapse;
     width: 100%;
-    margin: 20px auto;
-    box-shadow: 3px 3px 8px var(--mono-shadow-color);
-    border-radius: var(--mono-border-radius);
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: var(--monochrome-ink-radius);
     overflow: hidden;
+    background-color: var(--monochrome-ink-table-bg);
+    box-shadow: 0 8px 16px var(--monochrome-ink-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
 }
 
 .monochrome-ink th,
 .monochrome-ink td {
-    border: 1px solid var(--mono-secondary-color);
-    padding: 12px;
+    padding: 10px;
     text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
+    border: none;
+    transition: var(--monochrome-ink-transition);
+    word-wrap: break-word;
 }
 
 .monochrome-ink th {
-    background-color: var(--mono-secondary-color);
-    color: var(--mono-text-color);
-    font-weight: bold;
+    background-color: var(--monochrome-ink-primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .monochrome-ink td {
-    background-color: white;
+    background-color: transparent;
+    position: relative;
 }
 
 .monochrome-ink td:hover {
-    background-color: var(--mono-hover-color);
+    background-color: var(--monochrome-ink-hover);
     transform: scale(1.03);
-    box-shadow: 0 2px 4px var(--mono-shadow-color);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    color: var(--monochrome-ink-text);
 }
 
 .monochrome-ink td.current-day {
-    background-color: var(--mono-current-day-bg);
-    border: 2px solid var(--mono-primary-color);
-    font-weight: bold;
-    box-shadow: inset 0 0 4px var(--mono-shadow-color);
+    background-color: var(--monochrome-ink-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(85, 85, 85, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.monochrome-ink .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
 }
 
 .monochrome-ink .event-marker {
-    background-color: var(--mono-primary-color);
-    width: 8px;
-    height: 8px;
+    background-color: var(--monochrome-ink-primary);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    margin: 2px auto;
-    transition: transform var(--transition-duration) var(--transition-easing);
+    transition: var(--monochrome-ink-transition);
+    box-shadow: 0 0 6px rgba(85, 85, 85, 0.6);
 }
 
 .monochrome-ink .event-marker:hover {
-    background-color: #333;
-    transform: scale(1.2);
+    background-color: color-mix(in srgb, var(--monochrome-ink-primary), black 15%);
+    transform: scale(1.1);
 }
 
+/* Modal Styles */
 .monochrome-ink .modal-content {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(3px);
-    color: var(--mono-text-color);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: var(--mono-border-radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(var(--monochrome-ink-blur));
+    color: var(--monochrome-ink-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--monochrome-ink-radius);
+    box-shadow: 0 8px 20px var(--monochrome-ink-shadow);
+    padding: 30px;
 }
 
 .monochrome-ink .modal-title {
-    color: var(--mono-primary-color);
-    font-weight: bold;
-    margin-bottom: 15px;
+    color: var(--monochrome-ink-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
-.monochrome-ink .button {
-    border-radius: var(--mono-border-radius);
-    padding: 10px 18px;
-    font-size: 1em;
-    transition: all var(--transition-duration) var(--transition-easing);
+.monochrome-ink .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.monochrome-ink .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--monochrome-ink-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.monochrome-ink .event-list li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.monochrome-ink .event-list li:last-child {
+    border-bottom: none;
+}
+
+.monochrome-ink .event-list button {
+    background-color: var(--monochrome-ink-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--monochrome-ink-radius);
     cursor: pointer;
-    border: 2px solid var(--mono-primary-color);
-    color: var(--mono-text-color);
+    transition: var(--monochrome-ink-transition);
+    box-shadow: 0 4px 8px var(--monochrome-ink-shadow);
+}
+
+.monochrome-ink .event-list button:hover {
+    background-color: color-mix(in srgb, var(--monochrome-ink-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--monochrome-ink-shadow);
+}
+
+/* Buttons */
+.monochrome-ink .button,
+.monochrome-ink .transparent-button,
+.monochrome-ink #backToTopBtn {
+    border-radius: var(--monochrome-ink-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--monochrome-ink-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--monochrome-ink-text);
     background-color: transparent;
-    box-shadow: 2px 2px 5px var(--mono-shadow-color);
+    box-shadow: 0 6px 12px var(--monochrome-ink-shadow);
 }
 
-.monochrome-ink .button:hover {
-    background-color: var(--mono-hover-color);
-    box-shadow: 3px 3px 7px var(--mono-shadow-color);
+.monochrome-ink .button:hover,
+.monochrome-ink .transparent-button:hover,
+.monochrome-ink #backToTopBtn:hover {
+    background-color: var(--monochrome-ink-hover);
+    color: var(--monochrome-ink-text);
+    box-shadow: 0 8px 16px var(--monochrome-ink-shadow);
+    transform: scale(1.02);
 }
 
+.monochrome-ink .button.secondary {
+    background-color: var(--monochrome-ink-secondary);
+    color: white;
+    box-shadow: 0 4px 8px var(--monochrome-ink-shadow);
+}
+
+.monochrome-ink .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--monochrome-ink-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--monochrome-ink-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
 .monochrome-ink .calendar-navigation button {
     background-color: transparent;
     border: none;
     font-size: 1.2em;
-    padding: 5px 10px;
+    padding: 8px 16px;
     cursor: pointer;
-    color: var(--mono-primary-color);
-    transition: color var(--transition-duration) var(--transition-easing);
+    color: var(--monochrome-ink-primary);
+    transition: var(--monochrome-ink-transition);
 }
 
 .monochrome-ink .calendar-navigation button:hover {
-    color: #333;
+    color: color-mix(in srgb, var(--monochrome-ink-primary), black 15%);
+    transform: scale(1.1);
 }
 
+/* Calendar Header */
 .monochrome-ink .calendar-header {
     text-align: center;
-    font-size: 1.4em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--mono-primary-color);
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--monochrome-ink-primary);
+}
+
+/* Week Number */
+.monochrome-ink .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(85, 85, 85, 0.7);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.monochrome-ink .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.monochrome-ink td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.monochrome-ink td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
+    .monochrome-ink table {
+        font-size: 0.7em;
+    }
+
+    .monochrome-ink th,
+    .monochrome-ink td {
+        padding: 4px;
+    }
+
+    .monochrome-ink th:nth-child(1),
+    .monochrome-ink td:nth-child(1) {
+        width: 15%;
+    }
+
+    .monochrome-ink th:nth-child(2),
+    .monochrome-ink td:nth-child(2) {
+        width: 20%;
+    }
+
+    .monochrome-ink th:nth-child(3),
+    .monochrome-ink td:nth-child(3) {
+        width: 15%;
+    }
+
+    .monochrome-ink th:nth-child(4),
+    .monochrome-ink td:nth-child(4) {
+        width: 20%;
+    }
+
+    .monochrome-ink th:nth-child(5),
+    .monochrome-ink td:nth-child(5) {
+        width: 15%;
+    }
+
+    .monochrome-ink th:nth-child(6),
+    .monochrome-ink td:nth-child(6) {
+        width: 15%;
+    }
+
+    .monochrome-ink th:nth-child(7),
+    .monochrome-ink td:nth-child(7) {
+        width: 10%;
+    }
+
+    .monochrome-ink .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .monochrome-ink .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .monochrome-ink .calendar-container {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .monochrome-ink th,
+    .monochrome-ink td {
+        padding: 6px;
+    }
+
+    .monochrome-ink table {
+        font-size: 0.8em;
+    }
 }

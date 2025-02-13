@@ -1,173 +1,367 @@
-/* ============================
-    Mountain Peak Theme
-    Purpose: Styles specific to the Mountain Peak theme for the calendar.
-   ============================ */
+/* ==========================================================================
+   Mountain Peak Theme - Enhanced Calendar Styles
+   Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
-   :root {
-    --mountain-bg-color: #f0f0f0;         /* Light background */
-    --mountain-text-color: #333333;         /* Dark text */
-    --mountain-primary-color: #4a6c3d;     /* Earthy green accent */
-    --mountain-secondary-color: #c1d0b5; /* Soft earthy highlights/borders */
-    --mountain-shadow-color: rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    --mountain-border-radius: 8px;         /* Rounded corners */
-    --mountain-gradient-start: #e0e0e0;     /* Gradient start */
-    --mountain-gradient-end: #d0d0d0;       /* Gradient end */
-    --mountain-hover-color: #d1d1d1;       /* Hover effect */
-    --mountain-current-day-bg: #a6b89c;     /* Current day background */
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
+:root {
+    --mountain-peak-bg: #f0f0f5;
+    /* Light Grayish Blue - Mountain Mist */
+    --mountain-peak-text: #333;
+    /* Dark Gray - Mountain Shadow */
+    --mountain-peak-primary: #28a745;
+    /* Forest Green - Lush Vegetation */
+    --mountain-peak-secondary: #007bff;
+    /* Sky Blue - Clear Day */
+    --mountain-peak-shadow: rgba(0, 0, 0, 0.15);
+    /* Soft Shadow */
+    --mountain-peak-radius: 12px;
+    --mountain-peak-hover: #c8e6c9;
+    /* Light Green - Gentle Slope */
+    --mountain-peak-current: #28a745;
+    /* Forest Green */
+    --mountain-peak-blur: 5px;
+    /* Subtle Blur */
+    --mountain-peak-transition: 0.3s ease-in-out;
+    --mountain-peak-table-bg: #fff;
+}
+
+/* Base Styles */
+.mountain-peak {
+    font-family: 'Open Sans', sans-serif;
+    /* Clean and Modern */
+    line-height: 1.6;
+    color: var(--mountain-peak-text);
 }
 
 .mountain-peak .container {
-    background: linear-gradient(to bottom, var(--mountain-gradient-start), var(--mountain-gradient-end));
-    color: var(--mountain-text-color);
-    line-height: 1.6;
-    padding: 20px;
-    transition: background var(--transition-duration) var(--transition-easing);
+    background: linear-gradient(to bottom, var(--mountain-peak-bg), #e0e0e0);
+    padding: 40px;
+    border-radius: var(--mountain-peak-radius);
+    box-shadow: 0 10px 20px var(--mountain-peak-shadow);
 }
 
+/* Calendar Styles */
 .mountain-peak .calendar-container {
-    padding: 20px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--mountain-peak-radius) - 5px);
+    box-shadow: 0 5px 10px var(--mountain-peak-shadow);
+    backdrop-filter: blur(var(--mountain-peak-blur));
 }
 
 .mountain-peak table {
-    border-collapse: collapse;
     width: 100%;
-    margin: 20px auto;
-    box-shadow: 3px 3px 8px var(--mountain-shadow-color);
-    table-layout: fixed; /* Added for consistent column widths */
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: var(--mountain-peak-radius);
+    overflow: hidden;
+    background-color: var(--mountain-peak-table-bg);
+    box-shadow: 0 8px 16px var(--mountain-peak-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
 }
 
-.mountain-peak th, .mountain-peak td {
-    border: 1px solid var(--mountain-secondary-color);
-    padding: 12px;
+.mountain-peak th,
+.mountain-peak td {
+    padding: 10px;
     text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
-    overflow: hidden; /* Prevent content from overflowing cells */
-    white-space: nowrap; /* Prevent text from wrapping */
-    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+    border: none;
+    transition: var(--mountain-peak-transition);
+    word-wrap: break-word;
 }
 
 .mountain-peak th {
-    background-color: var(--mountain-secondary-color);
-    font-weight: bold;
+    background-color: var(--mountain-peak-primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .mountain-peak td {
-    background-color: white;
+    background-color: transparent;
+    position: relative;
 }
 
 .mountain-peak td:hover {
-    background-color: var(--mountain-hover-color);
+    background-color: var(--mountain-peak-hover);
     transform: scale(1.03);
-    box-shadow: 0 2px 4px var(--mountain-shadow-color);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    color: var(--mountain-peak-text);
 }
 
 .mountain-peak td.current-day {
-    background-color: var(--mountain-current-day-bg);
-    border: 2px solid var(--mountain-primary-color);
-    font-weight: bold;
-    box-shadow: inset 0 0 4px var(--mountain-shadow-color);
+    background-color: var(--mountain-peak-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.mountain-peak .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
 }
 
 .mountain-peak .event-marker {
-    background-color: var(--mountain-primary-color);
-    width: 8px;
-    height: 8px;
+    background-color: var(--mountain-peak-primary);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    transition: transform var(--transition-duration) var(--transition-easing);
+    transition: var(--mountain-peak-transition);
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.6);
 }
 
 .mountain-peak .event-marker:hover {
-    background-color: #333;
-    transform: scale(1.2);
+    background-color: color-mix(in srgb, var(--mountain-peak-primary), black 15%);
+    transform: scale(1.1);
 }
 
+/* Modal Styles */
 .mountain-peak .modal-content {
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(3px);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: var(--mountain-border-radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(var(--mountain-peak-blur));
+    color: var(--mountain-peak-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--mountain-peak-radius);
+    box-shadow: 0 8px 20px var(--mountain-peak-shadow);
+    padding: 30px;
 }
 
 .mountain-peak .modal-title {
-    color: var(--mountain-primary-color);
-    font-weight: bold;
-    margin-bottom: 15px;
+    color: var(--mountain-peak-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
-.mountain-peak .button {
-    border-radius: var(--mountain-border-radius);
-    padding: 10px 18px;
-    font-size: 1em;
-    transition: all var(--transition-duration) var(--transition-easing);
+.mountain-peak .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mountain-peak .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--mountain-peak-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.mountain-peak .event-list li:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    /* Slightly transparent secondary color */
+}
+
+.mountain-peak .event-list li:last-child {
+    border-bottom: none;
+}
+
+.mountain-peak .event-list button {
+    background-color: var(--mountain-peak-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--mountain-peak-radius);
     cursor: pointer;
-    border: 2px solid var(--mountain-primary-color);
+    transition: var(--mountain-peak-transition);
+    box-shadow: 0 4px 8px var(--mountain-peak-shadow);
+}
+
+.mountain-peak .event-list button:hover {
+    background-color: color-mix(in srgb, var(--mountain-peak-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--mountain-peak-shadow);
+}
+
+/* Buttons */
+.mountain-peak .button,
+.mountain-peak .transparent-button,
+.mountain-peak #backToTopBtn {
+    border-radius: var(--mountain-peak-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--mountain-peak-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--mountain-peak-text);
     background-color: transparent;
-    box-shadow: 2px 2px 5px var(--mountain-shadow-color);
+    box-shadow: 0 6px 12px var(--mountain-peak-shadow);
 }
 
-.mountain-peak .button:hover {
-    background-color: var(--mountain-hover-color);
-    box-shadow: 3px 3px 7px var(--mountain-shadow-color);
+.mountain-peak .button:hover,
+.mountain-peak .transparent-button:hover,
+.mountain-peak #backToTopBtn:hover {
+    background-color: var(--mountain-peak-hover);
+    color: var(--mountain-peak-text);
+    box-shadow: 0 8px 16px var(--mountain-peak-shadow);
+    transform: scale(1.02);
 }
 
+.mountain-peak .button.secondary {
+    background-color: var(--mountain-peak-secondary);
+    color: white;
+    box-shadow: 0 4px 8px var(--mountain-peak-shadow);
+}
+
+.mountain-peak .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--mountain-peak-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--mountain-peak-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
 .mountain-peak .calendar-navigation button {
     background-color: transparent;
     border: none;
     font-size: 1.2em;
-    padding: 5px 10px;
+    padding: 8px 16px;
     cursor: pointer;
-    color: var(--mountain-primary-color);
-    transition: color var(--transition-duration) var(--transition-easing);
+    color: var(--mountain-peak-primary);
+    transition: var(--mountain-peak-transition);
 }
 
 .mountain-peak .calendar-navigation button:hover {
-    color: #333;
+    color: color-mix(in srgb, var(--mountain-peak-primary), black 15%);
+    transform: scale(1.1);
 }
 
+/* Calendar Header */
 .mountain-peak .calendar-header {
     text-align: center;
-    font-size: 1.4em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--mountain-primary-color);
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--mountain-peak-primary);
+}
+
+/* Week Number */
+.mountain-peak .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(40, 167, 69, 0.7);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.mountain-peak .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.mountain-peak td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.mountain-peak td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    .mountain-peak th, .mountain-peak td {
-        padding: 8px; /* Slightly smaller padding */
-        font-size: 0.9em;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+@media (max-width: 575.98px) {
+    .mountain-peak table {
+        font-size: 0.7em;
     }
 
-    .mountain-peak .calendar-header {
-        font-size: 1.2em;
+    .mountain-peak th,
+    .mountain-peak td {
+        padding: 4px;
     }
 
-    .mountain-peak .button {
-        padding: 8px 16px;
-        font-size: 0.9em;
+    .mountain-peak th:nth-child(1),
+    .mountain-peak td:nth-child(1) {
+        width: 15%;
+    }
+
+    .mountain-peak th:nth-child(2),
+    .mountain-peak td:nth-child(2) {
+        width: 20%;
+    }
+
+    .mountain-peak th:nth-child(3),
+    .mountain-peak td:nth-child(3) {
+        width: 15%;
+    }
+
+    .mountain-peak th:nth-child(4),
+    .mountain-peak td:nth-child(4) {
+        width: 20%;
+    }
+
+    .mountain-peak th:nth-child(5),
+    .mountain-peak td:nth-child(5) {
+        width: 15%;
+    }
+
+    .mountain-peak th:nth-child(6),
+    .mountain-peak td:nth-child(6) {
+        width: 15%;
+    }
+
+    .mountain-peak th:nth-child(7),
+    .mountain-peak td:nth-child(7) {
+        width: 10%;
+    }
+
+    .mountain-peak .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .mountain-peak .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .mountain-peak .calendar-container {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .mountain-peak th,
+    .mountain-peak td {
+        padding: 6px;
     }
 
     .mountain-peak table {
-        display: block;
-        overflow-x: auto;
-        table-layout: auto; /* Allow column widths to adjust */
+        font-size: 0.8em;
     }
-
-    /* Column width adjustments */
-    .mountain-peak th:nth-child(1), .mountain-peak td:nth-child(1) { width: 12%; }
-    .mountain-peak th:nth-child(2), .mountain-peak td:nth-child(2) { width: 14%; }
-    .mountain-peak th:nth-child(3), .mountain-peak td:nth-child(3) { width: 14%; }
-    .mountain-peak th:nth-child(4), .mountain-peak td:nth-child(4) { width: 14%; }
-    .mountain-peak th:nth-child(5), .mountain-peak td:nth-child(5) { width: 14%; }
-    .mountain-peak th:nth-child(6), .mountain-peak td:nth-child(6) { width: 14%; }
-    .mountain-peak th:nth-child(7), .mountain-peak td:nth-child(7) { width: 12%; }
-
 }
