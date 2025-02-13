@@ -1,150 +1,164 @@
-/* calendar.cherry-garden.css */
 /* ============================
-    Cherry Garden Theme (Styled like Serene Shores)
-    Purpose: Styles specific to the Cherry Garden theme, using Serene Shores layout.
-============================ */
+    Cherry Garden Theme -  Sweet, Blossoming, and Vibrant!
+    Purpose: Styles specific to the Cherry Garden theme for the calendar.
+    ============================ */
 
-.cherry-garden {
-    --primary-color: #f06292;
-    --primary-color-rgb: 240, 98, 146;
-    --secondary-color: #ba68c8;
-    --hover-color: #d81b60;
-    --border-color: #f8bbd0;
-    --text-color: #4a148c;
-    --background-color: #fce4ec;
-    --event-marker-color: #c2185b;
-    --event-marker-hover: #9c27b0;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
+:root {
+    --cherry-garden-bg-color: #f8e0ff;
+    /* Light Lavender */
+    --cherry-garden-text-color: #332244;
+    /* Deep Plum */
+    --cherry-garden-primary-color: #e9967a;
+    /* Coral */
+    --cherry-garden-secondary-color: #d8bfd8;
+    /* Thistle */
+    --cherry-garden-accent-color-1: #c790c7;
+    /* Light Orchid */
+    --cherry-garden-accent-color-2: #db70db;
+    /* Magenta */
+    --cherry-garden-accent-color-3: #dda0dd;
+    /* Plum */
+    --cherry-garden-accent-color-4: #ee82ee;
+    /* Violet */
+    --cherry-garden-accent-color-5: #f08080;
+    /* Light Coral */
+    --cherry-garden-shadow-color: rgba(0, 0, 0, 0.2);
+    --cherry-garden-border-radius: 15px;
+    --cherry-garden-gradient-start: #f8e0ff;
+    --cherry-garden-gradient-end: #ffe4e1;
+    /* Misty Rose */
+    --cherry-garden-hover-color: #d070ad;
+    /* Medium Violet Red */
+    --cherry-garden-current-day-bg: #e9967a;
     --transition-duration: 0.3s;
-    --transition-easing: ease;
+    --transition-easing: ease-in-out;
 }
 
-/* Base Styles */
 .cherry-garden .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background: linear-gradient(to bottom, var(--cherry-garden-gradient-start), var(--cherry-garden-gradient-end));
+    color: var(--cherry-garden-text-color);
     font-family: 'Arial', sans-serif;
-    line-height: 1.7;
-    margin: 20px auto;
+    /* Modern sans-serif font */
+    line-height: 1.6;
     padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px var(--shadow-color);
-    max-width: 90%;
+    border-radius: var(--cherry-garden-border-radius);
+    box-shadow: 6px 6px 15px var(--cherry-garden-shadow-color);
+    border: 2px solid var(--cherry-garden-secondary-color);
 }
 
-/* Table Styles */
+.cherry-garden .calendar-container {
+    padding: 20px;
+    background: linear-gradient(145deg, var(--cherry-garden-accent-color-1), var(--cherry-garden-accent-color-2));
+    border-radius: var(--cherry-garden-border-radius);
+    border: 2px dashed var(--cherry-garden-primary-color);
+}
+
 .cherry-garden table {
-    width: 100%;
     border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 20px;
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 4px 4px 12px var(--cherry-garden-shadow-color);
+    border-radius: var(--cherry-garden-border-radius);
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid var(--cherry-garden-secondary-color);
+    table-layout: fixed;
 }
 
 .cherry-garden th,
 .cherry-garden td {
-    border: 1px solid var(--border-color);
-    padding: 12px;
+    border: 1px solid var(--cherry-garden-secondary-color);
+    /* Slightly thinner borders */
+    padding: 8px;
     text-align: center;
     transition: background-color var(--transition-duration) var(--transition-easing),
         color var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
+        box-shadow var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+    word-wrap: break-word;
 }
 
 .cherry-garden th {
-    background-color: var(--primary-color);
-    color: white;
+    background: linear-gradient(to bottom, var(--cherry-garden-accent-color-3), var(--cherry-garden-accent-color-4));
+    color: var(--cherry-garden-text-color);
     font-weight: 600;
+    /* Slightly less bold */
     text-transform: uppercase;
+    font-size: 1em;
+    letter-spacing: 0.5px;
 }
 
-.cherry-garden tr:hover td {
-    background-color: lighten(var(--background-color), 5%);
-    box-shadow: inset 0 0 5px var(--shadow-color);
+.cherry-garden td {
+    background-color: #ffffff;
+}
+
+.cherry-garden td:hover {
+    background: linear-gradient(to bottom, var(--cherry-garden-hover-color), var(--cherry-garden-accent-color-5));
+    transform: scale(1.03);
+    /* Subtler scale effect */
+    box-shadow: 0 4px 8px var(--cherry-garden-shadow-color);
+    border: 1px solid var(--cherry-garden-primary-color);
+    /* Highlight border on hover */
 }
 
 .cherry-garden td.current-day {
-    background-color: var(--secondary-color);
+    background: linear-gradient(to bottom, var(--cherry-garden-current-day-bg), var(--cherry-garden-accent-color-1));
+    border: 2px solid var(--cherry-garden-primary-color);
+    font-weight: 600;
     color: white;
-    font-weight: bold;
+    box-shadow: inset 0 0 8px var(--cherry-garden-shadow-color);
 }
 
-/* Event Markers */
-.cherry-garden .event-container {
+
+.cherry-garden .event-marker-container {
     display: flex;
-    justify-content: center;
-    margin-top: 5px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3px;
+    gap: 3px;
 }
 
 .cherry-garden .event-marker {
-    background-color: var(--event-marker-color);
-    width: 8px;
-    height: 8px;
+    background: linear-gradient(to bottom, var(--cherry-garden-primary-color), var(--cherry-garden-accent-color-2));
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    margin: 2px;
-    transition: transform var(--transition-duration) var(--transition-easing);
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        transform var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 0 4px var(--cherry-garden-shadow-color);
 }
 
 .cherry-garden .event-marker:hover {
-    background-color: var(--event-marker-hover);
+    background: linear-gradient(to bottom, var(--cherry-garden-accent-color-1), var(--cherry-garden-accent-color-3));
     transform: scale(1.2);
 }
 
-/* Modal Styles - Correctly placed and ONLY ONCE */
-.cherry-garden .modal .modal-content {
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(5px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
-    border-radius: var(--border-radius);
-    box-shadow: 0 6px 16px rgba(var(--primary-color-rgb), 0.2);
+.cherry-garden .modal-content {
+    background: linear-gradient(to bottom, var(--cherry-garden-accent-color-2), var(--cherry-garden-accent-color-4));
+    backdrop-filter: blur(8px);
+    color: var(--cherry-garden-text-color);
+    border: 2px solid var(--cherry-garden-primary-color);
+    border-radius: var(--cherry-garden-border-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     padding: 20px;
 }
 
-.cherry-garden .modal .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    z-index: 10;
-}
-
-.cherry-garden .modal .close-button::before {
-    content: "\00D7";
-    font-size: 1.2rem;
-    line-height: 1;
-}
-
-.cherry-garden .modal .close-button:hover {
-    background-color: var(--primary-color);
-    color: black;
-}
-
 .cherry-garden .modal-title {
-    color: var(--primary-color);
-    font-weight: 700;
+    color: var(--cherry-garden-primary-color);
+    font-weight: 600;
     margin-bottom: 20px;
-    font-size: 1.8em;
+    text-shadow: 1px 1px 3px var(--cherry-garden-shadow-color);
 }
 
 .cherry-garden .event-list {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px 0;
+    padding: 0;
+    list-style: none;
 }
 
 .cherry-garden .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--cherry-garden-secondary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -155,70 +169,165 @@
 }
 
 .cherry-garden .event-list button {
-    background-color: var(--event-marker-color);
+    background: linear-gradient(to bottom, var(--cherry-garden-primary-color), var(--cherry-garden-accent-color-1));
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: var(--cherry-garden-border-radius);
     cursor: pointer;
     transition: background-color var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 3px 6px var(--cherry-garden-shadow-color);
 }
 
 .cherry-garden .event-list button:hover {
-    background-color: darken(var(--event-marker-color), 10%);
+    background: linear-gradient(to bottom, var(--cherry-garden-accent-color-3), var(--cherry-garden-accent-color-5));
+    transform: scale(1.05);
 }
 
-/* Button Styles */
 .cherry-garden .button,
 .cherry-garden .transparent-button,
-.cherry-garden #backToTopBtn,
-.cherry-garden .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 500;
+.cherry-garden #backToTopBtn {
+    border-radius: var(--cherry-garden-border-radius);
+    padding: 10px 20px;
+    /* Adjusted padding */
+    font-size: 1em;
+    /* Adjusted font size */
     transition: background-color var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
         box-shadow var(--transition-duration) var(--transition-easing);
-    box-shadow: 3px 3px 6px var(--shadow-color);
+    cursor: pointer;
+    border: 2px solid var(--cherry-garden-primary-color);
+    /* Adjusted border */
+    color: var(--cherry-garden-text-color);
+    background: linear-gradient(to bottom, var(--cherry-garden-accent-color-4), var(--cherry-garden-accent-color-5));
+    box-shadow: 4px 4px 10px var(--cherry-garden-shadow-color);
+    /* Adjusted shadow */
 }
 
 .cherry-garden .button:hover,
 .cherry-garden .transparent-button:hover,
-.cherry-garden #backToTopBtn:hover,
-.cherry-garden .calendar-navigation button:hover {
-    background-color: darken(var(--hover-color), 5%);
-    transform: translateY(-3px);
-    box-shadow: 4px 5px 8px var(--shadow-color);
-}
-
-.cherry-garden .button:active,
-.cherry-garden .transparent-button:active,
-.cherry-garden #backToTopBtn:active,
-.cherry-garden .calendar-navigation button:active {
-    transform: translateY(-1px);
-    box-shadow: 2px 2px 4px var(--shadow-color);
+.cherry-garden #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--cherry-garden-hover-color), var(--cherry-garden-accent-color-2));
+    color: var(--cherry-garden-text-color);
+    box-shadow: 5px 5px 12px var(--cherry-garden-shadow-color);
+    /* Adjusted shadow */
+    transform: scale(1.03);
+    /* Subtler scale */
 }
 
 .cherry-garden .button.secondary {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background: linear-gradient(to bottom, var(--cherry-garden-secondary-color), var(--cherry-garden-accent-color-3));
+    border: none;
+    color: var(--cherry-garden-text-color);
 }
 
 .cherry-garden .button.secondary:hover {
-    background-color: darken(var(--secondary-color), 10%);
-    color: white;
+    background: linear-gradient(to bottom, var(--cherry-garden-accent-color-5), var(--cherry-garden-accent-color-1));
 }
 
-/* Calendar Header Styles */
-.cherry-garden .calendar-header {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 600;
-    margin-bottom: 10px; /* Correct: 10px with unit */
-    color: var(--primary-color); /* Added color for completeness */
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .cherry-garden table {
+        font-size: 0.7em;
+    }
+
+    .cherry-garden th,
+    .cherry-garden td {
+        padding: 6px;
+        border: 1px solid var(--cherry-garden-secondary-color);
+    }
+
+    .cherry-garden th:nth-child(1),
+    .cherry-garden td:nth-child(1) {
+        width: 14%;
+    }
+
+    .cherry-garden th:nth-child(2),
+    .cherry-garden td:nth-child(2) {
+        width: 16%;
+    }
+
+    .cherry-garden th:nth-child(3),
+    .cherry-garden td:nth-child(3) {
+        width: 16%;
+    }
+
+    .cherry-garden th:nth-child(4),
+    .cherry-garden td:nth-child(4) {
+        width: 16%;
+    }
+
+    .cherry-garden th:nth-child(5),
+    .cherry-garden td:nth-child(5) {
+        width: 16%;
+    }
+
+    .cherry-garden th:nth-child(6),
+    .cherry-garden td:nth-child(6) {
+        width: 16%;
+    }
+
+    .cherry-garden th:nth-child(7),
+    .cherry-garden td:nth-child(7) {
+        width: 6%;
+    }
+
+    .cherry-garden .event-marker-container {
+        flex-direction: row;
+        gap: 2px;
+    }
+
+    .cherry-garden .event-marker {
+        width: 8px;
+        height: 8px;
+    }
+
+    .cherry-garden .calendar-container {
+        padding: 10px;
+    }
+
+    .cherry-garden .button,
+    .cherry-garden .transparent-button,
+    .cherry-garden #backToTopBtn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .cherry-garden .modal-content {
+        padding: 15px;
+    }
+
+    .cherry-garden .modal-title {
+        margin-bottom: 15px;
+    }
+
+    .cherry-garden .event-list li {
+        padding: 8px 0;
+    }
+
+    .cherry-garden .event-list button {
+        padding: 5px 10px;
+        font-size: 0.85em;
+        /* Smaller button font */
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .cherry-garden th,
+    .cherry-garden td {
+        padding: 8px;
+    }
+
+    .cherry-garden table {
+        font-size: 0.8em;
+    }
+
+    .cherry-garden .button,
+    .cherry-garden .transparent-button,
+    .cherry-garden #backToTopBtn {
+        padding: 9px 18px;
+        font-size: 0.95em;
+    }
 }

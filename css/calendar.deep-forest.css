@@ -1,135 +1,184 @@
 /* ============================
-   Deep Forest Theme
-   Purpose: Styles specific to the Deep Forest theme for the calendar.
-   ============================ */
+    Deep Forest Theme
+    Purpose: Styles specific to the Deep Forest theme for the calendar.
+    ============================ */
 
-   :root {
-    --deep-forest-bg-color: #e0f2f7; /* Very light blue background (Not used directly on body anymore) */
-    --deep-forest-text-color: #2b3a29; /* Deep Green */
-    --deep-forest-primary-color: #228B22; /* Forest Green */
-    --deep-forest-secondary-color: #90EE90; /* Light Green */
-    --deep-forest-shadow-color: rgba(0, 0, 0, 0.15); /* Subtle shadow color */
-    --deep-forest-border-radius: 8px; /* Border radius for rounded corners */
-    --deep-forest-gradient-start: #effae0; /* Start color for background gradient */
-    --deep-forest-gradient-end: #dcedc1; /* End color for background gradient */
-    --deep-forest-hover-color: #c1f09d; /* Hover background color */
-    --deep-forest-current-day-bg: #808000; /* Background color for the current day */
-    --deep-forest-button-text-color: #5b3a1a; /* Brown for button text */
-    --transition-duration: 0.3s; /* Transition duration for smooth effects */
-    --transition-easing: ease; /* Transition easing function */
+:root {
+    --deep-forest-bg-color: #e0f2f7;
+    /* Very light blue background */
+    --deep-forest-text-color: #2b3a29;
+    /* Deep Green */
+    --deep-forest-primary-color: #228B22;
+    /* Forest Green */
+    --deep-forest-secondary-color: #90EE90;
+    /* Light Green */
+    --deep-forest-shadow-color: rgba(0, 0, 0, 0.15);
+    /* Subtle shadow color */
+    --deep-forest-border-radius: 8px;
+    /* Border radius for rounded corners */
+    --deep-forest-gradient-start: #effae0;
+    /* Start color for background gradient */
+    --deep-forest-gradient-end: #dcedc1;
+    /* End color for background gradient */
+    --deep-forest-hover-color: #c1f09d;
+    /* Hover background color */
+    --deep-forest-current-day-bg: #808000;
+    /* Background color for the current day */
+    --deep-forest-button-text-color: #5b3a1a;
+    /* Brown for button text */
+    --transition-duration: 0.3s;
+    /* Transition duration for smooth effects */
+    --transition-easing: ease;
+    /* Transition easing function */
+
+    /* More descriptive variable names for consistency */
+    --df-bg: var(--deep-forest-bg-color);
+    --df-text: var(--deep-forest-text-color);
+    --df-primary: var(--deep-forest-primary-color);
+    --df-secondary: var(--deep-forest-secondary-color);
+    --df-shadow: var(--deep-forest-shadow-color);
+    --df-radius: var(--deep-forest-border-radius);
+    --df-hover: var(--deep-forest-hover-color);
+    --df-current: var(--deep-forest-current-day-bg);
 }
 
-/* IMPORTANT CHANGE: Target the .container WITHIN .deep-forest */
-.deep-forest .container {
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Base Styles */
+.deep-forest {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    color: var(--df-text);
     background: linear-gradient(to bottom, var(--deep-forest-gradient-start), var(--deep-forest-gradient-end));
-    color: var(--deep-forest-text-color);
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    padding: 20px;
-    transition: background var(--transition-duration);
 }
 
-/* The rest of the styles are targeted the same way: .deep-forest .element */
+.deep-forest .container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: var(--df-radius);
+    box-shadow: 0 8px 16px var(--df-shadow);
+}
+
+/* Calendar Styles */
 .deep-forest .calendar-container {
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: calc(var(--df-radius) - 4px);
+    box-shadow: 0 4px 8px var(--df-shadow);
+    backdrop-filter: blur(2px);
 }
 
 .deep-forest table {
-    border-collapse: collapse;
     width: 100%;
     margin: 20px auto;
-    box-shadow: 3px 3px 8px var(--deep-forest-shadow-color);
+    border-collapse: collapse;
+    border-radius: var(--df-radius);
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 6px 12px var(--df-shadow);
+    table-layout: fixed;
 }
 
 .deep-forest th,
 .deep-forest td {
-    border: 1px solid var(--deep-forest-secondary-color);
-    padding: 12px;
+    padding: 8px;
     text-align: center;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing),
-                box-shadow var(--transition-duration) var(--transition-easing),
-                transform var(--transition-duration) var(--transition-easing);
+    border: none;
+    transition: var(--transition-duration) var(--transition-easing);
+    word-wrap: break-word;
 }
 
 .deep-forest th {
-    background-color: var(--deep-forest-secondary-color);
-    color: var(--deep-forest-text-color);
+    background-color: var(--df-primary);
+    color: #fff;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .deep-forest td {
-    background-color: white;
+    background-color: transparent;
+    position: relative;
 }
 
 .deep-forest td:hover {
-    background-color: var(--deep-forest-hover-color);
+    background-color: var(--df-hover);
     transform: scale(1.02);
-    box-shadow: 0 2px 4px var(--deep-forest-shadow-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: var(--df-text);
 }
 
 .deep-forest td.current-day {
-    background-color: var(--deep-forest-current-day-bg);
-    border: 2px solid var(--deep-forest-primary-color);
+    background-color: var(--df-current);
+    color: #fff;
     font-weight: 600;
-    box-shadow: inset 0 0 4px var(--deep-forest-shadow-color);
+    box-shadow: 0 0 8px rgba(34, 139, 34, 0.6);
+    border-radius: 4px;
+    animation: pulse 1.2s infinite ease-in-out;
 }
 
-/*
-    Event Markers
-    Styles for the small markers that indicate events on a specific day within the calendar cells.
-*/
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+}
+
+/* Event Markers */
 .deep-forest .event-marker-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2px;
-    gap: 2px;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 6px;
 }
 
 .deep-forest .event-marker {
-    background-color: var(--deep-forest-primary-color);
+    background-color: var(--df-secondary);
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                transform var(--transition-duration) var(--transition-easing);
+    transition: var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 0 4px rgba(144, 238, 144, 0.5);
+    /* Light green shadow */
 }
 
 .deep-forest .event-marker:hover {
-    background-color: #1c6f1c; /* Slightly darkened color for hover */
-    transform: scale(1.2);
+    background-color: color-mix(in srgb, var(--df-secondary), black 10%);
+    transform: scale(1.1);
 }
 
-/*
-    Modal Styles
-    Styles for the modal that displays event details when a day is clicked.
-*/
+/* Modal Styles */
 .deep-forest .modal-content {
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(3px);
-    color: var(--deep-forest-text-color);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: var(--deep-forest-border-radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    color: var(--df-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--df-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 30px;
 }
 
 .deep-forest .modal-title {
-    color: var(--deep-forest-primary-color);
-    font-weight: 600;
-    margin-bottom: 15px;
+    color: var(--df-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
 .deep-forest .event-list {
-    margin: 10px 0;
+    margin: 20px 0;
     padding: 0;
     list-style: none;
 }
 
 .deep-forest .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--deep-forest-secondary-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--df-secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -140,65 +189,168 @@
 }
 
 .deep-forest .event-list button {
-    background-color: var(--deep-forest-primary-color);
-    color: white;
+    background-color: var(--df-primary);
+    color: #fff;
+    /* White text */
     border: none;
-    padding: 5px 10px;
-    border-radius: var(--deep-forest-border-radius);
+    padding: 8px 16px;
+    border-radius: var(--df-radius);
     cursor: pointer;
     transition: background-color var(--transition-duration) var(--transition-easing);
 }
 
 .deep-forest .event-list button:hover {
-    background-color: #1c6f1c; /* Slightly darkened primary color */
+    background-color: darken(var(--df-primary), 20%);
 }
 
-/* General Button Styles */
-.deep-forest .button, 
-.deep-forest .transparent-button, 
+
+
+/* Buttons */
+.deep-forest .button,
+.deep-forest .transparent-button,
 .deep-forest #backToTopBtn {
-    border-radius: var(--deep-forest-border-radius);
-    padding: 10px 18px;
-    font-size: 1em;
+    border-radius: var(--df-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
     transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing),
-                box-shadow var(--transition-duration) var(--transition-easing);
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
     cursor: pointer;
-    border: 2px solid var(--deep-forest-primary-color);
-    color: rgb(172, 42, 92);
+    border: 3px solid var(--df-primary);
+    /* Green border */
+    color: var(--df-text);
+    /* Deep green text */
     background-color: transparent;
-    box-shadow: 2px 2px 5px var(--deep-forest-shadow-color);
+    box-shadow: 5px 5px 10px var(--df-shadow);
 }
 
-.deep-forest .button:hover, 
-.deep-forest .transparent-button:hover, 
+.deep-forest .button:hover,
+.deep-forest .transparent-button:hover,
 .deep-forest #backToTopBtn:hover {
-    background-color: var(--deep-forest-hover-color);
-    color: var(--deep-forest-text-color);
-    box-shadow: 3px 3px 7px var(--deep-forest-shadow-color);
+    background-color: var(--df-hover);
+    /* Light green hover background */
+    color: var(--df-text);
+    box-shadow: 6px 6px 12px var(--df-shadow);
 }
 
 .deep-forest .button.secondary {
-    background-color: var(--deep-forest-secondary-color);
+    background-color: var(--df-secondary);
+    /* Light green background */
     border: none;
-    color: var(--deep-forest-text-color);
+    color: var(--df-text);
 }
 
 .deep-forest .button.secondary:hover {
-    background-color: var(--deep-forest-hover-color);
+    background-color: darken(var(--df-secondary), 20%);
+    /* Darker light green on hover */
 }
 
-/* Calendar Navigation Styles */
+
+/* Calendar Navigation */
 .deep-forest .calendar-navigation button {
-    background-color: var(--deep-forest-primary-color);
-    color: white;
+    background-color: transparent;
     border: none;
-    padding: 8px 12px;
-    border-radius: var(--deep-forest-border-radius);
+    font-size: 1.2em;
+    padding: 10px 16px;
+    /* Adjusted padding */
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
+    color: var(--df-primary);
+    /* Green navigation button color */
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing);
 }
 
 .deep-forest .calendar-navigation button:hover {
-    background-color: var(--deep-forest-current-day-bg); /* Darkened hover effect */
+    color: darken(var(--df-primary), 20%);
+    /* Darker green on hover */
+}
+
+/* Calendar Header */
+.deep-forest .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--df-primary);
+    /* Green header color */
+}
+
+/* Week Number */
+.deep-forest .week-number {
+    color: #fff;
+    /* White week number text */
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(34, 139, 34, 0.7);
+    /* Green background for week number */
+    border-radius: 3px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.deep-forest .no-events {
+    font-style: italic;
+    color: #777;
+    /* Grayish text color */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+/* 3D Effect for Table Cells */
+.deep-forest td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Very subtle white overlay */
+    transform: translateZ(-2px);
+    transition: transform 0.2s;
+    /* Use consistent transition duration */
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.deep-forest td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Media Queries (Adjust as needed) */
+@media (max-width: 575.98px) {
+    .deep-forest table {
+        font-size: 0.8em;
+        /* Slightly larger font size on small screens */
+    }
+
+    .deep-forest th,
+    .deep-forest td {
+        padding: 6px;
+    }
+
+    .deep-forest .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .deep-forest .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .deep-forest th,
+    .deep-forest td {
+        padding: 7px;
+    }
+
+    .deep-forest table {
+        font-size: 0.9em;
+    }
 }
