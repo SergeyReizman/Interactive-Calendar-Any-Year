@@ -1,194 +1,380 @@
-/* calendar.lavender-bliss.css */
-/* ============================
-    Lavender Bliss Theme
-    Purpose: Styles specific to the Lavender Bliss theme.
-    ============================ */
+/* ==========================================================================
+   Lavender Bliss Theme - Enhanced Calendar Styles
+   Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
-    .lavender-bliss {
-        /* Set theme-specific variables */
-        --primary-color: #8a66d3; /* Lavender Purple */
-        --primary-color-rgb: 138, 102, 211;
-        --secondary-color: #6a4d9c; /* Deep Lavender */
-        --hover-color: #9b77e1; /* Soft Violet */
-        --border-color: #e4d9f0; /* Light Lilac */
-        --text-color: #4b2e71; /* Lavender Gray */
-        --background-color: #f6effd; /* Soft Lavender */
-        --event-marker-color: #c59fff; /* Lavender Glow */
-        --event-marker-hover: #d46ab3; /* Lavender Rose */
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --border-radius: 8px;
-        --transition-duration: 0.3s;
-        --transition-easing: ease;
+/* Import the fonts (replace with actual paths if needed) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
+/* Example: Playfair Display and Lato */
+
+
+:root {
+    --lavender-bliss-bg: #f3e5f5;
+    /* Light Lavender Background */
+    --lavender-bliss-text: #303f9f;
+    /* Dark Purple Text */
+    --lavender-bliss-primary: #9c27b0;
+    /* Purple Primary */
+    --lavender-bliss-secondary: #ba68c8;
+    /* Lighter Purple Secondary */
+    --lavender-bliss-shadow: rgba(0, 0, 0, 0.1);
+    --lavender-bliss-radius: 12px;
+    --lavender-bliss-hover: #e1bee7;
+    /* Lighter Lavender Hover */
+    --lavender-bliss-current: #9c27b0;
+    /* Purple Current */
+    --lavender-bliss-blur: 5px;
+    /* Subtle Blur */
+    --lavender-bliss-transition: 0.3s ease-in-out;
+    --lavender-bliss-table-bg: #fff;
+}
+
+/* Base Styles */
+.lavender-bliss {
+    font-family: 'Lato', sans-serif;
+    /* Use your lavender bliss font - Lato is a good option */
+    line-height: 1.6;
+    color: var(--lavender-bliss-text);
+}
+
+.lavender-bliss .container {
+    background: linear-gradient(to bottom, var(--lavender-bliss-bg), #f1d9f5);
+    /* Slightly darker gradient */
+    padding: 40px;
+    border-radius: var(--lavender-bliss-radius);
+    box-shadow: 0 10px 20px var(--lavender-bliss-shadow);
+}
+
+/* Calendar Styles */
+.lavender-bliss .calendar-container {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--lavender-bliss-radius) - 5px);
+    box-shadow: 0 5px 10px var(--lavender-bliss-shadow);
+    backdrop-filter: blur(var(--lavender-bliss-blur));
+}
+
+.lavender-bliss table {
+    width: 100%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: var(--lavender-bliss-radius);
+    overflow: hidden;
+    background-color: var(--lavender-bliss-table-bg);
+    box-shadow: 0 8px 16px var(--lavender-bliss-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
+}
+
+.lavender-bliss th,
+.lavender-bliss td {
+    padding: 10px;
+    text-align: center;
+    border: none;
+    transition: var(--lavender-bliss-transition);
+    word-wrap: break-word;
+}
+
+.lavender-bliss th {
+    background-color: var(--lavender-bliss-primary);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    /* Use a more decorative font for headers */
+}
+
+.lavender-bliss td {
+    background-color: transparent;
+    position: relative;
+}
+
+.lavender-bliss td:hover {
+    background-color: var(--lavender-bliss-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    color: var(--lavender-bliss-text);
+}
+
+.lavender-bliss td.current-day {
+    background-color: var(--lavender-bliss-current);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(156, 43, 176, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
     }
-    
-    /* Base Styles */
-    .lavender-bliss .container {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        margin: 30px auto;
-        padding: 30px;
-        border-radius: var(--border-radius);
-        box-shadow: 0 8px 16px var(--shadow-color);
-        max-width: 95%;
+
+    50% {
+        transform: scale(1.05);
     }
-    
-    /* Table Styles */
+}
+
+/* Event Markers */
+.lavender-bliss .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.lavender-bliss .event-marker {
+    background-color: var(--lavender-bliss-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--lavender-bliss-transition);
+    box-shadow: 0 0 6px rgba(156, 43, 176, 0.6);
+}
+
+.lavender-bliss .event-marker:hover {
+    background-color: color-mix(in srgb, var(--lavender-bliss-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.lavender-bliss .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(var(--lavender-bliss-blur));
+    color: var(--lavender-bliss-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--lavender-bliss-radius);
+    box-shadow: 0 8px 20px var(--lavender-bliss-shadow);
+    padding: 30px;
+}
+
+.lavender-bliss .modal-title {
+    color: var(--lavender-bliss-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+    /* Decorative font for title */
+}
+
+.lavender-bliss .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lavender-bliss .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--lavender-bliss-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.lavender-bliss .event-list li:hover {
+    background-color: rgba(186, 104, 200, 0.1);
+    /* Slightly transparent secondary color */
+}
+
+.lavender-bliss .event-list li:last-child {
+    border-bottom: none;
+}
+
+.lavender-bliss .event-list button {
+    background-color: var(--lavender-bliss-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--lavender-bliss-radius);
+    cursor: pointer;
+    transition: var(--lavender-bliss-transition);
+    box-shadow: 0 4px 8px var(--lavender-bliss-shadow);
+}
+
+.lavender-bliss .event-list button:hover {
+    background-color: color-mix(in srgb, var(--lavender-bliss-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--lavender-bliss-shadow);
+}
+
+/* Buttons */
+.lavender-bliss .button,
+.lavender-bliss .transparent-button,
+.lavender-bliss #backToTopBtn {
+    border-radius: var(--lavender-bliss-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--lavender-bliss-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--lavender-bliss-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--lavender-bliss-shadow);
+}
+
+.lavender-bliss .button:hover,
+.lavender-bliss .transparent-button:hover,
+.lavender-bliss #backToTopBtn:hover {
+    background-color: var(--lavender-bliss-hover);
+    color: var(--lavender-bliss-text);
+    box-shadow: 0 8px 16px var(--lavender-bliss-shadow);
+    transform: scale(1.02);
+}
+
+.lavender-bliss .button.secondary {
+    background-color: var(--lavender-bliss-secondary);
+    color: white;
+    box-shadow: 0 4px 8px var(--lavender-bliss-shadow);
+}
+
+.lavender-bliss .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--lavender-bliss-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--lavender-bliss-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.lavender-bliss .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--lavender-bliss-primary);
+    transition: var(--lavender-bliss-transition);
+}
+
+.lavender-bliss .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--lavender-bliss-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
+.lavender-bliss .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--lavender-bliss-primary);
+    font-family: 'Playfair Display', serif;
+    /* Decorative font for header */
+}
+
+/* Week Number */
+.lavender-bliss .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(156, 43, 176, 0.7);
+    /* Slightly transparent purple */
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.lavender-bliss .no-events {
+    font-style: italic;
+    color: #512da8;
+    /* Darker purple */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.lavender-bliss td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.lavender-bliss td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
     .lavender-bliss table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-top: 20px;
+        font-size: 0.7em;
     }
-    
+
     .lavender-bliss th,
     .lavender-bliss td {
-        border: 1px solid var(--border-color);
-        padding: 14px;
-        text-align: center;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
+        padding: 4px;
     }
-    
-    .lavender-bliss th {
-        background-color: var(--primary-color);
-        color: white;
-        font-weight: 600;
-        text-transform: uppercase;
+
+    .lavender-bliss th:nth-child(1),
+    .lavender-bliss td:nth-child(1) {
+        width: 15%;
     }
-    
-    .lavender-bliss tr:hover td {
-        background-color: lighten(var(--background-color), 5%);
-        box-shadow: inset 0 0 5px var(--shadow-color);
+
+    .lavender-bliss th:nth-child(2),
+    .lavender-bliss td:nth-child(2) {
+        width: 20%;
     }
-    
-    .lavender-bliss td.current-day {
-        background-color: var(--secondary-color);
-        color: white;
-        font-weight: bold;
+
+    .lavender-bliss th:nth-child(3),
+    .lavender-bliss td:nth-child(3) {
+        width: 15%;
     }
-    
-    /* Modal Styles */
-    .lavender-bliss .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        justify-content: center;
+
+    .lavender-bliss th:nth-child(4),
+    .lavender-bliss td:nth-child(4) {
+        width: 20%;
+    }
+
+    .lavender-bliss th:nth-child(5),
+    .lavender-bliss td:nth-child(5) {
+        width: 15%;
+    }
+
+    .lavender-bliss th:nth-child(6),
+    .lavender-bliss td:nth-child(6) {
+        width: 15%;
+    }
+
+    .lavender-bliss th:nth-child(7),
+    .lavender-bliss td:nth-child(7) {
+        width: 10%;
+    }
+
+    .lavender-bliss .event-marker-container {
+        flex-direction: column;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.6);
+        gap: 2px;
     }
-    
-    .lavender-bliss .modal.show {
-        display: flex;
+
+    .lavender-bliss .event-marker {
+        width: 6px;
+        height: 6px;
     }
-    
-    .lavender-bliss .modal-content {
-        background-color: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(3px);
-        color: var(--text-color);
-        border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-        border-radius: var(--border-radius);
-        box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
-        padding: 20px;
-        position: relative;
+
+    .lavender-bliss .calendar-container {
+        padding: 10px;
     }
-    
-    .lavender-bliss .modal-title {
-        color: var(--primary-color);
-        font-size: 1.6em;
-        margin-bottom: 15px;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .lavender-bliss th,
+    .lavender-bliss td {
+        padding: 6px;
     }
-    
-    .lavender-bliss .event-list {
-        margin: 10px 0;
-        padding: 0;
-        list-style: none;
+
+    .lavender-bliss table {
+        font-size: 0.8em;
     }
-    
-    .lavender-bliss .event-list li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .lavender-bliss .event-list li:last-child {
-        border-bottom: none;
-    }
-    
-    .lavender-bliss .event-list button {
-        background-color: var(--event-marker-color);
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-easing);
-    }
-    
-    .lavender-bliss .event-list button:hover {
-        background-color: darken(var(--event-marker-color), 10%);
-    }
-    
-    /* Button Styles */
-    .lavender-bliss .button,
-    .lavender-bliss .transparent-button,
-    .lavender-bliss .back-to-top-button,
-    .lavender-bliss .calendar-navigation button {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 1.1em;
-        font-weight: 500;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        box-shadow: 3px 3px 6px var(--shadow-color);
-    }
-    
-    .lavender-bliss .button:hover,
-    .lavender-bliss .transparent-button:hover,
-    .lavender-bliss .back-to-top-button:hover,
-    .lavender-bliss .calendar-navigation button:hover {
-        background-color: darken(var(--hover-color), 5%);
-        transform: translateY(-3px);
-        box-shadow: 4px 5px 8px var(--shadow-color);
-    }
-    
-    .lavender-bliss .button:active,
-    .lavender-bliss .transparent-button:active,
-    .lavender-bliss .back-to-top-button:active,
-    .lavender-bliss .calendar-navigation button:active {
-        transform: translateY(-1px);
-        box-shadow: 2px 2px 4px var(--shadow-color);
-    }
-    
-    .lavender-bliss .button.secondary {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-    }
-    
-    .lavender-bliss .button.secondary:hover {
-        background-color: darken(var(--secondary-color), 10%);
-        color: white;
-    }
-    
-    /* Calendar Header Styles */
-    .lavender-bliss .calendar-header {
-        text-align: center;
-        font-size: 1.4em;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--primary-color);
-    }
-    
+}
