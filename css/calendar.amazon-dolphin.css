@@ -1,136 +1,173 @@
 /* calendar.amazon-dolphin.css */
 /* ============================
-    Amazon Dolphin Theme
+    Amazon Dolphin Theme - Enhanced Calendar Styles
+    Version: 2.3 (Adapted from Silicon Valley Theme)
    ============================ */
 
-.amazon-dolphin {
-    /* Theme-Specific Variables */
-    --primary-color: #0D9488;
-    /* Teal - Amazon River */
-    --primary-color-rgb: 13, 148, 136;
-    --secondary-color: #34D399;
-    /* Light Green - Vibrant Jungle */
-    --hover-color: #5EEAD4;
-    /* Aqua - Flowing Water */
-    --border-color: #99F6E4;
-    /* Soft Mint - Gentle Accents */
-    --text-color: #064E3B;
-    /* Dark Teal - Strong Contrast */
-    --background-color: #ECFDF5;
+:root {
+    --amazon-dolphin-bg: #ECFDF5;
     /* Pale Mint - Refreshing Background */
-    --event-marker-color: #10B981;
-    /* Bold Green - Event Highlights */
-    --event-marker-hover: #059669;
-    /* Deep Green - Hover Effect */
-    --shadow-color: rgba(6, 78, 59, 0.2);
-    --border-radius: 14px;
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
-    font-family: 'Lora', serif;
-    /* Elegant and Natural */
+    --amazon-dolphin-text: #064E3B;
+    /* Dark Teal - Strong Contrast */
+    --amazon-dolphin-primary: #0D9488;
+    /* Teal - Amazon River */
+    --amazon-dolphin-secondary: #34D399;
+    /* Light Green - Vibrant Jungle */
+    --amazon-dolphin-shadow: rgba(6, 78, 59, 0.2);
+    --amazon-dolphin-radius: 14px;
+    --amazon-dolphin-hover: #5EEAD4;
+    /* Aqua - Flowing Water */
+    --amazon-dolphin-current: #0D9488;
+    /* Teal */
+    --amazon-dolphin-blur: 6px;
+    /* Adjusted blur */
+    --amazon-dolphin-transition: 0.3s ease-in-out;
+    --amazon-dolphin-table-bg: #fff;
 }
 
 /* Base Styles */
-.amazon-dolphin .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: 'Playfair Display', serif;
+.amazon-dolphin {
+    font-family: 'Lora', serif;
+    /* Elegant and Natural */
     line-height: 1.6;
-    margin: 30px auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 20px var(--shadow-color);
-    max-width: 95%;
+    color: var(--amazon-dolphin-text);
 }
 
-/* Table Styles */
+.amazon-dolphin .container {
+    background: var(--amazon-dolphin-bg);
+    padding: 40px;
+    border-radius: var(--amazon-dolphin-radius);
+    box-shadow: 0 10px 20px var(--amazon-dolphin-shadow);
+    font-family: 'Playfair Display', serif;
+}
+
+/* Calendar Styles */
+.amazon-dolphin .calendar-container {
+    padding: 30px;
+    background-color: rgba(236, 253, 245, 0.9);
+    border-radius: calc(var(--amazon-dolphin-radius) - 5px);
+    box-shadow: 0 5px 10px var(--amazon-dolphin-shadow);
+    backdrop-filter: blur(var(--amazon-dolphin-blur));
+}
+
 .amazon-dolphin table {
     width: 100%;
+    margin: 30px auto;
     border-collapse: collapse;
-    margin-top: 20px;
+    border-radius: var(--amazon-dolphin-radius);
+    overflow: hidden;
+    background-color: var(--amazon-dolphin-table-bg);
+    box-shadow: 0 8px 16px var(--amazon-dolphin-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
     table-layout: fixed;
-    /* Added for consistent column widths */
 }
 
 .amazon-dolphin th,
 .amazon-dolphin td {
-    border: 1px solid var(--border-color);
-    padding: 14px;
+    padding: 10px;
     text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
-    overflow: hidden;
-    /* Prevent content from overflowing cells */
-    white-space: nowrap;
-    /* Prevent text from wrapping */
-    text-overflow: ellipsis;
-    /* Add ellipsis (...) for overflow */
+    border: none;
+    transition: var(--amazon-dolphin-transition);
+    word-wrap: break-word;
 }
 
 .amazon-dolphin th {
-    background-color: var(--primary-color);
+    background-color: var(--amazon-dolphin-primary);
     color: white;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
-.amazon-dolphin tr:hover td {
-    background-color: rgba(var(--primary-color-rgb), 0.15);
-    box-shadow: inset 0 0 6px var(--shadow-color);
-}
-
-.amazon-dolphin td.current-day {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: bold;
-}
-
-/* Modal Styles */
-.amazon-dolphin .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.amazon-dolphin .modal.show {
-    display: flex;
-}
-
-.amazon-dolphin .modal-content {
-    background-color: rgba(236, 253, 245, 0.9);
-    backdrop-filter: blur(6px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
-    border-radius: var(--border-radius);
-    box-shadow: 0 5px 14px rgba(var(--primary-color-rgb), 0.15);
-    padding: 20px;
+.amazon-dolphin td {
+    background-color: transparent;
     position: relative;
 }
 
+.amazon-dolphin td:hover {
+    background-color: var(--amazon-dolphin-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px var(--amazon-dolphin-shadow);
+    color: var(--amazon-dolphin-text);
+}
+
+.amazon-dolphin td.current-day {
+    background-color: var(--amazon-dolphin-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(13, 148, 136, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.amazon-dolphin .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.amazon-dolphin .event-marker {
+    background-color: var(--amazon-dolphin-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--amazon-dolphin-transition);
+    box-shadow: 0 0 6px rgba(13, 148, 136, 0.6);
+}
+
+.amazon-dolphin .event-marker:hover {
+    background-color: color-mix(in srgb, var(--amazon-dolphin-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.amazon-dolphin .modal-content {
+    background-color: rgba(236, 253, 245, 0.98);
+    backdrop-filter: blur(var(--amazon-dolphin-blur));
+    color: var(--amazon-dolphin-text);
+    border: 2px solid rgba(13, 148, 136, 0.15);
+    border-radius: var(--amazon-dolphin-radius);
+    box-shadow: 0 8px 20px var(--amazon-dolphin-shadow);
+    padding: 30px;
+}
+
 .amazon-dolphin .modal-title {
-    color: var(--primary-color);
-    font-size: 1.6em;
-    margin-bottom: 15px;
+    color: var(--amazon-dolphin-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
 .amazon-dolphin .event-list {
-    margin: 10px 0;
+    margin: 20px 0;
     padding: 0;
     list-style: none;
 }
 
 .amazon-dolphin .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--amazon-dolphin-secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.2s;
+}
+
+.amazon-dolphin .event-list li:hover {
+    background-color: rgba(13, 148, 136, 0.1);
 }
 
 .amazon-dolphin .event-list li:last-child {
@@ -138,112 +175,193 @@
 }
 
 .amazon-dolphin .event-list button {
-    background-color: var(--event-marker-color);
+    background-color: var(--amazon-dolphin-primary);
     color: white;
     border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: var(--amazon-dolphin-radius);
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
+    transition: var(--amazon-dolphin-transition);
+    box-shadow: 0 4px 8px var(--amazon-dolphin-shadow);
 }
 
 .amazon-dolphin .event-list button:hover {
-    background-color: var(--event-marker-hover);
+    background-color: color-mix(in srgb, var(--amazon-dolphin-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--amazon-dolphin-shadow);
 }
 
-/* Button Styles */
+/* Buttons */
 .amazon-dolphin .button,
-.amazon-dolphin .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 14px 22px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
+.amazon-dolphin .transparent-button,
+.amazon-dolphin #backToTopBtn {
+    border-radius: var(--amazon-dolphin-radius);
+    padding: 16px 28px;
     font-size: 1.2em;
-    font-weight: 600;
-    transition: all var(--transition-duration) var(--transition-easing);
-    box-shadow: 4px 4px 8px var(--shadow-color);
+    transition: var(--amazon-dolphin-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--amazon-dolphin-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--amazon-dolphin-shadow);
 }
 
-.amazon-dolphin .button:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-4px);
-    box-shadow: 5px 6px 10px var(--shadow-color);
+.amazon-dolphin .button:hover,
+.amazon-dolphin .transparent-button:hover,
+.amazon-dolphin #backToTopBtn:hover {
+    background-color: var(--amazon-dolphin-hover);
+    color: var(--amazon-dolphin-text);
+    box-shadow: 0 8px 16px var(--amazon-dolphin-shadow);
+    transform: scale(1.02);
 }
 
-/* Header */
+.amazon-dolphin .button.secondary {
+    background-color: var(--amazon-dolphin-secondary);
+    color: var(--amazon-dolphin-text);
+    box-shadow: 0 4px 8px var(--amazon-dolphin-shadow);
+}
+
+.amazon-dolphin .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--amazon-dolphin-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--amazon-dolphin-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.amazon-dolphin .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--amazon-dolphin-primary);
+    transition: var(--amazon-dolphin-transition);
+}
+
+.amazon-dolphin .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--amazon-dolphin-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
 .amazon-dolphin .calendar-header {
     text-align: center;
     font-size: 1.5em;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--amazon-dolphin-primary);
+}
+
+/* Week Number */
+.amazon-dolphin .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(13, 148, 136, 0.7);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.amazon-dolphin .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.amazon-dolphin td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.amazon-dolphin td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 575.98px) {
+    .amazon-dolphin table {
+        font-size: 0.7em;
+    }
 
     .amazon-dolphin th,
     .amazon-dolphin td {
-        padding: 10px;
-        /* Slightly smaller padding */
-        font-size: 0.9em;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        padding: 4px;
     }
 
-    .amazon-dolphin .calendar-header {
-        font-size: 1.3em;
-    }
-
-    .amazon-dolphin .button,
-    .amazon-dolphin .calendar-navigation button {
-        padding: 10px 18px;
-        font-size: 1em;
-    }
-
-    .amazon-dolphin table {
-        display: block;
-        overflow-x: auto;
-        table-layout: auto;
-        /* Allow column widths to adjust */
-    }
-
-    /* Column width adjustments */
     .amazon-dolphin th:nth-child(1),
     .amazon-dolphin td:nth-child(1) {
-        width: 12%;
+        width: 15%;
     }
 
     .amazon-dolphin th:nth-child(2),
     .amazon-dolphin td:nth-child(2) {
-        width: 14%;
+        width: 20%;
     }
 
     .amazon-dolphin th:nth-child(3),
     .amazon-dolphin td:nth-child(3) {
-        width: 14%;
+        width: 15%;
     }
 
     .amazon-dolphin th:nth-child(4),
     .amazon-dolphin td:nth-child(4) {
-        width: 14%;
+        width: 20%;
     }
 
     .amazon-dolphin th:nth-child(5),
     .amazon-dolphin td:nth-child(5) {
-        width: 14%;
+        width: 15%;
     }
 
     .amazon-dolphin th:nth-child(6),
     .amazon-dolphin td:nth-child(6) {
-        width: 14%;
+        width: 15%;
     }
 
     .amazon-dolphin th:nth-child(7),
     .amazon-dolphin td:nth-child(7) {
-        width: 12%;
+        width: 10%;
+    }
+
+    .amazon-dolphin .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .amazon-dolphin .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .amazon-dolphin .calendar-container {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .amazon-dolphin th,
+    .amazon-dolphin td {
+        padding: 6px;
+    }
+
+    .amazon-dolphin table {
+        font-size: 0.8em;
     }
 }
