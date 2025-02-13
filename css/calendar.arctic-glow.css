@@ -1,221 +1,367 @@
-/* arctic-glow.css */
-/* ============================
-    Arctic Glow Theme
-    ============================ */
+/* ==========================================================================
+   Arctic Glow Theme - Enhanced Calendar Styles
+   Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
-    .arctic-glow {
-        --primary-color: #40a0ff; /* A brighter, more distinct blue */
-        --primary-color-rgb: 64, 160, 255;
-        --secondary-color: #90caf9; /* Lighter secondary blue */
-        --hover-color: #2979ff; /* Even brighter hover blue */
-        --border-color: #e1f0c4; /* A light, slightly greenish border */
-        --text-color: #212121; /* Darker text for better contrast */
-        --background-color: #f5f5f5; /* A very light gray background */
-        --event-marker-color: #ffab91; /* A soft orange for events */
-        --event-marker-hover: #ff8a65; /* A more intense orange on hover */
-        --shadow-color: rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow */
-        --border-radius: 12px; /* More rounded corners */
-        --transition-duration: 0.2s; /* Slightly faster transitions */
-        --transition-easing: ease-in-out; /* A smoother transition */
-        font-family: 'Roboto', sans-serif; /* A clean, modern font */
+:root {
+    --arctic-glow-bg: #e0f7fa;
+    /* Light Cyan Background */
+    --arctic-glow-text: #212121;
+    /* Dark Gray Text */
+    --arctic-glow-primary: #00bcd4;
+    /* Cyan Primary */
+    --arctic-glow-secondary: #4dd0e1;
+    /* Lighter Cyan Secondary */
+    --arctic-glow-shadow: rgba(0, 0, 0, 0.1);
+    --arctic-glow-radius: 12px;
+    --arctic-glow-hover: #b2dfdb;
+    /* Lighter Cyan Hover */
+    --arctic-glow-current: #00bcd4;
+    /* Cyan Current */
+    --arctic-glow-blur: 5px;
+    /* Subtle Blur */
+    --arctic-glow-transition: 0.3s ease-in-out;
+    --arctic-glow-table-bg: #fff;
+}
+
+/* Base Styles */
+.arctic-glow {
+    font-family: 'Roboto', sans-serif;
+    /* Clean and Modern */
+    line-height: 1.6;
+    color: var(--arctic-glow-text);
+}
+
+.arctic-glow .container {
+    background: linear-gradient(to bottom, var(--arctic-glow-bg), #d0e8f2);
+    /* Slightly darker gradient */
+    padding: 40px;
+    border-radius: var(--arctic-glow-radius);
+    box-shadow: 0 10px 20px var(--arctic-glow-shadow);
+}
+
+/* Calendar Styles */
+.arctic-glow .calendar-container {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--arctic-glow-radius) - 5px);
+    box-shadow: 0 5px 10px var(--arctic-glow-shadow);
+    backdrop-filter: blur(var(--arctic-glow-blur));
+}
+
+.arctic-glow table {
+    width: 100%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: var(--arctic-glow-radius);
+    overflow: hidden;
+    background-color: var(--arctic-glow-table-bg);
+    box-shadow: 0 8px 16px var(--arctic-glow-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
+}
+
+.arctic-glow th,
+.arctic-glow td {
+    padding: 10px;
+    text-align: center;
+    border: none;
+    transition: var(--arctic-glow-transition);
+    word-wrap: break-word;
+}
+
+.arctic-glow th {
+    background-color: var(--arctic-glow-primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.arctic-glow td {
+    background-color: transparent;
+    position: relative;
+}
+
+.arctic-glow td:hover {
+    background-color: var(--arctic-glow-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    color: var(--arctic-glow-text);
+}
+
+.arctic-glow td.current-day {
+    background-color: var(--arctic-glow-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
     }
-    
-    /* Base Styles */
-    .arctic-glow .container {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: var(--font-family);
-        line-height: 1.6;
-        margin: 30px auto;
-        padding: 30px;
-        border-radius: var(--border-radius);
-        box-shadow: 0 8px 16px var(--shadow-color);
-        max-width: 95%;
+
+    50% {
+        transform: scale(1.05);
     }
-    
-    /* Table Styles */
+}
+
+/* Event Markers */
+.arctic-glow .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.arctic-glow .event-marker {
+    background-color: var(--arctic-glow-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--arctic-glow-transition);
+    box-shadow: 0 0 6px rgba(0, 188, 212, 0.6);
+}
+
+.arctic-glow .event-marker:hover {
+    background-color: color-mix(in srgb, var(--arctic-glow-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.arctic-glow .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(var(--arctic-glow-blur));
+    color: var(--arctic-glow-text);
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--arctic-glow-radius);
+    box-shadow: 0 8px 20px var(--arctic-glow-shadow);
+    padding: 30px;
+}
+
+.arctic-glow .modal-title {
+    color: var(--arctic-glow-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.arctic-glow .event-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.arctic-glow .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--arctic-glow-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.arctic-glow .event-list li:hover {
+    background-color: rgba(77, 211, 225, 0.1);
+    /* Slightly transparent secondary color */
+}
+
+.arctic-glow .event-list li:last-child {
+    border-bottom: none;
+}
+
+.arctic-glow .event-list button {
+    background-color: var(--arctic-glow-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--arctic-glow-radius);
+    cursor: pointer;
+    transition: var(--arctic-glow-transition);
+    box-shadow: 0 4px 8px var(--arctic-glow-shadow);
+}
+
+.arctic-glow .event-list button:hover {
+    background-color: color-mix(in srgb, var(--arctic-glow-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--arctic-glow-shadow);
+}
+
+/* Buttons */
+.arctic-glow .button,
+.arctic-glow .transparent-button,
+.arctic-glow #backToTopBtn {
+    border-radius: var(--arctic-glow-radius);
+    padding: 16px 28px;
+    font-size: 1.2em;
+    transition: var(--arctic-glow-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--arctic-glow-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--arctic-glow-shadow);
+}
+
+.arctic-glow .button:hover,
+.arctic-glow .transparent-button:hover,
+.arctic-glow #backToTopBtn:hover {
+    background-color: var(--arctic-glow-hover);
+    color: var(--arctic-glow-text);
+    box-shadow: 0 8px 16px var(--arctic-glow-shadow);
+    transform: scale(1.02);
+}
+
+.arctic-glow .button.secondary {
+    background-color: var(--arctic-glow-secondary);
+    color: white;
+    box-shadow: 0 4px 8px var(--arctic-glow-shadow);
+}
+
+.arctic-glow .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--arctic-glow-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--arctic-glow-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.arctic-glow .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--arctic-glow-primary);
+    transition: var(--arctic-glow-transition);
+}
+
+.arctic-glow .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--arctic-glow-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
+.arctic-glow .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--arctic-glow-primary);
+}
+
+/* Week Number */
+.arctic-glow .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(0, 188, 212, 0.7);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.arctic-glow .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.arctic-glow td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.arctic-glow td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
     .arctic-glow table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-top: 20px;
+        font-size: 0.7em;
     }
-    
+
     .arctic-glow th,
     .arctic-glow td {
-        border: 1px solid var(--border-color);
-        padding: 14px;
-        text-align: center;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
+        padding: 4px;
     }
-    
-    .arctic-glow th {
-        background-color: var(--primary-color);
-        color: white;
-        font-weight: 600;
-        text-transform: uppercase;
+
+    .arctic-glow th:nth-child(1),
+    .arctic-glow td:nth-child(1) {
+        width: 15%;
     }
-    
-    .arctic-glow tr:hover td {
-        background-color: #e0e0e0; /* Light gray hover */
-        box-shadow: inset 0 0 5px var(--shadow-color);
+
+    .arctic-glow th:nth-child(2),
+    .arctic-glow td:nth-child(2) {
+        width: 20%;
     }
-    
-    .arctic-glow td.current-day {
-        background-color: var(--secondary-color);
-        color: white;
-        font-weight: bold;
+
+    .arctic-glow th:nth-child(3),
+    .arctic-glow td:nth-child(3) {
+        width: 15%;
     }
-    
-    /* Modal Styles */
-    .arctic-glow .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        justify-content: center;
+
+    .arctic-glow th:nth-child(4),
+    .arctic-glow td:nth-child(4) {
+        width: 20%;
+    }
+
+    .arctic-glow th:nth-child(5),
+    .arctic-glow td:nth-child(5) {
+        width: 15%;
+    }
+
+    .arctic-glow th:nth-child(6),
+    .arctic-glow td:nth-child(6) {
+        width: 15%;
+    }
+
+    .arctic-glow th:nth-child(7),
+    .arctic-glow td:nth-child(7) {
+        width: 10%;
+    }
+
+    .arctic-glow .event-marker-container {
+        flex-direction: column;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        gap: 2px;
     }
-    
-    .arctic-glow .modal.show {
-        display: flex;
+
+    .arctic-glow .event-marker {
+        width: 6px;
+        height: 6px;
     }
-    
-    .arctic-glow .modal-content {
-        background-color: rgba(255, 255, 255, 0.95); /* Mostly opaque white */
-        backdrop-filter: blur(5px);
-        color: var(--text-color);
-        border: none; /* Removed border */
-        border-radius: var(--border-radius);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-        padding: 20px;
-        position: relative;
-    }
-    
-    .arctic-glow .modal-title {
-        color: var(--primary-color);
-        font-size: 1.8em; /* Slightly larger title */
-        margin-bottom: 15px;
-    }
-    
-    .arctic-glow .event-list {
-        margin: 10px 0;
-        padding: 0;
-        list-style: none;
-    }
-    
-    .arctic-glow .event-list li {
+
+    .arctic-glow .calendar-container {
         padding: 10px;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
-    
-    .arctic-glow .event-list li:last-child {
-        border-bottom: none;
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .arctic-glow th,
+    .arctic-glow td {
+        padding: 6px;
     }
-    
-    .arctic-glow .event-list button {
-        background-color: var(--event-marker-color);
-        color: white;
-        border: none;
-        padding: 6px 12px; /* Slightly larger padding */
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-easing);
+
+    .arctic-glow table {
+        font-size: 0.8em;
     }
-    
-    .arctic-glow .event-list button:hover {
-        background-color: var(--event-marker-hover);
-    }
-    
-    /* Button Styles */
-    .arctic-glow .button,
-    .arctic-glow .transparent-button,
-    .arctic-glow .back-to-top-button,
-    .arctic-glow .calendar-navigation button {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 1.1em;
-        font-weight: 500;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        box-shadow: 3px 3px 6px var(--shadow-color);
-    }
-    
-    .arctic-glow .button:hover,
-    .arctic-glow .transparent-button:hover,
-    .arctic-glow .back-to-top-button:hover,
-    .arctic-glow .calendar-navigation button:hover {
-        background-color: var(--hover-color);
-        transform: translateY(-2px); /* Slightly less movement on hover */
-        box-shadow: 4px 5px 8px var(--shadow-color);
-    }
-    
-    .arctic-glow .button:active,
-    .arctic-glow .transparent-button:active,
-    .arctic-glow .back-to-top-button:active,
-    .arctic-glow .calendar-navigation button:active {
-        transform: translateY(-1px);
-        box-shadow: 2px 2px 4px var(--shadow-color);
-    }
-    
-    .arctic-glow .button.secondary {
-        background-color: var(--secondary-color);
-        color: white;
-    }
-    
-    .arctic-glow .button.secondary:hover {
-        background-color: darken(var(--secondary-color), 10%);
-    }
-    
-    
-    /* Button Styles */
-    .arctic-glow .button,
-    .arctic-glow .transparent-button,
-    .arctic-glow .back-to-top-button,
-    .arctic-glow .calendar-navigation button {
-        background-color: var(--primary-color);
-        color: black;
-        border: none;
-        padding: 12px 20px;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        font-size: 1.1em;
-        font-weight: 500;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        box-shadow: 3px 3px 6px var(--shadow-color);
-    }
-    
-    .arctic-glow .button:hover,
-    .arctic-glow .transparent-button:hover,
-    .arctic-glow .back-to-top-button:hover,
-    .arctic-glow .calendar-navigation button:hover {
-        background-color: var(--hover-color);
-        transform: translateY(-3px);
-        box-shadow: 4px 5px 8px var(--shadow-color);
-    }
-    
-    .arctic-glow .button.secondary {
-        background-color: var(--secondary-color);
-        color: black;
-    }
-    
-    .arctic-glow .button.secondary:hover {
-        background-color: var(--event-marker-hover);
-        color: white;
-    }
+}
