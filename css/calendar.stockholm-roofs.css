@@ -1,138 +1,174 @@
 /* calendar.stockholm-roofs.css */
 /* ============================
-    Stockholm Roofs Theme
+    Stockholm Roofs Theme - Enhanced Calendar Styles
+    Version: 2.3 (Adapted from Silicon Valley Theme)
    ============================ */
 
-.stockholm-roofs {
-    /* Theme-Specific Variables */
-    --primary-color: #2A9D8F;
-    /* Scandinavian Turquoise - Sea Wave Aesthetic */
-    --primary-color-rgb: 42, 157, 143;
-    --secondary-color: #87CEEB;
-    /* Sky Blue - Nordic Airy Feel */
-    --hover-color: #5FB3B3;
-    /* Muted Teal - Smooth Accents */
-    --border-color: #A7D8DE;
-    /* Soft Aqua - Elegant Contrast */
-    --text-color: #1B3B4F;
-    /* Deep Blue - Maritime Depth */
-    --background-color: #E0F7FA;
+:root {
+    --stockholm-roofs-bg: #E0F7FA;
     /* Pale Cyan - Light and Fresh Background */
-    --event-marker-color: #007C91;
-    /* Bold Teal - Event Highlights */
-    --event-marker-hover: #005F6B;
-    /* Darker Teal - Hover Effect */
-    --shadow-color: rgba(27, 59, 79, 0.2);
-    --border-radius: 12px;
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
-    font-family: 'Lora', serif;
-    /* Elegant Scandinavian Typography */
+    --stockholm-roofs-text: #1B3B4F;
+    /* Deep Blue - Maritime Depth */
+    --stockholm-roofs-primary: #2A9D8F;
+    /* Scandinavian Turquoise - Sea Wave Aesthetic */
+    --stockholm-roofs-secondary: #87CEEB;
+    /* Sky Blue - Nordic Airy Feel */
+    --stockholm-roofs-shadow: rgba(27, 59, 79, 0.2);
+    --stockholm-roofs-radius: 12px;
+    --stockholm-roofs-hover: #5FB3B3;
+    /* Muted Teal - Smooth Accents */
+    --stockholm-roofs-current: #2A9D8F;
+    /* Scandinavian Turquoise */
+    --stockholm-roofs-blur: 6px;
+    /* Adjusted blur */
+    --stockholm-roofs-transition: 0.3s ease-in-out;
+    --stockholm-roofs-table-bg: #fff;
 }
 
 /* Base Styles */
-.stockholm-roofs .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: 'EB Garamond', serif;
-    /* Classic European touch with Stockholm vibes */
+.stockholm-roofs {
+    font-family: 'Lora', serif;
+    /* Elegant Scandinavian Typography */
     line-height: 1.7;
-    margin: 30px auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 20px var(--shadow-color);
-    max-width: 95%;
+    color: var(--stockholm-roofs-text);
 }
 
-/* Table Styles */
+.stockholm-roofs .container {
+    background: var(--stockholm-roofs-bg);
+    padding: 40px;
+    border-radius: var(--stockholm-roofs-radius);
+    box-shadow: 0 10px 20px var(--stockholm-roofs-shadow);
+    font-family: 'EB Garamond', serif;
+    /* Classic European touch with Stockholm vibes */
+}
+
+/* Calendar Styles */
+.stockholm-roofs .calendar-container {
+    padding: 30px;
+    background-color: rgba(224, 247, 250, 0.9);
+    border-radius: calc(var(--stockholm-roofs-radius) - 5px);
+    box-shadow: 0 5px 10px var(--stockholm-roofs-shadow);
+    backdrop-filter: blur(var(--stockholm-roofs-blur));
+}
+
 .stockholm-roofs table {
     width: 100%;
+    margin: 30px auto;
     border-collapse: collapse;
-    margin-top: 20px;
+    border-radius: var(--stockholm-roofs-radius);
+    overflow: hidden;
+    background-color: var(--stockholm-roofs-table-bg);
+    box-shadow: 0 8px 16px var(--stockholm-roofs-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
     table-layout: fixed;
-    /* Added for consistent column widths */
 }
 
 .stockholm-roofs th,
 .stockholm-roofs td {
-    border: 1px solid var(--border-color);
-    padding: 14px;
+    padding: 10px;
     text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
-    overflow: hidden;
-    /* Prevent content from overflowing cells */
-    white-space: nowrap;
-    /* Prevent text from wrapping */
-    text-overflow: ellipsis;
-    /* Add ellipsis (...) for overflow */
+    border: none;
+    transition: var(--stockholm-roofs-transition);
+    word-wrap: break-word;
 }
 
 .stockholm-roofs th {
-    background-color: var(--primary-color);
+    background-color: var(--stockholm-roofs-primary);
     color: white;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
-.stockholm-roofs tr:hover td {
-    background-color: rgba(var(--primary-color-rgb), 0.15);
-    box-shadow: inset 0 0 6px var(--shadow-color);
-}
-
-.stockholm-roofs td.current-day {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: bold;
-}
-
-/* Modal Styles */
-.stockholm-roofs .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.stockholm-roofs .modal.show {
-    display: flex;
-}
-
-.stockholm-roofs .modal-content {
-    background-color: rgba(224, 247, 250, 0.9);
-    backdrop-filter: blur(6px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
-    border-radius: var(--border-radius);
-    box-shadow: 0 5px 14px rgba(var(--primary-color-rgb), 0.15);
-    padding: 20px;
+.stockholm-roofs td {
+    background-color: transparent;
     position: relative;
 }
 
-.stockholm-roofs .modal-title {
-    color: var(--primary-color);
-    font-size: 1.6em;
-    margin-bottom: 15px;
+.stockholm-roofs td:hover {
+    background-color: var(--stockholm-roofs-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px var(--stockholm-roofs-shadow);
+    color: var(--stockholm-roofs-text);
 }
 
-/* Event List Styles */
+.stockholm-roofs td.current-day {
+    background-color: var(--stockholm-roofs-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(42, 157, 143, 0.7);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.stockholm-roofs .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.stockholm-roofs .event-marker {
+    background-color: var(--stockholm-roofs-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--stockholm-roofs-transition);
+    box-shadow: 0 0 6px rgba(42, 157, 143, 0.6);
+}
+
+.stockholm-roofs .event-marker:hover {
+    background-color: color-mix(in srgb, var(--stockholm-roofs-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.stockholm-roofs .modal-content {
+    background-color: rgba(224, 247, 250, 0.98);
+    backdrop-filter: blur(var(--stockholm-roofs-blur));
+    color: var(--stockholm-roofs-text);
+    border: 2px solid rgba(42, 157, 143, 0.15);
+    border-radius: var(--stockholm-roofs-radius);
+    box-shadow: 0 8px 20px var(--stockholm-roofs-shadow);
+    padding: 30px;
+}
+
+.stockholm-roofs .modal-title {
+    color: var(--stockholm-roofs-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
 .stockholm-roofs .event-list {
-    margin: 10px 0;
+    margin: 20px 0;
     padding: 0;
     list-style: none;
 }
 
 .stockholm-roofs .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--stockholm-roofs-secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.2s;
+}
+
+.stockholm-roofs .event-list li:hover {
+    background-color: rgba(42, 157, 143, 0.1);
 }
 
 .stockholm-roofs .event-list li:last-child {
@@ -140,110 +176,193 @@
 }
 
 .stockholm-roofs .event-list button {
-    background-color: var(--event-marker-color);
+    background-color: var(--stockholm-roofs-primary);
     color: white;
     border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: var(--stockholm-roofs-radius);
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
+    transition: var(--stockholm-roofs-transition);
+    box-shadow: 0 4px 8px var(--stockholm-roofs-shadow);
 }
 
 .stockholm-roofs .event-list button:hover {
-    background-color: var(--event-marker-hover);
+    background-color: color-mix(in srgb, var(--stockholm-roofs-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--stockholm-roofs-shadow);
 }
 
-/* Button Styles */
+/* Buttons */
 .stockholm-roofs .button,
-.stockholm-roofs .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 14px 22px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
+.stockholm-roofs .transparent-button,
+.stockholm-roofs #backToTopBtn {
+    border-radius: var(--stockholm-roofs-radius);
+    padding: 16px 28px;
     font-size: 1.2em;
-    font-weight: 600;
-    transition: all var(--transition-duration) var(--transition-easing);
-    box-shadow: 4px 4px 8px var(--shadow-color);
+    transition: var(--stockholm-roofs-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--stockholm-roofs-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--stockholm-roofs-shadow);
 }
 
-.stockholm-roofs .button:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-4px);
-    box-shadow: 5px 6px 10px var(--shadow-color);
+.stockholm-roofs .button:hover,
+.stockholm-roofs .transparent-button:hover,
+.stockholm-roofs #backToTopBtn:hover {
+    background-color: var(--stockholm-roofs-hover);
+    color: var(--stockholm-roofs-text);
+    box-shadow: 0 8px 16px var(--stockholm-roofs-shadow);
+    transform: scale(1.02);
 }
 
-/* Header */
+.stockholm-roofs .button.secondary {
+    background-color: var(--stockholm-roofs-secondary);
+    color: var(--stockholm-roofs-text);
+    box-shadow: 0 4px 8px var(--stockholm-roofs-shadow);
+}
+
+.stockholm-roofs .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--stockholm-roofs-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--stockholm-roofs-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.stockholm-roofs .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--stockholm-roofs-primary);
+    transition: var(--stockholm-roofs-transition);
+}
+
+.stockholm-roofs .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--stockholm-roofs-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
 .stockholm-roofs .calendar-header {
     text-align: center;
     font-size: 1.5em;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--stockholm-roofs-primary);
+}
+
+/* Week Number */
+.stockholm-roofs .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(42, 157, 143, 0.7);
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.stockholm-roofs .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.stockholm-roofs td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.stockholm-roofs td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 575.98px) {
+    .stockholm-roofs table {
+        font-size: 0.7em;
+    }
 
     .stockholm-roofs th,
     .stockholm-roofs td {
-        padding: 10px;
-        font-size: 0.9em;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        padding: 4px;
     }
 
-    .stockholm-roofs .calendar-header {
-        font-size: 1.3em;
-    }
-
-    .stockholm-roofs .button,
-    .stockholm-roofs .calendar-navigation button {
-        padding: 10px 18px;
-        font-size: 1em;
-    }
-
-    .stockholm-roofs table {
-        display: block;
-        overflow-x: auto;
-        table-layout: auto;
-    }
-
-    /* Column width adjustments */
     .stockholm-roofs th:nth-child(1),
     .stockholm-roofs td:nth-child(1) {
-        width: 12%;
+        width: 15%;
     }
 
     .stockholm-roofs th:nth-child(2),
     .stockholm-roofs td:nth-child(2) {
-        width: 14%;
+        width: 20%;
     }
 
     .stockholm-roofs th:nth-child(3),
     .stockholm-roofs td:nth-child(3) {
-        width: 14%;
+        width: 15%;
     }
 
     .stockholm-roofs th:nth-child(4),
     .stockholm-roofs td:nth-child(4) {
-        width: 14%;
+        width: 20%;
     }
 
     .stockholm-roofs th:nth-child(5),
     .stockholm-roofs td:nth-child(5) {
-        width: 14%;
+        width: 15%;
     }
 
     .stockholm-roofs th:nth-child(6),
     .stockholm-roofs td:nth-child(6) {
-        width: 14%;
+        width: 15%;
     }
 
     .stockholm-roofs th:nth-child(7),
     .stockholm-roofs td:nth-child(7) {
-        width: 12%;
+        width: 10%;
+    }
+
+    .stockholm-roofs .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .stockholm-roofs .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .stockholm-roofs .calendar-container {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .stockholm-roofs th,
+    .stockholm-roofs td {
+        padding: 6px;
+    }
+
+    .stockholm-roofs table {
+        font-size: 0.8em;
     }
 }
