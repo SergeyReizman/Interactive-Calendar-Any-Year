@@ -1,123 +1,177 @@
-/* calendar.purple-fog.css */
-/* ============================
-    Purple Fog Theme
-   ============================ */
+/* ==========================================================================
+    Purple Fog Theme - Enhanced Calendar Styles
+    Version: 2.3 (Adapted from Silicon Valley Theme)
+   ========================================================================== */
 
-   .purple-fog {
-    /* Theme-Specific Variables */
-    --primary-color: #6B46C1; /* Purple */
-    --primary-color-rgb: 107, 70, 193;
-    --secondary-color: #9F7AEA; /* Light Purple */
-    --hover-color: #B794F4; /* Lighter Purple */
-    --border-color: #D6BCFA; /* Pale Purple */
-    --text-color: #1A202C; /* Dark Gray */
-    --background-color: #F7FAFC; /* Soft Background */
-    --event-marker-color: #805AD5; /* Bold Purple */
-    --event-marker-hover: #6B46C1; /* Darker Purple */
-    --shadow-color: rgba(26, 32, 44, 0.2);
-    --border-radius: 14px;
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
+:root {
+    --purple-fog-bg: #F7FAFC;
+    /* Soft Background */
+    --purple-fog-text: #1A202C;
+    /* Dark Gray */
+    --purple-fog-primary: #6B46C1;
+    /* Purple */
+    --purple-fog-secondary: #9F7AEA;
+    /* Light Purple */
+    --purple-fog-shadow: rgba(26, 32, 44, 0.2);
+    --purple-fog-radius: 14px;
+    --purple-fog-hover: #B794F4;
+    /* Lighter Purple */
+    --purple-fog-current: #6B46C1;
+    /* Purple */
+    --purple-fog-blur: 6px;
+    /* Adjusted blur */
+    --purple-fog-transition: 0.3s ease-in-out;
+    --purple-fog-table-bg: #fff;
 }
 
 /* Base Styles */
-.purple-fog .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
+.purple-fog {
+    font-family: 'Inter', sans-serif;
+    /* Clean, modern sans-serif font */
     line-height: 1.6;
-    margin: 30px auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 20px var(--shadow-color);
-    max-width: 95%;
-    font-family: 'Inter', sans-serif; /* Clean, modern sans-serif font */
+    color: var(--purple-fog-text);
 }
 
+.purple-fog .container {
+    background: var(--purple-fog-bg);
+    /* Simplified background */
+    padding: 40px;
+    border-radius: var(--purple-fog-radius);
+    box-shadow: 0 10px 20px var(--purple-fog-shadow);
+}
 
-/* Table Styles */
+/* Calendar Styles */
+.purple-fog .calendar-container {
+    padding: 30px;
+    background-color: rgba(247, 250, 252, 0.9);
+    /* Adjusted background */
+    border-radius: calc(var(--purple-fog-radius) - 5px);
+    box-shadow: 0 5px 10px var(--purple-fog-shadow);
+    backdrop-filter: blur(var(--purple-fog-blur));
+}
+
 .purple-fog table {
     width: 100%;
+    margin: 30px auto;
     border-collapse: collapse;
-    margin-top: 20px;
-    table-layout: fixed; /* Added for consistent column widths */
+    border-radius: var(--purple-fog-radius);
+    overflow: hidden;
+    background-color: var(--purple-fog-table-bg);
+    box-shadow: 0 8px 16px var(--purple-fog-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    table-layout: fixed;
 }
 
 .purple-fog th,
 .purple-fog td {
-    border: 1px solid var(--border-color);
-    padding: 14px;
+    padding: 10px;
     text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
-    overflow: hidden; /* Prevent content from overflowing cells */
-    white-space: nowrap; /* Prevent text from wrapping */
-    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+    border: none;
+    transition: var(--purple-fog-transition);
+    word-wrap: break-word;
 }
 
 .purple-fog th {
-    background-color: var(--primary-color);
+    background-color: var(--purple-fog-primary);
     color: white;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
-.purple-fog tr:hover td {
-    background-color: rgba(var(--primary-color-rgb), 0.15);
-    box-shadow: inset 0 0 6px var(--shadow-color);
-}
-
-.purple-fog td.current-day {
-    background-color: var(--secondary-color);
-    color: white;
-    font-weight: bold;
-}
-
-/* Modal Styles */
-.purple-fog .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.purple-fog .modal.show {
-    display: flex;
-}
-
-.purple-fog .modal-content {
-    background-color: rgba(247, 250, 252, 0.9);
-    backdrop-filter: blur(6px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
-    border-radius: var(--border-radius);
-    box-shadow: 0 5px 14px rgba(var(--primary-color-rgb), 0.15);
-    padding: 20px;
+.purple-fog td {
+    background-color: transparent;
     position: relative;
 }
 
+.purple-fog td:hover {
+    background-color: var(--purple-fog-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px var(--purple-fog-shadow);
+    color: var(--purple-fog-text);
+}
+
+.purple-fog td.current-day {
+    background-color: var(--purple-fog-current);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(107, 70, 193, 0.7);
+    /* Adjusted shadow color */
+    border-radius: 5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Event Markers */
+.purple-fog .event-marker-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.purple-fog .event-marker {
+    background-color: var(--purple-fog-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: var(--purple-fog-transition);
+    box-shadow: 0 0 6px rgba(107, 70, 193, 0.6);
+    /* Adjusted shadow color */
+}
+
+.purple-fog .event-marker:hover {
+    background-color: color-mix(in srgb, var(--purple-fog-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Modal Styles */
+.purple-fog .modal-content {
+    background-color: rgba(247, 250, 252, 0.98);
+    backdrop-filter: blur(var(--purple-fog-blur));
+    color: var(--purple-fog-text);
+    border: 2px solid rgba(107, 70, 193, 0.15);
+    /* Adjusted border color */
+    border-radius: var(--purple-fog-radius);
+    box-shadow: 0 8px 20px var(--purple-fog-shadow);
+    padding: 30px;
+}
+
 .purple-fog .modal-title {
-    color: var(--primary-color);
-    font-size: 1.6em;
-    margin-bottom: 15px;
+    color: var(--purple-fog-primary);
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
 .purple-fog .event-list {
-    margin: 10px 0;
+    margin: 20px 0;
     padding: 0;
     list-style: none;
 }
 
 .purple-fog .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--purple-fog-secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.2s;
+}
+
+.purple-fog .event-list li:hover {
+    background-color: rgba(107, 70, 193, 0.1);
+    /* Adjusted hover background */
 }
 
 .purple-fog .event-list li:last-child {
@@ -125,81 +179,194 @@
 }
 
 .purple-fog .event-list button {
-    background-color: var(--event-marker-color);
+    background-color: var(--purple-fog-primary);
     color: white;
     border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: var(--purple-fog-radius);
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
+    transition: var(--purple-fog-transition);
+    box-shadow: 0 4px 8px var(--purple-fog-shadow);
 }
 
 .purple-fog .event-list button:hover {
-    background-color: var(--event-marker-hover);
+    background-color: color-mix(in srgb, var(--purple-fog-primary), black 15%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px var(--purple-fog-shadow);
 }
 
-/* Button Styles */
+/* Buttons */
 .purple-fog .button,
-.purple-fog .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 14px 22px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
+.purple-fog .transparent-button,
+.purple-fog #backToTopBtn {
+    border-radius: var(--purple-fog-radius);
+    padding: 16px 28px;
     font-size: 1.2em;
-    font-weight: 600;
-    transition: all var(--transition-duration) var(--transition-easing);
-    box-shadow: 4px 4px 8px var(--shadow-color);
+    transition: var(--purple-fog-transition);
+    cursor: pointer;
+    border: none;
+    color: var(--purple-fog-text);
+    background-color: transparent;
+    box-shadow: 0 6px 12px var(--purple-fog-shadow);
 }
 
-.purple-fog .button:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-4px);
-    box-shadow: 5px 6px 10px var(--shadow-color);
+.purple-fog .button:hover,
+.purple-fog .transparent-button:hover,
+.purple-fog #backToTopBtn:hover {
+    background-color: var(--purple-fog-hover);
+    color: var(--purple-fog-text);
+    box-shadow: 0 8px 16px var(--purple-fog-shadow);
+    transform: scale(1.02);
 }
 
-/* Header */
+.purple-fog .button.secondary {
+    background-color: var(--purple-fog-secondary);
+    color: var(--purple-fog-text);
+    box-shadow: 0 4px 8px var(--purple-fog-shadow);
+}
+
+.purple-fog .button.secondary:hover {
+    background-color: color-mix(in srgb, var(--purple-fog-secondary), black 15%);
+    box-shadow: 0 6px 10px var(--purple-fog-shadow);
+    transform: scale(1.02);
+}
+
+/* Calendar Navigation */
+.purple-fog .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--purple-fog-primary);
+    transition: var(--purple-fog-transition);
+}
+
+.purple-fog .calendar-navigation button:hover {
+    color: color-mix(in srgb, var(--purple-fog-primary), black 15%);
+    transform: scale(1.1);
+}
+
+/* Calendar Header */
 .purple-fog .calendar-header {
     text-align: center;
     font-size: 1.5em;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--purple-fog-primary);
+}
+
+/* Week Number */
+.purple-fog .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 3px 6px;
+    background-color: rgba(107, 70, 193, 0.7);
+    /* Adjusted background color */
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* No Events Message */
+.purple-fog .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* 3D Effect for Table Cells (Improved) */
+.purple-fog td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateZ(-2px);
+    transition: transform 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.purple-fog td:hover::before {
+    transform: translateZ(-4px);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    .purple-fog th, .purple-fog td {
-        padding: 10px; /* Slightly smaller padding */
-        font-size: 0.9em;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+@media (max-width: 575.98px) {
+    .purple-fog table {
+        font-size: 0.7em;
     }
 
-    .purple-fog .calendar-header {
-        font-size: 1.3em;
+    .purple-fog th,
+    .purple-fog td {
+        padding: 4px;
     }
 
-    .purple-fog .button,
-    .purple-fog .calendar-navigation button {
-        padding: 10px 18px;
-        font-size: 1em;
+    .purple-fog th:nth-child(1),
+    .purple-fog td:nth-child(1) {
+        width: 15%;
+    }
+
+    .purple-fog th:nth-child(2),
+    .purple-fog td:nth-child(2) {
+        width: 20%;
+    }
+
+    .purple-fog th:nth-child(3),
+    .purple-fog td:nth-child(3) {
+        width: 15%;
+    }
+
+    .purple-fog th:nth-child(4),
+    .purple-fog td:nth-child(4) {
+        width: 20%;
+    }
+
+    .purple-fog th:nth-child(5),
+    .purple-fog td:nth-child(5) {
+        width: 15%;
+    }
+
+    .purple-fog th:nth-child(6),
+    .purple-fog td:nth-child(6) {
+        width: 15%;
+    }
+
+    .purple-fog th:nth-child(7),
+    .purple-fog td:nth-child(7) {
+        width: 10%;
+    }
+
+    .purple-fog .event-marker-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .purple-fog .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .purple-fog .calendar-container {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .purple-fog th,
+    .purple-fog td {
+        padding: 6px;
     }
 
     .purple-fog table {
-        display: block;
-        overflow-x: auto;
-        table-layout: auto; /* Allow column widths to adjust */
+        font-size: 0.8em;
     }
-
-    /* Column width adjustments */
-    .purple-fog th:nth-child(1), .purple-fog td:nth-child(1) { width: 12%; }
-    .purple-fog th:nth-child(2), .purple-fog td:nth-child(2) { width: 14%; }
-    .purple-fog th:nth-child(3), .purple-fog td:nth-child(3) { width: 14%; }
-    .purple-fog th:nth-child(4), .purple-fog td:nth-child(4) { width: 14%; }
-    .purple-fog th:nth-child(5), .purple-fog td:nth-child(5) { width: 14%; }
-    .purple-fog th:nth-child(6), .purple-fog td:nth-child(6) { width: 14%; }
-    .purple-fog th:nth-child(7), .purple-fog td:nth-child(7) { width: 12%; }
 }
