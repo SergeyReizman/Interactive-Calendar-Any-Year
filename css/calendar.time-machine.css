@@ -1,0 +1,285 @@
+/* ============================
+   Time Machine Theme (Retro-Futuristic - Enhanced)
+   Purpose: A highly immersive retro-futuristic time-travel design with dynamic animations, 
+   glowing effects and a polished layout.
+   ============================ */
+
+   :root {
+    --tm-bg-color: #1a1a1a;
+    /* Dark gray background */
+    --tm-text-color: #ffcc00;
+    /* Vintage yellow text */
+    --tm-primary-color: #2a2a2a;
+    /* Slightly lighter gray for primary elements */
+    --tm-secondary-color: #222222;
+    /* Near-black for secondary elements */
+    --tm-hover-color: #444444;
+    /* Brighter gray for hover effects */
+    --tm-current-day-bg: #ffcc00;
+    /* Vintage yellow for current day */
+    --tm-border-radius: 16px;
+    /* Rounded corners */
+    --tm-shadow-color: rgba(255, 204, 0, 0.7);
+    /* Vintage yellow glow */
+    --tm-gradient-start: #2a2a2a;
+    /* Dark gray for gradients */
+    --tm-gradient-end: #1a1a1a;
+    /* Pure black for gradients */
+    --tm-accent-color: #ff6600;
+    /* Retro orange for accents */
+    --tm-cyan: #00cccc;
+    /* Vintage cyan for highlights */
+    --tm-magenta: #cc33cc;
+    /* Retro magenta for contrast */
+    --tm-purple: #6633cc;
+    /* Soft purple for depth */
+    --tm-modal-bg: rgba(30, 30, 30, 0.98);
+    /* Darker background for modal */
+    --tm-modal-border: #ff9933;
+    /* Brighter orange for border */
+    --tm-modal-shadow: rgba(255, 153, 51, 0.8);
+    /* Glowing orange shadow */
+    --transition-duration: 0.4s;
+    /* Smooth transitions */
+    --transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Transition easing */
+    --font-family: 'Orbitron', sans-serif;
+    /* Futuristic font for a time-machine feel */
+    --tm-glow: 0 0 10px var(--tm-shadow-color), 0 0 20px var(--tm-shadow-color);
+    /* Glow effect */
+}
+
+/* General container styling */
+.time-machine .container {
+    background: linear-gradient(135deg, var(--tm-gradient-start), var(--tm-gradient-end));
+    color: var(--tm-text-color);
+    padding: 30px;
+    border-radius: var(--tm-border-radius);
+    transition: background var(--transition-duration) var(--transition-easing);
+    font-family: var(--font-family);
+    box-shadow: var(--tm-glow);
+    border: 2px solid var(--tm-cyan);
+}
+
+/* Table styling */
+.time-machine table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: var(--tm-glow);
+    background-color: var(--tm-bg-color);
+    border: 2px solid var(--tm-cyan);
+    border-radius: var(--tm-border-radius);
+    overflow: hidden;
+}
+
+.time-machine th {
+    background-color: var(--tm-secondary-color);
+    color: var(--tm-magenta);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--tm-accent-color);
+    padding: 15px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 1.1em;
+}
+
+.time-machine td {
+    background-color: var(--tm-bg-color);
+    color: var(--tm-text-color);
+    transition: all var(--transition-duration) var(--transition-easing);
+    padding: 12px;
+    text-align: center;
+    position: relative;
+}
+
+.time-machine td::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-easing);
+    pointer-events: none;
+}
+
+.time-machine td:hover::before {
+    opacity: 1;
+}
+
+.time-machine tr:hover td {
+    background-color: var(--tm-hover-color);
+    transform: scale(1.05);
+    box-shadow: 0 3px 8px var(--tm-shadow-color);
+    color: var(--tm-cyan);
+}
+
+.time-machine tr:hover th,
+.time-machine tr:hover th * {
+    color: var(--tm-magenta) !important;
+}
+
+.time-machine td.current-day {
+    background-color: var(--tm-current-day-bg);
+    border: 2px solid var(--tm-magenta);
+    font-weight: bold;
+    color: #000;
+    box-shadow: inset 0 0 12px var(--tm-shadow-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Event marker styling */
+.time-machine .event-marker {
+    background-color: var(--tm-purple);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: transform var(--transition-duration) var(--transition-easing);
+    box-shadow: var(--tm-glow);
+}
+
+.time-machine .event-marker:hover {
+    background-color: #fff;
+    transform: scale(1.6);
+    box-shadow: 0 0 15px var(--tm-purple);
+}
+
+/* Modal window styling */
+.time-machine .modal-content {
+    background-color: var(--tm-modal-bg);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--tm-modal-border);
+    border-radius: var(--tm-border-radius);
+    box-shadow: 0 12px 24px var(--tm-modal-shadow);
+    padding: 25px;
+    color: var(--tm-text-color);
+    animation: slideIn 0.5s var(--transition-easing);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.time-machine .modal .close-button {
+    background-color: var(--tm-magenta);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing);
+    box-shadow: var(--tm-glow);
+}
+
+.time-machine .modal .close-button:hover {
+    background-color: #fff;
+    color: #000;
+    transform: rotate(90deg);
+}
+
+/* Button styling */
+.time-machine .button {
+    border-radius: var(--tm-border-radius);
+    padding: 14px 24px;
+    font-size: 1em;
+    transition: all var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 2px solid var(--tm-cyan);
+    background-color: transparent;
+    color: var(--tm-cyan);
+    box-shadow: var(--tm-glow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.time-machine .button:hover {
+    background-color: var(--tm-cyan);
+    color: #000;
+    box-shadow: 0 0 20px var(--tm-cyan);
+    transform: translateY(-2px);
+}
+
+/* Calendar navigation */
+.time-machine .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--tm-magenta);
+    transition: color var(--transition-duration) var(--transition-easing);
+    text-shadow: var(--tm-glow);
+}
+
+.time-machine .calendar-navigation button:hover {
+    color: var(--tm-cyan);
+    transform: scale(1.2);
+}
+
+/* Calendar header */
+.time-machine .calendar-header {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--tm-accent-color);
+    text-shadow: var(--tm-glow);
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 10px var(--tm-accent-color), 0 0 20px var(--tm-accent-color);
+    }
+    to {
+        text-shadow: 0 0 20px var(--tm-accent-color), 0 0 40px var(--tm-accent-color);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .time-machine th,
+    .time-machine td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .time-machine .calendar-header {
+        font-size: 1.6em;
+    }
+
+    .time-machine .button {
+        padding: 12px 20px;
+        font-size: 0.9em;
+    }
+
+    .time-machine table {
+        display: block;
+        overflow-x: auto;
+    }
+}
