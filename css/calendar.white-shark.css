@@ -1,0 +1,294 @@
+/* ============================
+    White Shark Theme - Enhanced
+    Purpose: Styles specific to the White Shark theme for the calendar.
+    ============================ */
+
+    :root {
+        --white-shark-bg-color: #ffffff; /* White background */
+        --white-shark-text-color: #333333; /* Dark gray for text */
+        --white-shark-primary-color: #0077b6; /* Ocean blue */
+        --white-shark-secondary-color: #00b4d8; /* Bright teal */
+        --white-shark-shadow-color: rgba(0, 0, 0, 0.1);
+        --white-shark-border-radius: 12px;
+        --white-shark-gradient-start: #f0f8ff; /* Light blue gradient */
+        --white-shark-gradient-end: #e0f7fa; /* Light teal gradient */
+        --white-shark-hover-color: #caf0f8; /* Light teal for hover */
+        --white-shark-current-day-bg: #0077b6; /* Ocean blue for current day */
+        --transition-duration: 0.3s;
+        --transition-easing: ease-in-out;
+        --white-shark-table-bg: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    }
+    
+    .white-shark .container {
+        background: linear-gradient(to bottom, var(--white-shark-gradient-start), var(--white-shark-gradient-end));
+        color: var(--white-shark-text-color);
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        padding: 40px;
+        border-radius: var(--white-shark-border-radius);
+        box-shadow: 0 10px 20px var(--white-shark-shadow-color);
+    }
+    
+    .white-shark .calendar-container {
+        padding: 30px;
+        background-color: var(--white-shark-table-bg);
+        border-radius: calc(var(--white-shark-border-radius) - 5px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .white-shark table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 30px auto;
+        border-radius: var(--white-shark-border-radius);
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        background-color: transparent;
+        box-shadow: 0 8px 16px var(--white-shark-shadow-color);
+        table-layout: fixed;
+    }
+    
+    .white-shark th,
+    .white-shark td {
+        border: none;
+        padding: 10px;
+        text-align: center;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            color var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing);
+        word-wrap: break-word;
+    }
+    
+    .white-shark th {
+        background-color: var(--white-shark-primary-color);
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .white-shark td {
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    }
+    
+    .white-shark td:hover {
+        background-color: var(--white-shark-hover-color);
+        transform: scale(1.03);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        color: var(--white-shark-text-color);
+    }
+    
+    .white-shark td.current-day {
+        background-color: var(--white-shark-current-day-bg);
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 0 10px rgba(0, 119, 182, 0.7);
+        border-radius: 5px;
+        animation: pulse 1.5s infinite ease-in-out;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+    
+        50% {
+            transform: scale(1.05);
+        }
+    
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    .white-shark .event-marker-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+        gap: 6px;
+    }
+    
+    .white-shark .event-marker {
+        background-color: var(--white-shark-secondary-color);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing);
+        box-shadow: 0 0 6px rgba(0, 180, 216, 0.6);
+    }
+    
+    .white-shark .event-marker:hover {
+        background-color: darken(var(--white-shark-secondary-color), 15%);
+        transform: scale(1.1);
+    }
+    
+    .white-shark .modal-content {
+        background-color: rgba(255, 255, 255, 0.98); /* White with slight transparency */
+        backdrop-filter: blur(8px);
+        color: var(--white-shark-text-color);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        border-radius: var(--white-shark-border-radius);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+    
+    .white-shark .modal-title {
+        color: var(--white-shark-primary-color);
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+    
+    .white-shark .event-list {
+        margin: 20px 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .white-shark .event-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--white-shark-secondary-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.2s ease-in-out;
+    }
+    
+    .white-shark .event-list li:hover {
+        background-color: rgba(202, 240, 248, 0.3); /* Light teal hover */
+    }
+    
+    .white-shark .event-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .white-shark .event-list button {
+        background-color: var(--white-shark-primary-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: var(--white-shark-border-radius);
+        cursor: pointer;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .white-shark .event-list button:hover {
+        background-color: darken(var(--white-shark-primary-color), 15%);
+        transform: scale(1.05);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+    
+    .white-shark .button,
+    .white-shark .transparent-button,
+    .white-shark #backToTopBtn {
+        border-radius: var(--white-shark-border-radius);
+        padding: 16px 28px;
+        font-size: 1.2em;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            color var(--transition-duration) var(--transition-easing),
+            box-shadow var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing);
+        cursor: pointer;
+        border: none;
+        color: var(--white-shark-text-color);
+        background-color: transparent;
+        box-shadow: 0 6px 12px var(--white-shark-shadow-color);
+    }
+    
+    .white-shark .button:hover,
+    .white-shark .transparent-button:hover,
+    .white-shark #backToTopBtn:hover {
+        background-color: var(--white-shark-hover-color);
+        color: var(--white-shark-text-color);
+        box-shadow: 0 8px 16px var(--white-shark-shadow-color);
+        transform: scale(1.02);
+    }
+    
+    .white-shark .button.secondary {
+        background-color: var(--white-shark-secondary-color);
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .white-shark .button.secondary:hover {
+        background-color: darken(var(--white-shark-secondary-color), 15%);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        transform: scale(1.02);
+    }
+    
+    /* Media Queries */
+    @media (max-width: 575.98px) {
+        .white-shark table {
+            font-size: 0.7em;
+        }
+    
+        .white-shark th,
+        .white-shark td {
+            padding: 4px;
+        }
+    
+        .white-shark th:nth-child(1),
+        .white-shark td:nth-child(1) {
+            width: 14%;
+        }
+    
+        .white-shark th:nth-child(2),
+        .white-shark td:nth-child(2) {
+            width: 16%;
+        }
+    
+        .white-shark th:nth-child(3),
+        .white-shark td:nth-child(3) {
+            width: 16%;
+        }
+    
+        .white-shark th:nth-child(4),
+        .white-shark td:nth-child(4) {
+            width: 16%;
+        }
+    
+        .white-shark th:nth-child(5),
+        .white-shark td:nth-child(5) {
+            width: 16%;
+        }
+    
+        .white-shark th:nth-child(6),
+        .white-shark td:nth-child(6) {
+            width: 16%;
+        }
+    
+        .white-shark th:nth-child(7),
+        .white-shark td:nth-child(7) {
+            width: 6%;
+        }
+    
+        .white-shark .event-marker-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+    
+        .white-shark .event-marker {
+            width: 6px;
+            height: 6px;
+        }
+    
+        .white-shark .calendar-container {
+            padding: 10px;
+        }
+    }
+    
+    @media (min-width: 576px) and (max-width: 767.98px) {
+        .white-shark th,
+        .white-shark td {
+            padding: 6px;
+        }
+    
+        .white-shark table {
+            font-size: 0.8em;
+        }
+    }
