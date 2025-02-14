@@ -55,7 +55,7 @@ const applyTheme = (theme) => {
     'shaolin-monastery', 'black-coffee', 'forgotten-dreams', 'wild-wonders',
     'secret-night', 'candy-world', 'cracked-ice', 'fir-balsam', 'sea-diamonds',
     'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin', 
-    'white-shark'
+    'white-shark', 'blue-whale'
   );
 
   body.classList.add(theme);
