@@ -56,7 +56,7 @@ const applyTheme = (theme) => {
     'secret-night', 'candy-world', 'cracked-ice', 'fir-balsam', 'sea-diamonds',
     'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin', 
     'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'flamingo-sky',
-    'cacao-plantation', 'green-coffee', 'sea-lions'
+    'cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train'
   );
 
   body.classList.add(theme);
