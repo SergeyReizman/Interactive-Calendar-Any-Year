@@ -1,0 +1,390 @@
+/* ============================
+    Hurricane Clouds Theme - Dynamic, Stormy, and Atmospheric!
+    Purpose: Styles specific to the Hurricane Clouds theme for the calendar.
+    ============================ */
+
+    :root {
+        --hurricane-clouds-bg-color: #e0f2f7; /* Light blue background */
+        --hurricane-clouds-text-color: #263238; /* Dark gray/blue for text */
+        --hurricane-clouds-primary-color: #0277bd; /* Strong blue */
+        --hurricane-clouds-secondary-color: #4fc3f7; /* Lighter blue */
+        --hurricane-clouds-accent-color: #bbdefb; /* Very light blue */
+        --hurricane-clouds-shadow-color: rgba(0, 0, 0, 0.2);
+        --hurricane-clouds-border-radius: 10px;
+        --hurricane-clouds-gradient-start: #e0f2f7;
+        --hurricane-clouds-gradient-end: #b3e5fc;
+        --hurricane-clouds-hover-color: #2979ff; /* Brighter blue for hover */
+        --hurricane-clouds-current-day-bg: #0277bd; /* Strong blue for current day */
+        --transition-duration: 0.3s;
+        --transition-easing: ease-in-out;
+        --hurricane-clouds-wave-animation: waveAnimation 10s ease-in-out infinite; /* Added wave animation variable */
+    
+    }
+    
+    @keyframes waveAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    
+    
+    .hurricane-clouds .container {
+        background: linear-gradient(270deg, var(--hurricane-clouds-gradient-start), var(--hurricane-clouds-secondary-color), var(--hurricane-clouds-gradient-end), var(--hurricane-clouds-secondary-color)); /* Updated gradient */
+        background-size: 400% 400%; /* For animation */
+        animation: var(--hurricane-clouds-wave-animation); /* Apply wave animation */
+        color: var(--hurricane-clouds-text-color);
+        font-family: 'Arial', sans-serif; /* Clean, default font */
+        line-height: 1.5;
+        padding: 30px;
+        border-radius: var(--hurricane-clouds-border-radius);
+        box-shadow: 8px 8px 15px var(--hurricane-clouds-shadow-color);
+    }
+    
+    .hurricane-clouds .calendar-container {
+        padding: 25px;
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+        border-radius: var(--hurricane-clouds-border-radius);
+        box-shadow: 5px 5px 10px var(--hurricane-clouds-shadow-color);
+    }
+    
+    .hurricane-clouds table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 25px auto;
+        box-shadow: 5px 5px 12px var(--hurricane-clouds-shadow-color);
+        border-radius: var(--hurricane-clouds-border-radius);
+        overflow: hidden;
+        table-layout: fixed;
+    }
+    
+    .hurricane-clouds th,
+    .hurricane-clouds td {
+        border: 1px solid var(--hurricane-clouds-accent-color); /* Lighter border color */
+        padding: 10px;
+        text-align: center;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            color var(--transition-duration) var(--transition-easing),
+            box-shadow var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing);
+        word-wrap: break-word;
+    }
+    
+    .hurricane-clouds th {
+        background-color: var(--hurricane-clouds-secondary-color); /* Lighter blue for header */
+        color: var(--hurricane-clouds-text-color);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    
+    .hurricane-clouds td {
+        background-color: #ffffff;
+    }
+    
+    .hurricane-clouds td:hover {
+        background-color: var(--hurricane-clouds-hover-color); /* Brighter blue on hover */
+        transform: scale(1.02);
+        box-shadow: 0 5px 8px var(--hurricane-clouds-shadow-color);
+    }
+    
+    .hurricane-clouds td.current-day {
+        background-color: var(--hurricane-clouds-current-day-bg); /* Strong blue for current day */
+        border: 3px solid var(--hurricane-clouds-primary-color); /* Darker border */
+        font-weight: 600;
+        color: white;
+        box-shadow: inset 0 0 8px var(--hurricane-clouds-shadow-color);
+    }
+    
+    .hurricane-clouds .event-marker-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5px;
+        gap: 4px;
+    }
+    
+    .hurricane-clouds .event-marker {
+        background-color: var(--hurricane-clouds-primary-color); /* Strong blue for markers */
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transition: background-color var(--transition-duration) var(--transition-easing),
+            transform var(--transition-duration) var(--transition-easing);
+    }
+    
+    .hurricane-clouds .event-marker:hover {
+        background-color: darken(var(--hurricane-clouds-primary-color), 20%);
+        transform: scale(1.2);
+    }
+    
+    .hurricane-clouds .modal-content {
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(8px);
+        color: var(--hurricane-clouds-text-color);
+        border: 2px solid rgba(0, 0, 0, 0.15);
+        border-radius: var(--hurricane-clouds-border-radius);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+    }
+    
+    .hurricane-clouds .modal-title {
+        color: var(--hurricane-clouds-primary-color);
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+    
+    .hurricane-clouds .event-list {
+        margin: 20px 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    .hurricane-clouds .event-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--hurricane-clouds-accent-color); /* Lighter border for list items */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .hurricane-clouds .event-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .hurricane-clouds .event-list button {
+        background-color: var(--hurricane-clouds-primary-color); /* Strong blue for event list buttons */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: var(--hurricane-clouds-border-radius);
+        cursor: pointer;
+        transition: background-color var(--transition-duration) var(--transition-easing);
+    }
+    
+    .hurricane-clouds .event-list button:hover {
+        background-color: darken(var(--hurricane-clouds-primary-color), 20%);
+    }
+    
+    .hurricane-clouds .button,
+.hurricane-clouds .transparent-button,
+.hurricane-clouds #backToTopBtn {
+    border-radius: var(--hurricane-clouds-border-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    transition: background-color var(--transition-duration) var(--transition-easing),
+        color var(--transition-duration) var(--transition-easing),
+        box-shadow var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 3px solid var(--hurricane-clouds-primary-color);
+    color: var(--hurricane-clouds-text-color);
+    background-color: transparent;
+    box-shadow: 5px 5px 10px var(--hurricane-clouds-shadow-color);
+}
+
+.hurricane-clouds .button:hover,
+.hurricane-clouds .transparent-button:hover,
+.hurricane-clouds #backToTopBtn:hover {
+    background-color: var(--hurricane-clouds-hover-color);
+    color: var(--hurricane-clouds-text-color);
+    box-shadow: 6px 6px 12px var(--hurricane-clouds-shadow-color);
+    transform: scale(1.02);
+}
+
+.hurricane-clouds .button.secondary {
+    background-color: var(--hurricane-clouds-secondary-color);
+    border: none;
+    color: var(--hurricane-clouds-text-color);
+}
+
+.hurricane-clouds .button.secondary:hover {
+    background-color: darken(var(--hurricane-clouds-secondary-color), 20%);
+}
+
+.hurricane-clouds .calendar-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 7px 14px;
+    cursor: pointer;
+    color: var(--hurricane-clouds-primary-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.hurricane-clouds .calendar-navigation button:hover {
+    color: darken(var(--hurricane-clouds-primary-color), 20%);
+}
+
+.hurricane-clouds .calendar-header {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--hurricane-clouds-primary-color);
+}
+
+.hurricane-clouds th {
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: #555;
+    padding: 10px;
+}
+
+.hurricane-clouds .calendar-title {
+    font-family: 'Georgia', serif;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #444;
+}
+
+.hurricane-clouds .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--hurricane-clouds-primary-color);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.2s ease-in-out;
+}
+
+.hurricane-clouds .modal-close:hover {
+    color: darken(var(--hurricane-clouds-primary-color), 20%);
+}
+
+.hurricane-clouds .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 2px 5px;
+    background-color: var(--hurricane-clouds-accent-color);
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.hurricane-clouds .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+}
+
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 575.98px) {
+
+    /* Small screens */
+    .hurricane-clouds table {
+        font-size: 0.8em;
+        /* Smaller font size */
+        table-layout: fixed;
+        /* Essential for responsive tables */
+    }
+
+    .hurricane-clouds th,
+    .hurricane-clouds td {
+        padding: 8px;
+        /* Reduced padding */
+        border: 1px solid var(--hurricane-clouds-accent-color);
+        /* Keep borders */
+    }
+
+    /* Column Widths - VERY IMPORTANT - ADJUST THESE */
+    .hurricane-clouds th:nth-child(1),
+    .hurricane-clouds td:nth-child(1) {
+        width: 14%;
+    }
+
+    /* Example */
+    .hurricane-clouds th:nth-child(2),
+    .hurricane-clouds td:nth-child(2) {
+        width: 16%;
+    }
+
+    /* Example */
+    .hurricane-clouds th:nth-child(3),
+    .hurricane-clouds td:nth-child(3) {
+        width: 16%;
+    }
+
+    /* Example */
+    .hurricane-clouds th:nth-child(4),
+    .hurricane-clouds td:nth-child(4) {
+        width: 16%;
+    }
+
+    /* Example */
+    .hurricane-clouds th:nth-child(5),
+    .hurricane-clouds td:nth-child(5) {
+        width: 16%;
+    }
+
+    /* Example */
+    .hurricane-clouds th:nth-child(6),
+    .hurricane-clouds td:nth-child(6) {
+        width: 16%;
+    }
+
+    /* Example */
+    .hurricane-clouds th:nth-child(7),
+    .hurricane-clouds td:nth-child(7) {
+        width: 6%;
+    }
+
+    /* Example */
+
+    .hurricane-clouds .event-marker-container {
+        flex-direction: row;
+        /* Markers in a row */
+        gap: 4px;
+    }
+
+    .hurricane-clouds .event-marker {
+        width: 10px;
+        height: 10px;
+    }
+
+    .hurricane-clouds .calendar-container {
+        padding: 15px;
+        /* Reduced padding */
+    }
+
+    .hurricane-clouds .button,
+    .hurricane-clouds .transparent-button,
+    .hurricane-clouds #backToTopBtn {
+        padding: 12px 20px;
+        /* Smaller button padding */
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    /* Medium Screens */
+    .hurricane-clouds th,
+    .hurricane-clouds td {
+        padding: 12px;
+        /* Slightly more padding */
+    }
+
+    .hurricane-clouds table {
+        font-size: 0.9em;
+        /* Slightly larger font */
+    }
+
+    .hurricane-clouds .button,
+    .hurricane-clouds .transparent-button,
+    .hurricane-clouds #backToTopBtn {
+        padding: 14px 24px;
+        /* Original button padding */
+        font-size: 1.2em;
+    }
+}
