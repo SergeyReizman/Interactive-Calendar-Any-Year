@@ -57,7 +57,8 @@ const applyTheme = (theme) => {
     'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin', 
     'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'flamingo-sky',
     'cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
-    'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute'
+    'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
+    'golden-gate'
   );
 
   body.classList.add(theme);
