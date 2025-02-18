@@ -58,7 +58,7 @@ const applyTheme = (theme) => {
     'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'flamingo-sky',
     'cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
     'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
-    'golden-gate'
+    'golden-gate', 'red-lake'
   );
 
   body.classList.add(theme);
