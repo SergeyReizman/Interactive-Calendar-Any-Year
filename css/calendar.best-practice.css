@@ -1,0 +1,421 @@
+/* ==========================================================================
+   Best Practice Theme - Calendar Styles (Enhanced & Beautiful)
+   Purpose: Provides a clean, modern, and visually appealing theme.
+   Sections:
+     - Variables: Defines color palette, spacing, and typographic settings.
+     - Keyframe Animations: Defines animations for visual effects.
+     - Base Styles: Applies global styles to the calendar container.
+     - Layout: Structures the calendar grid and containers.
+     - Typography: Sets font styles for text elements.
+     - Interactive Elements: Styles buttons, hover effects, and event markers.
+     - Modals: Styles modal windows for event details.
+     - Event List: Styles for the event list.
+     - Buttons & Navigation: Styles for buttons and navigation.
+     - Calendar Header & Title: Styles for the header and title.
+     - Week Number & No Events: Styles for these elements.
+     - Responsive Design: Adjusts styles for different screen sizes.
+   ========================================================================== */
+
+:root {
+    /* Color Palette */
+    --bp-bg: #ffffff;
+    /* White background */
+    --bp-text: #333333;
+    /* Dark gray text */
+    --bp-primary: #007bff;
+    /* Blue (primary action) */
+    --bp-secondary: #6c757d;
+    /* Gray (secondary action) */
+    --bp-header-accent: #e9ecef;
+    /* Light gray (header accent) */
+    --bp-button-accent: #28a745;
+    /* Green (button accent) */
+    --bp-hover-accent: #0056b3;
+    /* Darker blue (hover) */
+    --bp-shadow: rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+
+    /* Spacing and Borders */
+    --bp-radius: 8px;
+    /* Rounded corners */
+    --bp-border: 1px solid var(--bp-secondary);
+    /* Default border */
+
+    /* Transitions and Animations */
+    --bp-transition: 0.2s ease-in-out;
+    /* Smooth transition */
+    --bp-wave-animation: waveAnimation 10s linear infinite;
+    /* Wave animation */
+
+    /* Typography */
+    --bp-font-family: 'Inter', sans-serif;
+    /* Modern sans-serif font */
+    --bp-font-size: 1em;
+    /* Base font size */
+}
+
+/* Keyframe Animations */
+@keyframes waveAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-18px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Base Styles */
+.best-practice {
+    font-family: var(--bp-font-family);
+    color: var(--bp-text);
+    line-height: 1.6;
+    background-color: var(--bp-bg);
+    font-size: var(--bp-font-size);
+}
+
+.best-practice .container {
+    background: linear-gradient(270deg, var(--bp-bg), var(--bp-button-accent), var(--bp-header-accent), var(--bp-button-accent));
+    background-size: 400% 400%;
+    animation: var(--bp-wave-animation);
+    padding: 24px;
+    border-radius: var(--bp-radius);
+    box-shadow: 0 4px 12px var(--bp-shadow);
+    border: 1px solid var(--bp-header-accent);
+}
+
+/* Layout */
+.best-practice .calendar-container {
+    padding: 20px;
+    background: linear-gradient(145deg, var(--bp-header-accent), var(--bp-button-accent));
+    border-radius: var(--bp-radius);
+    border: 1px dashed var(--bp-primary);
+}
+
+.best-practice table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: var(--bp-radius);
+    box-shadow: 0 2px 8px var(--bp-shadow);
+    overflow: hidden;
+    background-color: var(--bp-bg);
+    border: var(--bp-border);
+    table-layout: fixed;
+}
+
+.best-practice th,
+.best-practice td {
+    padding: 12px;
+    text-align: center;
+    border: var(--bp-border);
+    transition: all var(--bp-transition);
+    word-wrap: break-word;
+}
+
+/* Typography */
+.best-practice th {
+    background: linear-gradient(to bottom, var(--bp-primary), var(--bp-secondary));
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+
+.best-practice td {
+    background-color: var(--bp-bg);
+    color: var(--bp-text);
+}
+
+/* Interactive Elements */
+.best-practice td:hover {
+    background: linear-gradient(to bottom, var(--bp-primary), var(--bp-header-accent));
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px var(--bp-shadow);
+    border-color: var(--bp-primary);
+    color: white;
+}
+
+.best-practice td.current-day {
+    background: linear-gradient(to bottom, var(--bp-primary), var(--bp-header-accent));
+    border: 2px solid var(--bp-primary);
+    font-weight: 600;
+    color: white;
+    box-shadow: inset 0 0 8px var(--bp-shadow);
+    animation: pulse 2s infinite;
+}
+
+.best-practice .event-marker {
+    background-color: var(--bp-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: transform var(--bp-transition);
+    box-shadow: 0 0 4px var(--bp-shadow);
+}
+
+.best-practice .event-marker:hover {
+    background-color: var(--bp-hover-accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 8px var(--bp-primary);
+}
+
+/* Modals */
+.best-practice .modal-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: var(--bp-border);
+    border-radius: var(--bp-radius);
+    box-shadow: 0 8px 16px var(--bp-shadow);
+    padding: 20px;
+    color: var(--bp-text);
+    animation: slideIn 0.3s var(--bp-transition);
+}
+
+.best-practice .modal .close-button {
+    background-color: var(--bp-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    box-shadow: 0 0 4px var(--bp-shadow);
+}
+
+.best-practice .modal .close-button:hover {
+    background-color: var(--bp-hover-accent);
+    color: black;
+    transform: rotate(90deg);
+    box-shadow: 0 0 8px var(--bp-primary);
+}
+
+/* Event List */
+.best-practice .event-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--bp-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.best-practice .event-list li:last-child {
+    border-bottom: none;
+}
+
+.best-practice .event-list button {
+    background: linear-gradient(to bottom, var(--bp-primary), var(--bp-button-accent));
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--bp-radius);
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    box-shadow: 0 1px 4px var(--bp-shadow);
+}
+
+.best-practice .event-list button:hover {
+    background: linear-gradient(to bottom, var(--bp-primary), var(--bp-header-accent));
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px var(--bp-shadow);
+}
+
+/* Buttons & Navigation */
+.best-practice .button,
+.best-practice .transparent-button,
+.best-practice #backToTopBtn {
+    border-radius: var(--bp-radius);
+    padding: 10px 20px;
+    font-size: 1em;
+    transition: all var(--bp-transition);
+    cursor: pointer;
+    border: 1px solid var(--bp-primary);
+    color: white;
+    background: linear-gradient(to bottom, var(--bp-secondary), var(--bp-header-accent));
+    box-shadow: 0 2px 8px var(--bp-shadow);
+}
+
+.best-practice .button:hover,
+.best-practice .transparent-button:hover,
+.best-practice #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--bp-hover-accent), var(--bp-button-accent));
+    box-shadow: 0 4px 12px var(--bp-shadow);
+    transform: scale(1.03);
+}
+
+.best-practice .button.secondary {
+    background: linear-gradient(to bottom, var(--bp-secondary), var(--bp-primary));
+    border: none;
+}
+
+.best-practice .button.secondary:hover {
+    background: linear-gradient(to bottom, var(--bp-header-accent), var(--bp-primary));
+}
+
+.best-practice .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--bp-button-accent), var(--bp-secondary));
+    border: none;
+    font-size: 1em;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: var(--bp-primary);
+    transition: color 0.2s ease-in-out;
+    box-shadow: 0 2px 8px var(--bp-shadow);
+}
+
+.best-practice .calendar-navigation button:hover {
+    color: var(--bp-hover-accent);
+    transform: scale(1.05);
+}
+
+/* Calendar Header & Title */
+.best-practice .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--bp-primary);
+    text-shadow: 1px 1px 2px var(--bp-shadow);
+}
+
+.best-practice .calendar-title {
+    font-size: 1.2em;
+    font-style: italic;
+    text-shadow: 0.5px 0.5px 1px var(--bp-shadow);
+}
+
+/* Modal Close */
+.best-practice .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--bp-primary);
+    background: none;
+    border: none;
+    padding: 4px;
+    transition: color 0.2s ease-in-out;
+}
+
+.best-practice .modal-close:hover {
+    color: var(--bp-header-accent);
+    transform: scale(1.1);
+}
+
+/* Week Number & No Events */
+.best-practice .week-number {
+    color: #6c757d;
+    font-size: 0.85em;
+    padding: 2px 4px;
+    background: linear-gradient(to bottom, var(--bp-header-accent), var(--bp-button-accent));
+    border-radius: 4px;
+    margin: 1px;
+}
+
+.best-practice .no-events {
+    font-style: italic;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .best-practice table {
+        font-size: 0.8em;
+    }
+
+    .best-practice th,
+    .best-practice td {
+        padding: 8px;
+        border: 1px solid var(--bp-secondary);
+    }
+
+    .best-practice th:nth-child(1),
+    .best-practice td:nth-child(1) {
+        width: 14%;
+    }
+
+    .best-practice th:nth-child(2),
+    .best-practice td:nth-child(2) {
+        width: 16%;
+    }
+
+    .best-practice th:nth-child(3),
+    .best-practice td:nth-child(3) {
+        width: 16%;
+    }
+
+    .best-practice th:nth-child(4),
+    .best-practice td:nth-child(4) {
+        width: 16%;
+    }
+
+    .best-practice th:nth-child(5),
+    .best-practice td:nth-child(5) {
+        width: 16%;
+    }
+
+    .best-practice th:nth-child(6),
+    .best-practice td:nth-child(6) {
+        width: 16%;
+    }
+
+    .best-practice th:nth-child(7),
+    .best-practice td:nth-child(7) {
+        width: 6%;
+    }
+
+    .best-practice .event-marker-container {
+        flex-direction: row;
+        gap: 4px;
+    }
+
+    .best-practice .event-marker {
+        width: 8px;
+        height: 8px;
+    }
+
+    .best-practice .calendar-container {
+        padding: 16px;
+    }
+
+    .best-practice .button,
+    .best-practice .transparent-button,
+    .best-practice #backToTopBtn {
+        padding: 8px 16px;
+        font-size: 0.95em;
+    }
+}
