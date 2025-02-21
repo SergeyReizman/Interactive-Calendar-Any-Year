@@ -59,7 +59,7 @@ const applyTheme = (theme) => {
     'cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
     'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
     'golden-gate', 'red-lake','kilimanjaro-outskirts', 'rainbow-dream',
-    'blue-planet', 'rising-sun', 'best-practice'
+    'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman'
   );
 
   body.classList.add(theme);
