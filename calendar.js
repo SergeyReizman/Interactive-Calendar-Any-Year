@@ -55,8 +55,8 @@ const applyTheme = (theme) => {
     'shaolin-monastery', 'black-coffee', 'forgotten-dreams', 'wild-wonders',
     'secret-night', 'candy-world', 'cracked-ice', 'fir-balsam', 'sea-diamonds',
     'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin', 
-    'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'flamingo-sky',
-    'cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
+    'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'pirate-ship', 
+    'flamingo-sky','cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
     'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
     'golden-gate', 'red-lake','kilimanjaro-outskirts', 'rainbow-dream',
     'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman'
