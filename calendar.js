@@ -59,7 +59,8 @@ const applyTheme = (theme) => {
     'flamingo-sky','cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
     'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
     'golden-gate', 'red-lake','kilimanjaro-outskirts', 'rainbow-dream',
-    'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle'
+    'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle', 
+    'black-hole'
     
   );
 
