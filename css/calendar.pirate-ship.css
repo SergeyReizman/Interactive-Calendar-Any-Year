@@ -1,317 +1,475 @@
-/* ============================
-   Pirate Ship Theme - Adventurous, Bold, and Nautical!
+/* ==========================================================================
+   Pirate Ship Theme - Bold, Adventurous, and Nautical! (Final Version)
    Purpose: Styles specific to the Pirate Ship theme for the calendar.
-   ============================ */
+   ========================================================================== */
 
-   :root {
-    --pirate-ship-bg-color: #1a1a2e; /* Dark navy background */
-    --pirate-ship-text-color: #f4f4f4; /* Light gray for text */
-    --pirate-ship-primary-color: #ff5722; /* Bold orange */
-    --pirate-ship-secondary-color: #ff9800; /* Bright orange */
-    --pirate-ship-accent-color-1: #e91e63; /* Vibrant pink */
-    --pirate-ship-accent-color-2: #9c27b0; /* Deep purple */
-    --pirate-ship-accent-color-3: #3f51b5; /* Royal blue */
-    --pirate-ship-accent-color-4: #00bcd4; /* Cyan */
-    --pirate-ship-accent-color-5: #8bc34a; /* Lime green */
-    --pirate-ship-shadow-color: rgba(0, 0, 0, 0.5);
-    --pirate-ship-border-radius: 10px;
-    --pirate-ship-gradient-start: #1a1a2e;
-    --pirate-ship-gradient-end: #16213e;
-    --pirate-ship-hover-color: #ff9800; /* Bright orange for hover */
-    --pirate-ship-current-day-bg: #ff5722; /* Bold orange for current day */
+/* --- Theme Variables --- */
+:root {
+    --calendar-background: #1a1a1a;
+    /* Dark, stormy background */
+    --calendar-text: #e0e0e0;
+    /* Light gray for readability */
+    --primary-color: #d4af37;
+    /* Gold for accents */
+    --secondary-color: #8b4513;
+    /* Rich brown for contrast */
+    --accent-color-1: #654321;
+    /* Dark brown for gradients */
+    --accent-color-2: #a0522d;
+    /* Medium brown for highlights */
+    --accent-color-3: #4b3621;
+    /* Deep brown for depth */
+    --accent-color-4: #5c4033;
+    /* Soft brown for backgrounds */
+    --accent-color-5: #c19a6b;
+    /* Light brown for hover effects */
+    --pirate-silver: #c0c0c0;
+    /* Metallic silver for borders and accents */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    /* Dark shadow for depth */
+    --border-radius: 12px;
     --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
-    --pirate-ship-wave-animation: waveAnimation 10s ease-in-out infinite; /* Wave animation */
+    --transition-easing: ease-out;
+    --hover-color: #e5c100;
+    /* Brighter gold for hover effects */
+    --wave-animation: pirateWaveAnimation 10s ease-in-out infinite;
 }
 
-/* Keyframe animation for wave effect */
-@keyframes waveAnimation {
-    0%, 100% {
+/* --- Keyframe Animations --- */
+@keyframes pirateWaveAnimation {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
 }
 
-/* Base container styles */
+@keyframes piratePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes pirateSlideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- Pirate Background --- */
+.pirate-ship {
+    font-family: 'Cinzel', serif;
+    /* Bold, adventurous font */
+    color: var(--calendar-text);
+    line-height: 1.6;
+    background-color: var(--calendar-background);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%238b4513' fill-opacity='0.2' d='M50 0L60 20L80 20L65 35L75 55L50 45L25 55L35 35L20 20L40 20Z'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+/* --- Base Layout Styles --- */
 .pirate-ship .container {
-    background: linear-gradient(270deg, var(--pirate-ship-bg-color), var(--pirate-ship-accent-color-3), var(--pirate-ship-accent-color-2), var(--pirate-ship-accent-color-3));
+    background: linear-gradient(270deg, var(--calendar-background), var(--accent-color-2), var(--accent-color-1), var(--accent-color-2));
     background-size: 400% 400%;
-    animation: var(--pirate-ship-wave-animation);
-    color: var(--pirate-ship-text-color);
-    font-family: 'Pirata One', cursive; /* Pirate-themed font */
-    line-height: 1.5;
-    padding: 30px;
-    border-radius: var(--pirate-ship-border-radius);
-    box-shadow: 8px 8px 20px var(--pirate-ship-shadow-color);
-    border: 3px solid var(--pirate-ship-secondary-color);
+    animation: var(--wave-animation);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 4px 4px 12px var(--shadow-color);
+    border: 1px solid var(--pirate-silver);
 }
 
-/* Calendar container */
+/* --- Calendar Specific Styles --- */
 .pirate-ship .calendar-container {
-    padding: 25px;
-    background: linear-gradient(145deg, var(--pirate-ship-accent-color-1), var(--pirate-ship-accent-color-2));
-    border-radius: var(--pirate-ship-border-radius);
-    border: 2px dashed var(--pirate-ship-primary-color);
+    padding: 15px;
+    background: linear-gradient(145deg, var(--accent-color-1), var(--accent-color-2));
+    border-radius: var(--border-radius);
+    border: 1px dashed var(--primary-color);
 }
 
-/* Table styles */
 .pirate-ship table {
-    border-collapse: collapse;
     width: 100%;
-    margin: 25px auto;
-    box-shadow: 5px 5px 15px var(--pirate-ship-shadow-color);
-    border-radius: var(--pirate-ship-border-radius);
+    margin: 15px auto;
+    border-collapse: collapse;
+    border-radius: var(--border-radius);
+    box-shadow: 3px 3px 10px var(--shadow-color);
     overflow: hidden;
-    background-color: #1a1a2e;
-    border: 2px solid var(--pirate-ship-secondary-color);
+    background-color: var(--accent-color-4);
+    border: 1px solid var(--pirate-silver);
     table-layout: fixed;
 }
 
 .pirate-ship th,
 .pirate-ship td {
-    border: 2px solid var(--pirate-ship-secondary-color);
-    padding: 10px;
+    padding: 6px;
     text-align: center;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing),
-                box-shadow var(--transition-duration) var(--transition-easing),
-                transform var(--transition-duration) var(--transition-easing);
+    border: 1px solid var(--pirate-silver);
+    transition: all var(--transition-duration) var(--transition-easing);
     word-wrap: break-word;
 }
 
 .pirate-ship th {
-    background: linear-gradient(to bottom, var(--pirate-ship-accent-color-3), var(--pirate-ship-accent-color-4));
-    color: white;
-    font-weight: 700;
+    background: linear-gradient(to bottom, var(--accent-color-3), var(--accent-color-4));
+    color: var(--calendar-text);
+    font-weight: 500;
     text-transform: uppercase;
-    font-size: 1.1em;
-    letter-spacing: 1px;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
 }
 
 .pirate-ship td {
-    background-color: #1a1a2e;
-    color: var(--pirate-ship-text-color);
+    background-color: var(--accent-color-4);
 }
 
 .pirate-ship td:hover {
-    background: linear-gradient(to bottom, var(--pirate-ship-hover-color), var(--pirate-ship-accent-color-5));
-    transform: scale(1.05);
-    box-shadow: 0 5px 10px var(--pirate-ship-shadow-color);
-    border: 2px solid var(--pirate-ship-primary-color);
-    color: white;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color-5));
+    transform: scale(1.02);
+    box-shadow: 0 3px 6px var(--shadow-color);
+    border-color: var(--primary-color);
+    color: var(--calendar-text);
 }
 
 .pirate-ship td.current-day {
-    background: linear-gradient(to bottom, var(--pirate-ship-current-day-bg), var(--pirate-ship-accent-color-1));
-    border: 3px solid var(--pirate-ship-primary-color);
-    font-weight: 700;
-    color: white;
-    box-shadow: inset 0 0 10px var(--pirate-ship-shadow-color);
-    animation: pulse 2s infinite;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color-1));
+    border: 1px solid var(--primary-color);
+    font-weight: 500;
+    color: var(--calendar-text);
+    box-shadow: inset 0 0 6px var(--shadow-color);
+    animation: piratePulse 1.8s infinite;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* Event marker styles */
-.pirate-ship .event-marker-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5px;
-    gap: 4px;
-}
-
+/* --- Event Marker Styles --- */
 .pirate-ship .event-marker {
-    background: linear-gradient(to bottom, var(--pirate-ship-primary-color), var(--pirate-ship-accent-color-2));
-    width: 12px;
-    height: 12px;
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                transform var(--transition-duration) var(--transition-easing);
-    box-shadow: 0 0 5px var(--pirate-ship-shadow-color);
+    transition: transform var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 0 3px var(--shadow-color);
 }
 
 .pirate-ship .event-marker:hover {
-    background: linear-gradient(to bottom, var(--pirate-ship-accent-color-1), var(--pirate-ship-accent-color-3));
+    background-color: var(--accent-color-5);
     transform: scale(1.3);
-    box-shadow: 0 0 15px var(--pirate-ship-primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
 }
 
-/* Modal window styling */
+/* --- Modal Styles --- */
 .pirate-ship .modal-content {
-    background-color: rgba(26, 26, 46, 0.95); /* Dark navy with transparency */
+    background-color: rgba(224, 13, 13, 0.95);
+    /* Dark, translucent background */
     backdrop-filter: blur(6px);
-    border: 1px solid var(--pirate-ship-primary-color); /* Bold orange border */
-    border-radius: var(--pirate-ship-border-radius);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--pirate-silver);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 18px var(--shadow-color);
     padding: 20px;
-    color: var(--pirate-ship-text-color); /* Light gray text */
+    color: var(--calendar-text);
+    animation: pirateSlideIn 0.3s var(--transition-easing);
 }
 
 .pirate-ship .modal .close-button {
-    background-color: var(--pirate-ship-primary-color); /* Bold orange background */
-    color: #000; /* Black text for contrast */
+    background-color: var(--primary-color);
+    color: var(--calendar-text);
     border: none;
     border-radius: 50%;
-    width: 34px;
-    height: 34px;
+    height: 28px;
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing);
+    transition: all var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 0 3px var(--shadow-color);
 }
 
 .pirate-ship .modal .close-button:hover {
-    background-color: var(--pirate-ship-secondary-color); /* Bright orange on hover */
-    color: #fff; /* White text on hover */
+    background-color: var(--accent-color-5);
+    color: var(--calendar-text);
+    transform: rotate(90deg);
+    box-shadow: 0 0 6px var(--primary-color);
 }
 
-/* Button styles */
+/* --- Event List Styles --- */
+.pirate-ship .event-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--pirate-silver);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pirate-ship .event-list li:last-child {
+    border-bottom: none;
+}
+
+.pirate-ship .event-list button {
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color-2));
+    color: var(--calendar-text);
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.pirate-ship .event-list button:hover {
+    background: linear-gradient(to bottom, var(--accent-color-5), var(--accent-color-1));
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+/* --- Button and Navigation Styles --- */
 .pirate-ship .button,
 .pirate-ship .transparent-button,
 .pirate-ship #backToTopBtn {
-    border-radius: var(--pirate-ship-border-radius);
-    padding: 14px 24px;
-    font-size: 1.2em;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-                color var(--transition-duration) var(--transition-easing),
-                box-shadow var(--transition-duration) var(--transition-easing);
+    border-radius: var(--border-radius);
+    padding: 12px 20px;
+    font-size: 1em;
+    transition: all var(--transition-duration) var(--transition-easing);
     cursor: pointer;
-    border: 3px solid var(--pirate-ship-primary-color);
-    color: white;
-    background: linear-gradient(to bottom, var(--pirate-ship-accent-color-4), var(--pirate-ship-accent-color-5));
-    box-shadow: 5px 5px 15px var(--pirate-ship-shadow-color);
+    border: 2px solid var(--primary-color);
+    color: var(--calendar-text);
+    background: linear-gradient(to bottom, var(--accent-color-4), var(--accent-color-5));
+    box-shadow: 4px 4px 12px var(--shadow-color);
 }
 
 .pirate-ship .button:hover,
 .pirate-ship .transparent-button:hover,
 .pirate-ship #backToTopBtn:hover {
-    background: linear-gradient(to bottom, var(--pirate-ship-hover-color), var(--pirate-ship-accent-color-2));
-    color: white;
-    box-shadow: 6px 6px 20px var(--pirate-ship-shadow-color);
-    transform: scale(1.05);
+    background: linear-gradient(to bottom, var(--hover-color), var(--accent-color-2));
+    box-shadow: 5px 5px 15px var(--shadow-color);
+    transform: scale(1.03);
 }
 
 .pirate-ship .button.secondary {
-    background: linear-gradient(to bottom, var(--pirate-ship-secondary-color), var(--pirate-ship-accent-color-3));
+    background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color-3));
     border: none;
-    color: white;
 }
 
 .pirate-ship .button.secondary:hover {
-    background: linear-gradient(to bottom, var(--pirate-ship-accent-color-5), var(--pirate-ship-accent-color-1));
+    background: linear-gradient(to bottom, var(--accent-color-5), var(--accent-color-1));
 }
 
-/* Calendar navigation */
 .pirate-ship .calendar-navigation button {
-    background: linear-gradient(to bottom, var(--pirate-ship-accent-color-2), var(--pirate-ship-accent-color-4));
+    background: linear-gradient(to bottom, var(--accent-color-2), var(--accent-color-4));
     border: none;
-    font-size: 1.2em;
-    padding: 7px 14px;
+    font-size: 1em;
+    padding: 6px 12px;
     cursor: pointer;
-    color: var(--pirate-ship-primary-color);
+    color: var(--primary-color);
     transition: color 0.2s ease-in-out;
-    box-shadow: 0 4px 8px var(--pirate-ship-shadow-color);
+    box-shadow: 0 3px 6px var(--shadow-color);
 }
 
 .pirate-ship .calendar-navigation button:hover {
-    color: var(--pirate-ship-accent-color-3);
-    transform: scale(1.1);
+    color: var(--accent-color-5);
+    transform: scale(1.08);
 }
 
-/* Calendar header */
+/* --- Calendar Header & Title Styles --- */
 .pirate-ship .calendar-header {
     text-align: center;
-    font-size: 1.6em;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--pirate-ship-primary-color);
-    text-shadow: 2px 2px 4px var(--pirate-ship-shadow-color);
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px var(--shadow-color);
 }
 
 .pirate-ship .calendar-title {
-    font-family: 'Pirata One', cursive;
-    font-size: 1.4em;
+    font-size: 1em;
     font-style: italic;
-    color: var(--pirate-ship-text-color);
-    text-shadow: 1px 1px 2px var(--pirate-ship-shadow-color);
+    text-shadow: 1px 1px 1px var(--shadow-color);
 }
 
-/* Week number */
-.pirate-ship .week-number {
-    color: #777;
+/* --- Modal Close Styles --- */
+.pirate-ship .modal-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
     font-size: 0.9em;
-    padding: 2px 5px;
-    background: linear-gradient(to bottom, var(--pirate-ship-accent-color-5), var(--pirate-ship-accent-color-2));
-    border-radius: 5px;
-    margin: 2px;
+    cursor: pointer;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    padding: 3px;
+    transition: color 0.2s ease-in-out;
 }
 
-/* No events text */
+.pirate-ship .modal-close:hover {
+    color: var(--accent-color-5);
+    transform: scale(1.08);
+}
+
+/* --- Week Number & No Events Styles --- */
+.pirate-ship .week-number {
+    color: var(--pirate-silver);
+    font-size: 0.7em;
+    padding: 2px 3px;
+    background: linear-gradient(to bottom, var(--accent-color-5), var(--accent-color-2));
+    border-radius: 3px;
+    margin: 1px;
+}
+
 .pirate-ship .no-events {
     font-style: italic;
-    color: #888;
+    color: var(--pirate-silver);
     text-align: center;
-    margin-top: 8px;
-    font-size: 1em;
+    margin-top: 5px;
+    font-size: 0.8em;
 }
 
-/* Responsive styles */
+/* --- Responsive Design (Media Queries) --- */
 @media (max-width: 575.98px) {
     .pirate-ship table {
-        font-size: 0.8em;
+        font-size: 0.6em;
     }
 
     .pirate-ship th,
     .pirate-ship td {
-        padding: 8px;
-        border: 1px solid var(--pirate-ship-secondary-color);
+        padding: 5px;
+        border: 1px solid var(--pirate-silver);
+    }
+
+    .pirate-ship th:nth-child(1),
+    .pirate-ship td:nth-child(1) {
+        width: 14%;
+    }
+
+    .pirate-ship th:nth-child(2),
+    .pirate-ship td:nth-child(2) {
+        width: 16%;
+    }
+
+    .pirate-ship th:nth-child(3),
+    .pirate-ship td:nth-child(3) {
+        width: 16%;
+    }
+
+    .pirate-ship th:nth-child(4),
+    .pirate-ship td:nth-child(4) {
+        width: 16%;
+    }
+
+    .pirate-ship th:nth-child(5),
+    .pirate-ship td:nth-child(5) {
+        width: 16%;
+    }
+
+    .pirate-ship th:nth-child(6),
+    .pirate-ship td:nth-child(6) {
+        width: 16%;
+    }
+
+    .pirate-ship th:nth-child(7),
+    .pirate-ship td:nth-child(7) {
+        width: 6%;
     }
 
     .pirate-ship .event-marker-container {
         flex-direction: row;
-        gap: 4px;
+        gap: 2px;
     }
 
     .pirate-ship .event-marker {
-        width: 10px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
     }
 
     .pirate-ship .calendar-container {
-        padding: 15px;
+        padding: 10px;
     }
 
     .pirate-ship .button,
     .pirate-ship .transparent-button,
     .pirate-ship #backToTopBtn {
-        padding: 12px 20px;
+        padding: 8px 14px;
+        font-size: 0.8em;
+    }
+
+    .pirate-ship .modal-content .event-list li {
+        font-size: 0.9em;
+        padding: 10px 12px;
+        margin-bottom: 6px;
+    }
+
+    .pirate-ship .modal-content h3 {
         font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .pirate-ship .modal-content p {
+        font-size: 0.9em;
+        margin-bottom: 8px;
     }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
-    .pirate-ship th,
-    .pirate-ship td {
-        padding: 12px;
-    }
+/* --- Enhanced Modal Event Styles --- */
+.pirate-ship .modal-content .event-list li {
+    font-weight: 400;
+    font-size: 1em;
+    color: var(--calendar-text);
+    padding: 12px 15px;
+    border-bottom: 1px dashed var(--pirate-silver);
+    transition: background-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-    .pirate-ship table {
-        font-size: 0.9em;
-    }
+.pirate-ship .modal-content .event-list li .event-marker {
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 3px;
+}
 
-    .pirate-ship .button,
-    .pirate-ship .transparent-button,
-    .pirate-ship #backToTopBtn {
-        padding: 14px 24px;
-        font-size: 1.2em;
-    }
+.pirate-ship .modal-content .event-list li:hover {
+    background-color: rgba(212, 175, 55, 0.2);
+}
+
+.pirate-ship .modal-content .event-list li:last-child {
+    border-bottom: none;
+}
+
+.pirate-ship .modal-content .event-list li strong {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.pirate-ship .modal-content .event-list li span {
+    font-style: italic;
+    color: var(--accent-color-2);
+}
+
+.pirate-ship .modal-content h3 {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px var(--shadow-color);
+}
+
+.pirate-ship .modal-content p {
+    text-align: center;
+    color: var(--calendar-text);
+    margin-bottom: 12px;
+    font-size: 1em;
 }
