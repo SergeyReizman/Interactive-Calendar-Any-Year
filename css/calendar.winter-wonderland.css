@@ -1,0 +1,481 @@
+/* ==========================================================================
+   Winter Wonderland Theme - Magical, Serene, and Enchanting! (Final Version)
+   Purpose: Styles specific to the Winter Wonderland theme for the calendar.
+   ========================================================================== */
+
+/* --- Theme Variables --- */
+:root {
+    --calendar-background: #f0f9ff;
+    /* Very light icy blue */
+    --calendar-text: #2c3e50;
+    /* Deep blue-gray for better readability */
+    --primary-color: #6ab7ff;
+    /* Bright, cheerful blue */
+    --secondary-color: #1e88e5;
+    /* Medium blue */
+    --accent-color-1: #c8e6ff;
+    /* Soft, light blue */
+    --accent-color-2: #90caf9;
+    /* Light cyan-blue */
+    --accent-color-3: #0d47a1;
+    /* Deep, rich blue for contrast */
+    --accent-color-4: #e3f2fd;
+    /* Very light, frosty blue */
+    --accent-color-5: #42a5f5;
+    /* Slightly darker light blue */
+    --frost-white: #f8f9fa;
+    /* Crisp, frosty white */
+    --snow-silver: #e0e0e0;
+    /* Soft silver for borders and accents */
+    --ice-blue: #b3e5fc;
+    /* Light, icy blue */
+    --winter-purple: #9575cd;
+    /* Cool purple for accents */
+    --winter-green: #80cbc4;
+    /* Cool green for accents */
+    --shadow-color: rgba(30, 136, 229, 0.2);
+    /* Soft blue shadow for depth */
+    --border-radius: 12px;
+    --transition-duration: 0.3s;
+    --transition-easing: ease-out;
+    --hover-color: #81d4fa;
+    /* Light cyan for hover effects */
+    --wave-animation: winterWaveAnimation 10s ease-in-out infinite;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes winterWaveAnimation {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes winterPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes winterSlideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- Snowflake Background --- */
+.winter-wonderland {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--calendar-text);
+    line-height: 1.6;
+    background-color: var(--calendar-background);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23b3e5fc' fill-opacity='0.2' d='M50 0L60 20L80 20L65 35L75 55L50 45L25 55L35 35L20 20L40 20Z'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+/* --- Base Layout Styles --- */
+.winter-wonderland .container {
+    background: linear-gradient(270deg, var(--calendar-background), var(--accent-color-2), var(--accent-color-1), var(--accent-color-2));
+    background-size: 400% 400%;
+    animation: var(--wave-animation);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 4px 4px 12px var(--shadow-color);
+    border: 1px solid var(--snow-silver);
+}
+
+/* --- Calendar Specific Styles --- */
+.winter-wonderland .calendar-container {
+    padding: 15px;
+    background: linear-gradient(145deg, var(--accent-color-1), var(--accent-color-2));
+    border-radius: var(--border-radius);
+    border: 1px dashed var(--primary-color);
+}
+
+.winter-wonderland table {
+    width: 100%;
+    margin: 15px auto;
+    border-collapse: collapse;
+    border-radius: var(--border-radius);
+    box-shadow: 3px 3px 10px var(--shadow-color);
+    overflow: hidden;
+    background-color: var(--frost-white);
+    border: 1px solid var(--snow-silver);
+    table-layout: fixed;
+}
+
+.winter-wonderland th,
+.winter-wonderland td {
+    padding: 6px;
+    text-align: center;
+    border: 1px solid var(--snow-silver);
+    transition: all var(--transition-duration) var(--transition-easing);
+    word-wrap: break-word;
+}
+
+.winter-wonderland th {
+    background: linear-gradient(to bottom, var(--accent-color-3), var(--accent-color-4));
+    color: var(--frost-white);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.winter-wonderland td {
+    background-color: var(--frost-white);
+}
+
+.winter-wonderland td:hover {
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color-5));
+    transform: scale(1.02);
+    box-shadow: 0 3px 6px var(--shadow-color);
+    border-color: var(--primary-color);
+    color: var(--frost-white);
+}
+
+.winter-wonderland td.current-day {
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color-1));
+    border: 1px solid var(--primary-color);
+    font-weight: 500;
+    color: var(--frost-white);
+    box-shadow: inset 0 0 6px var(--shadow-color);
+    animation: winterPulse 1.8s infinite;
+}
+
+/* --- Event Marker Styles --- */
+.winter-wonderland .event-marker {
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: transform var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 0 3px var(--shadow-color);
+}
+
+.winter-wonderland .event-marker:hover {
+    background-color: var(--winter-purple);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* --- Modal Styles --- */
+.winter-wonderland .modal-content {
+    background-color: rgba(240, 249, 255, 0.95);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--snow-silver);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 18px var(--shadow-color);
+    padding: 20px;
+    color: var(--calendar-text);
+    animation: winterSlideIn 0.3s var(--transition-easing);
+}
+
+.winter-wonderland .modal .close-button {
+    background-color: var(--primary-color);
+    color: var(--frost-white);
+    border: none;
+    border-radius: 50%;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 0 3px var(--shadow-color);
+}
+
+.winter-wonderland .modal .close-button:hover {
+    background-color: var(--winter-purple);
+    color: var(--frost-white);
+    transform: rotate(90deg);
+    box-shadow: 0 0 6px var(--primary-color);
+}
+
+/* --- Event List Styles --- */
+.winter-wonderland .event-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--snow-silver);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.winter-wonderland .event-list li:last-child {
+    border-bottom: none;
+}
+
+.winter-wonderland .event-list button {
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color-2));
+    color: var(--frost-white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-easing);
+    box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.winter-wonderland .event-list button:hover {
+    background: linear-gradient(to bottom, var(--winter-purple), var(--winter-green));
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+/* --- Button and Navigation Styles --- */
+.winter-wonderland .button,
+.winter-wonderland .transparent-button,
+.winter-wonderland #backToTopBtn {
+    border-radius: var(--border-radius);
+    padding: 12px 20px;
+    font-size: 1em;
+    transition: all var(--transition-duration) var(--transition-easing);
+    cursor: pointer;
+    border: 2px solid var(--primary-color);
+    color: var(--frost-white);
+    background: linear-gradient(to bottom, var(--accent-color-4), var(--accent-color-5));
+    box-shadow: 4px 4px 12px var(--shadow-color);
+}
+
+.winter-wonderland .button:hover,
+.winter-wonderland .transparent-button:hover,
+.winter-wonderland #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--winter-purple), var(--winter-green));
+    box-shadow: 5px 5px 15px var(--shadow-color);
+    transform: scale(1.03);
+}
+
+.winter-wonderland .button.secondary {
+    background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color-3));
+    border: none;
+}
+
+.winter-wonderland .button.secondary:hover {
+    background: linear-gradient(to bottom, var(--winter-purple), var(--winter-green));
+}
+
+.winter-wonderland .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--accent-color-2), var(--accent-color-4));
+    border: none;
+    font-size: 1em;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: color 0.2s ease-in-out;
+    box-shadow: 0 3px 6px var(--shadow-color);
+}
+
+.winter-wonderland .calendar-navigation button:hover {
+    color: var(--winter-purple);
+    transform: scale(1.08);
+}
+
+/* --- Calendar Header & Title Styles --- */
+.winter-wonderland .calendar-header {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px var(--shadow-color);
+}
+
+.winter-wonderland .calendar-title {
+    font-size: 1em;
+    font-style: italic;
+    text-shadow: 1px 1px 1px var(--shadow-color);
+}
+
+/* --- Modal Close Styles --- */
+.winter-wonderland .modal-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    padding: 3px;
+    transition: color 0.2s ease-in-out;
+}
+
+.winter-wonderland .modal-close:hover {
+    color: var(--winter-purple);
+    transform: scale(1.08);
+}
+
+/* --- Week Number & No Events Styles --- */
+.winter-wonderland .week-number {
+    color: #666;
+    font-size: 0.7em;
+    padding: 2px 3px;
+    background: linear-gradient(to bottom, var(--accent-color-5), var(--accent-color-2));
+    border-radius: 3px;
+    margin: 1px;
+}
+
+.winter-wonderland .no-events {
+    font-style: italic;
+    color: #777;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
+/* --- Responsive Design (Media Queries) --- */
+@media (max-width: 575.98px) {
+    .winter-wonderland table {
+        font-size: 0.6em;
+    }
+
+    .winter-wonderland th,
+    .winter-wonderland td {
+        padding: 5px;
+        border: 1px solid var(--snow-silver);
+    }
+
+    .winter-wonderland th:nth-child(1),
+    .winter-wonderland td:nth-child(1) {
+        width: 14%;
+    }
+
+    .winter-wonderland th:nth-child(2),
+    .winter-wonderland td:nth-child(2) {
+        width: 16%;
+    }
+
+    .winter-wonderland th:nth-child(3),
+    .winter-wonderland td:nth-child(3) {
+        width: 16%;
+    }
+
+    .winter-wonderland th:nth-child(4),
+    .winter-wonderland td:nth-child(4) {
+        width: 16%;
+    }
+
+    .winter-wonderland th:nth-child(5),
+    .winter-wonderland td:nth-child(5) {
+        width: 16%;
+    }
+
+    .winter-wonderland th:nth-child(6),
+    .winter-wonderland td:nth-child(6) {
+        width: 16%;
+    }
+
+    .winter-wonderland th:nth-child(7),
+    .winter-wonderland td:nth-child(7) {
+        width: 6%;
+    }
+
+    .winter-wonderland .event-marker-container {
+        flex-direction: row;
+        gap: 2px;
+    }
+
+    .winter-wonderland .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .winter-wonderland .calendar-container {
+        padding: 10px;
+    }
+
+    .winter-wonderland .button,
+    .winter-wonderland .transparent-button,
+    .winter-wonderland #backToTopBtn {
+        padding: 8px 14px;
+        font-size: 0.8em;
+    }
+
+    .winter-wonderland .modal-content .event-list li {
+        font-size: 0.9em;
+        padding: 10px 12px;
+        margin-bottom: 6px;
+    }
+
+    .winter-wonderland .modal-content h3 {
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .winter-wonderland .modal-content p {
+        font-size: 0.9em;
+        margin-bottom: 8px;
+    }
+}
+
+/* --- Enhanced Modal Event Styles --- */
+.winter-wonderland .modal-content .event-list li {
+    font-weight: 400;
+    font-size: 1em;
+    color: var(--calendar-text);
+    padding: 12px 15px;
+    border-bottom: 1px dashed var(--snow-silver);
+    transition: background-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.winter-wonderland .modal-content .event-list li .event-marker {
+    background-color: var(--primary-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.winter-wonderland .modal-content .event-list li:hover {
+    background-color: rgba(135, 206, 235, 0.2);
+}
+
+.winter-wonderland .modal-content .event-list li:last-child {
+    border-bottom: none;
+}
+
+.winter-wonderland .modal-content .event-list li strong {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.winter-wonderland .modal-content .event-list li span {
+    font-style: italic;
+    color: var(--accent-color-3);
+}
+
+.winter-wonderland .modal-content h3 {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px var(--shadow-color);
+}
+
+.winter-wonderland .modal-content p {
+    text-align: center;
+    color: var(--calendar-text);
+    margin-bottom: 12px;
+    font-size: 1em;
+}
