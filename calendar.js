@@ -57,7 +57,7 @@ const applyTheme = (theme) => {
     'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin', 
     'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'pirate-ship', 
     'flamingo-sky','cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
-    'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
+    'hurricane-clouds', 'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
     'golden-gate', 'red-lake','kilimanjaro-outskirts', 'rainbow-dream',
     'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle', 
     'black-hole', 'melting-glaciers', 'battle-of-the-ice', 'medieval-knights', 
