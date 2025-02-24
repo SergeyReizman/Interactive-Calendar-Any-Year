@@ -20,6 +20,7 @@
     --ps-date-text: #ffe0b3;
     --ps-current-date-text: #fff2cc;
     --ps-flag-url: url('https://as2.ftcdn.net/v2/jpg/09/65/00/49/1000_F_965004976_eQ1xeMIJoMFClO9YzKJIQfw6mCBTmLKF.jpg'); /* Updated Pirate Flag URL */
+    --ps-treasure-url: url('https://www.svgrepo.com/show/499847/treasure-chest.svg'); /* Treasure Chest URL */
 }
 
 /* --- Keyframe Animations --- */
@@ -30,12 +31,22 @@
 
 @keyframes piratePulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+    50% { transform: scale(1.05); }
 }
 
 @keyframes pirateSlideIn {
     from { transform: translateY(-10px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 10px var(--ps-primary); }
+    50% { box-shadow: 0 0 20px var(--ps-primary); }
 }
 
 /* --- Pirate Background --- */
@@ -49,6 +60,22 @@
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%238b4513' fill-opacity='0.2' d='M50 0L60 20L80 20L65 35L75 55L50 45L25 55L35 35L20 20L40 20Z'/%3E%3C/svg%3E"); /* Wood Texture */
     background-repeat: repeat, repeat;
     background-size: 200px 200px, 100px 100px;
+    position: relative;
+    overflow: auto; /* Allow scrolling for the entire page */
+}
+
+/* --- Animated Waves --- */
+.pirate-ship::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: url('https://www.svgrepo.com/show/499847/treasure-chest.svg') repeat-x;
+    animation: wave 10s linear infinite;
+    opacity: 0.3;
+    z-index: 1;
 }
 
 /* --- Base Layout Styles --- */
@@ -62,24 +89,41 @@
     box-shadow: 4px 4px 12px var(--ps-shadow);
     border: 1px solid var(--ps-header-accent);
     overflow: visible; /* Ensure the flag is not clipped */
+    z-index: 2;
 }
 
 /* --- Pirate Flag --- */
 .pirate-ship .container::before {
     content: "";
     position: absolute;
-    top: 20px; /* Adjusted position */
-    right: 20px; /* Adjusted position */
-    width: 80px; /* Increased width */
-    height: 60px; /* Increased height */
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 60px;
     background-image: var(--ps-flag-url);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display: block;
-    z-index: 9999; /* Ensure the flag is above other elements */
-    border: 2px solid black; /* Optional border for visibility */
+    z-index: 9999;
+    border: 2px solid black;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    animation: piratePulse 2s infinite;
+}
+
+/* --- Treasure Chest --- */
+.pirate-ship .treasure-chest {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: var(--ps-treasure-url);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 9998;
+    animation: piratePulse 2s infinite;
 }
 
 /* --- Calendar Specific Styles --- */
@@ -88,6 +132,7 @@
     background: linear-gradient(145deg, var(--ps-secondary), var(--ps-primary));
     border-radius: var(--border-radius);
     border: 1px dashed var(--ps-primary);
+    overflow: auto; /* Allow scrolling for the calendar */
 }
 
 .pirate-ship table {
@@ -139,7 +184,7 @@
     font-weight: 500;
     color: var(--ps-current-date-text);
     box-shadow: inset 0 0 6px var(--ps-shadow);
-    animation: piratePulse 1.8s infinite;
+    animation: glow 1.5s infinite;
 }
 
 /* --- Event Marker Styles --- */
