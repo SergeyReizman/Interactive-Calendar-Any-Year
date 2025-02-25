@@ -61,7 +61,7 @@ const applyTheme = (theme) => {
     'golden-gate', 'red-lake','kilimanjaro-outskirts', 'rainbow-dream',
     'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle', 
     'black-hole', 'melting-glaciers', 'battle-of-the-ice', 'medieval-knights', 
-    'winter-wonderland', 'mammoth-tusk'
+    'winter-wonderland', 'mammoth-tusk', 'emerald-stream'
     
   );
 
