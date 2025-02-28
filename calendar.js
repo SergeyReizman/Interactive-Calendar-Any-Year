@@ -62,7 +62,7 @@ const applyTheme = (theme) => {
     'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle', 
     'black-hole', 'melting-glaciers', 'battle-of-the-ice', 'medieval-knights', 
     'winter-wonderland', 'mammoth-tusk', 'emerald-stream', 'north-pole', 'black-hawk', 
-    'blue-bird', 'aloe-vera', 'port-victoria'
+    'blue-bird', 'aloe-vera', 'port-victoria', 'alpine-landscape'
     
   );
 
