@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'black-hole', 'melting-glaciers', 'battle-of-the-ice', 'medieval-knights', 
     'winter-wonderland', 'mammoth-tusk', 'emerald-stream', 'north-pole', 'black-hawk', 
     'blue-bird', 'aloe-vera', 'port-victoria', 'alpine-landscape', 'mount-fuji', 
-    'niagara-falls'
+    'niagara-falls', 'heavy-rain'
     
   );
 
