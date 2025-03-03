@@ -66,7 +66,6 @@ const applyTheme = (theme) => {
     'niagara-falls', 'heavy-rain', 'the-last-mohican', 'finish-line', 'porcupine-quill', 
     'genghis-khan-arrow', 'okinawa-breeze', 'weekend-downtime', 'dartagnans-rapier', 
     'maple-leaf-fall'
-    
   );
 
   body.classList.add(theme);
@@ -87,12 +86,6 @@ const applyTheme = (theme) => {
 themeSwitcher.addEventListener('change', (e) => {
   const selectedTheme = e.target.value;
   applyTheme(selectedTheme);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('calendarTheme') || 'core';
-  themeSwitcher.value = savedTheme;
-  applyTheme(savedTheme);
 });
 
 // Current date and selected year
@@ -271,10 +264,38 @@ window.addEventListener('scroll', toggleBackToTopButton);
 closeButton.addEventListener('click', closeModal);
 window.addEventListener('click', (e) => e.target === modal && closeModal());
 
-// Initial calendar generation
+// Analog Watch Functionality
+const updateClock = () => {
+  const now = new Date();
+  const seconds = now.getSeconds();
+  const minutes = now.getMinutes();
+  const hours = now.getHours();
+
+  const secondHand = document.getElementById('second-hand');
+  const minuteHand = document.getElementById('minute-hand');
+  const hourHand = document.getElementById('hour-hand');
+
+  const secondDegrees = ((seconds / 60) * 360) + 90;
+  const minuteDegrees = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
+  const hourDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;
+
+  secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+  minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
+  hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+};
+
+setInterval(updateClock, 1000);
+
+// Initial call to set the clock immediately
+updateClock();
+
+// Initial calendar generation and watch initialization
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('calendarTheme') || 'core';
   themeSwitcher.value = savedTheme;
   applyTheme(savedTheme);
   generateCalendar(selectedYear);
-}); 
+
+  // Initialize the analog watch
+  updateClock();
+});

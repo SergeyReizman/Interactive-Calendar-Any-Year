@@ -107,39 +107,71 @@
     <link rel="stylesheet" href="css/calendar.dartagnans-rapier.css">
     <link rel="stylesheet" href="css/calendar.maple-leaf-fall.css">
 
-
-
-
     <style>
         /* Styles for event markers (adjust as needed) */
         .event-marker-container {
-            /* Added container */
             position: relative;
-            /* For absolute positioning of markers */
             display: inline-block;
-            /* Or block if you want markers on a new line */
             vertical-align: middle;
-            /* Align with the number */
             margin-right: 5px;
-            /* Space between marker and number */
         }
 
         .event-marker {
             position: absolute;
-            /* Position within container */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            /* Center the marker */
             width: 8px;
-            /* Smaller markers */
             height: 8px;
             border-radius: 50%;
-            /* background-color set by JavaScript */
             z-index: 10;
-            /* Ensure markers are above the number */
             pointer-events: none;
-            /* So clicks go through to the cell */
+        }
+
+        /* Analog Watch Styles */
+        #analog-watch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .clock-face {
+            width: 150px;
+            height: 150px;
+            border: 10px solid #333;
+            border-radius: 50%;
+            position: relative;
+            background-color: #fff;
+        }
+
+        .hand {
+            width: 50%;
+            height: 6px;
+            background: #333;
+            position: absolute;
+            top: 50%;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition: all 0.05s;
+            transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        }
+
+        .second-hand {
+            height: 3px;
+            background: red;
+        }
+
+        .minute-hand {
+            height: 6px;
+            background: #333;
+        }
+
+        .hour-hand {
+            width: 40%;
+            left: 10%;
+            height: 8px;
+            background: #333;
         }
     </style>
 </head>
@@ -148,6 +180,15 @@
     <div class="container">
         <h1 id="calendar-title">Interactive Calendar</h1>
 
+        <!-- Analog Watch -->
+        <div id="analog-watch">
+            <div class="clock-face">
+                <div class="hand hour-hand" id="hour-hand"></div>
+                <div class="hand minute-hand" id="minute-hand"></div>
+                <div class="hand second-hand" id="second-hand"></div>
+            </div>
+        </div>
+
         <div class="controls">
             <button class="transparent-button" id="prev-year-btn" aria-label="Previous Year">Previous Year</button>
             <span id="current-year"></span>
@@ -155,8 +196,7 @@
         </div>
 
         <div class="controls">
-            <button class="transparent-button" id="clear-events-btn" aria-label="Clear All Events">Clear All
-                Events</button>
+            <button class="transparent-button" id="clear-events-btn" aria-label="Clear All Events">Clear All Events</button>
             <select id="theme-switcher" aria-label="Theme Switcher">
                 <option value="core">Light Mode</option>
                 <option value="dark-mode">Dark Mode</option>
@@ -254,10 +294,6 @@
                 <option value="weekend-downtime">Weekend Downtime</option>
                 <option value="dartagnans-rapier">D'Artagnan's Rapier</option>
                 <option value="maple-leaf-fall">Maple Leaf Fall</option>
-                
-                
-
-
             </select>
         </div>
 
@@ -273,9 +309,7 @@
                     <th>Saturday</th>
                 </tr>
             </thead>
-            <tbody id="calendar-body">
-
-            </tbody>
+            <tbody id="calendar-body"></tbody>
         </table>
 
         <div id="event-modal" class="modal">
@@ -299,7 +333,6 @@
     </div>
 
     <script src="calendar.js"></script>
-
 </body>
 
 </html>
