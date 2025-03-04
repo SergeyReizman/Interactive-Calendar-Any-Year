@@ -65,7 +65,7 @@ const applyTheme = (theme) => {
     'blue-bird', 'aloe-vera', 'port-victoria', 'alpine-landscape', 'mount-fuji',
     'niagara-falls', 'heavy-rain', 'the-last-mohican', 'finish-line', 'porcupine-quill',
     'genghis-khan-arrow', 'okinawa-breeze', 'weekend-downtime', 'dartagnans-rapier',
-    'maple-leaf-fall', 'lions-mane', 'cafe-de-colombia'
+    'maple-leaf-fall', 'lions-mane', 'cafe-de-colombia', 'moonlit-path'
   );
 
   body.classList.add(theme);
