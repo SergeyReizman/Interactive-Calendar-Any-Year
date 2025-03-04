@@ -54,18 +54,18 @@ const applyTheme = (theme) => {
     'black-hacker', 'cyber-pulse', 'dragon-flame', 'solar-flare', 'pure-light',
     'shaolin-monastery', 'black-coffee', 'forgotten-dreams', 'wild-wonders',
     'secret-night', 'candy-world', 'cracked-ice', 'fir-balsam', 'sea-diamonds',
-    'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin', 
-    'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'pirate-ship', 
-    'flamingo-sky','cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
-    'hurricane-clouds', 'rainforest-jungle', 'great-wall','viking-helmet', 'bamboo-flute', 
-    'golden-gate', 'red-lake','kilimanjaro-outskirts', 'rainbow-dream',
-    'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle', 
-    'black-hole', 'melting-glaciers', 'battle-of-the-ice', 'medieval-knights', 
-    'winter-wonderland', 'mammoth-tusk', 'emerald-stream', 'north-pole', 'black-hawk', 
-    'blue-bird', 'aloe-vera', 'port-victoria', 'alpine-landscape', 'mount-fuji', 
-    'niagara-falls', 'heavy-rain', 'the-last-mohican', 'finish-line', 'porcupine-quill', 
-    'genghis-khan-arrow', 'okinawa-breeze', 'weekend-downtime', 'dartagnans-rapier', 
-    'maple-leaf-fall'
+    'antarctic-snowdrifts', 'silicon-valley', 'time-machine', 'magellanic-penguin',
+    'white-shark', 'blue-whale', 'polar-bear', 'mountain-lake', 'pirate-ship',
+    'flamingo-sky', 'cacao-plantation', 'green-coffee', 'sea-lions', 'midnight-train',
+    'hurricane-clouds', 'rainforest-jungle', 'great-wall', 'viking-helmet', 'bamboo-flute',
+    'golden-gate', 'red-lake', 'kilimanjaro-outskirts', 'rainbow-dream',
+    'blue-planet', 'rising-sun', 'best-practice', 'bronze-horseman', 'bermuda-triangle',
+    'black-hole', 'melting-glaciers', 'battle-of-the-ice', 'medieval-knights',
+    'winter-wonderland', 'mammoth-tusk', 'emerald-stream', 'north-pole', 'black-hawk',
+    'blue-bird', 'aloe-vera', 'port-victoria', 'alpine-landscape', 'mount-fuji',
+    'niagara-falls', 'heavy-rain', 'the-last-mohican', 'finish-line', 'porcupine-quill',
+    'genghis-khan-arrow', 'okinawa-breeze', 'weekend-downtime', 'dartagnans-rapier',
+    'maple-leaf-fall', 'lions-mane'
   );
 
   body.classList.add(theme);
