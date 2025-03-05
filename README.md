@@ -76,6 +76,63 @@ Fir Balsam 🌲: A fresh and invigorating theme inspired by the scent of balsam 
 Sea Diamonds 💎🌊: A mesmerizing oceanic theme with deep sapphire blues, shimmering silvers, and crystal-clear aqua tones, evoking the beauty and mystery of the sea’s hidden treasures.
 Antarctic Snowdrifts ❄️: A crisp and cool theme inspired by the serene beauty of Antarctic landscapes, featuring a palette of icy blues, soft whites, and subtle gradients that evoke the calmness and tranquility of a snowy winter wonderland.
 Silicon Valley 💻: A sleek and modern theme inspired by the cutting-edge tech hub, featuring clean lines, a minimalist design, and a palette of cool grays, electric blues, and subtle neon accents, reflecting the innovative spirit of Silicon Valley.
+Time Machine ⏳: A theme that evokes a sense of nostalgia and adventure, with vintage tones and clock-inspired design elements.
+Magellanic Penguin 🐧: A chilly, yet charming theme inspired by the Antarctic penguin species, featuring icy blues and snowy whites.
+White Shark 🦈: A bold, sleek theme inspired by the great white shark, with a dynamic design featuring shades of white and deep ocean blues.
+Blue Whale 🐋: A calming, deep-sea inspired theme with shades of blue and soft gradients, capturing the majestic nature of the blue whale.
+Polar Bear 🐻‍❄️: A frosty, winter-inspired theme with soft whites, cool blues, and subtle textures that evoke the Arctic home of the polar bear.
+Mountain Lake 🏞️: A serene and peaceful theme with rich blues and earthy greens, inspired by the beauty of mountain lakes.
+Pirate Ship 🏴‍☠️: A swashbuckling, adventurous theme with a bold design featuring dark tones, ship sails, and treasure-inspired accents.
+Flamingo Sky 🦩: A vibrant, tropical theme with soft pinks and oranges, inspired by the beauty of flamingos at sunset.
+Cacao Plantation 🍫: A warm, earthy theme with deep browns and greens, reminiscent of lush cacao plantations and rich chocolate flavors.
+Green Coffee ☕: A fresh, natural theme inspired by green coffee beans, featuring earthy tones and botanical accents.
+Sea Lions 🦭: A playful, ocean-inspired theme with shades of deep blue and soft grays, reflecting the charming nature of sea lions.
+Midnight Train 🚂: A moody, atmospheric theme with dark blues and purples, evoking the mystery of a midnight train ride.
+Hurricane Clouds 🌪️: A dynamic, stormy theme with dark, swirling clouds and electric blues, capturing the intensity of a hurricane.
+Rainforest Jungle 🌳: A lush, vibrant theme with deep greens and earthy textures, inspired by the dense, rich foliage of the rainforest.
+Great Wall 🏯: A timeless, historical theme with rich reds, earthy tones, and ancient textures, inspired by the grandeur of the Great Wall of China.
+Viking Helmet 🛡️: A rugged, battle-ready theme with bold designs, featuring steel grays, deep blues, and Nordic accents.
+Bamboo Flute 🎶: A peaceful, serene theme with soft greens and natural textures, inspired by the calming sound of a bamboo flute.
+Golden Gate 🌉: A majestic, iconic theme inspired by the Golden Gate Bridge, with golden tones, sleek designs, and a sense of grandeur.
+Red Lake 🔴: A dramatic, powerful theme with vibrant reds and deep blues, inspired by the striking beauty of a red lake.
+Kilimanjaro Outskirts 🏔️: A rugged, adventurous theme inspired by the breathtaking views of Mount Kilimanjaro, with earthy tones and crisp mountain air.
+Rainbow Dream 🌈: A bright, cheerful theme with vibrant colors and soft gradients, inspired by the beauty of a rainbow.
+Blue Planet 🌍: A peaceful, serene theme with shades of blue and green, reflecting the tranquil nature of Earth from space.
+Rising Sun 🌅: A warm, uplifting theme with golden hues and soft gradients, inspired by the breathtaking beauty of a rising sun.
+Best Practice 🌟: A clean, professional theme designed to inspire success, with bright colors and sleek design elements.
+Bronze Horseman 🐴: A historic, elegant theme with deep bronzes and golden accents, inspired by the famous statue of Peter the Great.
+Bermuda Triangle 🏝️: A mysterious, tropical theme with deep ocean blues, greens, and a sense of adventure, inspired by the enigmatic Bermuda Triangle.
+Black Hole 🌑: A deep, cosmic theme with dark purples, blacks, and starry accents, evoking the mysterious allure of a black hole.
+Melting Glaciers 🧊: A cool, icy theme with light blues and frosty textures, capturing the fragile beauty of melting glaciers.
+Battle of the Ice 🧊: A bold, dramatic theme with icy blues, deep grays, and a sense of fierce competition, inspired by an epic battle in the ice.
+Medieval Knights 🏰: A regal, historic theme with deep reds, golds, and royal blues, inspired by the chivalry and elegance of medieval knights.
+Winter Wonderland ❄️: A crisp, magical theme with soft whites, icy blues, and sparkling textures, evoking the beauty of a snowy winter landscape.
+Mammoth Tusk 🦣: A prehistoric theme with deep browns, earthy greens, and textured designs, inspired by the grandeur of mammoth tusks.
+Emerald Stream 💎: A rich, jewel-toned theme with shades of green and turquoise, inspired by the beauty of emerald rivers.
+North Pole 🏔️: A frosty, winter-inspired theme with cool blues, whites, and snowflakes, evoking the chill of the North Pole.
+Black Hawk 🦅: A sleek, powerful theme with dark blacks, grays, and sharp contrasts, inspired by the majesty of a black hawk in flight.
+Blue Bird 🦋: A peaceful, uplifting theme with soft blues and delicate textures, inspired by the beauty of a blue bird in flight.
+Aloe Vera 🌿: A fresh, natural theme with soft greens and soothing textures, inspired by the healing qualities of aloe vera plants.
+Port Victoria 🚢: A serene, nautical theme with ocean blues, soft whites, and coastal accents, inspired by the beauty of a seaport.
+Alpine Landscape 🏔️: A majestic, mountainous theme with earthy greens, crisp blues, and stunning snow-capped peaks, evoking the beauty of an alpine landscape.
+Mount Fuji 🗻: A tranquil, serene theme with soft pinks, whites, and purples, inspired by the beauty of Mount Fuji.
+Niagara Falls 🌊: A dynamic, powerful theme with cascading blues and whites, inspired by the beauty of Niagara Falls.
+Heavy Rain 🌧️: A moody, atmospheric theme with deep grays, blues, and soft raindrops, capturing the feeling of a heavy rainstorm.
+The Last Mohican 🏹: A historic, adventurous theme with earthy browns, deep greens, and Native American-inspired textures.
+Finish Line 🏁: A bold, energetic theme with bright, sharp contrasts and a sense of accomplishment, inspired by crossing the finish line.
+Porcupine Quill 🦔: A quirky, nature-inspired theme with earthy tones, spiky textures, and a playful design inspired by porcupine quills.
+Genghis Khan Arrow 🏹: A bold, historical theme with deep reds, blacks, and golds, inspired by the power and might of Genghis Khan.
+Okinawa Breeze 🌬️: A fresh, tropical theme with soft blues, whites, and breezy textures, evoking the peaceful atmosphere of Okinawa.
+Weekend Downtime ☀️: A relaxed, laid-back theme with soft pastels, calming colors, and designs that evoke the peacefulness of the weekend.
+Dartagnan's Rapier ⚔️: A sharp, elegant theme with rich reds, golds, and metallic accents, inspired by the daring D'Artagnan and his rapier.
+Maple Leaf Fall 🍁: A warm, autumn-inspired theme with deep reds, oranges, and browns, inspired by the beauty of falling maple leaves.
+Lion's Mane 🦁: A bold, regal theme with rich golds, deep yellows, and earthy tones, inspired by the majesty of a lion's mane.
+Cafe de Colombia ☕: A rich, cozy theme with earthy browns, creamy beiges, and dark coffee tones, inspired by the warmth of Colombian coffee.
+Moonlit Path 🌙: A serene, mystical theme with soft whites, silvers, and deep blues, inspired by the tranquility of a moonlit path.
+Macaroni Penguin 🐧: A playful, fun theme with soft yellows, blues, and penguin-inspired designs, evoking the joy of macaroni penguins.
+Ocean Vortex 🌊: A dynamic, swirling ocean theme with deep blues, whites, and turquoise, inspired by the power of ocean vortexes.
+Great Lakes 🌊: A peaceful, serene theme with rich blues and greens, inspired by the beauty of the Great Lakes.
+Quiet Evening 🌆: A calming, peaceful theme with soft blues, purples, and stars, evoking the tranquility of a quiet evening.
 
 
 🔧 Technologies Used:
@@ -145,19 +202,18 @@ Your events are stored in your browser's local storage and remain intact between
 📂 Folder Structure
 
 project/
-├── css/
-│   ├── calendar.variables.css        /* Variables and Themes */
-│   ├── calendar.core.css             /* Core Styles and Structure */
-│   ├── calendar.responsive.css       /* Responsiveness Adjustments (Media Queries) */
-│   ├── calendar.light-mode.css       /* Light Mode Theme */
-│   ├── calendar.dark-mode.css        /* Dark Mode Theme */
-│   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
+├── css/ 
+│   ├── calendar.variables.css        /* 🎨 Variables and Themes */
+│   ├── calendar.core.css             /* 📌 Core Styles and Structure */
+│   ├── calendar.responsive.css       /* 📱 Responsiveness Adjustments (Media Queries) */
+│   ├── calendar.dark-mode.css        /* 🌑 Dark Mode Theme */
 │   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
-│   ├── calendar.serene-shores.css    /* 🌴 Serene Shores Theme */
 │   ├── calendar.autumn-harvest.css   /* 🍂 Autumn Harvest Theme */
+│   ├── calendar.serene-shores.css    /* 🌴 Serene Shores Theme */
+│   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
+│   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
 │   ├── calendar.blue-ice.css         /* ❄️ Blue Ice Theme */
 │   ├── calendar.deep-forest.css      /* 🌳 Deep Forest Theme */
-│   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
 │   ├── calendar.orange-country.css   /* 🍊 Orange Country Theme */
 │   ├── calendar.neon-nights.css      /* 🌙 Neon Nights Theme */
 │   ├── calendar.desert-mirage.css    /* 🏜️ Desert Mirage Theme */
@@ -167,7 +223,6 @@ project/
 │   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
 │   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
 │   ├── calendar.arctic-glow.css      /* 🧊 Arctic Glow Theme */
-│   ├── calendar.new-ai.css           /* 🤖 New AI Theme */
 │   ├── calendar.steel-shadows.css    /* 🏙️ Steel Shadows Theme */
 │   ├── calendar.tropical-sunset.css  /* 🌴 Tropical Sunset Theme */
 │   ├── calendar.exotic-island.css    /* 🏝️ Exotic Island Theme */
@@ -184,21 +239,79 @@ project/
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
-│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
+│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
-│   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
-│   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
+│   ├── calendar.black-coffee.css     /* ☕ Black Coffee Theme */
+│   ├── calendar.forgotten-dreams.css /* 💭 Forgotten Dreams Theme */
 │   ├── calendar.wild-wonders.css     /* 🌿 Wild Wonders Theme */
+│   ├── calendar.secret-night.css     /* 🌙 Secret Night Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
-│   ├── calendar.sea-diamonds.css      /* 💎🌊 Sea Diamonds Theme */
+│   ├── calendar.sea-diamonds.css     /* 💎🌊 Sea Diamonds Theme */
 │   ├── calendar.antarctic-snowdrifts.css/* ❄️ Antarctic Snowdrifts Theme */
-│   └──calendar.silicon-valley.css    /* 🏙️ Silicon Valley Theme */
-├── calendar.js                       /* Calendar Logic (JavaScript) */
-├── index.html                        /* HTML Entry Point */
-├── screenshot.png                    /* Project Screenshot */
-└── README.md                         /* Project Documentation */
+│   ├── calendar.silicon-valley.css   /* 🏙️ Silicon Valley Theme */
+│   ├── calendar.time-machine.css     /* ⏳ Time Machine Theme */
+│   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
+│   ├── calendar.white-shark.css      /* 🦈 White Shark Theme */
+│   ├── calendar.blue-whale.css       /* 🐋 Blue Whale Theme */
+│   ├── calendar.polar-bear.css       /* 🐻‍❄️ Polar Bear Theme */
+│   ├── calendar.mountain-lake.css    /* 🏞️ Mountain Lake Theme */
+│   ├── calendar.pirate-ship.css      /* 🏴‍☠️ Pirate Ship Theme */
+│   ├── calendar.flamingo-sky.css     /* 🦩 Flamingo Sky Theme */
+│   ├── calendar.cacao-plantation.css /* 🍫 Cacao Plantation Theme */
+│   ├── calendar.green-coffee.css     /* ☕ Green Coffee Theme */
+│   ├── calendar.sea-lions.css        /* 🦭 Sea Lions Theme */
+│   ├── calendar.midnight-train.css   /* 🚂 Midnight Train Theme */
+│   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
+│   ├── calendar.rainforest-jungle.css/* 🌳 Rainforest Jungle Theme */
+│   ├── calendar.great-wall.css       /* 🏯 Great Wall Theme */
+│   ├── calendar.viking-helmet.css    /* 🛡️ Viking Helmet Theme */
+│   ├── calendar.bamboo-flute.css     /* 🎶 Bamboo Flute Theme */
+│   ├── calendar.golden-gate.css      /* 🌉 Golden Gate Theme */
+│   ├── calendar.red-lake.css         /* 🔴 Red Lake Theme */
+│   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
+│   ├── calendar.rainbow-dream.css    /* 🌈 Rainbow Dream Theme */
+│   ├── calendar.blue-planet.css      /* 🌍 Blue Planet Theme */
+│   ├── calendar.rising-sun.css       /* 🌅 Rising Sun Theme */
+│   ├── calendar.best-practice.css    /* 🌟 Best Practice Theme */
+│   ├── calendar.bronze-horseman.css  /* 🐴 Bronze Horseman Theme */
+│   ├── calendar.bermuda-triangle.css /* 🏝️ Bermuda Triangle Theme */
+│   ├── calendar.black-hole.css       /* 🌑 Black Hole Theme */
+│   ├── calendar.melting-glaciers.css /* 🧊 Melting Glaciers Theme */
+│   ├── calendar.battle-of-the-ice.css /* 🧊 Battle of the Ice Theme */
+│   ├── calendar.medieval-knights.css /* 🏰 Medieval Knights Theme */
+│   ├── calendar.winter-wonderland.css/* ❄️ Winter Wonderland Theme */
+│   ├── calendar.mammoth-tusk.css     /* 🦣 Mammoth Tusk Theme */
+│   ├── calendar.emerald-stream.css   /* 💎 Emerald Stream Theme */
+│   ├── calendar.north-pole.css       /* 🏔️ North Pole Theme */
+│   ├── calendar.black-hawk.css       /* 🦅 Black Hawk Theme */
+│   ├── calendar.blue-bird.css        /* 🦋 Blue Bird Theme */
+│   ├── calendar.aloe-vera.css        /* 🌿 Aloe Vera Theme */
+│   ├── calendar.port-victoria.css    /* 🚢 Port Victoria Theme */
+│   ├── calendar.alpine-landscape.css /* 🏔️ Alpine Landscape Theme */
+│   ├── calendar.mount-fuji.css       /* 🗻 Mount Fuji Theme */
+│   ├── calendar.niagara-falls.css    /* 🌊 Niagara Falls Theme */
+│   ├── calendar.heavy-rain.css       /* 🌧️ Heavy Rain Theme */
+│   ├── calendar.the-last-mohican.css /* 🏹 The Last Mohican Theme */
+│   ├── calendar.finish-line.css      /* 🏁 Finish Line Theme */
+│   ├── calendar.porcupine-quill.css  /* 🦔 Porcupine Quill Theme */
+│   ├── calendar.genghis-khan-arrow.css/* 🏹 Genghis Khan Arrow Theme */
+│   ├── calendar.okinawa-breeze.css   /* 🌬️ Okinawa Breeze Theme */
+│   ├── calendar.weekend-downtime.css /* ☀️ Weekend Downtime Theme */
+│   ├── calendar.dartagnans-rapier.css/* ⚔️ Dartagnan's Rapier Theme */
+│   ├── calendar.maple-leaf-fall.css  /* 🍁 Maple Leaf Fall Theme */
+│   ├── calendar.lions-mane.css       /* 🦁 Lion's Mane Theme */
+│   ├── calendar.cafe-de-colombia.css /* ☕ Cafe de Colombia Theme */
+│   ├── calendar.moonlit-path.css     /* 🌙 Moonlit Path Theme */
+│   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
+│   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
+│   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
+│   └── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
+├── calendar.js                       /* 📅 Calendar Logic (JavaScript) */
+├── index.html                        /* 📄 HTML Entry Point */
+├── screenshot.png                    /* 📸 Project Screenshot */
+└── README.md                         /* 📖 Project Documentation */
 
 
 
@@ -234,21 +347,21 @@ HTML5: Structuring the calendar interface.
 CSS3: Styling, themes, and responsive design.
 JavaScript: Handling calendar logic and interactivity.
 
+📂 Folder Structure
 
 project/
-├── css/
-│   ├── calendar.variables.css        /* Variables and Themes */
-│   ├── calendar.core.css             /* Core Styles and Structure */
-│   ├── calendar.responsive.css       /* Responsiveness Adjustments (Media Queries) */
-│   ├── calendar.light-mode.css       /* Light Mode Theme */
-│   ├── calendar.dark-mode.css        /* Dark Mode Theme */
-│   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
+├── css/ 
+│   ├── calendar.variables.css        /* 🎨 Variables and Themes */
+│   ├── calendar.core.css             /* 📌 Core Styles and Structure */
+│   ├── calendar.responsive.css       /* 📱 Responsiveness Adjustments (Media Queries) */
+│   ├── calendar.dark-mode.css        /* 🌑 Dark Mode Theme */
 │   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
-│   ├── calendar.serene-shores.css    /* 🌴 Serene Shores Theme */
 │   ├── calendar.autumn-harvest.css   /* 🍂 Autumn Harvest Theme */
+│   ├── calendar.serene-shores.css    /* 🌴 Serene Shores Theme */
+│   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
+│   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
 │   ├── calendar.blue-ice.css         /* ❄️ Blue Ice Theme */
 │   ├── calendar.deep-forest.css      /* 🌳 Deep Forest Theme */
-│   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
 │   ├── calendar.orange-country.css   /* 🍊 Orange Country Theme */
 │   ├── calendar.neon-nights.css      /* 🌙 Neon Nights Theme */
 │   ├── calendar.desert-mirage.css    /* 🏜️ Desert Mirage Theme */
@@ -258,7 +371,6 @@ project/
 │   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
 │   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
 │   ├── calendar.arctic-glow.css      /* 🧊 Arctic Glow Theme */
-│   ├── calendar.new-ai.css           /* 🤖 New AI Theme */
 │   ├── calendar.steel-shadows.css    /* 🏙️ Steel Shadows Theme */
 │   ├── calendar.tropical-sunset.css  /* 🌴 Tropical Sunset Theme */
 │   ├── calendar.exotic-island.css    /* 🏝️ Exotic Island Theme */
@@ -275,21 +387,79 @@ project/
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.solar-flare.css      /* 🌞 Solar Flare Theme */
-│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */  
+│   ├── calendar.pure-light.css       /* ☀️ Pure Light Theme */
 │   ├── calendar.shaolin-monastery.css/* 🏯 Shaolin Monastery Theme */
-│   ├── calendar.black-coffee.css     /* ☕Black Coffee Theme */
-│   ├── calendar.forgotten-dreams.css /* 💭Forgotten Dreams Theme */
+│   ├── calendar.black-coffee.css     /* ☕ Black Coffee Theme */
+│   ├── calendar.forgotten-dreams.css /* 💭 Forgotten Dreams Theme */
 │   ├── calendar.wild-wonders.css     /* 🌿 Wild Wonders Theme */
+│   ├── calendar.secret-night.css     /* 🌙 Secret Night Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
-│   ├── calendar.sea-diamonds.css      /* 💎🌊 Sea Diamonds Theme */
+│   ├── calendar.sea-diamonds.css     /* 💎🌊 Sea Diamonds Theme */
 │   ├── calendar.antarctic-snowdrifts.css/* ❄️ Antarctic Snowdrifts Theme */
-│   └──calendar.silicon-valley.css    /* 🏙️ Silicon Valley Theme */
-├── calendar.js                       /* Calendar Logic (JavaScript) */
-├── index.html                        /* HTML Entry Point */
-├── screenshot.png                    /* Project Screenshot */
-└── README.md                         /* Project Documentation */
+│   ├── calendar.silicon-valley.css   /* 🏙️ Silicon Valley Theme */
+│   ├── calendar.time-machine.css     /* ⏳ Time Machine Theme */
+│   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
+│   ├── calendar.white-shark.css      /* 🦈 White Shark Theme */
+│   ├── calendar.blue-whale.css       /* 🐋 Blue Whale Theme */
+│   ├── calendar.polar-bear.css       /* 🐻‍❄️ Polar Bear Theme */
+│   ├── calendar.mountain-lake.css    /* 🏞️ Mountain Lake Theme */
+│   ├── calendar.pirate-ship.css      /* 🏴‍☠️ Pirate Ship Theme */
+│   ├── calendar.flamingo-sky.css     /* 🦩 Flamingo Sky Theme */
+│   ├── calendar.cacao-plantation.css /* 🍫 Cacao Plantation Theme */
+│   ├── calendar.green-coffee.css     /* ☕ Green Coffee Theme */
+│   ├── calendar.sea-lions.css        /* 🦭 Sea Lions Theme */
+│   ├── calendar.midnight-train.css   /* 🚂 Midnight Train Theme */
+│   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
+│   ├── calendar.rainforest-jungle.css/* 🌳 Rainforest Jungle Theme */
+│   ├── calendar.great-wall.css       /* 🏯 Great Wall Theme */
+│   ├── calendar.viking-helmet.css    /* 🛡️ Viking Helmet Theme */
+│   ├── calendar.bamboo-flute.css     /* 🎶 Bamboo Flute Theme */
+│   ├── calendar.golden-gate.css      /* 🌉 Golden Gate Theme */
+│   ├── calendar.red-lake.css         /* 🔴 Red Lake Theme */
+│   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
+│   ├── calendar.rainbow-dream.css    /* 🌈 Rainbow Dream Theme */
+│   ├── calendar.blue-planet.css      /* 🌍 Blue Planet Theme */
+│   ├── calendar.rising-sun.css       /* 🌅 Rising Sun Theme */
+│   ├── calendar.best-practice.css    /* 🌟 Best Practice Theme */
+│   ├── calendar.bronze-horseman.css  /* 🐴 Bronze Horseman Theme */
+│   ├── calendar.bermuda-triangle.css /* 🏝️ Bermuda Triangle Theme */
+│   ├── calendar.black-hole.css       /* 🌑 Black Hole Theme */
+│   ├── calendar.melting-glaciers.css /* 🧊 Melting Glaciers Theme */
+│   ├── calendar.battle-of-the-ice.css /* 🧊 Battle of the Ice Theme */
+│   ├── calendar.medieval-knights.css /* 🏰 Medieval Knights Theme */
+│   ├── calendar.winter-wonderland.css/* ❄️ Winter Wonderland Theme */
+│   ├── calendar.mammoth-tusk.css     /* 🦣 Mammoth Tusk Theme */
+│   ├── calendar.emerald-stream.css   /* 💎 Emerald Stream Theme */
+│   ├── calendar.north-pole.css       /* 🏔️ North Pole Theme */
+│   ├── calendar.black-hawk.css       /* 🦅 Black Hawk Theme */
+│   ├── calendar.blue-bird.css        /* 🦋 Blue Bird Theme */
+│   ├── calendar.aloe-vera.css        /* 🌿 Aloe Vera Theme */
+│   ├── calendar.port-victoria.css    /* 🚢 Port Victoria Theme */
+│   ├── calendar.alpine-landscape.css /* 🏔️ Alpine Landscape Theme */
+│   ├── calendar.mount-fuji.css       /* 🗻 Mount Fuji Theme */
+│   ├── calendar.niagara-falls.css    /* 🌊 Niagara Falls Theme */
+│   ├── calendar.heavy-rain.css       /* 🌧️ Heavy Rain Theme */
+│   ├── calendar.the-last-mohican.css /* 🏹 The Last Mohican Theme */
+│   ├── calendar.finish-line.css      /* 🏁 Finish Line Theme */
+│   ├── calendar.porcupine-quill.css  /* 🦔 Porcupine Quill Theme */
+│   ├── calendar.genghis-khan-arrow.css/* 🏹 Genghis Khan Arrow Theme */
+│   ├── calendar.okinawa-breeze.css   /* 🌬️ Okinawa Breeze Theme */
+│   ├── calendar.weekend-downtime.css /* ☀️ Weekend Downtime Theme */
+│   ├── calendar.dartagnans-rapier.css/* ⚔️ Dartagnan's Rapier Theme */
+│   ├── calendar.maple-leaf-fall.css  /* 🍁 Maple Leaf Fall Theme */
+│   ├── calendar.lions-mane.css       /* 🦁 Lion's Mane Theme */
+│   ├── calendar.cafe-de-colombia.css /* ☕ Cafe de Colombia Theme */
+│   ├── calendar.moonlit-path.css     /* 🌙 Moonlit Path Theme */
+│   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
+│   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
+│   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
+│   └── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
+├── calendar.js                       /* 📅 Calendar Logic (JavaScript) */
+├── index.html                        /* 📄 HTML Entry Point */
+├── screenshot.png                    /* 📸 Project Screenshot */
+└── README.md                         /* 📖 Project Documentation */
 
 
 ⚙️ Setup Instructions
