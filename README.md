@@ -156,6 +156,7 @@ Macaroni Penguin 🐧: A playful, fun theme with soft yellows, blues, and pengui
 Ocean Vortex 🌊: A dynamic, swirling ocean theme with deep blues, whites, and turquoise, inspired by the power of ocean vortexes.
 Great Lakes 🌊: A peaceful, serene theme with rich blues and greens, inspired by the beauty of the Great Lakes.
 Quiet Evening 🌆: A calming, peaceful theme with soft blues, purples, and stars, evoking the tranquility of a quiet evening.
+Crimson Sky 🌅: A vibrant, breathtaking theme with rich reds, oranges, and purples, inspired by the awe-inspiring hues of a sunset or dawn sky, capturing the intensity and beauty of the horizon at twilight.
 
 
 🔧 Technologies Used:
@@ -330,7 +331,8 @@ project/
 │   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
 │   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
-│   └── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
+│   ├── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
+│   └── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
 ├── calendar.js                       /* 📅 Calendar Logic (JavaScript) */
 ├── index.html                        /* 📄 HTML Entry Point */
 ├── screenshot.png                    /* 📸 Project Screenshot */
@@ -478,7 +480,8 @@ project/
 │   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
 │   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
-│   └── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
+│   ├── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
+│   └── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
 ├── calendar.js                       /* 📅 Calendar Logic (JavaScript) */
 ├── index.html                        /* 📄 HTML Entry Point */
 ├── screenshot.png                    /* 📸 Project Screenshot */
