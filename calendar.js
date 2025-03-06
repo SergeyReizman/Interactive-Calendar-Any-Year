@@ -67,7 +67,7 @@ const applyTheme = (theme) => {
     'genghis-khan-arrow', 'okinawa-breeze', 'weekend-downtime', 'dartagnans-rapier',
     'maple-leaf-fall', 'lions-mane', 'cafe-de-colombia', 'moonlit-path', 'macaroni-penguin', 
     'ocean-vortex', 'great-lakes', 'quiet-evening', 'crimson-sky', 'viktoria-falls', 
-    'everest-view'
+    'everest-view', 'amazon-river'
   );
 
   body.classList.add(theme);
