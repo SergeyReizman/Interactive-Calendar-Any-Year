@@ -68,7 +68,7 @@ const applyTheme = (theme) => {
     'maple-leaf-fall', 'lions-mane', 'cafe-de-colombia', 'moonlit-path', 'macaroni-penguin', 
     'ocean-vortex', 'great-lakes', 'quiet-evening', 'crimson-sky', 'viktoria-falls', 
     'everest-view', 'amazon-river', 'dragonfly', 'wild-rose', 'morning-forest', 
-    'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star'
+    'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star', 'royal-caribbean'
   );
 
   body.classList.add(theme);
