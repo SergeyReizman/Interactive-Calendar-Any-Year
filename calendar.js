@@ -69,7 +69,7 @@ const applyTheme = (theme) => {
     'ocean-vortex', 'great-lakes', 'quiet-evening', 'crimson-sky', 'viktoria-falls', 
     'everest-view', 'amazon-river', 'dragonfly', 'wild-rose', 'morning-forest', 
     'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star', 'royal-caribbean', 
-    'abandoned-castle', 'red-squirrel'
+    'abandoned-castle', 'red-squirrel', 'shift-in-perception'
   );
 
   body.classList.add(theme);
