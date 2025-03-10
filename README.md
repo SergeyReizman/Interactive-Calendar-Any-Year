@@ -465,7 +465,22 @@ project/
 │   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
 │   ├── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
-│   └── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
+│   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
+│   ├── calendar.viktoria-falls.css   /* 🌊 Viktoria Falls Theme */
+│   ├── calendar.everest-view.css     /* 🏔️ Everest View Theme */
+│   ├── calendar.amazon-river.css     /* 🌿 Amazon River Theme */
+│   ├── calendar.dragonfly.css        /* 🦋 Dragonfly Theme */
+│   ├── calendar.wild-rose.css        /* 🌹 Wild Rose Theme */
+│   ├── calendar.morning-forest.css   /* 🌲 Morning Forest Theme */
+│   ├── calendar.crystal-stream.css   /* 💎 Crystal Stream Theme */
+│   ├── calendar.black-velvet.css     /* 🖤 Black Velvet Theme */
+│   ├── calendar.adriatic-sea.css     /* 🌊 Adriatic Sea Theme */
+│   ├── calendar.sea-star.css         /* ⭐ Sea Star Theme */
+│   ├── calendar.royal-caribbean.css  /* 🚢 Royal Caribbean Theme */
+│   ├── calendar.abandoned-castle.css /* 🏰 Abandoned Castle Theme */
+│   ├── calendar.red-squirrel.css     /* 🐿️ Red Squirrel Theme */
+│   ├── calendar.shift-in-perception.css/* 🔮 Shift in Perception Theme */
+│   └── calendar.migratory-birds.css  /* 🕊️ Migratory Birds Theme */
 ├── calendar.js                       /* 📅 Calendar Logic (JavaScript) */
 ├── index.html                        /* 📄 HTML Entry Point */
 ├── screenshot.png                    /* 📸 Project Screenshot */
@@ -614,10 +629,26 @@ project/
 │   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
 │   ├── calendar.quiet-evening.css    /* 🌆 Quiet Evening Theme */
-│   └── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
+│   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
+│   ├── calendar.viktoria-falls.css   /* 🌊 Viktoria Falls Theme */
+│   ├── calendar.everest-view.css     /* 🏔️ Everest View Theme */
+│   ├── calendar.amazon-river.css     /* 🌿 Amazon River Theme */
+│   ├── calendar.dragonfly.css        /* 🦋 Dragonfly Theme */
+│   ├── calendar.wild-rose.css        /* 🌹 Wild Rose Theme */
+│   ├── calendar.morning-forest.css   /* 🌲 Morning Forest Theme */
+│   ├── calendar.crystal-stream.css   /* 💎 Crystal Stream Theme */
+│   ├── calendar.black-velvet.css     /* 🖤 Black Velvet Theme */
+│   ├── calendar.adriatic-sea.css     /* 🌊 Adriatic Sea Theme */
+│   ├── calendar.sea-star.css         /* ⭐ Sea Star Theme */
+│   ├── calendar.royal-caribbean.css  /* 🚢 Royal Caribbean Theme */
+│   ├── calendar.abandoned-castle.css /* 🏰 Abandoned Castle Theme */
+│   ├── calendar.red-squirrel.css     /* 🐿️ Red Squirrel Theme */
+│   ├── calendar.shift-in-perception.css/* 🔮 Shift in Perception Theme */
+│   └── calendar.migratory-birds.css  /* 🕊️ Migratory Birds Theme */
 ├── calendar.js                       /* 📅 Calendar Logic (JavaScript) */
 ├── index.html                        /* 📄 HTML Entry Point */
 ├── screenshot.png                    /* 📸 Project Screenshot */
+└── README.md                         /* 📖 Project Documentation */
 └── README.md                         /* 📖 Project Documentation */
 
 
