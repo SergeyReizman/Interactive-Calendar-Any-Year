@@ -131,6 +131,8 @@ Cafe de Colombia ☕: A rich, cozy theme with earthy browns, creamy beiges, and 
 
 Candy World 🍬🍭: A sweet and playful theme with vibrant pastel colors, candy-inspired icons, and a whimsical design that evokes the joy and fun of a candy wonderland.
 
+Cardinal's Guards ⚔️: A bold and heroic theme with deep reds, gold accents, and intricate designs, symbolizing strength, honor, and the grandeur of the cardinal's elite guards.
+
 Cherry Garden 🌸: A fresh, vibrant theme inspired by the beauty of cherry blossoms in full bloom.
 
 Cracked Ice 🧊: A cool, icy theme with crisp whites, icy blues, and translucent effects, evoking the calmness of winter.
@@ -408,8 +410,9 @@ project/
 │   ├── calendar.blue-whale.css       /* 🐋 Blue Whale Theme */
 │   ├── calendar.bronze-horseman.css  /* 🐴 Bronze Horseman Theme */
 │   ├── calendar.cacao-plantation.css /* 🍫 Cacao Plantation Theme */
-│   ├── calendar.cafe-de-colombia.css /* ☕ Cafe de Colombia Theme */
+│   ├── calendar.cafe-de-colombia.css /* ☕ Café de Colombia Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
+│   ├── calendar.cardinals-guards.css /* ⚔️ Cardinal's Guards Theme */
 │   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
@@ -574,6 +577,7 @@ project/
 │   ├── calendar.cacao-plantation.css /* 🍫 Cacao Plantation Theme */
 │   ├── calendar.cafe-de-colombia.css /* ☕ Cafe de Colombia Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
+│   ├── calendar.cardinals-guards.css /* ⚔️ Cardinal's Guards Theme */
 │   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
