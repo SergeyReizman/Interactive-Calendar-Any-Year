@@ -295,6 +295,8 @@ Steel Shadows 🏗️: A bold, industrial theme with sleek steel grays, shadowy 
 
 Stockholm Roofs 🏙️: A modern, urban theme inspired by the beautiful rooftops of Stockholm, featuring sleek, architectural designs, a blend of contemporary and classic tones, and a Scandinavian touch.
 
+The Sword of Fate ⚔️: A Blade Forged by Destiny ⚔️
+
 The Last Mohican 🏹: A historic, adventurous theme with earthy browns, deep greens, and Native American-inspired textures.
 
 Time Machine ⏳: A theme that evokes a sense of nostalgia and adventure, with vintage tones and clock-inspired design elements.
@@ -495,6 +497,7 @@ project/
 │   ├── calendar.spring-meadow.css    /* 🌸 Spring Meadow Theme */
 │   ├── calendar.steel-shadows.css    /* 🏙️ Steel Shadows Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
+│   ├── calendar.sword-of-fate.css    /* ⚔️ Sword of Fate Theme */
 │   ├── calendar.the-last-mohican.css /* 🏹 The Last Mohican Theme */
 │   ├── calendar.time-machine.css     /* ⏳ Time Machine Theme */
 │   ├── calendar.tropical-sunset.css  /* 🌴 Tropical Sunset Theme */
@@ -660,6 +663,7 @@ project/
 │   ├── calendar.spring-meadow.css    /* 🌸 Spring Meadow Theme */
 │   ├── calendar.steel-shadows.css    /* 🏙️ Steel Shadows Theme */
 │   ├── calendar.stockholm-roofs.css  /* 🏙️ Stockholm Roofs Theme */
+│   ├── calendar.sword-of-fate.css    /* ⚔️ Sword of Fate Theme */
 │   ├── calendar.the-last-mohican.css /* 🏹 The Last Mohican Theme */
 │   ├── calendar.time-machine.css     /* ⏳ Time Machine Theme */
 │   ├── calendar.tropical-sunset.css  /* 🌴 Tropical Sunset Theme */
