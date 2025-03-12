@@ -135,6 +135,8 @@ Cardinal's Guards ⚔️: A bold and heroic theme with deep reds, gold accents, 
 
 Cherry Garden 🌸: A fresh, vibrant theme inspired by the beauty of cherry blossoms in full bloom.
 
+Cinnamon Street 🍂: A warm, cozy theme with inviting cinnamon hues, burnt oranges, creamy beiges, and deep browns, evoking the comforting feeling of autumn spices and rustic charm.
+
 Cracked Ice 🧊: A cool, icy theme with crisp whites, icy blues, and translucent effects, evoking the calmness of winter.
 
 Crimson Sky 🌅: A vibrant, breathtaking theme with rich reds, oranges, and purples, inspired by the awe-inspiring hues of a sunset or dawn sky, capturing the intensity and beauty of the horizon at twilight.
@@ -416,6 +418,7 @@ project/
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cardinals-guards.css /* ⚔️ Cardinal's Guards Theme */
 │   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
+│   ├── calendar.cinnamon.street.css  /* 🍂 Cinnamon Street Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
 │   ├── calendar.crystal-snowfall.css /* ❄️ Crystal Snowfall Theme */
@@ -582,6 +585,7 @@ project/
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cardinals-guards.css /* ⚔️ Cardinal's Guards Theme */
 │   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
+│   ├── calendar.cinnamon.street.css  /* 🍂 Cinnamon Street Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
 │   ├── calendar.crystal-snowfall.css /* ❄️ Crystal Snowfall Theme */
