@@ -195,6 +195,8 @@ Hurricane Clouds 🌪️: A dynamic, stormy theme with dark, swirling clouds and
 
 Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and calming accents, designed to bring a sense of peace and relaxation.
 
+Lemongrass Sky 🌿: A refreshing, vibrant theme with bright greens and cool blues, evoking the serene beauty of a lemongrass field under a clear sky.
+
 Light Mode ☀️: Bright and crisp for your daytime productivity.
 
 Lion's Mane 🦁: A bold, regal theme with rich golds, deep yellows, and earthy tones, inspired by the majesty of a lion's mane.
@@ -449,6 +451,7 @@ project/
 │   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
 │   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
 │   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
+│   ├── calendar.lemongrass-sky.css   /* 🌿 Lemongrass Sky Theme */
 │   ├── calendar.lions-mane.css       /* 🦁 Lion's Mane Theme */
 │   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
 │   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
@@ -616,6 +619,7 @@ project/
 │   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
 │   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
 │   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
+│   ├── calendar.lemongrass-sky.css   /* 🌿 Lemongrass Sky Theme */
 │   ├── calendar.lions-mane.css       /* 🦁 Lion's Mane Theme */
 │   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
 │   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
