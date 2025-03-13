@@ -70,7 +70,7 @@ const applyTheme = (theme) => {
     'everest-view', 'amazon-river', 'dragonfly', 'wild-rose', 'morning-forest', 
     'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star', 'royal-caribbean', 
     'abandoned-castle', 'red-squirrel', 'shift-in-perception', 'migratory-birds', 
-    'cardinals-guards', 'sword-of-fate', 'cinnamon-street'
+    'cardinals-guards', 'sword-of-fate', 'cinnamon-street', 'lemongrass-sky'
   );
 
   body.classList.add(theme);
