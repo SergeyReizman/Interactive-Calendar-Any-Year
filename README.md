@@ -209,6 +209,8 @@ Mammoth Tusk 🦣: A prehistoric theme with deep browns, earthy greens, and text
 
 Maple Leaf Fall 🍁: A warm, autumn-inspired theme with deep reds, oranges, and browns, inspired by the beauty of falling maple leaves.
 
+Maple Syrup 🍯: A cozy, golden-brown theme inspired by the sweet and comforting warmth of maple syrup, evoking the feeling of crisp autumn mornings and delicious seasonal treats.
+
 Medieval Knights 🏰: A regal, historic theme with deep reds, golds, and royal blues, inspired by the chivalry and elegance of medieval knights.
 
 Melting Glaciers 🧊: A cool, icy theme with light blues and frosty textures, capturing the fragile beauty of melting glaciers.
@@ -457,6 +459,7 @@ project/
 │   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
 │   ├── calendar.mammoth-tusk.css     /* 🦣 Mammoth Tusk Theme */
 │   ├── calendar.maple-leaf-fall.css  /* 🍁 Maple Leaf Fall Theme */
+│   ├── calendar.maple-syrup.css      /* 🍯 Maple Syrup Theme */
 │   ├── calendar.medieval-knights.css /* 🏰 Medieval Knights Theme */
 │   ├── calendar.melting-glaciers.css /* 🧊 Melting Glaciers Theme */
 │   ├── calendar.midnight-train.css   /* 🚂 Midnight Train Theme */
@@ -625,6 +628,7 @@ project/
 │   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
 │   ├── calendar.mammoth-tusk.css     /* 🦣 Mammoth Tusk Theme */
 │   ├── calendar.maple-leaf-fall.css  /* 🍁 Maple Leaf Fall Theme */
+│   ├── calendar.maple-syrup.css      /* 🍯 Maple Syrup Theme */
 │   ├── calendar.medieval-knights.css /* 🏰 Medieval Knights Theme */
 │   ├── calendar.melting-glaciers.css /* 🧊 Melting Glaciers Theme */
 │   ├── calendar.midnight-train.css   /* 🚂 Midnight Train Theme */
