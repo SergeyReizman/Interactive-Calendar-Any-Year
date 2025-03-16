@@ -68,12 +68,12 @@ const applyTheme = (theme) => {
     'blue-bird', 'aloe-vera', 'port-victoria', 'alpine-landscape', 'mount-fuji',
     'niagara-falls', 'heavy-rain', 'the-last-mohican', 'finish-line', 'porcupine-quill',
     'genghis-khan-arrow', 'okinawa-breeze', 'weekend-downtime', 'dartagnans-rapier',
-    'maple-leaf-fall', 'lions-mane', 'cafe-de-colombia', 'moonlit-path', 'macaroni-penguin', 
-    'ocean-vortex', 'great-lakes', 'quiet-evening', 'crimson-sky', 'viktoria-falls', 
-    'everest-view', 'amazon-river', 'dragonfly', 'wild-rose', 'morning-forest', 
-    'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star', 'royal-caribbean', 
-    'abandoned-castle', 'red-squirrel', 'shift-in-perception', 'migratory-birds', 
-    'cardinals-guards', 'sword-of-fate', 'cinnamon-street', 'lemongrass-sky', 
+    'maple-leaf-fall', 'lions-mane', 'cafe-de-colombia', 'moonlit-path', 'macaroni-penguin',
+    'ocean-vortex', 'great-lakes', 'quiet-evening', 'crimson-sky', 'viktoria-falls',
+    'everest-view', 'amazon-river', 'dragonfly', 'wild-rose', 'morning-forest',
+    'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star', 'royal-caribbean',
+    'abandoned-castle', 'red-squirrel', 'shift-in-perception', 'migratory-birds',
+    'cardinals-guards', 'sword-of-fate', 'cinnamon-street', 'lemongrass-sky',
     'maple-syrup', 'robin-good', 'greenland-icebergs', 'giant-petrel', 'ocean-surf'
   );
 
@@ -175,7 +175,6 @@ const fetchWeatherData = async (lat, lon) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching weather data:', error);
     return null;
   }
 };
@@ -191,7 +190,6 @@ const getCurrentLocation = () => {
           });
         },
         (error) => {
-          console.error('Geolocation error:', error);
           // Fallback to a default location (e.g., New York)
           resolve({
             lat: 40.7128,
@@ -200,7 +198,6 @@ const getCurrentLocation = () => {
         }
       );
     } else {
-      console.error('Geolocation is not supported by this browser.');
       // Fallback to a default location (e.g., New York)
       resolve({
         lat: 40.7128,
@@ -213,10 +210,7 @@ const getCurrentLocation = () => {
 const displayWeatherOnCalendar = async (year) => {
   try {
     const { lat, lon } = await getCurrentLocation();
-    console.log('Location:', lat, lon); // Debug location
-
     const weatherData = await fetchWeatherData(lat, lon);
-    console.log('Weather Data:', weatherData); // Debug weather data
 
     if (weatherData && weatherData.weather) {
       const weatherDescription = weatherData.weather[0].description;
@@ -224,17 +218,14 @@ const displayWeatherOnCalendar = async (year) => {
 
       const todayCell = document.querySelector('.current-day');
       if (todayCell) {
-        console.log('Today\'s cell found:', todayCell); // Debug today's cell
         const weatherDiv = document.createElement('div');
         weatherDiv.className = 'weather-info';
         weatherDiv.textContent = `${temperature}°C, ${weatherDescription}`;
         todayCell.appendChild(weatherDiv);
-      } else {
-        console.error('Today\'s cell not found.'); // Debug if today's cell is missing
       }
     }
   } catch (error) {
-    console.error('Error displaying weather:', error); // Debug errors
+    // Handle errors silently
   }
 };
 
@@ -270,7 +261,6 @@ const generateCalendar = (year) => {
 
           if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
             dayCell.classList.add('current-day');
-            console.log('Today\'s cell:', dayCell); // Debug log
           }
 
           const eventContainer = document.createElement('div');
