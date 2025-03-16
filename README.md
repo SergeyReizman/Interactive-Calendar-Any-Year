@@ -241,6 +241,8 @@ North Pole 🏔️: A frosty, winter-inspired theme with cool blues, whites, and
 
 Northern Nights ❄️🌌: A mystical and captivating theme inspired by the beauty of the Northern Lights, featuring deep blues, shimmering purples, and a touch of icy brilliance.
 
+Ocean Surf 🌊🏄‍♂️: A dynamic and refreshing theme inspired by the energy of ocean waves, featuring vibrant blues, frothy whites, and sunlit aqua tones, capturing the essence of surfing and coastal adventure.
+
 Ocean View 🌊: Immerse yourself in tranquility with a theme inspired by the sea.
 
 Ocean Vortex 🌊: A dynamic, swirling ocean theme with deep blues, whites, and turquoise, inspired by the power of ocean vortexes.
@@ -482,6 +484,7 @@ project/
 │   ├── calendar.niagara-falls.css    /* 🌊 Niagara Falls Theme */
 │   ├── calendar.north-pole.css       /* 🏔️ North Pole Theme */
 │   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
+│   ├── calendar.ocean-surf.css       /* 🌊🏄‍♂️ Ocean Surf Theme */
 │   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
 │   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
 │   ├── calendar.okinawa-breeze.css   /* 🌬️ Okinawa Breeze Theme */
@@ -653,6 +656,7 @@ project/
 │   ├── calendar.niagara-falls.css    /* 🌊 Niagara Falls Theme */
 │   ├── calendar.north-pole.css       /* 🏔️ North Pole Theme */
 │   ├── calendar.northern-nights.css  /* 🌌 Northern Nights Theme */
+│   ├── calendar.ocean-surf.css       /* 🌊🏄‍♂️ Ocean Surf Theme */
 │   ├── calendar.ocean-view.css       /* 🌊 Ocean View Theme */
 │   ├── calendar.ocean-vortex.css     /* 🌊 Ocean Vortex Theme */
 │   ├── calendar.okinawa-breeze.css   /* 🌬️ Okinawa Breeze Theme */
