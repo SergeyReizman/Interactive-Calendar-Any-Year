@@ -71,7 +71,7 @@ const applyTheme = (theme) => {
     'crystal-stream', 'black-velvet', 'adriatic-sea', 'sea-star', 'royal-caribbean', 
     'abandoned-castle', 'red-squirrel', 'shift-in-perception', 'migratory-birds', 
     'cardinals-guards', 'sword-of-fate', 'cinnamon-street', 'lemongrass-sky', 
-    'maple-syrup', 'robin-good', 'greenland-icebergs'
+    'maple-syrup', 'robin-good', 'greenland-icebergs', 'giant-petrel'
   );
 
   body.classList.add(theme);
