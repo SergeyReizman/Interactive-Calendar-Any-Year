@@ -177,6 +177,8 @@ Galactic Glow ✨: A cosmic theme with vibrant purples, blues, and glowing stars
 
 Genghis Khan Arrow 🏹: A bold, historical theme with deep reds, blacks, and golds, inspired by the power and might of Genghis Khan.
 
+Giant Petrel 🐦: A rugged, oceanic theme inspired by the majestic Giant Petrel, featuring deep blues, stormy grays, and hints of white, evoking the power and resilience of seabirds navigating turbulent waters.
+
 Golden Gate 🌉: A majestic, iconic theme inspired by the Golden Gate Bridge, with golden tones, sleek designs, and a sense of grandeur.
 
 Golden Horizon 🌅: A radiant and uplifting theme with golden hues, warm gradients, and a horizon-inspired aesthetic that brings a sense of optimism and energy.
@@ -447,6 +449,7 @@ project/
 │   ├── calendar.forgotten-dreams.css /* 💭 Forgotten Dreams Theme */
 │   ├── calendar.galactic-glow.css    /* 🌌 Galactic Glow Theme */
 │   ├── calendar.genghis-khan-arrow.css/* 🏹 Genghis Khan Arrow Theme */
+│   ├── calendar.giant-petrel.css     /* 🐦 Giant Petrel Theme */
 │   ├── calendar.golden-gate.css      /* 🌉 Golden Gate Theme */
 │   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
@@ -617,6 +620,7 @@ project/
 │   ├── calendar.forgotten-dreams.css /* 💭 Forgotten Dreams Theme */
 │   ├── calendar.galactic-glow.css    /* 🌌 Galactic Glow Theme */
 │   ├── calendar.genghis-khan-arrow.css/* 🏹 Genghis Khan Arrow Theme */
+│   ├── calendar.giant-petrel.css     /* 🐦 Giant Petrel Theme */
 │   ├── calendar.golden-gate.css      /* 🌉 Golden Gate Theme */
 │   ├── calendar.golden-horizon.css   /* 🌅 Golden Horizon Theme */
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
