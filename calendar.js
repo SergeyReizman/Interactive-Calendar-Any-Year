@@ -1,10 +1,13 @@
-// calendar.js - Interactive Calendar with Event Management and Themes
+// calendar.js - Interactive Calendar with Event Management, Themes, and Weather Integration
 
 // Constants
 const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = Array.from({ length: 12 }, (_, i) =>
   new Date(0, i).toLocaleString('default', { month: 'long' })
 );
+
+// OpenWeatherMap API Key
+const OPENWEATHERMAP_API_KEY = 'df0f16cf02a34bd7702290b645f69b9a';
 
 // DOM Elements
 const body = document.body;
@@ -164,6 +167,77 @@ const manageEvent = (dateKey) => {
 
 const closeModal = () => modal.style.display = 'none';
 
+// Weather Functions
+const fetchWeatherData = async (lat, lon) => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OPENWEATHERMAP_API_KEY}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    return null;
+  }
+};
+
+const getCurrentLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error('Geolocation error:', error);
+          // Fallback to a default location (e.g., New York)
+          resolve({
+            lat: 40.7128,
+            lon: -74.0060,
+          });
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      // Fallback to a default location (e.g., New York)
+      resolve({
+        lat: 40.7128,
+        lon: -74.0060,
+      });
+    }
+  });
+};
+
+const displayWeatherOnCalendar = async (year) => {
+  try {
+    const { lat, lon } = await getCurrentLocation();
+    console.log('Location:', lat, lon); // Debug location
+
+    const weatherData = await fetchWeatherData(lat, lon);
+    console.log('Weather Data:', weatherData); // Debug weather data
+
+    if (weatherData && weatherData.weather) {
+      const weatherDescription = weatherData.weather[0].description;
+      const temperature = (weatherData.main.temp - 273.15).toFixed(1); // Convert Kelvin to Celsius
+
+      const todayCell = document.querySelector('.current-day');
+      if (todayCell) {
+        console.log('Today\'s cell found:', todayCell); // Debug today's cell
+        const weatherDiv = document.createElement('div');
+        weatherDiv.className = 'weather-info';
+        weatherDiv.textContent = `${temperature}°C, ${weatherDescription}`;
+        todayCell.appendChild(weatherDiv);
+      } else {
+        console.error('Today\'s cell not found.'); // Debug if today's cell is missing
+      }
+    }
+  } catch (error) {
+    console.error('Error displaying weather:', error); // Debug errors
+  }
+};
+
 // Calendar Generation
 const generateCalendar = (year) => {
   calendarBody.innerHTML = '';
@@ -196,10 +270,11 @@ const generateCalendar = (year) => {
 
           if (year === today.getFullYear() && monthIndex === today.getMonth() && dayCounter === today.getDate()) {
             dayCell.classList.add('current-day');
+            console.log('Today\'s cell:', dayCell); // Debug log
           }
 
           const eventContainer = document.createElement('div');
-          eventContainer.className = 'event-container'; // Keep the container
+          eventContainer.className = 'event-container';
           dayCell.appendChild(eventContainer);
 
           if (events[dateKey]) {
@@ -214,7 +289,6 @@ const generateCalendar = (year) => {
               eventListElement.appendChild(listItem);
             });
 
-            // "More..." Link Logic (improved)
             if (eventListElement.scrollHeight > eventListElement.clientHeight) {
               const moreLink = document.createElement('a');
               moreLink.href = '#';
@@ -225,7 +299,7 @@ const generateCalendar = (year) => {
               });
               eventContainer.appendChild(moreLink);
 
-              eventListElement.style.maxHeight = '40px'; // Adjust as needed
+              eventListElement.style.maxHeight = '40px';
               eventListElement.style.overflow = 'hidden';
             }
           }
@@ -234,12 +308,15 @@ const generateCalendar = (year) => {
           dayCounter++;
         }
 
-        weekRow.appendChild(dayCell); // Append the cell to the row
+        weekRow.appendChild(dayCell);
       }
-      calendarBody.appendChild(weekRow); // Append the row to the body
+      calendarBody.appendChild(weekRow);
       if (dayCounter > daysInMonth) break;
     }
   });
+
+  // Display weather for the current day
+  displayWeatherOnCalendar(year);
 };
 
 // Event Listeners
