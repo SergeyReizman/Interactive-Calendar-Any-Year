@@ -187,6 +187,8 @@ Great Wall 🏯: A timeless, historical theme with rich reds, earthy tones, and 
 
 Green Coffee ☕: A fresh, natural theme inspired by green coffee beans, featuring earthy tones and botanical accents.
 
+Greenland’s Icebergs ❄🌊: A majestic, icy theme inspired by Greenland’s towering icebergs, featuring cool blue hues and frozen textures.
+
 Greyscale 🖤: Sleek and minimalist for a modern aesthetic.
 
 Heavy Rain 🌧️: A moody, atmospheric theme with deep grays, blues, and soft raindrops, capturing the feeling of a heavy rainstorm.
@@ -450,6 +452,7 @@ project/
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
 │   ├── calendar.great-wall.css       /* 🏯 Great Wall Theme */
 │   ├── calendar.green-coffee.css     /* ☕ Green Coffee Theme */
+│   ├── calendar.greenland-icebergs.css  /* ❄🌊 Greenland’s Icebergs Theme */
 │   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
 │   ├── calendar.heavy-rain.css       /* 🌧️ Heavy Rain Theme */
 │   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
@@ -526,7 +529,6 @@ project/
 └── README.md                         /* 📖 Project Documentation */
 
 
-
 🌟 What’s Next?
 Stay tuned for upcoming updates, including:
 
@@ -590,7 +592,7 @@ project/
 │   ├── calendar.blue-whale.css       /* 🐋 Blue Whale Theme */
 │   ├── calendar.bronze-horseman.css  /* 🐴 Bronze Horseman Theme */
 │   ├── calendar.cacao-plantation.css /* 🍫 Cacao Plantation Theme */
-│   ├── calendar.cafe-de-colombia.css /* ☕ Cafe de Colombia Theme */
+│   ├── calendar.cafe-de-colombia.css /* ☕ Café de Colombia Theme */
 │   ├── calendar.candy-world.css      /* 🍬 Candy World Theme */
 │   ├── calendar.cardinals-guards.css /* ⚔️ Cardinal's Guards Theme */
 │   ├── calendar.cherry-garden.css    /* 🍒 Cherry Garden Theme */
@@ -620,6 +622,7 @@ project/
 │   ├── calendar.great-lakes.css      /* 🌊 Great Lakes Theme */
 │   ├── calendar.great-wall.css       /* 🏯 Great Wall Theme */
 │   ├── calendar.green-coffee.css     /* ☕ Green Coffee Theme */
+│   ├── calendar.greenland-icebergs.css  /* ❄🌊 Greenland’s Icebergs Theme */
 │   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
 │   ├── calendar.heavy-rain.css       /* 🌧️ Heavy Rain Theme */
 │   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
