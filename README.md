@@ -1,79 +1,72 @@
 🗓️ Interactive Calendar: Your Ultimate Scheduling Companion
 
-🚀 Struggling to keep track of tasks, appointments, and deadlines? 
-The Interactive Calendar is designed to revolutionize your time management. 
-With its intuitive interface, cross-device accessibility, and stunning themes like 
+🚀 Struggling to keep track of tasks, appointments, and deadlines?
+The Interactive Calendar is designed to revolutionize your time management.
+With its intuitive interface, cross-device accessibility, and stunning themes like
 🌊 Ocean View (plus 100+ more themes!), staying organized has never been easier.
 
 📌 Effortless Scheduling, Anytime, Anywhere
-Whether you're managing work deadlines, personal events, or both, 
+Whether you're managing work deadlines, personal events, or both,
 this modern web application ensures you're always on top of your schedule—wherever you go.
 
 🌟 Key Features
 
 ⏰ Analog Clock 🕰️
-
 ✔️ Real-time analog clock powered by JavaScript, HTML, and CSS.
-
 ✔️ Smoothly animated ⏳ second, minute, and hour hands for a polished look.
-
 ✔️ Responsive design ensures seamless display across all devices.
-
 ✔️ Automatically syncs with your system time upon loading.
 
 📅 Dynamic Year Navigation 🔄
-
 ✔️ Easily switch between years with intuitive ⏪ Previous Year and ⏩ Next Year buttons.
-
 ✔️ The current year is 🔴 highlighted in red for quick reference.
 
-📱 Fully Responsive Design 📟
+🌤️ Current Day & Weather Display 🌡️
+✔️ Current Date: Displays today's date in bold, larger fonts for quick reference.
+✔️ Today's Weather: Shows real-time weather updates in Celsius (e.g., "Sunny, 24°C") in a stylish, easy-to-read format.
+✔️ Perfect for planning your day with weather conditions in mind.
 
+📱 Fully Responsive Design 📟
 ✔️ Works flawlessly on desktops 🖥️, tablets 📲, and mobile devices 📱.
 
 📝 Effortless Event Management 🖊️
-
 ✔️ Add, edit, or view events with a single click on any date.
-
 ✔️ Clear events for a specific date or reset the entire calendar in seconds.
 
 💾 Local Storage Integration 📁
-
 ✔️ Events are saved locally in your browser, ensuring they persist even after refreshing the page.
 
 🌙 Dark Mode & Custom Themes 🎨
-
 ✔️ Toggle between 🌞 light and 🌙 dark modes for a personalized experience.
-
 ✔️ Your theme preference is saved across sessions.
 
 ♿ Accessibility-First Design ✅
-
 ✔️ WCAG-compliant styles and high-contrast visuals for optimal usability.
 
 🔝 Back to Top Button ⬆️
-
 ✔️ Quickly return to the top of the calendar with a smooth, one-click scroll.
 
 🚀 Why Choose the Interactive Calendar?
 
 ✅ Stay Organized: Manage your tasks, events, and reminders effortlessly.
-
 ✅ Seamless Navigation: Jump between years and dates with ease.
-
 ✅ Today’s Highlight: The current date is automatically highlighted for quick reference.
-
+✅ Weather-Aware Planning: Stay informed about today's weather in Celsius to plan your day better.
 ✅ Stress-Free Scheduling: Designed to make your life simpler, not busier.
 
 🎉 What’s New?
 
 🕰️ Analog Clock: A sleek, real-time clock to keep you on track.
-
 ✍️ Enhanced Event Management: Adding and clearing events is now faster and more intuitive.
-
 🌙 Dark Mode: A personalized viewing experience that adapts to your preferences.
+🌤️ Weather Integration: Get real-time weather updates in Celsius directly on your calendar.
 
 🔹 Say goodbye to calendar chaos and hello to a smarter, more organized you. Try the Interactive Calendar today! 📆✨
+
+How It Works:
+Current Date: The calendar automatically highlights today's date and displays it prominently at the top of the page.
+
+Weather Display: The weather for today is fetched and displayed in Celsius alongside the date, helping you plan your activities better.
 
 🎨 Multiple Themes for Your Calendar 📅
 
