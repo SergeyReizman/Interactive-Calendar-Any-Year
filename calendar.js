@@ -7,7 +7,7 @@ const MONTHS = Array.from({ length: 12 }, (_, i) =>
 );
 
 // OpenWeatherMap API Key
-const OPENWEATHERMAP_API_KEY = 'df0f16cf02a34bd7702290b645f69b9a';
+const OPENWEATHERMAP_API_KEY = 'df0f16cf02a34bd7702290b645f69b9a'; // Replace with your API key
 
 // DOM Elements
 const body = document.body;
@@ -26,6 +26,10 @@ const eventList = document.getElementById('event-list');
 const eventInput = document.getElementById('event-input');
 const addEventBtn = document.getElementById('add-event-btn');
 const closeButton = document.querySelector('.close-button');
+
+// Date and Weather Display Elements
+const currentDateDisplay = document.getElementById('current-date');
+const todayWeatherDisplay = document.getElementById('today-weather');
 
 // Star Generation
 const generateStars = () => {
@@ -207,7 +211,18 @@ const getCurrentLocation = () => {
   });
 };
 
-const displayWeatherOnCalendar = async (year) => {
+// Update Current Date Display
+const updateCurrentDate = () => {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const year = today.getFullYear();
+  const dateString = `${day}/${month}/${year}`;
+  currentDateDisplay.textContent = dateString;
+};
+
+// Update Today's Weather Display
+const updateTodayWeather = async () => {
   try {
     const { lat, lon } = await getCurrentLocation();
     const weatherData = await fetchWeatherData(lat, lon);
@@ -215,14 +230,8 @@ const displayWeatherOnCalendar = async (year) => {
     if (weatherData && weatherData.weather) {
       const weatherDescription = weatherData.weather[0].description;
       const temperature = (weatherData.main.temp - 273.15).toFixed(1); // Convert Kelvin to Celsius
-
-      const todayCell = document.querySelector('.current-day');
-      if (todayCell) {
-        const weatherDiv = document.createElement('div');
-        weatherDiv.className = 'weather-info';
-        weatherDiv.textContent = `${temperature}°C, ${weatherDescription}`;
-        todayCell.appendChild(weatherDiv);
-      }
+      const weatherString = `${temperature}°C, ${weatherDescription}`;
+      todayWeatherDisplay.textContent = weatherString;
     }
   } catch (error) {
     // Handle errors silently
@@ -306,7 +315,7 @@ const generateCalendar = (year) => {
   });
 
   // Display weather for the current day
-  displayWeatherOnCalendar(year);
+  updateTodayWeather();
 };
 
 // Event Listeners
@@ -371,4 +380,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize the analog watch
   updateClock();
+
+  // Update current date and weather
+  updateCurrentDate();
+  updateTodayWeather();
 });
