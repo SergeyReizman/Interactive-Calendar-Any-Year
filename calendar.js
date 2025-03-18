@@ -59,7 +59,7 @@ const applyTheme = (theme) => {
     'cardinals-guards', 'cherry-garden', 'cinnamon-street', 'cracked-ice', 'crimson-sky',
     'crystal-snowfall', 'crystal-stream', 'cyber-pulse', 'dark-mode', 'dartagnans-rapier',
     'deep-forest', 'desert-mirage', 'dragon-flame', 'dragonfly', 'emerald-stream',
-    'emperor-penguin', 'everest-view', 'exotic-island', 'finish-line', 'fir-balsam',
+    'emperor-penguin', 'everest-view', 'exotic-island', 'fiji-islands', 'finish-line', 'fir-balsam',
     'flamingo-sky', 'forgotten-dreams', 'galactic-glow', 'genghis-khan-arrow', 'giant-petrel',
     'golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
     'greenland-icebergs', 'greyscale', 'heavy-rain', 'hurricane-clouds', 'kilimanjaro-outskirts',
