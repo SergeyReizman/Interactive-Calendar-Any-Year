@@ -154,9 +154,15 @@ Dragonfly 🦟✨: A delicate and shimmering theme with iridescent blues, greens
 
 Emerald Stream 💎: A rich, jewel-toned theme with shades of green and turquoise, inspired by the beauty of emerald rivers.
 
+Emperor Penguin 🐧: A sleek and elegant theme inspired by the majestic emperor penguin, featuring icy blues, deep blacks, and crisp whites, evoking the beauty of the Antarctic.
+
 Everest View 🏔️: A high-altitude theme with cool whites, deep blues, and crisp mountain air vibes, inspired by the stunning views of Mount Everest.
 
 Exotic Island 🏝️: A tropical paradise theme with lush greenery, crystal-clear waters, and warm sandy tones, transporting you to a relaxing island escape.
+
+Fast Track 🚄: A dynamic and high-speed theme with sleek gradients, motion-inspired patterns, and a futuristic color palette, embodying momentum and progress.
+
+Fiji Islands 🌺: A serene and exotic theme inspired by the beauty of Fiji, featuring turquoise waters, vibrant corals, and lush tropical hues, transporting you to an island paradise.
 
 Fir Balsam 🌲: A fresh and invigorating theme inspired by the scent of balsam fir trees, featuring deep greens, rich browns, and a touch of pinewood texture, bringing the essence of a peaceful forest retreat.
 
@@ -436,8 +442,11 @@ project/
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.dragonfly.css        /* 🦋 Dragonfly Theme */
 │   ├── calendar.emerald-stream.css   /* 💎 Emerald Stream Theme */
+│   ├── calendar.emperor-penguin.css  /* 🐧 Emperor Penguin Theme */
 │   ├── calendar.everest-view.css     /* 🏔️ Everest View Theme */
 │   ├── calendar.exotic-island.css    /* 🏝️ Exotic Island Theme */
+│   ├── calendar.fast-track.css       /* 🚄 Fast Track Theme */
+│   ├── calendar.fiji-islands.css     /* 🏝️ Fiji Islands Theme */
 │   ├── calendar.finish-line.css      /* 🏁 Finish Line Theme */
 │   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
 │   ├── calendar.flamingo-sky.css     /* 🦩 Flamingo Sky Theme */
@@ -608,8 +617,11 @@ project/
 │   ├── calendar.dragon-flame.css     /* 🔥 Dragon Flame Theme */
 │   ├── calendar.dragonfly.css        /* 🦋 Dragonfly Theme */
 │   ├── calendar.emerald-stream.css   /* 💎 Emerald Stream Theme */
+│   ├── calendar.emperor-penguin.css  /* 🐧 Emperor Penguin Theme */
 │   ├── calendar.everest-view.css     /* 🏔️ Everest View Theme */
 │   ├── calendar.exotic-island.css    /* 🏝️ Exotic Island Theme */
+│   ├── calendar.fast-track.css       /* 🚄 Fast Track Theme */
+│   ├── calendar.fiji-islands.css     /* 🏝️ Fiji Islands Theme */
 │   ├── calendar.finish-line.css      /* 🏁 Finish Line Theme */
 │   ├── calendar.fir-balsam.css       /* 🌲 Fir Balsam Theme */
 │   ├── calendar.flamingo-sky.css     /* 🦩 Flamingo Sky Theme */
