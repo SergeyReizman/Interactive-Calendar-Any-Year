@@ -134,6 +134,8 @@ Cracked Ice 🧊: A cool, icy theme with crisp whites, icy blues, and translucen
 
 Crimson Sky 🌅: A vibrant, breathtaking theme with rich reds, oranges, and purples, inspired by the awe-inspiring hues of a sunset or dawn sky, capturing the intensity and beauty of the horizon at twilight.
 
+Crossroads Stone ⛰️: A rugged, timeless theme featuring earthy grays, deep browns, and subtle hints of mossy green, inspired by ancient pathways and weathered stone, symbolizing strength, resilience, and history.
+
 Crystal Snowfall ❄️: A pristine winter wonderland theme featuring soft whites, sparkling blues, and frosty textures that evoke the magic of falling snowflakes.
 
 Crystal Stream 💎💧: A sparkling and refreshing theme with crystal-clear blues and soft, flowing whites, inspired by pristine mountain streams.
@@ -195,6 +197,8 @@ Greyscale 🖤: Sleek and minimalist for a modern aesthetic.
 Heavy Rain 🌧️: A moody, atmospheric theme with deep grays, blues, and soft raindrops, capturing the feeling of a heavy rainstorm.
 
 Hurricane Clouds 🌪️: A dynamic, stormy theme with dark, swirling clouds and electric blues, capturing the intensity of a hurricane.
+
+Japan's Emperor 🎌: A regal and timeless theme inspired by the elegance of Japanese tradition, featuring deep reds, rich golds, and serene whites, evoking the dignity, heritage, and grandeur of Japan’s imperial history.
 
 Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and calming accents, designed to bring a sense of peace and relaxation.
 
@@ -432,6 +436,7 @@ project/
 │   ├── calendar.cinnamon.street.css  /* 🍂 Cinnamon Street Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
+│   ├── calendar.crossroads-stone.css /* ⛰️ Crossroads Stone Theme */
 │   ├── calendar.crystal-snowfall.css /* ❄️ Crystal Snowfall Theme */
 │   ├── calendar.crystal-stream.css   /* 💎 Crystal Stream Theme */
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
@@ -463,6 +468,7 @@ project/
 │   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
 │   ├── calendar.heavy-rain.css       /* 🌧️ Heavy Rain Theme */
 │   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
+│   ├── calendar.japan-emperor.css /* 🎌 Japan's Emperor Theme */
 │   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
 │   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
 │   ├── calendar.lemongrass-sky.css   /* 🌿 Lemongrass Sky Theme */
@@ -607,6 +613,7 @@ project/
 │   ├── calendar.cinnamon.street.css  /* 🍂 Cinnamon Street Theme */
 │   ├── calendar.cracked-ice.css      /* 🧊 Cracked Ice Theme */
 │   ├── calendar.crimson-sky.css      /* 🌅 Crimson Sky Theme */
+│   ├── calendar.crossroads-stone.css /* ⛰️ Crossroads Stone Theme */
 │   ├── calendar.crystal-snowfall.css /* ❄️ Crystal Snowfall Theme */
 │   ├── calendar.crystal-stream.css   /* 💎 Crystal Stream Theme */
 │   ├── calendar.cyber-pulse.css      /* ⚡ Cyber Pulse Theme */
@@ -638,6 +645,7 @@ project/
 │   ├── calendar.greyscale.css        /* 🖤 Greyscale Theme */
 │   ├── calendar.heavy-rain.css       /* 🌧️ Heavy Rain Theme */
 │   ├── calendar.hurricane-clouds.css /* 🌪️ Hurricane Clouds Theme */
+│   ├── calendar.japan-emperor.css /* 🎌 Japan's Emperor Theme */
 │   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
 │   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
 │   ├── calendar.lemongrass-sky.css   /* 🌿 Lemongrass Sky Theme */
