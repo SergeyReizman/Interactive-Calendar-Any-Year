@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'fir-balsam','flamingo-sky', 'forgotten-dreams', 'galactic-glow', 'genghis-khan-arrow', 'giant-petrel',
     'golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
     'greenland-icebergs', 'greyscale', 'heavy-rain', 'hurricane-clouds', 'japan-emperor', 
-    'kilimanjaro-outskirts','lavender-bliss', 'lemongrass-sky', 'lions-mane', 'macaroni-penguin', 
+    'kilimanjaro-outskirts','lavender-bliss', 'lemongrass-sky', 'life-quality', 'lions-mane', 'macaroni-penguin', 
     'magellanic-penguin','mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights', 
     'melting-glaciers','midnight-train', 'migratory-birds', 'monochrome-ink', 'moonlit-path', 
     'morning-forest','mount-fuji', 'mountain-lake', 'mountain-peak', 'new-ai', 'neon-nights', 
