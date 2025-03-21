@@ -334,12 +334,7 @@ Wild Wonders 🌿: Earthy tones and playful accents.
 
 Winter Wonderland ❄️: A crisp, magical theme with soft whites, icy blues, and sparkling textures, evoking the beauty of a snowy winter landscape.
 
-🔧 Technologies Used:
-HTML5: For structuring the calendar and content.
-CSS3: For creating a responsive, clean, and visually appealing design.
-JavaScript​: To power the dynamic calendar generation and interactive features.
-
-📖 How to Use
+📖 How to Use:
 1️⃣ Navigate Between Years: Use the Previous and Next buttons.
 2️⃣ Add Events: Click on any date to add, edit, or view reminders.
 3️⃣ Highlight Today: The current date is automatically highlighted.
@@ -347,6 +342,7 @@ JavaScript​: To power the dynamic calendar generation and interactive features
 5️⃣ Dark Mode: Toggle dark mode for comfortable nighttime viewing.
 6️⃣ Event Clearing: Clear all events for a specific date or reset the calendar.
 7️⃣ Event Persistence: Your events are saved in your browser and stay intact across sessions.
+8️⃣ Today's Weather: Shows real-time weather updates in Celsius (e.g., "Sunny, 24°C") in a stylish, easy-to-read format.
 
 Want to see it in action?
 
@@ -358,6 +354,7 @@ https://github.com/SergeyReizman/Interactive-Calendar-Any-Year
 
 ## Preview
 
+📸 Screenshots
 ![Interactive Calendar Screenshot](screenshot.png)
 
 *A snapshot of the Interactive Calendar in action.*
@@ -390,7 +387,6 @@ Navigate to the extracted folder and open the index.html file in your favorite b
 - **Today's Highlight:** The current date is automatically distinguished for quick identification.
 - **Clearing Events:** Remove all events for a specific date or reset the calendar entirely with ease.
 - **Dark Mode:** Toggle dark mode for a night-friendly view, and your preference will be remembered between sessions.
-- **Ocean View Theme:** Activate the Ocean View button for a calming, visually enhanced experience.
 - **🔝 Back to Top:** Use the Back to Top button to smoothly scroll back to the top of the calendar.
 - **Event Modal Window** Manage your events with an easy-to-use modal window for adding, editing, and deleting events.
 - **TAB Enhancement** Easy scroll months with the "TAB" button.
@@ -560,17 +556,22 @@ Enjoy using the Interactive Calendar to stay organized and productive! 🚀
 The Themed Calendar Web App is a fully customizable and visually appealing calendar application designed for web use. It offers a diverse selection of themes, a responsive design, and an intuitive interface to streamline scheduling and event management.
 
 🎯 Objectives
+
 Develop a fully functional web-based calendar.
 Provide multiple themes for a personalized user experience.
 Ensure responsiveness across various devices.
 Implement a modular and maintainable CSS structure.
-✨ Features
+
+🌟 Features
+
 🌈 Multiple Themes: Users can switch between a variety of pre-defined themes.
 📱 Responsive Design: Adapts seamlessly to different screen sizes and devices.
 📅 Event Management: Add, edit, and remove events effortlessly.
 🌑 Dark/Light Mode Support: Includes distinct styles for light and dark modes.
-🧭 Minimalist UI: A clean and intuitive interface for easy navigation.
+🤬 Minimalist UI: A clean and intuitive interface for easy navigation.
+
 🛠 Technologies Used
+
 HTML5: Structuring the calendar interface.
 CSS3: Styling, themes, and responsive design.
 JavaScript: Handling calendar logic and interactivity.
@@ -721,26 +722,31 @@ project/
 
 
 ⚙️ Setup Instructions
+
 Clone the repository.
+
 Open index.html in a web browser.
+
 Modify the CSS files to customize themes.
+
 🚀 Future Enhancements
+
 🔐 User Authentication: Allow users to save and sync events.
+
 ↔️ Drag & Drop Functionality: Enhance event management with intuitive interactions.
+
 🔗 API Integration: Sync events with Google Calendar or Outlook.
+
 🧳 Local Storage for Events: Save and persist events even after a page refresh.
+
 🎨 Custom Theme Creation: Allow users to define their own theme.
+
 📅 Multiple Views (Day/Week/Month): Improve usability with different calendar views.
+
 📱 Progressive Web App (PWA) Support: Enable offline use and installation as a web app.
+
 📸 Screenshots
-(Include images showcasing the calendar UI and various themes)
+![Interactive Calendar Screenshot](screenshot.png)
 
 🏁 Conclusion
-The Themed Calendar Web App offers an aesthetically pleasing and highly functional experience, 
-enabling users to manage their schedules efficiently with a variety of themes and a responsive design. 
-Future updates will focus on enhanced interactivity, user personalization, and seamless event synchronization.
-
-Local Storage for Events – Save and persist events even after a page refresh.
-Custom Theme Creation – Allow users to define their own theme.
-Multiple Views (Day/Week/Month) – Improve usability with different calendar views.
-Progressive Web App (PWA) Support – Enable offline use and installation as a web app.
+The Themed Calendar Web App offers an aesthetically pleasing and highly functional experience, enabling users to manage their schedules efficiently with a variety of themes and a responsive design. Future updates will focus on enhanced interactivity, user personalization, and seamless event synchronization.
