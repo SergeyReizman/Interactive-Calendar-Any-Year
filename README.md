@@ -204,6 +204,8 @@ Lavender Bliss 💜: A soothing, delicate theme with soft lavender tones and cal
 
 Lemongrass Sky 🌿: A refreshing, vibrant theme with bright greens and cool blues, evoking the serene beauty of a lemongrass field under a clear sky.
 
+Life Quality 🌿: A balanced, harmonious theme designed to enhance well-being, featuring soothing colors that promote focus and relaxation.
+
 Light Mode ☀️: Bright and crisp for your daytime productivity.
 
 Lion's Mane 🦁: A bold, regal theme with rich golds, deep yellows, and earthy tones, inspired by the majesty of a lion's mane.
@@ -467,7 +469,7 @@ project/
 │   ├── calendar.japan-emperor.css /* 🎌 Japan's Emperor Theme */
 │   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
 │   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
-│   ├── calendar.lemongrass-sky.css   /* 🌿 Lemongrass Sky Theme */
+│   ├── calendar.life-quality.css     /* ☘️ Life Quality Theme */
 │   ├── calendar.lions-mane.css       /* 🦁 Lion's Mane Theme */
 │   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
 │   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
@@ -650,6 +652,7 @@ project/
 │   ├── calendar.kilimanjaro-outskirts.css /* 🏔️ Kilimanjaro Outskirts Theme */
 │   ├── calendar.lavender-bliss.css   /* 💜 Lavender Bliss Theme */
 │   ├── calendar.lemongrass-sky.css   /* 🌿 Lemongrass Sky Theme */
+│   ├── calendar.life-quality.css     /* ☘️ Life Quality Theme */
 │   ├── calendar.lions-mane.css       /* 🦁 Lion's Mane Theme */
 │   ├── calendar.macaroni-penguin.css /* 🐧 Macaroni Penguin Theme */
 │   ├── calendar.magellanic-penguin.css /* 🐧 Magellanic Penguin Theme */
