@@ -74,7 +74,7 @@ const applyTheme = (theme) => {
     'robin-good', 'royal-caribbean', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'serene-shores', 'shaolin-monastery',
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow',
-    'steel-shadows', 'stockholm-roofs', 'sword-of-fate', 'the-last-mohican',
+    'steel-shadows', 'stockholm-roofs', 'sword-of-fate', 'tactical-advantage', 'the-last-mohican',
     'time-machine', 'tropical-sunset', 'viktoria-falls', 'viking-helmet', 'weekend-downtime',
     'white-shark', 'wild-rose', 'wild-wonders', 'winter-wonderland'
 
