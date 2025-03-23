@@ -62,7 +62,7 @@ const applyTheme = (theme) => {
     'emerald-stream','emperor-penguin', 'everest-view', 'exotic-island', 'fast-track', 'fiji-islands', 
     'finish-line', 'fir-balsam','flamingo-sky', 'forgotten-dreams', 'galactic-glow', 'genghis-khan-arrow', 
     'giant-petrel','golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
-    'greenland-icebergs', 'greyscale', 'heavy-rain', 'hurricane-clouds', 'japan-emperor', 
+    'greenland-icebergs', 'greyscale', 'heavy-rain', 'high-performance', 'hurricane-clouds', 'japan-emperor', 
     'kilimanjaro-outskirts','lavender-bliss', 'lemongrass-sky', 'life-quality', 'lions-mane', 'macaroni-penguin', 
     'magellanic-penguin','mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights', 
     'mediterranean-dreams', 'melting-glaciers','midnight-train', 'migratory-birds', 'monochrome-ink',
