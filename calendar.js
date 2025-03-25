@@ -53,7 +53,7 @@ const applyTheme = (theme) => {
   body.classList.remove(
     'abandoned-castle', 'adriatic-sea', 'aloe-vera', 'alpine-landscape', 'amazon-dolphin',
     'amazon-river', 'antarctic-snowdrifts', 'arctic-glow', 'autumn-harvest', 'bamboo-flute',
-    'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'black-coffee', 'black-hacker',
+    'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'black-fashion', 'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-velvet', 'blue-bird', 'blue-ice', 'blue-planet',
     'blue-whale', 'bronze-horseman', 'cacao-plantation', 'cafe-de-colombia', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'competitive-advantage',
