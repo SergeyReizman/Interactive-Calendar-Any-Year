@@ -54,7 +54,7 @@ const applyTheme = (theme) => {
     'abandoned-castle', 'adriatic-sea', 'aloe-vera', 'alpine-landscape', 'amazon-dolphin',
     'amazon-river', 'antarctic-snowdrifts', 'arctic-glow', 'autumn-harvest', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'black-fashion', 'black-coffee', 'black-hacker',
-    'black-hawk', 'black-hole', 'black-velvet', 'blue-bird', 'blue-ice', 'blue-planet',
+    'black-hawk', 'black-hole', 'black-orange', 'black-velvet', 'blue-bird', 'blue-ice', 'blue-planet',
     'blue-whale', 'bronze-horseman', 'cacao-plantation', 'cafe-de-colombia', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'competitive-advantage',
     'continuous-growth', 'cracked-ice', 'crimson-sky', 'crossroads-stone', 'crystal-snowfall', 'crystal-stream',

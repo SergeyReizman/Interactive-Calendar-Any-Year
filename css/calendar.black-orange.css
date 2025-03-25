@@ -1,0 +1,421 @@
+/* ==========================================================================
+   Black & Orange Theme - Bold, Energetic, and High-Contrast
+   Purpose: Styles specific to the Black & Orange theme for the calendar with dramatic dark backgrounds and vibrant orange accents
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Oxanium:wght@300;600&display=swap');
+
+:root {
+    /* Color Palette */
+    --bo-bg: #0D0D0D;
+    /* Rich black background */
+    --bo-text: #F0F0F0;
+    /* Bright text for contrast */
+    --bo-primary: #FF5E0D;
+    /* Vibrant orange (Pantone 158C) */
+    --bo-secondary: #FF8C42;
+    /* Softer orange for secondary elements */
+
+    /* Black Gradient */
+    --bo-black1: #000000;
+    /* Pure black */
+    --bo-black2: #121212;
+    /* Slightly lighter black */
+    --bo-black3: #1A1A1A;
+    /* Dark gray */
+    --bo-black4: #252525;
+    /* Medium dark gray */
+    --bo-black5: #333333;
+    /* Medium gray */
+
+    /* Orange Spectrum */
+    --bo-orange1: #FF4500;
+    /* Red-orange */
+    --bo-orange2: #FF7034;
+    /* Bright orange */
+    --bo-orange3: #FF8C00;
+    /* Pure orange */
+    --bo-orange4: #FFA347;
+    /* Light orange */
+    --bo-orange5: #FFB777;
+    /* Pale orange */
+
+    /* Accent Colors */
+    --bo-accent1: #FFD700;
+    /* Gold for highlights */
+    --bo-accent2: #FFA500;
+    /* Classic orange */
+    --bo-accent3: #FF6B35;
+    /* Salmon orange */
+    --bo-accent4: #E25822;
+    /* Dark orange */
+    --bo-accent5: #FF914D;
+    /* Peach orange */
+
+    /* Theme Variables */
+    --bo-shadow: rgba(255, 94, 13, 0.4);
+    /* Orange glow shadow */
+    --bo-radius: 4px;
+    /* Slightly rounded corners */
+    --bo-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Snappy transitions */
+    --bo-hover: #FF8C42;
+    /* Hover color */
+}
+
+/* Animations */
+@keyframes bo-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--bo-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--bo-orange1);
+    }
+}
+
+@keyframes bo-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.9;
+    }
+}
+
+@keyframes bo-slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Base Styles */
+.black-orange {
+    font-family: 'Oxanium', sans-serif;
+    color: var(--bo-text);
+    line-height: 1.6;
+    background-color: var(--bo-bg);
+}
+
+.black-orange .container {
+    background: linear-gradient(135deg, var(--bo-black2), var(--bo-black3));
+    padding: 30px;
+    border-radius: var(--bo-radius);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--bo-primary);
+}
+
+.black-orange .bo-container {
+    padding: 25px;
+    background-color: var(--bo-black2);
+    border-radius: var(--bo-radius);
+    border: 1px solid var(--bo-black4);
+    animation: bo-glow 3s ease infinite alternate;
+}
+
+/* Table Styles */
+.black-orange table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    border-radius: var(--bo-radius);
+    overflow: hidden;
+    background-color: var(--bo-black3);
+    border: 2px solid var(--bo-primary);
+    table-layout: fixed;
+}
+
+.black-orange th,
+.black-orange td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--bo-black4);
+    transition: all var(--bo-transition);
+    word-wrap: break-word;
+}
+
+.black-orange th {
+    background: linear-gradient(to bottom, var(--bo-black1), var(--bo-black2));
+    color: var(--bo-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    font-family: 'Kanit', sans-serif;
+    border-bottom: 3px solid var(--bo-primary);
+}
+
+.black-orange td {
+    background-color: var(--bo-black3);
+    color: var(--bo-text);
+}
+
+.black-orange td:hover {
+    background-color: var(--bo-black4);
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--bo-shadow);
+    border-color: var(--bo-primary);
+}
+
+.black-orange td.current-day {
+    background: linear-gradient(145deg, var(--bo-black4), var(--bo-black3));
+    border: 2px solid var(--bo-primary);
+    font-weight: 700;
+    color: var(--bo-primary);
+    animation: bo-pulse 2s infinite;
+}
+
+/* Event Marker */
+.black-orange .event-marker {
+    background-color: var(--bo-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: transform var(--bo-transition);
+    box-shadow: 0 0 5px var(--bo-shadow);
+}
+
+.black-orange .event-marker:hover {
+    background-color: var(--bo-orange2);
+    transform: scale(1.8);
+    box-shadow: 0 0 15px var(--bo-primary);
+}
+
+/* Modal */
+.black-orange .modal-content {
+    position: relative;
+    background: linear-gradient(145deg, var(--bo-black2), var(--bo-black3));
+    border: 2px solid var(--bo-primary);
+    border-radius: var(--bo-radius);
+    box-shadow: 0 0 40px var(--bo-shadow);
+    padding: 30px;
+    color: var(--bo-text);
+    animation: bo-slideIn 0.4s var(--bo-transition);
+    text-align: center;
+}
+
+.black-orange .modal-content h2 {
+    color: var(--bo-primary);
+    font-family: 'Kanit', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--bo-primary);
+    padding-bottom: 10px;
+}
+
+.black-orange .modal-content button {
+    background: linear-gradient(to right, var(--bo-primary), var(--bo-orange3));
+    color: var(--bo-text);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--bo-radius);
+    cursor: pointer;
+    transition: all var(--bo-transition);
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.black-orange .modal-content button:hover {
+    background: linear-gradient(to right, var(--bo-orange3), var(--bo-primary));
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--bo-shadow);
+}
+
+/* Close Button */
+.black-orange .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--bo-primary);
+    border: 2px solid var(--bo-primary);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--bo-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.black-orange .modal .close-button:hover {
+    background-color: var(--bo-primary);
+    color: var(--bo-text);
+    transform: rotate(90deg);
+}
+
+/* Event List */
+.black-orange .event-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--bo-black4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.black-orange .event-list li:last-child {
+    border-bottom: none;
+}
+
+.black-orange .event-list button {
+    background-color: transparent;
+    color: var(--bo-primary);
+    border: 2px solid var(--bo-primary);
+    padding: 8px 16px;
+    border-radius: var(--bo-radius);
+    cursor: pointer;
+    transition: all var(--bo-transition);
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.black-orange .event-list button:hover {
+    background-color: var(--bo-primary);
+    color: var(--bo-text);
+    transform: scale(1.05);
+}
+
+/* Buttons & Navigation */
+.black-orange .button,
+.black-orange .transparent-button,
+.black-orange #backToTopBtn {
+    border-radius: var(--bo-radius);
+    padding: 14px 28px;
+    font-size: 1.1em;
+    transition: all var(--bo-transition);
+    cursor: pointer;
+    border: 2px solid var(--bo-primary);
+    color: var(--bo-text);
+    background: linear-gradient(to right, var(--bo-primary), var(--bo-orange3));
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 600;
+}
+
+.black-orange .button:hover,
+.black-orange .transparent-button:hover,
+.black-orange #backToTopBtn:hover {
+    background: linear-gradient(to right, var(--bo-orange3), var(--bo-primary));
+    transform: scale(1.03);
+    box-shadow: 0 0 20px var(--bo-shadow);
+}
+
+.black-orange .button.secondary {
+    background: transparent;
+    color: var(--bo-primary);
+    border: 2px solid var(--bo-primary);
+}
+
+.black-orange .button.secondary:hover {
+    background: linear-gradient(to right, var(--bo-primary), var(--bo-orange3));
+    color: var(--bo-text);
+}
+
+.black-orange .bo-navigation button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--bo-text);
+    transition: all var(--bo-transition);
+    text-transform: uppercase;
+    font-family: 'Kanit', sans-serif;
+    border-bottom: 3px solid transparent;
+}
+
+.black-orange .bo-navigation button:hover {
+    color: var(--bo-primary);
+    border-bottom: 3px solid var(--bo-primary);
+}
+
+/* Header & Title */
+.black-orange .bo-header {
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--bo-primary);
+    font-family: 'Kanit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--bo-shadow);
+}
+
+.black-orange .bo-title {
+    font-size: 1.3em;
+    color: var(--bo-text);
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Week Number & No Events */
+.black-orange .week-number {
+    color: var(--bo-primary);
+    font-size: 0.8em;
+    padding: 3px 6px;
+    background-color: var(--bo-black1);
+    border: 1px solid var(--bo-primary);
+    border-radius: var(--bo-radius);
+    margin: 2px;
+}
+
+.black-orange .no-events {
+    font-style: italic;
+    color: var(--bo-black5);
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .black-orange table {
+        font-size: 0.8em;
+    }
+
+    .black-orange th,
+    .black-orange td {
+        padding: 8px;
+    }
+
+    .black-orange .event-marker {
+        width: 8px;
+        height: 8px;
+    }
+
+    .black-orange .bo-container {
+        padding: 15px;
+    }
+
+    .black-orange .button,
+    .black-orange .transparent-button,
+    .black-orange #backToTopBtn {
+        padding: 12px 20px;
+        font-size: 0.9em;
+    }
+}
