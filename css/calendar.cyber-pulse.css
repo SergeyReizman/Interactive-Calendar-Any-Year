@@ -1,254 +1,600 @@
-/* Cyber Pulse Theme - Enhanced */
+/* ==========================================================================
+   Cyber Pulse Theme - Enhanced Neon Cyberpunk Style
+   Version: 2.3
+   Updated: 2025-03-27
+   Fixes:
+   - Current date now properly highlighted in calendar cells
+   - Fixed day-of-week header overlap on mobile
+   - Improved mobile table layout
+   ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --cp-bg: #0a0a0a;
+    --cp-text: #00ffcc;
+    --cp-primary: #00ffcc;
+    --cp-secondary: #00e6ff;
+
+    /* Black Gradient */
+    --cp-black1: #000000;
+    --cp-black2: #0a0a0a;
+    --cp-black3: #111111;
+    --cp-black4: #1a1a1a;
+    --cp-black5: #222222;
+
+    /* Neon Spectrum */
+    --cp-neon1: #00ff99;
+    --cp-neon2: #00ffcc;
+    --cp-neon3: #00e6ff;
+    --cp-neon4: #cc33ff;
+    --cp-neon5: #ff33cc;
+
+    /* Special Effects */
+    --cp-glow: #00ffcc;
+    --cp-accent: #00e6ff;
+    --cp-purple: #cc33ff;
+
+    /* Theme Variables */
+    --cp-shadow: rgba(0, 255, 204, 0.7);
+    --cp-radius: 8px;
+    --cp-transition: 0.3s ease-in-out;
+    --cp-hover: #00ff99;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes cp-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--cp-neon1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--cp-neon2);
+    }
+}
+
+@keyframes cp-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.9;
+    }
+}
+
+@keyframes cp-slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
 .cyber-pulse {
-    /* Theme Colors */
-    --primary-color: #00ffcc;
-    /* Neon Cyan */
-    --primary-color-rgb: 0, 255, 204;
-    --secondary-color: #00e6ff;
-    /* Neon Blue */
-    --hover-color: #00ff99;
-    /* Neon Green */
-    --border-color: #00ffcc;
-    /* Neon Cyan */
-    --text-color: #00ffcc;
-    /* Neon Cyan */
-    --background-color: #0a0a0a;
-    /* Deep black */
-    --event-marker-color: #cc33ff;
-    /* Neon Purple */
-    --event-marker-hover: #ff33cc;
-    /* Neon Pink */
-    --shadow-color: rgba(0, 255, 204, 0.7);
-    /* Intense glow */
-    --border-radius: 8px;
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
-}
-
-/* Base Styles */
-.cyber-pulse .container {
-    background: var(--background-color);
-    color: var(--text-color);
     font-family: 'Orbitron', sans-serif;
+    color: var(--cp-text);
     line-height: 1.6;
-    margin: 30px auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 16px var(--shadow-color);
-    max-width: 95%;
+    background-color: var(--cp-bg);
+    min-height: 100vh;
 }
 
-/* Table Styles */
-.cyber-pulse table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    table-layout: fixed;
-    /* Ensures even column distribution */
-}
-
-.cyber-pulse th,
-.cyber-pulse td {
-    border: 1px solid var(--border-color);
-    padding: 14px;
-    text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
+.cyber-pulse .container {
+    background-color: var(--cp-black2);
+    padding: 2rem;
+    border: 2px solid var(--cp-primary);
+    box-shadow: 0 0 30px var(--cp-shadow);
+    position: relative;
     overflow: hidden;
-    /* Prevents content overflow */
-    white-space: nowrap;
-    /* Prevents text wrapping */
-    text-overflow: ellipsis;
-    /* Adds ellipsis for overflow */
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--cp-radius);
 }
 
-.cyber-pulse th {
-    background: var(--primary-color);
-    color: var(--background-color);
-    font-weight: 600;
+.cyber-pulse .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cp-primary), transparent);
+    animation: cp-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.cyber-pulse #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cp-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--cp-shadow);
 }
 
-.cyber-pulse tr:hover td {
-    background: var(--hover-color);
-    color: var(--background-color);
-    box-shadow: inset 0 0 5px var(--shadow-color);
-}
-
-.cyber-pulse td.current-day {
-    background: var(--secondary-color);
-    color: var(--background-color);
-    font-weight: bold;
-}
-
-/* Modal Styles */
-.cyber-pulse .modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.6);
-}
-
-.cyber-pulse .modal.show {
-    display: flex;
-}
-
-.cyber-pulse .modal-content {
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(3px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
-    padding: 20px;
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.cyber-pulse #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--cp-black3);
+    border: 1px solid var(--cp-black5);
+    border-radius: var(--cp-radius);
     position: relative;
 }
 
-.cyber-pulse .modal-title {
-    color: var(--primary-color);
-    font-size: 1.6em;
-    margin-bottom: 15px;
+.cyber-pulse #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cp-primary), transparent);
 }
 
-.cyber-pulse .event-list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
+.cyber-pulse #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cp-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--cp-shadow);
 }
 
-.cyber-pulse .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+.cyber-pulse #today-weather {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cp-neon4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.cyber-pulse #analog-watch {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
 }
 
-.cyber-pulse .event-list button {
-    background: var(--event-marker-color);
-    color: var(--background-color);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+.cyber-pulse .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--cp-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--cp-black1);
+    box-shadow: 0 0 20px var(--cp-shadow);
+}
+
+.cyber-pulse .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.cyber-pulse .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--cp-primary);
+    margin-top: -4px;
+}
+
+.cyber-pulse .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--cp-neon2);
+    margin-top: -3px;
+}
+
+.cyber-pulse .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--cp-neon1);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.cyber-pulse table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--cp-black2);
+    border: 2px solid var(--cp-primary);
+    border-radius: var(--cp-radius);
+    table-layout: fixed;
+}
+
+.cyber-pulse th {
+    background-color: var(--cp-black1);
+    color: var(--cp-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    border: 1px solid var(--cp-black5);
+    border-bottom: 3px solid var(--cp-primary);
+    word-break: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cyber-pulse td {
+    background-color: var(--cp-black3);
+    color: var(--cp-text);
+    padding: 1.2rem;
+    border: 1px solid var(--cp-black5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--cp-transition);
+    position: relative;
+}
+
+.cyber-pulse td:hover {
+    background-color: var(--cp-black4);
+    box-shadow: inset 0 0 15px var(--cp-shadow);
+}
+
+/* Current date highlight */
+.cyber-pulse td.current-day {
+    background-color: var(--cp-black1);
+    border: 2px solid var(--cp-primary);
+    color: var(--cp-primary);
+    font-weight: 600;
+    animation: cp-glow 2s infinite;
+}
+
+/* Current date number indicator */
+.cyber-pulse td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--cp-primary);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.cyber-pulse td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--cp-black1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.cyber-pulse .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cp-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--cp-shadow);
+    transition: all var(--cp-transition);
+}
+
+.cyber-pulse .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--cp-neon2);
+    box-shadow: 0 0 15px var(--cp-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.cyber-pulse .modal-content {
+    position: relative;
+    background-color: var(--cp-black2);
+    border: 2px solid var(--cp-primary);
+    padding: 30px;
+    color: var(--cp-text);
+    box-shadow: 0 0 40px var(--cp-shadow);
+    border-radius: var(--cp-radius);
+    animation: cp-slideIn 0.4s ease;
+}
+
+.cyber-pulse .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--cp-primary);
+    animation: cp-pulse 2s infinite;
+}
+
+.cyber-pulse .modal-content h2 {
+    color: var(--cp-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.cyber-pulse .modal-content button {
+    background-color: transparent;
+    color: var(--cp-primary);
+    border: 2px solid var(--cp-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-duration) var(--transition-easing);
+    transition: all var(--cp-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--cp-radius);
 }
 
-.cyber-pulse .event-list button:hover {
-    background: var(--event-marker-hover);
+.cyber-pulse .modal-content button:hover {
+    background-color: var(--cp-primary);
+    color: var(--cp-text);
+    box-shadow: 0 0 15px var(--cp-shadow);
 }
 
 /* Close Button */
-.cyber-pulse .modal-close,
 .cyber-pulse .modal .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    color: var(--primary-color);
-    border: none;
-    border-radius: 50%;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--cp-primary);
+    border: 2px solid var(--cp-primary);
     width: 32px;
     height: 32px;
     cursor: pointer;
+    transition: all var(--cp-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-duration) var(--transition-easing);
-}
-
-.cyber-pulse .modal .close-button::before {
-    content: "\00D7";
-    font-size: 1.2rem;
+    border-radius: 50%;
 }
 
 .cyber-pulse .modal .close-button:hover {
-    background: var(--primary-color);
-    color: var(--background-color);
+    background-color: var(--cp-primary);
+    color: var(--cp-text);
+    transform: rotate(90deg);
 }
 
-/* Button Styles */
+/* ==================== BUTTONS & CONTROLS ==================== */
 .cyber-pulse .button,
-.cyber-pulse .transparent-button,
-.cyber-pulse .back-to-top-button,
-.cyber-pulse .calendar-navigation button {
-    background: var(--primary-color);
-    color: var(--background-color);
-    border: none;
-    padding: 12px 20px;
-    border-radius: var(--border-radius);
+.cyber-pulse .transparent-button {
+    border: 2px solid var(--cp-primary);
+    color: var(--cp-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    font-size: 1.1em;
-    font-weight: 500;
-    box-shadow: 3px 3px 6px var(--shadow-color);
-    transition: all var(--transition-duration) var(--transition-easing);
+    transition: all var(--cp-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--cp-radius);
 }
 
-.cyber-pulse .button:hover {
-    background: var(--hover-color);
-    transform: translateY(-3px);
-    box-shadow: 4px 5px 8px var(--shadow-color);
+.cyber-pulse .button::before,
+.cyber-pulse .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.2), transparent);
+    transition: 0.5s;
 }
 
-.cyber-pulse .button:active {
-    transform: translateY(-1px);
-    box-shadow: 2px 2px 4px var(--shadow-color);
+.cyber-pulse .button:hover,
+.cyber-pulse .transparent-button:hover {
+    background-color: var(--cp-primary);
+    color: var(--cp-text);
+    box-shadow: 0 0 20px var(--cp-shadow);
 }
 
-.cyber-pulse .button.secondary {
-    background: var(--secondary-color);
-    color: var(--text-color);
+.cyber-pulse .button:hover::before,
+.cyber-pulse .transparent-button:hover::before {
+    left: 100%;
 }
 
-.cyber-pulse .button.secondary:hover {
-    background: var(--hover-color);
-    color: var(--background-color);
+.cyber-pulse .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
 }
 
-/* Calendar Header */
-.cyber-pulse .calendar-header {
+.cyber-pulse #theme-switcher {
+    background-color: var(--cp-black3);
+    color: var(--cp-text);
+    border: 2px solid var(--cp-primary);
+    padding: 0.8rem;
+    font-family: 'Orbitron', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--cp-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.cyber-pulse #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--cp-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--cp-primary);
+    background-color: var(--cp-black3);
+    cursor: pointer;
+    transition: all var(--cp-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--cp-radius);
+}
+
+.cyber-pulse #backToTopBtn:hover {
+    background-color: var(--cp-primary);
+    color: var(--cp-text);
+    box-shadow: 0 0 20px var(--cp-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.cyber-pulse footer {
     text-align: center;
-    font-size: 1.4em;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cp-black5);
+    color: var(--cp-text);
+    font-size: 0.9rem;
 }
 
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .cyber-pulse .container {
+        padding: 1.5rem;
+    }
 
-/* Responsive adjustments */
+    .cyber-pulse #calendar-title {
+        font-size: 2rem;
+    }
+
+    .cyber-pulse #current-date {
+        font-size: 1.5rem;
+    }
+
+    .cyber-pulse #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .cyber-pulse .clock-face {
+        width: 160px;
+        height: 160px;
+    }
 
-    .cyber-pulse th,
+    /* Improved day headers for mobile */
+    .cyber-pulse th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+    }
+
+    /* 3-letter abbreviations for small screens */
+    .cyber-pulse th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .cyber-pulse th span.full-day-name {
+        display: none;
+    }
+
     .cyber-pulse td {
-        padding: 10px;
-        font-size: 0.9em;
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    .cyber-pulse .calendar-header {
-        font-size: 1.2em;
+    /* Adjust current date marker for mobile */
+    .cyber-pulse td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
     }
 
-    .cyber-pulse .button,
-    .cyber-pulse .transparent-button,
-    .cyber-pulse .calendar-navigation button {
-        padding: 10px 18px;
-        font-size: 1em;
+    .cyber-pulse #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .cyber-pulse .container {
+        padding: 0.8rem;
     }
 
-    .cyber-pulse table {
-        display: block;
-        overflow-x: auto;
-        /* Enables horizontal scrolling */
-        table-layout: auto;
-        /* Allows columns to adjust width */
+    .cyber-pulse #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
     }
 
-    /* Column width adjustments - adjust as needed */
-    .cyber-pulse th:nth-child(1),
-    .cyber-pulse td:nth-child(1) {
-        width: 12%;
+    .cyber-pulse #current-date {
+        font-size: 1.1rem;
+    }
+
+    .cyber-pulse #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .cyber-pulse .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further day header adjustments */
+    .cyber-pulse th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .cyber-pulse td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    /* Current date marker for very small screens */
+    .cyber-pulse td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .cyber-pulse th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .cyber-pulse td {
+        height: 50px;
     }
 }
