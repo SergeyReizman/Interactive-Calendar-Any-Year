@@ -1,317 +1,628 @@
-/* ============================
-   Time Machine Theme (Retro-Futuristic - Enhanced)
-   Purpose: A highly immersive retro-futuristic time-travel design with dynamic animations, glowing effects, and a polished layout.
-   Fully responsive with no overflow on large screens.
-   ============================ */
+/* ==========================================================================
+   Time Machine Theme - Retro Futuristic Style
+   Version: 2.4
+   Updated: 2025-03-28
+   Fixes:
+   - Theme switcher now properly visible
+   - Current date highlighting improved
+   - Day-of-week header overlap fixed
+   - Mobile table layout optimized
+   ========================================================================== */
 
-   :root {
-    --tm-bg-color: #1a1a1a;
-    /* Dark gray background */
-    --tm-text-color: #ffcc00;
-    /* Vintage yellow text */
-    --tm-primary-color: #2a2a2a;
-    /* Slightly lighter gray for primary elements */
-    --tm-secondary-color: #222222;
-    /* Near-black for secondary elements */
-    --tm-hover-color: #444444;
-    /* Brighter gray for hover effects */
-    --tm-current-day-bg: #ffcc00;
-    /* Vintage yellow for current day */
-    --tm-border-radius: 16px;
-    /* Rounded corners */
-    --tm-shadow-color: rgba(255, 204, 0, 0.7);
-    /* Vintage yellow glow */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --tm-bg: #1a1a1a;
+    --tm-text: #ffcc00;
+    --tm-primary: #2a2a2a;
+    --tm-secondary: #222222;
+
+    /* Gradient Colors */
     --tm-gradient-start: #2a2a2a;
-    /* Dark gray for gradients */
     --tm-gradient-end: #1a1a1a;
-    /* Pure black for gradients */
-    --tm-accent-color: #ff6600;
-    /* Retro orange for accents */
-    --tm-cyan: #00cccc;
-    /* Vintage cyan for highlights */
-    --tm-magenta: #cc33cc;
-    /* Retro magenta for contrast */
-    --tm-purple: #6633cc;
-    /* Soft purple for depth */
-    --tm-modal-bg: rgba(30, 30, 30, 0.98);
-    /* Darker background for modal */
-    --tm-modal-border: #ff9933;
-    /* Brighter orange for border */
-    --tm-modal-shadow: rgba(255, 153, 51, 0.8);
-    /* Glowing orange shadow */
-    --transition-duration: 0.4s;
-    /* Smooth transitions */
-    --transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    /* Transition easing */
-    --font-family: 'Orbitron', sans-serif;
-    /* Futuristic font for a time-machine feel */
-    --tm-glow: 0 0 10px var(--tm-shadow-color), 0 0 20px var(--tm-shadow-color);
-    /* Glow effect */
+
+    /* Accent Colors */
+    --tm-accent1: #ff6600;
+    --tm-accent2: #00cccc;
+    --tm-accent3: #cc33cc;
+    --tm-accent4: #6633cc;
+    --tm-accent5: #ff9933;
+
+    /* Theme Variables */
+    --tm-shadow: rgba(255, 204, 0, 0.7);
+    --tm-radius: 16px;
+    --tm-transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --tm-hover: #444444;
+    --tm-current-day: #ffcc00;
+    --tm-glow: 0 0 10px var(--tm-shadow), 0 0 20px var(--tm-shadow);
 }
 
-/* General container styling */
-.time-machine .container {
-    background: linear-gradient(135deg, var(--tm-gradient-start), var(--tm-gradient-end));
-    color: var(--tm-text-color);
-    padding: 20px;
-    border-radius: var(--tm-border-radius);
-    transition: background var(--transition-duration) var(--transition-easing);
-    font-family: var(--font-family);
-    box-shadow: var(--tm-glow);
-    border: 2px solid var(--tm-cyan);
-}
+/* ==================== ANIMATIONS ==================== */
+@keyframes tm-glow {
 
-/* Table styling */
-.time-machine table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px auto;
-    box-shadow: var(--tm-glow);
-    background-color: var(--tm-bg-color);
-    border: 2px solid var(--tm-cyan);
-    border-radius: var(--tm-border-radius);
-    overflow: hidden;
-    table-layout: fixed; /* Ensures consistent column widths */
-}
-
-/* Table header and cells */
-.time-machine th,
-.time-machine td {
-    padding: 12px;
-    text-align: center;
-    transition: all var(--transition-duration) var(--transition-easing);
-    word-wrap: break-word; /* Ensures text wraps within cells */
-    overflow: hidden; /* Prevents overflow */
-    white-space: nowrap; /* Prevents text from wrapping */
-    text-overflow: ellipsis; /* Adds ellipsis for overflow text */
-}
-
-.time-machine th {
-    background-color: var(--tm-secondary-color);
-    color: var(--tm-magenta);
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 3px solid var(--tm-accent-color);
-    font-size: 1.1em;
-    letter-spacing: 2px;
-}
-
-.time-machine td {
-    background-color: var(--tm-bg-color);
-    color: var(--tm-text-color);
-    position: relative;
-}
-
-.time-machine td::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 204, 0, 0.2), transparent);
-    opacity: 0;
-    transition: opacity var(--transition-duration) var(--transition-easing);
-    pointer-events: none;
-}
-
-.time-machine td:hover::before {
-    opacity: 1;
-}
-
-.time-machine tr:hover td {
-    background-color: var(--tm-hover-color);
-    transform: scale(1.05);
-    box-shadow: 0 3px 8px var(--tm-shadow-color);
-    color: var(--tm-cyan);
-}
-
-.time-machine tr:hover th,
-.time-machine tr:hover th * {
-    color: var(--tm-magenta) !important;
-}
-
-.time-machine td.current-day {
-    background-color: var(--tm-current-day-bg);
-    border: 2px solid var(--tm-magenta);
-    font-weight: bold;
-    color: #000;
-    box-shadow: inset 0 0 12px var(--tm-shadow-color);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--tm-accent1);
     }
+
     50% {
-        transform: scale(1.05);
+        box-shadow: 0 0 25px var(--tm-accent5);
     }
+}
+
+@keyframes tm-pulse {
+
+    0%,
     100% {
         transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.9;
     }
 }
 
-/* Event marker styling */
-.time-machine .event-marker {
-    background-color: var(--tm-purple);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    transition: transform var(--transition-duration) var(--transition-easing);
-    box-shadow: var(--tm-glow);
-}
-
-.time-machine .event-marker:hover {
-    background-color: #fff;
-    transform: scale(1.6);
-    box-shadow: 0 0 15px var(--tm-purple);
-}
-
-/* Modal window styling */
-.time-machine .modal-content {
-    background-color: var(--tm-modal-bg);
-    backdrop-filter: blur(12px);
-    border: 2px solid var(--tm-modal-border);
-    border-radius: var(--tm-border-radius);
-    box-shadow: 0 12px 24px var(--tm-modal-shadow);
-    padding: 25px;
-    color: var(--tm-text-color);
-    animation: slideIn 0.5s var(--transition-easing);
-}
-
-@keyframes slideIn {
+@keyframes tm-slideIn {
     from {
-        transform: translateY(-20px);
+        transform: translateY(-10px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-.time-machine .modal .close-button {
-    background-color: var(--tm-magenta);
-    color: #000;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing);
+/* ==================== BASE STYLES ==================== */
+.time-machine {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tm-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--tm-gradient-start), var(--tm-gradient-end));
+    min-height: 100vh;
+}
+
+.time-machine .container {
+    background-color: var(--tm-primary);
+    padding: 2rem;
+    border: 2px solid var(--tm-text);
     box-shadow: var(--tm-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--tm-radius);
+}
+
+.time-machine .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--tm-text), transparent);
+    animation: tm-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.time-machine #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tm-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: var(--tm-glow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.time-machine #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(42, 42, 42, 0.8);
+    border: 1px solid var(--tm-text);
+    border-radius: var(--tm-radius);
+    position: relative;
+}
+
+.time-machine #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--tm-text), transparent);
+}
+
+.time-machine #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tm-text);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: var(--tm-glow);
+}
+
+.time-machine #today-weather {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tm-accent2);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.time-machine #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.time-machine .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--tm-text);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--tm-bg);
+    box-shadow: var(--tm-glow);
+}
+
+.time-machine .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.time-machine .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--tm-text);
+    margin-top: -4px;
+}
+
+.time-machine .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--tm-accent2);
+    margin-top: -3px;
+}
+
+.time-machine .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--tm-accent1);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.time-machine table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--tm-primary);
+    border: 2px solid var(--tm-text);
+    border-radius: var(--tm-radius);
+    table-layout: fixed;
+}
+
+.time-machine th {
+    background-color: var(--tm-secondary);
+    color: var(--tm-text);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    border: 1px solid var(--tm-text);
+    word-break: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-machine td {
+    background-color: rgba(255, 204, 0, 0.05);
+    color: var(--tm-text);
+    padding: 1.2rem;
+    border: 1px solid var(--tm-secondary);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--tm-transition);
+    position: relative;
+}
+
+.time-machine td:hover {
+    background-color: rgba(255, 204, 0, 0.1);
+    box-shadow: inset var(--tm-glow);
+}
+
+/* Current date highlight */
+.time-machine td.current-day {
+    background-color: var(--tm-current-day);
+    border: 2px solid var(--tm-text);
+    color: var(--tm-secondary);
+    font-weight: 600;
+    animation: tm-glow 2s infinite;
+}
+
+/* Current date number indicator */
+.time-machine td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--tm-accent1);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.time-machine td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--tm-secondary);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.time-machine .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--tm-accent3);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--tm-shadow);
+    transition: all var(--tm-transition);
+}
+
+.time-machine .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--tm-accent1);
+    box-shadow: 0 0 15px var(--tm-accent3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.time-machine .modal-content {
+    position: relative;
+    background-color: var(--tm-modal-bg);
+    border: 2px solid var(--tm-modal-border);
+    padding: 30px;
+    color: var(--tm-text);
+    box-shadow: 0 0 40px var(--tm-modal-shadow);
+    border-radius: var(--tm-radius);
+    animation: tm-slideIn 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.time-machine .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--tm-modal-border);
+    animation: tm-pulse 2s infinite;
+}
+
+.time-machine .modal-content h2 {
+    color: var(--tm-text);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.time-machine .modal-content button {
+    background-color: transparent;
+    color: var(--tm-text);
+    border: 2px solid var(--tm-text);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tm-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--tm-radius);
+}
+
+.time-machine .modal-content button:hover {
+    background-color: var(--tm-text);
+    color: var(--tm-secondary);
+    box-shadow: var(--tm-glow);
+}
+
+/* Close Button */
+.time-machine .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--tm-text);
+    border: 2px solid var(--tm-text);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--tm-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .time-machine .modal .close-button:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: var(--tm-text);
+    color: var(--tm-secondary);
     transform: rotate(90deg);
 }
 
-/* Button styling */
-.time-machine .button {
-    border-radius: var(--tm-border-radius);
-    padding: 14px 24px;
-    font-size: 1em;
-    transition: all var(--transition-duration) var(--transition-easing);
-    cursor: pointer;
-    border: 2px solid var(--tm-cyan);
+/* ==================== BUTTONS & CONTROLS ==================== */
+.time-machine .button,
+.time-machine .transparent-button {
+    border: 2px solid var(--tm-text);
+    color: var(--tm-text);
     background-color: transparent;
-    color: var(--tm-cyan);
-    box-shadow: var(--tm-glow);
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.time-machine .button:hover {
-    background-color: var(--tm-cyan);
-    color: #000;
-    box-shadow: 0 0 20px var(--tm-cyan);
-    transform: translateY(-2px);
-}
-
-/* Calendar navigation */
-.time-machine .calendar-navigation button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5em;
-    padding: 8px 16px;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    color: var(--tm-magenta);
-    transition: color var(--transition-duration) var(--transition-easing);
-    text-shadow: var(--tm-glow);
+    transition: all var(--tm-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--tm-radius);
 }
 
-.time-machine .calendar-navigation button:hover {
-    color: var(--tm-cyan);
-    transform: scale(1.2);
+.time-machine .button::before,
+.time-machine .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.2), transparent);
+    transition: 0.5s;
 }
 
-/* Calendar header */
-.time-machine .calendar-header {
+.time-machine .button:hover,
+.time-machine .transparent-button:hover {
+    background-color: var(--tm-text);
+    color: var(--tm-secondary);
+    box-shadow: var(--tm-glow);
+}
+
+.time-machine .button:hover::before,
+.time-machine .transparent-button:hover::before {
+    left: 100%;
+}
+
+.time-machine .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER FIX ==================== */
+.time-machine #theme-switcher {
+    background-color: rgba(42, 42, 42, 0.8);
+    color: var(--tm-text);
+    border: 2px solid var(--tm-text);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Orbitron', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--tm-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffcc00'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--tm-transition);
+}
+
+.time-machine #theme-switcher:hover {
+    background-color: rgba(42, 42, 42, 0.9);
+    box-shadow: 0 0 10px var(--tm-shadow);
+}
+
+.time-machine #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--tm-text);
+}
+
+.time-machine #theme-switcher option {
+    background-color: var(--tm-secondary);
+    color: var(--tm-text);
+    padding: 0.5rem;
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.time-machine #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--tm-text);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--tm-text);
+    background-color: rgba(42, 42, 42, 0.8);
+    cursor: pointer;
+    transition: all var(--tm-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--tm-radius);
+}
+
+.time-machine #backToTopBtn:hover {
+    background-color: var(--tm-text);
+    color: var(--tm-secondary);
+    box-shadow: var(--tm-glow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.time-machine footer {
     text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: var(--tm-accent-color);
-    text-shadow: var(--tm-glow);
-    animation: glowText 2s infinite alternate;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--tm-secondary);
+    color: var(--tm-text);
+    font-size: 0.9rem;
 }
 
-@keyframes glowText {
-    from {
-        text-shadow: 0 0 10px var(--tm-accent-color), 0 0 20px var(--tm-accent-color);
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .time-machine .container {
+        padding: 1.5rem;
     }
-    to {
-        text-shadow: 0 0 20px var(--tm-accent-color), 0 0 40px var(--tm-accent-color);
+
+    .time-machine #calendar-title {
+        font-size: 2rem;
+    }
+
+    .time-machine #current-date {
+        font-size: 1.5rem;
+    }
+
+    .time-machine #today-weather {
+        font-size: 1.2rem;
     }
 }
 
-/* Responsive adjustments */
-@media (max-width: 575.98px) {
-    .time-machine th,
-    .time-machine td {
-        padding: 6px;
-        font-size: 0.8em; /* Smaller font size for mobile */
+@media (max-width: 768px) {
+    .time-machine .clock-face {
+        width: 160px;
+        height: 160px;
     }
 
+    /* Improved day headers for mobile */
     .time-machine th {
-        font-size: 0.9em; /* Slightly larger for headers */
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
     }
 
-    .time-machine .calendar-header {
-        font-size: 1.5em; /* Smaller header font for mobile */
+    /* 3-letter abbreviations for small screens */
+    .time-machine th abbr {
+        display: inline;
+        text-decoration: none;
     }
 
-    .time-machine .calendar-navigation button {
-        font-size: 1.2em; /* Smaller navigation buttons */
+    .time-machine th span.full-day-name {
+        display: none;
     }
 
-    .time-machine .button {
-        padding: 10px 18px; /* Smaller buttons */
-        font-size: 0.9em;
+    .time-machine td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    .time-machine .event-marker {
-        width: 8px; /* Smaller event markers */
-        height: 8px;
+    /* Adjust current date marker for mobile */
+    .time-machine td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
     }
 
-    .time-machine .modal-content {
-        padding: 15px; /* Smaller modal padding */
+    .time-machine #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Theme switcher mobile adjustments */
+    .time-machine #theme-switcher {
+        padding: 0.6rem 2rem 0.6rem 0.8rem;
+        background-position: right 0.5rem center;
+        font-size: 0.9rem;
     }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
-    .time-machine th,
-    .time-machine td {
-        padding: 8px;
-        font-size: 0.9em; /* Slightly larger font for tablets */
+@media (max-width: 576px) {
+    .time-machine .container {
+        padding: 0.8rem;
     }
 
-    .time-machine .calendar-header {
-        font-size: 1.8em; /* Medium header font for tablets */
+    .time-machine #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .time-machine #current-date {
+        font-size: 1.1rem;
+    }
+
+    .time-machine #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .time-machine .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further day header adjustments */
+    .time-machine th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .time-machine td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    /* Current date marker for very small screens */
+    .time-machine td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .time-machine th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .time-machine td {
+        height: 50px;
     }
 }
