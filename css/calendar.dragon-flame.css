@@ -1,364 +1,600 @@
-/* calendar.dragon-flame.css */
-/* ============================
-    Dragon Flame Theme
-    Purpose: Styles specific to the Dragon Flame theme.
-    ============================ */
+/* ==========================================================================
+   Dragon Flame Theme - Fiery Red Dragon Style
+   Version: 2.3
+   Updated: 2025-03-27
+   Fixes:
+   - Current date now properly highlighted in calendar cells
+   - Fixed day-of-week header overlap on mobile
+   - Improved mobile table layout
+   ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --df-bg: #0a0a0a;
+    --df-text: #f8f8f8;
+    --df-primary: #d92626;
+    --df-secondary: #f05454;
+
+    /* Black Gradient */
+    --df-black1: #000000;
+    --df-black2: #0a0a0a;
+    --df-black3: #111111;
+    --df-black4: #1a1a1a;
+    --df-black5: #222222;
+
+    /* Flame Spectrum */
+    --df-flame1: #ff2400;
+    --df-flame2: #d92626;
+    --df-flame3: #f05454;
+    --df-flame4: #ff6b35;
+    --df-flame5: #ffa557;
+
+    /* Special Effects */
+    --df-glow: #d92626;
+    --df-accent: #f05454;
+    --df-gold: #ffd700;
+
+    /* Theme Variables */
+    --df-shadow: rgba(217, 38, 38, 0.7);
+    --df-radius: 8px;
+    --df-transition: 0.3s ease-in-out;
+    --df-hover: #f05454;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes df-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--df-flame1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--df-flame2);
+    }
+}
+
+@keyframes df-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.9;
+    }
+}
+
+@keyframes df-slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
 .dragon-flame {
-    /* Theme-Specific Variables */
-    --primary-color: #ff4500;
-    --primary-color-rgb: 255, 69, 0;
-    --secondary-color: #ff8c00;
-    --hover-color: #ffd700;
-    --border-color: #b22222;
-    --text-color: #ffffff;
-    --background-color: #4a0000;
-    --event-marker-color: #ff8c00;
-    --event-marker-hover: #ff4500;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --border-radius: 12px;
-    --transition-duration: 0.3s;
-    --transition-easing: ease-in-out;
-}
-
-/* Base Styles */
-.dragon-flame .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: 'Cinzel', serif;
+    font-family: 'Raleway', sans-serif;
+    color: var(--df-text);
     line-height: 1.6;
-    margin: 30px auto;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 10px 20px var(--shadow-color);
-    max-width: 95%;
+    background-color: var(--df-bg);
+    min-height: 100vh;
 }
 
-/* Table Styles */
-.dragon-flame table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 20px;
-    table-layout: fixed;
-    /* Added for responsiveness */
+.dragon-flame .container {
+    background-color: var(--df-black2);
+    padding: 2rem;
+    border: 2px solid var(--df-primary);
+    box-shadow: 0 0 30px var(--df-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--df-radius);
 }
 
-.dragon-flame th,
-.dragon-flame td {
-    border: 1px solid var(--border-color);
-    padding: 10px;
-    /* Reduced padding for small screens */
-    text-align: center;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
-    word-wrap: break-word;
-    /* For long text */
-}
-
-.dragon-flame th {
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.dragon-flame tr:hover td {
-    background-color: var(--hover-color);
-    color: var(--background-color);
-    box-shadow: inset 0 0 5px var(--shadow-color);
-}
-
-.dragon-flame td.current-day {
-    background-color: var(--secondary-color);
-    color: var(--background-color);
-    font-weight: bold;
-}
-
-/* Modal Styles */
-.dragon-flame .modal {
-    display: none;
-    position: fixed;
+.dragon-flame .container::before {
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--df-primary), transparent);
+    animation: df-pulse 3s infinite;
 }
 
-.dragon-flame .modal.show {
-    display: flex;
+/* ==================== HEADER & TITLE ==================== */
+.dragon-flame #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--df-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--df-shadow);
 }
 
-.dragon-flame .modal-content {
-    background-color: rgba(var(--primary-color-rgb), 0.7);
-    backdrop-filter: blur(3px);
-    color: var(--text-color);
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
-    padding: 20px;
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.dragon-flame #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--df-black3);
+    border: 1px solid var(--df-black5);
+    border-radius: var(--df-radius);
     position: relative;
 }
 
-.dragon-flame .modal-title {
-    color: var(--text-color);
-    font-size: 1.6em;
-    margin-bottom: 15px;
+.dragon-flame #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--df-primary), transparent);
 }
 
-.dragon-flame .event-list {
-    margin: 10px 0;
-    padding: 0;
-    list-style: none;
-}
-
-.dragon-flame .event-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dragon-flame .event-list li:last-child {
-    border-bottom: none;
-}
-
-.dragon-flame .event-list button {
-    background-color: var(--event-marker-color);
-    color: var(--background-color);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing);
-}
-
-.dragon-flame .event-list button:hover {
-    background-color: var(--event-marker-hover);
-}
-
-.dragon-flame .button,
-.dragon-flame .transparent-button,
-.dragon-flame .back-to-top-button,
-.dragon-flame .calendar-navigation button {
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    border: none;
-    padding: 12px 20px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 1.1em;
+.dragon-flame #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--df-primary);
+    font-size: 1.8rem;
     font-weight: 500;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        transform var(--transition-duration) var(--transition-easing),
-        box-shadow var(--transition-duration) var(--transition-easing);
-    box-shadow: 3px 3px 6px var(--shadow-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--df-shadow);
 }
 
-.dragon-flame .button:hover,
-.dragon-flame .transparent-button:hover,
-.dragon-flame .back-to-top-button:hover,
-.dragon-flame .calendar-navigation button:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-3px);
-    box-shadow: 4px 5px 8px var(--shadow-color);
+.dragon-flame #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--df-flame4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
 }
 
-.dragon-flame .button:active,
-.dragon-flame .transparent-button:active,
-.dragon-flame .back-to-top-button:active,
-.dragon-flame .calendar-navigation button:active {
-    transform: translateY(-1px);
-    box-shadow: 2px 2px 4px var(--shadow-color);
+/* ==================== ANALOG CLOCK ==================== */
+.dragon-flame #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
 }
 
-.dragon-flame .button.secondary {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+.dragon-flame .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--df-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--df-black1);
+    box-shadow: 0 0 20px var(--df-shadow);
 }
 
-.dragon-flame .button.secondary:hover {
-    background-color: var(--hover-color);
-    color: var(--background-color);
+.dragon-flame .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
-.dragon-flame .calendar-header {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--primary-color);
+.dragon-flame .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--df-primary);
+    margin-top: -4px;
+}
+
+.dragon-flame .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--df-flame2);
+    margin-top: -3px;
+}
+
+.dragon-flame .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--df-flame1);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.dragon-flame table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--df-black2);
+    border: 2px solid var(--df-primary);
+    border-radius: var(--df-radius);
+    table-layout: fixed;
 }
 
 .dragon-flame th {
-    font-family: 'Cinzel', serif;
-    font-size: 1em;
-    color: var(--text-color);
-    padding: 8px;
-    /* Slightly reduced padding */
+    background-color: var(--df-black1);
+    color: var(--df-primary);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    border: 1px solid var(--df-black5);
+    border-bottom: 3px solid var(--df-primary);
+    word-break: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.dragon-flame .calendar-title {
-    font-size: 1.2em;
-    font-style: italic;
-    color: var(--text-color);
+.dragon-flame td {
+    background-color: var(--df-black3);
+    color: var(--df-text);
+    padding: 1.2rem;
+    border: 1px solid var(--df-black5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--df-transition);
+    position: relative;
 }
 
-.dragon-flame .modal-close {
+.dragon-flame td:hover {
+    background-color: var(--df-black4);
+    box-shadow: inset 0 0 15px var(--df-shadow);
+}
+
+/* Current date highlight */
+.dragon-flame td.current-day {
+    background-color: var(--df-black1);
+    border: 2px solid var(--df-primary);
+    color: var(--df-primary);
+    font-weight: 600;
+    animation: df-glow 2s infinite;
+}
+
+/* Current date number indicator */
+.dragon-flame td.current-day::before {
+    content: "";
     position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 1.1em;
-    cursor: pointer;
-    color: var(--primary-color);
-    background: none;
-    border: none;
-    padding: 5px;
-    transition: color var(--transition-duration) var(--transition-easing);
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--df-primary);
+    border-radius: 50%;
+    z-index: 1;
 }
 
-.dragon-flame .modal-close:hover {
-    color: var(--hover-color);
-    /* Hover color for close button */
+.dragon-flame td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--df-black1);
+    font-weight: bold;
 }
 
-.dragon-flame .week-number {
-    color: var(--text-color);
-    font-size: 0.9em;
-    padding: 2px 5px;
-    background-color: var(--secondary-color);
-    border-radius: 5px;
-    margin: 2px;
+/* ==================== EVENT MARKERS ==================== */
+.dragon-flame .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--df-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--df-shadow);
+    transition: all var(--df-transition);
 }
 
-.dragon-flame .no-events {
-    font-style: italic;
-    color: #999;
-    /* Lighter gray */
-    text-align: center;
-    margin-top: 8px;
+.dragon-flame .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--df-flame2);
+    box-shadow: 0 0 15px var(--df-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.dragon-flame .modal-content {
+    position: relative;
+    background-color: var(--df-black2);
+    border: 2px solid var(--df-primary);
+    padding: 30px;
+    color: var(--df-text);
+    box-shadow: 0 0 40px var(--df-shadow);
+    border-radius: var(--df-radius);
+    animation: df-slideIn 0.4s ease;
+}
+
+.dragon-flame .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--df-primary);
+    animation: df-pulse 2s infinite;
+}
+
+.dragon-flame .modal-content h2 {
+    color: var(--df-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.dragon-flame .modal-content button {
+    background-color: transparent;
+    color: var(--df-primary);
+    border: 2px solid var(--df-primary);
+    padding: 12px 24px;
     font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--df-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--df-radius);
 }
 
-/* Media Queries for Responsiveness - Table Specific */
-@media (max-width: 575.98px) {
+.dragon-flame .modal-content button:hover {
+    background-color: var(--df-primary);
+    color: var(--df-text);
+    box-shadow: 0 0 15px var(--df-shadow);
+}
 
-    /* Small Screens */
-    .dragon-flame table {
-        font-size: 0.8em;
-        table-layout: fixed;
-        /* Crucial for responsive tables */
+/* Close Button */
+.dragon-flame .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--df-primary);
+    border: 2px solid var(--df-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--df-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.dragon-flame .modal .close-button:hover {
+    background-color: var(--df-primary);
+    color: var(--df-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.dragon-flame .button,
+.dragon-flame .transparent-button {
+    border: 2px solid var(--df-primary);
+    color: var(--df-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--df-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--df-radius);
+}
+
+.dragon-flame .button::before,
+.dragon-flame .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(217, 38, 38, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.dragon-flame .button:hover,
+.dragon-flame .transparent-button:hover {
+    background-color: var(--df-primary);
+    color: var(--df-text);
+    box-shadow: 0 0 20px var(--df-shadow);
+}
+
+.dragon-flame .button:hover::before,
+.dragon-flame .transparent-button:hover::before {
+    left: 100%;
+}
+
+.dragon-flame .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.dragon-flame #theme-switcher {
+    background-color: var(--df-black3);
+    color: var(--df-text);
+    border: 2px solid var(--df-primary);
+    padding: 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--df-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.dragon-flame #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--df-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--df-primary);
+    background-color: var(--df-black3);
+    cursor: pointer;
+    transition: all var(--df-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--df-radius);
+}
+
+.dragon-flame #backToTopBtn:hover {
+    background-color: var(--df-primary);
+    color: var(--df-text);
+    box-shadow: 0 0 20px var(--df-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.dragon-flame footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--df-black5);
+    color: var(--df-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .dragon-flame .container {
+        padding: 1.5rem;
     }
 
-    .dragon-flame th,
-    .dragon-flame td {
-        padding: 6px;
-        /* Reduced padding */
-        border: 1px solid var(--border-color);
-        /* Keep borders */
+    .dragon-flame #calendar-title {
+        font-size: 2rem;
     }
 
-    /* **VERY IMPORTANT:** Adjust these column widths using your browser's developer tools! */
-    .dragon-flame th:nth-child(1),
-    .dragon-flame td:nth-child(1) {
-        width: 14%;
+    .dragon-flame #current-date {
+        font-size: 1.5rem;
     }
 
-    /* Example - MUST BE CHANGED */
-    .dragon-flame th:nth-child(2),
-    .dragon-flame td:nth-child(2) {
-        width: 16%;
-    }
-
-    /* Example - MUST BE CHANGED */
-    .dragon-flame th:nth-child(3),
-    .dragon-flame td:nth-child(3) {
-        width: 16%;
-    }
-
-    /* Example - MUST BE CHANGED */
-    .dragon-flame th:nth-child(4),
-    .dragon-flame td:nth-child(4) {
-        width: 16%;
-    }
-
-    /* Example - MUST BE CHANGED */
-    .dragon-flame th:nth-child(5),
-    .dragon-flame td:nth-child(5) {
-        width: 16%;
-    }
-
-    /* Example - MUST BE CHANGED */
-    .dragon-flame th:nth-child(6),
-    .dragon-flame td:nth-child(6) {
-        width: 16%;
-    }
-
-    /* Example - MUST BE CHANGED */
-    .dragon-flame th:nth-child(7),
-    .dragon-flame td:nth-child(7) {
-        width: 6%;
-    }
-
-    /* Example - MUST BE CHANGED */
-
-    .dragon-flame .event-marker-container {
-        /* If you have event markers */
-        flex-direction: row;
-        /* Markers in a row */
-        gap: 2px;
-    }
-
-    .dragon-flame .event-marker {
-        /* If you have event markers */
-        width: 6px;
-        height: 6px;
-    }
-
-    .dragon-flame .calendar-container {
-        padding: 15px;
-        /* Reduced padding */
-    }
-
-    .dragon-flame .button,
-    .dragon-flame .transparent-button,
-    .dragon-flame .back-to-top-button,
-    .dragon-flame .calendar-navigation button {
-        /* Include navigation and back-to-top */
-        padding: 8px 16px;
-        /* Smaller button padding */
-        font-size: 0.9em;
+    .dragon-flame #today-weather {
+        font-size: 1.2rem;
     }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
+@media (max-width: 768px) {
+    .dragon-flame .clock-face {
+        width: 160px;
+        height: 160px;
+    }
 
-    /* Medium Screens */
-    .dragon-flame th,
+    /* Improved day headers for mobile */
+    .dragon-flame th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
+    }
+
+    /* 3-letter abbreviations for small screens */
+    .dragon-flame th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .dragon-flame th span.full-day-name {
+        display: none;
+    }
+
     .dragon-flame td {
-        padding: 10px;
-        /* Slightly more padding */
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    .dragon-flame table {
-        font-size: 0.9em;
-        /* Slightly larger font */
+    /* Adjust current date marker for mobile */
+    .dragon-flame td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
     }
 
-    .dragon-flame .button,
-    .dragon-flame .transparent-button,
-    .dragon-flame .back-to-top-button,
-    .dragon-flame .calendar-navigation button {
-        /* Include navigation and back-to-top */
-        padding: 10px 18px;
-        /* Adjust as needed */
-        font-size: 1em;
-        /* Adjust as needed */
+    .dragon-flame #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .dragon-flame .container {
+        padding: 0.8rem;
+    }
+
+    .dragon-flame #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .dragon-flame #current-date {
+        font-size: 1.1rem;
+    }
+
+    .dragon-flame #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .dragon-flame .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further day header adjustments */
+    .dragon-flame th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .dragon-flame td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    /* Current date marker for very small screens */
+    .dragon-flame td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .dragon-flame th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .dragon-flame td {
+        height: 50px;
     }
 }
