@@ -1,65 +1,50 @@
 /* ==========================================================================
-   Into The Night Theme - Dark Sophistication with Electric Turquoise Accents
-   Purpose: Styles for a high-contrast night theme with black backgrounds and vibrant turquoise highlights
+   INTO THE NIGHT THEME - Dark Cyberpunk Aesthetic with Electric Turquoise
+   Version: 2.1
+   Updated: 2025-03-26
+   Includes:
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600&display=swap');
 
 :root {
-    /* Core Palette */
+    /* Core Color Palette */
     --night-bg: #0A0A12;
-    /* Deep space black */
     --night-text: #E0E0E8;
-    /* Soft luminous text */
     --night-primary: #00F5D4;
-    /* Electric turquoise */
     --night-secondary: #00B4A6;
-    /* Deep teal */
 
     /* Black Gradient */
     --night-black1: #000000;
-    /* Void black */
     --night-black2: #0F0F1A;
-    /* Slightly lighter */
     --night-black3: #1A1A26;
-    /* Dark graphite */
     --night-black4: #252533;
-    /* Medium dark */
     --night-black5: #333344;
-    /* Twilight gray */
 
     /* Turquoise Spectrum */
     --night-turq1: #00FFEC;
-    /* Neon turquoise */
     --night-turq2: #00D1C5;
-    /* Bright turquoise */
     --night-turq3: #00A89E;
-    /* Medium turquoise */
     --night-turq4: #00857D;
-    /* Deep turquoise */
     --night-turq5: #00635D;
-    /* Dark teal */
 
     /* Special Effects */
     --night-glow: #00F5D4;
-    /* Core glow color */
     --night-cyber: #00FFA3;
-    /* Matrix green-turquoise */
     --night-moon: #C0C0C0;
-    /* Moonlight silver */
 
     /* Theme Variables */
     --night-shadow: rgba(0, 245, 212, 0.3);
-    /* Glowing shadow */
     --night-radius: 0;
-    /* Sharp tech edges */
     --night-transition: 0.25s cubic-bezier(0.65, 0, 0.35, 1);
-    /* Precise transitions */
     --night-hover: #00FFEC;
-    /* Hover glow */
 }
 
-/* Animations */
+/* ==================== ANIMATIONS ==================== */
 @keyframes night-glow {
 
     0%,
@@ -73,11 +58,11 @@
 }
 
 @keyframes night-scanline {
-    0% {
+    from {
         background-position: 0 0;
     }
 
-    100% {
+    to {
         background-position: 0 100vh;
     }
 }
@@ -94,25 +79,28 @@
     }
 }
 
-/* Base Styles */
+/* ==================== BASE STYLES ==================== */
 .into-the-night {
     font-family: 'Rajdhani', sans-serif;
     color: var(--night-text);
-    line-height: 1.5;
+    line-height: 1.6;
     background-color: var(--night-bg);
     background-image:
         linear-gradient(rgba(0, 245, 212, 0.05) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 245, 212, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
+    min-height: 100vh;
 }
 
 .into-the-night .container {
     background-color: var(--night-black2);
-    padding: 30px;
+    padding: 2rem;
     border: 1px solid var(--night-primary);
     box-shadow: 0 0 30px var(--night-shadow);
     position: relative;
     overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .into-the-night .container::before {
@@ -126,46 +114,136 @@
     animation: night-pulse 3s infinite;
 }
 
-.into-the-night .night-container {
-    padding: 25px;
+/* ==================== HEADER & TITLE ==================== */
+.into-the-night #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--night-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--night-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.into-the-night #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
     background-color: var(--night-black3);
     border: 1px solid var(--night-black5);
     position: relative;
 }
 
-/* Table Styles */
+.into-the-night #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--night-primary), transparent);
+}
+
+.into-the-night #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--night-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--night-shadow);
+}
+
+.into-the-night #today-weather {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--night-turq2);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.into-the-night #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.into-the-night .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--night-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--night-black1);
+    box-shadow: 0 0 20px var(--night-shadow);
+}
+
+.into-the-night .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.into-the-night .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--night-primary);
+    margin-top: -4px;
+}
+
+.into-the-night .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--night-turq2);
+    margin-top: -3px;
+}
+
+.into-the-night .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--night-turq1);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
 .into-the-night table {
     width: 100%;
-    margin: 25px auto;
     border-collapse: collapse;
+    margin: 2rem auto;
     background-color: var(--night-black2);
     border: 1px solid var(--night-primary);
     table-layout: fixed;
 }
 
-.into-the-night th,
-.into-the-night td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid var(--night-black5);
-    transition: all var(--night-transition);
-    position: relative;
-}
-
 .into-the-night th {
     background-color: var(--night-black1);
     color: var(--night-primary);
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 1.1em;
-    letter-spacing: 2px;
-    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    border: 1px solid var(--night-black5);
     border-bottom: 2px solid var(--night-primary);
 }
 
 .into-the-night td {
     background-color: var(--night-black3);
     color: var(--night-text);
+    padding: 1.2rem;
+    border: 1px solid var(--night-black5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--night-transition);
+    position: relative;
 }
 
 .into-the-night td:hover {
@@ -181,15 +259,16 @@
     animation: night-glow 2s infinite;
 }
 
-/* Event Marker */
+/* ==================== EVENT MARKERS ==================== */
 .into-the-night .event-marker {
-    background-color: var(--night-primary);
+    display: inline-block;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    display: inline-block;
-    transition: all var(--night-transition);
+    background-color: var(--night-primary);
+    margin: 0 2px;
     box-shadow: 0 0 5px var(--night-shadow);
+    transition: all var(--night-transition);
 }
 
 .into-the-night .event-marker:hover {
@@ -198,6 +277,7 @@
     box-shadow: 0 0 15px var(--night-primary);
 }
 
+/* ==================== MODAL STYLES ==================== */
 /* Modal */
 .into-the-night .modal-content {
     position: relative;
@@ -270,49 +350,33 @@
     transform: rotate(90deg);
 }
 
-/* Event List */
-.into-the-night .event-list li {
-    padding: 15px 0;
-    border-bottom: 1px solid var(--night-black5);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.into-the-night .event-list li:last-child {
-    border-bottom: none;
-}
-
-.into-the-night .event-list button {
-    background-color: transparent;
-    color: var(--night-primary);
-    border: 1px solid var(--night-primary);
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all var(--night-transition);
-    font-size: 0.9em;
-}
-
-.into-the-night .event-list button:hover {
-    background-color: var(--night-primary);
-    color: var(--night-black1);
-}
-
-/* Buttons & Navigation */
+/* ==================== BUTTONS & CONTROLS ==================== */
 .into-the-night .button,
 .into-the-night .transparent-button {
     border: 1px solid var(--night-primary);
-    padding: 14px 28px;
-    font-size: 1em;
-    transition: all var(--night-transition);
-    cursor: pointer;
     color: var(--night-primary);
     background-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 0.8rem 1.6rem;
     font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--night-transition);
     position: relative;
     overflow: hidden;
+    margin: 0.5rem;
+}
+
+.into-the-night .button::before,
+.into-the-night .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.2), transparent);
+    transition: 0.5s;
 }
 
 .into-the-night .button:hover,
@@ -327,119 +391,41 @@
     left: 100%;
 }
 
-.into-the-night .button.secondary {
-    border-color: var(--night-turq4);
-    color: var(--night-turq2);
+.into-the-night .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
 }
 
-.into-the-night .button.secondary:hover {
-    background-color: var(--night-turq4);
-    color: var(--night-black1);
-}
-
-.into-the-night .night-navigation button {
-    background-color: transparent;
-    border: none;
+.into-the-night #theme-switcher {
+    background-color: var(--night-black3);
     color: var(--night-text);
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all var(--night-transition);
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-}
-
-.into-the-night .night-navigation button:hover {
-    color: var(--night-primary);
-}
-
-.into-the-night .night-navigation button::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--night-primary);
-    transition: width 0.3s;
-}
-
-.into-the-night .night-navigation button:hover::after {
-    width: 100%;
-}
-
-/* Header & Title */
-.into-the-night .night-header {
-    text-align: center;
-    font-size: 2.5em;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--night-primary);
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 0 0 10px var(--night-shadow);
-}
-
-.into-the-night .night-title {
-    font-size: 1.2em;
-    color: var(--night-turq3);
-    text-align: center;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-/* Week Number & No Events */
-.into-the-night .week-number {
-    color: var(--night-primary);
-    font-size: 0.8em;
-    padding: 3px 6px;
-    background-color: var(--night-black1);
     border: 1px solid var(--night-primary);
-    margin: 2px;
+    padding: 0.8rem;
+    font-family: 'Rajdhani', sans-serif;
+    margin-left: 1rem;
 }
 
-.into-the-night .no-events {
-    font-style: italic;
-    color: var(--night-black5);
-    text-align: center;
-    margin-top: 10px;
-    font-size: 0.9em;
-}
-
-/* Back to Top Button - Right Side */
+/* ==================== BACK TO TOP BUTTON ==================== */
 .into-the-night #backToTopBtn {
     position: fixed;
     right: 30px;
     bottom: 30px;
-    left: auto;
     z-index: 9999;
     border: 1px solid var(--night-primary);
-    padding: 14px 28px;
-    font-size: 1em;
-    transition: all var(--night-transition);
-    cursor: pointer;
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--night-primary);
     background-color: var(--night-black3);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Orbitron', sans-serif;
-    overflow: hidden;
-    display: block;
-    margin: 0;
+    cursor: pointer;
+    transition: all var(--night-transition);
     opacity: 0.9;
-}
-
-.into-the-night #backToTopBtn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.2), transparent);
-    transition: 0.5s;
+    display: none;
 }
 
 .into-the-night #backToTopBtn:hover {
@@ -449,40 +435,91 @@
     opacity: 1;
 }
 
-.into-the-night #backToTopBtn:hover::before {
-    left: 100%;
+/* ==================== FOOTER ==================== */
+.into-the-night footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--night-black5);
+    color: var(--night-text);
+    font-size: 0.9rem;
 }
 
-/* Media Queries */
-@media (max-width: 575.98px) {
-    .into-the-night table {
-        font-size: 0.8em;
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .into-the-night .container {
+        padding: 1.5rem;
+    }
+
+    .into-the-night #calendar-title {
+        font-size: 2rem;
+    }
+
+    .into-the-night #current-date {
+        font-size: 1.5rem;
+    }
+
+    .into-the-night #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .into-the-night .clock-face {
+        width: 160px;
+        height: 160px;
     }
 
     .into-the-night th,
     .into-the-night td {
-        padding: 8px;
+        padding: 0.8rem;
+        height: 80px;
     }
 
-    .into-the-night .event-marker {
-        width: 6px;
-        height: 6px;
-    }
-
-    .into-the-night .night-container {
-        padding: 15px;
-    }
-
-    .into-the-night .button,
-    .into-the-night .transparent-button,
     .into-the-night #backToTopBtn {
-        padding: 12px 20px;
-        font-size: 0.9em;
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .into-the-night .container {
+        padding: 1rem;
     }
 
-    /* Mobile-specific back-to-top button */
+    .into-the-night #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .into-the-night #current-date {
+        font-size: 1.3rem;
+    }
+
+    .into-the-night #today-weather {
+        font-size: 1rem;
+    }
+
+    .into-the-night .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .into-the-night th {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .into-the-night td {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        height: 70px;
+    }
+
     .into-the-night #backToTopBtn {
         right: 15px;
         bottom: 15px;
+        padding: 0.7rem 1.2rem;
     }
 }
