@@ -1,656 +1,621 @@
 /* ==========================================================================
-   TACTICAL COMMAND INTERFACE - ULTIMATE COMBAT THEME
-   Version: 4.0 | Codename: NIGHT OPS
-   Updated: 2024-06-15 | Security Clearance: TOP SECRET
-   Features:
-   - 200% enhanced tactical styling options
-   - Quad-layer visibility assurance system
-   - Advanced combat-readiness animations
-   - Multi-spectrum camouflage technology
+   Tactical Command Theme - Military Operations Style
+   Version: 2.1
+   Updated: 2023-11-15
+   Enhancements:
+   - Tactical color scheme for command center visibility
+   - Military-grade interface with operational clarity
+   - Mission-critical readability
+   - Optimized for field operations
    ========================================================================== */
 
-   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto+Mono:wght@400;450;500;550&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
 
-   /* =============== PRIMARY COMBAT VARIABLES =============== */
    :root {
-       /* CORE TACTICAL PALETTE */
-       --tac-ultra-dark: #121610; /* Night vision black */
-       --tac-dark: #1a1e1a;       /* Tactical base */
-       --tac-medium: #2d3326;     /* Forest camo */
-       --tac-light: #4a5a3e;      /* Urban camo */
-       --tac-ultra-light: #6b7d5a; /* Desert camo */
-       
-       /* HIGH-VISIBILITY TEXT SYSTEM */
-       --tac-text-primary: #f0f0d0;   /* Primary combat text */
-       --tac-text-secondary: #d0d0a8; /* Secondary intel */
-       --tac-text-accent: #c5b358;    /* Critical alerts */
-       --tac-text-warning: #d4c050;   /* Warning messages */
-       
-       /* TACTICAL INTERFACE COLORS */
-       --tac-ui-primary: #c5b358;     /* Main interface */
-       --tac-ui-secondary: #7d886b;   /* Secondary controls */
-       --tac-ui-tertiary: #5d6b4a;    /* Tertiary elements */
-       --tac-ui-accent: #8b956b;      /* Accent highlights */
-       
-       /* COMBAT STATUS INDICATORS */
-       --tac-status-active: #a5d45a;  /* Active/online */
-       --tac-status-standby: #d4c050; /* Standby/warning */
-       --tac-status-critical: #d45a5a;/* Critical/alert */
-       --tac-status-neutral: #6b7d5a; /* Neutral/inactive */
-       
-       /* ADVANCED SHADOW SYSTEM */
-       --tac-shadow-light: 0 2px 8px rgba(0, 15, 0, 0.4);
-       --tac-shadow-medium: 0 4px 16px rgba(0, 20, 0, 0.5);
-       --tac-shadow-heavy: 0 8px 32px rgba(0, 25, 0, 0.6);
-       --tac-shadow-glow: 0 0 16px rgba(197, 179, 88, 0.7);
-       
-       /* TACTICAL GEOMETRY */
-       --tac-radius-sm: 2px;  /* Small radius */
-       --tac-radius-md: 4px;  /* Medium radius */
-       --tac-radius-lg: 6px;  /* Large radius */
-       
-       /* COMBAT TRANSITIONS */
-       --tac-transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-       --tac-transition-med: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-       --tac-transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-       
-       /* LAYERED CAMOUFLAGE */
-       --tac-camo-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" opacity="0.08"><rect fill="%232d3326" width="120" height="120"/><path fill="%234a5a3e" d="M25 25h30v30H25zM65 65h30v30H65z"/><path fill="%236b7d5a" d="M65 25h30v30H65zM25 65h30v30H25z"/></svg>');
-       --tac-camo-pattern-dense: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" opacity="0.12"><rect fill="%232d3326" width="60" height="60"/><path fill="%234a5a3e" d="M15 15h20v20H15zM35 35h20v20H35z"/><path fill="%236b7d5a" d="M35 15h20v20H35zM15 35h20v20H15z"/></svg>');
+       /* Core Color Palette */
+       --tc-bg: #0c0f12;
+       --tc-text: #c8d6e5;
+       --tc-primary: #1d2b3a;
+       --tc-secondary: #14202e;
+   
+       /* Gradient Colors */
+       --tc-gradient-start: #111920;
+       --tc-gradient-end: #0a0d12;
+   
+       /* Status Colors */
+       --tc-accent1: #4dabf7;  /* Operational blue */
+       --tc-accent2: #51cf66;  /* Go green */
+       --tc-accent3: #fcc419;  /* Warning yellow */
+       --tc-accent4: #ff6b6b;  /* Alert red */
+       --tc-accent5: #9775fa;  /* Comms purple */
+   
+       /* Theme Variables */
+       --tc-shadow: rgba(77, 171, 247, 0.5);
+       --tc-radius: 6px;
+       --tc-transition: 0.2s linear;
+       --tc-hover: #2c3e50;
+       --tc-current-day: #4dabf7;
+       --tc-border: 1px solid #2d4052;
    }
    
-   /* =============== BASE COMBAT STYLES =============== */
+   /* ==================== ANIMATIONS ==================== */
+   @keyframes tc-status-pulse {
+       0%, 100% {
+           box-shadow: 0 0 5px var(--tc-accent1);
+           opacity: 1;
+       }
+       50% {
+           box-shadow: 0 0 15px var(--tc-accent1);
+           opacity: 0.8;
+       }
+   }
+   
+   @keyframes tc-scanline {
+       0% {
+           background-position: 0 0;
+       }
+       100% {
+           background-position: 0 100vh;
+       }
+   }
+   
+   @keyframes tc-alert-blink {
+       0%, 100% {
+           background-color: transparent;
+       }
+       50% {
+           background-color: rgba(255, 107, 107, 0.1);
+       }
+   }
+   
+   /* ==================== BASE STYLES ==================== */
    .tactical-command {
-       font-family: 'Roboto Mono', monospace;
-       font-weight: 450;
-       color: var(--tac-text-primary);
-       line-height: 1.7;
-       background: 
-           linear-gradient(145deg, 
-               var(--tac-ultra-dark), 
-               var(--tac-dark)),
-           var(--tac-camo-pattern);
+       font-family: 'Orbitron', sans-serif;
+       color: var(--tc-text);
+       line-height: 1.5;
+       background: linear-gradient(135deg, var(--tc-gradient-start), var(--tc-gradient-end));
        min-height: 100vh;
-       text-shadow: 
-           1px 1px 3px rgba(0, 0, 0, 0.8),
-           0 0 5px rgba(0, 0, 0, 0.3);
-   }
-   
-   /* =============== TACTICAL CONTAINERS =============== */
-   .tac-container {
-       background-color: rgba(45, 51, 38, 0.96);
-       padding: 2.4rem;
-       border: 1px solid var(--tac-ui-tertiary);
-       box-shadow: var(--tac-shadow-heavy);
        position: relative;
-       overflow: hidden;
-       max-width: 1680px;
-       margin: 2.2rem auto;
-       border-radius: var(--tac-radius-md);
-       background-image: 
-           linear-gradient(rgba(45, 51, 38, 0.94), 
-           rgba(45, 51, 38, 0.94)),
-           var(--tac-camo-pattern-dense);
+       overflow-x: hidden;
    }
    
-   .tac-container-lg {
-       padding: 3rem;
-       max-width: 1800px;
-   }
-   
-   .tac-container-sm {
-       padding: 1.8rem;
-       max-width: 1400px;
-   }
-   
-   /* =============== COMBAT TYPOGRAPHY SYSTEM =============== */
-   .tac-heading {
-       font-family: 'Orbitron', sans-serif;
-       font-weight: 600;
-       color: var(--tac-text-accent);
-       text-shadow: 
-           1px 1px 2px #000,
-           0 0 12px rgba(212, 192, 80, 0.6);
-       letter-spacing: 0.08em;
-       margin-bottom: 1.8rem;
-   }
-   
-   .tac-heading-xl {
-       font-size: 2.8rem;
-       line-height: 1.2;
-       letter-spacing: 0.1em;
-   }
-   
-   .tac-heading-lg {
-       font-size: 2.2rem;
-       line-height: 1.25;
-   }
-   
-   .tac-heading-md {
-       font-size: 1.8rem;
-       line-height: 1.3;
-   }
-   
-   .tac-heading-sm {
-       font-size: 1.4rem;
-       line-height: 1.4;
-   }
-   
-   .tac-text-lead {
-       font-size: 1.2rem;
-       line-height: 1.8;
-       color: var(--tac-text-secondary);
-       max-width: 80ch;
-   }
-   
-   .tac-text-body {
-       font-size: 1rem;
-       line-height: 1.7;
-       color: var(--tac-text-primary);
-   }
-   
-   .tac-text-caption {
-       font-size: 0.9rem;
-       line-height: 1.6;
-       color: var(--tac-text-secondary);
-       opacity: 0.9;
-   }
-   
-   /* =============== ADVANCED CALENDAR SYSTEM =============== */
-   .tac-calendar {
-       width: 98%;
-       margin: 2.4rem auto;
-       background-color: var(--tac-medium);
-       border: 1px solid var(--tac-ui-tertiary);
-       border-collapse: separate;
-       border-spacing: 0;
-       box-shadow: var(--tac-shadow-medium);
-   }
-   
-   .tac-calendar-header {
-       background-color: var(--tac-dark);
-       color: var(--tac-text-secondary) !important;
-       border-bottom: 2px solid var(--tac-ui-primary);
-       font-weight: 600;
-       padding: 1.2rem 0.8rem;
-       text-transform: uppercase;
-       font-size: 0.95rem;
-       letter-spacing: 0.05em;
-   }
-   
-   .tac-calendar-day {
-       background-color: rgba(74, 90, 62, 0.78);
-       color: var(--tac-text-primary);
-       border: 1px solid var(--tac-ui-tertiary);
-       padding: 1.4rem;
-       height: 120px;
-       vertical-align: top;
-       transition: all var(--tac-transition-med);
-       position: relative;
-   }
-   
-   .tac-calendar-day:hover {
-       background-color: rgba(197, 179, 88, 0.18);
-   }
-   
-   .tac-calendar-day-active {
-       background-color: rgba(197, 179, 88, 0.38);
-       border: 2px solid var(--tac-ui-primary);
-       color: #fffde8 !important;
-       box-shadow: var(--tac-shadow-glow);
-       z-index: 2;
-   }
-   
-   .tac-calendar-day-active::after {
+   .tactical-command::before {
        content: "";
        position: absolute;
-       top: 6px;
-       right: 6px;
-       width: 24px;
-       height: 24px;
-       background-color: var(--tac-ui-primary);
-       border-radius: 50%;
-       opacity: 0.7;
-       z-index: 1;
-   }
-   
-   /* =============== TACTICAL INTERFACE COMPONENTS =============== */
-   .tac-btn {
-       display: inline-flex;
-       align-items: center;
-       justify-content: center;
-       background-color: var(--tac-dark);
-       border: 1px solid var(--tac-ui-primary);
-       color: var(--tac-text-secondary);
-       padding: 1rem 2rem;
-       font-family: 'Orbitron', sans-serif;
-       font-weight: 550;
-       text-transform: uppercase;
-       letter-spacing: 0.1em;
-       cursor: pointer;
-       transition: all var(--tac-transition-med);
-       border-radius: var(--tac-radius-md);
-       text-shadow: 1px 1px 2px #000;
-       box-shadow: var(--tac-shadow-light);
-   }
-   
-   .tac-btn:hover {
-       background-color: var(--tac-ui-primary);
-       color: var(--tac-dark);
-       text-shadow: none;
-       box-shadow: var(--tac-shadow-glow);
-   }
-   
-   .tac-btn-sm {
-       padding: 0.8rem 1.6rem;
-       font-size: 0.9rem;
-   }
-   
-   .tac-btn-lg {
-       padding: 1.2rem 2.4rem;
-       font-size: 1.1rem;
-   }
-   
-   .tac-btn-primary {
-       background-color: var(--tac-ui-primary);
-       color: var(--tac-dark);
-       text-shadow: none;
-   }
-   
-   .tac-btn-primary:hover {
-       background-color: var(--tac-text-warning);
-   }
-   
-   .tac-btn-secondary {
-       background-color: var(--tac-ui-tertiary);
-       border-color: var(--tac-ui-secondary);
-   }
-   
-   .tac-btn-warning {
-       background-color: var(--tac-status-critical);
-       border-color: var(--tac-status-critical);
-       color: var(--tac-text-primary);
-   }
-   
-   /* =============== COMBAT EVENT SYSTEM =============== */
-   .tac-event-marker {
-       display: inline-block;
-       width: 10px;
-       height: 10px;
-       border-radius: 50%;
-       background-color: var(--tac-ui-primary);
-       margin: 0 3px;
-       box-shadow: var(--tac-shadow-glow);
-       transition: all var(--tac-transition-fast);
-       position: relative;
-   }
-   
-   .tac-event-marker::after {
-       content: "";
-       position: absolute;
-       top: -3px;
-       left: -3px;
-       right: -3px;
-       bottom: -3px;
-       border: 1px solid var(--tac-ui-primary);
-       border-radius: 50%;
-       opacity: 0;
-       transition: all var(--tac-transition-fast);
-   }
-   
-   .tac-event-marker:hover {
-       transform: scale(1.8);
-   }
-   
-   .tac-event-marker:hover::after {
-       opacity: 0.4;
-   }
-   
-   .tac-event-marker-primary {
-       background-color: var(--tac-ui-primary);
-   }
-   
-   .tac-event-marker-secondary {
-       background-color: var(--tac-ui-secondary);
-   }
-   
-   .tac-event-marker-warning {
-       background-color: var(--tac-status-critical);
-   }
-   
-   /* =============== ADVANCED MODAL SYSTEM =============== */
-   .tac-modal-overlay {
-       position: fixed;
        top: 0;
        left: 0;
        right: 0;
        bottom: 0;
-       background-color: rgba(18, 22, 16, 0.9);
-       z-index: 1000;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       backdrop-filter: blur(4px);
+       background: 
+           linear-gradient(rgba(77, 171, 247, 0.03) 1px, transparent 1px),
+           linear-gradient(90deg, rgba(77, 171, 247, 0.02) 1px, transparent 1px);
+       background-size: 100% 4px, 4px 100%;
+       animation: tc-scanline 12s linear infinite;
+       pointer-events: none;
+       z-index: 0;
    }
    
-   .tac-modal {
-       background-color: var(--tac-dark);
-       border: 2px solid var(--tac-ui-primary);
-       color: var(--tac-text-primary);
-       box-shadow: var(--tac-shadow-heavy);
-       border-radius: var(--tac-radius-md);
-       max-width: 800px;
-       width: 90%;
-       max-height: 90vh;
-       overflow-y: auto;
+   .tactical-command .container {
+       background-color: rgba(12, 15, 18, 0.97);
+       padding: 1.5rem;
+       border: var(--tc-border);
+       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
        position: relative;
-       padding: 2.5rem;
-   }
-   
-   .tac-modal-header {
-       margin-bottom: 2rem;
-       padding-bottom: 1.5rem;
-       border-bottom: 1px solid var(--tac-ui-tertiary);
-   }
-   
-   .tac-modal-footer {
-       margin-top: 2rem;
-       padding-top: 1.5rem;
-       border-top: 1px solid var(--tac-ui-tertiary);
-       display: flex;
-       justify-content: flex-end;
-       gap: 1rem;
-   }
-   
-   .tac-modal-close {
-       position: absolute;
-       top: 1.5rem;
-       right: 1.5rem;
-       background: none;
-       border: none;
-       color: var(--tac-text-secondary);
-       cursor: pointer;
-       font-size: 1.5rem;
-       line-height: 1;
-       padding: 0.5rem;
-       transition: all var(--tac-transition-fast);
-   }
-   
-   .tac-modal-close:hover {
-       color: var(--tac-ui-primary);
-       transform: rotate(90deg);
-   }
-   
-   /* =============== TACTICAL ANIMATION SYSTEM =============== */
-   @keyframes tac-pulse {
-       0%, 100% { 
-           opacity: 0.9;
-           box-shadow: 0 0 12px rgba(197, 179, 88, 0.5);
-       }
-       50% { 
-           opacity: 1;
-           box-shadow: 0 0 24px rgba(197, 179, 88, 0.9);
-       }
-   }
-   
-   @keyframes tac-scan {
-       0% {
-           background-position: 0% 0%;
-       }
-       100% {
-           background-position: 100% 100%;
-       }
-   }
-   
-   @keyframes tac-alert {
-       0%, 100% {
-           transform: scale(1);
-       }
-       50% {
-           transform: scale(1.05);
-       }
-   }
-   
-   @keyframes tac-fade-in {
-       from {
-           opacity: 0;
-           transform: translateY(20px);
-       }
-       to {
-           opacity: 1;
-           transform: translateY(0);
-       }
-   }
-   
-   /* =============== INTERFACE ENHANCEMENTS =============== */
-   .tac-highlight {
-       position: relative;
+       overflow: hidden;
+       max-width: 1600px;
+       margin: 0 auto;
+       border-radius: var(--tc-radius);
        z-index: 1;
    }
    
-   .tac-highlight::after {
-       content: "";
-       position: absolute;
-       top: -3px;
-       left: -3px;
-       right: -3px;
-       bottom: -3px;
-       border: 1px solid var(--tac-ui-primary);
-       border-radius: var(--tac-radius-md);
-       pointer-events: none;
-       animation: tac-pulse 2.5s infinite;
-       z-index: -1;
-   }
-   
-   .tac-scanline {
-       position: relative;
-       overflow: hidden;
-   }
-   
-   .tac-scanline::before {
+   .tactical-command .container::after {
        content: "";
        position: absolute;
        top: 0;
        left: 0;
        right: 0;
        height: 1px;
-       background: linear-gradient(90deg, 
-           transparent, 
-           rgba(197, 179, 88, 0.8), 
-           transparent);
-       animation: tac-scan 5s linear infinite;
-       z-index: 2;
+       background: linear-gradient(90deg, transparent, var(--tc-accent1), transparent);
    }
    
-   .tac-alert {
-       animation: tac-alert 1.5s infinite;
-   }
-   
-   .tac-fade-in {
-       animation: tac-fade-in 0.6s ease-out forwards;
-   }
-   
-   /* =============== TACTICAL UTILITY CLASSES =============== */
-   .tac-text-center {
+   /* ==================== HEADER & TITLE ==================== */
+   .tactical-command #calendar-title {
+       font-family: 'Orbitron', sans-serif;
+       color: var(--tc-accent1);
        text-align: center;
+       font-size: 2rem;
+       margin-bottom: 1rem;
+       text-transform: uppercase;
+       letter-spacing: 0.15em;
+       text-shadow: 0 0 8px var(--tc-shadow);
+       font-weight: 700;
    }
    
-   .tac-text-right {
-       text-align: right;
+   /* ==================== DATE & WEATHER DISPLAY ==================== */
+   .tactical-command #date-weather-container {
+       text-align: center;
+       margin: 1.5rem 0;
+       padding: 1rem;
+       background-color: rgba(29, 43, 58, 0.5);
+       border: var(--tc-border);
+       border-radius: var(--tc-radius);
+       position: relative;
    }
    
-   .tac-text-left {
-       text-align: left;
+   .tactical-command #date-weather-container::before {
+       content: "";
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       height: 1px;
+       background: linear-gradient(90deg, transparent, var(--tc-accent1), transparent);
    }
    
-   .tac-mt-1 { margin-top: 0.5rem; }
-   .tac-mt-2 { margin-top: 1rem; }
-   .tac-mt-3 { margin-top: 1.5rem; }
-   .tac-mt-4 { margin-top: 2rem; }
-   .tac-mt-5 { margin-top: 3rem; }
-   
-   .tac-mb-1 { margin-bottom: 0.5rem; }
-   .tac-mb-2 { margin-bottom: 1rem; }
-   .tac-mb-3 { margin-bottom: 1.5rem; }
-   .tac-mb-4 { margin-bottom: 2rem; }
-   .tac-mb-5 { margin-bottom: 3rem; }
-   
-   .tac-pt-1 { padding-top: 0.5rem; }
-   .tac-pt-2 { padding-top: 1rem; }
-   .tac-pt-3 { padding-top: 1.5rem; }
-   .tac-pt-4 { padding-top: 2rem; }
-   .tac-pt-5 { padding-top: 3rem; }
-   
-   .tac-pb-1 { padding-bottom: 0.5rem; }
-   .tac-pb-2 { padding-bottom: 1rem; }
-   .tac-pb-3 { padding-bottom: 1.5rem; }
-   .tac-pb-4 { padding-bottom: 2rem; }
-   .tac-pb-5 { padding-bottom: 3rem; }
-   
-   /* =============== COMBAT-RESPONSIVE SYSTEM =============== */
-   @media (max-width: 1600px) {
-       .tac-container {
-           padding: 2rem;
-           margin: 1.8rem auto;
-       }
-       
-       .tac-heading-xl {
-           font-size: 2.5rem;
-       }
+   .tactical-command #current-date {
+       font-family: 'Orbitron', sans-serif;
+       color: var(--tc-accent1);
+       font-size: 1.4rem;
+       font-weight: 500;
+       margin-bottom: 0.5rem;
    }
    
-   @media (max-width: 1200px) {
-       .tac-container {
-           padding: 1.8rem;
-           margin: 1.5rem auto;
-       }
-       
-       .tac-calendar-day {
-           padding: 1.2rem;
-           height: 110px;
-       }
+   .tactical-command #today-weather {
+       font-family: 'Orbitron', sans-serif;
+       color: var(--tc-accent3);
+       font-size: 1.1rem;
+       letter-spacing: 0.1em;
+       font-weight: 400;
    }
    
+   /* ==================== ANALOG CLOCK ==================== */
+   .tactical-command #analog-watch {
+       display: flex;
+       justify-content: center;
+       margin: 1.5rem 0;
+   }
+   
+   .tactical-command .clock-face {
+       width: 180px;
+       height: 180px;
+       border: var(--tc-border);
+       border-radius: 50%;
+       position: relative;
+       background-color: var(--tc-bg);
+       box-shadow: 
+           0 0 15px rgba(0, 0, 0, 0.7),
+           inset 0 0 10px rgba(77, 171, 247, 0.3);
+   }
+   
+   .tactical-command .hand {
+       position: absolute;
+       top: 50%;
+       transform-origin: 100%;
+       transform: rotate(90deg);
+       transition: all 0.05s;
+       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+   }
+   
+   .tactical-command .hour-hand {
+       width: 35%;
+       left: 15%;
+       height: 4px;
+       background: var(--tc-accent1);
+       margin-top: -2px;
+   }
+   
+   .tactical-command .minute-hand {
+       width: 45%;
+       left: 5%;
+       height: 3px;
+       background: var(--tc-text);
+       margin-top: -1.5px;
+   }
+   
+   .tactical-command .second-hand {
+       width: 45%;
+       left: 5%;
+       height: 1px;
+       background: var(--tc-accent4);
+       margin-top: -0.5px;
+   }
+   
+   /* ==================== CALENDAR TABLE ==================== */
+   .tactical-command table {
+       width: 100%;
+       border-collapse: collapse;
+       margin: 1.5rem auto;
+       background-color: rgba(20, 32, 46, 0.9);
+       border: var(--tc-border);
+       border-radius: var(--tc-radius);
+       table-layout: fixed;
+   }
+   
+   /* DAY OF WEEK HEADERS */
+   .tactical-command th {
+       background-color: rgba(29, 43, 58, 0.95);
+       color: var(--tc-accent1) !important;
+       font-family: 'Orbitron', sans-serif;
+       font-weight: 500;
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+       padding: 0.8rem 0.5rem;
+       border: var(--tc-border);
+       position: relative;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       min-width: 0;
+       font-size: 0.9rem;
+   }
+   
+   .tactical-command th span.full-day-name {
+       display: inline;
+   }
+   
+   .tactical-command th abbr {
+       display: none;
+       text-decoration: none;
+       border-bottom: none;
+   }
+   
+   .tactical-command td {
+       background-color: rgba(29, 43, 58, 0.3);
+       color: var(--tc-text);
+       padding: 0.8rem;
+       border: var(--tc-border);
+       height: 90px;
+       vertical-align: top;
+       transition: all var(--tc-transition);
+       position: relative;
+       font-size: 0.85rem;
+   }
+   
+   .tactical-command td:hover {
+       background-color: var(--tc-hover);
+       box-shadow: inset 0 0 10px rgba(77, 171, 247, 0.3);
+   }
+   
+   /* Current date highlight */
+   .tactical-command td.current-day {
+       background-color: rgba(77, 171, 247, 0.2);
+       border: 1px solid var(--tc-accent1);
+       color: var(--tc-text) !important;
+       font-weight: 500;
+       animation: tc-status-pulse 3s infinite;
+   }
+   
+   .tactical-command td.current-day::before {
+       content: "CURRENT";
+       position: absolute;
+       top: 2px;
+       right: 2px;
+       font-size: 0.6rem;
+       color: var(--tc-accent1);
+       letter-spacing: 0.1em;
+       font-weight: 700;
+   }
+   
+   .tactical-command td.current-day>.date-number {
+       position: relative;
+       z-index: 2;
+       color: var(--tc-accent1) !important;
+       font-weight: bold;
+   }
+   
+   /* ==================== EVENT MARKERS ==================== */
+   .tactical-command .event-marker {
+       display: inline-block;
+       width: 6px;
+       height: 6px;
+       border-radius: 50%;
+       background-color: var(--tc-accent4);
+       margin: 0 1px;
+       transition: all var(--tc-transition);
+   }
+   
+   .tactical-command .event-marker:hover {
+       transform: scale(1.8);
+       background-color: var(--tc-accent1);
+   }
+   
+   /* ==================== MODAL STYLES ==================== */
+   .tactical-command .modal-content {
+       position: relative;
+       background-color: rgba(12, 15, 18, 0.98);
+       border: var(--tc-border);
+       padding: 1.5rem;
+       color: var(--tc-text);
+       box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+       border-radius: var(--tc-radius);
+   }
+   
+   .tactical-command .modal-content::before {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 1px;
+       background: var(--tc-accent1);
+   }
+   
+   .tactical-command .modal-content h2 {
+       color: var(--tc-accent1);
+       font-family: 'Orbitron', sans-serif;
+       font-size: 1.5rem;
+       margin-bottom: 1rem;
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+       font-weight: 500;
+   }
+   
+   .tactical-command .modal-content button {
+       background-color: transparent;
+       color: var(--tc-accent1);
+       border: var(--tc-border);
+       padding: 0.7rem 1.4rem;
+       font-size: 0.9rem;
+       font-weight: 500;
+       cursor: pointer;
+       transition: all var(--tc-transition);
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+       border-radius: var(--tc-radius);
+       font-family: 'Orbitron', sans-serif;
+   }
+   
+   .tactical-command .modal-content button:hover {
+       background-color: var(--tc-accent1);
+       color: var(--tc-bg);
+   }
+   
+   /* Close Button */
+   .tactical-command .modal .close-button {
+       position: absolute;
+       top: 10px;
+       right: 10px;
+       background-color: transparent;
+       color: var(--tc-accent1);
+       border: var(--tc-border);
+       width: 26px;
+       height: 26px;
+       cursor: pointer;
+       transition: all var(--tc-transition);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border-radius: 50%;
+       font-size: 0.8rem;
+   }
+   
+   .tactical-command .modal .close-button:hover {
+       background-color: var(--tc-accent1);
+       color: var(--tc-bg);
+   }
+   
+   /* ==================== BUTTONS & CONTROLS ==================== */
+   .tactical-command .button,
+   .tactical-command .transparent-button {
+       border: var(--tc-border);
+       color: var(--tc-accent1);
+       background-color: transparent;
+       padding: 0.6rem 1.2rem;
+       font-family: 'Orbitron', sans-serif;
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+       cursor: pointer;
+       transition: all var(--tc-transition);
+       position: relative;
+       overflow: hidden;
+       margin: 0.4rem;
+       border-radius: var(--tc-radius);
+       font-size: 0.85rem;
+       font-weight: 500;
+   }
+   
+   .tactical-command .button:hover,
+   .tactical-command .transparent-button:hover {
+       background-color: var(--tc-accent1);
+       color: var(--tc-bg);
+   }
+   
+   .tactical-command .controls {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-wrap: wrap;
+       margin: 1rem 0;
+   }
+   
+   /* ==================== THEME SWITCHER ==================== */
+   .tactical-command #theme-switcher-container {
+       position: relative;
+       margin: 0 0.8rem;
+       min-width: 180px;
+       z-index: 1000;
+   }
+   
+   .tactical-command #theme-switcher {
+       background-color: rgba(29, 43, 58, 0.9);
+       color: var(--tc-accent1) !important;
+       border: var(--tc-border);
+       padding: 0.6rem 2rem 0.6rem 0.8rem;
+       font-family: 'Orbitron', sans-serif;
+       font-size: 0.85rem;
+       font-weight: 500;
+       width: 100%;
+       border-radius: var(--tc-radius);
+       appearance: none;
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234dabf7'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+       background-repeat: no-repeat;
+       background-position: right 0.6rem center;
+       background-size: 0.8rem;
+       cursor: pointer;
+       transition: all var(--tc-transition);
+   }
+   
+   .tactical-command #theme-switcher option {
+       background-color: rgba(29, 43, 58, 0.98) !important;
+       color: var(--tc-accent1) !important;
+       font-size: 0.85rem;
+       font-weight: 400;
+       padding: 8px 10px !important;
+   }
+   
+   .tactical-command #theme-switcher:focus {
+       outline: none;
+       box-shadow: 0 0 0 2px var(--tc-accent1);
+   }
+   
+   /* ==================== BACK TO TOP BUTTON ==================== */
+   .tactical-command #backToTopBtn {
+       position: fixed;
+       right: 20px;
+       bottom: 20px;
+       z-index: 9999;
+       border: var(--tc-border);
+       padding: 0.7rem 1.3rem;
+       font-size: 0.85rem;
+       font-family: 'Orbitron', sans-serif;
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+       color: var(--tc-accent1);
+       background-color: rgba(29, 43, 58, 0.7);
+       cursor: pointer;
+       transition: all var(--tc-transition);
+       opacity: 0.9;
+       display: none;
+       border-radius: var(--tc-radius);
+   }
+   
+   .tactical-command #backToTopBtn:hover {
+       background-color: var(--tc-accent1);
+       color: var(--tc-bg);
+   }
+   
+   /* ==================== FOOTER ==================== */
+   .tactical-command footer {
+       text-align: center;
+       margin-top: 1.5rem;
+       padding-top: 1rem;
+       border-top: var(--tc-border);
+       color: var(--tc-text);
+       font-size: 0.75rem;
+       letter-spacing: 0.05em;
+   }
+   
+   /* ==================== MEDIA QUERIES ==================== */
    @media (max-width: 992px) {
-       .tac-calendar {
-           width: 100%;
+       .tactical-command .container {
+           padding: 1.2rem;
        }
-       
-       .tac-heading-xl {
-           font-size: 2.2rem;
+   
+       .tactical-command #calendar-title {
+           font-size: 1.7rem;
        }
-       
-       .tac-heading-lg {
-           font-size: 1.8rem;
+   
+       .tactical-command #current-date {
+           font-size: 1.2rem;
+       }
+   
+       .tactical-command #today-weather {
+           font-size: 1rem;
        }
    }
    
    @media (max-width: 768px) {
-       .tac-container {
-           padding: 1.5rem;
+       .tactical-command .clock-face {
+           width: 150px;
+           height: 150px;
        }
-       
-       .tac-calendar-header {
-           font-size: 0.85rem;
-           padding: 1rem 0.6rem;
+   
+       .tactical-command th {
+           font-size: 0.8rem;
+           padding: 0.6rem 0.2rem;
        }
-       
-       .tac-calendar-day {
-           height: 90px;
-           padding: 0.9rem;
-           font-size: 0.9rem;
+   
+       .tactical-command th span.full-day-name {
+           display: none;
        }
-       
-       .tac-btn {
-           padding: 0.8rem 1.6rem;
-           font-size: 0.9rem;
+   
+       .tactical-command th abbr {
+           display: inline;
+       }
+   
+       .tactical-command td {
+           padding: 0.5rem;
+           height: 70px;
+           font-size: 0.75rem;
+       }
+   
+       .tactical-command #backToTopBtn {
+           right: 15px;
+           bottom: 15px;
+           padding: 0.6rem 1.1rem;
+           font-size: 0.8rem;
+       }
+   
+       .tactical-command #theme-switcher {
+           padding: 0.5rem 1.8rem 0.5rem 0.7rem;
+           font-size: 0.8rem;
+           min-width: 160px;
        }
    }
    
    @media (max-width: 576px) {
-       .tac-container {
-           padding: 1.2rem;
-           margin: 1rem auto;
+       .tactical-command .container {
+           padding: 0.8rem;
        }
-       
-       .tac-calendar-day {
-           height: 80px;
-           padding: 0.7rem;
-           font-size: 0.8rem;
+   
+       .tactical-command #calendar-title {
+           font-size: 1.4rem;
        }
-       
-       .tac-heading-xl {
-           font-size: 1.8rem;
+   
+       .tactical-command #current-date {
+           font-size: 1rem;
        }
-       
-       .tac-heading-lg {
-           font-size: 1.5rem;
+   
+       .tactical-command #today-weather {
+           font-size: 0.85rem;
        }
-       
-       .tac-heading-md {
-           font-size: 1.3rem;
+   
+       .tactical-command .clock-face {
+           width: 120px;
+           height: 120px;
+       }
+   
+       .tactical-command th {
+           font-size: 0.7rem;
+           padding: 0.4rem 0.1rem;
+       }
+   
+       .tactical-command td {
+           padding: 0.3rem;
+           height: 60px;
+           font-size: 0.7rem;
+       }
+   
+       .tactical-command #theme-switcher {
+           min-width: 140px;
+           font-size: 0.75rem;
        }
    }
    
    @media (max-width: 400px) {
-       .tac-calendar-header {
-           font-size: 0.75rem;
-           padding: 0.8rem 0.4rem;
+       .tactical-command th {
+           font-size: 0.65rem;
+           padding: 0.3rem 0.1rem;
        }
-       
-       .tac-calendar-day {
-           height: 70px;
-           padding: 0.5rem;
-       }
-       
-       .tac-btn {
-           padding: 0.7rem 1.2rem;
-           font-size: 0.8rem;
-       }
-   }
    
-   /* =============== NIGHT VISION OVERRIDE =============== */
-   .tac-night-vision {
-       --tac-ultra-dark: #031003;
-       --tac-dark: #0a1a0a;
-       --tac-medium: #1a2e1a;
-       --tac-light: #2a4a2a;
-       --tac-ultra-light: #3a6a3a;
-       
-       --tac-text-primary: #a0ffa0;
-       --tac-text-secondary: #80e080;
-       --tac-text-accent: #ffff80;
-       --tac-text-warning: #ff8080;
-       
-       --tac-ui-primary: #a0ffa0;
-       --tac-ui-secondary: #80e080;
-       --tac-ui-tertiary: #60c060;
-       --tac-ui-accent: #ffff80;
-       
-       filter: brightness(1.1) contrast(1.2);
-   }
+       .tactical-command td {
+           height: 50px;
+       }
    
-   /* =============== DESERT CAMOUFLAGE OVERRIDE =============== */
-   .tac-desert-ops {
-       --tac-ultra-dark: #2a241a;
-       --tac-dark: #3a3426;
-       --tac-medium: #5a4a3a;
-       --tac-light: #7a6a4a;
-       --tac-ultra-light: #9a8a5a;
-       
-       --tac-text-primary: #f0e8d0;
-       --tac-text-secondary: #e0d8b8;
-       --tac-text-accent: #d4c050;
-       --tac-text-warning: #d45a5a;
-       
-       --tac-ui-primary: #c5b358;
-       --tac-ui-secondary: #a59a58;
-       --tac-ui-tertiary: #857a48;
-       --tac-ui-accent: #d4c050;
-       
-       background-image: 
-           linear-gradient(145deg, 
-               var(--tac-ultra-dark), 
-               var(--tac-dark)),
-           url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" opacity="0.08"><rect fill="%233a3426" width="120" height="120"/><path fill="%235a4a3a" d="M25 25h30v30H25zM65 65h30v30H65z"/><path fill="%237a6a4a" d="M65 25h30v30H65zM25 65h30v30H25z"/></svg>');
+       .tactical-command #theme-switcher {
+           min-width: 120px;
+           font-size: 0.7rem;
+       }
    }
