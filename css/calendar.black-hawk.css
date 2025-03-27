@@ -1,100 +1,117 @@
 /* ==========================================================================
-   Black Hawk Theme - Sleek Military-Inspired Design
-   Version: 2.1
+   Black Hawk Theme - Military Terminal Style
+   Version: 2.0
    Updated: 2023-11-15
    Enhancements:
-   - Improved tactical color scheme
-   - Enhanced contrast for readability
-   - Military-inspired typography
-   - Tactical glow effects
+   - Tactical visibility with high-contrast elements
+   - Authentic military HUD aesthetic
+   - Optimal readability with tactical color scheme
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
     /* Core Color Palette */
-    --bh-bg: #1a1a1a;
-    --bh-text: #e0e0e0;
-    --bh-primary: #ff5722;
-    --bh-secondary: #757575;
+    --hk-bg: #0a0a0a;
+    --hk-text: #a0a0a0;
+    --hk-primary: #1a1a1a;
+    --hk-secondary: #0f0f0f;
 
     /* Gradient Colors */
-    --bh-gradient-start: #121212;
-    --bh-gradient-end: #1a1a1a;
+    --hk-gradient-start: #111111;
+    --hk-gradient-end: #050505;
 
     /* Accent Colors */
-    --bh-accent1: #424242;
-    --bh-accent2: #bdbdbd;
-    --bh-accent3: #212121;
-    --bh-accent4: #616161;
-    --bh-accent5: #9e9e9e;
+    --hk-accent1: #8b8b8b;
+    --hk-accent2: #5a5a5a;
+    --hk-accent3: #707070;
+    --hk-accent4: #9e9e9e;
+    --hk-accent5: #6d6d6d;
 
     /* Theme Variables */
-    --bh-shadow: rgba(0, 0, 0, 0.3);
-    --bh-radius: 20px;
-    --bh-transition: 0.3s ease-in-out;
-    --bh-hover: #ff7043;
-    --bh-current-day: #ff5722;
+    --hk-shadow: rgba(139, 139, 139, 0.5);
+    --hk-radius: 8px;
+    --hk-transition: 0.3s ease;
+    --hk-hover: #333333;
+    --hk-current-day: #5a5a5a;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes bh-glow {
+@keyframes hk-glitch {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--bh-primary);
+        text-shadow: 0 0 5px var(--hk-accent1),
+            0 0 10px var(--hk-accent4),
+            0 0 15px var(--hk-accent5);
     }
 
     50% {
-        box-shadow: 0 0 25px var(--bh-primary);
+        text-shadow: 0 0 8px var(--hk-accent3),
+            0 0 13px var(--hk-accent5),
+            0 0 18px var(--hk-accent1);
     }
 }
 
-@keyframes bh-pulse {
+@keyframes hk-scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes hk-pulse {
 
     0%,
     100% {
-        transform: scale(1);
-        opacity: 1;
+        box-shadow: 0 0 5px var(--hk-accent1);
     }
 
     50% {
-        transform: scale(1.03);
-        opacity: 0.9;
-    }
-}
-
-@keyframes bh-target-acquire {
-    from {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
+        box-shadow: 0 0 15px var(--hk-accent3);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .black-hawk {
-    font-family: 'Roboto Mono', monospace;
-    color: var(--bh-text);
-    line-height: 1.6;
-    background: linear-gradient(135deg, var(--bh-gradient-start), var(--bh-gradient-end));
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-text);
+    line-height: 1.5;
+    background: linear-gradient(135deg, var(--hk-gradient-start), var(--hk-gradient-end));
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.black-hawk::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(139, 139, 139, 0.03) 1px,
+            transparent 1px);
+    background-size: 100% 3px;
+    animation: hk-scanline 10s linear infinite;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .black-hawk .container {
-    background-color: rgba(26, 26, 26, 0.95);
+    background-color: rgba(10, 10, 10, 0.95);
     padding: 2rem;
-    border: 2px solid var(--bh-accent1);
-    box-shadow: 0 0 30px var(--bh-shadow);
+    border: 1px solid var(--hk-accent1);
+    box-shadow: 0 0 20px var(--hk-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--bh-radius);
+    border-radius: var(--hk-radius);
+    z-index: 1;
 }
 
 .black-hawk .container::before {
@@ -103,21 +120,22 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--bh-primary), transparent);
-    animation: bh-pulse 3s infinite;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+    animation: hk-pulse 4s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .black-hawk #calendar-title {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--bh-primary);
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-accent1);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    text-shadow: 0 0 15px var(--bh-shadow);
+    text-shadow: 0 0 5px var(--hk-shadow);
+    animation: hk-glitch 6s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -125,9 +143,9 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: rgba(66, 66, 66, 0.4);
-    border: 1px solid var(--bh-primary);
-    border-radius: var(--bh-radius);
+    background-color: rgba(26, 26, 26, 0.4);
+    border: 1px solid var(--hk-accent1);
+    border-radius: var(--hk-radius);
     position: relative;
 }
 
@@ -137,26 +155,26 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--bh-primary), transparent);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
 }
 
 .black-hawk #current-date {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--bh-primary);
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-accent1);
+    font-size: 1.6rem;
+    font-weight: 400;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--bh-shadow);
+    text-shadow: 0 0 3px var(--hk-shadow);
 }
 
 .black-hawk #today-weather {
-    font-family: 'Roboto Mono', monospace;
-    color: var(--bh-accent2);
-    font-size: 1.4rem;
-    font-style: italic;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-accent3);
+    font-size: 1.2rem;
+    font-style: normal;
     letter-spacing: 0.1em;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -167,13 +185,14 @@
 }
 
 .black-hawk .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 12px solid var(--bh-primary);
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--hk-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--bh-bg);
-    box-shadow: 0 0 20px var(--bh-shadow);
+    background-color: var(--hk-bg);
+    box-shadow: 0 0 15px var(--hk-shadow),
+        inset 0 0 8px var(--hk-shadow);
 }
 
 .black-hawk .hand {
@@ -188,25 +207,25 @@
 .black-hawk .hour-hand {
     width: 40%;
     left: 10%;
-    height: 8px;
-    background: var(--bh-primary);
-    margin-top: -4px;
+    height: 3px;
+    background: var(--hk-accent1);
+    margin-top: -1.5px;
 }
 
 .black-hawk .minute-hand {
     width: 48%;
     left: 2%;
-    height: 6px;
-    background: var(--bh-primary);
-    margin-top: -3px;
+    height: 2px;
+    background: var(--hk-accent3);
+    margin-top: -1px;
 }
 
 .black-hawk .second-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--bh-accent5);
-    margin-top: -1.5px;
+    height: 1px;
+    background: var(--hk-accent4);
+    margin-top: -0.5px;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
@@ -214,29 +233,29 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(33, 33, 33, 0.9);
-    border: 2px solid var(--bh-primary);
-    border-radius: var(--bh-radius);
+    background-color: rgba(15, 15, 15, 0.9);
+    border: 1px solid var(--hk-accent1);
+    border-radius: var(--hk-radius);
     table-layout: fixed;
 }
 
-/* DAY OF WEEK HEADERS - PERFECT VISIBILITY */
+/* DAY OF WEEK HEADERS */
 .black-hawk th {
-    background-color: rgba(66, 66, 66, 0.95);
-    color: var(--bh-text) !important;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
+    background-color: rgba(26, 26, 26, 0.95);
+    color: var(--hk-accent1) !important;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--bh-primary);
+    border: 1px solid var(--hk-accent1);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 3px var(--hk-shadow);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .black-hawk th span.full-day-name {
@@ -250,28 +269,28 @@
 }
 
 .black-hawk td {
-    background-color: rgba(66, 66, 66, 0.2);
-    color: var(--bh-text);
-    padding: 1.2rem;
-    border: 1px solid var(--bh-accent1);
-    height: 100px;
+    background-color: rgba(26, 26, 26, 0.2);
+    color: var(--hk-text);
+    padding: 1rem;
+    border: 1px solid var(--hk-accent1);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--bh-transition);
+    transition: all var(--hk-transition);
     position: relative;
 }
 
 .black-hawk td:hover {
-    background-color: rgba(255, 87, 34, 0.3);
-    box-shadow: inset 0 0 15px var(--bh-shadow);
+    background-color: rgba(51, 51, 51, 0.3);
+    box-shadow: inset 0 0 10px var(--hk-shadow);
 }
 
-/* Current date highlight - OPTIMIZED VISIBILITY */
+/* Current date highlight */
 .black-hawk td.current-day {
-    background-color: rgba(255, 87, 34, 0.8);
-    border: 2px solid var(--bh-text);
-    color: var(--bh-text) !important;
-    font-weight: 700;
-    animation: bh-glow 2s infinite;
+    background-color: rgba(90, 90, 90, 0.6);
+    border: 1px solid var(--hk-accent1);
+    color: #000 !important;
+    font-weight: 400;
+    animation: hk-pulse 3s infinite;
 }
 
 .black-hawk td.current-day::before {
@@ -279,9 +298,9 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--bh-text);
+    width: 20px;
+    height: 20px;
+    background-color: var(--hk-accent1);
     border-radius: 50%;
     z-index: 1;
     opacity: 0.7;
@@ -290,39 +309,39 @@
 .black-hawk td.current-day>.date-number {
     position: relative;
     z-index: 2;
-    color: var(--bh-text) !important;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    color: #000 !important;
+    font-weight: normal;
+    text-shadow: 0 0 3px rgba(139, 139, 139, 0.5);
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .black-hawk .event-marker {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: var(--bh-accent5);
+    background-color: var(--hk-accent4);
     margin: 0 2px;
-    box-shadow: 0 0 5px var(--bh-shadow);
-    transition: all var(--bh-transition);
+    box-shadow: 0 0 3px var(--hk-shadow);
+    transition: all var(--hk-transition);
 }
 
 .black-hawk .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--bh-primary);
-    box-shadow: 0 0 15px var(--bh-accent5);
+    transform: scale(1.8);
+    background-color: var(--hk-accent1);
+    box-shadow: 0 0 10px var(--hk-accent4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .black-hawk .modal-content {
     position: relative;
-    background-color: rgba(33, 33, 33, 0.98);
-    border: 2px solid var(--bh-primary);
-    padding: 30px;
-    color: var(--bh-text);
-    box-shadow: 0 0 40px var(--bh-shadow);
-    border-radius: var(--bh-radius);
-    animation: bh-target-acquire 0.4s ease;
+    background-color: rgba(10, 10, 10, 0.98);
+    border: 1px solid var(--hk-accent1);
+    padding: 25px;
+    color: var(--hk-text);
+    box-shadow: 0 0 30px var(--hk-shadow);
+    border-radius: var(--hk-radius);
+    animation: hk-pulse 0.5s ease;
 }
 
 .black-hawk .modal-content::before {
@@ -331,52 +350,52 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--bh-primary);
-    animation: bh-pulse 2s infinite;
+    height: 1px;
+    background: var(--hk-accent1);
+    animation: hk-pulse 3s infinite;
 }
 
 .black-hawk .modal-content h2 {
-    color: var(--bh-primary);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2em;
-    margin-bottom: 20px;
+    color: var(--hk-accent1);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.8em;
+    margin-bottom: 15px;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .black-hawk .modal-content button {
     background-color: transparent;
-    color: var(--bh-primary);
-    border: 2px solid var(--bh-primary);
-    padding: 12px 24px;
-    font-size: 1em;
-    font-weight: 600;
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
     cursor: pointer;
-    transition: all var(--bh-transition);
+    transition: all var(--hk-transition);
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: var(--bh-radius);
+    border-radius: var(--hk-radius);
 }
 
 .black-hawk .modal-content button:hover {
-    background-color: var(--bh-primary);
-    color: var(--bh-text);
-    box-shadow: 0 0 15px var(--bh-shadow);
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    box-shadow: 0 0 10px var(--hk-shadow);
 }
 
 /* Close Button */
 .black-hawk .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
-    color: var(--bh-primary);
-    border: 2px solid var(--bh-primary);
-    width: 32px;
-    height: 32px;
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    width: 28px;
+    height: 28px;
     cursor: pointer;
-    transition: all var(--bh-transition);
+    transition: all var(--hk-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -384,27 +403,27 @@
 }
 
 .black-hawk .modal .close-button:hover {
-    background-color: var(--bh-primary);
-    color: var(--bh-text);
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
     transform: rotate(90deg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .black-hawk .button,
 .black-hawk .transparent-button {
-    border: 2px solid var(--bh-primary);
-    color: var(--bh-primary);
+    border: 1px solid var(--hk-accent1);
+    color: var(--hk-accent1);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Orbitron', sans-serif;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Share Tech Mono', monospace;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--bh-transition);
+    transition: all var(--hk-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--bh-radius);
+    border-radius: var(--hk-radius);
 }
 
 .black-hawk .button::before,
@@ -415,15 +434,15 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 87, 34, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(139, 139, 139, 0.1), transparent);
     transition: 0.5s;
 }
 
 .black-hawk .button:hover,
 .black-hawk .transparent-button:hover {
-    background-color: var(--bh-primary);
-    color: var(--bh-text);
-    box-shadow: 0 0 20px var(--bh-shadow);
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    box-shadow: 0 0 15px var(--hk-shadow);
 }
 
 .black-hawk .button:hover::before,
@@ -439,81 +458,81 @@
     margin: 1.5rem 0;
 }
 
-/* ==================== THEME SWITCHER - PERFECT VISIBILITY ==================== */
+/* ==================== THEME SWITCHER ==================== */
 .black-hawk #theme-switcher-container {
     position: relative;
     margin: 0 1rem;
-    min-width: 220px;
+    min-width: 200px;
     z-index: 1000;
 }
 
 .black-hawk #theme-switcher {
-    background-color: rgba(66, 66, 66, 0.9);
-    color: var(--bh-text) !important;
-    border: 2px solid var(--bh-primary);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    font-weight: 600;
+    background-color: rgba(26, 26, 26, 0.9);
+    color: var(--hk-accent1) !important;
+    border: 1px solid var(--hk-accent1);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 400;
     width: 100%;
-    border-radius: var(--bh-radius);
+    border-radius: var(--hk-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b8b8b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.7rem center;
-    background-size: 1rem;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
     cursor: pointer;
-    transition: all var(--bh-transition);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: all var(--hk-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 3px var(--hk-shadow);
 }
 
-/* DROPDOWN OPTIONS - CRYSTAL CLEAR */
 .black-hawk #theme-switcher option {
-    background-color: rgba(66, 66, 66, 0.98) !important;
-    color: var(--bh-text) !important;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 12px 15px !important;
-    border-bottom: 1px solid var(--bh-primary) !important;
+    background-color: rgba(26, 26, 26, 0.98) !important;
+    color: var(--hk-accent1) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--hk-accent1) !important;
 }
 
 .black-hawk #theme-switcher option:hover {
-    background-color: var(--bh-primary) !important;
+    background-color: var(--hk-accent1) !important;
+    color: var(--hk-bg) !important;
 }
 
 .black-hawk #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--bh-primary), 0 0 15px var(--bh-shadow);
+    box-shadow: 0 0 0 2px var(--hk-accent1), 0 0 10px var(--hk-shadow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .black-hawk #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 2px solid var(--bh-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Orbitron', sans-serif;
+    border: 1px solid var(--hk-accent1);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Share Tech Mono', monospace;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--bh-primary);
-    background-color: rgba(66, 66, 66, 0.3);
+    color: var(--hk-accent1);
+    background-color: rgba(26, 26, 26, 0.3);
     cursor: pointer;
-    transition: all var(--bh-transition);
+    transition: all var(--hk-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--bh-radius);
+    border-radius: var(--hk-radius);
 }
 
 .black-hawk #backToTopBtn:hover {
-    background-color: var(--bh-primary);
-    color: var(--bh-text);
-    box-shadow: 0 0 20px var(--bh-shadow);
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    box-shadow: 0 0 15px var(--hk-shadow);
     opacity: 1;
 }
 
@@ -521,40 +540,40 @@
 .black-hawk footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--bh-primary);
-    color: var(--bh-text);
-    font-size: 0.9rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--hk-accent1);
+    color: var(--hk-text);
+    font-size: 0.8rem;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .black-hawk .container {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .black-hawk #calendar-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .black-hawk #current-date {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .black-hawk #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 768px) {
     .black-hawk .clock-face {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
     }
 
     .black-hawk th {
-        font-size: 0.85rem;
-        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
     }
 
     .black-hawk th span.full-day-name {
@@ -566,94 +585,94 @@
     }
 
     .black-hawk td {
-        padding: 0.6rem;
-        height: 70px;
-        font-size: 0.8rem;
-    }
-
-    .black-hawk td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
-    }
-
-    .black-hawk #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-    }
-
-    .black-hawk #theme-switcher {
-        padding: 0.7rem 2rem 0.7rem 0.8rem;
-        font-size: 0.9rem;
-        min-width: 180px;
-    }
-
-    .black-hawk #theme-switcher option {
-        font-size: 0.9rem;
-        padding: 10px !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .black-hawk .container {
-        padding: 0.8rem;
-    }
-
-    .black-hawk #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
-    }
-
-    .black-hawk #current-date {
-        font-size: 1.1rem;
-    }
-
-    .black-hawk #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .black-hawk .clock-face {
-        width: 120px;
-        height: 120px;
-    }
-
-    .black-hawk th {
+        padding: 0.5rem;
+        height: 65px;
         font-size: 0.75rem;
-        padding: 0.5rem 0.2rem;
-    }
-
-    .black-hawk td {
-        padding: 0.3rem;
-        height: 60px;
-        font-size: 0.7rem;
     }
 
     .black-hawk td.current-day::before {
         width: 16px;
         height: 16px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .black-hawk #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
     }
 
     .black-hawk #theme-switcher {
-        min-width: 160px;
-        font-size: 0.85rem;
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .black-hawk #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .black-hawk .container {
+        padding: 0.6rem;
+    }
+
+    .black-hawk #calendar-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
+    }
+
+    .black-hawk #current-date {
+        font-size: 1rem;
+    }
+
+    .black-hawk #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .black-hawk .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .black-hawk th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .black-hawk td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .black-hawk td.current-day::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .black-hawk #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .black-hawk th {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
     }
 
     .black-hawk td {
-        height: 50px;
+        height: 45px;
     }
 
     .black-hawk #theme-switcher {
-        min-width: 140px;
-        font-size: 0.8rem;
+        min-width: 130px;
+        font-size: 0.7rem;
     }
 }

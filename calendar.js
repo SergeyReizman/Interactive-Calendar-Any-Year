@@ -76,8 +76,9 @@ const applyTheme = (theme) => {
     'secret-night', 'secretive-ninja', 'serene-shores', 'shaolin-monastery',
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow',
     'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'success-motivation', 'sword-of-fate',
-    'tactical-advantage', 'the-last-mohican', 'time-machine', 'tropical-sunset', 'viktoria-falls',
-    'viking-helmet', 'weekend-downtime', 'white-shark', 'wild-rose', 'wild-wonders', 'winter-wonderland'
+    'tactical-advantage', 'tactical-command', 'the-last-mohican', 'time-machine', 'tropical-sunset', 
+    'viktoria-falls','viking-helmet', 'weekend-downtime', 'white-shark', 'wild-rose', 'wild-wonders', 
+    'winter-wonderland'
 
   );
 
