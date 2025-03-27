@@ -1,268 +1,680 @@
-/* ============================
-    Black Hacker Theme (Enhanced)
-    Purpose: Improved visibility, contrast, and added vibrant neon colors for a more immersive hacker aesthetic.
-   ============================ */
+/* ==========================================================================
+   Black Hacker Theme - Cyberpunk Terminal Style
+   Version: 2.0
+   Updated: 2023-11-15
+   Enhancements:
+   - Improved visibility with high-contrast neon elements
+   - Authentic terminal aesthetic with coding font
+   - Glowing cyberpunk effects
+   - Optimal readability while maintaining hacker vibe
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 
 :root {
-    --hacker-bg-color: #0d0d0d;
-    /* Deep black with slight lightness for less strain */
-    --hacker-text-color: #00ff99;
-    /* Bright neon green with cyan tint for readability */
-    --hacker-primary-color: #222222;
-    /* Darker gray for primary elements */
-    --hacker-secondary-color: #111111;
-    /* Near-black for secondary elements */
-    --hacker-hover-color: #555555;
-    /* Slightly brighter gray for hover effects */
-    --hacker-current-day-bg: #00cc66;
-    /* Softer green for current day, easier on the eyes */
-    --hacker-border-radius: 12px;
-    /* Slightly more rounded corners for a modern look */
-    --hacker-shadow-color: rgba(0, 255, 153, 0.7);
-    /* More intense neon glow */
-    --hacker-gradient-start: #121212;
-    /* Dark gray for subtle depth */
-    --hacker-gradient-end: #000000;
-    /* Pure black for seamless transitions */
-    --hacker-accent-color: #00ffcc;
-    /* Cyan-green neon for accents */
-    --hacker-cyan: #00e6e6;
-    /* More vibrant cyan for highlights */
-    --hacker-magenta: #ff33cc;
-    /* Brighter magenta for contrast */
-    --hacker-purple: #9933ff;
-    /* Softer purple for depth */
-    --transition-duration: 0.4s;
-    /* Slightly longer transitions for smoother effects */
-    --transition-easing: ease-in-out;
-    /* Smooth transition easing */
-    --font-family: 'Fira Code', monospace;
-    /* Stylish coding font for an authentic hacker feel */
+    /* Core Color Palette */
+    --hk-bg: #0d0d0d;
+    --hk-text: #00ff99;
+    --hk-primary: #222222;
+    --hk-secondary: #111111;
+
+    /* Gradient Colors */
+    --hk-gradient-start: #121212;
+    --hk-gradient-end: #000000;
+
+    /* Accent Colors */
+    --hk-accent1: #00ffcc;
+    --hk-accent2: #00cc66;
+    --hk-accent3: #00e6e6;
+    --hk-accent4: #ff33cc;
+    --hk-accent5: #9933ff;
+
+    /* Theme Variables */
+    --hk-shadow: rgba(0, 255, 153, 0.7);
+    --hk-radius: 12px;
+    --hk-transition: 0.4s ease-in-out;
+    --hk-hover: #555555;
+    --hk-current-day: #00cc66;
 }
 
-/* General container styling */
+/* ==================== ANIMATIONS ==================== */
+@keyframes hk-glitch {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px var(--hk-accent1),
+            0 0 20px var(--hk-accent4),
+            0 0 30px var(--hk-accent5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--hk-accent3),
+            0 0 25px var(--hk-accent5),
+            0 0 35px var(--hk-accent1);
+    }
+}
+
+@keyframes hk-scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes hk-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--hk-accent1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--hk-accent3);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.black-hacker {
+    font-family: 'Fira Code', monospace;
+    color: var(--hk-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--hk-gradient-start), var(--hk-gradient-end));
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.black-hacker::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 255, 153, 0.05) 1px,
+            transparent 1px);
+    background-size: 100% 2px;
+    animation: hk-scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
 .black-hacker .container {
-    background: linear-gradient(to bottom, var(--hacker-gradient-start), var(--hacker-gradient-end));
-    color: var(--hacker-text-color);
-    padding: 20px;
-    transition: background var(--transition-duration) var(--transition-easing);
-    font-family: var(--font-family);
+    background-color: rgba(13, 13, 13, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--hk-accent1);
+    box-shadow: 0 0 30px var(--hk-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--hk-radius);
+    z-index: 1;
 }
 
-/* Table styling */
-.black-hacker table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px auto;
-    box-shadow: 4px 4px 14px var(--hacker-shadow-color);
-    background-color: var(--hacker-bg-color);
-    border: 2px solid var(--hacker-cyan);
+.black-hacker .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+    animation: hk-pulse 3s infinite;
 }
 
-.black-hacker th {
-    background-color: var(--hacker-secondary-color);
-    color: var(--hacker-magenta);
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 3px solid var(--hacker-accent-color);
-    padding: 10px;
-    /* Add padding to th */
+/* ==================== HEADER & TITLE ==================== */
+.black-hacker #calendar-title {
+    font-family: 'Fira Code', monospace;
+    color: var(--hk-accent1);
     text-align: center;
-    /* Center the text in th */
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 10px var(--hk-shadow);
+    animation: hk-glitch 5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.black-hacker #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(34, 34, 34, 0.4);
+    border: 1px solid var(--hk-accent1);
+    border-radius: var(--hk-radius);
+    position: relative;
+}
+
+.black-hacker #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+}
+
+.black-hacker #current-date {
+    font-family: 'Fira Code', monospace;
+    color: var(--hk-accent1);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--hk-shadow);
+}
+
+.black-hacker #today-weather {
+    font-family: 'Fira Code', monospace;
+    color: var(--hk-accent3);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.black-hacker #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.black-hacker .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--hk-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--hk-bg);
+    box-shadow: 0 0 20px var(--hk-shadow),
+        inset 0 0 10px var(--hk-shadow);
+}
+
+.black-hacker .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.black-hacker .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--hk-accent1);
+    margin-top: -2px;
+}
+
+.black-hacker .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--hk-accent3);
+    margin-top: -1.5px;
+}
+
+.black-hacker .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--hk-accent4);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.black-hacker table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(17, 17, 17, 0.9);
+    border: 1px solid var(--hk-accent1);
+    border-radius: var(--hk-radius);
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS - PERFECT VISIBILITY */
+.black-hacker th {
+    background-color: rgba(34, 34, 34, 0.95);
+    color: var(--hk-accent1) !important;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--hk-accent1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 5px var(--hk-shadow);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.black-hacker th span.full-day-name {
+    display: inline;
+}
+
+.black-hacker th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .black-hacker td {
-    background-color: var(--hacker-bg-color);
-    color: var(--hacker-text-color);
-    transition: all var(--transition-duration) var(--transition-easing);
-    padding: 8px;
-    /* Add padding to td */
-    text-align: center;
-    /* Center the text in td */
+    background-color: rgba(34, 34, 34, 0.2);
+    color: var(--hk-text);
+    padding: 1.2rem;
+    border: 1px solid var(--hk-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--hk-transition);
+    position: relative;
 }
 
-.black-hacker tr:hover td {
-    /* Hover effect on table rows (td) */
-    background-color: var(--hacker-hover-color);
-    transform: scale(1.05);
-    box-shadow: 0 3px 8px var(--hacker-shadow-color);
-    color: var(--hacker-cyan);
+.black-hacker td:hover {
+    background-color: rgba(85, 85, 85, 0.3);
+    box-shadow: inset 0 0 15px var(--hk-shadow);
 }
 
-.black-hacker tr:hover th,
-/* Keep header text color consistent on row hover */
-.black-hacker tr:hover th * {
-    /* Apply to nested elements within th as well */
-    color: var(--hacker-magenta) !important;
-    /* Use !important to override other styles */
-}
-
-
+/* Current date highlight - OPTIMIZED VISIBILITY */
 .black-hacker td.current-day {
-    background-color: var(--hacker-current-day-bg);
-    border: 2px solid var(--hacker-magenta);
-    font-weight: bold;
-    color: #000;
-    box-shadow: inset 0 0 8px var(--hacker-shadow-color);
+    background-color: rgba(0, 204, 102, 0.8);
+    border: 1px solid var(--hk-accent1);
+    color: #000 !important;
+    font-weight: 700;
+    animation: hk-pulse 2s infinite;
 }
 
-/* Event marker styling */
-.black-hacker .event-marker {
-    background-color: var(--hacker-purple);
-    width: 12px;
-    height: 12px;
+.black-hacker td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--hk-accent1);
     border-radius: 50%;
-    transition: transform var(--transition-duration) var(--transition-easing);
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.black-hacker td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #000 !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 153, 0.5);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.black-hacker .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--hk-accent4);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--hk-shadow);
+    transition: all var(--hk-transition);
 }
 
 .black-hacker .event-marker:hover {
-    background-color: #fff;
-    transform: scale(1.4);
+    transform: scale(2);
+    background-color: var(--hk-accent1);
+    box-shadow: 0 0 15px var(--hk-accent4);
 }
 
-/* Modal window styling */
+/* ==================== MODAL STYLES ==================== */
 .black-hacker .modal-content {
-    background-color: rgba(15, 15, 15, 0.95);
-    backdrop-filter: blur(6px);
-    border: 1px solid var(--hacker-magenta);
-    border-radius: var(--hacker-border-radius);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
-    padding: 20px;
+    position: relative;
+    background-color: rgba(13, 13, 13, 0.98);
+    border: 1px solid var(--hk-accent1);
+    padding: 30px;
+    color: var(--hk-text);
+    box-shadow: 0 0 40px var(--hk-shadow);
+    border-radius: var(--hk-radius);
+    animation: hk-pulse 0.4s ease;
 }
 
-.black-hacker .modal .close-button {
-    background-color: var(--hacker-magenta);
-    color: #000;
-    border: none;
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
+.black-hacker .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--hk-accent1);
+    animation: hk-pulse 2s infinite;
+}
+
+.black-hacker .modal-content h2 {
+    color: var(--hk-accent1);
+    font-family: 'Fira Code', monospace;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.black-hacker .modal-content button {
+    background-color: transparent;
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color var(--transition-duration) var(--transition-easing),
-        color var(--transition-duration) var(--transition-easing);
+    transition: all var(--hk-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--hk-radius);
+}
+
+.black-hacker .modal-content button:hover {
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    box-shadow: 0 0 15px var(--hk-shadow);
+}
+
+/* Close Button */
+.black-hacker .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .black-hacker .modal .close-button:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    transform: rotate(90deg);
 }
 
-/* Button styling */
-.black-hacker .button {
-    border-radius: var(--hacker-border-radius);
-    padding: 12px 22px;
-    font-size: 1em;
-    transition: all var(--transition-duration) var(--transition-easing);
-    cursor: pointer;
-    border: 2px solid var(--hacker-cyan);
+/* ==================== BUTTONS & CONTROLS ==================== */
+.black-hacker .button,
+.black-hacker .transparent-button {
+    border: 1px solid var(--hk-accent1);
+    color: var(--hk-accent1);
     background-color: transparent;
-    color: var(--hacker-cyan);
-    box-shadow: 3px 3px 8px var(--hacker-shadow-color);
-}
-
-.black-hacker .button:hover {
-    background-color: var(--hacker-cyan);
-    color: #000;
-    box-shadow: 4px 4px 12px var(--hacker-shadow-color);
-}
-
-/* Calendar navigation */
-.black-hacker .calendar-navigation button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5em;
-    padding: 6px 14px;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Fira Code', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    color: var(--hacker-magenta);
-    transition: color var(--transition-duration) var(--transition-easing);
+    transition: all var(--hk-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--hk-radius);
 }
 
-.black-hacker .calendar-navigation button:hover {
-    color: var(--hacker-cyan);
+.black-hacker .button::before,
+.black-hacker .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 153, 0.2), transparent);
+    transition: 0.5s;
 }
 
-/* Calendar header */
-.black-hacker .calendar-header {
+.black-hacker .button:hover,
+.black-hacker .transparent-button:hover {
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    box-shadow: 0 0 20px var(--hk-shadow);
+}
+
+.black-hacker .button:hover::before,
+.black-hacker .transparent-button:hover::before {
+    left: 100%;
+}
+
+.black-hacker .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER - PERFECT VISIBILITY ==================== */
+.black-hacker #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.black-hacker #theme-switcher {
+    background-color: rgba(34, 34, 34, 0.9);
+    color: var(--hk-accent1) !important;
+    border: 1px solid var(--hk-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--hk-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ff99'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px var(--hk-shadow);
+}
+
+/* DROPDOWN OPTIONS - CRYSTAL CLEAR */
+.black-hacker #theme-switcher option {
+    background-color: rgba(34, 34, 34, 0.98) !important;
+    color: var(--hk-accent1) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--hk-accent1) !important;
+}
+
+.black-hacker #theme-switcher option:hover {
+    background-color: var(--hk-accent1) !important;
+    color: var(--hk-bg) !important;
+}
+
+.black-hacker #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--hk-accent1), 0 0 15px var(--hk-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.black-hacker #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--hk-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Fira Code', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--hk-accent1);
+    background-color: rgba(34, 34, 34, 0.3);
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--hk-radius);
+}
+
+.black-hacker #backToTopBtn:hover {
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
+    box-shadow: 0 0 20px var(--hk-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.black-hacker footer {
     text-align: center;
-    font-size: 1.7em;
-    font-weight: bold;
-    margin-bottom: 14px;
-    color: var(--hacker-accent-color);
-    text-shadow: 0px 0px 10px var(--hacker-accent-color);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hk-accent1);
+    color: var(--hk-text);
+    font-size: 0.9rem;
 }
 
-/* Responsive adjustments */
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .black-hacker .container {
+        padding: 1.5rem;
+    }
+
+    .black-hacker #calendar-title {
+        font-size: 2rem;
+    }
+
+    .black-hacker #current-date {
+        font-size: 1.5rem;
+    }
+
+    .black-hacker #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .black-hacker .clock-face {
+        width: 160px;
+        height: 160px;
+    }
 
-    /* Adjust breakpoint as needed */
-    .black-hacker th,
+    .black-hacker th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .black-hacker th span.full-day-name {
+        display: none;
+    }
+
+    .black-hacker th abbr {
+        display: inline;
+    }
+
     .black-hacker td {
-        padding: 6px;
-        /* Reduce padding on smaller screens */
-        font-size: 0.9em;
-        /* Reduce font size */
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    .black-hacker .calendar-header {
-        font-size: 1.4em;
-        /* Smaller header font */
+    .black-hacker td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
     }
 
-    .black-hacker .button {
-        padding: 10px 18px;
-        /* Slightly smaller buttons */
-        font-size: 0.9em;
+    .black-hacker #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 
-    .black-hacker table {
-        display: block;
-        /* Make table scrollable */
-        overflow-x: auto;
-        /* Enable horizontal scrolling */
+    .black-hacker #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
     }
 
-    /* Adjust table cell widths for better small screen layout.  This is VERY important and will likely need tweaking! */
-    .black-hacker th:nth-child(1),
-    .black-hacker td:nth-child(1) {
-        width: 10%;
+    .black-hacker #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .black-hacker .container {
+        padding: 0.8rem;
     }
 
-    /* Example - Adjust as needed */
-    .black-hacker th:nth-child(2),
-    .black-hacker td:nth-child(2) {
-        width: 14%;
+    .black-hacker #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
     }
 
-    /* Example - Adjust as needed */
-    .black-hacker th:nth-child(3),
-    .black-hacker td:nth-child(3) {
-        width: 14%;
+    .black-hacker #current-date {
+        font-size: 1.1rem;
     }
 
-    /* Example - Adjust as needed */
-    .black-hacker th:nth-child(4),
-    .black-hacker td:nth-child(4) {
-        width: 14%;
+    .black-hacker #today-weather {
+        font-size: 0.9rem;
     }
 
-    /* Example - Adjust as needed */
-    .black-hacker th:nth-child(5),
-    .black-hacker td:nth-child(5) {
-        width: 14%;
+    .black-hacker .clock-face {
+        width: 120px;
+        height: 120px;
     }
 
-    /* Example - Adjust as needed */
-    .black-hacker th:nth-child(6),
-    .black-hacker td:nth-child(6) {
-        width: 14%;
+    .black-hacker th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
     }
 
-    /* Example - Adjust as needed */
-    .black-hacker th:nth-child(7),
-    .black-hacker td:nth-child(7) {
-        width: 10%;
+    .black-hacker td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
     }
 
-    /* Example - Adjust as needed */
+    .black-hacker td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
 
+    .black-hacker #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .black-hacker th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .black-hacker td {
+        height: 50px;
+    }
+
+    .black-hacker #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
 }
