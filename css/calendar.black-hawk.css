@@ -1,401 +1,659 @@
 /* ==========================================================================
-   Black Hawk Theme - Sleek, Modern, and Powerful! (Enhanced Version)
-   Purpose: Styles specific to the Black Hawk theme for the calendar.
+   Black Hawk Theme - Sleek Military-Inspired Design
+   Version: 2.1
+   Updated: 2023-11-15
+   Enhancements:
+   - Improved tactical color scheme
+   - Enhanced contrast for readability
+   - Military-inspired typography
+   - Tactical glow effects
    ========================================================================== */
 
-   :root {
-    --black-hawk-bg: #1a1a1a;
-    /* Dark background */
-    --black-hawk-text: #e0e0e0;
-    /* Light text for contrast */
-    --black-hawk-primary: #ff5722;
-    /* Bright orange primary */
-    --black-hawk-secondary: #757575;
-    /* Gray secondary */
-    --black-hawk-accent1: #424242;
-    /* Dark gray accent */
-    --black-hawk-accent2: #bdbdbd;
-    /* Light gray accent */
-    --black-hawk-accent3: #212121;
-    /* Deep black accent */
-    --black-hawk-accent4: #616161;
-    /* Medium gray accent */
-    --black-hawk-accent5: #9e9e9e;
-    /* Lighter gray accent */
-    --black-hawk-shadow: rgba(0, 0, 0, 0.3);
-    /* Dark shadow */
-    --black-hawk-radius: 20px;
-    --black-hawk-transition: 0.3s ease-in-out;
-    --black-hawk-hover: #ff7043;
-    /* Hover color for buttons */
-    --black-hawk-glow-animation: glowAnimation 3s ease-in-out infinite;
-    /* Glow animation */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --bh-bg: #1a1a1a;
+    --bh-text: #e0e0e0;
+    --bh-primary: #ff5722;
+    --bh-secondary: #757575;
+
+    /* Gradient Colors */
+    --bh-gradient-start: #121212;
+    --bh-gradient-end: #1a1a1a;
+
+    /* Accent Colors */
+    --bh-accent1: #424242;
+    --bh-accent2: #bdbdbd;
+    --bh-accent3: #212121;
+    --bh-accent4: #616161;
+    --bh-accent5: #9e9e9e;
+
+    /* Theme Variables */
+    --bh-shadow: rgba(0, 0, 0, 0.3);
+    --bh-radius: 20px;
+    --bh-transition: 0.3s ease-in-out;
+    --bh-hover: #ff7043;
+    --bh-current-day: #ff5722;
 }
 
-/* Add this keyframe animation */
-@keyframes glowAnimation {
-    0% {
-        box-shadow: 0 0 5px var(--black-hawk-primary);
+/* ==================== ANIMATIONS ==================== */
+@keyframes bh-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--bh-primary);
     }
 
     50% {
-        box-shadow: 0 0 20px var(--black-hawk-primary);
+        box-shadow: 0 0 25px var(--bh-primary);
     }
+}
 
+@keyframes bh-pulse {
+
+    0%,
     100% {
-        box-shadow: 0 0 5px var(--black-hawk-primary);
-    }
-}
-
-/* Base Styles */
-.black-hawk {
-    font-family: 'Roboto', sans-serif;
-    color: var(--black-hawk-text);
-    line-height: 1.5;
-    background-color: var(--black-hawk-bg);
-}
-
-.black-hawk .container {
-    background: linear-gradient(270deg, var(--black-hawk-bg), var(--black-hawk-accent1), var(--black-hawk-accent3), var(--black-hawk-accent1));
-    /* Dark gradient */
-    background-size: 400% 400%;
-    /* Larger gradient for smooth animation */
-    animation: var(--black-hawk-glow-animation);
-    /* Apply the glow animation */
-    padding: 30px;
-    border-radius: var(--black-hawk-radius);
-    box-shadow: 8px 8px 20px var(--black-hawk-shadow);
-    border: 3px solid var(--black-hawk-secondary);
-}
-
-.black-hawk .calendar-container {
-    padding: 25px;
-    background: linear-gradient(145deg, var(--black-hawk-accent1), var(--black-hawk-accent3));
-    border-radius: var(--black-hawk-radius);
-    border: 2px dashed var(--black-hawk-primary);
-}
-
-.black-hawk table {
-    width: 100%;
-    margin: 25px auto;
-    border-collapse: collapse;
-    border-radius: var(--black-hawk-radius);
-    box-shadow: 5px 5px 15px var(--black-hawk-shadow);
-    overflow: hidden;
-    background-color: var(--black-hawk-accent3);
-    border: 2px solid var(--black-hawk-secondary);
-    table-layout: fixed;
-}
-
-.black-hawk th,
-.black-hawk td {
-    padding: 10px;
-    text-align: center;
-    border: 2px solid var(--black-hawk-secondary);
-    transition: all var(--black-hawk-transition);
-    word-wrap: break-word;
-}
-
-.black-hawk th {
-    background: linear-gradient(to bottom, var(--black-hawk-accent3), var(--black-hawk-accent1));
-    color: var(--black-hawk-text);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 1.1em;
-    letter-spacing: 1px;
-}
-
-.black-hawk td {
-    background-color: var(--black-hawk-accent3);
-    color: var(--black-hawk-text);
-}
-
-.black-hawk td:hover {
-    background: linear-gradient(to bottom, var(--black-hawk-primary), var(--black-hawk-accent5));
-    transform: scale(1.05);
-    box-shadow: 0 5px 10px var(--black-hawk-shadow);
-    border-color: var(--black-hawk-primary);
-    color: var(--black-hawk-text);
-}
-
-.black-hawk td.current-day {
-    background: linear-gradient(to bottom, var(--black-hawk-primary), var(--black-hawk-accent1));
-    border: 3px solid var(--black-hawk-primary);
-    font-weight: 700;
-    color: var(--black-hawk-text);
-    box-shadow: inset 0 0 10px var(--black-hawk-shadow);
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
         transform: scale(1);
+        opacity: 1;
     }
 
     50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
+        transform: scale(1.03);
+        opacity: 0.9;
     }
 }
 
-/* Event Marker */
-.black-hawk .event-marker {
-    background-color: var(--black-hawk-primary);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    transition: transform var(--black-hawk-transition);
-    box-shadow: 0 0 5px var(--black-hawk-shadow);
-}
-
-.black-hawk .event-marker:hover {
-    background-color: var(--black-hawk-accent3);
-    transform: scale(1.6);
-    box-shadow: 0 0 15px var(--black-hawk-primary);
-}
-
-/* Modal */
-.black-hawk .modal-content {
-    background-color: rgba(26, 26, 26, 0.9);
-    backdrop-filter: blur(8px);
-    border: 2px solid var(--black-hawk-secondary);
-    border-radius: var(--black-hawk-radius);
-    box-shadow: 0 12px 24px var(--black-hawk-shadow);
-    padding: 25px;
-    color: var(--black-hawk-text);
-    animation: slideIn 0.5s var(--black-hawk-transition);
-}
-
-@keyframes slideIn {
+@keyframes bh-target-acquire {
     from {
-        transform: translateY(-20px);
         opacity: 0;
+        transform: scale(0.5);
     }
 
     to {
-        transform: translateY(0);
         opacity: 1;
+        transform: scale(1);
     }
 }
 
-.black-hawk .modal .close-button {
-    background-color: var(--black-hawk-primary);
-    color: var(--black-hawk-text);
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    transition: all var(--black-hawk-transition);
-    box-shadow: 0 0 5px var(--black-hawk-shadow);
+/* ==================== BASE STYLES ==================== */
+.black-hawk {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--bh-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--bh-gradient-start), var(--bh-gradient-end));
+    min-height: 100vh;
 }
 
-.black-hawk .modal .close-button:hover {
-    background-color: var(--black-hawk-accent3);
-    color: var(--black-hawk-primary);
-    transform: rotate(90deg);
-    box-shadow: 0 0 10px var(--black-hawk-primary);
+.black-hawk .container {
+    background-color: rgba(26, 26, 26, 0.95);
+    padding: 2rem;
+    border: 2px solid var(--bh-accent1);
+    box-shadow: 0 0 30px var(--bh-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--bh-radius);
 }
 
-/* Event List */
-.black-hawk .event-list li {
-    padding: 12px 0;
-    border-bottom: 2px dashed var(--black-hawk-secondary);
+.black-hawk .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bh-primary), transparent);
+    animation: bh-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.black-hawk #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bh-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--bh-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.black-hawk #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(66, 66, 66, 0.4);
+    border: 1px solid var(--bh-primary);
+    border-radius: var(--bh-radius);
+    position: relative;
+}
+
+.black-hawk #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bh-primary), transparent);
+}
+
+.black-hawk #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bh-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--bh-shadow);
+}
+
+.black-hawk #today-weather {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--bh-accent2);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.black-hawk #analog-watch {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
 }
 
-.black-hawk .event-list li:last-child {
+.black-hawk .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--bh-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--bh-bg);
+    box-shadow: 0 0 20px var(--bh-shadow);
+}
+
+.black-hawk .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.black-hawk .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--bh-primary);
+    margin-top: -4px;
+}
+
+.black-hawk .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--bh-primary);
+    margin-top: -3px;
+}
+
+.black-hawk .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--bh-accent5);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.black-hawk table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(33, 33, 33, 0.9);
+    border: 2px solid var(--bh-primary);
+    border-radius: var(--bh-radius);
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS - PERFECT VISIBILITY */
+.black-hawk th {
+    background-color: rgba(66, 66, 66, 0.95);
+    color: var(--bh-text) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--bh-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.black-hawk th span.full-day-name {
+    display: inline;
+}
+
+.black-hawk th abbr {
+    display: none;
+    text-decoration: none;
     border-bottom: none;
 }
 
-.black-hawk .event-list button {
-    background: linear-gradient(to bottom, var(--black-hawk-primary), var(--black-hawk-accent2));
-    color: var(--black-hawk-text);
-    border: none;
-    padding: 8px 16px;
-    border-radius: var(--black-hawk-radius);
+.black-hawk td {
+    background-color: rgba(66, 66, 66, 0.2);
+    color: var(--bh-text);
+    padding: 1.2rem;
+    border: 1px solid var(--bh-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--bh-transition);
+    position: relative;
+}
+
+.black-hawk td:hover {
+    background-color: rgba(255, 87, 34, 0.3);
+    box-shadow: inset 0 0 15px var(--bh-shadow);
+}
+
+/* Current date highlight - OPTIMIZED VISIBILITY */
+.black-hawk td.current-day {
+    background-color: rgba(255, 87, 34, 0.8);
+    border: 2px solid var(--bh-text);
+    color: var(--bh-text) !important;
+    font-weight: 700;
+    animation: bh-glow 2s infinite;
+}
+
+.black-hawk td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--bh-text);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.black-hawk td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--bh-text) !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.black-hawk .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bh-accent5);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--bh-shadow);
+    transition: all var(--bh-transition);
+}
+
+.black-hawk .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--bh-primary);
+    box-shadow: 0 0 15px var(--bh-accent5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.black-hawk .modal-content {
+    position: relative;
+    background-color: rgba(33, 33, 33, 0.98);
+    border: 2px solid var(--bh-primary);
+    padding: 30px;
+    color: var(--bh-text);
+    box-shadow: 0 0 40px var(--bh-shadow);
+    border-radius: var(--bh-radius);
+    animation: bh-target-acquire 0.4s ease;
+}
+
+.black-hawk .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--bh-primary);
+    animation: bh-pulse 2s infinite;
+}
+
+.black-hawk .modal-content h2 {
+    color: var(--bh-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.black-hawk .modal-content button {
+    background-color: transparent;
+    color: var(--bh-primary);
+    border: 2px solid var(--bh-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--black-hawk-transition);
-    box-shadow: 0 2px 5px var(--black-hawk-shadow);
+    transition: all var(--bh-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--bh-radius);
 }
 
-.black-hawk .event-list button:hover {
-    background: linear-gradient(to bottom, var(--black-hawk-accent3), var(--black-hawk-accent5));
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px var(--black-hawk-shadow);
+.black-hawk .modal-content button:hover {
+    background-color: var(--bh-primary);
+    color: var(--bh-text);
+    box-shadow: 0 0 15px var(--bh-shadow);
 }
 
-/* Buttons & Navigation */
+/* Close Button */
+.black-hawk .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--bh-primary);
+    border: 2px solid var(--bh-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--bh-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.black-hawk .modal .close-button:hover {
+    background-color: var(--bh-primary);
+    color: var(--bh-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
 .black-hawk .button,
-.black-hawk .transparent-button,
-.black-hawk #backToTopBtn {
-    border-radius: var(--black-hawk-radius);
-    padding: 14px 24px;
-    font-size: 1.2em;
-    transition: all var(--black-hawk-transition);
+.black-hawk .transparent-button {
+    border: 2px solid var(--bh-primary);
+    color: var(--bh-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    border: 3px solid var(--black-hawk-primary);
-    color: var(--black-hawk-text);
-    background: linear-gradient(to bottom, var(--black-hawk-accent4), var(--black-hawk-accent5));
-    box-shadow: 5px 5px 15px var(--black-hawk-shadow);
+    transition: all var(--bh-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--bh-radius);
+}
+
+.black-hawk .button::before,
+.black-hawk .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 87, 34, 0.2), transparent);
+    transition: 0.5s;
 }
 
 .black-hawk .button:hover,
-.black-hawk .transparent-button:hover,
+.black-hawk .transparent-button:hover {
+    background-color: var(--bh-primary);
+    color: var(--bh-text);
+    box-shadow: 0 0 20px var(--bh-shadow);
+}
+
+.black-hawk .button:hover::before,
+.black-hawk .transparent-button:hover::before {
+    left: 100%;
+}
+
+.black-hawk .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER - PERFECT VISIBILITY ==================== */
+.black-hawk #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.black-hawk #theme-switcher {
+    background-color: rgba(66, 66, 66, 0.9);
+    color: var(--bh-text) !important;
+    border: 2px solid var(--bh-primary);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--bh-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--bh-transition);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* DROPDOWN OPTIONS - CRYSTAL CLEAR */
+.black-hawk #theme-switcher option {
+    background-color: rgba(66, 66, 66, 0.98) !important;
+    color: var(--bh-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--bh-primary) !important;
+}
+
+.black-hawk #theme-switcher option:hover {
+    background-color: var(--bh-primary) !important;
+}
+
+.black-hawk #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--bh-primary), 0 0 15px var(--bh-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.black-hawk #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--bh-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--bh-primary);
+    background-color: rgba(66, 66, 66, 0.3);
+    cursor: pointer;
+    transition: all var(--bh-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--bh-radius);
+}
+
 .black-hawk #backToTopBtn:hover {
-    background: linear-gradient(to bottom, var(--black-hawk-hover), var(--black-hawk-accent2));
-    box-shadow: 6px 6px 20px var(--black-hawk-shadow);
-    transform: scale(1.05);
+    background-color: var(--bh-primary);
+    color: var(--bh-text);
+    box-shadow: 0 0 20px var(--bh-shadow);
+    opacity: 1;
 }
 
-.black-hawk .button.secondary {
-    background: linear-gradient(to bottom, var(--black-hawk-secondary), var(--black-hawk-accent3));
-    border: none;
-}
-
-.black-hawk .button.secondary:hover {
-    background: linear-gradient(to bottom, var(--black-hawk-accent5), var(--black-hawk-accent1));
-}
-
-.black-hawk .calendar-navigation button {
-    background: linear-gradient(to bottom, var(--black-hawk-accent2), var(--black-hawk-accent4));
-    border: none;
-    font-size: 1.2em;
-    padding: 7px 14px;
-    cursor: pointer;
-    color: var(--black-hawk-primary);
-    transition: color 0.2s ease-in-out;
-    box-shadow: 0 4px 8px var(--black-hawk-shadow);
-}
-
-.black-hawk .calendar-navigation button:hover {
-    color: var(--black-hawk-accent3);
-    transform: scale(1.1);
-}
-
-/* Calendar Header & Title */
-.black-hawk .calendar-header {
+/* ==================== FOOTER ==================== */
+.black-hawk footer {
     text-align: center;
-    font-size: 1.6em;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--black-hawk-primary);
-    text-shadow: 2px 2px 4px var(--black-hawk-shadow);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--bh-primary);
+    color: var(--bh-text);
+    font-size: 0.9rem;
 }
 
-.black-hawk .calendar-title {
-    font-size: 1.4em;
-    font-style: italic;
-    text-shadow: 1px 1px 2px var(--black-hawk-shadow);
-}
-
-/* Modal Close */
-.black-hawk .modal-close {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-    color: var(--black-hawk-primary);
-    background: none;
-    border: none;
-    padding: 5px;
-    transition: color 0.2s ease-in-out;
-}
-
-.black-hawk .modal-close:hover {
-    color: var(--black-hawk-accent1);
-    transform: scale(1.2);
-}
-
-/* Week Number & No Events */
-.black-hawk .week-number {
-    color: #777;
-    font-size: 0.9em;
-    padding: 2px 5px;
-    background: linear-gradient(to bottom, var(--black-hawk-accent5), var(--black-hawk-accent2));
-    border-radius: 5px;
-    margin: 2px;
-}
-
-.black-hawk .no-events {
-    font-style: italic;
-    color: #888;
-    text-align: center;
-    margin-top: 8px;
-    font-size: 1em;
-}
-
-/* Media Queries */
-@media (max-width: 575.98px) {
-    .black-hawk table {
-        font-size: 0.8em;
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .black-hawk .container {
+        padding: 1.5rem;
     }
 
-    .black-hawk th,
+    .black-hawk #calendar-title {
+        font-size: 2rem;
+    }
+
+    .black-hawk #current-date {
+        font-size: 1.5rem;
+    }
+
+    .black-hawk #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .black-hawk .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .black-hawk th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .black-hawk th span.full-day-name {
+        display: none;
+    }
+
+    .black-hawk th abbr {
+        display: inline;
+    }
+
     .black-hawk td {
-        padding: 8px;
-        border: 1px solid var(--black-hawk-secondary);
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    .black-hawk th:nth-child(1),
-    .black-hawk td:nth-child(1) {
-        width: 14%;
+    .black-hawk td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
     }
 
-    .black-hawk th:nth-child(2),
-    .black-hawk td:nth-child(2) {
-        width: 16%;
-    }
-
-    .black-hawk th:nth-child(3),
-    .black-hawk td:nth-child(3) {
-        width: 16%;
-    }
-
-    .black-hawk th:nth-child(4),
-    .black-hawk td:nth-child(4) {
-        width: 16%;
-    }
-
-    .black-hawk th:nth-child(5),
-    .black-hawk td:nth-child(5) {
-        width: 16%;
-    }
-
-    .black-hawk th:nth-child(6),
-    .black-hawk td:nth-child(6) {
-        width: 16%;
-    }
-
-    .black-hawk th:nth-child(7),
-    .black-hawk td:nth-child(7) {
-        width: 6%;
-    }
-
-    .black-hawk .event-marker-container {
-        flex-direction: row;
-        gap: 4px;
-    }
-
-    .black-hawk .event-marker {
-        width: 10px;
-        height: 10px;
-    }
-
-    .black-hawk .calendar-container {
-        padding: 15px;
-    }
-
-    .black-hawk .button,
-    .black-hawk .transparent-button,
     .black-hawk #backToTopBtn {
-        padding: 12px 20px;
-        font-size: 1.1em;
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .black-hawk #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .black-hawk #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .black-hawk .container {
+        padding: 0.8rem;
+    }
+
+    .black-hawk #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .black-hawk #current-date {
+        font-size: 1.1rem;
+    }
+
+    .black-hawk #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .black-hawk .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .black-hawk th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .black-hawk td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .black-hawk td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .black-hawk #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .black-hawk th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .black-hawk td {
+        height: 50px;
+    }
+
+    .black-hawk #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
     }
 }
