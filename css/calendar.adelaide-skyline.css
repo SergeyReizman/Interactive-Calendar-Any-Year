@@ -1,0 +1,428 @@
+/* ==========================================================================
+  Adelaide Skyline Theme - Historic Charm Meets Modern Elegance
+  Purpose: Styles specific to the Adelaide Skyline theme for the calendar, with colors inspired by Adelaide's architecture and landscapes.
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+:root {
+    /* Color Palette */
+    --adelaide-bg: #F5F5F5;
+    /* Soft, neutral background */
+    --adelaide-text: #333333;
+    /* Deep charcoal for text */
+    --adelaide-primary: #2C3E50;
+    /* Dark blue-gray for primary elements */
+    --adelaide-secondary: #6D8B74;
+    /* Muted sage green for secondary elements */
+
+    /* Historic Stone Colors */
+    --adelaide-stone1: #D4B483;
+    /* Warm sandstone */
+    --adelaide-stone2: #C19A6B;
+    /* Medium sandstone */
+    --adelaide-stone3: #A78B71;
+    /* Weathered stone */
+    --adelaide-stone4: #8B7355;
+    /* Aged stone */
+
+    /* Modern Glass & Steel */
+    --adelaide-glass1: #3498DB;
+    /* Sky-reflecting blue */
+    --adelaide-glass2: #2980B9;
+    /* Deep reflective blue */
+    --adelaide-glass3: #1F618D;
+    /* Dark tinted glass */
+
+    /* River & Nature Colors */
+    --adelaide-river1: #5DADE2;
+    /* Daylight Torrens */
+    --adelaide-river2: #3498DB;
+    /* Afternoon Torrens */
+    --adelaide-river3: #1F618D;
+    /* Evening Torrens */
+    --adelaide-park: #27AE60;
+    /* Adelaide Parklands green */
+
+    /* Sunset & Sunrise Colors */
+    --adelaide-sunset1: #E74C3C;
+    /* Vibrant sunset */
+    --adelaide-sunset2: #F39C12;
+    /* Golden hour */
+    --adelaide-sunset3: #F1C40F;
+    /* Morning glow */
+
+    /* Theme Variables */
+    --adelaide-shadow: rgba(44, 62, 80, 0.2);
+    /* Soft shadow */
+    --adelaide-radius: 12px;
+    /* Balanced corners */
+    --adelaide-transition: 0.3s ease-in-out;
+    /* Smooth transitions */
+    --adelaide-hover: #6D8B74;
+    /* Hover color */
+}
+
+/* Animations */
+@keyframes riverReflection {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes sunsetGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--adelaide-sunset2);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(243, 156, 18, 0.7);
+    }
+}
+
+@keyframes towerPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes historicFadeIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Base Styles */
+.adelaide-skyline {
+    font-family: 'Playfair Display', serif;
+    color: var(--adelaide-text);
+    line-height: 1.6;
+    background-color: var(--adelaide-bg);
+}
+
+.adelaide-skyline .container {
+    background: linear-gradient(270deg, var(--adelaide-stone1), var(--adelaide-stone2), var(--adelaide-glass1));
+    background-size: 400% 400%;
+    animation: riverReflection 12s ease-in-out infinite;
+    padding: 30px;
+    border-radius: var(--adelaide-radius);
+    box-shadow: 8px 8px 20px var(--adelaide-shadow);
+    border: 3px solid var(--adelaide-primary);
+}
+
+.adelaide-skyline .calendar-container {
+    padding: 25px;
+    background: linear-gradient(145deg, var(--adelaide-glass1), var(--adelaide-glass2));
+    border-radius: var(--adelaide-radius);
+    border: 2px solid var(--adelaide-secondary);
+    animation: sunsetGlow 4s ease-in-out infinite;
+}
+
+/* Table Styles */
+.adelaide-skyline table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    border-radius: var(--adelaide-radius);
+    box-shadow: 5px 5px 15px var(--adelaide-shadow);
+    overflow: hidden;
+    background-color: white;
+    border: 2px solid var(--adelaide-primary);
+    table-layout: fixed;
+}
+
+.adelaide-skyline th,
+.adelaide-skyline td {
+    padding: 10px;
+    text-align: center;
+    border: 2px solid var(--adelaide-primary);
+    transition: all var(--adelaide-transition);
+    word-wrap: break-word;
+}
+
+.adelaide-skyline th {
+    background: linear-gradient(to bottom, var(--adelaide-glass3), var(--adelaide-primary));
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+
+.adelaide-skyline td {
+    background-color: white;
+    color: var(--adelaide-text);
+}
+
+.adelaide-skyline td:hover {
+    background: linear-gradient(to bottom, var(--adelaide-river1), var(--adelaide-river2));
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px var(--adelaide-shadow);
+    border-color: var(--adelaide-secondary);
+    color: white;
+}
+
+.adelaide-skyline td.current-day {
+    background: linear-gradient(to bottom, var(--adelaide-sunset2), var(--adelaide-sunset1));
+    border: 3px solid var(--adelaide-secondary);
+    font-weight: 700;
+    color: white;
+    box-shadow: inset 0 0 10px var(--adelaide-shadow);
+    animation: towerPulse 2s infinite;
+}
+
+/* Event Marker */
+.adelaide-skyline .event-marker {
+    background-color: var(--adelaide-park);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: transform var(--adelaide-transition);
+    box-shadow: 0 0 5px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .event-marker:hover {
+    background-color: var(--adelaide-sunset3);
+    transform: scale(1.6);
+    box-shadow: 0 0 15px var(--adelaide-sunset2);
+}
+
+/* Modal */
+.adelaide-skyline .modal-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(213, 219, 219, 0.95));
+    backdrop-filter: blur(10px);
+    border: 3px solid var(--adelaide-stone2);
+    border-radius: var(--adelaide-radius);
+    box-shadow: 0 12px 24px var(--adelaide-shadow);
+    padding: 30px;
+    color: var(--adelaide-text);
+    animation: historicFadeIn 0.5s var(--adelaide-transition);
+    text-align: center;
+}
+
+.adelaide-skyline .modal-content h2 {
+    color: var(--adelaide-sunset2);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.adelaide-skyline .modal-content button {
+    background: linear-gradient(to bottom, var(--adelaide-glass1), var(--adelaide-glass2));
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--adelaide-radius);
+    cursor: pointer;
+    transition: all var(--adelaide-transition);
+    box-shadow: 0 4px 8px var(--adelaide-shadow);
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.adelaide-skyline .modal-content button:hover {
+    background: linear-gradient(to bottom, var(--adelaide-glass2), var(--adelaide-glass3));
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .modal .close-button {
+    background-color: var(--adelaide-stone4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--adelaide-transition);
+    box-shadow: 0 0 5px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .modal .close-button:hover {
+    background-color: var(--adelaide-sunset3);
+    color: var(--adelaide-text);
+    transform: rotate(90deg);
+    box-shadow: 0 0 10px var(--adelaide-sunset2);
+}
+
+/* Event List */
+.adelaide-skyline .event-list li {
+    padding: 12px 0;
+    border-bottom: 2px solid var(--adelaide-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adelaide-skyline .event-list li:last-child {
+    border-bottom: none;
+}
+
+.adelaide-skyline .event-list button {
+    background: linear-gradient(to bottom, var(--adelaide-glass1), var(--adelaide-glass2));
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--adelaide-radius);
+    cursor: pointer;
+    transition: all var(--adelaide-transition);
+    box-shadow: 0 2px 5px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .event-list button:hover {
+    background: linear-gradient(to bottom, var(--adelaide-glass2), var(--adelaide-glass3));
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px var(--adelaide-shadow);
+}
+
+/* Buttons & Navigation */
+.adelaide-skyline .button,
+.adelaide-skyline .transparent-button,
+.adelaide-skyline #backToTopBtn {
+    border-radius: var(--adelaide-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    transition: all var(--adelaide-transition);
+    cursor: pointer;
+    border: 3px solid var(--adelaide-primary);
+    color: white;
+    background: linear-gradient(to bottom, var(--adelaide-glass1), var(--adelaide-glass2));
+    box-shadow: 5px 5px 15px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .button:hover,
+.adelaide-skyline .transparent-button:hover,
+.adelaide-skyline #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--adelaide-hover), var(--adelaide-glass3));
+    box-shadow: 6px 6px 20px var(--adelaide-shadow);
+    transform: scale(1.05);
+}
+
+.adelaide-skyline .button.secondary {
+    background: linear-gradient(to bottom, var(--adelaide-secondary), var(--adelaide-glass3));
+    border: none;
+}
+
+.adelaide-skyline .button.secondary:hover {
+    background: linear-gradient(to bottom, var(--adelaide-river1), var(--adelaide-glass1));
+}
+
+.adelaide-skyline .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--adelaide-glass1), var(--adelaide-glass2));
+    border: none;
+    font-size: 1.2em;
+    padding: 7px 14px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.2s ease-in-out;
+    box-shadow: 0 4px 8px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .calendar-navigation button:hover {
+    color: var(--adelaide-glass2);
+    transform: scale(1.1);
+}
+
+/* Calendar Header & Title */
+.adelaide-skyline .calendar-header {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--adelaide-primary);
+    text-shadow: 2px 2px 4px var(--adelaide-shadow);
+}
+
+.adelaide-skyline .calendar-title {
+    font-size: 1.5em;
+    font-style: italic;
+    text-shadow: 1px 1px 2px var(--adelaide-shadow);
+}
+
+/* Modal Close */
+.adelaide-skyline .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--adelaide-primary);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: color 0.2s ease-in-out;
+}
+
+.adelaide-skyline .modal-close:hover {
+    color: var(--adelaide-glass1);
+    transform: scale(1.2);
+}
+
+/* Week Number & No Events */
+.adelaide-skyline .week-number {
+    color: #777;
+    font-size: 0.9em;
+    padding: 2px 5px;
+    background: linear-gradient(to bottom, var(--adelaide-river1), var(--adelaide-glass2));
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.adelaide-skyline .no-events {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .adelaide-skyline table {
+        font-size: 0.8em;
+    }
+
+    .adelaide-skyline th,
+    .adelaide-skyline td {
+        padding: 8px;
+        border: 1px solid var(--adelaide-secondary);
+    }
+
+    .adelaide-skyline .event-marker {
+        width: 10px;
+        height: 10px;
+    }
+
+    .adelaide-skyline .calendar-container {
+        padding: 15px;
+    }
+
+    .adelaide-skyline .button,
+    .adelaide-skyline .transparent-button,
+    .adelaide-skyline #backToTopBtn {
+        padding: 12px 20px;
+        font-size: 1.1em;
+    }
+}

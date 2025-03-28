@@ -51,7 +51,7 @@ const generateStars = () => {
 // Theme Management
 const applyTheme = (theme) => {
   body.classList.remove(
-    'abandoned-castle', 'adriatic-sea', 'aloe-vera', 'alpine-landscape', 'amazon-dolphin',
+    'abandoned-castle', 'adelaide-skyline', 'adriatic-sea', 'aloe-vera', 'alpine-landscape', 'amazon-dolphin',
     'amazon-river', 'antarctic-snowdrifts', 'arctic-glow', 'autumn-harvest', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'black-fashion', 'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-orange', 'black-velvet', 'black-violet', 'blue-bird', 'blue-ice', 
