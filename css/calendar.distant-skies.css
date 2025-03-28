@@ -1,60 +1,54 @@
 /* ==========================================================================
-  Distant Skies Theme - Brighter Cosmic Edition
-  Purpose: Styles for a vibrant cosmic calendar theme with celestial elements
-  ========================================================================== */
+   Distant Skies Theme - Cosmic, Futuristic, and Galactic!
+   Purpose: Styles specific to the Distant Skies theme for the calendar.
+   ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-    /* Brighter Cosmic Color Palette */
+    /* Cosmic Color Palette */
     --cosmic-bg: #121A2F;
     /* Deep space background */
     --cosmic-text: #F0F4FF;
-    /* Bright starlight text */
+    /* Bright cosmic text */
     --cosmic-primary: #7A5AFF;
-    /* Vibrant nebula purple */
+    /* Vibrant cosmic purple */
     --cosmic-secondary: #5D3BE8;
-    /* Electric purple */
-
-    /* Celestial Blues */
+    /* Deep cosmic purple */
     --cosmic-blue1: #5CD3FF;
-    /* Bright pulsar blue */
+    /* Bright cosmic blue */
     --cosmic-blue2: #4A96FF;
-    /* Medium nebula blue */
+    /* Medium cosmic blue */
     --cosmic-blue3: #5371FF;
     /* Deep cosmic blue */
     --cosmic-blue4: #4A1CFF;
-    /* Royal blue */
-
-    /* Galactic Purples */
+    /* Dark cosmic blue */
     --cosmic-purple1: #8A29FF;
-    /* Vibrant wormhole */
+    /* Bright cosmic purple */
     --cosmic-purple2: #6C1BFF;
-    /* Medium singularity */
+    /* Medium cosmic purple */
     --cosmic-purple3: #5E1CFF;
-    /* Deep event horizon */
-
-    /* Stellar Accents */
-    --cosmic-star: #FFFFFF;
-    /* Pure white starlight */
+    /* Deep cosmic purple */
     --cosmic-nebula: #D527C8;
-    /* Pink nebula */
+    /* Pink nebula accent */
+    --cosmic-star: #FFFFFF;
+    /* Pure white for stars */
     --cosmic-comet: #5CD3FF;
     /* Bright comet trail */
     --cosmic-dust: #8A29FF;
-    /* Sparkling cosmic dust */
+    /* Cosmic dust purple */
 
     /* Theme Variables */
     --cosmic-shadow: rgba(18, 26, 47, 0.4);
-    /* Space shadows */
+    /* Deep space shadow */
     --cosmic-radius: 16px;
     /* Rounded corners */
     --cosmic-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
     /* Smooth transitions */
     --cosmic-glow: 0 0 20px rgba(122, 90, 255, 0.7);
-    /* Cosmic glow effect */
+    /* Glowing effect */
     --cosmic-hover: #D527C8;
-    /* Hover color (nebula pink) */
+    /* Nebula pink for hover effects */
 }
 
 /* Animations */
@@ -63,12 +57,10 @@
     0%,
     100% {
         box-shadow: var(--cosmic-glow);
-        transform: scale(1);
     }
 
     50% {
         box-shadow: 0 0 30px rgba(122, 90, 255, 0.9);
-        transform: scale(1.03);
     }
 }
 
@@ -76,7 +68,7 @@
 
     0%,
     100% {
-        opacity: 0.9;
+        opacity: 0.8;
     }
 
     50% {
@@ -85,22 +77,18 @@
 }
 
 @keyframes cometTrail {
-    0% {
-        transform: translateX(-100%) translateY(-100%);
+    from {
+        transform: translateX(-100%);
         opacity: 0;
     }
 
-    10% {
+    to {
+        transform: translateX(100%);
         opacity: 1;
-    }
-
-    20%,
-    100% {
-        opacity: 0;
     }
 }
 
-@keyframes cosmicFloat {
+@keyframes spaceFloat {
 
     0%,
     100% {
@@ -108,58 +96,147 @@
     }
 
     50% {
-        transform: translateY(-8px);
+        transform: translateY(-10px);
     }
 }
 
 /* Base Styles */
 .distant-skies {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Orbitron', 'Space Mono', monospace;
     color: var(--cosmic-text);
     line-height: 1.6;
     background-color: var(--cosmic-bg);
-    background-image:
-        radial-gradient(circle at 20% 30%, rgba(138, 41, 255, 0.15) 0%, transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(92, 211, 255, 0.15) 0%, transparent 25%);
 }
 
 .distant-skies .container {
-    background: linear-gradient(145deg, var(--cosmic-purple3), var(--cosmic-blue4));
-    background-size: 400% 400%;
-    animation: cosmicFloat 8s ease infinite alternate;
+    background: radial-gradient(circle at center, var(--cosmic-purple1), var(--cosmic-bg));
     padding: 30px;
     border-radius: var(--cosmic-radius);
-    box-shadow: 0 10px 30px var(--cosmic-shadow);
-    border: 3px solid var(--cosmic-primary);
+    box-shadow: 0 0 30px var(--cosmic-shadow);
+    border: 2px solid var(--cosmic-primary);
+    position: relative;
+    overflow: hidden;
 }
 
+.distant-skies .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="20%" cy="15%" r="1" fill="white" opacity="0.8"/><circle cx="80%" cy="25%" r="1.5" fill="white" opacity="0.9"/><circle cx="50%" cy="10%" r="1" fill="white" opacity="0.7"/><circle cx="30%" cy="80%" r="1" fill="white" opacity="0.6"/><circle cx="70%" cy="70%" r="2" fill="white" opacity="0.8"/></svg>');
+    pointer-events: none;
+    animation: starTwinkle 3s infinite alternate;
+}
+
+/* Enhanced Header Styles */
+.distant-skies .calendar-header {
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin: 0 0 25px 0;
+    color: var(--cosmic-comet);
+    text-shadow: 0 0 15px var(--cosmic-blue1),
+        0 0 30px var(--cosmic-purple1);
+    letter-spacing: 2px;
+    padding: 20px;
+    background: linear-gradient(90deg,
+            rgba(122, 90, 255, 0.2),
+            rgba(31, 41, 75, 0.7),
+            rgba(122, 90, 255, 0.2));
+    border-radius: var(--cosmic-radius);
+    border: 1px solid var(--cosmic-primary);
+    animation: cosmicPulse 4s ease-in-out infinite;
+}
+
+/* Date and Weather Container */
+.distant-skies .date-weather-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 18px;
+    background: rgba(31, 41, 75, 0.7);
+    border-radius: var(--cosmic-radius);
+    border: 1px solid var(--cosmic-primary);
+    box-shadow: 0 0 15px var(--cosmic-shadow);
+}
+
+/* Current Date Styling */
+.distant-skies .current-date {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--cosmic-comet);
+    text-shadow: 0 0 10px var(--cosmic-blue1);
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    background: rgba(92, 211, 255, 0.15);
+    border-radius: var(--cosmic-radius);
+    border: 1px dashed var(--cosmic-blue1);
+    min-width: 250px;
+    text-align: center;
+}
+
+/* Weather Forecast Styling */
+.distant-skies .weather-forecast {
+    font-size: 1.3em;
+    color: var(--cosmic-star);
+    text-shadow: 0 0 5px var(--cosmic-blue1);
+    padding: 10px 20px;
+    background: rgba(138, 41, 255, 0.15);
+    border-radius: var(--cosmic-radius);
+    border: 1px dashed var(--cosmic-purple1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 250px;
+    justify-content: center;
+}
+
+.distant-skies .weather-icon {
+    font-size: 1.6em;
+    filter: drop-shadow(0 0 5px var(--cosmic-blue1));
+}
+
+/* Clock Container */
+.distant-skies .clock-container {
+    margin: 0 auto 30px auto;
+    padding: 25px;
+    background: rgba(31, 41, 75, 0.7);
+    border-radius: var(--cosmic-radius);
+    border: 1px solid var(--cosmic-primary);
+    box-shadow: 0 0 20px var(--cosmic-shadow);
+    max-width: 300px;
+}
+
+/* Calendar Container */
 .distant-skies .calendar-container {
     padding: 25px;
     background: rgba(18, 26, 47, 0.7);
     border-radius: var(--cosmic-radius);
-    border: 2px dashed var(--cosmic-secondary);
+    border: 1px solid var(--cosmic-primary);
+    animation: cosmicPulse 4s ease-in-out infinite;
     backdrop-filter: blur(5px);
-    animation: cosmicPulse 4s ease infinite;
 }
 
-/* Table Styles */
 .distant-skies table {
     width: 100%;
     margin: 25px auto;
     border-collapse: collapse;
     border-radius: var(--cosmic-radius);
-    box-shadow: 0 8px 25px var(--cosmic-shadow);
+    box-shadow: 0 0 20px var(--cosmic-shadow);
     overflow: hidden;
-    background-color: rgba(30, 40, 70, 0.7);
-    border: 2px solid var(--cosmic-primary);
+    background-color: rgba(31, 41, 75, 0.8);
+    border: 1px solid var(--cosmic-primary);
     table-layout: fixed;
 }
 
 .distant-skies th,
 .distant-skies td {
-    padding: 12px;
+    padding: 10px;
     text-align: center;
-    border: 2px solid var(--cosmic-primary);
+    border: 1px solid var(--cosmic-primary);
     transition: all var(--cosmic-transition);
     word-wrap: break-word;
 }
@@ -170,30 +247,31 @@
     font-weight: 700;
     text-transform: uppercase;
     font-size: 1.1em;
-    letter-spacing: 1.5px;
-    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--cosmic-blue1);
 }
 
 .distant-skies td {
-    background-color: rgba(40, 50, 90, 0.6);
+    background-color: rgba(31, 41, 75, 0.6);
     color: var(--cosmic-text);
 }
 
 .distant-skies td:hover {
-    background: linear-gradient(to bottom, rgba(122, 90, 255, 0.3), rgba(92, 211, 255, 0.2));
+    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-nebula));
     transform: scale(1.05);
-    box-shadow: 0 5px 15px var(--cosmic-shadow);
-    border-color: var(--cosmic-secondary);
+    box-shadow: 0 0 15px var(--cosmic-shadow);
+    border-color: var(--cosmic-comet);
     color: var(--cosmic-star);
+    z-index: 1;
 }
 
 .distant-skies td.current-day {
-    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-blue3));
-    border: 3px solid var(--cosmic-comet);
+    background: linear-gradient(to bottom, var(--cosmic-blue3), var(--cosmic-purple3));
+    border: 2px solid var(--cosmic-comet);
     font-weight: 700;
     color: var(--cosmic-star);
-    box-shadow: inset 0 0 15px var(--cosmic-shadow), var(--cosmic-glow);
-    animation: starTwinkle 2s infinite;
+    box-shadow: 0 0 15px var(--cosmic-blue1);
+    animation: spaceFloat 3s infinite;
 }
 
 /* Event Marker */
@@ -203,65 +281,63 @@
     height: 12px;
     border-radius: 50%;
     transition: transform var(--cosmic-transition);
-    box-shadow: 0 0 8px var(--cosmic-comet);
+    box-shadow: 0 0 5px var(--cosmic-blue1);
 }
 
 .distant-skies .event-marker:hover {
     background-color: var(--cosmic-nebula);
-    transform: scale(1.8);
-    box-shadow: 0 0 20px var(--cosmic-nebula);
+    transform: scale(1.6);
+    box-shadow: 0 0 15px var(--cosmic-purple1);
 }
 
 /* Modal */
 .distant-skies .modal-content {
-    background: linear-gradient(135deg, rgba(30, 40, 70, 0.95), rgba(40, 50, 90, 0.97));
-    backdrop-filter: blur(12px);
-    border: 3px solid var(--cosmic-primary);
+    background-color: rgba(31, 41, 75, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--cosmic-primary);
     border-radius: var(--cosmic-radius);
-    box-shadow: 0 15px 35px var(--cosmic-shadow);
+    box-shadow: 0 0 30px var(--cosmic-shadow);
     padding: 30px;
     color: var(--cosmic-text);
-    animation: gentleSlideIn 0.5s var(--cosmic-transition);
+    animation: cometTrail 0.5s var(--cosmic-transition);
     text-align: center;
 }
 
 .distant-skies .modal-content h2 {
     color: var(--cosmic-comet);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.2em;
-    margin-bottom: 25px;
+    font-size: 2em;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 0 15px var(--cosmic-comet);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--cosmic-blue1);
 }
 
 .distant-skies .modal-content button {
-    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-purple2));
+    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-nebula));
     color: var(--cosmic-star);
     border: none;
-    padding: 14px 28px;
+    padding: 12px 24px;
     border-radius: var(--cosmic-radius);
     cursor: pointer;
     transition: all var(--cosmic-transition);
-    box-shadow: 0 5px 15px var(--cosmic-shadow);
+    box-shadow: 0 0 15px var(--cosmic-shadow);
     font-size: 1.1em;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 600;
 }
 
 .distant-skies .modal-content button:hover {
-    background: linear-gradient(to bottom, var(--cosmic-purple2), var(--cosmic-purple3));
+    background: linear-gradient(to bottom, var(--cosmic-hover), var(--cosmic-purple2));
     transform: scale(1.05);
-    box-shadow: 0 8px 25px var(--cosmic-primary);
+    box-shadow: 0 0 20px var(--cosmic-purple1);
 }
 
 .distant-skies .modal .close-button {
-    background-color: var(--cosmic-purple3);
+    background-color: var(--cosmic-primary);
     color: var(--cosmic-star);
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     transition: all var(--cosmic-transition);
     box-shadow: 0 0 10px var(--cosmic-shadow);
@@ -269,14 +345,15 @@
 
 .distant-skies .modal .close-button:hover {
     background-color: var(--cosmic-nebula);
+    color: var(--cosmic-star);
     transform: rotate(90deg);
-    box-shadow: 0 0 20px var(--cosmic-nebula);
+    box-shadow: 0 0 15px var(--cosmic-purple1);
 }
 
 /* Event List */
 .distant-skies .event-list li {
-    padding: 14px 0;
-    border-bottom: 2px dashed var(--cosmic-secondary);
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--cosmic-primary);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -287,20 +364,20 @@
 }
 
 .distant-skies .event-list button {
-    background: linear-gradient(to bottom, var(--cosmic-blue3), var(--cosmic-blue4));
+    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-nebula));
     color: var(--cosmic-star);
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: var(--cosmic-radius);
     cursor: pointer;
     transition: all var(--cosmic-transition);
-    box-shadow: 0 3px 10px var(--cosmic-shadow);
+    box-shadow: 0 0 10px var(--cosmic-shadow);
 }
 
 .distant-skies .event-list button:hover {
     background: linear-gradient(to bottom, var(--cosmic-blue2), var(--cosmic-blue3));
     transform: scale(1.1);
-    box-shadow: 0 5px 15px var(--cosmic-blue1);
+    box-shadow: 0 0 15px var(--cosmic-blue1);
 }
 
 /* Buttons & Navigation */
@@ -308,171 +385,133 @@
 .distant-skies .transparent-button,
 .distant-skies #backToTopBtn {
     border-radius: var(--cosmic-radius);
-    padding: 16px 32px;
-    font-size: 1.3em;
+    padding: 14px 24px;
+    font-size: 1.2em;
     transition: all var(--cosmic-transition);
     cursor: pointer;
-    border: 3px solid var(--cosmic-primary);
+    border: 2px solid var(--cosmic-primary);
     color: var(--cosmic-star);
-    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-purple2));
-    box-shadow: 0 8px 25px var(--cosmic-shadow);
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 1.5px;
+    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-nebula));
+    box-shadow: 0 0 20px var(--cosmic-shadow);
 }
 
 .distant-skies .button:hover,
 .distant-skies .transparent-button:hover,
 .distant-skies #backToTopBtn:hover {
-    background: linear-gradient(to bottom, var(--cosmic-hover), var(--cosmic-purple3));
-    box-shadow: 0 12px 30px var(--cosmic-nebula);
+    background: linear-gradient(to bottom, var(--cosmic-hover), var(--cosmic-purple2));
+    box-shadow: 0 0 25px var(--cosmic-purple1);
     transform: scale(1.05);
 }
 
 .distant-skies .button.secondary {
-    background: linear-gradient(to bottom, var(--cosmic-blue3), var(--cosmic-blue4));
+    background: linear-gradient(to bottom, var(--cosmic-blue2), var(--cosmic-blue3));
     border: none;
 }
 
 .distant-skies .button.secondary:hover {
-    background: linear-gradient(to bottom, var(--cosmic-blue2), var(--cosmic-blue3));
+    background: linear-gradient(to bottom, var(--cosmic-blue1), var(--cosmic-blue4));
 }
 
 .distant-skies .calendar-navigation button {
-    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-purple2));
+    background: linear-gradient(to bottom, var(--cosmic-purple1), var(--cosmic-nebula));
     border: none;
-    font-size: 1.3em;
-    padding: 10px 20px;
+    font-size: 1.2em;
+    padding: 7px 14px;
     cursor: pointer;
     color: var(--cosmic-star);
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 5px 15px var(--cosmic-shadow);
-    font-family: 'Orbitron', sans-serif;
+    transition: color 0.2s ease-in-out;
+    box-shadow: 0 0 15px var(--cosmic-shadow);
 }
 
 .distant-skies .calendar-navigation button:hover {
     color: var(--cosmic-comet);
     transform: scale(1.1);
-    box-shadow: 0 8px 20px var(--cosmic-blue1);
-}
-
-/* Calendar Header & Title */
-.distant-skies .calendar-header {
-    text-align: center;
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 25px;
-    color: var(--cosmic-comet);
-    text-shadow: 0 0 15px var(--cosmic-comet);
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 3px;
-    animation: starTwinkle 3s infinite alternate;
-}
-
-.distant-skies .calendar-title {
-    font-size: 1.6em;
-    color: var(--cosmic-nebula);
-    text-shadow: 0 0 10px var(--cosmic-nebula);
-    font-style: italic;
 }
 
 /* Modal Close */
 .distant-skies .modal-close {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 1.4em;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
     cursor: pointer;
-    color: var(--cosmic-comet);
+    color: var(--cosmic-primary);
     background: none;
     border: none;
-    padding: 8px;
-    transition: all 0.3s ease-in-out;
+    padding: 5px;
+    transition: color 0.2s ease-in-out;
 }
 
 .distant-skies .modal-close:hover {
     color: var(--cosmic-nebula);
-    transform: scale(1.3) rotate(90deg);
-    text-shadow: 0 0 15px var(--cosmic-nebula);
+    transform: scale(1.2);
 }
 
 /* Week Number & No Events */
 .distant-skies .week-number {
-    color: var(--cosmic-comet);
-    font-size: 1em;
-    padding: 4px 8px;
+    color: var(--cosmic-blue1);
+    font-size: 0.9em;
+    padding: 2px 5px;
     background: rgba(92, 211, 255, 0.2);
-    border-radius: 8px;
-    margin: 4px;
-    border: 1px solid var(--cosmic-comet);
+    border-radius: 5px;
+    margin: 2px;
 }
 
 .distant-skies .no-events {
     font-style: italic;
-    color: var(--cosmic-blue2);
+    color: var(--cosmic-blue1);
     text-align: center;
-    margin-top: 12px;
-    font-size: 1.1em;
+    margin-top: 8px;
+    font-size: 1em;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .distant-skies .container {
-        padding: 20px;
-    }
-
-    .distant-skies .calendar-container {
-        padding: 20px;
-    }
-
-    .distant-skies table {
-        font-size: 0.95em;
-    }
-
-    .distant-skies th,
-    .distant-skies td {
-        padding: 10px;
-    }
-
-    .distant-skies .button,
-    .distant-skies .calendar-navigation button {
-        padding: 14px 24px;
-        font-size: 1.1em;
-    }
-
     .distant-skies .calendar-header {
-        font-size: 1.7em;
+        font-size: 1.8em;
+        padding: 15px;
+    }
+
+    .distant-skies .date-weather-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .distant-skies .current-date,
+    .distant-skies .weather-forecast {
+        width: 100%;
+        text-align: center;
+    }
+
+    .distant-skies .clock-container {
+        padding: 20px;
     }
 }
 
-@media (max-width: 480px) {
-    .distant-skies .container {
+@media (max-width: 575.98px) {
+    .distant-skies .calendar-header {
+        font-size: 1.5em;
+        padding: 12px;
+    }
+
+    .distant-skies .current-date {
+        font-size: 1.2em;
+        padding: 8px 15px;
+    }
+
+    .distant-skies .weather-forecast {
+        font-size: 1.1em;
+        padding: 8px 15px;
+    }
+
+    .distant-skies .clock-container {
         padding: 15px;
-    }
-
-    .distant-skies .calendar-container {
-        padding: 15px;
-    }
-
-    .distant-skies table {
-        font-size: 0.85em;
-    }
-
-    .distant-skies th,
-    .distant-skies td {
-        padding: 8px;
     }
 
     .distant-skies .button,
-    .distant-skies .calendar-navigation button {
+    .distant-skies .transparent-button,
+    .distant-skies #backToTopBtn {
         padding: 12px 20px;
-        font-size: 1em;
-    }
-
-    .distant-skies .calendar-header {
-        font-size: 1.5em;
-    }
-
-    .distant-skies .modal-content {
-        padding: 20px;
+        font-size: 1.1em;
     }
 }
