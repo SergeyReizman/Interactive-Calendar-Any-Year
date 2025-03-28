@@ -61,7 +61,7 @@ const applyTheme = (theme) => {
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'deep-forest', 'desert-mirage', 'dragon-flame', 'dragonfly',
     'emerald-stream', 'emperor-penguin', 'everest-view', 'exotic-island', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'frozen-wilderness', 'galactic-glow', 'genghis-khan-arrow',
-    'giant-petrel', 'golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
+    'giant-petrel', 'golden-coast','golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
     'greenland-icebergs', 'greyscale', 'heavy-rain', 'hidden-trail', 'high-performance', 'hurricane-clouds', 
     'into-the-night', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
     'lemongrass-sky', 'life-quality', 'lions-mane', 'macaroni-penguin',
