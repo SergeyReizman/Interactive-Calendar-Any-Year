@@ -1,410 +1,468 @@
-/* ==========================================================================  
-   Selfless Programmer PRO - Optimized for Developers  
-   Version: 3.0  
-   Updated: 2025-03-28  
-   Features:  
-   - Ultra-clean dark theme with IDE-inspired accents  
-   - Enhanced readability with perfect contrast ratios  
-   - Smooth animations for fluid interactions  
-   - Advanced responsive design for all devices  
-   - Custom scrollbars & subtle UX improvements  
-   ========================================================================== */
+/* ==========================================================================
+  Selfless Programmer Theme - Altruistic, Compassionate, and Community-focused
+  Purpose: Styles specific to the Selfless Programmer theme for the calendar, with warm, welcoming colors and effects.
+  ========================================================================== */
 
-   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Space+Grotesk:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
-   :root {
-       /* Enhanced Color Palette */
-       --dev-bg: #161622; /* Deep space blue */
-       --dev-text: #e0e0e0; /* Soft white */
-       --dev-primary: #4dabf7; /* Bright IDE blue */
-       --dev-secondary: #69db7c; /* Healthy green */
-       
-       /* Refined Syntax Highlights */
-       --dev-accent1: #ffd43b; /* Warning yellow */
-       --dev-accent2: #ff8787; /* Error red */
-       --dev-accent3: #91a7ff; /* Light blue */
-       --dev-accent4: #b197fc; /* Purple */
-       --dev-accent5: #40c057; /* Success green */
-       
-       /* UI Variables */
-       --dev-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-       --dev-radius: 6px;
-       --dev-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-       --dev-hover: #2c2c3a;
-       --dev-current-day: rgba(77, 171, 247, 0.15);
-       --dev-border: rgba(255, 255, 255, 0.08);
-   }
-   
-   /* ==================== ANIMATIONS ==================== */
-   @keyframes dev-float {
-       0% { transform: translateY(0); }
-       50% { transform: translateY(-4px); }
-       100% { transform: translateY(0); }
-   }
-   
-   @keyframes dev-pulse {
-       0% { opacity: 0.6; }
-       50% { opacity: 1; }
-       100% { opacity: 0.6; }
-   }
-   
-   /* ==================== BASE STYLES ==================== */
-   .selfless-programmer {
-       font-family: 'JetBrains Mono', monospace;
-       color: var(--dev-text);
-       line-height: 1.6;
-       background: var(--dev-bg);
-       min-height: 100vh;
-       position: relative;
-   }
-   
-   /* Custom Scrollbar */
-   .selfless-programmer::-webkit-scrollbar {
-       width: 8px;
-   }
-   .selfless-programmer::-webkit-scrollbar-thumb {
-       background: var(--dev-primary);
-       border-radius: 4px;
-   }
-   
-   .selfless-programmer .container {
-       background: var(--dev-bg);
-       padding: 2.5rem;
-       border: 1px solid var(--dev-border);
-       box-shadow: var(--dev-shadow);
-       max-width: 1600px;
-       margin: 2rem auto;
-       border-radius: var(--dev-radius);
-       position: relative;
-       overflow: hidden;
-   }
-   
-   /* Subtle grid overlay */
-   .selfless-programmer .container::before {
-       content: "";
-       position: absolute;
-       inset: 0;
-       background-image: 
-           linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-       background-size: 24px 24px;
-       pointer-events: none;
-       z-index: 0;
-   }
-   
-   /* ==================== TYPOGRAPHY ENHANCEMENTS ==================== */
-   .selfless-programmer #calendar-title {
-       font-family: 'Space Grotesk', sans-serif;
-       color: var(--dev-primary);
-       text-align: center;
-       font-size: 2.2rem;
-       margin-bottom: 2rem;
-       font-weight: 500;
-       letter-spacing: -0.5px;
-       position: relative;
-       display: inline-block;
-   }
-   
-   .selfless-programmer #calendar-title::after {
-       content: "";
-       position: absolute;
-       bottom: -8px;
-       left: 0;
-       width: 100%;
-       height: 2px;
-       background: linear-gradient(90deg, var(--dev-primary), transparent);
-   }
-   
-   /* ==================== DATE & WEATHER ==================== */
-   .selfless-programmer #date-weather-container {
-       text-align: center;
-       margin: 2rem 0;
-       padding: 1.5rem;
-       background: rgba(30, 30, 40, 0.5);
-       border-radius: var(--dev-radius);
-       backdrop-filter: blur(4px);
-       border: 1px solid var(--dev-border);
-   }
-   
-   .selfless-programmer #current-date {
-       font-size: 1.4rem;
-       margin-bottom: 0.5rem;
-       font-weight: 300;
-   }
-   
-   .selfless-programmer #today-weather {
-       color: var(--dev-secondary);
-       font-size: 1.1rem;
-       font-weight: 400;
-   }
-   
-   /* ==================== DIGITAL CLOCK ==================== */
-   .selfless-programmer #analog-watch {
-       display: flex;
-       justify-content: center;
-       margin: 2rem 0;
-   }
-   
-   .selfless-programmer .clock-face {
-       width: 200px;
-       height: 200px;
-       border: 2px solid var(--dev-border);
-       border-radius: 50%;
-       position: relative;
-       background: rgba(30, 30, 40, 0.3);
-       box-shadow: 
-           inset 0 0 15px rgba(0, 0, 0, 0.2),
-           0 0 30px rgba(0, 0, 0, 0.1);
-   }
-   
-   .selfless-programmer .hand {
-       position: absolute;
-       top: 50%;
-       left: 10%;
-       transform-origin: 100%;
-       transform: rotate(90deg);
-       transition: var(--dev-transition);
-   }
-   
-   .selfless-programmer .hour-hand {
-       width: 30%;
-       height: 4px;
-       background: var(--dev-primary);
-       margin-top: -2px;
-       border-radius: 4px;
-   }
-   
-   .selfless-programmer .minute-hand {
-       width: 40%;
-       height: 3px;
-       background: var(--dev-text);
-       margin-top: -1.5px;
-       opacity: 0.8;
-   }
-   
-   .selfless-programmer .second-hand {
-       width: 45%;
-       height: 2px;
-       background: var(--dev-accent2);
-       margin-top: -1px;
-   }
-   
-   /* Center dot */
-   .selfless-programmer .clock-face::after {
-       content: "";
-       position: absolute;
-       top: 50%;
-       left: 50%;
-       width: 10px;
-       height: 10px;
-       background: var(--dev-primary);
-       border-radius: 50%;
-       transform: translate(-50%, -50%);
-       z-index: 2;
-   }
-   
-   /* ==================== CALENDAR TABLE ==================== */
-   .selfless-programmer table {
-       width: 100%;
-       border-collapse: separate;
-       border-spacing: 0;
-       margin: 2rem auto;
-       background: var(--dev-bg);
-       border-radius: var(--dev-radius);
-       overflow: hidden;
-       position: relative;
-   }
-   
-   .selfless-programmer th {
-       background: rgba(30, 30, 40, 0.7);
-       color: var(--dev-primary) !important;
-       font-family: 'Space Grotesk', sans-serif;
-       font-weight: 500;
-       padding: 1rem;
-       text-align: left;
-       border-bottom: 1px solid var(--dev-border);
-   }
-   
-   .selfless-programmer td {
-       padding: 1rem;
-       border-bottom: 1px solid var(--dev-border);
-       border-right: 1px solid var(--dev-border);
-       height: 120px;
-       vertical-align: top;
-       transition: var(--dev-transition);
-       position: relative;
-   }
-   
-   .selfless-programmer td:hover {
-       background: var(--dev-hover);
-   }
-   
-   /* Current day highlight */
-   .selfless-programmer td.current-day {
-       background: var(--dev-current-day);
-       position: relative;
-   }
-   
-   .selfless-programmer td.current-day::before {
-       content: "";
-       position: absolute;
-       top: 0;
-       left: 0;
-       width: 4px;
-       height: 100%;
-       background: var(--dev-primary);
-   }
-   
-   /* ==================== EVENT MARKERS ==================== */
-   .selfless-programmer .event-marker {
-       display: inline-block;
-       width: 8px;
-       height: 8px;
-       border-radius: 2px;
-       background: var(--dev-accent5);
-       margin-right: 6px;
-       transition: var(--dev-transition);
-   }
-   
-   .selfless-programmer .event-marker:hover {
-       transform: scale(1.5);
-       background: var(--dev-secondary);
-   }
-   
-   /* ==================== MODAL ENHANCEMENTS ==================== */
-   .selfless-programmer .modal-content {
-       background: var(--dev-bg);
-       border: 1px solid var(--dev-border);
-       padding: 2rem;
-       border-radius: var(--dev-radius);
-       box-shadow: var(--dev-shadow);
-       max-width: 600px;
-       position: relative;
-   }
-   
-   .selfless-programmer .modal-content h2 {
-       color: var(--dev-primary);
-       font-family: 'Space Grotesk', sans-serif;
-       font-size: 1.5rem;
-       margin-bottom: 1.5rem;
-       padding-bottom: 0.5rem;
-       border-bottom: 1px solid var(--dev-border);
-   }
-   
-   .selfless-programmer .modal-content button {
-       background: var(--dev-primary);
-       color: white;
-       border: none;
-       padding: 0.7rem 1.5rem;
-       font-family: 'JetBrains Mono', monospace;
-       font-weight: 500;
-       border-radius: var(--dev-radius);
-       cursor: pointer;
-       transition: var(--dev-transition);
-   }
-   
-   .selfless-programmer .modal-content button:hover {
-       background: #3a8fd4;
-       transform: translateY(-2px);
-   }
-   
-   /* Close button */
-   .selfless-programmer .modal .close-button {
-       position: absolute;
-       top: 1rem;
-       right: 1rem;
-       background: transparent;
-       color: var(--dev-text);
-       border: none;
-       font-size: 1.5rem;
-       cursor: pointer;
-       opacity: 0.7;
-       transition: var(--dev-transition);
-   }
-   
-   .selfless-programmer .modal .close-button:hover {
-       opacity: 1;
-       color: var(--dev-accent2);
-   }
-   
-   /* ==================== BUTTONS & CONTROLS ==================== */
-   .selfless-programmer .controls {
-       display: flex;
-       justify-content: center;
-       gap: 1rem;
-       margin: 2rem 0;
-       flex-wrap: wrap;
-   }
-   
-   .selfless-programmer .button {
-       background: rgba(77, 171, 247, 0.1);
-       color: var(--dev-primary);
-       border: 1px solid var(--dev-primary);
-       padding: 0.7rem 1.5rem;
-       border-radius: var(--dev-radius);
-       font-family: 'JetBrains Mono', monospace;
-       cursor: pointer;
-       transition: var(--dev-transition);
-       display: flex;
-       align-items: center;
-       gap: 0.5rem;
-   }
-   
-   .selfless-programmer .button:hover {
-       background: rgba(77, 171, 247, 0.2);
-       transform: translateY(-2px);
-       box-shadow: 0 4px 12px rgba(77, 171, 247, 0.1);
-   }
-   
-   /* ==================== RESPONSIVE DESIGN ==================== */
-   @media (max-width: 992px) {
-       .selfless-programmer .container {
-           padding: 1.5rem;
-           margin: 1rem;
-       }
-       
-       .selfless-programmer #calendar-title {
-           font-size: 1.8rem;
-       }
-       
-       .selfless-programmer td {
-           height: 100px;
-           padding: 0.8rem;
-       }
-   }
-   
-   @media (max-width: 768px) {
-       .selfless-programmer #calendar-title {
-           font-size: 1.6rem;
-       }
-       
-       .selfless-programmer th, 
-       .selfless-programmer td {
-           padding: 0.6rem;
-           font-size: 0.9rem;
-       }
-       
-       .selfless-programmer .clock-face {
-           width: 160px;
-           height: 160px;
-       }
-   }
-   
-   @media (max-width: 576px) {
-       .selfless-programmer .container {
-           padding: 1rem;
-       }
-       
-       .selfless-programmer #calendar-title {
-           font-size: 1.4rem;
-       }
-       
-       .selfless-programmer td {
-           height: 80px;
-       }
-       
-       .selfless-programmer .button {
-           padding: 0.5rem 1rem;
-           font-size: 0.9rem;
-       }
-   }
+:root {
+  /* Altruistic Color Palette - Improved */
+  --selfless-bg: #F5F7FA;
+  /* Softer, warmer light background */
+  --selfless-text: #2D3748;
+  /* Darker, more readable text with better contrast */
+  --selfless-primary: #38B2AC;
+  /* Softer teal - represents wisdom and growth */
+  --selfless-secondary: #667EEA;
+  /* Gentler indigo - represents community and connection */
+
+  /* Compassion Colors - More Cohesive */
+  --selfless-care: #4FD1C5;
+  /* Caring actions - softer teal */
+  --selfless-help: #4299E1;
+  /* Helping hand - friendly blue */
+  --selfless-share: #9F7AEA;
+  /* Knowledge sharing - lighter purple */
+  --selfless-love: #F687B3;
+  /* Passion for helping - warm pink */
+
+  /* Code Colors - Improved Contrast */
+  --selfless-code-keyword: #38B2AC;
+  /* Keywords - matching primary */
+  --selfless-code-operator: #4299E1;
+  /* Operators - matching help color */
+  --selfless-code-comment: #A0AEC0;
+  /* Comments - softer gray */
+  --selfless-code-string: #F687B3;
+  /* Strings - matching love color */
+
+  /* Theme Variables - Enhanced */
+  --selfless-shadow: rgba(56, 178, 172, 0.15);
+  /* More visible but still soft shadow */
+  --selfless-radius: 8px;
+  /* Friendly rounded corners */
+  --selfless-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Smoother transitions */
+  --selfless-hover: #667EEA;
+  /* Hover color - matching secondary */
+  --selfless-highlight: 0 0 10px rgba(56, 178, 172, 0.25);
+  /* More visible highlight */
+  --selfless-card-bg: #FFFFFF;
+  /* Pure white for cards/content */
+  --selfless-border: #E2E8F0;
+  /* Subtle border color */
+}
+
+/* Animations */
+@keyframes gentlePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes heartBeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes communityGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px var(--selfless-care),
+      0 0 16px var(--selfless-help);
+  }
+
+  50% {
+    box-shadow: 0 0 16px var(--selfless-care),
+      0 0 24px var(--selfless-help);
+  }
+}
+
+/* Base Styles */
+.selfless-programmer {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--selfless-text);
+  line-height: 1.6;
+  background-color: var(--selfless-bg);
+  background-image:
+    linear-gradient(to bottom,
+      rgba(248, 249, 250, 0.9),
+      rgba(248, 249, 250, 0.9));
+}
+
+.selfless-programmer .container {
+  background: white;
+  padding: 30px;
+  border-radius: var(--selfless-radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.selfless-programmer .container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right,
+      var(--selfless-primary),
+      var(--selfless-secondary));
+}
+
+.selfless-programmer .calendar-container {
+  padding: 25px;
+  background: white;
+  border-radius: var(--selfless-radius);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  animation: gentlePulse 4s infinite;
+}
+
+/* Table Styles */
+.selfless-programmer table {
+  width: 100%;
+  margin: 25px auto;
+  border-collapse: collapse;
+  border-radius: var(--selfless-radius);
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  table-layout: fixed;
+}
+
+.selfless-programmer th,
+.selfless-programmer td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all var(--selfless-transition);
+  word-wrap: break-word;
+  position: relative;
+}
+
+.selfless-programmer th {
+  background: linear-gradient(to bottom,
+      var(--selfless-primary),
+      var(--selfless-secondary));
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.selfless-programmer td {
+  background-color: white;
+  color: var(--selfless-text);
+}
+
+.selfless-programmer td:hover {
+  background: rgba(32, 201, 151, 0.1);
+  box-shadow: 0 0 8px var(--selfless-shadow);
+  border-color: var(--selfless-primary);
+  z-index: 2;
+}
+
+.selfless-programmer td.current-day {
+  background: rgba(32, 201, 151, 0.2);
+  border: 2px solid var(--selfless-primary);
+  font-weight: 600;
+  color: var(--selfless-text);
+  box-shadow: 0 0 12px var(--selfless-shadow);
+  animation: communityGlow 3s infinite;
+}
+
+/* Event Marker */
+.selfless-programmer .event-marker {
+  background-color: var(--selfless-primary);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: transform var(--selfless-transition);
+  display: inline-block;
+}
+
+.selfless-programmer .event-marker:hover {
+  background-color: var(--selfless-secondary);
+  transform: scale(1.5);
+}
+
+/* Modal */
+.selfless-programmer .modal-content {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--selfless-radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  color: var(--selfless-text);
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.selfless-programmer .modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right,
+      var(--selfless-primary),
+      var(--selfless-secondary));
+}
+
+.selfless-programmer .modal-content h2 {
+  color: var(--selfless-primary);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.selfless-programmer .modal-content button {
+  background: linear-gradient(to bottom,
+      var(--selfless-primary),
+      var(--selfless-secondary));
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--selfless-radius);
+  cursor: pointer;
+  transition: all var(--selfless-transition);
+  font-size: 1em;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.selfless-programmer .modal-content button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(32, 201, 151, 0.3);
+}
+
+.selfless-programmer .modal .close-button {
+  background-color: white;
+  color: var(--selfless-text);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: all var(--selfless-transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selfless-programmer .modal .close-button:hover {
+  background-color: var(--selfless-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* Event List */
+.selfless-programmer .event-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.selfless-programmer .event-list li::before {
+  content: '❤ ';
+  color: var(--selfless-primary);
+}
+
+.selfless-programmer .event-list li:last-child {
+  border-bottom: none;
+}
+
+.selfless-programmer .event-list button {
+  background: var(--selfless-primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--selfless-radius);
+  cursor: pointer;
+  transition: all var(--selfless-transition);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.selfless-programmer .event-list button:hover {
+  background: var(--selfless-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(111, 66, 193, 0.2);
+}
+
+/* Buttons & Navigation */
+.selfless-programmer .button,
+.selfless-programmer .transparent-button,
+.selfless-programmer #backToTopBtn {
+  border-radius: var(--selfless-radius);
+  padding: 14px 24px;
+  font-size: 1em;
+  transition: all var(--selfless-transition);
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: linear-gradient(to bottom,
+      var(--selfless-primary),
+      var(--selfless-secondary));
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.selfless-programmer .button:hover,
+.selfless-programmer .transparent-button:hover,
+.selfless-programmer #backToTopBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(32, 201, 151, 0.3);
+}
+
+.selfless-programmer .button.secondary {
+  background: linear-gradient(to bottom,
+      var(--selfless-secondary),
+      #5A32A3);
+  border: none;
+}
+
+.selfless-programmer .button.secondary:hover {
+  background: linear-gradient(to bottom,
+      #5A32A3,
+      var(--selfless-secondary));
+}
+
+.selfless-programmer .calendar-navigation button {
+  background: var(--selfless-primary);
+  border: none;
+  font-size: 1em;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: white;
+  transition: all var(--selfless-transition);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.selfless-programmer .calendar-navigation button:hover {
+  background: var(--selfless-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(111, 66, 193, 0.2);
+}
+
+/* Calendar Header & Title */
+.selfless-programmer .calendar-header {
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--selfless-primary);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.selfless-programmer .calendar-header::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right,
+      var(--selfless-primary),
+      var(--selfless-secondary));
+  margin: 10px auto;
+}
+
+.selfless-programmer .calendar-title {
+  font-size: 1.3em;
+  font-weight: 400;
+  color: var(--selfless-secondary);
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Modal Close */
+.selfless-programmer .modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: var(--selfless-text);
+  background: none;
+  border: none;
+  padding: 5px;
+  transition: all var(--selfless-transition);
+}
+
+.selfless-programmer .modal-close:hover {
+  color: var(--selfless-primary);
+  transform: scale(1.2);
+}
+
+/* Week Number & No Events */
+.selfless-programmer .week-number {
+  color: var(--selfless-code-comment);
+  font-size: 0.8em;
+  padding: 2px 5px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.selfless-programmer .no-events {
+  font-style: italic;
+  color: var(--selfless-code-comment);
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+  .selfless-programmer table {
+    font-size: 0.8em;
+  }
+
+  .selfless-programmer th,
+  .selfless-programmer td {
+    padding: 8px;
+  }
+
+  .selfless-programmer .event-marker {
+    width: 8px;
+    height: 8px;
+  }
+
+  .selfless-programmer .calendar-container {
+    padding: 15px;
+  }
+
+  .selfless-programmer .button,
+  .selfless-programmer .transparent-button,
+  .selfless-programmer #backToTopBtn {
+    padding: 12px 20px;
+    font-size: 0.9em;
+  }
+}
