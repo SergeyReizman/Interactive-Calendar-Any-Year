@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'frozen-wilderness', 'galactic-glow', 'genghis-khan-arrow',
     'giant-petrel', 'golden-coast','golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
     'greenland-icebergs', 'greyscale', 'heavy-rain', 'hidden-trail', 'high-performance', 'hurricane-clouds', 
-    'into-the-night', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
+    'iceland-volcanoes' , 'into-the-night', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
     'lemongrass-sky', 'life-quality', 'lions-mane', 'macaroni-penguin',
     'magellanic-penguin', 'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'midnight-train', 'migratory-birds', 'monochrome-ink',
