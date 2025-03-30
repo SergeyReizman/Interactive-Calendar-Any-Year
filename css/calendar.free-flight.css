@@ -1,0 +1,368 @@
+/* ==========================================================================
+  Free Flight Theme - Soaring, Aerial, and Limitless! (Aviation Edition)
+  Purpose: Styles specific to the Free Flight theme for the calendar, with aviation-inspired colors.
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+:root {
+    /* Aviation Color Palette */
+    --freeflight-bg: #E6F2FF;
+    /* Sky blue background */
+    --freeflight-text: #1A2E40;
+    /* Deep navy for text */
+    --freeflight-primary: #1E88E5;
+    /* Bright aviation blue */
+    --freeflight-secondary: #1565C0;
+    /* Deep aviation blue */
+
+    /* Sky Gradient Colors */
+    --freeflight-sky1: #4FC3F7;
+    /* Light sky blue */
+    --freeflight-sky2: #29B6F6;
+    /* Medium sky blue */
+    --freeflight-sky3: #039BE5;
+    /* Classic aviation blue */
+    --freeflight-sky4: #0277BD;
+    /* Deep aviation blue */
+    --freeflight-sky5: #01579B;
+    /* Dark aviation blue */
+
+    /* Cloud/Silver Colors */
+    --freeflight-cloud1: #FFFFFF;
+    /* Pure white */
+    --freeflight-cloud2: #F5F5F5;
+    /* Off-white */
+    --freeflight-cloud3: #E0E0E0;
+    /* Light gray */
+    --freeflight-cloud4: #BDBDBD;
+    /* Medium gray */
+
+    /* Sunset Accents */
+    --freeflight-sunset1: #FF8F00;
+    /* Bright orange */
+    --freeflight-sunset2: #FF6D00;
+    /* Deep orange */
+    --freeflight-sunset3: #FFAB40;
+    /* Light orange */
+    --freeflight-sunset4: #FF9100;
+    /* Gold orange */
+
+    /* Theme Variables */
+    --freeflight-shadow: rgba(26, 46, 64, 0.2);
+    --freeflight-radius: 12px;
+    --freeflight-transition: 0.2s ease-in-out;
+    --freeflight-hover: #64B5F6;
+}
+
+/* Animations */
+@keyframes cloudFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes radarPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(30, 136, 229, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(30, 136, 229, 0);
+    }
+}
+
+@keyframes takeoff {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Base Styles */
+.free-flight {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--freeflight-text);
+    line-height: 1.5;
+    background-color: var(--freeflight-bg);
+}
+
+.free-flight .container {
+    background: linear-gradient(135deg, var(--freeflight-sky1), var(--freeflight-sky3));
+    padding: 25px;
+    border-radius: var(--freeflight-radius);
+    box-shadow: 5px 5px 15px var(--freeflight-shadow);
+    border: 2px solid var(--freeflight-primary);
+    animation: takeoff 0.5s ease-out;
+}
+
+.free-flight .calendar-container {
+    padding: 20px;
+    background: linear-gradient(145deg, var(--freeflight-cloud2), var(--freeflight-cloud1));
+    border-radius: var(--freeflight-radius);
+    border: 1px solid var(--freeflight-cloud3);
+}
+
+/* Table Styles */
+.free-flight table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: var(--freeflight-radius);
+    box-shadow: 3px 3px 10px var(--freeflight-shadow);
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid var(--freeflight-primary);
+    table-layout: fixed;
+}
+
+.free-flight th,
+.free-flight td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--freeflight-cloud3);
+    transition: all var(--freeflight-transition);
+    word-wrap: break-word;
+}
+
+.free-flight th {
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.free-flight td {
+    background-color: var(--freeflight-cloud1);
+    color: var(--freeflight-text);
+}
+
+.free-flight td:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky1), var(--freeflight-sky2));
+    transform: scale(1.03);
+    box-shadow: 0 3px 8px var(--freeflight-shadow);
+    border-color: var(--freeflight-primary);
+}
+
+.free-flight td.current-day {
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    border: 2px solid var(--freeflight-sunset1);
+    font-weight: 700;
+    color: white;
+    animation: radarPulse 2s infinite;
+}
+
+/* Event Marker */
+.free-flight .event-marker {
+    background-color: var(--freeflight-sunset1);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: transform var(--freeflight-transition);
+    box-shadow: 0 0 3px var(--freeflight-shadow);
+}
+
+.free-flight .event-marker:hover {
+    background-color: var(--freeflight-sunset2);
+    transform: scale(1.5);
+    box-shadow: 0 0 10px var(--freeflight-sunset1);
+}
+
+/* Modal */
+.free-flight .modal-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 242, 255, 0.98));
+    border: 2px solid var(--freeflight-primary);
+    border-radius: var(--freeflight-radius);
+    box-shadow: 0 10px 20px var(--freeflight-shadow);
+    padding: 25px;
+    color: var(--freeflight-text);
+    animation: takeoff 0.4s ease-out;
+}
+
+.free-flight .modal-content h2 {
+    color: var(--freeflight-sky5);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.free-flight .modal-content button {
+    background: linear-gradient(to bottom, var(--freeflight-sky2), var(--freeflight-sky3));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--freeflight-radius);
+    cursor: pointer;
+    transition: all var(--freeflight-transition);
+    box-shadow: 0 3px 6px var(--freeflight-shadow);
+    font-weight: 600;
+}
+
+.free-flight .modal-content button:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px var(--freeflight-shadow);
+}
+
+.free-flight .modal .close-button {
+    background-color: var(--freeflight-sky5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--freeflight-transition);
+}
+
+.free-flight .modal .close-button:hover {
+    background-color: var(--freeflight-sunset1);
+    transform: rotate(90deg);
+}
+
+/* Event List */
+.free-flight .event-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--freeflight-cloud3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.free-flight .event-list li:last-child {
+    border-bottom: none;
+}
+
+.free-flight .event-list button {
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--freeflight-radius);
+    cursor: pointer;
+    transition: all var(--freeflight-transition);
+    box-shadow: 0 2px 4px var(--freeflight-shadow);
+}
+
+.free-flight .event-list button:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    transform: scale(1.05);
+}
+
+/* Buttons & Navigation */
+.free-flight .button,
+.free-flight .transparent-button,
+.free-flight #backToTopBtn {
+    border-radius: var(--freeflight-radius);
+    padding: 12px 20px;
+    font-size: 1.1em;
+    transition: all var(--freeflight-transition);
+    cursor: pointer;
+    border: 2px solid var(--freeflight-primary);
+    color: white;
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    box-shadow: 3px 3px 10px var(--freeflight-shadow);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.free-flight .button:hover,
+.free-flight .transparent-button:hover,
+.free-flight #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    transform: scale(1.05);
+}
+
+.free-flight .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    border: none;
+    font-size: 1.1em;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: white;
+    transition: all var(--freeflight-transition);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.free-flight .calendar-navigation button:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    transform: scale(1.1);
+}
+
+/* Calendar Header & Title */
+.free-flight .calendar-header {
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--freeflight-sky5);
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 1px 1px 3px var(--freeflight-shadow);
+}
+
+.free-flight .calendar-title {
+    font-size: 1.3em;
+    font-style: italic;
+}
+
+/* Week Number & No Events */
+.free-flight .week-number {
+    color: var(--freeflight-cloud4);
+    font-size: 0.8em;
+    padding: 2px 5px;
+    background-color: var(--freeflight-cloud2);
+    border-radius: 3px;
+    margin: 2px;
+}
+
+.free-flight .no-events {
+    font-style: italic;
+    color: var(--freeflight-cloud4);
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .free-flight table {
+        font-size: 0.8em;
+    }
+
+    .free-flight th,
+    .free-flight td {
+        padding: 6px;
+    }
+
+    .free-flight .event-marker {
+        width: 8px;
+        height: 8px;
+    }
+
+    .free-flight .calendar-container {
+        padding: 10px;
+    }
+
+    .free-flight .button,
+    .free-flight .transparent-button,
+    .free-flight #backToTopBtn {
+        padding: 10px 16px;
+        font-size: 1em;
+    }
+}
