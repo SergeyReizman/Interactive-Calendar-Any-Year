@@ -1,51 +1,101 @@
 /* ==========================================================================
-  Selfless Programmer Dark Theme - Enhanced UI Version
-  Version: 3.2
+  Selfless Programmer Dark Theme - Premium Edition
+  Version: 4.0
   Updated: 2025-03-31
   Features:
-  - Premium button styling system
-  - Enhanced modal component with animations
-  - Refined interactive states
-  - Micro-interaction improvements
-  - Full dark mode compatibility
+  - Complete dark mode system
+  - Enhanced button component system
+  - Animated modal dialogs
+  - Micro-interactions throughout
+  - Advanced calendar styling
+  - Full accessibility support
+  - Responsive at all breakpoints
   ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* Dark Color Palette */
-  --sl-bg: #121212;
-  --sl-bg-elevated: #1e1e1e;
-  --sl-bg-highlight: #252525;
-  --sl-text: #e0e0e0;
-  --sl-text-muted: #a0a0a0;
-  --sl-primary: #64b5f6;
-  --sl-primary-dark: #1976d2;
-  --sl-primary-light: #90caf9;
-  --sl-secondary: #90a4ae;
-  --sl-accent: #1e3a5f;
-  --sl-current: #0d47a1;
-  --sl-border: #333333;
-  --sl-border-light: #424242;
-  --sl-hover: #2a2a2a;
-  --sl-code: #b0bec5;
-  --sl-success: #81c784;
-  --sl-error: #e57373;
-  --sl-warning: #ffb74d;
+  /* ============ Color System ============ */
+  /* Base Colors */
+  --sl-bg: #0d1117;
+  --sl-bg-elevated: #161b22;
+  --sl-bg-highlight: #21262d;
+  --sl-bg-overlay: rgba(1, 4, 9, 0.8);
 
-  /* Theme Variables */
+  /* Text Colors */
+  --sl-text: #e6edf3;
+  --sl-text-muted: #7d8590;
+  --sl-text-on-primary: #0d1117;
+
+  /* Primary Colors */
+  --sl-primary-50: #f0f6ff;
+  --sl-primary-100: #c9dff9;
+  --sl-primary-200: #9ec7f0;
+  --sl-primary-300: #76b3e7;
+  --sl-primary-400: #58a6ff;
+  --sl-primary-500: #388bfd;
+  --sl-primary-600: #1f6feb;
+  --sl-primary-700: #1158c7;
+  --sl-primary-800: #0d419d;
+  --sl-primary-900: #0c2d6b;
+  --sl-primary: var(--sl-primary-500);
+
+  /* Secondary Colors */
+  --sl-secondary-100: #c6e6ff;
+  --sl-secondary-200: #96d0ff;
+  --sl-secondary-300: #6cb6ff;
+  --sl-secondary-400: #539bf5;
+  --sl-secondary-500: #4184e4;
+  --sl-secondary: var(--sl-secondary-400);
+
+  /* State Colors */
+  --sl-success: #3fb950;
+  --sl-error: #f85149;
+  --sl-warning: #d29922;
+  --sl-info: #58a6ff;
+
+  /* Border Colors */
+  --sl-border: #30363d;
+  --sl-border-light: #484f58;
+  --sl-border-dark: #21262d;
+
+  /* ============ Theme Variables ============ */
+  /* Spacing */
+  --sl-space-unit: 0.5rem;
+  --sl-space-xxs: calc(var(--sl-space-unit) * 0.25);
+  --sl-space-xs: calc(var(--sl-space-unit) * 0.5);
+  --sl-space-sm: calc(var(--sl-space-unit) * 0.75);
+  --sl-space-md: var(--sl-space-unit);
+  --sl-space-lg: calc(var(--sl-space-unit) * 1.5);
+  --sl-space-xl: calc(var(--sl-space-unit) * 2);
+  --sl-space-2xl: calc(var(--sl-space-unit) * 3);
+  --sl-space-3xl: calc(var(--sl-space-unit) * 4);
+
+  /* Border Radius */
   --sl-radius-sm: 4px;
   --sl-radius-md: 6px;
   --sl-radius-lg: 8px;
   --sl-radius-xl: 12px;
-  --sl-transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --sl-radius-2xl: 16px;
+  --sl-radius-full: 9999px;
+
+  /* Shadows */
+  --sl-shadow-xs: 0 1px 0 rgba(1, 4, 9, 0.1);
+  --sl-shadow-sm: 0 1px 3px rgba(1, 4, 9, 0.3);
+  --sl-shadow-md: 0 4px 6px -1px rgba(1, 4, 9, 0.4);
+  --sl-shadow-lg: 0 10px 15px -3px rgba(1, 4, 9, 0.5);
+  --sl-shadow-xl: 0 20px 25px -5px rgba(1, 4, 9, 0.6);
+  --sl-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* Transitions */
+  --sl-transition-fast: 0.1s ease-out;
+  --sl-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --sl-transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --sl-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --sl-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --sl-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --sl-space-unit: 0.5rem;
 
   /* Typography */
+  --sl-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', monospace;
+
   --sl-text-xs: 0.75rem;
   --sl-text-sm: 0.875rem;
   --sl-text-base: 1rem;
@@ -53,34 +103,108 @@
   --sl-text-xl: 1.25rem;
   --sl-text-2xl: 1.5rem;
   --sl-text-3xl: 1.875rem;
+  --sl-text-4xl: 2.25rem;
+
+  /* Z-Index */
+  --sl-z-index-dropdown: 100;
+  --sl-z-index-sticky: 200;
+  --sl-z-index-fixed: 300;
+  --sl-z-index-modal: 400;
+  --sl-z-index-popover: 500;
+  --sl-z-index-tooltip: 600;
+  --sl-z-index-toast: 700;
 }
 
-/* Base Styles */
+/* ============ Base Styles ============ */
 .selfless-programmer {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--sl-font-sans);
   color: var(--sl-text);
   line-height: 1.6;
   background-color: var(--sl-bg);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.selfless-programmer *,
+.selfless-programmer *::before,
+.selfless-programmer *::after {
+  box-sizing: border-box;
 }
 
 .selfless-programmer .container {
   background: var(--sl-bg-elevated);
-  padding: calc(var(--sl-space-unit) * 3);
+  padding: var(--sl-space-2xl);
   border-radius: var(--sl-radius-lg);
   box-shadow: var(--sl-shadow-sm);
   border: 1px solid var(--sl-border);
   max-width: 1600px;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 
-/* ==================== ENHANCED BUTTON SYSTEM ==================== */
+/* ============ Typography System ============ */
+.selfless-programmer h1,
+.selfless-programmer h2,
+.selfless-programmer h3,
+.selfless-programmer h4,
+.selfless-programmer h5,
+.selfless-programmer h6 {
+  margin-top: 0;
+  margin-bottom: var(--sl-space-md);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--sl-text);
+}
+
+.selfless-programmer h1,
+.selfless-programmer #calendar-title {
+  font-size: var(--sl-text-3xl);
+  color: var(--sl-primary);
+}
+
+.selfless-programmer h2 {
+  font-size: var(--sl-text-2xl);
+}
+
+.selfless-programmer h3 {
+  font-size: var(--sl-text-xl);
+}
+
+.selfless-programmer p {
+  margin-top: 0;
+  margin-bottom: var(--sl-space-md);
+}
+
+.selfless-programmer code,
+.selfless-programmer .code {
+  font-family: var(--sl-font-mono);
+  font-size: var(--sl-text-sm);
+  color: var(--sl-primary-300);
+  background: rgba(88, 166, 255, 0.1);
+  padding: var(--sl-space-xxs) var(--sl-space-xs);
+  border-radius: var(--sl-radius-sm);
+  border: 1px solid var(--sl-border);
+}
+
+.selfless-programmer a {
+  color: var(--sl-primary);
+  text-decoration: none;
+  transition: color var(--sl-transition-fast);
+}
+
+.selfless-programmer a:hover {
+  color: var(--sl-primary-300);
+  text-decoration: underline;
+}
+
+/* ============ Enhanced Button System ============ */
 .selfless-programmer .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: calc(var(--sl-space-unit) * 0.5);
-  padding: calc(var(--sl-space-unit) * 1.25) calc(var(--sl-space-unit) * 2);
+  gap: var(--sl-space-xs);
+  padding: var(--sl-space-sm) var(--sl-space-md);
   border-radius: var(--sl-radius-md);
   font-size: var(--sl-text-sm);
   font-weight: 500;
@@ -90,21 +214,25 @@
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  will-change: transform, box-shadow;
+  will-change: transform, box-shadow, background-color;
+  user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
-/* Base Button Styles */
+/* Button Variants */
 .selfless-programmer .btn-primary {
   background: var(--sl-primary);
-  color: var(--sl-bg);
-  border-color: var(--sl-primary);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--sl-text-on-primary);
+  border-color: var(--sl-primary-600);
+  box-shadow: var(--sl-shadow-xs);
 }
 
 .selfless-programmer .btn-secondary {
-  background: var(--sl-accent);
+  background: var(--sl-bg-highlight);
   color: var(--sl-primary);
-  border-color: var(--sl-primary-dark);
+  border-color: var(--sl-border);
 }
 
 .selfless-programmer .btn-ghost {
@@ -117,7 +245,7 @@
   background: transparent;
   color: var(--sl-primary);
   border-color: transparent;
-  padding: calc(var(--sl-space-unit) * 0.75);
+  padding: var(--sl-space-xs);
 }
 
 /* Button States */
@@ -127,44 +255,54 @@
 }
 
 .selfless-programmer .btn-primary:hover {
-  background: var(--sl-primary-light);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  background: var(--sl-primary-400);
+  border-color: var(--sl-primary-500);
+  box-shadow: var(--sl-shadow-md);
 }
 
 .selfless-programmer .btn-secondary:hover {
-  background: var(--sl-primary-dark);
-  color: white;
+  background: var(--sl-bg);
+  border-color: var(--sl-border-light);
 }
 
 .selfless-programmer .btn-ghost:hover {
-  background: var(--sl-hover);
+  background: var(--sl-bg-highlight);
+  border-color: var(--sl-primary);
 }
 
 .selfless-programmer .btn-text:hover {
-  text-decoration: underline;
+  background: var(--sl-bg-highlight);
+  text-decoration: none;
   transform: none;
 }
 
 .selfless-programmer .btn:active {
   transform: translateY(0);
   transition-duration: 0.1s;
+  box-shadow: var(--sl-shadow-xs);
 }
 
 .selfless-programmer .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Button Sizes */
 .selfless-programmer .btn-sm {
-  padding: calc(var(--sl-space-unit) * 0.75) calc(var(--sl-space-unit) * 1.5);
+  padding: var(--sl-space-xs) var(--sl-space-sm);
   font-size: var(--sl-text-xs);
 }
 
 .selfless-programmer .btn-lg {
-  padding: calc(var(--sl-space-unit) * 1.5) calc(var(--sl-space-unit) * 2.5);
+  padding: var(--sl-space-md) var(--sl-space-lg);
   font-size: var(--sl-text-base);
+}
+
+.selfless-programmer .btn-xl {
+  padding: var(--sl-space-lg) var(--sl-space-xl);
+  font-size: var(--sl-text-lg);
 }
 
 /* Button Icons */
@@ -172,7 +310,7 @@
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
-  border-radius: 50%;
+  border-radius: var(--sl-radius-full);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -197,7 +335,7 @@
   height: 1rem;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: white;
-  border-radius: 50%;
+  border-radius: var(--sl-radius-full);
   animation: spin 0.8s linear infinite;
 }
 
@@ -207,21 +345,51 @@
   }
 }
 
-/* ==================== ENHANCED MODAL SYSTEM ==================== */
+/* Button Group */
+.selfless-programmer .btn-group {
+  display: inline-flex;
+  border-radius: var(--sl-radius-md);
+  box-shadow: var(--sl-shadow-sm);
+  overflow: hidden;
+}
+
+.selfless-programmer .btn-group .btn {
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  position: relative;
+}
+
+.selfless-programmer .btn-group .btn:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selfless-programmer .btn-group .btn:first-child {
+  border-top-left-radius: var(--sl-radius-md);
+  border-bottom-left-radius: var(--sl-radius-md);
+}
+
+.selfless-programmer .btn-group .btn:last-child {
+  border-top-right-radius: var(--sl-radius-md);
+  border-bottom-right-radius: var(--sl-radius-md);
+}
+
+/* ============ Premium Modal System ============ */
 .selfless-programmer .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 1000;
+  background: var(--sl-bg-overlay);
+  z-index: var(--sl-z-index-modal);
   display: flex;
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(8px);
   animation: fadeIn var(--sl-transition-slow) forwards;
   opacity: 0;
+  padding: var(--sl-space-md);
 }
 
 @keyframes fadeIn {
@@ -234,11 +402,11 @@
   background: var(--sl-bg-elevated);
   border: 1px solid var(--sl-border);
   border-radius: var(--sl-radius-xl);
-  box-shadow: var(--sl-shadow-lg);
-  padding: calc(var(--sl-space-unit) * 3);
+  box-shadow: var(--sl-shadow-xl);
+  padding: var(--sl-space-2xl);
   color: var(--sl-text);
-  width: min(520px, 90vw);
-  max-height: 90vh;
+  width: min(560px, 100%);
+  max-height: calc(100vh - var(--sl-space-2xl));
   overflow-y: auto;
   position: relative;
   transform: translateY(20px);
@@ -257,7 +425,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: calc(var(--sl-space-unit) * 2);
+  margin-bottom: var(--sl-space-lg);
+  position: relative;
 }
 
 .selfless-programmer .modal-title {
@@ -266,6 +435,7 @@
   color: var(--sl-primary);
   margin: 0;
   line-height: 1.3;
+  padding-right: var(--sl-space-xl);
 }
 
 .selfless-programmer .modal-close {
@@ -273,46 +443,53 @@
   border: none;
   color: var(--sl-text-muted);
   cursor: pointer;
-  padding: calc(var(--sl-space-unit) * 0.5);
-  margin-left: calc(var(--sl-space-unit) * 1);
-  transition: all var(--sl-transition);
+  padding: var(--sl-space-xs);
+  margin-left: var(--sl-space-sm);
+  transition: all var(--sl-transition-fast);
   border-radius: var(--sl-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .selfless-programmer .modal-close:hover {
   color: var(--sl-primary);
-  background: var(--sl-hover);
+  background: var(--sl-bg-highlight);
 }
 
 .selfless-programmer .modal-body {
-  margin-bottom: calc(var(--sl-space-unit) * 2);
+  margin-bottom: var(--sl-space-lg);
   line-height: 1.6;
 }
 
 .selfless-programmer .modal-footer {
   display: flex;
   justify-content: flex-end;
-  gap: calc(var(--sl-space-unit) * 1);
-  margin-top: calc(var(--sl-space-unit) * 2);
-  padding-top: calc(var(--sl-space-unit) * 2);
+  gap: var(--sl-space-sm);
+  margin-top: var(--sl-space-xl);
+  padding-top: var(--sl-space-lg);
   border-top: 1px solid var(--sl-border);
 }
 
 /* Modal Sizes */
 .selfless-programmer .modal-sm {
-  width: min(400px, 90vw);
+  width: min(400px, 100%);
 }
 
 .selfless-programmer .modal-lg {
-  width: min(640px, 90vw);
+  width: min(720px, 100%);
+}
+
+.selfless-programmer .modal-xl {
+  width: min(960px, 100%);
 }
 
 /* Modal Backdrop Variations */
 .selfless-programmer .modal-overlay.blur {
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
 }
 
 .selfless-programmer .modal-overlay.dark {
@@ -341,39 +518,12 @@
   }
 }
 
-/* ==================== REST OF CALENDAR STYLES ==================== */
-/* Typography System */
-.selfless-programmer h1,
-.selfless-programmer #calendar-title {
-  font-size: var(--sl-text-3xl);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--sl-primary);
-}
-
-.selfless-programmer h2 {
-  font-size: var(--sl-text-2xl);
-  font-weight: 600;
-  color: var(--sl-primary);
-}
-
-.selfless-programmer code,
-.selfless-programmer .code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: var(--sl-text-sm);
-  color: var(--sl-code);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 0.2em 0.4em;
-  border-radius: var(--sl-radius-sm);
-  border: 1px solid var(--sl-border);
-}
-
-/* Calendar Header & Title */
+/* ============ Calendar Components ============ */
 .selfless-programmer #calendar-title {
   text-align: center;
-  margin-bottom: calc(var(--sl-space-unit) * 2);
+  margin-bottom: var(--sl-space-xl);
   position: relative;
-  padding-bottom: calc(var(--sl-space-unit) * 2);
+  padding-bottom: var(--sl-space-lg);
 }
 
 .selfless-programmer #calendar-title::after {
@@ -382,68 +532,84 @@
   width: 80px;
   height: 3px;
   background: var(--sl-primary);
-  margin: calc(var(--sl-space-unit) * 1.5) auto 0;
+  margin: var(--sl-space-md) auto 0;
   opacity: 0.3;
 }
 
-/* Table Styles */
+/* Calendar Table */
 .selfless-programmer table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: calc(var(--sl-space-unit) * 3) auto;
+  margin: var(--sl-space-xl) auto;
   background: var(--sl-bg-elevated);
   border: 1px solid var(--sl-border);
   border-radius: var(--sl-radius-lg);
   overflow: hidden;
+  position: relative;
 }
 
 .selfless-programmer th {
-  background: var(--sl-accent);
+  background: var(--sl-bg-highlight);
   color: var(--sl-primary);
   font-size: var(--sl-text-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: calc(var(--sl-space-unit) * 1.5);
+  padding: var(--sl-space-md);
   border-bottom: 1px solid var(--sl-border);
   text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .selfless-programmer td {
   color: var(--sl-text);
-  padding: calc(var(--sl-space-unit) * 1.2);
+  padding: var(--sl-space-sm);
   border: 1px solid var(--sl-border);
-  height: 100px;
+  height: 120px;
   vertical-align: top;
   transition: all var(--sl-transition);
   font-size: var(--sl-text-sm);
   background: var(--sl-bg-elevated);
+  position: relative;
 }
 
 .selfless-programmer td:hover {
-  background: var(--sl-hover);
+  background: var(--sl-bg-highlight);
 }
 
 /* Current Day Highlight */
 .selfless-programmer td.current-day {
-  background: var(--sl-current) !important;
+  background: rgba(13, 65, 157, 0.2) !important;
   position: relative;
   border-left: 3px solid var(--sl-primary);
 }
 
 .selfless-programmer td.current-day::before {
-  content: "»";
+  content: "★";
   position: absolute;
-  top: calc(var(--sl-space-unit) * 0.5);
-  right: calc(var(--sl-space-unit) * 0.5);
+  top: var(--sl-space-xs);
+  right: var(--sl-space-xs);
   color: var(--sl-primary);
-  font-weight: bold;
+  font-size: var(--sl-text-sm);
 }
 
 .selfless-programmer td.current-day .date-number {
   font-weight: 600;
   color: var(--sl-primary);
+  display: inline-block;
+  background: rgba(13, 65, 157, 0.3);
+  padding: var(--sl-space-xxs) var(--sl-space-xs);
+  border-radius: var(--sl-radius-sm);
+}
+
+/* Date Number */
+.selfless-programmer .date-number {
+  font-weight: 500;
+  margin-bottom: var(--sl-space-xs);
+  display: block;
 }
 
 /* Event Markers */
@@ -451,13 +617,32 @@
   display: inline-flex;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: var(--sl-radius-full);
   background: var(--sl-primary);
-  margin-right: calc(var(--sl-space-unit) * 0.5);
+  margin-right: var(--sl-space-xxs);
 }
 
 .selfless-programmer .event-marker-completed {
   background: var(--sl-success);
+}
+
+.selfless-programmer .event-marker-important {
+  background: var(--sl-error);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
 }
 
 /* Event List */
@@ -468,73 +653,190 @@
 }
 
 .selfless-programmer .event-item {
-  padding: calc(var(--sl-space-unit) * 1.5) 0;
+  padding: var(--sl-space-sm) 0;
   border-bottom: 1px solid var(--sl-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: calc(var(--sl-space-unit) * 1);
+  gap: var(--sl-space-sm);
+  transition: background-color var(--sl-transition);
 }
 
 .selfless-programmer .event-item:last-child {
   border-bottom: none;
 }
 
+.selfless-programmer .event-item:hover {
+  background: var(--sl-bg-highlight);
+}
+
+.selfless-programmer .event-content {
+  flex: 1;
+  min-width: 0;
+}
+
 .selfless-programmer .event-title {
   font-weight: 500;
-  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selfless-programmer .event-description {
+  font-size: var(--sl-text-xs);
+  color: var(--sl-text-muted);
+  margin-top: var(--sl-space-xxs);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .selfless-programmer .event-time {
   color: var(--sl-secondary);
   font-size: var(--sl-text-xs);
   white-space: nowrap;
+  margin-left: var(--sl-space-sm);
 }
 
-/* Controls */
-.selfless-programmer .controls {
+/* Calendar Controls */
+.selfless-programmer .calendar-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: calc(var(--sl-space-unit) * 1);
-  margin: calc(var(--sl-space-unit) * 2) 0;
+  gap: var(--sl-space-md);
+  margin: var(--sl-space-xl) 0;
 }
 
+.selfless-programmer .calendar-nav {
+  display: flex;
+  gap: var(--sl-space-sm);
+}
+
+.selfless-programmer .calendar-view-switcher {
+  display: flex;
+  background: var(--sl-bg-highlight);
+  border-radius: var(--sl-radius-md);
+  padding: var(--sl-space-xxs);
+}
+
+.selfless-programmer .view-switch-btn {
+  background: transparent;
+  border: none;
+  color: var(--sl-text-muted);
+  padding: var(--sl-space-xs) var(--sl-space-sm);
+  border-radius: var(--sl-radius-sm);
+  cursor: pointer;
+  font-size: var(--sl-text-sm);
+  transition: all var(--sl-transition-fast);
+}
+
+.selfless-programmer .view-switch-btn.active {
+  background: var(--sl-primary);
+  color: var(--sl-text-on-primary);
+}
+
+.selfless-programmer .view-switch-btn:not(.active):hover {
+  background: var(--sl-bg);
+  color: var(--sl-text);
+}
+
+/* ============ Utility Components ============ */
 /* Back to Top Button */
 .selfless-programmer #backToTopBtn {
   position: fixed;
-  right: calc(var(--sl-space-unit) * 3);
-  bottom: calc(var(--sl-space-unit) * 3);
-  z-index: 100;
-  border: 1px solid var(--sl-primary-dark);
-  padding: calc(var(--sl-space-unit) * 1.5);
-  font-size: var(--sl-text-sm);
-  color: var(--sl-primary);
-  background: var(--sl-bg-elevated);
-  cursor: pointer;
-  transition: all var(--sl-transition);
-  opacity: 0.9;
-  display: none;
-  border-radius: 50%;
-  box-shadow: var(--sl-shadow-sm);
+  right: var(--sl-space-xl);
+  bottom: var(--sl-space-xl);
+  z-index: var(--sl-z-index-fixed);
+  border: none;
+  padding: 0;
   width: 48px;
   height: 48px;
+  border-radius: var(--sl-radius-full);
+  background: var(--sl-primary);
+  color: var(--sl-text-on-primary);
+  cursor: pointer;
+  transition: all var(--sl-transition);
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sl-shadow-md);
+  transform: translateY(10px);
+}
+
+.selfless-programmer #backToTopBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .selfless-programmer #backToTopBtn:hover {
-  background: var(--sl-primary-dark);
-  color: white;
+  background: var(--sl-primary-400);
   transform: translateY(-2px);
+  box-shadow: var(--sl-shadow-lg);
 }
 
-/* Footer */
+/* Tooltip */
+.selfless-programmer .tooltip {
+  position: absolute;
+  z-index: var(--sl-z-index-tooltip);
+  background: var(--sl-bg-highlight);
+  color: var(--sl-text);
+  padding: var(--sl-space-xs) var(--sl-space-sm);
+  border-radius: var(--sl-radius-sm);
+  font-size: var(--sl-text-xs);
+  box-shadow: var(--sl-shadow-md);
+  border: 1px solid var(--sl-border);
+  max-width: 200px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--sl-transition-fast);
+}
+
+.selfless-programmer .tooltip::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--sl-bg-highlight);
+  transform: rotate(45deg);
+  border-right: 1px solid var(--sl-border);
+  border-bottom: 1px solid var(--sl-border);
+}
+
+.selfless-programmer .tooltip-top::after {
+  bottom: -4px;
+  left: 50%;
+  margin-left: -4px;
+}
+
+.selfless-programmer .tooltip-bottom::after {
+  top: -4px;
+  left: 50%;
+  margin-left: -4px;
+}
+
+.selfless-programmer .tooltip-left::after {
+  right: -4px;
+  top: 50%;
+  margin-top: -4px;
+}
+
+.selfless-programmer .tooltip-right::after {
+  left: -4px;
+  top: 50%;
+  margin-top: -4px;
+}
+
+/* ============ Footer ============ */
 .selfless-programmer footer {
   text-align: center;
-  margin-top: calc(var(--sl-space-unit) * 4);
-  padding-top: calc(var(--sl-space-unit) * 2);
+  margin-top: var(--sl-space-2xl);
+  padding-top: var(--sl-space-lg);
   border-top: 1px solid var(--sl-border);
-  color: var(--sl-secondary);
+  color: var(--sl-text-muted);
   font-size: var(--sl-text-sm);
 }
 
@@ -548,45 +850,80 @@
   text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  :root {
-    --sl-space-unit: 0.45rem;
+/* ============ Responsive Design ============ */
+@media (max-width: 1200px) {
+  .selfless-programmer .container {
+    padding: var(--sl-space-xl);
   }
 
+  .selfless-programmer td {
+    height: 100px;
+  }
+}
+
+@media (max-width: 992px) {
   .selfless-programmer #calendar-title {
     font-size: var(--sl-text-2xl);
   }
 
+  .selfless-programmer th {
+    font-size: var(--sl-text-xs);
+    padding: var(--sl-space-sm);
+  }
+
   .selfless-programmer td {
     height: 90px;
+    font-size: var(--sl-text-xs);
+    padding: var(--sl-space-xs);
+  }
+
+  .selfless-programmer .modal-content {
+    padding: var(--sl-space-lg);
   }
 }
 
 @media (max-width: 768px) {
   .selfless-programmer .container {
-    padding: calc(var(--sl-space-unit) * 2);
+    padding: var(--sl-space-lg);
   }
 
   .selfless-programmer #calendar-title {
     font-size: var(--sl-text-xl);
-  }
-
-  .selfless-programmer th {
-    font-size: var(--sl-text-xs);
-    padding: calc(var(--sl-space-unit) * 1);
+    padding-bottom: var(--sl-space-md);
   }
 
   .selfless-programmer td {
     height: 80px;
-    font-size: var(--sl-text-xs);
-    padding: calc(var(--sl-space-unit) * 0.8);
+  }
+
+  .selfless-programmer .calendar-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sl-space-sm);
+  }
+
+  .selfless-programmer .calendar-nav {
+    justify-content: center;
+  }
+
+  .selfless-programmer .calendar-view-switcher {
+    justify-content: center;
+  }
+
+  #backToTopBtn {
+    right: var(--sl-space-lg);
+    bottom: var(--sl-space-lg);
+    width: 40px;
+    height: 40px;
   }
 }
 
-@media (max-width: 480px) {
-  :root {
-    --sl-space-unit: 0.4rem;
+@media (max-width: 576px) {
+  .selfless-programmer .container {
+    padding: var(--sl-space-md);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 
   .selfless-programmer #calendar-title {
@@ -595,10 +932,6 @@
 
   .selfless-programmer td {
     height: 70px;
-  }
-
-  .selfless-programmer .controls {
-    flex-direction: column;
   }
 
   .selfless-programmer .modal-footer {
@@ -610,12 +943,13 @@
   }
 }
 
-/* Print Styles */
+/* ============ Print Styles ============ */
 @media print {
   .selfless-programmer {
-    --sl-bg: #121212 !important;
-    --sl-text: #e0e0e0 !important;
-    --sl-border: #333333 !important;
+    --sl-bg: white !important;
+    --sl-text: #333 !important;
+    --sl-border: #ddd !important;
+    --sl-primary: #0066cc !important;
   }
 
   .selfless-programmer .container {
@@ -632,13 +966,12 @@
   .selfless-programmer table {
     page-break-inside: avoid;
     break-inside: avoid;
-    background: #121212 !important;
   }
 
   .selfless-programmer td {
     height: auto;
     min-height: 100px;
-    background: #1e1e1e !important;
+    page-break-inside: avoid;
   }
 
   @page {
@@ -647,7 +980,7 @@
   }
 }
 
-/* Accessibility Enhancements */
+/* ============ Accessibility ============ */
 .selfless-programmer [aria-busy="true"] {
   opacity: 0.6;
 }
@@ -670,53 +1003,57 @@
   border-width: 0;
 }
 
-/* Micro-interactions */
-.selfless-programmer .btn {
-  will-change: transform;
+/* ============ Animations ============ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-.selfless-programmer .event-item {
-  transition: background-color var(--sl-transition);
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
-.selfless-programmer .event-item:hover {
-  background: var(--sl-hover);
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
-/* Dark Theme Specific Enhancements */
-.selfless-programmer ::selection {
-  background: var(--sl-primary-dark);
-  color: white;
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(20px);
+  }
 }
 
-.selfless-programmer ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.selfless-programmer ::-webkit-scrollbar-track {
-  background: var(--sl-bg);
-}
-
-.selfless-programmer ::-webkit-scrollbar-thumb {
-  background: var(--sl-border);
-  border-radius: 4px;
-}
-
-.selfless-programmer ::-webkit-scrollbar-thumb:hover {
-  background: var(--sl-primary-dark);
-}
-
-/* Ripple Effect for Buttons */
+/* ============ Ripple Effect ============ */
 .selfless-programmer .btn-ripple {
   position: relative;
   overflow: hidden;
 }
 
-.selfless-programmer .btn-ripple-effect {
+.selfless-programmer .ripple-effect {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
   transform: scale(0);
   animation: ripple 0.6s linear;
   pointer-events: none;
@@ -727,4 +1064,29 @@
     transform: scale(4);
     opacity: 0;
   }
+}
+
+/* ============ Scrollbars ============ */
+.selfless-programmer ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.selfless-programmer ::-webkit-scrollbar-track {
+  background: var(--sl-bg);
+}
+
+.selfless-programmer ::-webkit-scrollbar-thumb {
+  background: var(--sl-border);
+  border-radius: var(--sl-radius-full);
+}
+
+.selfless-programmer ::-webkit-scrollbar-thumb:hover {
+  background: var(--sl-primary);
+}
+
+/* ============ Selection Styles ============ */
+.selfless-programmer ::selection {
+  background: var(--sl-primary);
+  color: var(--sl-text-on-primary);
 }
