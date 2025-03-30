@@ -1,646 +1,803 @@
-/* ==========================================================================  
-   Black Hacker Theme - Cyberpunk Terminal Interface  
-   Version: 2.0  
-   Updated: 2025-03-28  
-   Features:  
-   - Glowing neon cyberpunk color scheme  
-   - Monospace terminal-style typography  
-   - CRT scanline effects for authentic hacker feel  
-   - Matrix-inspired animations  
-   ========================================================================== */
+/* ==========================================================================
+  Quantum Programmer Theme - Futuristic Quantum Computing Interface
+  Version: 3.0
+  Updated: 2025-03-30
+  Features:
+  - Quantum circuit-inspired color scheme
+  - High-contrast elements for maximum visibility
+  - Qubit state animations
+  - Entanglement effects
+  - Complete calendar functionality
+  ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Orbitron:wght@400;600&display=swap');
 
 :root {
-    /* Cyberpunk Color Palette */
-    --hacker-bg: #0a0a12;
-    /* Deep void black */
-    --hacker-text: #00ff41;
-    /* Matrix green */
-    --hacker-primary: #00f0ff;
-    /* Neon cyan */
-    --hacker-secondary: #ff00f0;
-    /* Electric pink */
+    /* Quantum Color Palette */
+    --quantum-bg: #0a0e17;
+    /* Deep space background */
+    --quantum-text: #e0f7fa;
+    /* Quantum foam text */
+    --quantum-primary: #00e5ff;
+    /* Qubit |1> state */
+    --quantum-secondary: #7b2cbf;
+    /* Superposition state */
 
-    /* Terminal Colors */
-    --hacker-gradient-start: #000000;
-    /* Pure black */
-    --hacker-gradient-end: #0a0a20;
-    /* Dark blue-black */
+    /* Enhanced Contrast Colors */
+    --quantum-highlight: #00ffea;
+    /* Measurement highlight */
+    --quantum-alert: #ff2d75;
+    /* Quantum error */
+    --quantum-info: #00ff88;
+    /* Quantum information */
+    --quantum-warning: #ff9e00;
+    /* Decoherence warning */
 
-    /* Glowing Accents */
-    --hacker-accent1: #ff003c;
-    /* Glowing red */
-    --hacker-accent2: #00ff88;
-    /* Bright green */
-    --hacker-accent3: #ffee00;
-    /* Warning yellow */
-    --hacker-accent4: #7b2dff;
-    /* Purple */
-    --hacker-accent5: #00b4ff;
-    /* Blue */
+    /* Circuit Elements */
+    --quantum-gate-x: #ff2d75;
+    /* Pauli-X gate */
+    --quantum-gate-h: #00e5ff;
+    /* Hadamard gate */
+    --quantum-gate-cnot: #7b2cbf;
+    /* CNOT gate */
+    --quantum-gate-z: #ff9e00;
+    /* Pauli-Z gate */
 
-    /* Interface Variables */
-    --hacker-shadow: rgba(0, 255, 65, 0.15);
-    /* Matrix glow */
-    --hacker-radius: 0px;
-    /* Sharp corners */
-    --hacker-transition: 0.2s linear;
-    --hacker-hover: #003b36;
-    /* Dark teal */
-    --hacker-current-day: #00ff4120;
-    /* Transparent green */
+    /* Theme Variables */
+    --quantum-shadow: rgba(0, 229, 255, 0.3);
+    --quantum-radius: 4px;
+    --quantum-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --quantum-glow: 0 0 20px rgba(0, 229, 255, 0.5);
+    --quantum-current-day: rgba(0, 229, 255, 0.15);
 }
 
-/* ==================== MATRIX ANIMATIONS ==================== */
-@keyframes hacker-matrix {
-    0% {
-        text-shadow: 0 0 2px var(--hacker-accent2),
-            0 0 5px var(--hacker-accent2);
+/* ==================== QUANTUM ANIMATIONS ==================== */
+@keyframes quantumPulse {
+
+    0%,
+    100% {
+        opacity: 1;
     }
 
-    100% {
-        text-shadow: 0 0 5px var(--hacker-accent2),
-            0 0 15px var(--hacker-accent2),
-            0 0 25px var(--hacker-accent1);
+    50% {
+        opacity: 0.7;
     }
 }
 
-@keyframes hacker-scanline {
+@keyframes qubitSpin {
     0% {
-        background-position: 0 0;
+        transform: rotate(0deg);
     }
 
     100% {
-        background-position: 0 100vh;
+        transform: rotate(360deg);
     }
 }
 
-@keyframes hacker-glitch {
+@keyframes quantumEntanglement {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--quantum-0),
+            0 0 20px var(--quantum-1);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--quantum-0),
+            0 0 30px var(--quantum-1);
+    }
+}
+
+@keyframes quantumFlash {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes quantumMeasurement {
     0% {
-        transform: translate(0);
+        transform: scale(1);
     }
 
-    20% {
-        transform: translate(-2px, 2px);
-    }
-
-    40% {
-        transform: translate(-2px, -2px);
-    }
-
-    60% {
-        transform: translate(2px, 2px);
-    }
-
-    80% {
-        transform: translate(2px, -2px);
+    50% {
+        transform: scale(1.05);
     }
 
     100% {
-        transform: translate(0);
+        transform: scale(1);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
-.black-hacker {
-    font-family: 'VT323', monospace;
-    color: var(--hacker-text);
-    line-height: 1.2;
-    background: linear-gradient(135deg, var(--hacker-gradient-start), var(--hacker-gradient-end));
+.quantum-programmer {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--quantum-text);
+    line-height: 1.5;
+    background-color: var(--quantum-bg);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(123, 44, 191, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 20%);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    letter-spacing: 1px;
 }
 
-.black-hacker::before {
+.quantum-programmer::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(rgba(0, 255, 65, 0.03) 1px,
+    background:
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px,
             transparent 1px);
-    background-size: 100% 4px;
-    animation: hacker-scanline 6s linear infinite;
+    background-size: 100% 5px;
     pointer-events: none;
     z-index: 0;
 }
 
-.black-hacker .container {
-    background-color: rgba(10, 10, 18, 0.9);
-    padding: 1.5rem;
-    border: 1px solid var(--hacker-primary);
-    box-shadow: 0 0 30px var(--hacker-shadow);
+.quantum-programmer .container {
+    background: linear-gradient(135deg, rgba(10, 14, 23, 0.95), rgba(123, 44, 191, 0.25));
+    padding: 2rem;
+    border-radius: var(--quantum-radius);
+    box-shadow: var(--quantum-glow);
+    border: 1px solid var(--quantum-primary);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--hacker-radius);
     z-index: 1;
 }
 
-.black-hacker .container::after {
+.quantum-programmer .container::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--hacker-primary);
-    box-shadow: 0 0 10px var(--hacker-primary);
+    background: var(--quantum-primary);
+    box-shadow: 0 0 10px var(--quantum-primary);
 }
 
 /* ==================== HEADER & TITLE ==================== */
-.black-hacker #calendar-title {
-    font-family: 'Major Mono Display', monospace;
-    color: var(--hacker-primary);
+.quantum-programmer #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--quantum-primary);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.3em;
-    text-shadow: 0 0 10px var(--hacker-primary);
-    animation: hacker-matrix 3s infinite alternate;
-}
-
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.black-hacker #date-weather-container {
-    text-align: center;
-    margin: 1.5rem 0;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 1px dashed var(--hacker-accent2);
-    border-radius: var(--hacker-radius);
+    text-shadow: 0 0 15px var(--quantum-primary);
+    animation: quantumPulse 3s infinite alternate;
     position: relative;
 }
 
-.black-hacker #date-weather-container::before {
-    content: "SYSTEM STATUS";
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background: var(--hacker-bg);
-    padding: 0 10px;
-    font-size: 0.8rem;
-    color: var(--hacker-accent2);
+.quantum-programmer #calendar-title::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--quantum-primary),
+            transparent);
+    margin: 1rem auto 0;
+    animation: quantumPulse 2s infinite;
 }
 
-.black-hacker #current-date {
-    font-family: 'VT323', monospace;
-    color: var(--hacker-primary);
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
-}
-
-.black-hacker #today-weather {
-    font-family: 'VT323', monospace;
-    color: var(--hacker-accent2);
-    font-size: 1.4rem;
-    font-style: normal;
-    letter-spacing: 1px;
-}
-
-/* ==================== DIGITAL CLOCK ==================== */
-.black-hacker #analog-watch {
+/* ==================== QUANTUM CLOCK ==================== */
+.quantum-programmer #quantum-clock {
     display: flex;
     justify-content: center;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
 }
 
-.black-hacker .clock-face {
+.quantum-programmer .qclock-face {
     width: 200px;
     height: 200px;
-    border: 2px solid var(--hacker-accent1);
+    border: 2px solid var(--quantum-gate-x);
     border-radius: 50%;
     position: relative;
-    background-color: var(--hacker-bg);
-    box-shadow: 0 0 20px var(--hacker-shadow),
-        inset 0 0 10px var(--hacker-shadow);
+    background-color: var(--quantum-bg);
+    box-shadow:
+        0 0 20px var(--quantum-shadow),
+        inset 0 0 15px rgba(0, 229, 255, 0.2);
 }
 
-.black-hacker .hand {
+.quantum-programmer .qhand {
     position: absolute;
     top: 50%;
+    left: 10%;
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
     transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
-.black-hacker .hour-hand {
-    width: 40%;
-    left: 10%;
+.quantum-programmer .qhour-hand {
+    width: 30%;
     height: 4px;
-    background: var(--hacker-accent1);
+    background: var(--quantum-gate-x);
     margin-top: -2px;
 }
 
-.black-hacker .minute-hand {
-    width: 48%;
-    left: 2%;
+.quantum-programmer .qminute-hand {
+    width: 40%;
     height: 3px;
-    background: var(--hacker-primary);
+    background: var(--quantum-primary);
     margin-top: -1.5px;
 }
 
-.black-hacker .second-hand {
-    width: 48%;
-    left: 2%;
+.quantum-programmer .qsecond-hand {
+    width: 45%;
     height: 1px;
-    background: var(--hacker-accent2);
+    background: var(--quantum-info);
     margin-top: -0.5px;
 }
 
+.quantum-programmer .qclock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--quantum-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--quantum-primary);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.quantum-programmer #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid var(--quantum-primary);
+    border-radius: var(--quantum-radius);
+    position: relative;
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+}
+
+.quantum-programmer #date-weather-container::before {
+    content: "QUANTUM STATE";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--quantum-bg);
+    padding: 0 15px;
+    font-size: 0.9rem;
+    color: var(--quantum-primary);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+.quantum-programmer #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--quantum-highlight);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px var(--quantum-primary);
+    font-weight: 600;
+    animation: quantumFlash 2s infinite;
+}
+
+.quantum-programmer #today-weather {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--quantum-info);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    background: rgba(0, 20, 15, 0.3);
+    padding: 8px 20px;
+    border-radius: var(--quantum-radius);
+    display: inline-block;
+    border: 1px dashed var(--quantum-info);
+}
+
 /* ==================== CALENDAR TABLE ==================== */
-.black-hacker table {
+.quantum-programmer table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem auto;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 1px solid var(--hacker-primary);
-    border-radius: var(--hacker-radius);
+    margin: 2rem auto;
+    background-color: rgba(20, 25, 40, 0.8);
+    border: 1px solid var(--quantum-primary);
+    border-radius: var(--quantum-radius);
+    box-shadow: 0 0 25px var(--quantum-shadow);
     table-layout: fixed;
+    position: relative;
+    z-index: 1;
 }
 
 /* DAY OF WEEK HEADERS */
-.black-hacker th {
-    background-color: rgba(0, 60, 50, 0.3);
-    color: var(--hacker-primary) !important;
-    font-family: 'VT323', monospace;
+.quantum-programmer th {
+    background: linear-gradient(to bottom,
+            var(--quantum-secondary),
+            var(--quantum-primary));
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
-    font-weight: normal;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    padding: 0.8rem 0.5rem;
-    border: 1px solid var(--hacker-primary);
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--quantum-primary);
     position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-    text-shadow: 0 0 5px var(--hacker-shadow);
+    text-shadow: 0 0 5px var(--quantum-primary);
 }
 
-.black-hacker th span.full-day-name {
+.quantum-programmer th span.full-day-name {
     display: inline;
 }
 
-.black-hacker th abbr {
+.quantum-programmer th abbr {
     display: none;
     text-decoration: none;
     border-bottom: none;
 }
 
-.black-hacker td {
-    background-color: rgba(0, 20, 15, 0.3);
-    color: var(--hacker-text);
+/* CALENDAR CELLS */
+.quantum-programmer td {
+    background-color: rgba(15, 20, 35, 0.8);
+    color: var(--quantum-text);
     padding: 0.8rem;
-    border: 1px solid var(--hacker-primary);
-    height: 90px;
+    border: 1px solid var(--quantum-primary);
+    height: 100px;
     vertical-align: top;
-    transition: all var(--hacker-transition);
+    transition: all var(--quantum-transition);
     position: relative;
     font-size: 1.1rem;
 }
 
-.black-hacker td:hover {
-    background-color: rgba(0, 80, 60, 0.3);
-    box-shadow: inset 0 0 15px var(--hacker-shadow);
+.quantum-programmer td:hover {
+    background: linear-gradient(to bottom,
+            rgba(123, 44, 191, 0.3),
+            rgba(0, 229, 255, 0.3));
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--quantum-shadow);
+    z-index: 2;
 }
 
 /* Current date highlight */
-.black-hacker td.current-day {
-    background-color: var(--hacker-current-day);
-    border: 1px solid var(--hacker-accent2);
-    color: var(--hacker-accent2) !important;
+.quantum-programmer td.current-day {
+    background: linear-gradient(135deg,
+            var(--quantum-0),
+            var(--quantum-1)) !important;
+    color: #000 !important;
     font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    box-shadow:
+        0 0 25px var(--quantum-primary),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    border: 2px solid var(--quantum-highlight) !important;
+    animation: quantumEntanglement 3s infinite;
+    z-index: 10;
 }
 
-.black-hacker td.current-day::before {
-    content: ">";
+.quantum-programmer td.current-day::before {
+    content: "QUBIT";
     position: absolute;
-    top: 5px;
-    left: 5px;
-    color: var(--hacker-accent2);
+    top: 2px;
+    right: 2px;
+    font-size: 0.7rem;
     font-weight: bold;
+    color: #000;
+    background: var(--quantum-highlight);
+    padding: 0 4px;
+    border-radius: 2px;
 }
 
-.black-hacker td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--hacker-accent2) !important;
+.quantum-programmer td.current-day .date-number {
     font-weight: bold;
+    font-size: 1.3em;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 8px;
+    border-radius: 3px;
 }
 
 /* ==================== EVENT MARKERS ==================== */
-.black-hacker .event-marker {
+.quantum-programmer .event-marker {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: var(--hacker-accent1);
+    background-color: var(--quantum-primary);
     margin: 0 2px;
-    box-shadow: 0 0 5px var(--hacker-accent1);
-    transition: all var(--hacker-transition);
+    box-shadow: 0 0 5px var(--quantum-primary);
+    transition: all var(--quantum-transition);
 }
 
-.black-hacker .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--hacker-accent2);
-    box-shadow: 0 0 15px var(--hacker-accent2);
+.quantum-programmer .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--quantum-alert);
+    box-shadow: 0 0 15px var(--quantum-alert);
+    animation: quantumMeasurement 0.5s;
 }
 
-/* ==================== HACKER MODAL STYLES ==================== */
-.black-hacker .modal-content {
+/* ==================== QUANTUM MODAL STYLES ==================== */
+.quantum-programmer .modal-content {
     position: relative;
-    background-color: rgba(0, 10, 8, 0.98);
-    border: 1px solid var(--hacker-accent1);
-    padding: 20px;
-    color: var(--hacker-text);
-    box-shadow: 0 0 40px var(--hacker-shadow);
-    border-radius: var(--hacker-radius);
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
+    background: rgba(15, 20, 35, 0.98);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--quantum-primary);
+    border-radius: var(--quantum-radius);
+    box-shadow: 0 0 50px var(--quantum-shadow);
+    padding: 30px;
+    color: var(--quantum-text);
+    font-family: 'Source Code Pro', monospace;
+    z-index: 1000;
 }
 
-.black-hacker .modal-content::before {
+.quantum-programmer .modal-content::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--hacker-accent1);
-    box-shadow: 0 0 10px var(--hacker-accent1);
+    background: var(--quantum-primary);
+    box-shadow: 0 0 10px var(--quantum-primary);
 }
 
-.black-hacker .modal-content h2 {
-    color: var(--hacker-accent1);
-    font-family: 'Major Mono Display', monospace;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+.quantum-programmer .modal-content h2 {
+    color: var(--quantum-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    border-bottom: 1px dashed var(--hacker-primary);
+    text-shadow: 0 0 10px var(--quantum-primary);
+    border-bottom: 1px dashed var(--quantum-primary);
     padding-bottom: 10px;
 }
 
-.black-hacker .modal-content button {
-    background-color: transparent;
-    color: var(--hacker-primary);
-    border: 1px solid var(--hacker-primary);
-    padding: 8px 20px;
+.quantum-programmer .modal-content button {
+    background: linear-gradient(to bottom,
+            var(--quantum-secondary),
+            var(--quantum-primary));
+    color: #000;
+    border: none;
+    padding: 10px 25px;
     font-size: 1.1rem;
-    font-family: 'VT323', monospace;
+    font-family: 'Orbitron', sans-serif;
     cursor: pointer;
-    transition: all var(--hacker-transition);
+    transition: all var(--quantum-transition);
     letter-spacing: 1px;
-    margin-top: 15px;
+    margin-top: 20px;
+    border-radius: var(--quantum-radius);
+    box-shadow: 0 0 10px var(--quantum-shadow);
 }
 
-.black-hacker .modal-content button:hover {
-    background-color: var(--hacker-primary);
-    color: var(--hacker-bg);
-    text-shadow: 0 0 5px var(--hacker-shadow);
+.quantum-programmer .modal-content button:hover {
+    background: linear-gradient(to bottom,
+            var(--quantum-primary),
+            var(--quantum-secondary));
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--quantum-primary);
 }
 
 /* Close Button */
-.black-hacker .modal .close-button {
+.quantum-programmer .modal .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    color: var(--hacker-accent1);
-    border: 1px solid var(--hacker-accent1);
-    width: 30px;
-    height: 30px;
+    top: 15px;
+    right: 15px;
+    background: var(--quantum-secondary);
+    color: var(--quantum-text);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     cursor: pointer;
-    transition: all var(--hacker-transition);
+    transition: all var(--quantum-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'VT323', monospace;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
+    box-shadow: 0 0 10px var(--quantum-shadow);
 }
 
-.black-hacker .modal .close-button:hover {
-    background-color: var(--hacker-accent1);
-    color: var(--hacker-bg);
+.quantum-programmer .modal .close-button:hover {
+    background: var(--quantum-alert);
+    color: var(--quantum-text);
     transform: rotate(90deg);
+    box-shadow: 0 0 20px var(--quantum-alert);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
-.black-hacker .button,
-.black-hacker .transparent-button {
-    border: 1px solid var(--hacker-primary);
-    color: var(--hacker-primary);
-    background-color: transparent;
-    padding: 0.6rem 1.2rem;
-    font-family: 'VT323', monospace;
+.quantum-programmer .button,
+.quantum-programmer .transparent-button {
+    background: linear-gradient(to bottom,
+            rgba(123, 44, 191, 0.3),
+            rgba(0, 229, 255, 0.3));
+    color: var(--quantum-text);
+    border: 1px solid var(--quantum-primary);
+    padding: 0.8rem 1.8rem;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: all var(--hacker-transition);
+    transition: all var(--quantum-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
+    border-radius: var(--quantum-radius);
+    box-shadow: 0 0 15px var(--quantum-shadow);
 }
 
-.black-hacker .button:hover,
-.black-hacker .transparent-button:hover {
-    background-color: var(--hacker-primary);
-    color: var(--hacker-bg);
-    text-shadow: 0 0 5px var(--hacker-shadow);
-    animation: hacker-glitch 0.5s;
+.quantum-programmer .button:hover,
+.quantum-programmer .transparent-button:hover {
+    background: linear-gradient(to bottom,
+            rgba(0, 229, 255, 0.3),
+            rgba(123, 44, 191, 0.3));
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--quantum-primary);
 }
 
-.black-hacker .controls {
+.quantum-programmer .controls {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
-.black-hacker #theme-switcher-container {
+.quantum-programmer #theme-switcher-container {
     position: relative;
     margin: 0 1rem;
-    min-width: 200px;
+    min-width: 220px;
     z-index: 1000;
 }
 
-.black-hacker #theme-switcher {
-    background-color: rgba(0, 20, 15, 0.7);
-    color: var(--hacker-primary) !important;
-    border: 1px solid var(--hacker-primary);
-    padding: 0.6rem 2rem 0.6rem 0.8rem;
-    font-family: 'VT323', monospace;
+.quantum-programmer #theme-switcher {
+    background: rgba(15, 20, 35, 0.7);
+    color: var(--quantum-primary) !important;
+    border: 1px solid var(--quantum-primary);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Source Code Pro', monospace;
     font-size: 1.1rem;
     width: 100%;
-    border-radius: var(--hacker-radius);
+    border-radius: var(--quantum-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f0ff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e5ff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
+    background-position: right 1rem center;
     background-size: 1rem;
     cursor: pointer;
-    transition: all var(--hacker-transition);
-    text-shadow: 0 0 3px var(--hacker-shadow);
+    transition: all var(--quantum-transition);
+    text-shadow: 0 0 5px var(--quantum-shadow);
+    box-shadow: 0 0 15px var(--quantum-shadow);
 }
 
-.black-hacker #theme-switcher option {
-    background-color: rgba(0, 10, 8, 0.98) !important;
-    color: var(--hacker-primary) !important;
+.quantum-programmer #theme-switcher option {
+    background: rgba(15, 20, 35, 0.98) !important;
+    color: var(--quantum-primary) !important;
     font-size: 1.1rem;
     padding: 10px !important;
 }
 
-.black-hacker #theme-switcher:focus {
+.quantum-programmer #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--hacker-primary), 0 0 15px var(--hacker-shadow);
+    box-shadow:
+        0 0 0 2px var(--quantum-primary),
+        0 0 20px var(--quantum-shadow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
-.black-hacker #backToTopBtn {
+.quantum-programmer #backToTopBtn {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--hacker-accent1);
-    padding: 0.8rem 1.5rem;
+    border: 1px solid var(--quantum-primary);
+    padding: 1rem 2rem;
     font-size: 1.1rem;
-    font-family: 'VT323', monospace;
-    color: var(--hacker-accent1);
-    background-color: rgba(0, 10, 8, 0.7);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--quantum-primary);
+    background: rgba(15, 20, 35, 0.7);
     cursor: pointer;
-    transition: all var(--hacker-transition);
-    opacity: 0.8;
+    transition: all var(--quantum-transition);
+    opacity: 0.9;
     display: none;
+    border-radius: var(--quantum-radius);
+    box-shadow: 0 0 20px var(--quantum-shadow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.black-hacker #backToTopBtn:hover {
-    background-color: var(--hacker-accent1);
-    color: var(--hacker-bg);
+.quantum-programmer #backToTopBtn:hover {
+    background: var(--quantum-primary);
+    color: #000;
     opacity: 1;
-    animation: hacker-glitch 0.3s;
+    box-shadow: 0 0 30px var(--quantum-primary);
 }
 
 /* ==================== FOOTER ==================== */
-.black-hacker footer {
+.quantum-programmer footer {
     text-align: center;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--hacker-primary);
-    color: var(--hacker-text);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--quantum-primary);
+    color: var(--quantum-text);
     font-size: 0.9rem;
+    font-family: 'Source Code Pro', monospace;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .quantum-programmer #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .quantum-programmer #current-date {
+        font-size: 1.8rem;
+    }
+
+    .quantum-programmer #today-weather {
+        font-size: 1.3rem;
+    }
+
+    .quantum-programmer .qclock-face {
+        width: 180px;
+        height: 180px;
+    }
+}
+
 @media (max-width: 992px) {
-    .black-hacker .container {
-        padding: 1rem;
+    .quantum-programmer .container {
+        padding: 1.5rem;
     }
 
-    .black-hacker #calendar-title {
+    .quantum-programmer #calendar-title {
         font-size: 2rem;
+        letter-spacing: 0.2em;
     }
 
-    .black-hacker #current-date {
-        font-size: 1.5rem;
+    .quantum-programmer #current-date {
+        font-size: 1.6rem;
     }
 
-    .black-hacker #today-weather {
+    .quantum-programmer #today-weather {
         font-size: 1.2rem;
+    }
+
+    .quantum-programmer th {
+        font-size: 1.1rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .quantum-programmer td {
+        height: 90px;
+        padding: 0.6rem;
     }
 }
 
 @media (max-width: 768px) {
-    .black-hacker .clock-face {
-        width: 160px;
-        height: 160px;
+    .quantum-programmer .qclock-face {
+        width: 150px;
+        height: 150px;
     }
 
-    .black-hacker th {
-        font-size: 1rem;
-        padding: 0.6rem 0.2rem;
+    .quantum-programmer #calendar-title {
+        font-size: 1.8rem;
     }
 
-    .black-hacker td {
-        padding: 0.5rem;
-        height: 70px;
+    .quantum-programmer #current-date {
+        font-size: 1.4rem;
+    }
+
+    .quantum-programmer #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .quantum-programmer th {
+        font-size: 1rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .quantum-programmer td {
+        height: 80px;
         font-size: 1rem;
     }
 
-    .black-hacker #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.2rem;
+    .quantum-programmer #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
         font-size: 1rem;
     }
 
-    .black-hacker #theme-switcher {
+    .quantum-programmer #theme-switcher {
+        min-width: 200px;
         font-size: 1rem;
-        min-width: 180px;
     }
 }
 
 @media (max-width: 576px) {
-    .black-hacker .container {
-        padding: 0.8rem;
+    .quantum-programmer .container {
+        padding: 1rem;
     }
 
-    .black-hacker #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.2em;
+    .quantum-programmer #calendar-title {
+        font-size: 1.5rem;
     }
 
-    .black-hacker #current-date {
+    .quantum-programmer #current-date {
         font-size: 1.2rem;
     }
 
-    .black-hacker #today-weather {
+    .quantum-programmer #today-weather {
         font-size: 1rem;
     }
 
-    .black-hacker .clock-face {
-        width: 130px;
-        height: 130px;
+    .quantum-programmer .qclock-face {
+        width: 120px;
+        height: 120px;
     }
 
-    .black-hacker th {
+    .quantum-programmer th {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+    }
+
+    .quantum-programmer td {
+        height: 70px;
         font-size: 0.9rem;
     }
 
-    .black-hacker td {
-        height: 60px;
+    .quantum-programmer #theme-switcher {
+        min-width: 180px;
         font-size: 0.9rem;
     }
 
-    .black-hacker #theme-switcher {
-        min-width: 160px;
-        font-size: 0.9rem;
+    .quantum-programmer .button,
+    .quantum-programmer .transparent-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 400px) {
-    .black-hacker th {
+    .quantum-programmer #calendar-title {
+        font-size: 1.3rem;
+    }
+
+    .quantum-programmer #current-date {
+        font-size: 1.1rem;
+    }
+
+    .quantum-programmer #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .quantum-programmer th {
         font-size: 0.8rem;
     }
 
-    .black-hacker td {
-        height: 50px;
+    .quantum-programmer td {
+        height: 60px;
+        font-size: 0.8rem;
     }
 
-    .black-hacker #theme-switcher {
-        min-width: 140px;
+    .quantum-programmer #theme-switcher {
+        min-width: 160px;
         font-size: 0.8rem;
     }
 }
