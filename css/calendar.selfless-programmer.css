@@ -1,1092 +1,889 @@
 /* ==========================================================================
-  Selfless Programmer Dark Theme - Premium Edition
-  Version: 4.0
-  Updated: 2025-03-31
+  Selfless Programmer Theme - Clean Code Calendar
+  Version: 1.0
+  Updated: 2024-12-01
   Features:
-  - Complete dark mode system
-  - Enhanced button component system
-  - Animated modal dialogs
-  - Micro-interactions throughout
-  - Advanced calendar styling
-  - Full accessibility support
-  - Responsive at all breakpoints
+  - Minimalist design
+  - Clean and readable layout
+  - Subtle color palette
+  - Responsive for all devices
+  - Clear date/event displays
   ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
 :root {
-  /* ============ Color System ============ */
-  /* Base Colors */
-  --sl-bg: #0d1117;
-  --sl-bg-elevated: #161b22;
-  --sl-bg-highlight: #21262d;
-  --sl-bg-overlay: rgba(1, 4, 9, 0.8);
-
-  /* Text Colors */
-  --sl-text: #e6edf3;
-  --sl-text-muted: #7d8590;
-  --sl-text-on-primary: #0d1117;
-
-  /* Primary Colors */
-  --sl-primary-50: #f0f6ff;
-  --sl-primary-100: #c9dff9;
-  --sl-primary-200: #9ec7f0;
-  --sl-primary-300: #76b3e7;
-  --sl-primary-400: #58a6ff;
-  --sl-primary-500: #388bfd;
-  --sl-primary-600: #1f6feb;
-  --sl-primary-700: #1158c7;
-  --sl-primary-800: #0d419d;
-  --sl-primary-900: #0c2d6b;
-  --sl-primary: var(--sl-primary-500);
-
-  /* Secondary Colors */
-  --sl-secondary-100: #c6e6ff;
-  --sl-secondary-200: #96d0ff;
-  --sl-secondary-300: #6cb6ff;
-  --sl-secondary-400: #539bf5;
-  --sl-secondary-500: #4184e4;
-  --sl-secondary: var(--sl-secondary-400);
-
-  /* State Colors */
-  --sl-success: #3fb950;
-  --sl-error: #f85149;
-  --sl-warning: #d29922;
-  --sl-info: #58a6ff;
-
-  /* Border Colors */
-  --sl-border: #30363d;
-  --sl-border-light: #484f58;
-  --sl-border-dark: #21262d;
-
-  /* ============ Theme Variables ============ */
-  /* Spacing */
-  --sl-space-unit: 0.5rem;
-  --sl-space-xxs: calc(var(--sl-space-unit) * 0.25);
-  --sl-space-xs: calc(var(--sl-space-unit) * 0.5);
-  --sl-space-sm: calc(var(--sl-space-unit) * 0.75);
-  --sl-space-md: var(--sl-space-unit);
-  --sl-space-lg: calc(var(--sl-space-unit) * 1.5);
-  --sl-space-xl: calc(var(--sl-space-unit) * 2);
-  --sl-space-2xl: calc(var(--sl-space-unit) * 3);
-  --sl-space-3xl: calc(var(--sl-space-unit) * 4);
-
-  /* Border Radius */
-  --sl-radius-sm: 4px;
-  --sl-radius-md: 6px;
-  --sl-radius-lg: 8px;
-  --sl-radius-xl: 12px;
-  --sl-radius-2xl: 16px;
-  --sl-radius-full: 9999px;
-
-  /* Shadows */
-  --sl-shadow-xs: 0 1px 0 rgba(1, 4, 9, 0.1);
-  --sl-shadow-sm: 0 1px 3px rgba(1, 4, 9, 0.3);
-  --sl-shadow-md: 0 4px 6px -1px rgba(1, 4, 9, 0.4);
-  --sl-shadow-lg: 0 10px 15px -3px rgba(1, 4, 9, 0.5);
-  --sl-shadow-xl: 0 20px 25px -5px rgba(1, 4, 9, 0.6);
-  --sl-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-  /* Transitions */
-  --sl-transition-fast: 0.1s ease-out;
-  --sl-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --sl-transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Typography */
-  --sl-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --sl-font-mono: 'JetBrains Mono', monospace;
-
-  --sl-text-xs: 0.75rem;
-  --sl-text-sm: 0.875rem;
-  --sl-text-base: 1rem;
-  --sl-text-lg: 1.125rem;
-  --sl-text-xl: 1.25rem;
-  --sl-text-2xl: 1.5rem;
-  --sl-text-3xl: 1.875rem;
-  --sl-text-4xl: 2.25rem;
-
-  /* Z-Index */
-  --sl-z-index-dropdown: 100;
-  --sl-z-index-sticky: 200;
-  --sl-z-index-fixed: 300;
-  --sl-z-index-modal: 400;
-  --sl-z-index-popover: 500;
-  --sl-z-index-tooltip: 600;
-  --sl-z-index-toast: 700;
+  /* Selfless Color Palette */
+  --sp-bg: #f8f8f8;
+  /* Light background */
+  --sp-text: #333;
+  /* Dark text */
+  --sp-primary: #007bff;
+  /* Primary blue */
+  --sp-secondary: #6c757d;
+  /* Secondary gray */
+  --sp-border: #ddd;
+  /* Light border */
+  --sp-highlight: #e0f7fa;
+  /* Highlight color */
+  --sp-shadow: rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  --sp-radius: 6px;
+  /* Rounded corners */
+  --sp-transition: 0.3s ease;
+  /* Smooth transitions */
 }
 
-/* ============ Base Styles ============ */
-.selfless-programmer {
-  font-family: var(--sl-font-sans);
-  color: var(--sl-text);
-  line-height: 1.6;
-  background-color: var(--sl-bg);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+/* Animations */
+@keyframes spPulse {
 
-.selfless-programmer *,
-.selfless-programmer *::before,
-.selfless-programmer *::after {
-  box-sizing: border-box;
-}
+  0%,
+  100% {
+    opacity: 1;
+  }
 
-.selfless-programmer .container {
-  background: var(--sl-bg-elevated);
-  padding: var(--sl-space-2xl);
-  border-radius: var(--sl-radius-lg);
-  box-shadow: var(--sl-shadow-sm);
-  border: 1px solid var(--sl-border);
-  max-width: 1600px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-}
-
-/* ============ Typography System ============ */
-.selfless-programmer h1,
-.selfless-programmer h2,
-.selfless-programmer h3,
-.selfless-programmer h4,
-.selfless-programmer h5,
-.selfless-programmer h6 {
-  margin-top: 0;
-  margin-bottom: var(--sl-space-md);
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--sl-text);
-}
-
-.selfless-programmer h1,
-.selfless-programmer #calendar-title {
-  font-size: var(--sl-text-3xl);
-  color: var(--sl-primary);
-}
-
-.selfless-programmer h2 {
-  font-size: var(--sl-text-2xl);
-}
-
-.selfless-programmer h3 {
-  font-size: var(--sl-text-xl);
-}
-
-.selfless-programmer p {
-  margin-top: 0;
-  margin-bottom: var(--sl-space-md);
-}
-
-.selfless-programmer code,
-.selfless-programmer .code {
-  font-family: var(--sl-font-mono);
-  font-size: var(--sl-text-sm);
-  color: var(--sl-primary-300);
-  background: rgba(88, 166, 255, 0.1);
-  padding: var(--sl-space-xxs) var(--sl-space-xs);
-  border-radius: var(--sl-radius-sm);
-  border: 1px solid var(--sl-border);
-}
-
-.selfless-programmer a {
-  color: var(--sl-primary);
-  text-decoration: none;
-  transition: color var(--sl-transition-fast);
-}
-
-.selfless-programmer a:hover {
-  color: var(--sl-primary-300);
-  text-decoration: underline;
-}
-
-/* ============ Enhanced Button System ============ */
-.selfless-programmer .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sl-space-xs);
-  padding: var(--sl-space-sm) var(--sl-space-md);
-  border-radius: var(--sl-radius-md);
-  font-size: var(--sl-text-sm);
-  font-weight: 500;
-  line-height: 1;
-  cursor: pointer;
-  transition: all var(--sl-transition);
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-  will-change: transform, box-shadow, background-color;
-  user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-}
-
-/* Button Variants */
-.selfless-programmer .btn-primary {
-  background: var(--sl-primary);
-  color: var(--sl-text-on-primary);
-  border-color: var(--sl-primary-600);
-  box-shadow: var(--sl-shadow-xs);
-}
-
-.selfless-programmer .btn-secondary {
-  background: var(--sl-bg-highlight);
-  color: var(--sl-primary);
-  border-color: var(--sl-border);
-}
-
-.selfless-programmer .btn-ghost {
-  background: transparent;
-  color: var(--sl-primary);
-  border-color: var(--sl-border-light);
-}
-
-.selfless-programmer .btn-text {
-  background: transparent;
-  color: var(--sl-primary);
-  border-color: transparent;
-  padding: var(--sl-space-xs);
-}
-
-/* Button States */
-.selfless-programmer .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--sl-shadow-sm);
-}
-
-.selfless-programmer .btn-primary:hover {
-  background: var(--sl-primary-400);
-  border-color: var(--sl-primary-500);
-  box-shadow: var(--sl-shadow-md);
-}
-
-.selfless-programmer .btn-secondary:hover {
-  background: var(--sl-bg);
-  border-color: var(--sl-border-light);
-}
-
-.selfless-programmer .btn-ghost:hover {
-  background: var(--sl-bg-highlight);
-  border-color: var(--sl-primary);
-}
-
-.selfless-programmer .btn-text:hover {
-  background: var(--sl-bg-highlight);
-  text-decoration: none;
-  transform: none;
-}
-
-.selfless-programmer .btn:active {
-  transform: translateY(0);
-  transition-duration: 0.1s;
-  box-shadow: var(--sl-shadow-xs);
-}
-
-.selfless-programmer .btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/* Button Sizes */
-.selfless-programmer .btn-sm {
-  padding: var(--sl-space-xs) var(--sl-space-sm);
-  font-size: var(--sl-text-xs);
-}
-
-.selfless-programmer .btn-lg {
-  padding: var(--sl-space-md) var(--sl-space-lg);
-  font-size: var(--sl-text-base);
-}
-
-.selfless-programmer .btn-xl {
-  padding: var(--sl-space-lg) var(--sl-space-xl);
-  font-size: var(--sl-text-lg);
-}
-
-/* Button Icons */
-.selfless-programmer .btn-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border-radius: var(--sl-radius-full);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.selfless-programmer .btn-icon svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-/* Button Loading State */
-.selfless-programmer .btn-loading {
-  position: relative;
-  color: transparent !important;
-  pointer-events: none;
-}
-
-.selfless-programmer .btn-loading::after {
-  content: "";
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: var(--sl-radius-full);
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 0.7;
   }
 }
 
-/* Button Group */
-.selfless-programmer .btn-group {
-  display: inline-flex;
-  border-radius: var(--sl-radius-md);
-  box-shadow: var(--sl-shadow-sm);
-  overflow: hidden;
+@keyframes spFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
-.selfless-programmer .btn-group .btn {
-  border-radius: 0;
-  box-shadow: none;
-  margin: 0;
+@keyframes spEntanglement {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px var(--sp-primary), 0 0 20px var(--sp-primary);
+  }
+
+  50% {
+    box-shadow: 0 0 20px var(--sp-primary), 0 0 30px var(--sp-primary);
+  }
+}
+
+@keyframes spCodeFall {
+  from {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Base Styles */
+.selfless-programmer {
+  font-family: 'Roboto Mono', monospace;
+  color: var(--sp-text);
+  line-height: 1.6;
+  background-color: var(--sp-bg);
+}
+
+.selfless-programmer .container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: var(--sp-radius);
+  box-shadow: 0 4px 12px var(--sp-shadow);
+  border: 1px solid var(--sp-border);
   position: relative;
+  overflow: hidden;
+  max-width: 1600px;
+  margin: 0 auto;
+  z-index: 1;
 }
 
-.selfless-programmer .btn-group .btn:not(:last-child) {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+.selfless-programmer .container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--sp-primary);
+  box-shadow: 0 0 15px var(--sp-primary);
 }
 
-.selfless-programmer .btn-group .btn:first-child {
-  border-top-left-radius: var(--sl-radius-md);
-  border-bottom-left-radius: var(--sl-radius-md);
+/* Calendar Header & Title */
+.selfless-programmer #calendar-title {
+  font-family: 'Roboto Mono', sans-serif;
+  color: var(--sp-primary);
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--sp-shadow);
+  position: relative;
+  animation: spPulse 3s infinite;
 }
 
-.selfless-programmer .btn-group .btn:last-child {
-  border-top-right-radius: var(--sl-radius-md);
-  border-bottom-right-radius: var(--sl-radius-md);
+.selfless-programmer #calendar-title::after {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--sp-primary), transparent);
+  margin: 1rem auto 0;
+  animation: spPulse 2s infinite;
 }
 
-/* ============ Premium Modal System ============ */
+/* Table Styles */
+.selfless-programmer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--sp-primary);
+  border-radius: var(--sp-radius);
+  box-shadow: 0 0 30px var(--sp-shadow);
+  table-layout: fixed;
+  position: relative;
+  z-index: 1;
+}
+
+.selfless-programmer th {
+  background: linear-gradient(to bottom, var(--sp-secondary), #888);
+  color: var(--sp-text);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 1rem 0.5rem;
+  border: 1px solid var(--sp-primary);
+  position: relative;
+  text-shadow: 0 0 5px var(--sp-shadow);
+}
+
+.selfless-programmer th::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sp-primary);
+  opacity: 0.3;
+}
+
+.selfless-programmer td {
+  background: rgba(240, 240, 240, 0.6);
+  color: var(--sp-text);
+  padding: 0.8rem;
+  border: 1px solid var(--sp-primary);
+  height: 100px;
+  vertical-align: top;
+  transition: all var(--sp-transition);
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.selfless-programmer td:hover {
+  background: rgba(0, 123, 255, 0.1);
+  box-shadow: inset 0 0 20px var(--sp-shadow);
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+/* Current Day Highlight */
+.selfless-programmer td.current-day {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(0, 86, 179, 0.5)) !important;
+  color: #fff !important;
+  font-weight: bold;
+  text-shadow: 0 0 5px #000;
+  box-shadow: 0 0 25px var(--sp-shadow), inset 0 0 15px rgba(0, 123, 255, 0.3);
+  border: 2px solid var(--sp-primary) !important;
+  animation: spEntanglement 3s infinite;
+  z-index: 10;
+}
+
+.selfless-programmer td.current-day::before {
+  content: "📅";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 1.2rem;
+}
+
+.selfless-programmer td.current-day .date-number {
+  font-weight: bold;
+  font-size: 1.3em;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+/* ==================== SELFLESS MODAL STYLES ==================== */
 .selfless-programmer .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--sl-bg-overlay);
-  z-index: var(--sl-z-index-modal);
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(8px);
-  animation: fadeIn var(--sl-transition-slow) forwards;
-  opacity: 0;
-  padding: var(--sl-space-md);
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .selfless-programmer .modal-content {
-  background: var(--sl-bg-elevated);
-  border: 1px solid var(--sl-border);
-  border-radius: var(--sl-radius-xl);
-  box-shadow: var(--sl-shadow-xl);
-  padding: var(--sl-space-2xl);
-  color: var(--sl-text);
-  width: min(560px, 100%);
-  max-height: calc(100vh - var(--sl-space-2xl));
-  overflow-y: auto;
+  background: linear-gradient(145deg, rgba(245, 245, 245, 0.98), rgba(220, 220, 220, 0.95));
+  border: 2px solid var(--sp-primary);
+  border-radius: calc(var(--sp-radius) + 4px);
+  box-shadow: 0 0 40px var(--sp-shadow), inset 0 0 20px rgba(0, 123, 255, 0.2);
+  padding: 2.5rem;
+  color: var(--sp-text);
+  animation: spFlowIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  text-align: center;
   position: relative;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: modalEnter var(--sl-transition-slow) 0.1s forwards;
+  width: 480px;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  z-index: 1000;
+  transform-style: preserve-3d;
 }
 
-@keyframes modalEnter {
+.selfless-programmer .modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--sp-primary), #1e90ff, var(--sp-primary), transparent);
+  animation: spPulse 3.5s infinite;
+  z-index: 2;
+}
+
+.selfless-programmer .modal-content::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: var(--sp-primary);
+  opacity: 0.5;
+}
+
+.selfless-programmer .modal-content h2 {
+  color: var(--sp-primary);
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 2rem;
+  margin: 1rem 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px var(--sp-shadow);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.selfless-programmer .modal-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--sp-primary), transparent);
+}
+
+.selfless-programmer .modal-content p {
+  margin-bottom: 1.8rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.selfless-programmer .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.selfless-programmer .modal-btn {
+  background: linear-gradient(145deg, var(--sp-secondary), #888);
+  color: var(--sp-text);
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--sp-radius);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 5px 15px var(--sp-shadow);
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  min-width: 160px;
+}
+
+.selfless-programmer .modal-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.selfless-programmer .modal-btn:hover {
+  background: linear-gradient(145deg, var(--sp-primary), var(--sp-secondary));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--sp-primary);
+}
+
+.selfless-programmer .modal-btn:hover::before {
+  left: 100%;
+}
+
+.selfless-programmer .modal-btn-primary {
+  background: linear-gradient(145deg, var(--sp-primary), #1e90ff);
+  color: #0a0e17;
+  font-weight: 800;
+}
+
+.selfless-programmer .modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--sp-secondary);
+  color: var(--sp-text);
+  border: 2px solid var(--sp-primary);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px var(--sp-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  z-index: 3;
+}
+
+.selfless-programmer .modal-close:hover {
+  background: #1e90ff;
+  color: #0a0e17;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 25px #1e90ff;
+  border-color: #1e90ff;
+}
+
+.selfless-programmer .modal-close::before,
+.selfless-programmer .modal-close::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.selfless-programmer .modal-close::before {
+  transform: rotate(45deg);
+}
+
+.selfless-programmer .modal-close::after {
+  transform: rotate(-45deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
   to {
-    transform: translateY(0);
     opacity: 1;
   }
 }
 
-.selfless-programmer .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--sl-space-lg);
-  position: relative;
-}
-
-.selfless-programmer .modal-title {
-  font-size: var(--sl-text-xl);
-  font-weight: 600;
-  color: var(--sl-primary);
-  margin: 0;
-  line-height: 1.3;
-  padding-right: var(--sl-space-xl);
-}
-
-.selfless-programmer .modal-close {
-  background: transparent;
-  border: none;
-  color: var(--sl-text-muted);
-  cursor: pointer;
-  padding: var(--sl-space-xs);
-  margin-left: var(--sl-space-sm);
-  transition: all var(--sl-transition-fast);
-  border-radius: var(--sl-radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.selfless-programmer .modal-close:hover {
-  color: var(--sl-primary);
-  background: var(--sl-bg-highlight);
-}
-
-.selfless-programmer .modal-body {
-  margin-bottom: var(--sl-space-lg);
-  line-height: 1.6;
-}
-
-.selfless-programmer .modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--sl-space-sm);
-  margin-top: var(--sl-space-xl);
-  padding-top: var(--sl-space-lg);
-  border-top: 1px solid var(--sl-border);
-}
-
-/* Modal Sizes */
-.selfless-programmer .modal-sm {
-  width: min(400px, 100%);
-}
-
-.selfless-programmer .modal-lg {
-  width: min(720px, 100%);
-}
-
-.selfless-programmer .modal-xl {
-  width: min(960px, 100%);
-}
-
-/* Modal Backdrop Variations */
-.selfless-programmer .modal-overlay.blur {
-  backdrop-filter: blur(12px);
-}
-
-.selfless-programmer .modal-overlay.dark {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-/* Modal Transitions */
-.selfless-programmer .modal-exiting {
-  animation: fadeOut var(--sl-transition-slow) forwards;
-}
-
-@keyframes fadeOut {
-  to {
+@keyframes spFlowIn {
+  from {
     opacity: 0;
+    transform: translateY(30px) scale(0.95);
   }
-}
 
-.selfless-programmer .modal-content.exiting {
-  animation: modalExit var(--sl-transition-slow) forwards;
-}
-
-@keyframes modalExit {
   to {
-    transform: translateY(20px);
-    opacity: 0;
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
-}
-
-/* ============ Calendar Components ============ */
-.selfless-programmer #calendar-title {
-  text-align: center;
-  margin-bottom: var(--sl-space-xl);
-  position: relative;
-  padding-bottom: var(--sl-space-lg);
-}
-
-.selfless-programmer #calendar-title::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 3px;
-  background: var(--sl-primary);
-  margin: var(--sl-space-md) auto 0;
-  opacity: 0.3;
-}
-
-/* Calendar Table */
-.selfless-programmer table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: var(--sl-space-xl) auto;
-  background: var(--sl-bg-elevated);
-  border: 1px solid var(--sl-border);
-  border-radius: var(--sl-radius-lg);
-  overflow: hidden;
-  position: relative;
-}
-
-.selfless-programmer th {
-  background: var(--sl-bg-highlight);
-  color: var(--sl-primary);
-  font-size: var(--sl-text-sm);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: var(--sl-space-md);
-  border-bottom: 1px solid var(--sl-border);
-  text-align: left;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.selfless-programmer td {
-  color: var(--sl-text);
-  padding: var(--sl-space-sm);
-  border: 1px solid var(--sl-border);
-  height: 120px;
-  vertical-align: top;
-  transition: all var(--sl-transition);
-  font-size: var(--sl-text-sm);
-  background: var(--sl-bg-elevated);
-  position: relative;
-}
-
-.selfless-programmer td:hover {
-  background: var(--sl-bg-highlight);
-}
-
-/* Current Day Highlight */
-.selfless-programmer td.current-day {
-  background: rgba(13, 65, 157, 0.2) !important;
-  position: relative;
-  border-left: 3px solid var(--sl-primary);
-}
-
-.selfless-programmer td.current-day::before {
-  content: "★";
-  position: absolute;
-  top: var(--sl-space-xs);
-  right: var(--sl-space-xs);
-  color: var(--sl-primary);
-  font-size: var(--sl-text-sm);
-}
-
-.selfless-programmer td.current-day .date-number {
-  font-weight: 600;
-  color: var(--sl-primary);
-  display: inline-block;
-  background: rgba(13, 65, 157, 0.3);
-  padding: var(--sl-space-xxs) var(--sl-space-xs);
-  border-radius: var(--sl-radius-sm);
-}
-
-/* Date Number */
-.selfless-programmer .date-number {
-  font-weight: 500;
-  margin-bottom: var(--sl-space-xs);
-  display: block;
 }
 
 /* Event Markers */
 .selfless-programmer .event-marker {
-  display: inline-flex;
-  width: 8px;
-  height: 8px;
-  border-radius: var(--sl-radius-full);
-  background: var(--sl-primary);
-  margin-right: var(--sl-space-xxs);
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sp-primary);
+  margin: 0 2px;
+  box-shadow: 0 0 5px var(--sp-primary);
+  transition: all var(--sp-transition);
+  position: relative;
 }
 
-.selfless-programmer .event-marker-completed {
-  background: var(--sl-success);
+.selfless-programmer .event-marker:hover {
+  transform: scale(1.8);
+  background: #1e90ff;
+  box-shadow: 0 0 15px #1e90ff;
+  animation: spPulse 0.5s;
 }
 
-.selfless-programmer .event-marker-important {
-  background: var(--sl-error);
-  animation: pulse 2s infinite;
+.selfless-programmer .event-marker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid var(--sp-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all var(--sp-transition);
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.6;
-  }
+.selfless-programmer .event-marker:hover::after {
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
 }
 
 /* Event List */
-.selfless-programmer .event-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.selfless-programmer .event-item {
-  padding: var(--sl-space-sm) 0;
-  border-bottom: 1px solid var(--sl-border);
+.selfless-programmer .event-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--sp-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--sl-space-sm);
-  transition: background-color var(--sl-transition);
+  position: relative;
 }
 
-.selfless-programmer .event-item:last-child {
+.selfless-programmer .event-list li::before {
+  content: '> ';
+  color: var(--sp-primary);
+}
+
+.selfless-programmer .event-list li:last-child {
   border-bottom: none;
 }
 
-.selfless-programmer .event-item:hover {
-  background: var(--sl-bg-highlight);
+.selfless-programmer .event-list button {
+  background: linear-gradient(to bottom, var(--sp-secondary), var(--sp-primary));
+  color: var(--sp-text);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--sp-radius);
+  cursor: pointer;
+  transition: all var(--sp-transition);
+  box-shadow: 0 0 5px var(--sp-primary);
+  font-family: 'Roboto Mono', monospace;
 }
 
-.selfless-programmer .event-content {
-  flex: 1;
-  min-width: 0;
+.selfless-programmer .event-list button:hover {
+  background: linear-gradient(to bottom, var(--sp-primary), var(--sp-secondary));
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--sp-primary);
 }
 
-.selfless-programmer .event-title {
-  font-weight: 500;
-  white-space: nowrap;
+/* Buttons & Navigation */
+.selfless-programmer .button,
+.selfless-programmer .transparent-button {
+  background: linear-gradient(to bottom, rgba(0, 123, 255, 0.3), rgba(0, 86, 179, 0.5));
+  color: var(--sp-text);
+  border: 1px solid var(--sp-primary);
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all var(--sp-transition);
+  position: relative;
   overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0.5rem;
+  border-radius: var(--sp-radius);
+  box-shadow: 0 0 15px var(--sp-shadow);
 }
 
-.selfless-programmer .event-description {
-  font-size: var(--sl-text-xs);
-  color: var(--sl-text-muted);
-  margin-top: var(--sl-space-xxs);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.selfless-programmer .button:hover,
+.selfless-programmer .transparent-button:hover {
+  background: linear-gradient(to bottom, rgba(0, 123, 255, 0.5), rgba(0, 86, 179, 0.7));
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--sp-primary);
 }
 
-.selfless-programmer .event-time {
-  color: var(--sl-secondary);
-  font-size: var(--sl-text-xs);
-  white-space: nowrap;
-  margin-left: var(--sl-space-sm);
-}
-
-/* Calendar Controls */
-.selfless-programmer .calendar-controls {
+.selfless-programmer .controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--sl-space-md);
-  margin: var(--sl-space-xl) 0;
+  margin: 1.5rem 0;
 }
 
-.selfless-programmer .calendar-nav {
-  display: flex;
-  gap: var(--sl-space-sm);
-}
-
-.selfless-programmer .calendar-view-switcher {
-  display: flex;
-  background: var(--sl-bg-highlight);
-  border-radius: var(--sl-radius-md);
-  padding: var(--sl-space-xxs);
-}
-
-.selfless-programmer .view-switch-btn {
-  background: transparent;
-  border: none;
-  color: var(--sl-text-muted);
-  padding: var(--sl-space-xs) var(--sl-space-sm);
-  border-radius: var(--sl-radius-sm);
-  cursor: pointer;
-  font-size: var(--sl-text-sm);
-  transition: all var(--sl-transition-fast);
-}
-
-.selfless-programmer .view-switch-btn.active {
-  background: var(--sl-primary);
-  color: var(--sl-text-on-primary);
-}
-
-.selfless-programmer .view-switch-btn:not(.active):hover {
-  background: var(--sl-bg);
-  color: var(--sl-text);
-}
-
-/* ============ Utility Components ============ */
 /* Back to Top Button */
 .selfless-programmer #backToTopBtn {
   position: fixed;
-  right: var(--sl-space-xl);
-  bottom: var(--sl-space-xl);
-  z-index: var(--sl-z-index-fixed);
-  border: none;
-  padding: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--sl-radius-full);
-  background: var(--sl-primary);
-  color: var(--sl-text-on-primary);
+  right: 25px;
+  bottom: 25px;
+  z-index: 9999;
+  border: 1px solid var(--sp-primary);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--sp-primary);
+  background: rgba(240, 240, 240, 0.8);
   cursor: pointer;
-  transition: all var(--sl-transition);
-  opacity: 0;
-  visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--sl-shadow-md);
-  transform: translateY(10px);
-}
-
-.selfless-programmer #backToTopBtn.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  transition: all var(--sp-transition);
+  opacity: 0.9;
+  display: none;
+  border-radius: var(--sp-radius);
+  box-shadow: 0 0 20px var(--sp-shadow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .selfless-programmer #backToTopBtn:hover {
-  background: var(--sl-primary-400);
-  transform: translateY(-2px);
-  box-shadow: var(--sl-shadow-lg);
+  background: var(--sp-primary);
+  color: #000;
+  opacity: 1;
+  box-shadow: 0 0 35px var(--sp-primary);
 }
 
-/* Tooltip */
-.selfless-programmer .tooltip {
-  position: absolute;
-  z-index: var(--sl-z-index-tooltip);
-  background: var(--sl-bg-highlight);
-  color: var(--sl-text);
-  padding: var(--sl-space-xs) var(--sl-space-sm);
-  border-radius: var(--sl-radius-sm);
-  font-size: var(--sl-text-xs);
-  box-shadow: var(--sl-shadow-md);
-  border: 1px solid var(--sl-border);
-  max-width: 200px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--sl-transition-fast);
-}
-
-.selfless-programmer .tooltip::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--sl-bg-highlight);
-  transform: rotate(45deg);
-  border-right: 1px solid var(--sl-border);
-  border-bottom: 1px solid var(--sl-border);
-}
-
-.selfless-programmer .tooltip-top::after {
-  bottom: -4px;
-  left: 50%;
-  margin-left: -4px;
-}
-
-.selfless-programmer .tooltip-bottom::after {
-  top: -4px;
-  left: 50%;
-  margin-left: -4px;
-}
-
-.selfless-programmer .tooltip-left::after {
-  right: -4px;
-  top: 50%;
-  margin-top: -4px;
-}
-
-.selfless-programmer .tooltip-right::after {
-  left: -4px;
-  top: 50%;
-  margin-top: -4px;
-}
-
-/* ============ Footer ============ */
+/* Footer */
 .selfless-programmer footer {
   text-align: center;
-  margin-top: var(--sl-space-2xl);
-  padding-top: var(--sl-space-lg);
-  border-top: 1px solid var(--sl-border);
-  color: var(--sl-text-muted);
-  font-size: var(--sl-text-sm);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sp-primary);
+  color: var(--sp-text);
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 .selfless-programmer footer a {
-  color: var(--sl-primary);
+  color: var(--sp-primary);
   text-decoration: none;
-  font-weight: 500;
+  transition: all var(--sp-transition);
 }
 
 .selfless-programmer footer a:hover {
-  text-decoration: underline;
+  color: #1e90ff;
+  text-shadow: 0 0 5px var(--sp-shadow);
 }
 
-/* ============ Responsive Design ============ */
+/* Media Queries */
 @media (max-width: 1200px) {
-  .selfless-programmer .container {
-    padding: var(--sl-space-xl);
-  }
-
-  .selfless-programmer td {
-    height: 100px;
+  .selfless-programmer #calendar-title {
+    font-size: 2.4rem;
   }
 }
 
 @media (max-width: 992px) {
+  .selfless-programmer .container {
+    padding: 1.5rem;
+  }
+
   .selfless-programmer #calendar-title {
-    font-size: var(--sl-text-2xl);
+    font-size: 2rem;
   }
 
   .selfless-programmer th {
-    font-size: var(--sl-text-xs);
-    padding: var(--sl-space-sm);
+    font-size: 1.1rem;
+    padding: 0.8rem 0.3rem;
   }
 
   .selfless-programmer td {
     height: 90px;
-    font-size: var(--sl-text-xs);
-    padding: var(--sl-space-xs);
-  }
-
-  .selfless-programmer .modal-content {
-    padding: var(--sl-space-lg);
+    padding: 0.6rem;
   }
 }
 
 @media (max-width: 768px) {
-  .selfless-programmer .container {
-    padding: var(--sl-space-lg);
+  .selfless-programmer #calendar-title {
+    font-size: 1.8rem;
   }
 
-  .selfless-programmer #calendar-title {
-    font-size: var(--sl-text-xl);
-    padding-bottom: var(--sl-space-md);
+  .selfless-programmer th {
+    font-size: 1rem;
+    padding: 0.7rem 0.2rem;
   }
 
   .selfless-programmer td {
     height: 80px;
+    font-size: 1rem;
   }
 
-  .selfless-programmer .calendar-controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--sl-space-sm);
-  }
-
-  .selfless-programmer .calendar-nav {
-    justify-content: center;
-  }
-
-  .selfless-programmer .calendar-view-switcher {
-    justify-content: center;
-  }
-
-  #backToTopBtn {
-    right: var(--sl-space-lg);
-    bottom: var(--sl-space-lg);
-    width: 40px;
-    height: 40px;
+  .selfless-programmer #backToTopBtn {
+    right: 20px;
+    bottom: 20px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 576px) {
   .selfless-programmer .container {
-    padding: var(--sl-space-md);
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+    padding: 1rem;
   }
 
   .selfless-programmer #calendar-title {
-    font-size: var(--sl-text-lg);
+    font-size: 1.6rem;
+  }
+
+  .selfless-programmer th {
+    font-size: 0.9rem;
+  }
+
+  .selfless-programmer td {
+    height: 70px;
+    font-size: 0.9rem;
+  }
+
+  .selfless-programmer .button,
+  .selfless-programmer .transparent-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .selfless-programmer #calendar-title {
+    font-size: 1.4rem;
+  }
+
+  .selfless-programmer th {
+    font-size: 0.8rem;
+  }
+
+  .selfless-programmer td {
+    height: 60px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile Screen Responsivity */
+@media (max-width: 480px) {
+  .selfless-programmer .container {
+    padding: 1rem;
+  }
+
+  .selfless-programmer #calendar-title {
+    font-size: 1.6rem;
+  }
+
+  .selfless-programmer table {
+    margin: 1rem auto;
+  }
+
+  .selfless-programmer th,
+  .selfless-programmer td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .selfless-programmer td {
+    height: 60px;
+  }
+
+  .selfless-programmer .modal-content {
+    padding: 1.5rem;
+  }
+
+  .selfless-programmer .modal-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .selfless-programmer .modal-btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .selfless-programmer .event-list li {
+    font-size: 0.9rem;
+  }
+
+  .selfless-programmer .button,
+  .selfless-programmer .transparent-button,
+  .selfless-programmer #backToTopBtn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .selfless-programmer footer {
+    font-size: 0.8rem;
+  }
+}
+
+/* Special Effects */
+.selfless-programmer .sp-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.1;
+  background: linear-gradient(90deg, transparent 0%, var(--sp-primary) 50%, transparent 100%);
+  animation: spPulse 5s infinite;
+}
+
+/* Code Rain Effect */
+@keyframes spCodeRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.selfless-programmer .code-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.selfless-programmer .code-rain span {
+  position: absolute;
+  color: var(--sp-primary);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
+  animation: spCodeRain 5s linear infinite;
+  text-shadow: 0 0 5px var(--sp-primary);
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 360px) {
+  .selfless-programmer #calendar-title {
+    font-size: 1.4rem;
+  }
+
+  .selfless-programmer th,
+  .selfless-programmer td {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+  }
+
+  .selfless-programmer td {
+    height: 50px;
+  }
+
+  .selfless-programmer .modal-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .selfless-programmer .modal-btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  .selfless-programmer .event-list li {
+    font-size: 0.85rem;
+  }
+
+  .selfless-programmer .button,
+  .selfless-programmer .transparent-button,
+  .selfless-programmer #backToTopBtn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .selfless-programmer footer {
+    font-size: 0.75rem;
+  }
+}
+
+/* Adjustments for landscape orientation on mobile */
+@media (max-width: 800px) and (orientation: landscape) {
+  .selfless-programmer .container {
+    padding: 1.5rem;
+  }
+
+  .selfless-programmer #calendar-title {
+    font-size: 2rem;
+  }
+
+  .selfless-programmer table {
+    margin: 1.5rem auto;
+  }
+
+  .selfless-programmer th,
+  .selfless-programmer td {
+    padding: 0.7rem;
+    font-size: 0.9rem;
   }
 
   .selfless-programmer td {
     height: 70px;
   }
 
-  .selfless-programmer .modal-footer {
-    flex-direction: column;
+  .selfless-programmer .modal-content {
+    padding: 2rem;
   }
 
-  .selfless-programmer .btn {
-    width: 100%;
-  }
-}
-
-/* ============ Print Styles ============ */
-@media print {
-  .selfless-programmer {
-    --sl-bg: white !important;
-    --sl-text: #333 !important;
-    --sl-border: #ddd !important;
-    --sl-primary: #0066cc !important;
+  .selfless-programmer .modal-content h2 {
+    font-size: 1.9rem;
   }
 
-  .selfless-programmer .container {
-    box-shadow: none;
-    border: none;
-    padding: 0;
+  .selfless-programmer .modal-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
   }
 
-  .selfless-programmer #backToTopBtn,
-  .selfless-programmer .no-print {
-    display: none !important;
+  .selfless-programmer .event-list li {
+    font-size: 0.95rem;
   }
 
-  .selfless-programmer table {
-    page-break-inside: avoid;
-    break-inside: avoid;
+  .selfless-programmer .button,
+  .selfless-programmer .transparent-button,
+  .selfless-programmer #backToTopBtn {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
   }
 
-  .selfless-programmer td {
-    height: auto;
-    min-height: 100px;
-    page-break-inside: avoid;
+  .selfless-programmer footer {
+    font-size: 0.85rem;
   }
-
-  @page {
-    margin: 1cm;
-    size: A4 portrait;
-  }
-}
-
-/* ============ Accessibility ============ */
-.selfless-programmer [aria-busy="true"] {
-  opacity: 0.6;
-}
-
-.selfless-programmer :focus-visible {
-  outline: 2px solid var(--sl-primary);
-  outline-offset: 2px;
-  border-radius: var(--sl-radius-sm);
-}
-
-.selfless-programmer .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* ============ Animations ============ */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-  }
-
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(20px);
-  }
-}
-
-/* ============ Ripple Effect ============ */
-.selfless-programmer .btn-ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.selfless-programmer .ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  pointer-events: none;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-/* ============ Scrollbars ============ */
-.selfless-programmer ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-.selfless-programmer ::-webkit-scrollbar-track {
-  background: var(--sl-bg);
-}
-
-.selfless-programmer ::-webkit-scrollbar-thumb {
-  background: var(--sl-border);
-  border-radius: var(--sl-radius-full);
-}
-
-.selfless-programmer ::-webkit-scrollbar-thumb:hover {
-  background: var(--sl-primary);
-}
-
-/* ============ Selection Styles ============ */
-.selfless-programmer ::selection {
-  background: var(--sl-primary);
-  color: var(--sl-text-on-primary);
 }
