@@ -1,554 +1,467 @@
-/* ==========================================================================
-  Quantum Programmer Theme - Futuristic Quantum Computing Interface
-  Version: 3.0
-  Updated: 2025-03-30
-  Features:
-  - Quantum circuit-inspired color scheme
-  - High-contrast elements for maximum visibility
-  - Qubit state animations
-  - Entanglement effects
-  - Complete calendar functionality
-  ========================================================================== */
+/* ==========================================================================  
+   Black Hacker Theme - Cyberpunk Terminal Interface  
+   Version: 2.1  
+   Updated: 2025-03-31  
+   Enhancements:  
+   - Authentic terminal-style color scheme  
+   - CRT monitor scanline effects  
+   - Glowing neon interface elements  
+   ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Orbitron:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
-    /* Quantum Color Palette */
-    --quantum-bg: #0a0e17;
-    /* Deep space background */
-    --quantum-text: #e0f7fa;
-    /* Quantum foam text */
-    --quantum-primary: #00e5ff;
-    /* Qubit |1> state */
-    --quantum-secondary: #7b2cbf;
-    /* Superposition state */
+    /* Core Color Palette */
+    --hk-bg: #0a0a0a;
+    /* Terminal black */
+    --hk-text: #00ff41;
+    /* Matrix green */
+    --hk-primary: #00b4ff;
+    /* Hacker blue */
+    --hk-secondary: #ff00ff;
+    /* Neon magenta */
 
-    /* Enhanced Contrast Colors */
-    --quantum-highlight: #00ffea;
-    /* Measurement highlight */
-    --quantum-alert: #ff2d75;
-    /* Quantum error */
-    --quantum-info: #00ff88;
-    /* Quantum information */
-    --quantum-warning: #ff9e00;
-    /* Decoherence warning */
+    /* Gradient Colors */
+    --hk-gradient-start: #000000;
+    /* Pure black */
+    --hk-gradient-end: #0a0a0a;
+    /* Slightly lighter black */
 
-    /* Circuit Elements */
-    --quantum-gate-x: #ff2d75;
-    /* Pauli-X gate */
-    --quantum-gate-h: #00e5ff;
-    /* Hadamard gate */
-    --quantum-gate-cnot: #7b2cbf;
-    /* CNOT gate */
-    --quantum-gate-z: #ff9e00;
-    /* Pauli-Z gate */
+    /* Accent Colors */
+    --hk-accent1: #ff0033;
+    /* Error red */
+    --hk-accent2: #00ff99;
+    /* Success green */
+    --hk-accent3: #ffee00;
+    /* Warning yellow */
+    --hk-accent4: #ff6600;
+    /* Alert orange */
+    --hk-accent5: #00ffff;
+    /* System cyan */
 
     /* Theme Variables */
-    --quantum-shadow: rgba(0, 229, 255, 0.3);
-    --quantum-radius: 4px;
-    --quantum-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --quantum-glow: 0 0 20px rgba(0, 229, 255, 0.5);
-    --quantum-current-day: rgba(0, 229, 255, 0.15);
+    --hk-shadow: rgba(0, 255, 65, 0.3);
+    /* Matrix glow */
+    --hk-radius: 0px;
+    /* Sharp corners like terminal */
+    --hk-transition: 0.2s linear;
+    --hk-hover: #1a1a1a;
+    /* Dark gray */
+    --hk-current-day: #003300;
+    /* Dark green highlight */
 }
 
-/* ==================== QUANTUM ANIMATIONS ==================== */
-@keyframes quantumPulse {
+/* ==================== ANIMATIONS ==================== */
+@keyframes hk-glitch {
 
     0%,
     100% {
-        opacity: 1;
+        text-shadow: 0 0 5px var(--hk-accent1),
+            0 0 10px var(--hk-accent5),
+            0 0 15px var(--hk-accent2);
     }
 
     50% {
-        opacity: 0.7;
+        text-shadow: 0 0 8px var(--hk-accent3),
+            0 0 13px var(--hk-accent1),
+            0 0 18px var(--hk-accent5);
     }
 }
 
-@keyframes qubitSpin {
+@keyframes hk-scanline {
     0% {
-        transform: rotate(0deg);
+        background-position: 0 0;
     }
 
     100% {
-        transform: rotate(360deg);
+        background-position: 0 100vh;
     }
 }
 
-@keyframes quantumEntanglement {
+@keyframes hk-pulse {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--quantum-0),
-            0 0 20px var(--quantum-1);
+        box-shadow: 0 0 5px var(--hk-accent1);
     }
 
     50% {
-        box-shadow: 0 0 20px var(--quantum-0),
-            0 0 30px var(--quantum-1);
-    }
-}
-
-@keyframes quantumFlash {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.8;
-    }
-}
-
-@keyframes quantumMeasurement {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
+        box-shadow: 0 0 15px var(--hk-accent5);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
-.quantum-programmer {
-    font-family: 'Source Code Pro', monospace;
-    color: var(--quantum-text);
-    line-height: 1.5;
-    background-color: var(--quantum-bg);
-    background-image:
-        radial-gradient(circle at 10% 20%, rgba(123, 44, 191, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 20%);
+.black-hacker {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-text);
+    line-height: 1.4;
+    background: var(--hk-bg);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
 }
 
-.quantum-programmer::before {
+.black-hacker::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        linear-gradient(rgba(0, 229, 255, 0.03) 1px,
+    background: linear-gradient(rgba(0, 255, 65, 0.05) 1px,
             transparent 1px);
-    background-size: 100% 5px;
+    background-size: 100% 4px;
+    animation: hk-scanline 8s linear infinite;
     pointer-events: none;
     z-index: 0;
 }
 
-.quantum-programmer .container {
-    background: linear-gradient(135deg, rgba(10, 14, 23, 0.95), rgba(123, 44, 191, 0.25));
+.black-hacker .container {
+    background-color: rgba(10, 10, 10, 0.9);
     padding: 2rem;
-    border-radius: var(--quantum-radius);
-    box-shadow: var(--quantum-glow);
-    border: 1px solid var(--quantum-primary);
+    border: 1px solid var(--hk-accent1);
+    box-shadow: 0 0 20px var(--hk-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
+    border-radius: var(--hk-radius);
     z-index: 1;
 }
 
-.quantum-programmer .container::after {
+.black-hacker .container::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--quantum-primary);
-    box-shadow: 0 0 10px var(--quantum-primary);
+    background: linear-gradient(90deg, transparent, var(--hk-accent5), transparent);
+    animation: hk-pulse 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
-.quantum-programmer #calendar-title {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--quantum-primary);
+.black-hacker #calendar-title {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-accent5);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 15px var(--quantum-primary);
-    animation: quantumPulse 3s infinite alternate;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--hk-shadow);
+    animation: hk-glitch 5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.black-hacker #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 20, 0, 0.3);
+    border: 1px solid var(--hk-accent2);
+    border-radius: var(--hk-radius);
     position: relative;
 }
 
-.quantum-programmer #calendar-title::after {
+.black-hacker #date-weather-container::after {
     content: "";
-    display: block;
-    width: 200px;
-    height: 2px;
-    background: linear-gradient(to right,
-            transparent,
-            var(--quantum-primary),
-            transparent);
-    margin: 1rem auto 0;
-    animation: quantumPulse 2s infinite;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hk-accent2), transparent);
 }
 
-/* ==================== QUANTUM CLOCK ==================== */
-.quantum-programmer #quantum-clock {
+.black-hacker #current-date {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-accent5);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--hk-shadow);
+}
+
+.black-hacker #today-weather {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hk-accent2);
+    font-size: 1.2rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.black-hacker #analog-watch {
     display: flex;
     justify-content: center;
     margin: 2rem 0;
 }
 
-.quantum-programmer .qclock-face {
-    width: 200px;
-    height: 200px;
-    border: 2px solid var(--quantum-gate-x);
+.black-hacker .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--hk-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--quantum-bg);
-    box-shadow:
-        0 0 20px var(--quantum-shadow),
-        inset 0 0 15px rgba(0, 229, 255, 0.2);
+    background-color: var(--hk-bg);
+    box-shadow: 0 0 15px var(--hk-shadow),
+        inset 0 0 10px rgba(0, 255, 65, 0.2);
 }
 
-.quantum-programmer .qhand {
+.black-hacker .hand {
     position: absolute;
     top: 50%;
-    left: 10%;
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
     transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
-.quantum-programmer .qhour-hand {
-    width: 30%;
+.black-hacker .hour-hand {
+    width: 40%;
+    left: 10%;
     height: 4px;
-    background: var(--quantum-gate-x);
+    background: var(--hk-accent1);
     margin-top: -2px;
 }
 
-.quantum-programmer .qminute-hand {
-    width: 40%;
-    height: 3px;
-    background: var(--quantum-primary);
-    margin-top: -1.5px;
+.black-hacker .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--hk-accent5);
+    margin-top: -1px;
 }
 
-.quantum-programmer .qsecond-hand {
-    width: 45%;
+.black-hacker .second-hand {
+    width: 48%;
+    left: 2%;
     height: 1px;
-    background: var(--quantum-info);
+    background: var(--hk-accent2);
     margin-top: -0.5px;
 }
 
-.quantum-programmer .qclock-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    background: var(--quantum-primary);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px var(--quantum-primary);
-}
-
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.quantum-programmer #date-weather-container {
-    text-align: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: rgba(0, 20, 30, 0.6);
-    border: 1px solid var(--quantum-primary);
-    border-radius: var(--quantum-radius);
-    position: relative;
-    box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
-}
-
-.quantum-programmer #date-weather-container::before {
-    content: "QUANTUM STATE";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--quantum-bg);
-    padding: 0 15px;
-    font-size: 0.9rem;
-    color: var(--quantum-primary);
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-}
-
-.quantum-programmer #current-date {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--quantum-highlight);
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px var(--quantum-primary);
-    font-weight: 600;
-    animation: quantumFlash 2s infinite;
-}
-
-.quantum-programmer #today-weather {
-    font-family: 'Source Code Pro', monospace;
-    color: var(--quantum-info);
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-    background: rgba(0, 20, 15, 0.3);
-    padding: 8px 20px;
-    border-radius: var(--quantum-radius);
-    display: inline-block;
-    border: 1px dashed var(--quantum-info);
-}
-
 /* ==================== CALENDAR TABLE ==================== */
-.quantum-programmer table {
+.black-hacker table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(20, 25, 40, 0.8);
-    border: 1px solid var(--quantum-primary);
-    border-radius: var(--quantum-radius);
-    box-shadow: 0 0 25px var(--quantum-shadow);
+    background-color: rgba(0, 15, 0, 0.2);
+    border: 1px solid var(--hk-accent2);
+    border-radius: var(--hk-radius);
     table-layout: fixed;
-    position: relative;
-    z-index: 1;
 }
 
 /* DAY OF WEEK HEADERS */
-.quantum-programmer th {
-    background: linear-gradient(to bottom,
-            var(--quantum-secondary),
-            var(--quantum-primary));
-    color: #000;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
+.black-hacker th {
+    background-color: rgba(0, 20, 0, 0.4);
+    color: var(--hk-accent5) !important;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--quantum-primary);
+    border: 1px solid var(--hk-accent2);
     position: relative;
-    text-shadow: 0 0 5px var(--quantum-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 3px var(--hk-shadow);
 }
 
-.quantum-programmer th span.full-day-name {
+.black-hacker th span.full-day-name {
     display: inline;
 }
 
-.quantum-programmer th abbr {
+.black-hacker th abbr {
     display: none;
     text-decoration: none;
     border-bottom: none;
 }
 
-/* CALENDAR CELLS */
-.quantum-programmer td {
-    background-color: rgba(15, 20, 35, 0.8);
-    color: var(--quantum-text);
-    padding: 0.8rem;
-    border: 1px solid var(--quantum-primary);
-    height: 100px;
+.black-hacker td {
+    background-color: rgba(0, 10, 0, 0.1);
+    color: var(--hk-text);
+    padding: 1rem;
+    border: 1px solid var(--hk-accent2);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--quantum-transition);
+    transition: all var(--hk-transition);
     position: relative;
-    font-size: 1.1rem;
 }
 
-.quantum-programmer td:hover {
-    background: linear-gradient(to bottom,
-            rgba(123, 44, 191, 0.3),
-            rgba(0, 229, 255, 0.3));
-    transform: scale(1.03);
-    box-shadow: 0 0 15px var(--quantum-shadow);
-    z-index: 2;
+.black-hacker td:hover {
+    background-color: rgba(0, 30, 0, 0.3);
+    box-shadow: inset 0 0 10px var(--hk-shadow);
 }
 
 /* Current date highlight */
-.quantum-programmer td.current-day {
-    background: linear-gradient(135deg,
-            var(--quantum-0),
-            var(--quantum-1)) !important;
-    color: #000 !important;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-    box-shadow:
-        0 0 25px var(--quantum-primary),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-    border: 2px solid var(--quantum-highlight) !important;
-    animation: quantumEntanglement 3s infinite;
-    z-index: 10;
+.black-hacker td.current-day {
+    background-color: var(--hk-current-day);
+    border: 1px solid var(--hk-accent2);
+    color: #fff !important;
+    font-weight: 400;
+    animation: hk-pulse 3s infinite;
 }
 
-.quantum-programmer td.current-day::before {
-    content: "QUBIT";
+.black-hacker td.current-day::before {
+    content: ">";
     position: absolute;
-    top: 2px;
-    right: 2px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #000;
-    background: var(--quantum-highlight);
-    padding: 0 4px;
-    border-radius: 2px;
+    top: 5px;
+    left: 5px;
+    color: var(--hk-accent2);
+    z-index: 1;
+    opacity: 0.7;
 }
 
-.quantum-programmer td.current-day .date-number {
+.black-hacker td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #fff !important;
     font-weight: bold;
-    font-size: 1.3em;
-    display: inline-block;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 2px 8px;
-    border-radius: 3px;
+    text-shadow: 0 0 5px var(--hk-shadow);
 }
 
 /* ==================== EVENT MARKERS ==================== */
-.quantum-programmer .event-marker {
+.black-hacker .event-marker {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: var(--quantum-primary);
+    background-color: var(--hk-accent1);
     margin: 0 2px;
-    box-shadow: 0 0 5px var(--quantum-primary);
-    transition: all var(--quantum-transition);
+    box-shadow: 0 0 5px var(--hk-shadow);
+    transition: all var(--hk-transition);
 }
 
-.quantum-programmer .event-marker:hover {
+.black-hacker .event-marker:hover {
     transform: scale(1.8);
-    background-color: var(--quantum-alert);
-    box-shadow: 0 0 15px var(--quantum-alert);
-    animation: quantumMeasurement 0.5s;
+    background-color: var(--hk-accent5);
+    box-shadow: 0 0 15px var(--hk-accent1);
 }
 
-/* ==================== QUANTUM MODAL STYLES ==================== */
-.quantum-programmer .modal-content {
+/* ==================== MODAL STYLES ==================== */
+.black-hacker .modal-content {
     position: relative;
-    background: rgba(15, 20, 35, 0.98);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--quantum-primary);
-    border-radius: var(--quantum-radius);
-    box-shadow: 0 0 50px var(--quantum-shadow);
-    padding: 30px;
-    color: var(--quantum-text);
-    font-family: 'Source Code Pro', monospace;
-    z-index: 1000;
+    background-color: rgba(0, 10, 0, 0.95);
+    border: 1px solid var(--hk-accent2);
+    padding: 25px;
+    color: var(--hk-text);
+    box-shadow: 0 0 30px var(--hk-shadow);
+    border-radius: var(--hk-radius);
+    animation: hk-pulse 0.5s ease;
 }
 
-.quantum-programmer .modal-content::before {
+.black-hacker .modal-content::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--quantum-primary);
-    box-shadow: 0 0 10px var(--quantum-primary);
+    background: var(--hk-accent2);
+    animation: hk-pulse 3s infinite;
 }
 
-.quantum-programmer .modal-content h2 {
-    color: var(--quantum-primary);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 20px;
+.black-hacker .modal-content h2 {
+    color: var(--hk-accent5);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.8em;
+    margin-bottom: 15px;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px var(--quantum-primary);
-    border-bottom: 1px dashed var(--quantum-primary);
-    padding-bottom: 10px;
+    letter-spacing: 2px;
 }
 
-.quantum-programmer .modal-content button {
-    background: linear-gradient(to bottom,
-            var(--quantum-secondary),
-            var(--quantum-primary));
-    color: #000;
-    border: none;
-    padding: 10px 25px;
-    font-size: 1.1rem;
-    font-family: 'Orbitron', sans-serif;
+.black-hacker .modal-content button {
+    background-color: transparent;
+    color: var(--hk-accent5);
+    border: 1px solid var(--hk-accent5);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
     cursor: pointer;
-    transition: all var(--quantum-transition);
+    transition: all var(--hk-transition);
+    text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 20px;
-    border-radius: var(--quantum-radius);
-    box-shadow: 0 0 10px var(--quantum-shadow);
+    border-radius: var(--hk-radius);
 }
 
-.quantum-programmer .modal-content button:hover {
-    background: linear-gradient(to bottom,
-            var(--quantum-primary),
-            var(--quantum-secondary));
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--quantum-primary);
+.black-hacker .modal-content button:hover {
+    background-color: var(--hk-accent5);
+    color: var(--hk-bg);
+    box-shadow: 0 0 15px var(--hk-shadow);
 }
 
 /* Close Button */
-.quantum-programmer .modal .close-button {
+.black-hacker .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--quantum-secondary);
-    color: var(--quantum-text);
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    width: 28px;
+    height: 28px;
     cursor: pointer;
-    transition: all var(--quantum-transition);
+    transition: all var(--hk-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    box-shadow: 0 0 10px var(--quantum-shadow);
+    border-radius: 50%;
 }
 
-.quantum-programmer .modal .close-button:hover {
-    background: var(--quantum-alert);
-    color: var(--quantum-text);
+.black-hacker .modal .close-button:hover {
+    background-color: var(--hk-accent1);
+    color: var(--hk-bg);
     transform: rotate(90deg);
-    box-shadow: 0 0 20px var(--quantum-alert);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
-.quantum-programmer .button,
-.quantum-programmer .transparent-button {
-    background: linear-gradient(to bottom,
-            rgba(123, 44, 191, 0.3),
-            rgba(0, 229, 255, 0.3));
-    color: var(--quantum-text);
-    border: 1px solid var(--quantum-primary);
-    padding: 0.8rem 1.8rem;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
+.black-hacker .button,
+.black-hacker .transparent-button {
+    border: 1px solid var(--hk-accent5);
+    color: var(--hk-accent5);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Share Tech Mono', monospace;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--quantum-transition);
+    transition: all var(--hk-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--quantum-radius);
-    box-shadow: 0 0 15px var(--quantum-shadow);
+    border-radius: var(--hk-radius);
 }
 
-.quantum-programmer .button:hover,
-.quantum-programmer .transparent-button:hover {
-    background: linear-gradient(to bottom,
-            rgba(0, 229, 255, 0.3),
-            rgba(123, 44, 191, 0.3));
-    transform: scale(1.05);
-    box-shadow: 0 0 25px var(--quantum-primary);
+.black-hacker .button::before,
+.black-hacker .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+    transition: 0.5s;
 }
 
-.quantum-programmer .controls {
+.black-hacker .button:hover,
+.black-hacker .transparent-button:hover {
+    background-color: var(--hk-accent5);
+    color: var(--hk-bg);
+    box-shadow: 0 0 20px var(--hk-shadow);
+}
+
+.black-hacker .button:hover::before,
+.black-hacker .transparent-button:hover::before {
+    left: 100%;
+}
+
+.black-hacker .controls {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -557,247 +470,218 @@
 }
 
 /* ==================== THEME SWITCHER ==================== */
-.quantum-programmer #theme-switcher-container {
+.black-hacker #theme-switcher-container {
     position: relative;
     margin: 0 1rem;
-    min-width: 220px;
+    min-width: 200px;
     z-index: 1000;
 }
 
-.quantum-programmer #theme-switcher {
-    background: rgba(15, 20, 35, 0.7);
-    color: var(--quantum-primary) !important;
-    border: 1px solid var(--quantum-primary);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 1.1rem;
+.black-hacker #theme-switcher {
+    background-color: rgba(0, 20, 0, 0.4);
+    color: var(--hk-accent5) !important;
+    border: 1px solid var(--hk-accent5);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 400;
     width: 100%;
-    border-radius: var(--quantum-radius);
+    border-radius: var(--hk-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e5ff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300ffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 1rem;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
     cursor: pointer;
-    transition: all var(--quantum-transition);
-    text-shadow: 0 0 5px var(--quantum-shadow);
-    box-shadow: 0 0 15px var(--quantum-shadow);
+    transition: all var(--hk-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 3px var(--hk-shadow);
 }
 
-.quantum-programmer #theme-switcher option {
-    background: rgba(15, 20, 35, 0.98) !important;
-    color: var(--quantum-primary) !important;
-    font-size: 1.1rem;
-    padding: 10px !important;
+.black-hacker #theme-switcher option {
+    background-color: rgba(0, 15, 0, 0.95) !important;
+    color: var(--hk-accent5) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--hk-accent5) !important;
 }
 
-.quantum-programmer #theme-switcher:focus {
+.black-hacker #theme-switcher option:hover {
+    background-color: var(--hk-accent5) !important;
+    color: var(--hk-bg) !important;
+}
+
+.black-hacker #theme-switcher:focus {
     outline: none;
-    box-shadow:
-        0 0 0 2px var(--quantum-primary),
-        0 0 20px var(--quantum-shadow);
+    box-shadow: 0 0 0 2px var(--hk-accent5), 0 0 15px var(--hk-shadow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
-.quantum-programmer #backToTopBtn {
+.black-hacker #backToTopBtn {
     position: fixed;
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--quantum-primary);
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-family: 'Orbitron', sans-serif;
-    color: var(--quantum-primary);
-    background: rgba(15, 20, 35, 0.7);
+    border: 1px solid var(--hk-accent5);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--hk-accent5);
+    background-color: rgba(0, 20, 0, 0.3);
     cursor: pointer;
-    transition: all var(--quantum-transition);
+    transition: all var(--hk-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--quantum-radius);
-    box-shadow: 0 0 20px var(--quantum-shadow);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    border-radius: var(--hk-radius);
 }
 
-.quantum-programmer #backToTopBtn:hover {
-    background: var(--quantum-primary);
-    color: #000;
+.black-hacker #backToTopBtn:hover {
+    background-color: var(--hk-accent5);
+    color: var(--hk-bg);
+    box-shadow: 0 0 20px var(--hk-shadow);
     opacity: 1;
-    box-shadow: 0 0 30px var(--quantum-primary);
 }
 
 /* ==================== FOOTER ==================== */
-.quantum-programmer footer {
+.black-hacker footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px dashed var(--quantum-primary);
-    color: var(--quantum-text);
-    font-size: 0.9rem;
-    font-family: 'Source Code Pro', monospace;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--hk-accent2);
+    color: var(--hk-text);
+    font-size: 0.8rem;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
-@media (max-width: 1200px) {
-    .quantum-programmer #calendar-title {
-        font-size: 2.2rem;
+@media (max-width: 992px) {
+    .black-hacker .container {
+        padding: 1.2rem;
     }
 
-    .quantum-programmer #current-date {
+    .black-hacker #calendar-title {
         font-size: 1.8rem;
     }
 
-    .quantum-programmer #today-weather {
-        font-size: 1.3rem;
+    .black-hacker #current-date {
+        font-size: 1.4rem;
     }
 
-    .quantum-programmer .qclock-face {
-        width: 180px;
-        height: 180px;
-    }
-}
-
-@media (max-width: 992px) {
-    .quantum-programmer .container {
-        padding: 1.5rem;
-    }
-
-    .quantum-programmer #calendar-title {
-        font-size: 2rem;
-        letter-spacing: 0.2em;
-    }
-
-    .quantum-programmer #current-date {
-        font-size: 1.6rem;
-    }
-
-    .quantum-programmer #today-weather {
-        font-size: 1.2rem;
-    }
-
-    .quantum-programmer th {
+    .black-hacker #today-weather {
         font-size: 1.1rem;
-        padding: 0.8rem 0.3rem;
-    }
-
-    .quantum-programmer td {
-        height: 90px;
-        padding: 0.6rem;
     }
 }
 
 @media (max-width: 768px) {
-    .quantum-programmer .qclock-face {
-        width: 150px;
-        height: 150px;
+    .black-hacker .clock-face {
+        width: 140px;
+        height: 140px;
     }
 
-    .quantum-programmer #calendar-title {
-        font-size: 1.8rem;
-    }
-
-    .quantum-programmer #current-date {
-        font-size: 1.4rem;
-    }
-
-    .quantum-programmer #today-weather {
-        font-size: 1.1rem;
-    }
-
-    .quantum-programmer th {
-        font-size: 1rem;
+    .black-hacker th {
+        font-size: 0.8rem;
         padding: 0.7rem 0.2rem;
     }
 
-    .quantum-programmer td {
-        height: 80px;
-        font-size: 1rem;
+    .black-hacker th span.full-day-name {
+        display: none;
     }
 
-    .quantum-programmer #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+    .black-hacker th abbr {
+        display: inline;
     }
 
-    .quantum-programmer #theme-switcher {
-        min-width: 200px;
-        font-size: 1rem;
+    .black-hacker td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .black-hacker td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .black-hacker #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .black-hacker #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .black-hacker #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
     }
 }
 
 @media (max-width: 576px) {
-    .quantum-programmer .container {
-        padding: 1rem;
+    .black-hacker .container {
+        padding: 0.6rem;
     }
 
-    .quantum-programmer #calendar-title {
-        font-size: 1.5rem;
-    }
-
-    .quantum-programmer #current-date {
-        font-size: 1.2rem;
-    }
-
-    .quantum-programmer #today-weather {
-        font-size: 1rem;
-    }
-
-    .quantum-programmer .qclock-face {
-        width: 120px;
-        height: 120px;
-    }
-
-    .quantum-programmer th {
-        font-size: 0.9rem;
+    .black-hacker #calendar-title {
+        font-size: 1.4rem;
         letter-spacing: 0.1em;
     }
 
-    .quantum-programmer td {
-        height: 70px;
-        font-size: 0.9rem;
-    }
-
-    .quantum-programmer #theme-switcher {
-        min-width: 180px;
-        font-size: 0.9rem;
-    }
-
-    .quantum-programmer .button,
-    .quantum-programmer .transparent-button {
-        padding: 0.7rem 1.5rem;
+    .black-hacker #current-date {
         font-size: 1rem;
+    }
+
+    .black-hacker #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .black-hacker .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .black-hacker th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .black-hacker td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .black-hacker td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .black-hacker #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
-    .quantum-programmer #calendar-title {
-        font-size: 1.3rem;
+    .black-hacker th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
     }
 
-    .quantum-programmer #current-date {
-        font-size: 1.1rem;
+    .black-hacker td {
+        height: 45px;
     }
 
-    .quantum-programmer #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .quantum-programmer th {
-        font-size: 0.8rem;
-    }
-
-    .quantum-programmer td {
-        height: 60px;
-        font-size: 0.8rem;
-    }
-
-    .quantum-programmer #theme-switcher {
-        min-width: 160px;
-        font-size: 0.8rem;
+    .black-hacker #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
     }
 }
