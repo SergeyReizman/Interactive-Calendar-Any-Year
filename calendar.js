@@ -57,7 +57,7 @@ const applyTheme = (theme) => {
     'black-hawk', 'black-hole', 'black-orange', 'black-velvet', 'black-violet', 'blue-bird', 'blue-ice', 
     'blue-planet','blue-whale', 'bronze-horseman', 'cacao-plantation', 'cafe-de-colombia', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'competitive-advantage',
-    'continuous-growth', 'cracked-ice', 'crimson-sky', 'crossroads-stone', 'crystal-snowfall', 'crystal-stream',
+    'continuous-growth', 'coral-reef', 'cracked-ice', 'crimson-sky', 'crossroads-stone', 'crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'deep-forest', 'deep-ocean', 'desert-mirage', 'distant-skies', 
     'dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 'everest-view', 'exotic-island', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'free-flight', 'forgotten-dreams', 'frozen-wilderness', 
