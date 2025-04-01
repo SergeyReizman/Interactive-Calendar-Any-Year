@@ -1,0 +1,452 @@
+/* ==========================================================================
+   Lights of Guangzhou Theme - Urban Nightscape Calendar
+   Purpose: Neon city lights and modern metropolis animations
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap');
+
+:root {
+    /* Guangzhou Night Lights Palette */
+    --gz-bg: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+    --gz-text: #E0E0E0;
+    --gz-primary: #FF5F6D;
+    /* Canton Tower Red */
+    --gz-secondary: #00C9FF;
+    /* Pearl River Blue */
+
+    /* City Light Colors */
+    --gz-neon-red: #FF5F6D;
+    --gz-neon-blue: #00C9FF;
+    --gz-neon-purple: #A569BD;
+    --gz-gold: #FFC300;
+    --gz-skyline: #2C3E50;
+    --gz-highlight: #FF9A00;
+    --gz-lantern: #E74C3C;
+    --gz-mint: #00F5A0;
+
+    /* Urban Accents */
+    --gz-glow: rgba(0, 201, 255, 0.7);
+    --gz-hover: #FF9A00;
+
+    /* Theme Variables */
+    --gz-shadow: rgba(0, 0, 0, 0.4);
+    --gz-radius: 16px;
+    --gz-transition: 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Urban Animations */
+@keyframes skylinePulse {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes neonFlicker {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--gz-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(0, 201, 255, 0.9);
+    }
+}
+
+@keyframes towerPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes lanternFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes lightStreak {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Background Animation */
+body {
+    background: var(--gz-bg);
+    background-size: 200% 200%;
+    animation: skylinePulse 15s infinite alternate;
+}
+
+/* Button Glow on Hover */
+button {
+    transition: var(--gz-transition);
+    border-radius: var(--gz-radius);
+}
+
+button:hover {
+    animation: neonFlicker 1.2s infinite alternate;
+}
+
+/* Elements with Urban Pulse */
+.pulsing-element {
+    animation: towerPulse 3s infinite;
+}
+
+/* Floating Animation for UI Elements */
+.floating-element {
+    animation: lanternFloat 4s infinite ease-in-out;
+}
+
+/* Base Styles */
+.guangzhou-lights {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--gz-text);
+    line-height: 1.6;
+    background-color: var(--gz-bg);
+}
+
+.guangzhou-lights .container {
+    background: linear-gradient(270deg, var(--gz-skyline), var(--gz-neon-blue), var(--gz-neon-purple));
+    background-size: 400% 400%;
+    animation: skylinePulse 12s ease-in-out infinite;
+    padding: 30px;
+    border-radius: var(--gz-radius);
+    box-shadow: 0 8px 32px var(--gz-shadow);
+    border: 3px solid var(--gz-primary);
+}
+
+.guangzhou-lights .calendar-container {
+    padding: 25px;
+    background: rgba(44, 62, 80, 0.85);
+    border-radius: var(--gz-radius);
+    border: 2px dashed var(--gz-secondary);
+    animation: neonFlicker 3s ease-in-out infinite;
+}
+
+/* Table Styles */
+.guangzhou-lights table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    border-radius: var(--gz-radius);
+    box-shadow: 0 5px 25px var(--gz-shadow);
+    overflow: hidden;
+    background-color: rgba(30, 39, 46, 0.9);
+    border: 2px solid var(--gz-primary);
+    table-layout: fixed;
+}
+
+.guangzhou-lights th,
+.guangzhou-lights td {
+    padding: 12px;
+    text-align: center;
+    border: 2px solid var(--gz-primary);
+    transition: all var(--gz-transition);
+    word-wrap: break-word;
+}
+
+.guangzhou-lights th {
+    background: linear-gradient(to bottom, var(--gz-neon-red), var(--gz-lantern));
+    color: white;
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255, 95, 109, 0.7);
+    animation: lanternFloat 5s infinite ease-in-out;
+}
+
+.guangzhou-lights td {
+    background-color: rgba(44, 62, 80, 0.7);
+    color: var(--gz-text);
+}
+
+.guangzhou-lights td:hover {
+    background: linear-gradient(to bottom, var(--gz-neon-blue), var(--gz-mint));
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--gz-glow);
+    color: var(--gz-skyline);
+    animation: towerPulse 1.5s infinite;
+}
+
+.guangzhou-lights td.current-day {
+    background: linear-gradient(to bottom, var(--gz-neon-red), var(--gz-highlight));
+    border: 3px solid var(--gz-secondary);
+    font-weight: 700;
+    color: white;
+    box-shadow: inset 0 0 10px var(--gz-shadow);
+    animation: towerPulse 2s infinite;
+}
+
+/* Event Marker */
+.guangzhou-lights .event-marker {
+    background-color: var(--gz-gold);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: transform var(--gz-transition);
+    box-shadow: 0 0 8px rgba(255, 195, 0, 0.7);
+}
+
+.guangzhou-lights .event-marker:hover {
+    background-color: var(--gz-lantern);
+    transform: scale(1.8);
+    box-shadow: 0 0 20px var(--gz-primary);
+}
+
+/* Modal */
+.guangzhou-lights .modal-content {
+    background: linear-gradient(135deg, rgba(47, 54, 64, 0.95), rgba(30, 39, 46, 0.98));
+    backdrop-filter: blur(10px);
+    border: 3px solid var(--gz-neon-blue);
+    border-radius: var(--gz-radius);
+    box-shadow: 0 12px 36px var(--gz-shadow);
+    padding: 30px;
+    color: var(--gz-text);
+    animation: lightStreak 0.6s var(--gz-transition);
+    text-align: center;
+}
+
+.guangzhou-lights .modal-content h2 {
+    color: var(--gz-neon-red);
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(255, 95, 109, 0.5);
+    border-bottom: 2px solid var(--gz-secondary);
+    padding-bottom: 10px;
+}
+
+.guangzhou-lights .modal-content button {
+    background: linear-gradient(to bottom, var(--gz-neon-red), var(--gz-lantern));
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--gz-radius);
+    cursor: pointer;
+    transition: all var(--gz-transition);
+    box-shadow: 0 4px 12px var(--gz-shadow);
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.guangzhou-lights .modal-content button:hover {
+    background: linear-gradient(to bottom, var(--gz-neon-blue), var(--gz-mint));
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px var(--gz-shadow);
+    animation: neonFlicker 1.5s infinite;
+}
+
+.guangzhou-lights .modal .close-button {
+    background-color: var(--gz-neon-red);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--gz-transition);
+    box-shadow: 0 0 10px var(--gz-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.guangzhou-lights .modal .close-button:hover {
+    background-color: var(--gz-lantern);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px var(--gz-primary);
+}
+
+/* Event List */
+.guangzhou-lights .event-list li {
+    padding: 12px 0;
+    border-bottom: 2px solid var(--gz-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.guangzhou-lights .event-list li:last-child {
+    border-bottom: none;
+}
+
+.guangzhou-lights .event-list button {
+    background: linear-gradient(to bottom, var(--gz-neon-red), var(--gz-lantern));
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--gz-radius);
+    cursor: pointer;
+    transition: all var(--gz-transition);
+    box-shadow: 0 2px 8px var(--gz-shadow);
+}
+
+.guangzhou-lights .event-list button:hover {
+    background: linear-gradient(to bottom, var(--gz-neon-blue), var(--gz-mint));
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px var(--gz-shadow);
+}
+
+/* Buttons & Navigation */
+.guangzhou-lights .button,
+.guangzhou-lights .transparent-button,
+.guangzhou-lights #backToTopBtn {
+    border-radius: var(--gz-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    transition: all var(--gz-transition);
+    cursor: pointer;
+    border: 3px solid var(--gz-primary);
+    color: white;
+    background: linear-gradient(to bottom, var(--gz-neon-red), var(--gz-lantern));
+    box-shadow: 0 5px 15px var(--gz-shadow);
+}
+
+.guangzhou-lights .button:hover,
+.guangzhou-lights .transparent-button:hover,
+.guangzhou-lights #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--gz-neon-blue), var(--gz-mint));
+    box-shadow: 0 8px 24px var(--gz-shadow);
+    transform: scale(1.05);
+    animation: neonFlicker 1.5s infinite;
+}
+
+.guangzhou-lights .button.secondary {
+    background: linear-gradient(to bottom, var(--gz-secondary), var(--gz-neon-blue));
+    border: none;
+}
+
+.guangzhou-lights .button.secondary:hover {
+    background: linear-gradient(to bottom, var(--gz-mint), var(--gz-neon-blue));
+}
+
+.guangzhou-lights .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--gz-neon-red), var(--gz-lantern));
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: white;
+    transition: all var(--gz-transition);
+    box-shadow: 0 4px 12px var(--gz-shadow);
+    border-radius: var(--gz-radius);
+}
+
+.guangzhou-lights .calendar-navigation button:hover {
+    background: linear-gradient(to bottom, var(--gz-highlight), var(--gz-gold));
+    transform: scale(1.1);
+    animation: towerPulse 1s infinite;
+}
+
+/* Calendar Header & Title */
+.guangzhou-lights .calendar-header {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--gz-neon-red);
+    font-family: 'ZCOOL XiaoWei', serif;
+    text-shadow: 0 0 10px rgba(255, 95, 109, 0.5);
+    animation: lanternFloat 6s ease-in-out infinite;
+}
+
+.guangzhou-lights .calendar-title {
+    font-size: 1.5em;
+    font-style: italic;
+    text-shadow: 0 0 5px rgba(0, 201, 255, 0.5);
+    color: var(--gz-secondary);
+}
+
+/* Modal Close */
+.guangzhou-lights .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--gz-neon-red);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: all var(--gz-transition);
+}
+
+.guangzhou-lights .modal-close:hover {
+    color: var(--gz-lantern);
+    transform: scale(1.2) rotate(90deg);
+}
+
+/* Week Number & No Events */
+.guangzhou-lights .week-number {
+    color: var(--gz-skyline);
+    font-size: 0.9em;
+    padding: 3px 8px;
+    background: linear-gradient(to bottom, var(--gz-neon-blue), var(--gz-mint));
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.guangzhou-lights .no-events {
+    font-style: italic;
+    color: var(--gz-text);
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+    opacity: 0.7;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .guangzhou-lights table {
+        font-size: 0.9em;
+    }
+
+    .guangzhou-lights th,
+    .guangzhou-lights td {
+        padding: 8px;
+        border: 1px solid var(--gz-secondary);
+    }
+
+    .guangzhou-lights .event-marker {
+        width: 10px;
+        height: 10px;
+    }
+
+    .guangzhou-lights .calendar-container {
+        padding: 15px;
+    }
+
+    .guangzhou-lights .button,
+    .guangzhou-lights .transparent-button,
+    .guangzhou-lights #backToTopBtn {
+        padding: 12px 20px;
+        font-size: 1.1em;
+    }
+}
