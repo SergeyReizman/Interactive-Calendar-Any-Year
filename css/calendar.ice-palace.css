@@ -1,0 +1,483 @@
+/* ==========================================================================
+  Ice Palace Theme - Glacial, Crystalline, and Ethereal (Frozen Keep Edition)
+  Purpose: Styles specific to the Ice Palace theme for the calendar, with icy colors and shimmering effects.
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;600&display=swap');
+
+:root {
+    /* Ice Color Palette */
+    --ice-bg: #0a1a2e;
+    /* Deep winter night background */
+    --ice-text: #FFFFFF;
+    /* Pure white text */
+    --ice-primary: #7FD8FF;
+    /* Bright glacial blue */
+    --ice-secondary: #4DB8FF;
+    /* Frozen lake blue */
+
+    /* Frost Gradients */
+    --ice-deep1: #001F3F;
+    /* Midnight ice */
+    --ice-deep2: #003366;
+    /* Deep glacier */
+    --ice-deep3: #0066CC;
+    /* Frozen waterfall */
+    --ice-deep4: #00A3FF;
+    /* Sunlit ice */
+    --ice-deep5: #80D4FF;
+    /* Diamond shimmer */
+
+    /* Frozen Accents */
+    --ice-crystal: #FF66B3;
+    /* Pink ice */
+    --ice-frost: #66FFB3;
+    /* Mint frost */
+    --ice-aurora: #B380FF;
+    /* Northern lights */
+    --ice-snow: #FFE680;
+    /* Golden snow */
+
+    /* Icicle Effects */
+    --ice-icicle1: #A1ECFF;
+    /* Bright icicle */
+    --ice-icicle2: #C8F5FF;
+    /* Medium frost */
+    --ice-icicle3: #E6FBFF;
+    /* Soft snow */
+
+    /* Theme Variables */
+    --ice-shadow: rgba(0, 63, 127, 0.6);
+    /* Frozen shadows */
+    --ice-radius: 12px;
+    /* Sharp yet rounded corners */
+    --ice-transition: 0.3s ease-in-out;
+    /* Crisp transitions */
+    --ice-hover: #00C3FF;
+    /* Bright hover color */
+    --ice-glow: 0 0 25px rgba(127, 216, 255, 0.9);
+    /* Intense frost glow */
+}
+
+/* Animations */
+@keyframes snowFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes crystalSparkle {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes auroraPulse {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes icicleDrip {
+    0% {
+        transform: translateY(0) scaleY(1);
+    }
+
+    50% {
+        transform: translateY(10px) scaleY(0.8);
+    }
+
+    100% {
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+/* Base Styles */
+.ice-palace {
+    font-family: 'Raleway', sans-serif;
+    color: var(--ice-text);
+    line-height: 1.6;
+    background-color: var(--ice-bg);
+    background-image:
+        radial-gradient(circle at 30% 20%, rgba(127, 216, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 70% 80%, rgba(100, 200, 255, 0.05) 0%, transparent 25%);
+}
+
+.ice-palace .container {
+    background: linear-gradient(135deg, var(--ice-deep2), var(--ice-deep3));
+    padding: 30px;
+    border-radius: var(--ice-radius);
+    box-shadow: 0 10px 30px var(--ice-shadow);
+    border: 2px solid var(--ice-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.ice-palace .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.ice-palace .calendar-container {
+    padding: 25px;
+    background: rgba(0, 40, 80, 0.7);
+    border-radius: var(--ice-radius);
+    border: 2px solid var(--ice-primary);
+    backdrop-filter: blur(4px);
+    position: relative;
+    z-index: 1;
+}
+
+/* Snowflake Decorations */
+.ice-palace .snowflake {
+    position: absolute;
+    background: rgba(210, 236, 255, 0.8);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: snowFall 10s linear infinite;
+}
+
+/* Table Styles */
+.ice-palace table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    border-radius: var(--ice-radius);
+    box-shadow: 0 5px 20px var(--ice-shadow);
+    overflow: hidden;
+    background-color: rgba(2, 80, 160, 0.5);
+    border: 2px solid var(--ice-primary);
+    table-layout: fixed;
+}
+
+.ice-palace th,
+.ice-palace td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--ice-primary);
+    transition: all var(--ice-transition);
+    word-wrap: break-word;
+    position: relative;
+}
+
+.ice-palace th {
+    background: linear-gradient(to bottom, var(--ice-deep3), var(--ice-deep2));
+    color: var(--ice-snow);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    font-family: 'Playfair Display', serif;
+}
+
+.ice-palace td {
+    background-color: rgba(0, 60, 120, 0.4);
+    color: var(--ice-icicle3);
+    font-weight: 600;
+}
+
+.ice-palace td:hover {
+    background: rgba(127, 216, 255, 0.3);
+    box-shadow: inset 0 0 15px var(--ice-primary);
+    color: var(--ice-text);
+}
+
+.ice-palace td.current-day {
+    background: rgba(127, 216, 255, 0.4);
+    border: 2px solid var(--ice-icicle1);
+    font-weight: 700;
+    color: var(--ice-snow);
+    box-shadow: inset 0 0 15px var(--ice-primary), var(--ice-glow);
+    animation: crystalSparkle 3s infinite;
+}
+
+/* Event Marker */
+.ice-palace .event-marker {
+    background-color: var(--ice-crystal);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all var(--ice-transition);
+    box-shadow: 0 0 5px var(--ice-crystal);
+    display: inline-block;
+}
+
+.ice-palace .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--ice-aurora);
+    box-shadow: 0 0 15px var(--ice-aurora);
+}
+
+/* Modal */
+.ice-palace .modal-content {
+    background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(2, 80, 160, 0.95));
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--ice-primary);
+    border-radius: var(--ice-radius);
+    box-shadow: 0 15px 30px var(--ice-shadow);
+    padding: 30px;
+    color: var(--ice-icicle3);
+    animation: icicleDrip 5s infinite ease-in-out;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ice-palace .modal-content::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--ice-icicle1), var(--ice-aurora), var(--ice-crystal));
+}
+
+.ice-palace .modal-content h2 {
+    color: var(--ice-icicle1);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--ice-primary);
+}
+
+.ice-palace .modal-content p,
+.ice-palace .modal-content li,
+.ice-palace .modal-content div {
+    color: var(--ice-icicle3);
+}
+
+.ice-palace .modal-content button {
+    background: linear-gradient(to bottom, var(--ice-deep4), var(--ice-deep3));
+    color: var(--ice-text);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--ice-radius);
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    box-shadow: 0 0 10px var(--ice-shadow);
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.ice-palace .modal-content button:hover {
+    background: linear-gradient(to bottom, var(--ice-deep3), var(--ice-deep2));
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--ice-primary);
+}
+
+.ice-palace .modal .close-button {
+    background-color: var(--ice-deep2);
+    color: var(--ice-icicle3);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    box-shadow: 0 0 5px var(--ice-shadow);
+}
+
+.ice-palace .modal .close-button:hover {
+    background-color: var(--ice-crystal);
+    transform: rotate(90deg);
+    box-shadow: 0 0 15px var(--ice-crystal);
+}
+
+/* Event List */
+.ice-palace .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ice-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--ice-icicle3);
+}
+
+.ice-palace .event-list li:last-child {
+    border-bottom: none;
+}
+
+.ice-palace .event-list button {
+    background: linear-gradient(to bottom, var(--ice-icicle1), var(--ice-deep3));
+    color: var(--ice-text);
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--ice-radius);
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    box-shadow: 0 0 5px var(--ice-shadow);
+}
+
+.ice-palace .event-list button:hover {
+    background: linear-gradient(to bottom, var(--ice-icicle2), var(--ice-icicle1));
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--ice-icicle1);
+}
+
+/* Buttons & Navigation */
+.ice-palace .button,
+.ice-palace .transparent-button,
+.ice-palace #backToTopBtn {
+    border-radius: var(--ice-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    transition: all var(--ice-transition);
+    cursor: pointer;
+    border: 2px solid var(--ice-primary);
+    color: var(--ice-text);
+    background: linear-gradient(to bottom, var(--ice-deep4), var(--ice-deep3));
+    box-shadow: 0 5px 15px var(--ice-shadow);
+}
+
+.ice-palace .button:hover,
+.ice-palace .transparent-button:hover,
+.ice-palace #backToTopBtn:hover {
+    background: linear-gradient(to bottom, var(--ice-hover), var(--ice-deep4));
+    box-shadow: 0 10px 25px var(--ice-primary);
+    transform: scale(1.05);
+}
+
+.ice-palace .button.secondary {
+    background: linear-gradient(to bottom, var(--ice-deep3), var(--ice-deep2));
+    border: none;
+}
+
+.ice-palace .button.secondary:hover {
+    background: linear-gradient(to bottom, var(--ice-deep2), var(--ice-deep1));
+}
+
+.ice-palace .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--ice-deep4), var(--ice-deep3));
+    border: none;
+    font-size: 1.2em;
+    padding: 7px 14px;
+    cursor: pointer;
+    color: var(--ice-text);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px var(--ice-shadow);
+}
+
+.ice-palace .calendar-navigation button:hover {
+    color: var(--ice-snow);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--ice-icicle1);
+}
+
+/* Calendar Header & Title */
+.ice-palace .calendar-header {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--ice-icicle1);
+    text-shadow: 0 0 10px var(--ice-primary);
+    font-family: 'Playfair Display', serif;
+}
+
+.ice-palace .calendar-title {
+    font-size: 1.5em;
+    color: var(--ice-icicle2);
+    text-shadow: 0 0 5px var(--ice-primary);
+    font-style: italic;
+}
+
+/* Modal Close */
+.ice-palace .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--ice-icicle1);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.ice-palace .modal-close:hover {
+    color: var(--ice-crystal);
+    transform: scale(1.2);
+    text-shadow: 0 0 10px var(--ice-crystal);
+}
+
+/* Week Number & No Events */
+.ice-palace .week-number {
+    color: var(--ice-icicle1);
+    font-size: 0.9em;
+    padding: 2px 5px;
+    background: rgba(127, 216, 255, 0.2);
+    border-radius: 5px;
+    margin: 2px;
+    border: 1px solid var(--ice-icicle1);
+}
+
+.ice-palace .no-events {
+    font-style: italic;
+    color: var(--ice-icicle3);
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .ice-palace table {
+        font-size: 0.8em;
+    }
+
+    .ice-palace th,
+    .ice-palace td {
+        padding: 8px;
+        border: 1px solid var(--ice-primary);
+    }
+
+    .ice-palace .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .ice-palace .calendar-container {
+        padding: 15px;
+    }
+
+    .ice-palace .button,
+    .ice-palace .transparent-button,
+    .ice-palace #backToTopBtn {
+        padding: 12px 20px;
+        font-size: 1.1em;
+    }
+}
