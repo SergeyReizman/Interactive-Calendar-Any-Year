@@ -1,8 +1,9 @@
 /* ==========================================================================
    High-Speed Rail Theme - Ultra Modern & Aerodynamic
-   Version: 3.0
-   Updated: 2025-04-15
+   Version: 3.1
+   Updated: 2025-04-20
    Features:
+   - Enhanced button layouts
    - Bullet train inspired color scheme
    - Motion blur animations
    - Carbon fiber textures
@@ -119,7 +120,7 @@
     }
 }
 
-/* Structural Framework */
+/* Base Styles */
 .high-speed-rail {
     font-family: 'Rajdhani', sans-serif;
     color: var(--rail-text);
@@ -281,61 +282,7 @@
     box-shadow: 0 0 10px var(--rail-glow);
 }
 
-/* Control Panel */
-.high-speed-rail .controls {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-}
-
-.high-speed-rail .button {
-    background: linear-gradient(to bottom, var(--rail-primary), var(--rail-danger));
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: var(--rail-radius);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all var(--rail-transition);
-    box-shadow:
-        0 4px 15px -5px var(--rail-streak),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-    font-family: 'Electrolize', sans-serif;
-}
-
-.high-speed-rail .button::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to bottom right,
-            rgba(255, 255, 255, 0) 45%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 55%);
-    transform: rotate(30deg);
-    transition: all 0.6s ease;
-}
-
-.high-speed-rail .button:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 7px 20px -3px var(--rail-streak),
-        0 0 0 1px rgba(255, 255, 255, 0.3);
-}
-
-.high-speed-rail .button:hover::before {
-    left: 100%;
-}
-
-/* High-Speed Modal */
+/* ==================== HIGH-SPEED MODAL STYLES ==================== */
 .high-speed-rail .modal-overlay {
     position: fixed;
     top: 0;
@@ -406,18 +353,20 @@
             transparent);
 }
 
+/* ==================== ENHANCED BUTTON LAYOUTS ==================== */
 .high-speed-rail .modal-actions {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1rem;
     margin-top: 2rem;
+    align-items: center;
 }
 
 .high-speed-rail .modal-btn {
-    background: linear-gradient(to bottom, var(--rail-primary), var(--rail-danger));
+    background: linear-gradient(145deg, var(--rail-primary), var(--rail-danger));
     color: white;
     border: none;
-    padding: 0.9rem 1.8rem;
+    padding: 0.9rem 1.2rem;
     border-radius: var(--rail-radius);
     font-weight: 700;
     cursor: pointer;
@@ -425,11 +374,21 @@
     box-shadow: 0 4px 15px -5px var(--rail-streak);
     text-transform: uppercase;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 120px;
 }
 
 .high-speed-rail .modal-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 6px 20px -3px var(--rail-streak);
+    background: linear-gradient(145deg, var(--rail-danger), var(--rail-primary));
+}
+
+.high-speed-rail .modal-btn i {
+    font-size: 1.2em;
 }
 
 .high-speed-rail .modal-close {
@@ -453,10 +412,166 @@
 .high-speed-rail .modal-close:hover {
     background: var(--rail-primary);
     color: var(--rail-carbon1);
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.1);
 }
 
-/* Responsive Track Systems */
+/* Event List */
+.high-speed-rail .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rail-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.high-speed-rail .event-list li::before {
+    content: '→ ';
+    color: var(--rail-primary);
+    font-weight: bold;
+}
+
+.high-speed-rail .event-list li:last-child {
+    border-bottom: none;
+}
+
+.high-speed-rail .event-list button {
+    background: linear-gradient(to bottom, var(--rail-primary), var(--rail-danger));
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--rail-radius);
+    cursor: pointer;
+    transition: all var(--rail-transition);
+    box-shadow: 0 0 5px var(--rail-primary);
+    font-family: 'Electrolize', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.high-speed-rail .event-list button:hover {
+    background: linear-gradient(to bottom, var(--rail-danger), var(--rail-primary));
+    transform: scale(1.1);
+    box-shadow: 0 0 10px var(--rail-primary);
+}
+
+/* Enhanced Button Layouts */
+.high-speed-rail .button,
+.high-speed-rail .transparent-button {
+    background: linear-gradient(145deg, var(--rail-primary), var(--rail-danger));
+    color: white;
+    border: 1px solid var(--rail-primary);
+    padding: 0.9rem 1.8rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--rail-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--rail-radius);
+    box-shadow: 0 0 15px var(--rail-shadow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    min-width: 160px;
+}
+
+.high-speed-rail .button:hover,
+.high-speed-rail .transparent-button:hover {
+    background: linear-gradient(145deg, var(--rail-danger), var(--rail-primary));
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 25px var(--rail-primary);
+}
+
+.high-speed-rail .button i,
+.high-speed-rail .transparent-button i {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.high-speed-rail .button:hover i,
+.high-speed-rail .transparent-button:hover i {
+    transform: translateX(3px);
+}
+
+.high-speed-rail .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+/* Back to Top Button */
+.high-speed-rail #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--rail-primary);
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--rail-primary);
+    background: rgba(20, 25, 40, 0.8);
+    cursor: pointer;
+    transition: all var(--rail-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--rail-radius);
+    box-shadow: 0 0 20px var(--rail-shadow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.high-speed-rail #backToTopBtn:hover {
+    background: var(--rail-primary);
+    color: #000;
+    opacity: 1;
+    box-shadow: 0 0 35px var(--rail-primary);
+    transform: translateY(-5px);
+}
+
+.high-speed-rail #backToTopBtn i {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.high-speed-rail #backToTopBtn:hover i {
+    transform: translateY(-3px);
+}
+
+/* Footer */
+.high-speed-rail footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rail-primary);
+    color: var(--rail-text);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.high-speed-rail footer a {
+    color: var(--rail-primary);
+    text-decoration: none;
+    transition: all var(--rail-transition);
+}
+
+.high-speed-rail footer a:hover {
+    color: var(--rail-speed1);
+    text-shadow: 0 0 5px var(--rail-shadow);
+}
+
+/* Media Queries */
 @media (max-width: 1200px) {
     .high-speed-rail #calendar-title {
         font-size: 2.4rem;
@@ -502,6 +617,11 @@
 
     .high-speed-rail .button {
         padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .high-speed-rail .controls {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -529,6 +649,15 @@
         width: 8px;
         height: 8px;
     }
+
+    .high-speed-rail .modal-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .high-speed-rail .button,
+    .high-speed-rail .transparent-button {
+        min-width: 100%;
+    }
 }
 
 /* Special Effects Layer */
@@ -547,4 +676,35 @@
         radial-gradient(circle at center, transparent 0%, var(--rail-bg) 70%);
     pointer-events: none;
     z-index: -1;
+}
+
+/* Motion Trail Effect */
+@keyframes motionTrail {
+    0% {
+        transform: translateX(-100%) skewX(-15deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(100%) skewX(-15deg);
+        opacity: 0;
+    }
+}
+
+.high-speed-rail .motion-trail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--rail-speed1),
+            transparent);
+    animation: motionTrail 2.5s linear infinite;
+    z-index: 1;
 }
