@@ -1,0 +1,937 @@
+/* ==========================================================================
+   Hyperloop Theme - Next-Gen High-Speed Transportation UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Maglev-inspired futuristic design system
+   - Holographic UI elements with glass morphism
+   - Dynamic lighting effects with variable speed
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - 3D perspective effects for depth
+   - Smart responsive scaling with fluid typography
+   - Advanced hover states with micro-interactions
+   - Energy-efficient dark mode by default
+   ========================================================================== */
+
+   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Orbitron:wght@700&family=Electrolize&family=Kanit:wght@600&display=swap');
+
+   :root {
+       /* Quantum Color Palette */
+       --hyper-bg: #080811;
+       --hyper-text: #F0F8FF;
+       --hyper-primary: #FF4D00;
+       --hyper-secondary: #3D5AFE;
+       --hyper-accent: #00F7FF;
+   
+       /* Nanocarbon Texture */
+       --hyper-nano1: #101018;
+       --hyper-nano2: #181824;
+       --hyper-nano3: #0C0C14;
+   
+       /* Velocity Gradient */
+       --hyper-speed1: #00F0FF;
+       --hyper-speed2: #00A8FF;
+       --hyper-speed3: #006EFF;
+   
+       /* Plasma State Colors */
+       --hyper-plasma1: rgba(224, 232, 255, 0.9);
+       --hyper-plasma2: rgba(184, 194, 236, 0.7);
+       --hyper-plasma3: rgba(142, 154, 196, 0.5);
+   
+       /* Safety System 2.0 */
+       --hyper-safe: #00E676;
+       --hyper-warn: #FFC400;
+       --hyper-danger: #FF3D00;
+       --hyper-neutral: #757575;
+   
+       /* Theme Variables */
+       --hyper-glow: 0 0 15px rgba(0, 247, 255, 0.7);
+       --hyper-streak: linear-gradient(90deg, transparent, var(--hyper-accent), transparent);
+       --hyper-radius: 8px;
+       --hyper-transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+       --hyper-shadow: 0 6px 30px -10px rgba(0, 168, 255, 0.5);
+       --hyper-glass: rgba(20, 25, 40, 0.5);
+       --hyper-border: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   
+   /* ==================== QUANTUM ANIMATIONS ==================== */
+   @keyframes hyperStreak {
+       0% {
+           transform: translateX(-100%) skewX(-15deg);
+           opacity: 0;
+       }
+       20%, 80% {
+           opacity: 0.8;
+       }
+       100% {
+           transform: translateX(100%) skewX(-15deg);
+           opacity: 0;
+       }
+   }
+   
+   @keyframes plasmaPulse {
+       0%, 100% {
+           box-shadow: var(--hyper-glow), 0 0 0 1px rgba(255, 255, 255, 0.1);
+       }
+       50% {
+           box-shadow: 0 0 30px var(--hyper-speed2), 0 0 20px var(--hyper-primary);
+       }
+   }
+   
+   @keyframes hologramAppear {
+       0% {
+           opacity: 0;
+           transform: perspective(1000px) translateZ(100px) rotateX(15deg);
+       }
+       100% {
+           opacity: 1;
+           transform: perspective(1000px) translateZ(0) rotateX(0);
+       }
+   }
+   
+   @keyframes energyPulse {
+       0%, 100% {
+           text-shadow: 0 0 10px var(--hyper-speed1);
+       }
+       50% {
+           text-shadow: 0 0 20px var(--hyper-speed1), 0 0 10px white;
+       }
+   }
+   
+   @keyframes levitate {
+       0%, 100% {
+           transform: translateY(0);
+       }
+       50% {
+           transform: translateY(-5px);
+       }
+   }
+   
+   /* ==================== BASE STYLES ==================== */
+   .hyperloop-ui {
+       font-family: 'Rajdhani', sans-serif;
+       color: var(--hyper-text);
+       line-height: 1.6;
+       background: 
+           radial-gradient(ellipse at 20% 20%, var(--hyper-nano3) 0%, var(--hyper-bg) 70%),
+           linear-gradient(to bottom, rgba(0, 168, 255, 0.03) 0%, transparent 100%);
+       min-height: 100vh;
+       overflow-x: hidden;
+       perspective: 1000px;
+   }
+   
+   .hyperloop-ui::before {
+       content: '';
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: 
+           radial-gradient(circle at 80% 50%, rgba(0, 247, 255, 0.03) 0%, transparent 30%),
+           radial-gradient(circle at 20% 30%, rgba(255, 77, 0, 0.03) 0%, transparent 30%);
+       pointer-events: none;
+       z-index: -1;
+   }
+   
+   .hyperloop-ui .container {
+       background: 
+           linear-gradient(145deg, var(--hyper-nano2), var(--hyper-nano1));
+       backdrop-filter: blur(8px);
+       -webkit-backdrop-filter: blur(8px);
+       border-radius: var(--hyper-radius);
+       box-shadow: var(--hyper-shadow);
+       border: var(--hyper-border);
+       padding: 2.5rem;
+       position: relative;
+       overflow: hidden;
+       max-width: 1440px;
+       margin: 3rem auto;
+       transform-style: preserve-3d;
+   }
+   
+   .hyperloop-ui .container::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 3px;
+       background: var(--hyper-streak);
+       animation: hyperStreak 2.8s linear infinite;
+       z-index: 2;
+   }
+   
+   .hyperloop-ui .container::after {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: 
+           linear-gradient(135deg, rgba(0, 247, 255, 0.03) 0%, transparent 50%),
+           linear-gradient(-135deg, rgba(255, 77, 0, 0.03) 0%, transparent 50%);
+       pointer-events: none;
+       z-index: 1;
+   }
+   
+   /* ==================== TYPOGRAPHY ==================== */
+   .hyperloop-ui h1, 
+   .hyperloop-ui h2, 
+   .hyperloop-ui h3 {
+       font-weight: 700;
+       line-height: 1.2;
+       margin-top: 0;
+   }
+   
+   .hyperloop-ui a {
+       color: var(--hyper-accent);
+       text-decoration: none;
+       transition: var(--hyper-transition);
+       position: relative;
+   }
+   
+   .hyperloop-ui a:hover {
+       color: var(--hyper-speed1);
+       text-shadow: 0 0 8px var(--hyper-speed1);
+   }
+   
+   .hyperloop-ui a::after {
+       content: '';
+       position: absolute;
+       bottom: -2px;
+       left: 0;
+       width: 0;
+       height: 1px;
+       background: var(--hyper-accent);
+       transition: var(--hyper-transition);
+   }
+   
+   .hyperloop-ui a:hover::after {
+       width: 100%;
+   }
+   
+   /* ==================== HEADER & TITLE ==================== */
+   .hyperloop-ui #calendar-title {
+       font-family: 'Kanit', sans-serif;
+       color: var(--hyper-primary);
+       text-align: center;
+       font-size: clamp(2.5rem, 5vw, 3.5rem);
+       margin: 0 0 2.5rem;
+       text-transform: uppercase;
+       letter-spacing: 4px;
+       text-shadow: 0 0 20px var(--hyper-primary);
+       position: relative;
+       padding-bottom: 1.5rem;
+       animation: energyPulse 3s infinite;
+   }
+   
+   .hyperloop-ui #calendar-title::after {
+       content: '';
+       display: block;
+       width: min(300px, 60%);
+       height: 4px;
+       background: var(--hyper-streak);
+       margin: 1.5rem auto 0;
+       filter: drop-shadow(0 0 5px var(--hyper-speed1));
+   }
+   
+   /* ==================== CALENDAR TABLE ==================== */
+   .hyperloop-ui table {
+       width: 100%;
+       border-collapse: separate;
+       border-spacing: 0;
+       margin: 2.5rem auto;
+       background: var(--hyper-glass);
+       backdrop-filter: blur(10px);
+       -webkit-backdrop-filter: blur(10px);
+       box-shadow:
+           0 0 0 1px var(--hyper-plasma3),
+           var(--hyper-shadow);
+       border-radius: var(--hyper-radius);
+       overflow: hidden;
+       table-layout: fixed;
+       position: relative;
+       z-index: 1;
+       transform: translateZ(0);
+   }
+   
+   .hyperloop-ui th {
+       background: linear-gradient(to bottom, var(--hyper-nano1), var(--hyper-nano2));
+       color: var(--hyper-plasma1);
+       font-weight: 700;
+       text-transform: uppercase;
+       letter-spacing: 1.5px;
+       font-size: clamp(1rem, 1.5vw, 1.2rem);
+       padding: 1.25rem;
+       border-bottom: 3px solid var(--hyper-primary);
+       font-family: 'Electrolize', sans-serif;
+       position: relative;
+       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+   }
+   
+   .hyperloop-ui th::after {
+       content: '';
+       position: absolute;
+       bottom: -2px;
+       left: 0;
+       right: 0;
+       height: 2px;
+       background: var(--hyper-speed1);
+       opacity: 0.5;
+   }
+   
+   .hyperloop-ui td {
+       background: rgba(30, 35, 50, 0.3);
+       color: var(--hyper-text);
+       padding: 1.25rem;
+       border: 1px solid rgba(255, 255, 255, 0.05);
+       height: clamp(100px, 12vw, 140px);
+       vertical-align: top;
+       transition: var(--hyper-transition);
+       position: relative;
+       backdrop-filter: blur(5px);
+   }
+   
+   .hyperloop-ui td:hover {
+       background: rgba(255, 255, 255, 0.1);
+       transform: translateY(-5px) scale(1.02);
+       box-shadow: 0 8px 25px -10px var(--hyper-primary);
+       z-index: 2;
+       border-color: rgba(255, 255, 255, 0.2);
+   }
+   
+   .hyperloop-ui td.current-day {
+       background: linear-gradient(135deg, var(--hyper-primary), var(--hyper-danger));
+       color: white;
+       font-weight: 700;
+       box-shadow:
+           0 0 0 2px white,
+           0 8px 30px -10px var(--hyper-primary);
+       animation: plasmaPulse 2.5s infinite;
+       border: none;
+       z-index: 3;
+   }
+   
+   .hyperloop-ui td.current-day::before {
+       content: '⚡';
+       position: absolute;
+       top: 8px;
+       right: 8px;
+       font-size: 1.4rem;
+       filter: drop-shadow(0 0 3px rgba(0,0,0,0.7));
+       animation: levitate 2s infinite;
+   }
+   
+   /* ==================== CURRENT DAY ENHANCEMENTS ==================== */
+   .hyperloop-ui .current-day-weather {
+       position: absolute;
+       top: 8px;
+       left: 8px;
+       font-size: 0.95rem;
+       font-weight: bold;
+       color: white;
+       background: rgba(0,0,0,0.6);
+       padding: 3px 8px;
+       border-radius: 4px;
+       text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+       display: flex;
+       align-items: center;
+       gap: 5px;
+       backdrop-filter: blur(2px);
+       border: 1px solid rgba(255, 255, 255, 0.1);
+   }
+   
+   .hyperloop-ui .current-day-weather::before {
+       content: '';
+       display: inline-block;
+       width: 16px;
+       height: 16px;
+       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFC400"><path d="M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,2L14.39,5.42C13.65,5.15 12.84,5 12,5C11.16,5 10.35,5.15 9.61,5.42L12,2M3.34,7L7.5,6.65C6.9,7.16 6.36,7.78 5.94,8.5C5.5,9.24 5.25,10 5.11,10.79L3.34,7M3.36,17L5.12,13.23C5.26,14 5.53,14.78 5.95,15.5C6.37,16.24 6.91,16.86 7.5,17.37L3.36,17M20.65,7L18.88,10.79C18.74,10 18.47,9.23 18.05,8.5C17.63,7.78 17.1,7.15 16.5,6.64L20.65,7M20.64,17L16.5,17.36C17.09,16.85 17.62,16.22 18.04,15.5C18.46,14.77 18.73,14 18.87,13.21L20.64,17M12,22L9.59,18.56C10.33,18.83 11.14,19 12,19C12.82,19 13.63,18.83 14.37,18.56L12,22Z"/></svg>') center/contain no-repeat;
+   }
+   
+   /* ==================== EVENT MARKERS ==================== */
+   .hyperloop-ui .event-marker {
+       display: inline-block;
+       width: 12px;
+       height: 12px;
+       border-radius: 2px;
+       background: var(--hyper-primary);
+       margin: 0 3px;
+       transform: rotate(45deg);
+       transition: var(--hyper-transition);
+       position: relative;
+       box-shadow: 0 0 5px var(--hyper-primary);
+   }
+   
+   .hyperloop-ui td:hover .event-marker {
+       transform: rotate(0deg) scale(1.8);
+       background: var(--hyper-speed1);
+       box-shadow: 0 0 15px var(--hyper-speed1);
+   }
+   
+   .hyperloop-ui .event-marker::after {
+       content: '';
+       position: absolute;
+       top: -2px;
+       left: -2px;
+       right: -2px;
+       bottom: -2px;
+       border: 1px solid var(--hyper-plasma1);
+       border-radius: 2px;
+       opacity: 0;
+       transition: var(--hyper-transition);
+   }
+   
+   .hyperloop-ui td:hover .event-marker::after {
+       opacity: 1;
+   }
+   
+   /* ==================== HOLOGRAPHIC MODAL ==================== */
+.hyperloop-ui .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 8, 17, 0.98);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    animation: hologramAppear 0.5s;
+    overflow-y: auto; /* Enable scrolling if content is taller than viewport */
+    padding: 20px; /* Add padding to prevent content from touching edges */
+}
+
+.hyperloop-ui .modal-content {
+    background: 
+        linear-gradient(145deg, var(--hyper-nano2), var(--hyper-nano1));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--hyper-radius);
+    box-shadow:
+        0 0 50px var(--hyper-shadow),
+        inset 0 0 30px rgba(0, 168, 255, 0.15);
+    padding: 3rem;
+    color: var(--hyper-text);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    border: var(--hyper-border);
+    animation: hologramAppear 0.7s;
+    transform-style: preserve-3d;
+    margin: auto; /* Ensures centering even when scrolling */
+    max-height: 90vh; /* Prevent modal from exceeding viewport height */
+    overflow-y: auto; /* Enable scrolling for tall modal content */
+}
+
+.hyperloop-ui .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+        var(--hyper-primary),
+        var(--hyper-accent),
+        var(--hyper-primary));
+    animation: hyperStreak 3.5s linear infinite;
+    z-index: 1;
+}
+
+.hyperloop-ui .modal-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--hyper-radius);
+    box-shadow: inset 0 0 100px rgba(0, 247, 255, 0.05);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hyperloop-ui .modal-content h2 {
+    color: var(--hyper-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    margin: 0 0 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px var(--hyper-primary);
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.hyperloop-ui .modal-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+        var(--hyper-primary),
+        transparent 30%,
+        transparent 70%,
+        var(--hyper-primary));
+}
+
+/* Keyframes for animations */
+@keyframes hologramAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes hyperStreak {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+   
+   /* ==================== ENHANCED MODAL CLOSE BUTTON ==================== */
+   .hyperloop-ui .modal-close {
+       position: absolute;
+       top: 20px;
+       right: 20px;
+       background-color: transparent;
+       color: var(--hyper-text);
+       border: 2px solid var(--hyper-primary);
+       border-radius: 50%;
+       width: 40px;
+       height: 40px;
+       cursor: pointer;
+       transition: var(--hyper-transition);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: bold;
+       box-shadow: 0 0 20px rgba(255, 77, 0, 0.5);
+       z-index: 10;
+       backdrop-filter: blur(5px);
+   }
+   
+   .hyperloop-ui .modal-close::before,
+   .hyperloop-ui .modal-close::after {
+       content: '';
+       position: absolute;
+       width: 20px;
+       height: 3px;
+       background: var(--hyper-primary);
+       border-radius: 2px;
+       transition: var(--hyper-transition);
+   }
+   
+   .hyperloop-ui .modal-close::before {
+       transform: rotate(45deg);
+   }
+   
+   .hyperloop-ui .modal-close::after {
+       transform: rotate(-45deg);
+   }
+   
+   .hyperloop-ui .modal-close:hover {
+       background-color: var(--hyper-primary);
+       border-color: var(--hyper-text);
+       transform: rotate(90deg) scale(1.1);
+       box-shadow: 0 0 30px var(--hyper-primary);
+   }
+   
+   .hyperloop-ui .modal-close:hover::before,
+   .hyperloop-ui .modal-close:hover::after {
+       background: var(--hyper-text);
+   }
+   
+   /* ==================== QUANTUM BUTTONS ==================== */
+   .hyperloop-ui .modal-actions {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+       gap: 1.5rem;
+       margin-top: 2.5rem;
+       align-items: center;
+   }
+   
+   .hyperloop-ui .modal-btn {
+       background: linear-gradient(145deg, var(--hyper-primary), var(--hyper-danger));
+       color: white;
+       border: none;
+       padding: 1rem 1.5rem;
+       border-radius: var(--hyper-radius);
+       font-weight: 700;
+       cursor: pointer;
+       transition: var(--hyper-transition);
+       box-shadow: 0 6px 20px -10px var(--hyper-primary);
+       text-transform: uppercase;
+       letter-spacing: 1.5px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       gap: 0.8rem;
+       min-width: 140px;
+       position: relative;
+       overflow: hidden;
+       z-index: 1;
+   }
+   
+   .hyperloop-ui .modal-btn::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: -100%;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+       transition: 0.5s;
+       z-index: -1;
+   }
+   
+   .hyperloop-ui .modal-btn:hover {
+       background: linear-gradient(145deg, var(--hyper-danger), var(--hyper-primary));
+       transform: translateY(-3px) scale(1.03);
+       box-shadow: 0 8px 25px -5px var(--hyper-primary);
+   }
+   
+   .hyperloop-ui .modal-btn:hover::before {
+       left: 100%;
+   }
+   
+   .hyperloop-ui .button,
+   .hyperloop-ui .transparent-button {
+       background: linear-gradient(145deg, var(--hyper-primary), var(--hyper-danger));
+       color: white;
+       border: 1px solid var(--hyper-primary);
+       padding: 1rem 2rem;
+       font-size: 1.2rem;
+       font-weight: bold;
+       text-transform: uppercase;
+       letter-spacing: 2px;
+       cursor: pointer;
+       transition: var(--hyper-transition);
+       position: relative;
+       overflow: hidden;
+       margin: 0.75rem;
+       border-radius: var(--hyper-radius);
+       box-shadow: var(--hyper-shadow);
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       gap: 1rem;
+       min-width: 180px;
+       z-index: 1;
+   }
+   
+   .hyperloop-ui .button::after,
+   .hyperloop-ui .transparent-button::after {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: linear-gradient(145deg, var(--hyper-danger), var(--hyper-primary));
+       opacity: 0;
+       transition: var(--hyper-transition);
+       z-index: -1;
+   }
+   
+   .hyperloop-ui .button:hover,
+   .hyperloop-ui .transparent-button:hover {
+       transform: translateY(-4px) scale(1.04);
+       box-shadow: 0 0 30px var(--hyper-primary);
+   }
+   
+   .hyperloop-ui .button:hover::after,
+   .hyperloop-ui .transparent-button:hover::after {
+       opacity: 1;
+   }
+   
+   .hyperloop-ui .transparent-button {
+       background: transparent;
+       border-color: var(--hyper-text);
+       color: var(--hyper-text);
+   }
+   
+   .hyperloop-ui .transparent-button:hover {
+       color: var(--hyper-primary);
+       border-color: var(--hyper-primary);
+   }
+   
+   .hyperloop-ui .controls {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+       gap: 1.5rem;
+       margin: 2rem 0;
+       align-items: center;
+   }
+   
+   /* ==================== FLOATING ACTION BUTTON ==================== */
+   .hyperloop-ui #backToTopBtn {
+       position: fixed;
+       right: 30px;
+       bottom: 30px;
+       z-index: 9999;
+       border: 2px solid var(--hyper-primary);
+       padding: 1.2rem 1.8rem;
+       font-size: 1.2rem;
+       font-weight: bold;
+       color: var(--hyper-primary);
+       background: rgba(16, 20, 36, 0.8);
+       cursor: pointer;
+       transition: var(--hyper-transition);
+       opacity: 0.9;
+       display: none;
+       border-radius: var(--hyper-radius);
+       box-shadow: var(--hyper-shadow);
+       text-transform: uppercase;
+       letter-spacing: 2px;
+       display: flex;
+       align-items: center;
+       gap: 0.8rem;
+       backdrop-filter: blur(5px);
+   }
+   
+   .hyperloop-ui #backToTopBtn:hover {
+       background: var(--hyper-primary);
+       color: var(--hyper-bg);
+       opacity: 1;
+       box-shadow: 0 0 40px var(--hyper-primary);
+       transform: translateY(-8px);
+   }
+   
+   .hyperloop-ui #backToTopBtn::before {
+       content: '↑';
+       font-size: 1.4rem;
+   }
+   
+   /* ==================== FOOTER ==================== */
+   .hyperloop-ui footer {
+       text-align: center;
+       margin-top: 3rem;
+       padding-top: 2rem;
+       border-top: 1px solid var(--hyper-primary);
+       color: var(--hyper-text);
+       font-size: 1rem;
+       opacity: 0.8;
+       position: relative;
+   }
+   
+   .hyperloop-ui footer::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 50%;
+       transform: translateX(-50%);
+       width: 200px;
+       height: 1px;
+       background: var(--hyper-streak);
+   }
+   
+   .hyperloop-ui footer a {
+       color: var(--hyper-primary);
+       text-decoration: none;
+       transition: var(--hyper-transition);
+       font-weight: 700;
+   }
+   
+   .hyperloop-ui footer a:hover {
+       color: var(--hyper-accent);
+       text-shadow: 0 0 8px var(--hyper-accent);
+   }
+   
+   /* ==================== RESPONSIVE DESIGN ==================== */
+   @media (max-width: 1200px) {
+       .hyperloop-ui .container {
+           padding: 2rem;
+           margin: 2.5rem auto;
+       }
+       
+       .hyperloop-ui td {
+           height: clamp(90px, 10vw, 120px);
+       }
+   }
+   
+   @media (max-width: 992px) {
+       .hyperloop-ui .container {
+           padding: 1.75rem;
+       }
+       
+       .hyperloop-ui #calendar-title {
+           margin-bottom: 2rem;
+       }
+       
+       .hyperloop-ui th,
+       .hyperloop-ui td {
+           padding: 1rem;
+       }
+   }
+   
+   @media (max-width: 768px) {
+       .hyperloop-ui .container {
+           padding: 1.5rem;
+           margin: 2rem auto;
+       }
+       
+       .hyperloop-ui #calendar-title {
+           font-size: clamp(2rem, 6vw, 2.5rem);
+       }
+       
+       .hyperloop-ui th,
+       .hyperloop-ui td {
+           padding: 0.75rem;
+           font-size: 0.95rem;
+       }
+       
+       .hyperloop-ui .button,
+       .hyperloop-ui .transparent-button {
+           padding: 0.9rem 1.5rem;
+           font-size: 1.1rem;
+       }
+       
+       .hyperloop-ui .controls {
+           grid-template-columns: 1fr;
+       }
+   }
+   
+   @media (max-width: 576px) {
+       .hyperloop-ui .container {
+           padding: 1.25rem;
+           margin: 1.5rem auto;
+           border-radius: calc(var(--hyper-radius) * 0.8);
+       }
+       
+       .hyperloop-ui #calendar-title {
+           font-size: clamp(1.8rem, 7vw, 2.2rem);
+           letter-spacing: 2px;
+           padding-bottom: 1rem;
+       }
+       
+       .hyperloop-ui #calendar-title::after {
+           width: min(200px, 70%);
+       }
+       
+       .hyperloop-ui th,
+       .hyperloop-ui td {
+           padding: 0.5rem;
+           font-size: 0.85rem;
+       }
+       
+       .hyperloop-ui .event-marker {
+           width: 10px;
+           height: 10px;
+       }
+       
+       .hyperloop-ui .modal-actions {
+           grid-template-columns: 1fr;
+       }
+       
+       .hyperloop-ui .modal-content {
+           padding: 2rem 1.5rem;
+       }
+       
+       .hyperloop-ui .button,
+       .hyperloop-ui .transparent-button {
+           min-width: 100%;
+           margin: 0.5rem 0;
+       }
+       
+       .hyperloop-ui #backToTopBtn {
+           right: 20px;
+           bottom: 20px;
+           padding: 1rem 1.5rem;
+           font-size: 1rem;
+       }
+   }
+   
+   /* ==================== SPECIAL EFFECTS ==================== */
+   .hyperloop-ui .quantum-effect {
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background:
+           linear-gradient(90deg,
+               rgba(0, 247, 255, 0.03) 0%,
+               transparent 20%,
+               transparent 80%,
+               rgba(0, 247, 255, 0.03) 100%),
+           radial-gradient(circle at center, transparent 0%, var(--hyper-bg) 80%);
+       pointer-events: none;
+       z-index: -1;
+   }
+   
+   .hyperloop-ui .motion-trail {
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 3px;
+       background: var(--hyper-streak);
+       animation: hyperStreak 2s linear infinite;
+       filter: drop-shadow(0 0 5px var(--hyper-speed1));
+       z-index: 1;
+   }
+   
+   /* ==================== ACCESSIBILITY IMPROVEMENTS ==================== */
+   @media (prefers-reduced-motion) {
+       .hyperloop-ui {
+           animation: none !important;
+           transition: none !important;
+       }
+       
+       .hyperloop-ui * {
+           animation: none !important;
+           transition: none !important;
+       }
+       
+       .hyperloop-ui .container::before,
+       .hyperloop-ui .motion-trail {
+           display: none;
+       }
+   }
+   
+   .hyperloop-ui :focus {
+       outline: 2px solid var(--hyper-accent);
+       outline-offset: 2px;
+   }
+   
+   .hyperloop-ui .sr-only {
+       position: absolute;
+       width: 1px;
+       height: 1px;
+       padding: 0;
+       margin: -1px;
+       overflow: hidden;
+       clip: rect(0, 0, 0, 0);
+       white-space: nowrap;
+       border-width: 0;
+   }
+   
+   /* ==================== PERFORMANCE OPTIMIZATIONS ==================== */
+   .hyperloop-ui {
+       will-change: transform, opacity;
+   }
+   
+   .hyperloop-ui .container,
+   .hyperloop-ui .modal-content {
+       will-change: transform, box-shadow;
+   }
+   
+   .hyperloop-ui .button,
+   .hyperloop-ui .modal-btn {
+       will-change: transform, box-shadow, background;
+   }
