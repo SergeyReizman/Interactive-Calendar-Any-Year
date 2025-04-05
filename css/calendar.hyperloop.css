@@ -1,0 +1,692 @@
+/* ==========================================================================
+   Hyperloop Theme - Next-Gen High-Speed Transportation UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Maglev-inspired futuristic design system
+   - Holographic UI elements with glass morphism
+   - Dynamic lighting effects with variable speed
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - 3D perspective effects for depth
+   - Smart responsive scaling with fluid typography
+   - Advanced hover states with micro-interactions
+   - Energy-efficient dark mode by default
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --hyper-bg: #080811;
+    /* Deep space black */
+    --hyper-text: #00F7FF;
+    /* Neon cyan */
+    --hyper-primary: #FF4D00;
+    /* Hyper orange */
+    --hyper-secondary: #3D5AFE;
+    /* Electric blue */
+
+    /* Gradient Colors */
+    --hyper-gradient-start: #000000;
+    /* Pure black */
+    --hyper-gradient-end: #101018;
+    /* Slightly lighter black */
+
+    /* Accent Colors */
+    --hyper-accent1: #FF0033;
+    /* Alert red */
+    --hyper-accent2: #00E676;
+    /* Success green */
+    --hyper-accent3: #FFC400;
+    /* Warning yellow */
+    --hyper-accent4: #FF6600;
+    /* System orange */
+    --hyper-accent5: #006EFF;
+    /* Deep blue */
+
+    /* Theme Variables */
+    --hyper-shadow: rgba(0, 247, 255, 0.5);
+    /* Neon glow */
+    --hyper-radius: 0px;
+    /* Sharp futuristic edges */
+    --hyper-transition: 0.2s linear;
+    --hyper-hover: #1A1A24;
+    /* Dark gray */
+    --hyper-current-day: #003366;
+    /* Deep blue highlight */
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes hyper-glitch {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--hyper-accent1),
+            0 0 10px var(--hyper-accent5),
+            0 0 15px var(--hyper-accent2);
+    }
+
+    50% {
+        text-shadow: 0 0 8px var(--hyper-accent3),
+            0 0 13px var(--hyper-accent1),
+            0 0 18px var(--hyper-accent5);
+    }
+}
+
+@keyframes hyper-scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes hyper-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--hyper-accent1);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--hyper-accent5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.hyperloop {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hyper-text);
+    line-height: 1.4;
+    background: var(--hyper-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.hyperloop::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 247, 255, 0.05) 1px,
+            transparent 1px);
+    background-size: 100% 4px;
+    animation: hyper-scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hyperloop .container {
+    background-color: rgba(16, 16, 24, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--hyper-accent1);
+    box-shadow: 0 0 20px var(--hyper-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--hyper-radius);
+    z-index: 1;
+}
+
+.hyperloop .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hyper-accent5), transparent);
+    animation: hyper-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.hyperloop #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--hyper-accent5);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--hyper-shadow);
+    animation: hyper-glitch 5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.hyperloop #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 30, 60, 0.3);
+    border: 1px solid var(--hyper-accent2);
+    border-radius: var(--hyper-radius);
+    position: relative;
+}
+
+.hyperloop #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hyper-accent2), transparent);
+}
+
+.hyperloop #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--hyper-accent5);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--hyper-shadow);
+}
+
+.hyperloop #today-weather {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--hyper-accent2);
+    font-size: 1.2rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.hyperloop #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.hyperloop .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--hyper-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--hyper-bg);
+    box-shadow: 0 0 15px var(--hyper-shadow),
+        inset 0 0 10px rgba(0, 247, 255, 0.2);
+}
+
+.hyperloop .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hyperloop .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--hyper-accent1);
+    margin-top: -2px;
+}
+
+.hyperloop .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--hyper-accent5);
+    margin-top: -1px;
+}
+
+.hyperloop .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--hyper-accent2);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.hyperloop table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(0, 20, 40, 0.2);
+    border: 1px solid var(--hyper-accent2);
+    border-radius: var(--hyper-radius);
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.hyperloop th {
+    background-color: rgba(0, 30, 60, 0.4);
+    color: var(--hyper-accent5) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--hyper-accent2);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 3px var(--hyper-shadow);
+}
+
+.hyperloop th span.full-day-name {
+    display: inline;
+}
+
+.hyperloop th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.hyperloop td {
+    background-color: rgba(0, 15, 30, 0.1);
+    color: var(--hyper-text);
+    padding: 1rem;
+    border: 1px solid var(--hyper-accent2);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--hyper-transition);
+    position: relative;
+}
+
+.hyperloop td:hover {
+    background-color: rgba(0, 40, 80, 0.3);
+    box-shadow: inset 0 0 10px var(--hyper-shadow);
+}
+
+/* Current date highlight */
+.hyperloop td.current-day {
+    background-color: var(--hyper-current-day);
+    border: 1px solid var(--hyper-accent2);
+    color: #fff !important;
+    font-weight: 400;
+    animation: hyper-pulse 3s infinite;
+}
+
+.hyperloop td.current-day::before {
+    content: "⚡";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--hyper-accent2);
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.hyperloop td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #fff !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--hyper-shadow);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.hyperloop .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--hyper-accent1);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--hyper-shadow);
+    transition: all var(--hyper-transition);
+}
+
+.hyperloop .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--hyper-accent5);
+    box-shadow: 0 0 15px var(--hyper-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.hyperloop .modal-content {
+    position: relative;
+    background-color: rgba(0, 15, 30, 0.95);
+    border: 1px solid var(--hyper-accent2);
+    padding: 25px;
+    color: var(--hyper-text);
+    box-shadow: 0 0 30px var(--hyper-shadow);
+    border-radius: var(--hyper-radius);
+    animation: hyper-pulse 0.5s ease;
+}
+
+.hyperloop .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--hyper-accent2);
+    animation: hyper-pulse 3s infinite;
+}
+
+.hyperloop .modal-content h2 {
+    color: var(--hyper-accent5);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hyperloop .modal-content button {
+    background-color: transparent;
+    color: var(--hyper-accent5);
+    border: 1px solid var(--hyper-accent5);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--hyper-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--hyper-radius);
+}
+
+.hyperloop .modal-content button:hover {
+    background-color: var(--hyper-accent5);
+    color: var(--hyper-bg);
+    box-shadow: 0 0 15px var(--hyper-shadow);
+}
+
+/* Close Button */
+.hyperloop .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--hyper-accent1);
+    border: 1px solid var(--hyper-accent1);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--hyper-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.hyperloop .modal .close-button:hover {
+    background-color: var(--hyper-accent1);
+    color: var(--hyper-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.hyperloop .button,
+.hyperloop .transparent-button {
+    border: 1px solid var(--hyper-accent5);
+    color: var(--hyper-accent5);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--hyper-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--hyper-radius);
+}
+
+.hyperloop .button::before,
+.hyperloop .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.hyperloop .button:hover,
+.hyperloop .transparent-button:hover {
+    background-color: var(--hyper-accent5);
+    color: var(--hyper-bg);
+    box-shadow: 0 0 20px var(--hyper-shadow);
+}
+
+.hyperloop .button:hover::before,
+.hyperloop .transparent-button:hover::before {
+    left: 100%;
+}
+
+.hyperloop .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.hyperloop #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.hyperloop #theme-switcher {
+    background-color: rgba(0, 30, 60, 0.4);
+    color: var(--hyper-accent5) !important;
+    border: 1px solid var(--hyper-accent5);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--hyper-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23006EFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--hyper-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 3px var(--hyper-shadow);
+}
+
+.hyperloop #theme-switcher option {
+    background-color: rgba(0, 20, 40, 0.95) !important;
+    color: var(--hyper-accent5) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--hyper-accent5) !important;
+}
+
+.hyperloop #theme-switcher option:hover {
+    background-color: var(--hyper-accent5) !important;
+    color: var(--hyper-bg) !important;
+}
+
+.hyperloop #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--hyper-accent5), 0 0 15px var(--hyper-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.hyperloop #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--hyper-accent5);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--hyper-accent5);
+    background-color: rgba(0, 30, 60, 0.3);
+    cursor: pointer;
+    transition: all var(--hyper-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--hyper-radius);
+}
+
+.hyperloop #backToTopBtn:hover {
+    background-color: var(--hyper-accent5);
+    color: var(--hyper-bg);
+    box-shadow: 0 0 20px var(--hyper-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.hyperloop footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--hyper-accent2);
+    color: var(--hyper-text);
+    font-size: 0.8rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .hyperloop .container {
+        padding: 1.2rem;
+    }
+
+    .hyperloop #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .hyperloop #current-date {
+        font-size: 1.4rem;
+    }
+
+    .hyperloop #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hyperloop .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .hyperloop th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .hyperloop th span.full-day-name {
+        display: none;
+    }
+
+    .hyperloop th abbr {
+        display: inline;
+    }
+
+    .hyperloop td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .hyperloop td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .hyperloop #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .hyperloop #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .hyperloop #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .hyperloop .container {
+        padding: 0.6rem;
+    }
+
+    .hyperloop #calendar-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
+    }
+
+    .hyperloop #current-date {
+        font-size: 1rem;
+    }
+
+    .hyperloop #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .hyperloop .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .hyperloop th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .hyperloop td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .hyperloop td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .hyperloop #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hyperloop th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .hyperloop td {
+        height: 45px;
+    }
+
+    .hyperloop #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}

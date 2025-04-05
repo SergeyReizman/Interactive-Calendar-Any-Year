@@ -64,7 +64,7 @@ const applyTheme = (theme) => {
     'free-flight', 'forgotten-dreams', 'frozen-wilderness', 'galactic-glow', 'genghis-khan-arrow','giant-petrel', 'golden-coast',
     'golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
     'greenland-icebergs', 'greyscale', 'guangzhou-lights', 'heavy-rain', 'hidden-trail', 'high-performance', 
-    'high-speed-rail', 'high-speed-train', 'hurricane-clouds', 'hyperloop-ui', 'ice-palace',
+    'high-speed-rail', 'high-speed-train', 'hurricane-clouds', 'hyperloop', 'ice-palace',
     'iceland-volcanoes' , 
     'imaginary-world', 'into-the-night', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
     'lemongrass-sky', 'life-quality', 'lions-mane', 'lucid-dream', 'lunar-eclipse', 'macaroni-penguin',
