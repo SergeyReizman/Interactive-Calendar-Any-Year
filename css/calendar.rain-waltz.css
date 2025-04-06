@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Rain Waltz Theme - Gentle, Rhythmic, and Refreshing!
+   Purpose: Styles specific to the Rain Waltz theme for the calendar.
+   ========================================================================== */
+
+:root {
+    --rain-waltz-bg: #E6F7FF;
+    /* Soft blue background for a rainy day feel */
+    --rain-waltz-text: #2D3748;
+    /* Dark blue-gray text for readability */
+    --rain-waltz-primary: #4A89DC;
+    /* Soft blue for primary elements */
+    --rain-waltz-secondary: #A0D9D9;
+    /* Light teal for secondary elements */
+    --rain-waltz-accent1: #5D9CEC;
+    /* Sky blue accent */
+    --rain-waltz-accent2: #48CFAD;
+    /* Mint green accent */
+    --rain-waltz-accent3: #AC92EC;
+    /* Lavender accent */
+    --rain-waltz-accent4: #EC87C0;
+    /* Soft pink accent */
+    --rain-waltz-accent5: #FFCE54;
+    /* Warm yellow accent */
+    --rain-waltz-accent6: #ED5565;
+    /* Coral accent */
+    --rain-waltz-accent7: #656D78;
+    /* Gray accent */
+    --rain-waltz-accent8: #967ADC;
+    /* Purple accent */
+    --rain-waltz-accent9: #3BAFDA;
+    /* Turquoise accent */
+    --rain-waltz-accent10: #D770AD;
+    /* Rose accent */
+    --rain-waltz-shadow: rgba(45, 55, 72, 0.1);
+    /* Soft shadow for depth */
+    --rain-waltz-radius: 12px;
+    /* Rounded corners */
+    --rain-waltz-transition: 0.3s ease;
+    /* Smooth transitions */
+    --rain-waltz-hover: #5D9CEC;
+    /* Sky blue for hover effects */
+    --rain-waltz-rain-animation: rainAnimation 15s linear infinite;
+    /* Rain animation */
+    --rain-waltz-glow: 0 0 15px rgba(74, 137, 220, 0.4);
+    /* Subtle glow effect */
+}
+
+/* Add this keyframe animation */
+@keyframes rainAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes rippleAnimation {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Base Styles */
+.rain-waltz {
+    font-family: 'Nunito', sans-serif;
+    /* Clean and modern typography */
+    color: var(--rain-waltz-text);
+    line-height: 1.5;
+    background-color: var(--rain-waltz-bg);
+}
+
+.rain-waltz .container {
+    background: linear-gradient(to bottom, var(--rain-waltz-accent1), var(--rain-waltz-accent9));
+    padding: 25px;
+    border-radius: var(--rain-waltz-radius);
+    box-shadow: 5px 5px 15px var(--rain-waltz-shadow);
+    border: 2px solid var(--rain-waltz-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.rain-waltz .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><line x1="20" y1="0" x2="20" y2="20" stroke="%234A89DC" stroke-width="1"/></svg>') repeat;
+    animation: var(--rain-waltz-rain-animation);
+    pointer-events: none;
+}
+
+.rain-waltz .calendar-container {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--rain-waltz-radius);
+    border: 1px solid var(--rain-waltz-secondary);
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 1;
+}
+
+.rain-waltz table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 5px;
+    border-radius: var(--rain-waltz-radius);
+    background-color: transparent;
+}
+
+.rain-waltz th,
+.rain-waltz td {
+    padding: 10px;
+    text-align: center;
+    border-radius: var(--rain-waltz-radius);
+    transition: all var(--rain-waltz-transition);
+    word-wrap: break-word;
+    position: relative;
+}
+
+.rain-waltz th {
+    background-color: var(--rain-waltz-primary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.rain-waltz td {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--rain-waltz-secondary);
+}
+
+.rain-waltz td:hover {
+    background-color: var(--rain-waltz-accent1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--rain-waltz-shadow);
+    color: white;
+}
+
+.rain-waltz td.current-day {
+    background-color: var(--rain-waltz-accent2);
+    border: 2px solid var(--rain-waltz-primary);
+    font-weight: 600;
+    color: var(--rain-waltz-text);
+    position: relative;
+}
+
+.rain-waltz td.current-day::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: var(--rain-waltz-radius);
+    border: 1px solid var(--rain-waltz-primary);
+    animation: rippleAnimation 2s infinite;
+}
+
+/* Event Marker */
+.rain-waltz .event-marker {
+    background-color: var(--rain-waltz-accent4);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 1px;
+    transition: all var(--rain-waltz-transition);
+}
+
+.rain-waltz .event-marker:hover {
+    background-color: var(--rain-waltz-accent6);
+    transform: scale(1.5);
+}
+
+/* Modal */
+.rain-waltz .modal-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--rain-waltz-primary);
+    border-radius: var(--rain-waltz-radius);
+    box-shadow: 0 8px 20px var(--rain-waltz-shadow);
+    padding: 25px;
+    color: var(--rain-waltz-text);
+    animation: fadeIn 0.4s ease;
+}
+
+.rain-waltz .modal-content h2 {
+    color: var(--rain-waltz-primary);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.rain-waltz .modal-content p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.rain-waltz .modal-content button {
+    background-color: var(--rain-waltz-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--rain-waltz-radius);
+    cursor: pointer;
+    transition: all var(--rain-waltz-transition);
+}
+
+.rain-waltz .modal-content button:hover {
+    background-color: var(--rain-waltz-hover);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.rain-waltz .modal .close-button {
+    background-color: var(--rain-waltz-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--rain-waltz-transition);
+}
+
+.rain-waltz .modal .close-button:hover {
+    background-color: var(--rain-waltz-accent6);
+    transform: rotate(90deg);
+}
+
+/* Event List */
+.rain-waltz .event-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rain-waltz-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rain-waltz .event-list li:last-child {
+    border-bottom: none;
+}
+
+.rain-waltz .event-list button {
+    background-color: var(--rain-waltz-primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--rain-waltz-radius);
+    cursor: pointer;
+    transition: all var(--rain-waltz-transition);
+}
+
+.rain-waltz .event-list button:hover {
+    background-color: var(--rain-waltz-accent6);
+    transform: scale(1.05);
+}
+
+/* Buttons & Navigation */
+.rain-waltz .button,
+.rain-waltz .transparent-button,
+.rain-waltz #backToTopBtn {
+    border-radius: var(--rain-waltz-radius);
+    padding: 12px 20px;
+    font-size: 1em;
+    transition: all var(--rain-waltz-transition);
+    cursor: pointer;
+    border: 2px solid var(--rain-waltz-primary);
+    color: white;
+    background-color: var(--rain-waltz-primary);
+}
+
+.rain-waltz .button:hover,
+.rain-waltz .transparent-button:hover,
+.rain-waltz #backToTopBtn:hover {
+    background-color: var(--rain-waltz-hover);
+    transform: translateY(-3px);
+}
+
+.rain-waltz .button.secondary {
+    background-color: var(--rain-waltz-secondary);
+    color: var(--rain-waltz-text);
+    border: none;
+}
+
+.rain-waltz .button.secondary:hover {
+    background-color: var(--rain-waltz-accent2);
+}
+
+.rain-waltz .calendar-navigation button {
+    background-color: var(--rain-waltz-primary);
+    border: none;
+    font-size: 1em;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: white;
+    transition: all var(--rain-waltz-transition);
+}
+
+.rain-waltz .calendar-navigation button:hover {
+    background-color: var(--rain-waltz-hover);
+    transform: scale(1.05);
+}
+
+/* Calendar Header & Title */
+.rain-waltz .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--rain-waltz-primary);
+}
+
+.rain-waltz .calendar-title {
+    font-size: 1.2em;
+    color: var(--rain-waltz-text);
+}
+
+/* Modal Close */
+.rain-waltz .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--rain-waltz-primary);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: all var(--rain-waltz-transition);
+}
+
+.rain-waltz .modal-close:hover {
+    color: var(--rain-waltz-accent6);
+    transform: scale(1.2);
+}
+
+/* Week Number & No Events */
+.rain-waltz .week-number {
+    color: var(--rain-waltz-text);
+    font-size: 0.8em;
+    padding: 2px 5px;
+    background-color: var(--rain-waltz-secondary);
+    border-radius: 3px;
+    margin: 2px;
+}
+
+.rain-waltz .no-events {
+    font-style: italic;
+    color: var(--rain-waltz-accent7);
+    text-align: center;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .rain-waltz table {
+        font-size: 0.8em;
+    }
+
+    .rain-waltz th,
+    .rain-waltz td {
+        padding: 6px;
+    }
+
+    .rain-waltz .calendar-container {
+        padding: 10px;
+    }
+
+    .rain-waltz .button,
+    .rain-waltz .transparent-button,
+    .rain-waltz #backToTopBtn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .rain-waltz .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+}
