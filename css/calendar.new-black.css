@@ -1,0 +1,628 @@
+/* ==========================================================================
+   New Black Theme - Ultra Dark with Enhanced Current Day Visibility
+   Version: 2.3
+   Updated: 2025-04-08
+   Includes:
+   - Strong current day cell highlighting
+   - Optimized contrast for better visibility
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --newblack-bg: #050505;
+    --newblack-text: #F0F0F0;
+    --newblack-primary: #2A2A2A;
+    --newblack-secondary: #3D3D3D;
+
+    /* Enhanced Black Gradient */
+    --newblack-black1: #000000;
+    --newblack-black2: #0D0D0D;
+    --newblack-black3: #1A1A1A;
+    --newblack-black4: #272727;
+    --newblack-black5: #353535;
+
+    /* High-Contrast Accent Spectrum */
+    --newblack-accent1: #555555;
+    --newblack-accent2: #707070;
+    --newblack-accent3: #8A8A8A;
+    --newblack-accent4: #A5A5A5;
+    --newblack-accent5: #C0C0C0;
+
+    /* Special Effects */
+    --newblack-glow: #505050;
+    --newblack-highlight: #707070;
+    --newblack-metal: #B0B0B0;
+    --newblack-current: #A5A5A5;
+    /* Special current day color */
+
+    /* Theme Variables */
+    --newblack-shadow: rgba(80, 80, 80, 0.4);
+    --newblack-radius: 0;
+    --newblack-transition: 0.3s ease;
+    --newblack-hover: #606060;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes newblack-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--newblack-accent1),
+            inset 0 0 5px var(--newblack-current);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--newblack-accent3),
+            inset 0 0 15px var(--newblack-current);
+    }
+}
+
+@keyframes newblack-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes newblackFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.new-black {
+    font-family: 'Raleway', sans-serif;
+    color: var(--newblack-text);
+    line-height: 1.6;
+    background-color: var(--newblack-bg);
+    min-height: 100vh;
+}
+
+.new-black .container {
+    background-color: var(--newblack-black2);
+    padding: 2rem;
+    border: 1px solid var(--newblack-primary);
+    box-shadow: 0 0 30px var(--newblack-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.new-black .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--newblack-highlight), transparent);
+    animation: newblack-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.new-black #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--newblack-accent5);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--newblack-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.new-black #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--newblack-black3);
+    border: 1px solid var(--newblack-highlight);
+    position: relative;
+}
+
+.new-black #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--newblack-highlight), transparent);
+}
+
+.new-black #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--newblack-accent4);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--newblack-shadow);
+}
+
+.new-black #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--newblack-accent3);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.new-black #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.new-black .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--newblack-highlight);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--newblack-black1);
+    box-shadow: 0 0 20px var(--newblack-shadow);
+}
+
+.new-black .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.new-black .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--newblack-accent5);
+    margin-top: -4px;
+}
+
+.new-black .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--newblack-accent4);
+    margin-top: -3px;
+}
+
+.new-black .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--newblack-accent3);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.new-black table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--newblack-black2);
+    border: 1px solid var(--newblack-highlight);
+    table-layout: fixed;
+}
+
+.new-black th {
+    background-color: var(--newblack-black1);
+    color: var(--newblack-accent5);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    border: 1px solid var(--newblack-black5);
+    border-bottom: 2px solid var(--newblack-highlight);
+}
+
+.new-black td {
+    background-color: var(--newblack-black3);
+    color: var(--newblack-text);
+    padding: 1.2rem;
+    border: 1px solid var(--newblack-black5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--newblack-transition);
+    position: relative;
+}
+
+.new-black td:hover {
+    background-color: var(--newblack-black4);
+    box-shadow: inset 0 0 15px var(--newblack-shadow);
+}
+
+/* ==================== CURRENT DAY HIGHLIGHTING ==================== */
+.new-black td.current-day {
+    background-color: var(--newblack-black1);
+    border: 3px solid var(--newblack-current) !important;
+    color: var(--newblack-accent5);
+    font-weight: 700;
+    animation: newblack-glow 2s infinite;
+    position: relative;
+    z-index: 10;
+}
+
+.new-black td.current-day::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 1px solid var(--newblack-accent5);
+    animation: newblack-pulse 3s infinite;
+    z-index: -1;
+}
+
+.new-black td.current-day::after {
+    content: "Today";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--newblack-current);
+    color: var(--newblack-black1);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.new-black .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--newblack-highlight);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--newblack-shadow);
+    transition: all var(--newblack-transition);
+}
+
+.new-black .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--newblack-accent5);
+    box-shadow: 0 0 15px var(--newblack-highlight);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.new-black .modal-content {
+    position: relative;
+    background-color: var(--newblack-black2);
+    border: 2px solid var(--newblack-highlight);
+    padding: 30px;
+    color: var(--newblack-text);
+    box-shadow: 0 0 40px var(--newblack-shadow);
+    animation: newblackFadeIn 0.4s ease;
+}
+
+.new-black .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--newblack-highlight);
+    animation: newblack-pulse 2s infinite;
+}
+
+.new-black .modal-content h2 {
+    color: var(--newblack-accent5);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.new-black .modal-content button {
+    background-color: transparent;
+    color: var(--newblack-accent5);
+    border: 1px solid var(--newblack-highlight);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--newblack-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.new-black .modal-content button:hover {
+    background-color: var(--newblack-highlight);
+    color: var(--newblack-text);
+    box-shadow: 0 0 15px var(--newblack-shadow);
+}
+
+/* Close Button */
+.new-black .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--newblack-accent5);
+    border: 1px solid var(--newblack-highlight);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--newblack-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-black .modal .close-button:hover {
+    background-color: var(--newblack-highlight);
+    color: var(--newblack-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.new-black .button,
+.new-black .transparent-button {
+    border: 1px solid var(--newblack-highlight);
+    color: var(--newblack-accent5);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--newblack-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.new-black .button::before,
+.new-black .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(112, 112, 112, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.new-black .button:hover,
+.new-black .transparent-button:hover {
+    background-color: var(--newblack-highlight);
+    color: var(--newblack-text);
+    box-shadow: 0 0 20px var(--newblack-shadow);
+}
+
+.new-black .button:hover::before,
+.new-black .transparent-button:hover::before {
+    left: 100%;
+}
+
+.new-black .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.new-black #theme-switcher {
+    background-color: var(--newblack-black3);
+    color: var(--newblack-text);
+    border: 1px solid var(--newblack-highlight);
+    padding: 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 1rem;
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.new-black #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--newblack-highlight);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--newblack-accent5);
+    background-color: var(--newblack-black3);
+    cursor: pointer;
+    transition: all var(--newblack-transition);
+    opacity: 0.9;
+    display: none;
+}
+
+.new-black #backToTopBtn:hover {
+    background-color: var(--newblack-highlight);
+    color: var(--newblack-text);
+    box-shadow: 0 0 20px var(--newblack-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.new-black footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--newblack-highlight);
+    color: var(--newblack-accent4);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .new-black .container {
+        padding: 1.5rem;
+    }
+
+    .new-black #calendar-title {
+        font-size: 2rem;
+    }
+
+    .new-black #current-date {
+        font-size: 1.5rem;
+    }
+
+    .new-black #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-black .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .new-black th {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .new-black td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .new-black td.current-day::after {
+        font-size: 0.6rem;
+        padding: 1px 3px;
+    }
+
+    /* Show abbreviations on medium screens */
+    .new-black th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .new-black th span.full-day-name {
+        display: none;
+    }
+
+    .new-black #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .new-black .container {
+        padding: 0.8rem;
+    }
+
+    .new-black #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .new-black #current-date {
+        font-size: 1.1rem;
+    }
+
+    .new-black #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .new-black .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .new-black th {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+    }
+
+    .new-black td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    .new-black td.current-day::after {
+        content: "T";
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+
+    /* Force single line for day names */
+    .new-black th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .new-black #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .new-black th {
+        font-size: 0.6rem;
+        padding: 0.2rem;
+    }
+
+    .new-black td {
+        height: 50px;
+    }
+
+    .new-black td.current-day::after {
+        display: none;
+    }
+
+    /* Single character day names for tiny screens */
+    .new-black th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .new-black th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
