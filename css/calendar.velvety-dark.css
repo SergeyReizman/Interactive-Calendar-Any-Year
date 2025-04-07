@@ -224,7 +224,7 @@
     color: var(--velvet-primary);
 }
 
-/* Modal Styles */
+/* ==================== VELVET MODAL STYLES ==================== */
 .velvety-dark .modal-overlay {
     position: fixed;
     top: 0;
@@ -257,6 +257,23 @@
     overflow-y: auto;
     z-index: 1000;
     border: 1px solid var(--velvet-divider);
+}
+
+.velvety-dark .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--velvet-primary),
+            var(--velvet-secondary),
+            var(--velvet-primary),
+            transparent);
+    animation: velvetPulse 3.5s infinite;
+    z-index: 2;
 }
 
 .velvety-dark .modal-content h2 {
@@ -318,6 +335,14 @@
     box-shadow: 0 8px 25px var(--velvet-shimmer);
 }
 
+.velvety-dark .modal-btn-primary {
+    background: linear-gradient(to right,
+            var(--velvet-secondary),
+            var(--velvet-primary));
+    color: #121212;
+    font-weight: 800;
+}
+
 .velvety-dark .modal-close {
     position: absolute;
     top: 20px;
@@ -341,6 +366,23 @@
     color: var(--velvet-primary);
     border-color: var(--velvet-primary);
     transform: rotate(90deg);
+}
+
+.velvety-dark .modal-close::before,
+.velvety-dark .modal-close::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+}
+
+.velvety-dark .modal-close::before {
+    transform: rotate(45deg);
+}
+
+.velvety-dark .modal-close::after {
+    transform: rotate(-45deg);
 }
 
 /* Event Markers */
@@ -367,6 +409,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.velvety-dark .event-list li::before {
+    content: '• ';
+    color: var(--velvet-primary);
 }
 
 .velvety-dark .event-list li:last-child {
@@ -392,7 +440,8 @@
 }
 
 /* Buttons & Navigation */
-.velvety-dark .button {
+.velvety-dark .button,
+.velvety-dark .transparent-button {
     background: linear-gradient(to right,
             var(--velvet-primary),
             var(--velvet-secondary));
@@ -411,7 +460,8 @@
     box-shadow: var(--velvet-shadow);
 }
 
-.velvety-dark .button:hover {
+.velvety-dark .button:hover,
+.velvety-dark .transparent-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px var(--velvet-shimmer);
 }
@@ -422,6 +472,34 @@
     align-items: center;
     flex-wrap: wrap;
     margin: 1.5rem 0;
+}
+
+/* Back to Top Button */
+.velvety-dark #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--velvet-primary);
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--velvet-primary);
+    background: rgba(30, 30, 30, 0.8);
+    cursor: pointer;
+    transition: all var(--velvet-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--velvet-radius);
+    box-shadow: var(--velvet-shadow);
+    letter-spacing: 0.5px;
+}
+
+.velvety-dark #backToTopBtn:hover {
+    background: var(--velvet-primary);
+    color: #121212;
+    opacity: 1;
+    box-shadow: 0 0 25px var(--velvet-primary);
 }
 
 /* Footer */
@@ -443,6 +521,7 @@
 
 .velvety-dark footer a:hover {
     color: var(--velvet-secondary);
+    text-shadow: 0 0 5px var(--velvet-primary);
 }
 
 /* Media Queries */
@@ -486,6 +565,13 @@
         height: 80px;
         font-size: 0.9rem;
     }
+
+    .velvety-dark #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -506,34 +592,83 @@
         font-size: 0.8rem;
     }
 
-    .velvety-dark .button {
+    .velvety-dark .button,
+    .velvety-dark .transparent-button {
         padding: 0.7rem 1.5rem;
         font-size: 1rem;
     }
 }
 
-/* Ripple Effect */
-.velvety-dark .ripple {
+@media (max-width: 400px) {
+    .velvety-dark #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .velvety-dark th {
+        font-size: 0.7rem;
+    }
+
+    .velvety-dark td {
+        height: 60px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Special Velvet Effects */
+.velvety-dark .velvet-effect {
     position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(0);
-    animation: materialRipple 0.6s linear;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+    background:
+        linear-gradient(90deg,
+            transparent 0%,
+            var(--velvet-primary) 50%,
+            transparent 100%);
+    animation: velvetPulse 5s infinite;
 }
 
 /* Shimmer Effect */
-.velvety-dark .shimmer {
+@keyframes velvetShimmerFall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.velvety-dark .velvet-shimmer {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(187, 134, 252, 0.1),
-            transparent);
-    animation: velvetShimmer 2s infinite;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     z-index: -1;
+    opacity: 0.1;
+}
+
+.velvety-dark .velvet-shimmer span {
+    position: absolute;
+    color: var(--velvet-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    animation: velvetShimmerFall 5s linear infinite;
+    opacity: 0.3;
 }
