@@ -60,7 +60,7 @@ const applyTheme = (theme) => {
     'continuous-growth', 'coral-reef', 'cracked-ice', 'crimson-sky', 'crossroads-stone', 'crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'deep-forest', 'deep-ocean', 'desert-mirage', 'distant-skies', 
     'doterra-black','dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 
-    'essential-oils', 'everest-view', 
+    'divi-divi-trees', 'essential-oils', 'everest-view', 
     'exotic-island', 'fast-track', 'fiji-islands','finish-line', 'fir-balsam', 'flamingo-sky', 
     'free-flight', 'forgotten-dreams', 'frozen-wilderness', 'galactic-glow', 'genghis-khan-arrow','giant-petrel', 'golden-coast',
     'golden-gate', 'golden-horizon', 'great-lakes', 'great-wall', 'green-coffee',
