@@ -81,8 +81,8 @@ const applyTheme = (theme) => {
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow',
     'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'success-motivation', 'sword-of-fate',
     'tactical-advantage', 'tactical-command', 'the-last-mohican', 'time-machine', 'tropical-sunset', 
-    'viktoria-falls','viking-helmet', 'weekend-downtime', 'white-shark', 'wild-rose', 'wild-wonders', 
-    'winter-wonderland'
+    'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
+    'wild-rose', 'wild-wonders', 'winter-wonderland'
 
   );
 

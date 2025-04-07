@@ -1,0 +1,539 @@
+/* ==========================================================================
+  Velvety Dark Theme - Luxurious Dark Mode Calendar
+  Version: 2.0
+  Updated: 2025-03-30
+  Features:
+  - Deep velvet color scheme
+  - Subtle shimmer animations
+  - Luxurious material effects
+  - Responsive design for all devices
+  - High-contrast date/event displays
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    /* Velvet Color Palette */
+    --velvet-bg: #121212;
+    /* Deep velvet background */
+    --velvet-text: #e0e0e0;
+    /* Soft ivory text */
+    --velvet-primary: #bb86fc;
+    /* Luxurious purple */
+    --velvet-secondary: #03dac6;
+    /* Teal accent */
+
+    /* Material Colors */
+    --velvet-surface: #1e1e1e;
+    /* Card surfaces */
+    --velvet-error: #cf6679;
+    /* Error states */
+    --velvet-overlay: rgba(30, 30, 30, 0.8);
+    /* Overlay surfaces */
+    --velvet-highlight: #3700b3;
+    /* Highlight color */
+    --velvet-divider: rgba(255, 255, 255, 0.12);
+    /* Divider lines */
+
+    /* Special Effects */
+    --velvet-glow: 0 0 15px rgba(187, 134, 252, 0.4);
+    --velvet-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --velvet-radius: 12px;
+    --velvet-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --velvet-shimmer: 0 0 20px rgba(187, 134, 252, 0.3);
+}
+
+/* Animations */
+@keyframes velvetPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes materialRipple {
+    0% {
+        transform: scale(0);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes velvetShimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base Styles */
+.velvety-dark {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--velvet-text);
+    line-height: 1.6;
+    background-color: var(--velvet-bg);
+    background-image:
+        linear-gradient(to bottom,
+            rgba(18, 18, 18, 0.9),
+            rgba(30, 30, 30, 0.95));
+}
+
+.velvety-dark .container {
+    background: var(--velvet-surface);
+    padding: 2rem;
+    border-radius: var(--velvet-radius);
+    box-shadow: var(--velvet-shadow);
+    border: 1px solid var(--velvet-divider);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.velvety-dark .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--velvet-primary),
+            transparent);
+}
+
+/* Calendar Header & Title */
+.velvety-dark #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--velvet-primary);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    position: relative;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.velvety-dark #calendar-title::after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--velvet-primary),
+            transparent);
+    margin: 1rem auto 0;
+}
+
+/* Table Styles */
+.velvety-dark table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background: var(--velvet-surface);
+    border-radius: var(--velvet-radius);
+    overflow: hidden;
+    box-shadow: var(--velvet-shadow);
+    table-layout: fixed;
+    animation: fadeIn 1s ease-out;
+}
+
+.velvety-dark th {
+    background: linear-gradient(to bottom,
+            rgba(59, 0, 179, 0.8),
+            rgba(59, 0, 179, 0.6));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 1rem 0.5rem;
+    position: relative;
+}
+
+.velvety-dark th::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--velvet-divider);
+}
+
+.velvety-dark td {
+    background: var(--velvet-surface);
+    color: var(--velvet-text);
+    padding: 0.8rem;
+    border: 1px solid var(--velvet-divider);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--velvet-transition);
+    position: relative;
+    font-size: 1rem;
+}
+
+.velvety-dark td:hover {
+    background: rgba(187, 134, 252, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--velvet-glow);
+}
+
+/* Current Day Highlight */
+.velvety-dark td.current-day {
+    background: linear-gradient(135deg,
+            rgba(187, 134, 252, 0.2),
+            rgba(187, 134, 252, 0.3)) !important;
+    color: white !important;
+    font-weight: bold;
+    box-shadow:
+        inset 0 0 15px rgba(187, 134, 252, 0.3),
+        0 0 20px rgba(187, 134, 252, 0.2);
+    border: 1px solid var(--velvet-primary) !important;
+    animation: velvetPulse 3s infinite;
+}
+
+.velvety-dark td.current-day .date-number {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: var(--velvet-primary);
+}
+
+/* Modal Styles */
+.velvety-dark .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.velvety-dark .modal-content {
+    background: var(--velvet-surface);
+    border-radius: var(--velvet-radius);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        var(--velvet-glow);
+    padding: 2.5rem;
+    color: var(--velvet-text);
+    animation: fadeIn 0.6s ease-out forwards;
+    text-align: center;
+    position: relative;
+    width: 480px;
+    max-width: 90vw;
+    max-height: 85vh;
+    overflow-y: auto;
+    z-index: 1000;
+    border: 1px solid var(--velvet-divider);
+}
+
+.velvety-dark .modal-content h2 {
+    color: var(--velvet-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin: 1rem 0 1.5rem;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.velvety-dark .modal-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--velvet-primary);
+}
+
+.velvety-dark .modal-content p {
+    margin-bottom: 1.8rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.velvety-dark .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.velvety-dark .modal-btn {
+    background: linear-gradient(to right,
+            var(--velvet-primary),
+            var(--velvet-secondary));
+    color: #121212;
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: var(--velvet-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--velvet-shadow);
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    min-width: 160px;
+}
+
+.velvety-dark .modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--velvet-shimmer);
+}
+
+.velvety-dark .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    color: var(--velvet-text);
+    border: 1px solid var(--velvet-divider);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.velvety-dark .modal-close:hover {
+    color: var(--velvet-primary);
+    border-color: var(--velvet-primary);
+    transform: rotate(90deg);
+}
+
+/* Event Markers */
+.velvety-dark .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--velvet-secondary);
+    margin: 0 2px;
+    transition: all var(--velvet-transition);
+}
+
+.velvety-dark .event-marker:hover {
+    transform: scale(1.5);
+    background: var(--velvet-primary);
+    box-shadow: 0 0 10px var(--velvet-primary);
+}
+
+/* Event List */
+.velvety-dark .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--velvet-divider);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.velvety-dark .event-list li:last-child {
+    border-bottom: none;
+}
+
+.velvety-dark .event-list button {
+    background: var(--velvet-primary);
+    color: #121212;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--velvet-radius);
+    cursor: pointer;
+    transition: all var(--velvet-transition);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.velvety-dark .event-list button:hover {
+    background: var(--velvet-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--velvet-shadow);
+}
+
+/* Buttons & Navigation */
+.velvety-dark .button {
+    background: linear-gradient(to right,
+            var(--velvet-primary),
+            var(--velvet-secondary));
+    color: #121212;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all var(--velvet-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--velvet-radius);
+    box-shadow: var(--velvet-shadow);
+}
+
+.velvety-dark .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px var(--velvet-shimmer);
+}
+
+.velvety-dark .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* Footer */
+.velvety-dark footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--velvet-divider);
+    color: var(--velvet-text);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.velvety-dark footer a {
+    color: var(--velvet-primary);
+    text-decoration: none;
+    transition: all var(--velvet-transition);
+}
+
+.velvety-dark footer a:hover {
+    color: var(--velvet-secondary);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .velvety-dark #calendar-title {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .velvety-dark .container {
+        padding: 1.5rem;
+    }
+
+    .velvety-dark #calendar-title {
+        font-size: 2rem;
+    }
+
+    .velvety-dark th {
+        font-size: 1rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .velvety-dark td {
+        height: 90px;
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .velvety-dark #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .velvety-dark th {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .velvety-dark td {
+        height: 80px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .velvety-dark .container {
+        padding: 1rem;
+    }
+
+    .velvety-dark #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .velvety-dark th {
+        font-size: 0.8rem;
+    }
+
+    .velvety-dark td {
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .velvety-dark .button {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Ripple Effect */
+.velvety-dark .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: materialRipple 0.6s linear;
+    pointer-events: none;
+}
+
+/* Shimmer Effect */
+.velvety-dark .shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(187, 134, 252, 0.1),
+            transparent);
+    animation: velvetShimmer 2s infinite;
+    pointer-events: none;
+    z-index: -1;
+}
