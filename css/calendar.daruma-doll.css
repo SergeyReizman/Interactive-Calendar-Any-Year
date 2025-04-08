@@ -1,0 +1,650 @@
+/* ==========================================================================
+   Daruma Doll Theme - Japanese Traditional Style
+   Version: 2.4
+   Updated: 2025-04-08
+   Includes:
+   - MAXIMUM current day highlighting
+   - Fixed day-of-week header overlapping
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&family=Kosugi+Maru&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --dd-bg: #FFF5F5;
+    --dd-text: #3A2E2E;
+    --dd-primary: #E74C3C;
+    /* Daruma Red */
+    --dd-secondary: #C0392B;
+    --dd-current: #E74C3C;
+    /* Special current day color */
+    --dd-gold: #F1C40F;
+    /* Daruma Gold */
+
+    /* Red Gradient */
+    --dd-red1: #FADBD8;
+    --dd-red2: #F5B7B1;
+    --dd-red3: #F1948A;
+    --dd-red4: #EC7063;
+    --dd-red5: #E74C3C;
+
+    /* White Spectrum */
+    --dd-white1: #FFFFFF;
+    --dd-white2: #FDF2F2;
+    --dd-white3: #FAE5E5;
+    --dd-white4: #F8D8D8;
+    --dd-white5: #F5CBCB;
+
+    /* Special Effects */
+    --dd-shadow: rgba(231, 76, 60, 0.3);
+    --dd-radius: 0;
+    --dd-transition: 0.3s ease;
+    --dd-hover: #C0392B;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dd-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--dd-red3);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--dd-red4);
+    }
+}
+
+@keyframes dd-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes ddFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes current-day-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--dd-shadow),
+            inset 0 0 5px var(--dd-current);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--dd-current),
+            inset 0 0 10px var(--dd-red4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.daruma-doll {
+    font-family: 'Kosugi Maru', sans-serif;
+    color: var(--dd-text);
+    line-height: 1.6;
+    background-color: var(--dd-bg);
+    min-height: 100vh;
+    background-image: radial-gradient(circle, var(--dd-red1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.daruma-doll .container {
+    background-color: var(--dd-white1);
+    padding: 2rem;
+    border: 2px solid var(--dd-primary);
+    box-shadow: 0 0 20px var(--dd-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.daruma-doll .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dd-primary), transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.daruma-doll #calendar-title {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--dd-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.daruma-doll #calendar-title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--dd-primary);
+    margin: 0.5rem auto;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.daruma-doll #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--dd-white2);
+    border: 1px solid var(--dd-red2);
+    border-radius: var(--dd-radius);
+    position: relative;
+}
+
+.daruma-doll #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: var(--dd-primary);
+}
+
+.daruma-doll #current-date {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--dd-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.daruma-doll #today-weather {
+    font-family: 'Kosugi Maru', sans-serif;
+    color: var(--dd-secondary);
+    font-size: 1.4rem;
+    font-style: italic;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.daruma-doll #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.daruma-doll .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--dd-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dd-white1);
+    box-shadow: 0 0 10px var(--dd-shadow);
+}
+
+.daruma-doll .clock-face::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--dd-primary);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.daruma-doll .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.daruma-doll .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 8px;
+    background: var(--dd-primary);
+    margin-top: -4px;
+    border-radius: 4px;
+}
+
+.daruma-doll .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 6px;
+    background: var(--dd-secondary);
+    margin-top: -3px;
+    border-radius: 4px;
+}
+
+.daruma-doll .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--dd-gold);
+    margin-top: -1.5px;
+    border-radius: 4px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.daruma-doll table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--dd-white1);
+    border: 2px solid var(--dd-primary);
+    table-layout: fixed;
+}
+
+.daruma-doll th {
+    background-color: var(--dd-primary);
+    color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--dd-red4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.daruma-doll th abbr {
+    border-bottom: none;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.daruma-doll td {
+    background-color: var(--dd-white1);
+    color: var(--dd-text);
+    padding: 1.2rem;
+    border: 1px solid var(--dd-red2);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--dd-transition);
+    position: relative;
+}
+
+.daruma-doll td:hover {
+    background-color: var(--dd-white2);
+}
+
+/* ==================== ULTRA-VISIBLE CURRENT DAY ==================== */
+.daruma-doll td.current-day {
+    background-color: var(--dd-white3) !important;
+    border: 3px solid var(--dd-primary) !important;
+    color: var(--dd-primary) !important;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+    animation:
+        current-day-pulse 1.5s infinite,
+        dd-glow 2s infinite;
+    box-shadow:
+        inset 0 0 10px rgba(231, 76, 60, 0.1);
+}
+
+.daruma-doll td.current-day::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--dd-primary);
+    animation: dd-pulse 2s infinite;
+    z-index: -1;
+}
+
+.daruma-doll td.current-day::after {
+    content: "今日";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--dd-primary);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-family: 'Noto Sans JP', sans-serif;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.daruma-doll td.current-day .event-marker {
+    background-color: var(--dd-gold);
+    box-shadow: 0 0 5px var(--dd-primary);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.daruma-doll .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dd-primary);
+    margin: 0 2px;
+    transition: all var(--dd-transition);
+}
+
+.daruma-doll .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--dd-secondary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.daruma-doll .modal-content {
+    position: relative;
+    background-color: var(--dd-white1);
+    border: 2px solid var(--dd-primary);
+    padding: 30px;
+    color: var(--dd-text);
+    box-shadow: 0 0 30px var(--dd-shadow);
+    animation: ddFadeIn 0.4s ease;
+}
+
+.daruma-doll .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--dd-primary);
+    animation: dd-pulse 2s infinite;
+}
+
+.daruma-doll .modal-content h2 {
+    color: var(--dd-primary);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.daruma-doll .modal-content h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--dd-primary);
+}
+
+.daruma-doll .modal-content button {
+    background-color: var(--dd-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dd-transition);
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.daruma-doll .modal-content button:hover {
+    background-color: var(--dd-secondary);
+    box-shadow: 0 0 10px var(--dd-shadow);
+}
+
+/* Close Button */
+.daruma-doll .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--dd-primary);
+    border: 1px solid var(--dd-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--dd-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.daruma-doll .modal .close-button:hover {
+    background-color: var(--dd-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.daruma-doll .button,
+.daruma-doll .transparent-button {
+    border: 1px solid var(--dd-primary);
+    color: var(--dd-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    transition: all var(--dd-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.daruma-doll .button::before,
+.daruma-doll .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.daruma-doll .button:hover,
+.daruma-doll .transparent-button:hover {
+    background-color: var(--dd-primary);
+    color: white;
+    box-shadow: 0 0 10px var(--dd-shadow);
+}
+
+.daruma-doll .button:hover::before,
+.daruma-doll .transparent-button:hover::before {
+    left: 100%;
+}
+
+.daruma-doll .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.daruma-doll #theme-switcher {
+    background-color: white;
+    color: var(--dd-text);
+    border: 1px solid var(--dd-red2);
+    padding: 0.8rem;
+    font-family: 'Kosugi Maru', sans-serif;
+    margin-left: 1rem;
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.daruma-doll #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--dd-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--dd-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--dd-transition);
+    opacity: 0.9;
+    display: none;
+}
+
+.daruma-doll #backToTopBtn:hover {
+    background-color: var(--dd-primary);
+    color: white;
+    box-shadow: 0 0 10px var(--dd-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.daruma-doll footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--dd-red2);
+    color: var(--dd-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .daruma-doll .container {
+        padding: 1.5rem;
+    }
+
+    .daruma-doll #calendar-title {
+        font-size: 2rem;
+    }
+
+    .daruma-doll #current-date {
+        font-size: 1.5rem;
+    }
+
+    .daruma-doll #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .daruma-doll th {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .daruma-doll .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .daruma-doll th {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    .daruma-doll td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .daruma-doll td.current-day::after {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+    }
+
+    .daruma-doll #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .daruma-doll .container {
+        padding: 0.8rem;
+    }
+
+    .daruma-doll #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .daruma-doll #current-date {
+        font-size: 1.1rem;
+    }
+
+    .daruma-doll #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .daruma-doll th {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .daruma-doll td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    .daruma-doll td.current-day::after {
+        content: "今";
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+        padding: 1px 3px;
+    }
+
+    .daruma-doll #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .daruma-doll th {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.1rem;
+    }
+
+    .daruma-doll td {
+        height: 50px;
+    }
+
+    .daruma-doll td.current-day::after {
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+}
