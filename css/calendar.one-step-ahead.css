@@ -1,0 +1,603 @@
+/* ==========================================================================
+   One Step Ahead Theme - Futuristic Interface Style
+   Version: 2.4
+   Updated: 2025-04-08
+   Includes:
+   - MAXIMUM current day highlighting
+   - Fixed day-of-week header overlapping
+   - Proper right-aligned back-to-top button
+   - Themed digital clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --osa-bg: #0A0A1A;
+    --osa-text: #E0E0FF;
+    --osa-primary: #00FFE0;
+    --osa-secondary: #00B4CC;
+    --osa-current: #00FFC8;
+    /* Special brighter color for current day */
+
+    /* Dark Gradient */
+    --osa-dark1: #000015;
+    --osa-dark2: #0A0A20;
+    --osa-dark3: #151530;
+    --osa-dark4: #202040;
+    --osa-dark5: #2B2B50;
+
+    /* Neon Spectrum */
+    --osa-neon1: #00FFE0;
+    --osa-neon2: #00CCE0;
+    --osa-neon3: #0099E0;
+    --osa-neon4: #00FFFF;
+    --osa-neon5: #80FFFF;
+
+    /* Special Effects */
+    --osa-glow: #00FFE0;
+    --osa-accent: #00FFFF;
+    --osa-metal: #C0C0FF;
+
+    /* Theme Variables */
+    --osa-shadow: rgba(0, 255, 224, 0.3);
+    --osa-radius: 0;
+    --osa-transition: 0.3s ease;
+    --osa-hover: #00CCE0;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes osa-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--osa-neon1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--osa-neon2);
+    }
+}
+
+@keyframes osa-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes osaFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes current-day-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px var(--osa-shadow),
+            inset 0 0 10px var(--osa-current);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--osa-current),
+            inset 0 0 20px var(--osa-neon1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.one-step-ahead {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--osa-text);
+    line-height: 1.6;
+    background-color: var(--osa-bg);
+    min-height: 100vh;
+}
+
+.one-step-ahead .container {
+    background-color: var(--osa-dark2);
+    padding: 2rem;
+    border: 1px solid var(--osa-primary);
+    box-shadow: 0 0 30px var(--osa-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.one-step-ahead .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--osa-primary), transparent);
+    animation: osa-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.one-step-ahead #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--osa-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--osa-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.one-step-ahead #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--osa-dark3);
+    border: 1px solid var(--osa-dark5);
+    position: relative;
+}
+
+.one-step-ahead #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--osa-primary), transparent);
+}
+
+.one-step-ahead #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--osa-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--osa-shadow);
+}
+
+.one-step-ahead #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--osa-neon4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== DIGITAL CLOCK ==================== */
+.one-step-ahead #digital-clock {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--osa-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    text-shadow: 0 0 10px var(--osa-shadow);
+    letter-spacing: 0.1em;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.one-step-ahead table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--osa-dark2);
+    border: 1px solid var(--osa-primary);
+    table-layout: fixed;
+}
+
+.one-step-ahead th {
+    background-color: var(--osa-dark1);
+    color: var(--osa-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--osa-dark5);
+    border-bottom: 2px solid var(--osa-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.one-step-ahead th abbr {
+    border-bottom: none;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.one-step-ahead td {
+    background-color: var(--osa-dark3);
+    color: var(--osa-text);
+    padding: 1.2rem;
+    border: 1px solid var(--osa-dark5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--osa-transition);
+    position: relative;
+}
+
+.one-step-ahead td:hover {
+    background-color: var(--osa-dark4);
+    box-shadow: inset 0 0 15px var(--osa-shadow);
+}
+
+/* ==================== ULTRA-VISIBLE CURRENT DAY ==================== */
+.one-step-ahead td.current-day {
+    background-color: var(--osa-dark1) !important;
+    border: 3px solid var(--osa-current) !important;
+    color: var(--osa-current) !important;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+    animation:
+        current-day-pulse 1.5s infinite,
+        osa-glow 2s infinite;
+    box-shadow:
+        0 0 20px var(--osa-shadow),
+        inset 0 0 15px rgba(0, 255, 200, 0.3);
+}
+
+.one-step-ahead td.current-day::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--osa-neon1);
+    animation: osa-pulse 2s infinite;
+    z-index: -1;
+    border-radius: 2px;
+}
+
+.one-step-ahead td.current-day::after {
+    content: "NOW";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--osa-current);
+    color: var(--osa-dark1);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px var(--osa-dark1);
+    box-shadow: 0 0 10px var(--osa-current);
+}
+
+.one-step-ahead td.current-day .event-marker {
+    background-color: var(--osa-text);
+    box-shadow: 0 0 8px var(--osa-current);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.one-step-ahead .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--osa-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--osa-shadow);
+    transition: all var(--osa-transition);
+}
+
+.one-step-ahead .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--osa-neon1);
+    box-shadow: 0 0 15px var(--osa-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.one-step-ahead .modal-content {
+    position: relative;
+    background-color: var(--osa-dark2);
+    border: 2px solid var(--osa-primary);
+    padding: 30px;
+    color: var(--osa-text);
+    box-shadow: 0 0 40px var(--osa-shadow);
+    animation: osaFadeIn 0.4s ease;
+}
+
+.one-step-ahead .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--osa-primary);
+    animation: osa-pulse 2s infinite;
+}
+
+.one-step-ahead .modal-content h2 {
+    color: var(--osa-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.one-step-ahead .modal-content button {
+    background-color: transparent;
+    color: var(--osa-primary);
+    border: 1px solid var(--osa-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--osa-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.one-step-ahead .modal-content button:hover {
+    background-color: var(--osa-primary);
+    color: var(--osa-text);
+    box-shadow: 0 0 15px var(--osa-shadow);
+}
+
+/* Close Button */
+.one-step-ahead .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--osa-primary);
+    border: 1px solid var(--osa-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--osa-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one-step-ahead .modal .close-button:hover {
+    background-color: var(--osa-primary);
+    color: var(--osa-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.one-step-ahead .button,
+.one-step-ahead .transparent-button {
+    border: 1px solid var(--osa-primary);
+    color: var(--osa-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--osa-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.one-step-ahead .button::before,
+.one-step-ahead .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 224, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.one-step-ahead .button:hover,
+.one-step-ahead .transparent-button:hover {
+    background-color: var(--osa-primary);
+    color: var(--osa-text);
+    box-shadow: 0 0 20px var(--osa-shadow);
+}
+
+.one-step-ahead .button:hover::before,
+.one-step-ahead .transparent-button:hover::before {
+    left: 100%;
+}
+
+.one-step-ahead .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.one-step-ahead #theme-switcher {
+    background-color: var(--osa-dark3);
+    color: var(--osa-text);
+    border: 1px solid var(--osa-primary);
+    padding: 0.8rem;
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 1rem;
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.one-step-ahead #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--osa-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--osa-primary);
+    background-color: var(--osa-dark3);
+    cursor: pointer;
+    transition: all var(--osa-transition);
+    opacity: 0.9;
+    display: none;
+}
+
+.one-step-ahead #backToTopBtn:hover {
+    background-color: var(--osa-primary);
+    color: var(--osa-text);
+    box-shadow: 0 0 20px var(--osa-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.one-step-ahead footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--osa-dark5);
+    color: var(--osa-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .one-step-ahead .container {
+        padding: 1.5rem;
+    }
+
+    .one-step-ahead #calendar-title {
+        font-size: 2rem;
+    }
+
+    .one-step-ahead #current-date {
+        font-size: 1.5rem;
+    }
+
+    .one-step-ahead #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .one-step-ahead #digital-clock {
+        font-size: 2rem;
+    }
+
+    .one-step-ahead th {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .one-step-ahead th {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+    }
+
+    .one-step-ahead td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .one-step-ahead td.current-day::after {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+    }
+
+    .one-step-ahead #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .one-step-ahead #digital-clock {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .one-step-ahead .container {
+        padding: 0.8rem;
+    }
+
+    .one-step-ahead #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .one-step-ahead #current-date {
+        font-size: 1.1rem;
+    }
+
+    .one-step-ahead #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .one-step-ahead th {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .one-step-ahead td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    .one-step-ahead td.current-day::after {
+        content: "★";
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+        padding: 1px 3px;
+    }
+
+    .one-step-ahead #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .one-step-ahead #digital-clock {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .one-step-ahead th {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.1rem;
+    }
+
+    .one-step-ahead td {
+        height: 50px;
+    }
+
+    .one-step-ahead td.current-day::after {
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+}
