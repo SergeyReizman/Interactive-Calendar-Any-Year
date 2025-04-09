@@ -1,0 +1,639 @@
+/* ==========================================================================
+   In The Dusk Theme - Twilight Transition Style
+   Version: 2.4
+   Updated: 2025-04-08
+   Includes:
+   - MAXIMUM current day highlighting (golden hour glow)
+   - Fixed day-of-week header overlapping
+   - Proper right-aligned back-to-top button
+   - Themed twilight clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --dusk-bg: #2C3E50;
+    /* Twilight sky */
+    --dusk-text: #ECF0F1;
+    /* Moonlight */
+    --dusk-primary: #E67E22;
+    /* Sunset orange */
+    --dusk-secondary: #D35400;
+    /* Deep sunset */
+    --dusk-current: #F39C12;
+    /* Golden hour highlight */
+    --dusk-accent: #9B59B6;
+    /* Twilight purple */
+
+    /* Dusk Gradient */
+    --dusk-dark1: #1A252F;
+    /* Late night */
+    --dusk-dark2: #2C3E50;
+    /* Twilight */
+    --dusk-dark3: #34495E;
+    /* Early evening */
+    --dusk-dark4: #3D566E;
+    /* Mid dusk */
+    --dusk-dark5: #4D6B8A;
+    /* Horizon line */
+
+    /* Sunset Spectrum */
+    --dusk-sun1: #F39C12;
+    /* Golden hour */
+    --dusk-sun2: #E67E22;
+    /* Sunset */
+    --dusk-sun3: #D35400;
+    /* Deep orange */
+    --dusk-sun4: #E74C3C;
+    /* Last light */
+    --dusk-sun5: #F1C40F;
+    /* Sun glow */
+
+    /* Theme Variables */
+    --dusk-shadow: rgba(230, 126, 34, 0.3);
+    --dusk-radius: 0;
+    --dusk-transition: 0.3s ease;
+    --dusk-hover: #E67E22;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dusk-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--dusk-sun1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--dusk-sun2);
+    }
+}
+
+@keyframes dusk-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes duskFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes current-day-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px var(--dusk-shadow),
+            inset 0 0 10px var(--dusk-current);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--dusk-current),
+            inset 0 0 20px var(--dusk-sun1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.in-the-dusk {
+    font-family: 'Raleway', sans-serif;
+    color: var(--dusk-text);
+    line-height: 1.6;
+    background-color: var(--dusk-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 20% 50%, var(--dusk-accent) 0%, transparent 25%),
+        radial-gradient(circle at 80% 50%, var(--dusk-primary) 0%, transparent 25%);
+}
+
+.in-the-dusk .container {
+    background-color: var(--dusk-dark2);
+    padding: 2rem;
+    border: 1px solid var(--dusk-primary);
+    box-shadow: 0 0 30px var(--dusk-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.in-the-dusk .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dusk-primary), transparent);
+    animation: dusk-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.in-the-dusk #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--dusk-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--dusk-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.in-the-dusk #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--dusk-dark3);
+    border: 1px solid var(--dusk-dark5);
+    position: relative;
+}
+
+.in-the-dusk #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dusk-primary), transparent);
+}
+
+.in-the-dusk #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--dusk-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--dusk-shadow);
+}
+
+.in-the-dusk #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--dusk-sun5);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== TWILIGHT CLOCK ==================== */
+.in-the-dusk #twilight-clock {
+    font-family: 'Playfair Display', serif;
+    color: var(--dusk-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    text-shadow: 0 0 10px var(--dusk-shadow);
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+.in-the-dusk #twilight-clock::after {
+    content: "🌆";
+    position: absolute;
+    right: calc(50% - 100px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.in-the-dusk table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--dusk-dark2);
+    border: 1px solid var(--dusk-primary);
+    table-layout: fixed;
+}
+
+.in-the-dusk th {
+    background-color: var(--dusk-dark1);
+    color: var(--dusk-primary);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--dusk-dark5);
+    border-bottom: 2px solid var(--dusk-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.in-the-dusk th abbr {
+    border-bottom: none;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.in-the-dusk td {
+    background-color: var(--dusk-dark3);
+    color: var(--dusk-text);
+    padding: 1.2rem;
+    border: 1px solid var(--dusk-dark5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--dusk-transition);
+    position: relative;
+}
+
+.in-the-dusk td:hover {
+    background-color: var(--dusk-dark4);
+    box-shadow: inset 0 0 15px var(--dusk-shadow);
+}
+
+/* ==================== ULTRA-VISIBLE CURRENT DAY ==================== */
+.in-the-dusk td.current-day {
+    background-color: var(--dusk-dark1) !important;
+    border: 3px solid var(--dusk-current) !important;
+    color: var(--dusk-sun5) !important;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+    animation:
+        current-day-pulse 1.5s infinite,
+        dusk-glow 2s infinite;
+    box-shadow:
+        0 0 20px var(--dusk-shadow),
+        inset 0 0 15px rgba(243, 156, 18, 0.3);
+}
+
+.in-the-dusk td.current-day::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--dusk-sun1);
+    animation: dusk-pulse 2s infinite;
+    z-index: -1;
+}
+
+.in-the-dusk td.current-day::after {
+    content: "✨ NOW";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--dusk-current);
+    color: var(--dusk-dark1);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0 0 5px var(--dusk-dark1);
+    box-shadow: 0 0 10px var(--dusk-current);
+}
+
+.in-the-dusk td.current-day .event-marker {
+    background-color: var(--dusk-sun5);
+    box-shadow: 0 0 8px var(--dusk-current);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.in-the-dusk .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dusk-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--dusk-shadow);
+    transition: all var(--dusk-transition);
+}
+
+.in-the-dusk .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--dusk-sun1);
+    box-shadow: 0 0 15px var(--dusk-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.in-the-dusk .modal-content {
+    position: relative;
+    background-color: var(--dusk-dark2);
+    border: 2px solid var(--dusk-primary);
+    padding: 30px;
+    color: var(--dusk-text);
+    box-shadow: 0 0 40px var(--dusk-shadow);
+    animation: duskFadeIn 0.4s ease;
+}
+
+.in-the-dusk .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--dusk-primary);
+    animation: dusk-pulse 2s infinite;
+}
+
+.in-the-dusk .modal-content h2 {
+    color: var(--dusk-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.in-the-dusk .modal-content button {
+    background-color: transparent;
+    color: var(--dusk-primary);
+    border: 1px solid var(--dusk-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dusk-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.in-the-dusk .modal-content button:hover {
+    background-color: var(--dusk-primary);
+    color: var(--dusk-text);
+    box-shadow: 0 0 15px var(--dusk-shadow);
+}
+
+/* Close Button */
+.in-the-dusk .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--dusk-primary);
+    border: 1px solid var(--dusk-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--dusk-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.in-the-dusk .modal .close-button:hover {
+    background-color: var(--dusk-primary);
+    color: var(--dusk-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.in-the-dusk .button,
+.in-the-dusk .transparent-button {
+    border: 1px solid var(--dusk-primary);
+    color: var(--dusk-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--dusk-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.in-the-dusk .button::before,
+.in-the-dusk .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(230, 126, 34, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.in-the-dusk .button:hover,
+.in-the-dusk .transparent-button:hover {
+    background-color: var(--dusk-primary);
+    color: var(--dusk-text);
+    box-shadow: 0 0 20px var(--dusk-shadow);
+}
+
+.in-the-dusk .button:hover::before,
+.in-the-dusk .transparent-button:hover::before {
+    left: 100%;
+}
+
+.in-the-dusk .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.in-the-dusk #theme-switcher {
+    background-color: var(--dusk-dark3);
+    color: var(--dusk-text);
+    border: 1px solid var(--dusk-primary);
+    padding: 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 1rem;
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.in-the-dusk #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--dusk-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dusk-primary);
+    background-color: var(--dusk-dark3);
+    cursor: pointer;
+    transition: all var(--dusk-transition);
+    opacity: 0.9;
+    display: none;
+}
+
+.in-the-dusk #backToTopBtn:hover {
+    background-color: var(--dusk-primary);
+    color: var(--dusk-text);
+    box-shadow: 0 0 20px var(--dusk-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.in-the-dusk footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--dusk-dark5);
+    color: var(--dusk-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .in-the-dusk .container {
+        padding: 1.5rem;
+    }
+
+    .in-the-dusk #calendar-title {
+        font-size: 2rem;
+    }
+
+    .in-the-dusk #current-date {
+        font-size: 1.5rem;
+    }
+
+    .in-the-dusk #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .in-the-dusk #twilight-clock {
+        font-size: 2rem;
+    }
+
+    .in-the-dusk #twilight-clock::after {
+        right: calc(50% - 80px);
+    }
+}
+
+@media (max-width: 768px) {
+    .in-the-dusk th {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+    }
+
+    .in-the-dusk td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .in-the-dusk td.current-day::after {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+        content: "✨";
+    }
+
+    .in-the-dusk #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .in-the-dusk #twilight-clock {
+        font-size: 1.8rem;
+    }
+
+    .in-the-dusk #twilight-clock::after {
+        right: calc(50% - 70px);
+    }
+}
+
+@media (max-width: 576px) {
+    .in-the-dusk .container {
+        padding: 0.8rem;
+    }
+
+    .in-the-dusk #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .in-the-dusk #current-date {
+        font-size: 1.1rem;
+    }
+
+    .in-the-dusk #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .in-the-dusk th {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .in-the-dusk td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    .in-the-dusk td.current-day::after {
+        content: "✨";
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+        padding: 1px 3px;
+    }
+
+    .in-the-dusk #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .in-the-dusk #twilight-clock {
+        font-size: 1.5rem;
+    }
+
+    .in-the-dusk #twilight-clock::after {
+        right: calc(50% - 60px);
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .in-the-dusk th {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.1rem;
+    }
+
+    .in-the-dusk td {
+        height: 50px;
+    }
+
+    .in-the-dusk td.current-day::after {
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+
+    .in-the-dusk #twilight-clock::after {
+        display: none;
+    }
+}
