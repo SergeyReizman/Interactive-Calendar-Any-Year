@@ -1,0 +1,634 @@
+/* ==========================================================================
+   Green City Theme - Urban Sustainability Style
+   Version: 2.4
+   Updated: 2025-04-08
+   Includes:
+   - MAXIMUM current day highlighting (urban park green)
+   - Fixed day-of-week header overlapping
+   - Proper right-aligned back-to-top button
+   - Themed metro-style clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --gc-bg: #F0F5F2;
+    /* City fog background */
+    --gc-text: #2D3A2F;
+    /* Urban park text */
+    --gc-primary: #2ECC71;
+    /* Metro green line */
+    --gc-secondary: #27AE60;
+    /* Darker eco green */
+    --gc-current: #27AE60;
+    /* Current day highlight */
+    --gc-accent: #3498DB;
+    /* Water management blue */
+
+    /* Urban Green Gradient */
+    --gc-green1: #E8F5E9;
+    /* Park light */
+    --gc-green2: #C8E6C9;
+    /* Bike lane */
+    --gc-green3: #A5D6A7;
+    /* Community garden */
+    --gc-green4: #81C784;
+    /* Urban canopy */
+    --gc-green5: #66BB6A;
+    /* Sustainable growth */
+
+    /* City Gray Spectrum */
+    --gc-gray1: #FFFFFF;
+    /* Modern architecture */
+    --gc-gray2: #F5F7F6;
+    /* Smart concrete */
+    --gc-gray3: #EBEFED;
+    /* Recycled materials */
+    --gc-gray4: #E0E6E3;
+    /* Green rooftops */
+    --gc-gray5: #D6DDD9;
+    /* Solar panel shade */
+
+    /* Theme Variables */
+    --gc-shadow: rgba(46, 204, 113, 0.2);
+    --gc-radius: 4px;
+    --gc-transition: 0.3s ease;
+    --gc-hover: #219653;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes gc-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--gc-green3);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--gc-green4);
+    }
+}
+
+@keyframes gc-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes gcFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes current-day-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--gc-shadow),
+            inset 0 0 5px var(--gc-current);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--gc-current),
+            inset 0 0 15px var(--gc-green4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.green-city {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--gc-text);
+    line-height: 1.6;
+    background-color: var(--gc-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(to right, var(--gc-gray2) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--gc-gray2) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.green-city .container {
+    background-color: var(--gc-gray1);
+    padding: 2rem;
+    border: 1px solid var(--gc-green2);
+    box-shadow: 0 0 25px var(--gc-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--gc-radius);
+}
+
+.green-city .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--gc-primary), var(--gc-accent));
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.green-city #calendar-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gc-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.green-city #calendar-title::after {
+    content: "🏙️🌳";
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    letter-spacing: 5px;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.green-city #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--gc-gray2);
+    border: 1px solid var(--gc-green2);
+    border-radius: var(--gc-radius);
+    position: relative;
+}
+
+.green-city #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: var(--gc-primary);
+}
+
+.green-city #current-date {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gc-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.green-city #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--gc-secondary);
+    font-size: 1.4rem;
+    font-style: italic;
+}
+
+/* ==================== METRO-STYLE CLOCK ==================== */
+.green-city #metro-clock {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gc-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.green-city #metro-clock::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 25%;
+    right: 25%;
+    height: 3px;
+    background: linear-gradient(to right, var(--gc-primary), var(--gc-accent));
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.green-city table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem auto;
+    background-color: var(--gc-gray1);
+    border: 1px solid var(--gc-green2);
+    border-radius: var(--gc-radius);
+    table-layout: fixed;
+}
+
+.green-city th {
+    background-color: var(--gc-primary);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-bottom: 3px solid var(--gc-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.green-city th abbr {
+    border-bottom: none;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.green-city td {
+    background-color: var(--gc-gray1);
+    color: var(--gc-text);
+    padding: 1.2rem;
+    border: 1px solid var(--gc-green2);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--gc-transition);
+    position: relative;
+}
+
+.green-city td:hover {
+    background-color: var(--gc-gray2);
+}
+
+/* ==================== ULTRA-VISIBLE CURRENT DAY ==================== */
+.green-city td.current-day {
+    background-color: var(--gc-green1) !important;
+    border: 3px solid var(--gc-current) !important;
+    color: var(--gc-secondary) !important;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+    animation:
+        current-day-pulse 1.5s infinite,
+        gc-glow 2s infinite;
+    box-shadow:
+        inset 0 0 15px rgba(39, 174, 96, 0.1);
+}
+
+.green-city td.current-day::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--gc-current);
+    animation: gc-pulse 2s infinite;
+    z-index: -1;
+    border-radius: calc(var(--gc-radius) + 2px);
+}
+
+.green-city td.current-day::after {
+    content: "📍 TODAY";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--gc-current);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.green-city td.current-day .event-marker {
+    background-color: var(--gc-accent);
+    box-shadow: 0 0 5px var(--gc-current);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.green-city .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--gc-primary);
+    margin: 0 2px;
+    transition: all var(--gc-transition);
+}
+
+.green-city .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--gc-secondary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.green-city .modal-content {
+    position: relative;
+    background-color: var(--gc-gray1);
+    border: 2px solid var(--gc-primary);
+    padding: 30px;
+    color: var(--gc-text);
+    box-shadow: 0 0 30px var(--gc-shadow);
+    border-radius: var(--gc-radius);
+    animation: gcFadeIn 0.4s ease;
+}
+
+.green-city .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--gc-primary), var(--gc-accent));
+}
+
+.green-city .modal-content h2 {
+    color: var(--gc-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.green-city .modal-content h2::after {
+    content: "🌆";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.green-city .modal-content button {
+    background-color: var(--gc-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--gc-transition);
+    border-radius: var(--gc-radius);
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+}
+
+.green-city .modal-content button:hover {
+    background-color: var(--gc-secondary);
+    box-shadow: 0 0 10px var(--gc-shadow);
+}
+
+/* Close Button */
+.green-city .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--gc-primary);
+    border: 1px solid var(--gc-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--gc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.green-city .modal .close-button:hover {
+    background-color: var(--gc-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.green-city .button,
+.green-city .transparent-button {
+    border: 2px solid var(--gc-primary);
+    color: var(--gc-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all var(--gc-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--gc-radius);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.green-city .button::before,
+.green-city .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(46, 204, 113, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.green-city .button:hover,
+.green-city .transparent-button:hover {
+    background-color: var(--gc-primary);
+    color: white;
+    box-shadow: 0 0 10px var(--gc-shadow);
+}
+
+.green-city .button:hover::before,
+.green-city .transparent-button:hover::before {
+    left: 100%;
+}
+
+.green-city .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.green-city #theme-switcher {
+    background-color: var(--gc-gray1);
+    color: var(--gc-text);
+    border: 1px solid var(--gc-green2);
+    padding: 0.8rem;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--gc-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.green-city #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--gc-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gc-primary);
+    background-color: var(--gc-gray1);
+    cursor: pointer;
+    transition: all var(--gc-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--gc-radius);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.green-city #backToTopBtn:hover {
+    background-color: var(--gc-primary);
+    color: white;
+    box-shadow: 0 0 10px var(--gc-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.green-city footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gc-green2);
+    color: var(--gc-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .green-city .container {
+        padding: 1.5rem;
+    }
+
+    .green-city #calendar-title {
+        font-size: 2rem;
+    }
+
+    .green-city #current-date {
+        font-size: 1.5rem;
+    }
+
+    .green-city #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .green-city th {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .green-city #metro-clock {
+        font-size: 2rem;
+    }
+
+    .green-city th {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    .green-city td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .green-city td.current-day::after {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+        content: "📍";
+    }
+
+    .green-city #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .green-city .container {
+        padding: 0.8rem;
+    }
+
+    .green-city #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .green-city #current-date {
+        font-size: 1.1rem;
+    }
+
+    .green-city #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .green-city th {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .green-city td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    .green-city td.current-day::after {
+        content: "📍";
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+        padding: 1px 3px;
+    }
+
+    .green-city #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .green-city #metro-clock {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .green-city th {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.1rem;
+    }
+
+    .green-city td {
+        height: 50px;
+    }
+
+    .green-city td.current-day::after {
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+}
