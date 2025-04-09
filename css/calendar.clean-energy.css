@@ -1,0 +1,646 @@
+/* ==========================================================================
+   Clean Energy Theme - Eco-Friendly Style
+   Version: 2.4
+   Updated: 2025-04-08
+   Includes:
+   - MAXIMUM current day highlighting
+   - Fixed day-of-week header overlapping
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Raleway:wght@700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --ce-bg: #F5F9F7;
+    --ce-text: #2E3D33;
+    --ce-primary: #27AE60;
+    /* Eco Green */
+    --ce-secondary: #2ECC71;
+    --ce-current: #2ECC71;
+    /* Special current day color */
+    --ce-accent: #3498DB;
+    /* Clean Water Blue */
+
+    /* Green Gradient */
+    --ce-green1: #E8F5E9;
+    --ce-green2: #C8E6C9;
+    --ce-green3: #A5D6A7;
+    --ce-green4: #81C784;
+    --ce-green5: #66BB6A;
+
+    /* White Spectrum */
+    --ce-white1: #FFFFFF;
+    --ce-white2: #F5F9F7;
+    --ce-white3: #EBF3EF;
+    --ce-white4: #E1EDE7;
+    --ce-white5: #D7E7DF;
+
+    /* Special Effects */
+    --ce-shadow: rgba(46, 204, 113, 0.3);
+    --ce-radius: 8px;
+    --ce-transition: 0.3s ease;
+    --ce-hover: #219653;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ce-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ce-green3);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--ce-green4);
+    }
+}
+
+@keyframes ce-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes ceFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes current-day-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--ce-shadow),
+            inset 0 0 5px var(--ce-current);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--ce-current),
+            inset 0 0 10px var(--ce-green4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.clean-energy {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ce-text);
+    line-height: 1.6;
+    background-color: var(--ce-bg);
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, transparent 95%, var(--ce-green1) 100%);
+    background-size: 100% 20px;
+}
+
+.clean-energy .container {
+    background-color: var(--ce-white1);
+    padding: 2rem;
+    border: 1px solid var(--ce-green2);
+    box-shadow: 0 0 20px var(--ce-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ce-radius);
+}
+
+.clean-energy .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--ce-primary), var(--ce-accent));
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.clean-energy #calendar-title {
+    font-family: 'Raleway', sans-serif;
+    color: var(--ce-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.clean-energy #calendar-title::after {
+    content: "♻️";
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.clean-energy #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--ce-white2);
+    border: 1px solid var(--ce-green2);
+    border-radius: var(--ce-radius);
+    position: relative;
+}
+
+.clean-energy #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(to right, var(--ce-primary), var(--ce-accent));
+}
+
+.clean-energy #current-date {
+    font-family: 'Raleway', sans-serif;
+    color: var(--ce-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.clean-energy #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ce-secondary);
+    font-size: 1.4rem;
+    font-style: italic;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.clean-energy #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.clean-energy .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--ce-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ce-white1);
+    box-shadow: 0 0 10px var(--ce-shadow);
+}
+
+.clean-energy .clock-face::before {
+    content: "🌱";
+    position: absolute;
+    font-size: 1.5rem;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.clean-energy .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.clean-energy .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 6px;
+    background: var(--ce-primary);
+    margin-top: -3px;
+    border-radius: 4px;
+}
+
+.clean-energy .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 4px;
+    background: var(--ce-secondary);
+    margin-top: -2px;
+    border-radius: 4px;
+}
+
+.clean-energy .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ce-accent);
+    margin-top: -1px;
+    border-radius: 4px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.clean-energy table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem auto;
+    background-color: var(--ce-white1);
+    border: 1px solid var(--ce-green2);
+    border-radius: var(--ce-radius);
+    table-layout: fixed;
+}
+
+.clean-energy th {
+    background-color: var(--ce-primary);
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-bottom: 2px solid var(--ce-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clean-energy th abbr {
+    border-bottom: none;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clean-energy td {
+    background-color: var(--ce-white1);
+    color: var(--ce-text);
+    padding: 1.2rem;
+    border: 1px solid var(--ce-green2);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ce-transition);
+    position: relative;
+}
+
+.clean-energy td:hover {
+    background-color: var(--ce-white2);
+}
+
+/* ==================== ULTRA-VISIBLE CURRENT DAY ==================== */
+.clean-energy td.current-day {
+    background-color: var(--ce-white3) !important;
+    border: 3px solid var(--ce-current) !important;
+    color: var(--ce-primary) !important;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+    animation:
+        current-day-pulse 1.5s infinite,
+        ce-glow 2s infinite;
+    box-shadow:
+        inset 0 0 10px rgba(46, 204, 113, 0.1);
+}
+
+.clean-energy td.current-day::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid var(--ce-current);
+    animation: ce-pulse 2s infinite;
+    z-index: -1;
+    border-radius: calc(var(--ce-radius) + 2px);
+}
+
+.clean-energy td.current-day::after {
+    content: "🌿 TODAY";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--ce-current);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 12px;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.clean-energy td.current-day .event-marker {
+    background-color: var(--ce-accent);
+    box-shadow: 0 0 5px var(--ce-current);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.clean-energy .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ce-primary);
+    margin: 0 2px;
+    transition: all var(--ce-transition);
+}
+
+.clean-energy .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--ce-secondary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.clean-energy .modal-content {
+    position: relative;
+    background-color: white;
+    border: 2px solid var(--ce-primary);
+    padding: 30px;
+    color: var(--ce-text);
+    box-shadow: 0 0 30px var(--ce-shadow);
+    border-radius: var(--ce-radius);
+    animation: ceFadeIn 0.4s ease;
+}
+
+.clean-energy .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--ce-primary), var(--ce-accent));
+}
+
+.clean-energy .modal-content h2 {
+    color: var(--ce-primary);
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.clean-energy .modal-content h2::after {
+    content: "♻️";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.clean-energy .modal-content button {
+    background-color: var(--ce-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ce-transition);
+    border-radius: var(--ce-radius);
+}
+
+.clean-energy .modal-content button:hover {
+    background-color: var(--ce-secondary);
+    box-shadow: 0 0 10px var(--ce-shadow);
+}
+
+/* Close Button */
+.clean-energy .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--ce-primary);
+    border: 1px solid var(--ce-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--ce-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.clean-energy .modal .close-button:hover {
+    background-color: var(--ce-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.clean-energy .button,
+.clean-energy .transparent-button {
+    border: 1px solid var(--ce-primary);
+    color: var(--ce-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    transition: all var(--ce-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ce-radius);
+}
+
+.clean-energy .button::before,
+.clean-energy .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(39, 174, 96, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.clean-energy .button:hover,
+.clean-energy .transparent-button:hover {
+    background-color: var(--ce-primary);
+    color: white;
+    box-shadow: 0 0 10px var(--ce-shadow);
+}
+
+.clean-energy .button:hover::before,
+.clean-energy .transparent-button:hover::before {
+    left: 100%;
+}
+
+.clean-energy .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.clean-energy #theme-switcher {
+    background-color: white;
+    color: var(--ce-text);
+    border: 1px solid var(--ce-green2);
+    padding: 0.8rem;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--ce-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.clean-energy #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--ce-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+    color: var(--ce-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--ce-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ce-radius);
+}
+
+.clean-energy #backToTopBtn:hover {
+    background-color: var(--ce-primary);
+    color: white;
+    box-shadow: 0 0 10px var(--ce-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.clean-energy footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ce-green2);
+    color: var(--ce-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .clean-energy .container {
+        padding: 1.5rem;
+    }
+
+    .clean-energy #calendar-title {
+        font-size: 2rem;
+    }
+
+    .clean-energy #current-date {
+        font-size: 1.5rem;
+    }
+
+    .clean-energy #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .clean-energy th {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .clean-energy .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .clean-energy th {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    .clean-energy td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .clean-energy td.current-day::after {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+        content: "🌿";
+    }
+
+    .clean-energy #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .clean-energy .container {
+        padding: 0.8rem;
+    }
+
+    .clean-energy #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .clean-energy #current-date {
+        font-size: 1.1rem;
+    }
+
+    .clean-energy #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .clean-energy th {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .clean-energy td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    .clean-energy td.current-day::after {
+        content: "🌱";
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+        padding: 1px 3px;
+    }
+
+    .clean-energy #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .clean-energy th {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.1rem;
+    }
+
+    .clean-energy td {
+        height: 50px;
+    }
+
+    .clean-energy td.current-day::after {
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+}
