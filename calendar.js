@@ -77,7 +77,7 @@ const applyTheme = (theme) => {
     'mediterranean-dreams', 'melting-glaciers', 'midnight-train', 'migratory-birds', 'monochrome-ink',
     'moonlit-path', 'morning-forest', 'mount-fuji', 'mountain-lake', 'mountain-peak', 'new-ai', 'new-black', 
     'neon-nights',
-    'niagara-falls', 'north-pole', 'northern-nights', 'ocean-surf', 'ocean-view', 'ocean-vortex',
+    'niagara-falls', 'night-dragon', 'north-pole', 'northern-nights', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'orange-country', 'pink-lake', 'pirate-ship', 'polar-bear',
     'port-victoria', 'porcupine-quill', 'pure-light', 'purple-fog', 'quantum-programmer', 'quiet-evening',
     'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'red-lake', 'red-squirrel', 'rising-sun',
