@@ -72,7 +72,7 @@ const applyTheme = (theme) => {
     'high-speed-rail', 'high-speed-train', 'hurricane-clouds', 'hyperloop', 'ice-palace',
     'iceland-volcanoes' , 
     'imaginary-world', 'in-the-dusk', 'into-the-night', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
-    'lemongrass-sky', 'life-quality', 'lions-mane', 'lucid-dream', 'lunar-eclipse', 'macaroni-penguin',
+    'lemongrass-sky', 'life-quality', 'lions-mane', 'love-station', 'lucid-dream', 'lunar-eclipse', 'macaroni-penguin',
     'magellanic-penguin', 'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'midnight-train', 'migratory-birds', 'monochrome-ink',
     'moonlit-path', 'morning-forest', 'mount-fuji', 'mountain-lake', 'mountain-peak', 'new-ai', 'new-black', 
