@@ -85,7 +85,8 @@ const applyTheme = (theme) => {
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shaolin-monastery',
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow',
     'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'success-motivation', 'sword-of-fate',
-    'tactical-advantage', 'tactical-command', 'the-last-mohican', 'time-machine', 'tropical-sunset', 
+    'tactical-advantage', 'tactical-command', 'technological-might', 
+    'the-last-mohican', 'time-machine', 'tropical-sunset', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland'
 

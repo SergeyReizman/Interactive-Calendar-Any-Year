@@ -1,0 +1,535 @@
+/* ==========================================================================
+  Technological Might Theme - Futuristic, Powerful, and Cutting-Edge (Neon Circuitry Edition)
+  Purpose: Styles specific to the Technological Might theme for the calendar, with cyberpunk colors and digital effects.
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    /* Cyber Color Palette */
+    --tech-bg: #0A0A12;
+    /* Dark interface background */
+    --tech-text: #E0E0E0;
+    /* Bright interface text */
+    --tech-primary: #00F0FF;
+    /* Neon cyan highlight */
+    --tech-secondary: #7B2DFF;
+    /* Electric purple */
+
+    /* Interface Gradients */
+    --tech-layer1: #12121D;
+    /* Base layer */
+    --tech-layer2: #1A1A2E;
+    /* Mid layer */
+    --tech-layer3: #242442;
+    /* Surface layer */
+    --tech-layer4: #2D2D5D;
+    /* Active layer */
+    --tech-layer5: #3A3A7A;
+    /* Highlight layer */
+
+    /* Status Indicators */
+    --tech-success: #00FF9D;
+    /* System success */
+    --tech-warning: #FFD600;
+    /* System warning */
+    --tech-danger: #FF2D5A;
+    /* System error */
+    --tech-info: #00A3FF;
+    /* System info */
+
+    /* HUD Elements */
+    --tech-hud1: #00F0FF;
+    /* Primary HUD */
+    --tech-hud2: #FF00F0;
+    /* Secondary HUD */
+    --tech-hud3: #F0FF00;
+    /* Tertiary HUD */
+
+    /* Theme Variables */
+    --tech-shadow: rgba(0, 240, 255, 0.15);
+    /* Glowing shadows */
+    --tech-radius: 4px;
+    /* Sharp tech corners */
+    --tech-transition: 0.2s linear;
+    /* Instant digital transitions */
+    --tech-hover: #00C4FF;
+    /* Interactive element glow */
+    --tech-glow: 0 0 10px rgba(0, 240, 255, 0.7);
+    /* Interface glow */
+    --tech-border-glow: 0 0 5px rgba(0, 240, 255, 0.9);
+    /* Active border glow */
+}
+
+/* Animations */
+@keyframes scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes flicker {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        box-shadow: var(--tech-glow);
+    }
+
+    20%,
+    22%,
+    24%,
+    55% {
+        box-shadow: none;
+    }
+}
+
+@keyframes binaryFlow {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 -100px;
+    }
+}
+
+/* Base Styles */
+.technological-might {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--tech-text);
+    line-height: 1.4;
+    background-color: var(--tech-bg);
+    background-image:
+        linear-gradient(rgba(10, 10, 18, 0.9), rgba(10, 10, 18, 0.9)),
+        linear-gradient(90deg,
+            rgba(0, 240, 255, 0.03) 1px,
+            transparent 1px),
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px,
+            transparent 1px);
+    background-size:
+        cover,
+        20px 20px,
+        20px 20px;
+    animation: binaryFlow 5s linear infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.technological-might::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 240, 255, 0.03) 1px,
+            transparent 1px);
+    background-size: 100% 3px;
+    animation: scanline 4s linear infinite;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.technological-might .container {
+    background: var(--tech-layer2);
+    padding: 30px;
+    border-radius: var(--tech-radius);
+    box-shadow: 0 0 20px var(--tech-shadow);
+    border: 1px solid var(--tech-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.technological-might .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--tech-primary),
+            transparent);
+    animation: pulse 2s infinite;
+}
+
+.technological-might .calendar-container {
+    padding: 25px;
+    background: var(--tech-layer1);
+    border-radius: var(--tech-radius);
+    border: 1px solid var(--tech-primary);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+/* Circuit Decorations */
+.technological-might .circuit-node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--tech-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--tech-primary);
+}
+
+.technological-might .circuit-line {
+    position: absolute;
+    background: var(--tech-primary);
+    opacity: 0.3;
+}
+
+/* Table Styles */
+.technological-might table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-radius: var(--tech-radius);
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    table-layout: fixed;
+}
+
+.technological-might th,
+.technological-might td {
+    padding: 12px;
+    text-align: center;
+    border: none;
+    transition: all var(--tech-transition);
+    word-wrap: break-word;
+    position: relative;
+    background-color: var(--tech-layer3);
+}
+
+.technological-might th {
+    background: linear-gradient(to bottom, var(--tech-layer5), var(--tech-layer4));
+    color: var(--tech-text);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    font-family: 'Rajdhani', sans-serif;
+    text-shadow: 0 0 5px var(--tech-primary);
+    border-bottom: 2px solid var(--tech-primary);
+}
+
+.technological-might td {
+    color: var(--tech-text);
+    font-weight: 500;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.technological-might td:hover {
+    background: var(--tech-layer4);
+    box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.2);
+    color: var(--tech-primary);
+    border: 1px solid var(--tech-primary);
+}
+
+.technological-might td.current-day {
+    background: var(--tech-layer5);
+    border: 1px solid var(--tech-primary);
+    font-weight: 700;
+    color: var(--tech-primary);
+    box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.3), var(--tech-glow);
+    animation: flicker 3s infinite;
+}
+
+/* Event Marker */
+.technological-might .event-marker {
+    background-color: var(--tech-danger);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: all var(--tech-transition);
+    box-shadow: 0 0 5px var(--tech-danger);
+    display: inline-block;
+}
+
+.technological-might .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--tech-warning);
+    box-shadow: 0 0 15px var(--tech-warning);
+}
+
+/* Modal */
+.technological-might .modal-content {
+    background: var(--tech-layer2);
+    border: 1px solid var(--tech-primary);
+    border-radius: var(--tech-radius);
+    box-shadow: 0 0 30px var(--tech-shadow);
+    padding: 30px;
+    color: var(--tech-text);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.technological-might .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--tech-primary),
+            transparent);
+}
+
+.technological-might .modal-content h2 {
+    color: var(--tech-primary);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--tech-primary);
+    letter-spacing: 2px;
+}
+
+.technological-might .modal-content p,
+.technological-might .modal-content li,
+.technological-might .modal-content div {
+    color: var(--tech-text);
+}
+
+.technological-might .modal-content button {
+    background: linear-gradient(to right, var(--tech-layer4), var(--tech-layer5));
+    color: var(--tech-text);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--tech-radius);
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    box-shadow: 0 0 10px var(--tech-shadow);
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid var(--tech-primary);
+}
+
+.technological-might .modal-content button:hover {
+    background: linear-gradient(to right, var(--tech-layer5), var(--tech-primary));
+    color: var(--tech-bg);
+    box-shadow: 0 0 20px var(--tech-primary);
+}
+
+.technological-might .modal .close-button {
+    background-color: var(--tech-layer4);
+    color: var(--tech-danger);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    box-shadow: 0 0 5px var(--tech-shadow);
+    font-weight: bold;
+    font-size: 1.2em;
+    border: 1px solid var(--tech-danger);
+}
+
+.technological-might .modal .close-button:hover {
+    background-color: var(--tech-danger);
+    color: var(--tech-text);
+    transform: rotate(90deg);
+    box-shadow: 0 0 15px var(--tech-danger);
+}
+
+/* Event List */
+.technological-might .event-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--tech-layer4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--tech-text);
+}
+
+.technological-might .event-list li:last-child {
+    border-bottom: none;
+}
+
+.technological-might .event-list button {
+    background: linear-gradient(to right, var(--tech-layer4), var(--tech-layer5));
+    color: var(--tech-text);
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--tech-radius);
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    box-shadow: 0 0 5px var(--tech-shadow);
+    border: 1px solid var(--tech-primary);
+}
+
+.technological-might .event-list button:hover {
+    background: linear-gradient(to right, var(--tech-primary), var(--tech-secondary));
+    color: var(--tech-bg);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--tech-primary);
+}
+
+/* Buttons & Navigation */
+.technological-might .button,
+.technological-might .transparent-button,
+.technological-might #backToTopBtn {
+    border-radius: var(--tech-radius);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    transition: all var(--tech-transition);
+    cursor: pointer;
+    border: 1px solid var(--tech-primary);
+    color: var(--tech-text);
+    background: linear-gradient(to right, var(--tech-layer4), var(--tech-layer5));
+    box-shadow: 0 0 10px var(--tech-shadow);
+    letter-spacing: 1px;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.technological-might .button:hover,
+.technological-might .transparent-button:hover,
+.technological-might #backToTopBtn:hover {
+    background: linear-gradient(to right, var(--tech-hover), var(--tech-primary));
+    box-shadow: 0 0 25px var(--tech-primary);
+    transform: scale(1.05);
+    color: var(--tech-bg);
+}
+
+.technological-might .button.secondary {
+    background: linear-gradient(to right, var(--tech-layer3), var(--tech-layer4));
+    border: 1px solid var(--tech-secondary);
+}
+
+.technological-might .button.secondary:hover {
+    background: linear-gradient(to right, var(--tech-secondary), var(--tech-hud2));
+}
+
+.technological-might .calendar-navigation button {
+    background: linear-gradient(to right, var(--tech-layer4), var(--tech-layer5));
+    border: 1px solid var(--tech-primary);
+    font-size: 1.2em;
+    padding: 7px 14px;
+    cursor: pointer;
+    color: var(--tech-text);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px var(--tech-shadow);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.technological-might .calendar-navigation button:hover {
+    color: var(--tech-primary);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--tech-primary);
+}
+
+/* Calendar Header & Title */
+.technological-might .calendar-header {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--tech-primary);
+    text-shadow: 0 0 10px var(--tech-primary);
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 3px;
+}
+
+.technological-might .calendar-title {
+    font-size: 1.5em;
+    color: var(--tech-secondary);
+    text-shadow: 0 0 5px var(--tech-secondary);
+    font-style: normal;
+    letter-spacing: 2px;
+}
+
+/* Modal Close */
+.technological-might .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--tech-danger);
+    background: none;
+    border: none;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.technological-might .modal-close:hover {
+    color: var(--tech-warning);
+    transform: scale(1.2);
+    text-shadow: 0 0 10px var(--tech-warning);
+}
+
+/* Week Number & No Events */
+.technological-might .week-number {
+    color: var(--tech-primary);
+    font-size: 0.9em;
+    padding: 2px 5px;
+    background: rgba(0, 240, 255, 0.1);
+    border-radius: 3px;
+    margin: 2px;
+    border: 1px solid var(--tech-primary);
+}
+
+.technological-might .no-events {
+    font-style: italic;
+    color: var(--tech-layer5);
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .technological-might table {
+        font-size: 0.8em;
+    }
+
+    .technological-might th,
+    .technological-might td {
+        padding: 8px;
+    }
+
+    .technological-might .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+
+    .technological-might .calendar-container {
+        padding: 15px;
+    }
+
+    .technological-might .button,
+    .technological-might .transparent-button,
+    .technological-might #backToTopBtn {
+        padding: 12px 20px;
+        font-size: 1.1em;
+    }
+}
