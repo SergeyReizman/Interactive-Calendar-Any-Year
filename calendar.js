@@ -55,7 +55,7 @@ const applyTheme = (theme) => {
     'amazon-river', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 'autumn-harvest', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'black-fashion', 'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-orange', 'black-velvet', 'black-violet', 'blue-bird', 'blue-ice', 
-    'blue-planet','blue-whale', 'blue-white', 'bronze-horseman', 'cacao-plantation', 'cafe-de-colombia', 
+    'blue-planet','blue-whale', 'blue-white', 'bright-line', 'bronze-horseman', 'cacao-plantation', 'cafe-de-colombia', 
     'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'clean-energy', 
     'competitive-advantage',
