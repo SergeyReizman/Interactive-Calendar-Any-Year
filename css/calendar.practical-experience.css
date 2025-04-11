@@ -1,0 +1,582 @@
+/* ==========================================================================
+   Practical Experience Theme - Clean, Professional Style
+   Version: 2.4
+   Updated: 2025-04-11
+   Includes:
+   - Clear current day highlighting
+   - Fixed day-of-week header overlapping
+   - Proper right-aligned back-to-top button
+   - Themed digital clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Source+Sans+3:wght@400;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --pe-bg: #F4F7FA;
+    /* Soft background */
+    --pe-text: #1F1F1F;
+    /* Dark readable text */
+    --pe-primary: #4B0082;
+    /* Deep Indigo */
+    --pe-secondary: #6A0DAD;
+    /* Vivid Purple */
+    --pe-current: #FF6B6B;
+    /* Coral red for highlights (like today) */
+
+    /* Neutral Gradient */
+    --pe-light1: #FFFFFF;
+    --pe-light2: #F4F7FA;
+    --pe-light3: #E2E8F0;
+    --pe-light4: #CBD5E1;
+    --pe-light5: #94A3B8;
+
+    /* Accent Spectrum */
+    --pe-accent1: #00B4D8;
+    /* Sky Blue */
+    --pe-accent2: #0077B6;
+    /* Ocean Blue */
+    --pe-accent3: #023E8A;
+    /* Deep Sea Blue */
+    --pe-accent4: #4B0082;
+    /* Indigo (reuse for depth) */
+    --pe-accent5: #6A0DAD;
+    /* Purple (reuse for vibrance) */
+
+    /* Special Effects */
+    --pe-glow: #8A2BE2;
+    /* Electric Violet */
+    --pe-highlight: #E0F7FA;
+    /* Subtle Cyan highlight */
+    --pe-border: #D1D5DB;
+    /* Neutral border tone */
+
+    /* Theme Variables */
+    --pe-shadow: rgba(0, 0, 0, 0.08);
+    --pe-radius: 8px;
+    --pe-transition: 0.3s ease-in-out;
+    --pe-hover: #F1F5F9;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes pe-fade {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes pe-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.01);
+    }
+}
+
+@keyframes peFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes current-day-highlight {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 1px var(--pe-current);
+    }
+
+    50% {
+        box-shadow: 0 0 0 3px var(--pe-current);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.practical-experience {
+    font-family: 'Inter', sans-serif;
+    color: var(--pe-text);
+    line-height: 1.6;
+    background-color: var(--pe-bg);
+    min-height: 100vh;
+}
+
+.practical-experience .container {
+    background-color: var(--pe-light1);
+    padding: 2rem;
+    border: 1px solid var(--pe-light4);
+    box-shadow: 0 2px 10px var(--pe-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--pe-radius);
+}
+
+.practical-experience .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pe-accent1), var(--pe-accent3));
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.practical-experience #calendar-title {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--pe-primary);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.practical-experience #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--pe-light2);
+    border: 1px solid var(--pe-light4);
+    border-radius: var(--pe-radius);
+    position: relative;
+}
+
+.practical-experience #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pe-accent1), transparent);
+}
+
+.practical-experience #current-date {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--pe-primary);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.practical-experience #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--pe-accent3);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* ==================== DIGITAL CLOCK ==================== */
+.practical-experience #digital-clock {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--pe-primary);
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.practical-experience table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem auto;
+    background-color: var(--pe-light1);
+    border: 1px solid var(--pe-light4);
+    border-radius: var(--pe-radius);
+    table-layout: fixed;
+}
+
+.practical-experience th {
+    background-color: var(--pe-light3);
+    color: var(--pe-primary);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 0.5rem;
+    border-bottom: 2px solid var(--pe-light4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.practical-experience th abbr {
+    border-bottom: none;
+    text-decoration: none;
+    cursor: default;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.practical-experience td {
+    background-color: var(--pe-light1);
+    color: var(--pe-text);
+    padding: 1rem;
+    border: 1px solid var(--pe-light4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--pe-transition);
+    position: relative;
+}
+
+.practical-experience td:hover {
+    background-color: var(--pe-hover);
+}
+
+/* ==================== CLEAR CURRENT DAY HIGHLIGHTING ==================== */
+.practical-experience td.current-day {
+    background-color: var(--pe-highlight) !important;
+    border: 2px solid var(--pe-current) !important;
+    color: var(--pe-primary) !important;
+    font-weight: 600;
+    position: relative;
+    z-index: 10;
+    animation: current-day-highlight 2s infinite;
+}
+
+.practical-experience td.current-day::after {
+    content: "Today";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--pe-current);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0;
+}
+
+.practical-experience td.current-day .event-marker {
+    background-color: var(--pe-accent1);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.practical-experience .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pe-accent1);
+    margin: 0 2px;
+    transition: all var(--pe-transition);
+}
+
+.practical-experience .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--pe-accent2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.practical-experience .modal-content {
+    position: relative;
+    background-color: var(--pe-light1);
+    border: 1px solid var(--pe-light4);
+    padding: 30px;
+    color: var(--pe-text);
+    box-shadow: 0 4px 20px var(--pe-shadow);
+    animation: peFadeIn 0.3s ease;
+    border-radius: var(--pe-radius);
+}
+
+.practical-experience .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pe-accent1), var(--pe-accent3));
+    border-radius: var(--pe-radius) var(--pe-radius) 0 0;
+}
+
+.practical-experience .modal-content h2 {
+    color: var(--pe-primary);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.practical-experience .modal-content button {
+    background-color: var(--pe-accent1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--pe-transition);
+    border-radius: var(--pe-radius);
+    font-family: 'Inter', sans-serif;
+}
+
+.practical-experience .modal-content button:hover {
+    background-color: var(--pe-accent2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Close Button */
+.practical-experience .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--pe-text);
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--pe-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+.practical-experience .modal .close-button:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+    color: var(--pe-primary);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.practical-experience .button,
+.practical-experience .transparent-button {
+    border: 1px solid var(--pe-light4);
+    color: var(--pe-primary);
+    background-color: white;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--pe-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--pe-radius);
+}
+
+.practical-experience .button {
+    background-color: var(--pe-accent1);
+    color: white;
+    border: none;
+}
+
+.practical-experience .button:hover,
+.practical-experience .transparent-button:hover {
+    background-color: var(--pe-accent2);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.practical-experience .transparent-button:hover {
+    background-color: var(--pe-light3);
+    color: var(--pe-primary);
+}
+
+.practical-experience .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.practical-experience #theme-switcher {
+    background-color: white;
+    color: var(--pe-text);
+    border: 1px solid var(--pe-light4);
+    padding: 0.7rem 1rem;
+    font-family: 'Inter', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--pe-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.practical-experience #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: white;
+    background-color: var(--pe-accent1);
+    cursor: pointer;
+    transition: all var(--pe-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.practical-experience #backToTopBtn:hover {
+    background-color: var(--pe-accent2);
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.practical-experience footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--pe-light4);
+    color: var(--pe-text);
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .practical-experience .container {
+        padding: 1.5rem;
+    }
+
+    .practical-experience #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .practical-experience #current-date {
+        font-size: 1.4rem;
+    }
+
+    .practical-experience #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .practical-experience #digital-clock {
+        font-size: 1.8rem;
+    }
+
+    .practical-experience th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .practical-experience th {
+        padding: 0.6rem 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    .practical-experience td {
+        padding: 0.6rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+
+    .practical-experience td.current-day::after {
+        font-size: 0.6rem;
+        padding: 2px 4px;
+    }
+
+    .practical-experience #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .practical-experience #digital-clock {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .practical-experience .container {
+        padding: 1rem;
+    }
+
+    .practical-experience #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .practical-experience #current-date {
+        font-size: 1.2rem;
+    }
+
+    .practical-experience #today-weather {
+        font-size: 1rem;
+    }
+
+    .practical-experience th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .practical-experience td {
+        font-size: 0.7rem;
+        padding: 0.4rem;
+        height: 70px;
+    }
+
+    .practical-experience td.current-day::after {
+        content: "T";
+        font-size: 0.6rem;
+        top: 3px;
+        right: 3px;
+        padding: 1px 3px;
+    }
+
+    .practical-experience #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.8rem;
+    }
+
+    .practical-experience #digital-clock {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .practical-experience th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .practical-experience td {
+        height: 60px;
+    }
+
+    .practical-experience td.current-day::after {
+        font-size: 0.5rem;
+        top: 2px;
+        right: 2px;
+    }
+}
