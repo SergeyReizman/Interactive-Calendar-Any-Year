@@ -59,7 +59,7 @@ const applyTheme = (theme) => {
     'cafe-de-colombia', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'clean-energy', 
     'competitive-advantage',
-    'continuous-growth', 'coral-reef', 'cracked-ice', 'crimson-sky', 'crossroads-stone', 
+    'continuous-growth', 'coral-reef', 'cosmic-nebula', 'cracked-ice', 'crimson-sky', 'crossroads-stone', 
     'crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'daruma-doll', 'deep-forest', 'deep-ocean', 
     'desert-mirage', 'distant-skies', 
