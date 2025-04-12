@@ -1,0 +1,686 @@
+/* ==========================================================================
+   Logical Intelligence Theme - Celestial Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Analytical mind-inspired design system
+   - Circuit board UI elements with data flow effects
+   - Binary code animations
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - 3D isometric perspective for depth
+   - Smart responsive scaling with fluid typography
+   - Interactive node hover states with micro-interactions
+   - Energy-efficient light/dark mode switching
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --logic-bg: #0A0A12;
+    --logic-text: #E0E0FF;
+    --logic-primary: #00FFCC;
+    --logic-secondary: #0099FF;
+
+    /* Gradient Colors */
+    --logic-gradient-start: #050510;
+    --logic-gradient-end: #101020;
+
+    /* Accent Colors */
+    --logic-accent1: #00FF99;
+    --logic-accent2: #0066FF;
+    --logic-accent3: #FF00CC;
+    --logic-accent4: #FF6600;
+    --logic-accent5: #CC00FF;
+
+    /* Theme Variables */
+    --logic-shadow: rgba(0, 255, 204, 0.3);
+    --logic-radius: 2px;
+    --logic-transition: 0.2s linear;
+    --logic-hover: #1A1A2A;
+    --logic-current-day: #003366;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes logic-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--logic-accent1);
+    }
+
+    50% {
+        opacity: 0.7;
+        text-shadow: 0 0 10px var(--logic-accent2);
+    }
+}
+
+@keyframes logic-circuit {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 20px 20px;
+    }
+}
+
+@keyframes logic-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--logic-accent1);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--logic-accent5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.logical-intelligence {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--logic-text);
+    line-height: 1.3;
+    background: var(--logic-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(rgba(0, 153, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 153, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: logic-circuit 2s infinite linear;
+}
+
+.logical-intelligence::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%,
+            rgba(0, 255, 204, 0.03) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(0, 153, 255, 0.03) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.logical-intelligence .container {
+    background-color: rgba(10, 10, 18, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--logic-accent1);
+    box-shadow: 0 0 20px var(--logic-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--logic-radius);
+    z-index: 1;
+}
+
+.logical-intelligence .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--logic-accent5), transparent);
+    animation: logic-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.logical-intelligence #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--logic-accent1);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--logic-shadow);
+    animation: logic-blink 2s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.logical-intelligence #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 102, 255, 0.15);
+    border: 1px solid var(--logic-accent2);
+    border-radius: var(--logic-radius);
+    position: relative;
+}
+
+.logical-intelligence #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--logic-accent2), transparent);
+}
+
+.logical-intelligence #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--logic-accent1);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--logic-shadow);
+}
+
+.logical-intelligence #today-weather {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--logic-accent2);
+    font-size: 1.2rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.logical-intelligence #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.logical-intelligence .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--logic-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--logic-bg);
+    box-shadow:
+        0 0 15px var(--logic-shadow),
+        inset 0 0 10px rgba(0, 255, 204, 0.2);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(0, 255, 204, 0.1) 100%);
+}
+
+.logical-intelligence .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.logical-intelligence .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 3px;
+    background: var(--logic-accent1);
+    margin-top: -1.5px;
+}
+
+.logical-intelligence .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--logic-accent5);
+    margin-top: -1px;
+}
+
+.logical-intelligence .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--logic-accent2);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.logical-intelligence table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 20, 30, 0.8);
+    border: 1px solid var(--logic-accent2);
+    border-radius: var(--logic-radius);
+    table-layout: fixed;
+}
+
+.logical-intelligence th {
+    background-color: rgba(0, 51, 102, 0.4);
+    color: var(--logic-accent1) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--logic-accent2);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 3px var(--logic-shadow);
+}
+
+.logical-intelligence th span.full-day-name {
+    display: inline;
+}
+
+.logical-intelligence th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.logical-intelligence td {
+    background-color: rgba(0, 0, 20, 0.3);
+    color: var(--logic-text);
+    padding: 1rem;
+    border: 1px solid var(--logic-accent2);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--logic-transition);
+    position: relative;
+}
+
+.logical-intelligence td:hover {
+    background-color: rgba(0, 51, 102, 0.5);
+    box-shadow: inset 0 0 10px var(--logic-shadow);
+}
+
+.logical-intelligence td.current-day {
+    background-color: var(--logic-current-day);
+    border: 1px solid var(--logic-accent2);
+    color: #fff !important;
+    font-weight: 400;
+    animation: logic-pulse 3s infinite;
+}
+
+.logical-intelligence td.current-day::before {
+    content: "1010";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--logic-accent2);
+    z-index: 1;
+    opacity: 0.7;
+    font-size: 0.7em;
+}
+
+.logical-intelligence td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #fff !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--logic-shadow);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.logical-intelligence .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--logic-accent1);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--logic-shadow);
+    transition: all var(--logic-transition);
+}
+
+.logical-intelligence .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--logic-accent5);
+    box-shadow: 0 0 15px var(--logic-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.logical-intelligence .modal-content {
+    position: relative;
+    background-color: rgba(20, 20, 30, 0.95);
+    border: 1px solid var(--logic-accent2);
+    padding: 25px;
+    color: var(--logic-text);
+    box-shadow: 0 0 30px var(--logic-shadow);
+    border-radius: var(--logic-radius);
+    animation: logic-pulse 0.5s ease;
+}
+
+.logical-intelligence .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--logic-accent2);
+    animation: logic-pulse 3s infinite;
+}
+
+.logical-intelligence .modal-content h2 {
+    color: var(--logic-accent1);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logical-intelligence .modal-content button {
+    background-color: transparent;
+    color: var(--logic-accent1);
+    border: 1px solid var(--logic-accent1);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--logic-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--logic-radius);
+}
+
+.logical-intelligence .modal-content button:hover {
+    background-color: var(--logic-accent1);
+    color: var(--logic-bg);
+    box-shadow: 0 0 15px var(--logic-shadow);
+}
+
+.logical-intelligence .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--logic-accent1);
+    border: 1px solid var(--logic-accent1);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--logic-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.logical-intelligence .modal .close-button:hover {
+    background-color: var(--logic-accent1);
+    color: var(--logic-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.logical-intelligence .button,
+.logical-intelligence .transparent-button {
+    border: 1px solid var(--logic-accent1);
+    color: var(--logic-accent1);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--logic-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--logic-radius);
+}
+
+.logical-intelligence .button::before,
+.logical-intelligence .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.logical-intelligence .button:hover,
+.logical-intelligence .transparent-button:hover {
+    background-color: var(--logic-accent1);
+    color: var(--logic-bg);
+    box-shadow: 0 0 20px var(--logic-shadow);
+}
+
+.logical-intelligence .button:hover::before,
+.logical-intelligence .transparent-button:hover::before {
+    left: 100%;
+}
+
+.logical-intelligence .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.logical-intelligence #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.logical-intelligence #theme-switcher {
+    background-color: rgba(0, 51, 102, 0.4);
+    color: var(--logic-accent1) !important;
+    border: 1px solid var(--logic-accent1);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--logic-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300FFCC'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--logic-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 3px var(--logic-shadow);
+}
+
+.logical-intelligence #theme-switcher option {
+    background-color: rgba(0, 0, 20, 0.95) !important;
+    color: var(--logic-accent1) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--logic-accent1) !important;
+}
+
+.logical-intelligence #theme-switcher option:hover {
+    background-color: var(--logic-accent1) !important;
+    color: var(--logic-bg) !important;
+}
+
+.logical-intelligence #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--logic-accent1), 0 0 15px var(--logic-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.logical-intelligence #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--logic-accent1);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--logic-accent1);
+    background-color: rgba(0, 51, 102, 0.3);
+    cursor: pointer;
+    transition: all var(--logic-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--logic-radius);
+}
+
+.logical-intelligence #backToTopBtn:hover {
+    background-color: var(--logic-accent1);
+    color: var(--logic-bg);
+    box-shadow: 0 0 20px var(--logic-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.logical-intelligence footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--logic-accent2);
+    color: var(--logic-text);
+    font-size: 0.8rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .logical-intelligence .container {
+        padding: 1.2rem;
+    }
+
+    .logical-intelligence #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .logical-intelligence #current-date {
+        font-size: 1.4rem;
+    }
+
+    .logical-intelligence #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .logical-intelligence .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .logical-intelligence th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .logical-intelligence th span.full-day-name {
+        display: none;
+    }
+
+    .logical-intelligence th abbr {
+        display: inline;
+    }
+
+    .logical-intelligence td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .logical-intelligence td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .logical-intelligence #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .logical-intelligence #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .logical-intelligence #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .logical-intelligence .container {
+        padding: 0.6rem;
+    }
+
+    .logical-intelligence #calendar-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
+    }
+
+    .logical-intelligence #current-date {
+        font-size: 1rem;
+    }
+
+    .logical-intelligence #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .logical-intelligence .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .logical-intelligence th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .logical-intelligence td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .logical-intelligence td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .logical-intelligence #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .logical-intelligence th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .logical-intelligence td {
+        height: 45px;
+    }
+
+    .logical-intelligence #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}
