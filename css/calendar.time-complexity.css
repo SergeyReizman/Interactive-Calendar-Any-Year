@@ -1,0 +1,734 @@
+/* ==========================================================================
+   Time Complexity Theme - Algorithmic Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Computer science-inspired design system
+   - Big-O notation UI elements with algorithm visualization
+   - Sorting algorithm animations
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Recursive depth effects
+   - Smart responsive scaling with fluid typography
+   - Interactive complexity class hover states
+   - Energy-efficient dark mode by default
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Ubuntu+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --algo-bg: #12141D;
+    --algo-text: #E0E0FF;
+    --algo-primary: #00FF88;
+    --algo-secondary: #0088FF;
+
+    /* Gradient Colors */
+    --algo-gradient-start: #0A0C15;
+    --algo-gradient-end: #16182D;
+
+    /* Complexity Class Colors */
+    --algo-constant: #00FF88;
+    /* O(1) */
+    --algo-linear: #00AAFF;
+    /* O(n) */
+    --algo-log: #00FFCC;
+    /* O(log n) */
+    --algo-quadratic: #FFAA00;
+    /* O(n²) */
+    --algo-exponential: #FF0066;
+    /* O(2^n) */
+
+    /* Theme Variables */
+    --algo-shadow: rgba(0, 255, 136, 0.3);
+    --algo-radius: 3px;
+    --algo-transition: 0.15s linear;
+    --algo-hover: #1E2030;
+    --algo-current-day: #003344;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes algo-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--algo-constant);
+    }
+
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 10px var(--algo-linear);
+    }
+}
+
+@keyframes algo-scan {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes algo-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--algo-constant);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--algo-linear);
+    }
+}
+
+@keyframes bubble-sort {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.time-complexity {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--algo-text);
+    line-height: 1.4;
+    background: var(--algo-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(rgba(0, 136, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 136, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.time-complexity::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%,
+            rgba(0, 255, 136, 0.03) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(0, 136, 255, 0.03) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+    animation: algo-scan 15s linear infinite;
+}
+
+.time-complexity .container {
+    background-color: rgba(18, 20, 29, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--algo-constant);
+    box-shadow: 0 0 20px var(--algo-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--algo-radius);
+    z-index: 1;
+}
+
+.time-complexity .container::before {
+    content: "O(1)";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--algo-constant), transparent);
+    animation: algo-pulse 3s infinite;
+    font-size: 0.8rem;
+    color: var(--algo-constant);
+    text-align: center;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.time-complexity #calendar-title {
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--algo-constant);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--algo-shadow);
+    animation: algo-blink 2s infinite;
+}
+
+.time-complexity #calendar-title::before {
+    content: "O(1) ";
+    color: var(--algo-linear);
+}
+
+.time-complexity #calendar-title::after {
+    content: " Ω(1)";
+    color: var(--algo-log);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.time-complexity #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 136, 255, 0.15);
+    border: 1px solid var(--algo-linear);
+    border-radius: var(--algo-radius);
+    position: relative;
+}
+
+.time-complexity #date-weather-container::after {
+    content: "O(n)";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--algo-linear), transparent);
+    font-size: 0.7rem;
+    color: var(--algo-linear);
+}
+
+.time-complexity #current-date {
+    font-family: 'Ubuntu Mono', monospace;
+    color: var(--algo-constant);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--algo-shadow);
+}
+
+.time-complexity #today-weather {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--algo-linear);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.time-complexity #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.time-complexity .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--algo-constant);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--algo-bg);
+    box-shadow:
+        0 0 15px var(--algo-shadow),
+        inset 0 0 10px rgba(0, 255, 136, 0.2);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(0, 255, 136, 0.1) 100%);
+}
+
+.time-complexity .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.time-complexity .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 3px;
+    background: var(--algo-constant);
+    margin-top: -1.5px;
+}
+
+.time-complexity .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--algo-linear);
+    margin-top: -1px;
+}
+
+.time-complexity .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--algo-log);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.time-complexity table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(30, 32, 48, 0.8);
+    border: 1px solid var(--algo-linear);
+    border-radius: var(--algo-radius);
+    table-layout: fixed;
+}
+
+.time-complexity th {
+    background-color: rgba(0, 51, 68, 0.4);
+    color: var(--algo-constant) !important;
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--algo-linear);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 3px var(--algo-shadow);
+}
+
+.time-complexity th span.full-day-name {
+    display: inline;
+}
+
+.time-complexity th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.time-complexity td {
+    background-color: rgba(0, 17, 34, 0.3);
+    color: var(--algo-text);
+    padding: 1rem;
+    border: 1px solid var(--algo-linear);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--algo-transition);
+    position: relative;
+}
+
+.time-complexity td:hover {
+    background-color: rgba(0, 51, 68, 0.5);
+    box-shadow: inset 0 0 10px var(--algo-shadow);
+}
+
+.time-complexity td.current-day {
+    background-color: var(--algo-current-day);
+    border: 1px solid var(--algo-constant);
+    color: #fff !important;
+    font-weight: 700;
+    animation: algo-pulse 3s infinite;
+}
+
+.time-complexity td.current-day::before {
+    content: "O(1)";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--algo-constant);
+    z-index: 1;
+    opacity: 0.7;
+    font-size: 0.7em;
+}
+
+.time-complexity td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #fff !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--algo-shadow);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.time-complexity .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--algo-constant);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--algo-shadow);
+    transition: all var(--algo-transition);
+    animation: bubble-sort 1s infinite;
+}
+
+.time-complexity .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--algo-linear);
+    box-shadow: 0 0 15px var(--algo-constant);
+}
+
+.time-complexity .event-marker.important {
+    background-color: var(--algo-quadratic);
+    animation-duration: 0.5s;
+}
+
+.time-complexity .event-marker.critical {
+    background-color: var(--algo-exponential);
+    animation-duration: 0.25s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.time-complexity .modal-content {
+    position: relative;
+    background-color: rgba(30, 32, 48, 0.95);
+    border: 1px solid var(--algo-constant);
+    padding: 25px;
+    color: var(--algo-text);
+    box-shadow: 0 0 30px var(--algo-shadow);
+    border-radius: var(--algo-radius);
+    animation: algo-pulse 0.5s ease;
+}
+
+.time-complexity .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--algo-constant);
+    animation: algo-pulse 3s infinite;
+}
+
+.time-complexity .modal-content h2 {
+    color: var(--algo-constant);
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.time-complexity .modal-content h2::before {
+    content: "function ";
+    color: var(--algo-linear);
+}
+
+.time-complexity .modal-content button {
+    background-color: transparent;
+    color: var(--algo-constant);
+    border: 1px solid var(--algo-constant);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--algo-transition);
+    letter-spacing: 1px;
+    border-radius: var(--algo-radius);
+    font-family: 'Source Code Pro', monospace;
+}
+
+.time-complexity .modal-content button:hover {
+    background-color: var(--algo-constant);
+    color: var(--algo-bg);
+    box-shadow: 0 0 15px var(--algo-shadow);
+}
+
+.time-complexity .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--algo-constant);
+    border: 1px solid var(--algo-constant);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--algo-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.time-complexity .modal .close-button:hover {
+    background-color: var(--algo-constant);
+    color: var(--algo-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.time-complexity .button,
+.time-complexity .transparent-button {
+    border: 1px solid var(--algo-constant);
+    color: var(--algo-constant);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Ubuntu Mono', monospace;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--algo-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--algo-radius);
+}
+
+.time-complexity .button::before,
+.time-complexity .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.time-complexity .button:hover,
+.time-complexity .transparent-button:hover {
+    background-color: var(--algo-constant);
+    color: var(--algo-bg);
+    box-shadow: 0 0 20px var(--algo-shadow);
+}
+
+.time-complexity .button:hover::before,
+.time-complexity .transparent-button:hover::before {
+    left: 100%;
+}
+
+.time-complexity .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.time-complexity #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.time-complexity #theme-switcher {
+    background-color: rgba(0, 51, 68, 0.4);
+    color: var(--algo-constant) !important;
+    border: 1px solid var(--algo-constant);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--algo-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300FF88'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--algo-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 3px var(--algo-shadow);
+}
+
+.time-complexity #theme-switcher option {
+    background-color: rgba(0, 17, 34, 0.95) !important;
+    color: var(--algo-constant) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--algo-constant) !important;
+}
+
+.time-complexity #theme-switcher option:hover {
+    background-color: var(--algo-constant) !important;
+    color: var(--algo-bg) !important;
+}
+
+.time-complexity #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--algo-constant), 0 0 15px var(--algo-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.time-complexity #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--algo-constant);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Ubuntu Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--algo-constant);
+    background-color: rgba(0, 51, 68, 0.3);
+    cursor: pointer;
+    transition: all var(--algo-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--algo-radius);
+}
+
+.time-complexity #backToTopBtn:hover {
+    background-color: var(--algo-constant);
+    color: var(--algo-bg);
+    box-shadow: 0 0 20px var(--algo-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.time-complexity footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--algo-linear);
+    color: var(--algo-text);
+    font-size: 0.8rem;
+}
+
+.time-complexity footer::before {
+    content: "// ";
+    color: var(--algo-linear);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .time-complexity .container {
+        padding: 1.2rem;
+    }
+
+    .time-complexity #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .time-complexity #current-date {
+        font-size: 1.4rem;
+    }
+
+    .time-complexity #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .time-complexity .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .time-complexity th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .time-complexity th span.full-day-name {
+        display: none;
+    }
+
+    .time-complexity th abbr {
+        display: inline;
+    }
+
+    .time-complexity td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .time-complexity td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .time-complexity #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .time-complexity #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .time-complexity #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .time-complexity .container {
+        padding: 0.6rem;
+    }
+
+    .time-complexity #calendar-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
+    }
+
+    .time-complexity #current-date {
+        font-size: 1rem;
+    }
+
+    .time-complexity #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .time-complexity .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .time-complexity th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .time-complexity td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .time-complexity td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .time-complexity #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .time-complexity th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .time-complexity td {
+        height: 45px;
+    }
+
+    .time-complexity #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}
