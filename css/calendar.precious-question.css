@@ -1,0 +1,686 @@
+/* ==========================================================================
+   Precious Question Theme - Celestial Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Mystical knowledge-inspired design system
+   - Ancient manuscript UI elements with glowing runes
+   - Parchment texture effects
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Subtle magical glow effects
+   - Smart responsive scaling with fluid typography
+   - Interactive question mark hover states
+   - Energy-efficient sepia mode by default
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:wght@400;500&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --manuscript-bg: #F5EDE0;
+    --manuscript-text: #3A2C21;
+    --manuscript-primary: #8B5A2B;
+    --manuscript-secondary: #6B4423;
+
+    /* Gradient Colors */
+    --manuscript-gradient-start: #E8D9C5;
+    --manuscript-gradient-end: #D4C4A8;
+
+    /* Accent Colors */
+    --manuscript-accent1: #A67C52;
+    --manuscript-accent2: #8C6E5D;
+    --manuscript-accent3: #BF9B7A;
+    --manuscript-accent4: #D4A76A;
+    --manuscript-accent5: #7D5D3B;
+
+    /* Theme Variables */
+    --manuscript-shadow: rgba(139, 90, 43, 0.3);
+    --manuscript-radius: 4px;
+    --manuscript-transition: 0.3s ease-in-out;
+    --manuscript-hover: #E0D5C2;
+    --manuscript-current-day: #D4B483;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes manuscript-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--manuscript-accent1),
+            0 0 10px var(--manuscript-accent5),
+            0 0 15px var(--manuscript-accent2);
+        opacity: 0.8;
+    }
+
+    50% {
+        text-shadow: 0 0 8px var(--manuscript-accent3),
+            0 0 13px var(--manuscript-accent1),
+            0 0 18px var(--manuscript-accent5);
+        opacity: 1;
+    }
+}
+
+@keyframes manuscript-fade {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes manuscript-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--manuscript-accent1);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--manuscript-accent5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.precious-question {
+    font-family: 'EB Garamond', serif;
+    color: var(--manuscript-text);
+    line-height: 1.4;
+    background: var(--manuscript-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23A67C52" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+.precious-question::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%,
+            rgba(139, 90, 43, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(107, 68, 35, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+    animation: manuscript-fade 15s linear infinite;
+}
+
+.precious-question .container {
+    background-color: rgba(245, 237, 224, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--manuscript-accent1);
+    box-shadow: 0 0 20px var(--manuscript-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--manuscript-radius);
+    z-index: 1;
+}
+
+.precious-question .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--manuscript-accent5), transparent);
+    animation: manuscript-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.precious-question #calendar-title {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--manuscript-accent5);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--manuscript-shadow);
+    animation: manuscript-glow 5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.precious-question #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(212, 180, 131, 0.3);
+    border: 1px solid var(--manuscript-accent2);
+    border-radius: var(--manuscript-radius);
+    position: relative;
+}
+
+.precious-question #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--manuscript-accent2), transparent);
+}
+
+.precious-question #current-date {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--manuscript-accent5);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--manuscript-shadow);
+}
+
+.precious-question #today-weather {
+    font-family: 'EB Garamond', serif;
+    color: var(--manuscript-accent2);
+    font-size: 1.2rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.precious-question #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.precious-question .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--manuscript-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--manuscript-bg);
+    box-shadow: 0 0 15px var(--manuscript-shadow),
+        inset 0 0 10px rgba(165, 143, 109, 0.2);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(139, 90, 43, 0.1) 100%);
+}
+
+.precious-question .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.precious-question .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--manuscript-accent1);
+    margin-top: -2px;
+}
+
+.precious-question .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--manuscript-accent5);
+    margin-top: -1px;
+}
+
+.precious-question .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--manuscript-accent2);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.precious-question table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgb(248, 242, 234);
+    border: 1px solid var(--manuscript-accent2);
+    border-radius: var(--manuscript-radius);
+    table-layout: fixed;
+}
+
+.precious-question th {
+    background-color: rgba(139, 90, 43, 0.4);
+    color: var(--manuscript-accent5) !important;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--manuscript-accent2);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 3px var(--manuscript-shadow);
+}
+
+.precious-question th span.full-day-name {
+    display: inline;
+}
+
+.precious-question th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.precious-question td {
+    background-color: rgba(165, 143, 109, 0.1);
+    color: var(--manuscript-text);
+    padding: 1rem;
+    border: 1px solid var(--manuscript-accent2);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--manuscript-transition);
+    position: relative;
+}
+
+.precious-question td:hover {
+    background-color: rgba(139, 90, 43, 0.3);
+    box-shadow: inset 0 0 10px var(--manuscript-shadow);
+}
+
+.precious-question td.current-day {
+    background-color: var(--manuscript-current-day);
+    border: 1px solid var(--manuscript-accent2);
+    color: #3A2C21 !important;
+    font-weight: 500;
+    animation: manuscript-pulse 3s infinite;
+}
+
+.precious-question td.current-day::before {
+    content: "?";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--manuscript-accent2);
+    z-index: 1;
+    opacity: 0.7;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2em;
+}
+
+.precious-question td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #3A2C21 !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--manuscript-shadow);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.precious-question .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--manuscript-accent1);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--manuscript-shadow);
+    transition: all var(--manuscript-transition);
+}
+
+.precious-question .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--manuscript-accent5);
+    box-shadow: 0 0 15px var(--manuscript-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.precious-question .modal-content {
+    position: relative;
+    background-color: rgba(248, 242, 234, 0.95);
+    border: 1px solid var(--manuscript-accent2);
+    padding: 25px;
+    color: var(--manuscript-text);
+    box-shadow: 0 0 30px var(--manuscript-shadow);
+    border-radius: var(--manuscript-radius);
+    animation: manuscript-pulse 0.5s ease;
+}
+
+.precious-question .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--manuscript-accent2);
+    animation: manuscript-pulse 3s infinite;
+}
+
+.precious-question .modal-content h2 {
+    color: var(--manuscript-accent5);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.precious-question .modal-content button {
+    background-color: transparent;
+    color: var(--manuscript-accent5);
+    border: 1px solid var(--manuscript-accent5);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--manuscript-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--manuscript-radius);
+}
+
+.precious-question .modal-content button:hover {
+    background-color: var(--manuscript-accent5);
+    color: var(--manuscript-bg);
+    box-shadow: 0 0 15px var(--manuscript-shadow);
+}
+
+.precious-question .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--manuscript-accent1);
+    border: 1px solid var(--manuscript-accent1);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--manuscript-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.precious-question .modal .close-button:hover {
+    background-color: var(--manuscript-accent1);
+    color: var(--manuscript-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.precious-question .button,
+.precious-question .transparent-button {
+    border: 1px solid var(--manuscript-accent5);
+    color: var(--manuscript-accent5);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Cinzel Decorative', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--manuscript-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--manuscript-radius);
+}
+
+.precious-question .button::before,
+.precious-question .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(245, 237, 224, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.precious-question .button:hover,
+.precious-question .transparent-button:hover {
+    background-color: var(--manuscript-accent5);
+    color: var(--manuscript-bg);
+    box-shadow: 0 0 20px var(--manuscript-shadow);
+}
+
+.precious-question .button:hover::before,
+.precious-question .transparent-button:hover::before {
+    left: 100%;
+}
+
+.precious-question .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.precious-question #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.precious-question #theme-switcher {
+    background-color: rgba(139, 90, 43, 0.4);
+    color: var(--manuscript-accent5) !important;
+    border: 1px solid var(--manuscript-accent5);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--manuscript-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237D5D3B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--manuscript-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 3px var(--manuscript-shadow);
+}
+
+.precious-question #theme-switcher option {
+    background-color: rgba(165, 143, 109, 0.95) !important;
+    color: var(--manuscript-accent5) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--manuscript-accent5) !important;
+}
+
+.precious-question #theme-switcher option:hover {
+    background-color: var(--manuscript-accent5) !important;
+    color: var(--manuscript-bg) !important;
+}
+
+.precious-question #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--manuscript-accent5), 0 0 15px var(--manuscript-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.precious-question #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--manuscript-accent5);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Cinzel Decorative', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--manuscript-accent5);
+    background-color: rgba(139, 90, 43, 0.3);
+    cursor: pointer;
+    transition: all var(--manuscript-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--manuscript-radius);
+}
+
+.precious-question #backToTopBtn:hover {
+    background-color: var(--manuscript-accent5);
+    color: var(--manuscript-bg);
+    box-shadow: 0 0 20px var(--manuscript-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.precious-question footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--manuscript-accent2);
+    color: var(--manuscript-text);
+    font-size: 0.8rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .precious-question .container {
+        padding: 1.2rem;
+    }
+
+    .precious-question #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .precious-question #current-date {
+        font-size: 1.4rem;
+    }
+
+    .precious-question #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .precious-question .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .precious-question th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .precious-question th span.full-day-name {
+        display: none;
+    }
+
+    .precious-question th abbr {
+        display: inline;
+    }
+
+    .precious-question td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .precious-question td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .precious-question #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .precious-question #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .precious-question #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .precious-question .container {
+        padding: 0.6rem;
+    }
+
+    .precious-question #calendar-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.1em;
+    }
+
+    .precious-question #current-date {
+        font-size: 1rem;
+    }
+
+    .precious-question #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .precious-question .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .precious-question th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .precious-question td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .precious-question td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .precious-question #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .precious-question th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .precious-question td {
+        height: 45px;
+    }
+
+    .precious-question #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}
