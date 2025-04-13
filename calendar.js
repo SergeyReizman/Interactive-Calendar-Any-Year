@@ -91,9 +91,9 @@ const applyTheme = (theme) => {
     'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'red-lake', 'red-squirrel', 'rising-sun',
     'robin-good', 'royal-caribbean', 'samurai-path', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shaolin-monastery',
-    'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow',
-    'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'success-motivation', 'sword-of-fate',
-    'tactical-advantage', 'tactical-command', 'technological-might', 
+    'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow', 
+    'statue-of-liberty', 'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'success-motivation', 
+    'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 
     'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland'

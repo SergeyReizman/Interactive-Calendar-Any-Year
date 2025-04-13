@@ -1,0 +1,768 @@
+/* ==========================================================================
+   Statue of Liberty Theme - Patriotic Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Liberty-inspired design system
+   - Torch flame UI elements with glow effects
+   - Animated star patterns
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Historical document textures
+   - Smart responsive scaling with fluid typography
+   - Interactive patriotic hover states
+   - Energy-efficient light/dark mode switching
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --liberty-bg: #F5F9FC;
+    --liberty-text: #2C3E50;
+    --liberty-primary: #0057B7;
+    /* Liberty blue */
+    --liberty-secondary: #73C2FB;
+    /* Torch light blue */
+
+    /* Gradient Colors */
+    --liberty-gradient-start: #E6F0FA;
+    --liberty-gradient-end: #D4E6F1;
+
+    /* Accent Colors */
+    --liberty-copper: #B87333;
+    /* Original statue color */
+    --liberty-gold: #FFD700;
+    /* Torch flame */
+    --liberty-silver: #C0C0C0;
+    /* Tablet highlights */
+    --liberty-stone: #8B9CAD;
+    /* Pedestal */
+    --liberty-green: #228B22;
+    /* Oxidized patina */
+
+    /* Theme Variables */
+    --liberty-shadow: rgba(0, 87, 183, 0.2);
+    --liberty-radius: 0px;
+    /* Angular like the statue's crown */
+    --liberty-transition: 0.3s ease-out;
+    --liberty-hover: #E1EBF5;
+    --liberty-current-day: #C3D9EB;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes torch-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--liberty-secondary),
+            0 0 10px rgba(255, 215, 0, 0.5);
+        opacity: 0.9;
+    }
+
+    50% {
+        text-shadow: 0 0 10px var(--liberty-secondary),
+            0 0 20px rgba(255, 215, 0, 0.7);
+        opacity: 1;
+    }
+}
+
+@keyframes star-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes liberty-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--liberty-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--liberty-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.statue-of-liberty {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--liberty-text);
+    line-height: 1.6;
+    background: var(--liberty-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to right,
+            rgba(0, 87, 183, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(to bottom,
+            rgba(0, 87, 183, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+}
+
+.statue-of-liberty::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(115, 194, 251, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(0, 87, 183, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Star pattern overlay */
+.statue-of-liberty::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path fill="%230057B7" d="M50 10L55 30H75L60 40L65 60L50 45L35 60L40 40L25 30H45Z"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.statue-of-liberty .container {
+    background-color: rgba(245, 249, 252, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--liberty-primary);
+    box-shadow: 0 0 20px var(--liberty-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--liberty-radius);
+    z-index: 1;
+}
+
+.statue-of-liberty .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--liberty-primary),
+            var(--liberty-secondary),
+            transparent);
+    animation: liberty-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.statue-of-liberty #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--liberty-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: torch-glow 3s infinite;
+}
+
+.statue-of-liberty #calendar-title::before,
+.statue-of-liberty #calendar-title::after {
+    content: "☆";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--liberty-gold);
+    font-size: 1.5rem;
+    animation: star-twinkle 2s infinite;
+}
+
+.statue-of-liberty #calendar-title::before {
+    left: 1rem;
+}
+
+.statue-of-liberty #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.statue-of-liberty #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 87, 183, 0.1);
+    border: 1px solid var(--liberty-primary);
+    border-radius: var(--liberty-radius);
+    position: relative;
+}
+
+.statue-of-liberty #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--liberty-primary),
+            transparent);
+}
+
+.statue-of-liberty #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--liberty-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.statue-of-liberty #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--liberty-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.statue-of-liberty #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.statue-of-liberty .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--liberty-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--liberty-bg);
+    box-shadow:
+        0 0 15px var(--liberty-shadow),
+        inset 0 0 10px rgba(0, 87, 183, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(0, 87, 183, 0.1) 100%);
+}
+
+/* Roman numerals for clock */
+.statue-of-liberty .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Times New Roman" font-size="12">XII</text><text x="82" y="55" text-anchor="middle" font-family="Times New Roman" font-size="12">III</text><text x="50" y="92" text-anchor="middle" font-family="Times New Roman" font-size="12">VI</text><text x="18" y="55" text-anchor="middle" font-family="Times New Roman" font-size="12">IX</text></svg>');
+}
+
+.statue-of-liberty .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.statue-of-liberty .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--liberty-primary);
+    margin-top: -2px;
+}
+
+.statue-of-liberty .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--liberty-secondary);
+    margin-top: -1px;
+}
+
+.statue-of-liberty .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--liberty-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Torch base */
+.statue-of-liberty .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--liberty-copper);
+    border-radius: 50%;
+    border: 1px solid var(--liberty-gold);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.statue-of-liberty table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: white;
+    border: 1px solid var(--liberty-primary);
+    border-radius: var(--liberty-radius);
+    table-layout: fixed;
+}
+
+.statue-of-liberty th {
+    background-color: rgba(0, 87, 183, 0.2);
+    color: var(--liberty-primary) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--liberty-primary);
+    position: relative;
+}
+
+.statue-of-liberty th span.full-day-name {
+    display: inline;
+}
+
+.statue-of-liberty th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.statue-of-liberty td {
+    background-color: rgba(245, 249, 252, 0.7);
+    color: var(--liberty-text);
+    padding: 1rem;
+    border: 1px solid var(--liberty-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--liberty-transition);
+    position: relative;
+}
+
+.statue-of-liberty td:hover {
+    background-color: var(--liberty-hover);
+    box-shadow: inset 0 0 10px var(--liberty-shadow);
+}
+
+.statue-of-liberty td.current-day {
+    background-color: var(--liberty-current-day);
+    border: 1px solid var(--liberty-primary);
+    color: var(--liberty-primary) !important;
+    font-weight: 700;
+    animation: liberty-pulse 3s infinite;
+}
+
+.statue-of-liberty td.current-day::before {
+    content: "🗽";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--liberty-primary);
+    z-index: 1;
+    opacity: 0.7;
+    font-size: 1rem;
+}
+
+.statue-of-liberty td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--liberty-primary) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.statue-of-liberty .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--liberty-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--liberty-shadow);
+    transition: all var(--liberty-transition);
+}
+
+.statue-of-liberty .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--liberty-secondary);
+    box-shadow: 0 0 15px var(--liberty-primary);
+}
+
+/* Special event types */
+.statue-of-liberty .event-marker.holiday {
+    background-color: var(--liberty-gold);
+}
+
+.statue-of-liberty .event-marker.historic {
+    background-color: var(--liberty-copper);
+}
+
+.statue-of-liberty .event-marker.patriotic {
+    background-color: var(--liberty-green);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.statue-of-liberty .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--liberty-primary);
+    padding: 25px;
+    color: var(--liberty-text);
+    box-shadow: 0 0 30px var(--liberty-shadow);
+    border-radius: var(--liberty-radius);
+    animation: liberty-pulse 0.5s ease;
+}
+
+.statue-of-liberty .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--liberty-primary),
+            var(--liberty-secondary),
+            var(--liberty-gold));
+}
+
+.statue-of-liberty .modal-content h2 {
+    color: var(--liberty-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.statue-of-liberty .modal-content button {
+    background-color: var(--liberty-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--liberty-transition);
+    border-radius: var(--liberty-radius);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.statue-of-liberty .modal-content button:hover {
+    background-color: var(--liberty-secondary);
+    box-shadow: 0 4px 6px -1px var(--liberty-shadow);
+}
+
+.statue-of-liberty .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--liberty-primary);
+    border: 1px solid var(--liberty-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--liberty-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.statue-of-liberty .modal .close-button:hover {
+    background-color: var(--liberty-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.statue-of-liberty .button,
+.statue-of-liberty .transparent-button {
+    border: 1px solid var(--liberty-primary);
+    color: var(--liberty-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--liberty-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--liberty-radius);
+}
+
+.statue-of-liberty .button::before,
+.statue-of-liberty .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 87, 183, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.statue-of-liberty .button:hover,
+.statue-of-liberty .transparent-button:hover {
+    background-color: var(--liberty-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--liberty-shadow);
+}
+
+.statue-of-liberty .button:hover::before,
+.statue-of-liberty .transparent-button:hover::before {
+    left: 100%;
+}
+
+.statue-of-liberty .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.statue-of-liberty #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.statue-of-liberty #theme-switcher {
+    background-color: white;
+    color: var(--liberty-primary) !important;
+    border: 1px solid var(--liberty-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--liberty-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230057B7'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--liberty-transition);
+    box-shadow: 0 1px 3px 0 var(--liberty-shadow);
+}
+
+.statue-of-liberty #theme-switcher option {
+    background-color: white !important;
+    color: var(--liberty-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.statue-of-liberty #theme-switcher option:hover {
+    background-color: var(--liberty-primary) !important;
+    color: white !important;
+}
+
+.statue-of-liberty #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 87, 183, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.statue-of-liberty #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--liberty-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--liberty-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--liberty-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--liberty-radius);
+    box-shadow: 0 4px 6px -1px var(--liberty-shadow);
+}
+
+.statue-of-liberty #backToTopBtn:hover {
+    background-color: var(--liberty-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.statue-of-liberty footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--liberty-primary);
+    color: var(--liberty-text);
+    font-size: 0.8rem;
+}
+
+.statue-of-liberty footer::before {
+    content: "✭ ";
+    color: var(--liberty-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .statue-of-liberty .container {
+        padding: 1.2rem;
+    }
+
+    .statue-of-liberty #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .statue-of-liberty #current-date {
+        font-size: 1.4rem;
+    }
+
+    .statue-of-liberty #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .statue-of-liberty .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .statue-of-liberty th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .statue-of-liberty th span.full-day-name {
+        display: none;
+    }
+
+    .statue-of-liberty th abbr {
+        display: inline;
+    }
+
+    .statue-of-liberty td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .statue-of-liberty td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .statue-of-liberty #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .statue-of-liberty #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .statue-of-liberty #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .statue-of-liberty .container {
+        padding: 0.6rem;
+    }
+
+    .statue-of-liberty #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .statue-of-liberty #current-date {
+        font-size: 1rem;
+    }
+
+    .statue-of-liberty #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .statue-of-liberty .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .statue-of-liberty th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .statue-of-liberty td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .statue-of-liberty td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .statue-of-liberty #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .statue-of-liberty th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .statue-of-liberty td {
+        height: 45px;
+    }
+
+    .statue-of-liberty #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}
