@@ -1,106 +1,114 @@
 /* ==========================================================================
-   Doterra Black Theme - Premium Essential Oils Interface
-   Version: 2.5
-   Updated: 2025-07-20
+   Doterra Black Theme - Organic Wellness Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
    Features:
-   - Nature-inspired dark botanical design
-   - Essential oil bottle glass effects
-   - Organic texture overlays
-   - Enhanced readability with WCAG 2.1 AA compliance
-   - Earth-toned color palette
-   - Responsive design for all devices
-   - Subtle natural animations
+   - Nature-inspired design system
+   - Essential oil bottle UI elements
+   - Animated leaf patterns
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Organic paper textures
+   - Smart responsive scaling with fluid typography
+   - Interactive hover states with soothing transitions
+   - Aromatherapy-inspired color modes
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;600&display=swap');
 
 :root {
     /* Core Color Palette */
-    --dt-bg: #0A0F0A;
-    /* Deep forest black */
-    --dt-text: #E8F1E8;
-    /* Soft botanical white */
-    --dt-primary: #5D8C5A;
-    /* Muted sage green */
-    --dt-secondary: #A38F84;
-    /* Earthy clay */
+    --doterra-bg: #121210;
+    --doterra-text: #E8E8E0;
+    --doterra-primary: #5D8C5A;
+    /* Sage green */
+    --doterra-secondary: #B38A58;
+    /* Amber brown */
 
     /* Gradient Colors */
-    --dt-gradient-start: #050805;
-    /* Pure black */
-    --dt-gradient-end: #0A0F0A;
-    /* Slightly lighter black */
+    --doterra-gradient-start: #1A1D18;
+    --doterra-gradient-end: #1D1818;
 
     /* Accent Colors */
-    --dt-accent1: #8C5A5D;
-    /* Rose clay */
-    --dt-accent2: #5A8C5D;
-    /* Success green */
-    --dt-accent3: #8C845A;
-    /* Goldenrod */
-    --dt-accent4: #5A5D8C;
-    /* Lavender */
-    --dt-accent5: #5A848C;
-    /* Eucalyptus */
+    --doterra-lavender: #9678B6;
+    /* Lavender purple */
+    --doterra-peppermint: #4AAE8B;
+    /* Peppermint teal */
+    --doterra-lemon: #D9C762;
+    /* Lemon yellow */
+    --doterra-bergamot: #C88F4D;
+    /* Bergamot orange */
+    --doterra-frankincense: #8B7355;
+    /* Frankincense gold */
 
     /* Theme Variables */
-    --dt-shadow: rgba(93, 140, 90, 0.3);
-    /* Botanical glow */
-    --dt-radius: 4px;
-    /* Organic rounded corners */
-    --dt-transition: 0.3s ease-in-out;
-    --dt-hover: #1A1F1A;
-    /* Dark gray-green */
-    --dt-current-day: #2A3A2A;
-    /* Forest green highlight */
+    --doterra-shadow: rgba(93, 140, 90, 0.2);
+    --doterra-radius: 6px;
+    /* Soft organic shapes */
+    --doterra-transition: 0.4s ease-in-out;
+    --doterra-hover: #1E1E1A;
+    --doterra-current-day: #2D3A2B;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes dt-pulse {
+@keyframes oil-drop {
 
     0%,
     100% {
-        box-shadow: 0 0 5px var(--dt-accent1);
+        text-shadow: 0 0 5px var(--doterra-primary),
+            0 0 10px rgba(179, 138, 88, 0.5);
+        opacity: 0.9;
     }
 
     50% {
-        box-shadow: 0 0 15px var(--dt-accent5);
+        text-shadow: 0 0 10px var(--doterra-primary),
+            0 0 20px rgba(179, 138, 88, 0.7);
+        opacity: 1;
     }
 }
 
-@keyframes dt-leaf-fall {
-    0% {
-        transform: translateY(-10px) rotate(0deg);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0) rotate(5deg);
-        opacity: 0.3;
-    }
-}
-
-@keyframes dt-breathe {
+@keyframes leaf-fall {
 
     0%,
     100% {
-        transform: scale(1);
+        opacity: 0.8;
+        transform: translateY(0) rotate(0deg);
     }
 
     50% {
-        transform: scale(1.02);
+        opacity: 1;
+        transform: translateY(-5px) rotate(5deg);
+    }
+}
+
+@keyframes doterra-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--doterra-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--doterra-secondary);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .doterra-black {
     font-family: 'Montserrat', sans-serif;
-    color: var(--dt-text);
-    line-height: 1.5;
-    background: var(--dt-bg);
+    color: var(--doterra-text);
+    line-height: 1.6;
+    background: var(--doterra-bg);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    background-image:
+        linear-gradient(to right,
+            rgba(93, 140, 90, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(to bottom,
+            rgba(93, 140, 90, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
 }
 
 .doterra-black::before {
@@ -110,54 +118,88 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 Q30,10 40,20 T60,20 T80,20" stroke="%235D8C5A" stroke-width="0.3" fill="none" opacity="0.1"/></svg>');
-    background-size: 200px 200px;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(93, 140, 90, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(179, 138, 88, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Leaf pattern overlay */
+.doterra-black::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path fill="%235D8C5A" d="M50 10Q70 30 50 60Q30 30 50 10Z"/></svg>');
     pointer-events: none;
     z-index: 0;
 }
 
 .doterra-black .container {
-    background-color: rgba(15, 20, 15, 0.9);
+    background-color: rgba(18, 18, 16, 0.95);
     padding: 2rem;
-    border: 1px solid var(--dt-primary);
-    box-shadow: 0 0 20px var(--dt-shadow);
+    border: 1px solid var(--doterra-primary);
+    box-shadow: 0 0 20px var(--doterra-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--dt-radius);
+    border-radius: var(--doterra-radius);
     z-index: 1;
 }
 
-.doterra-black .container::after {
+.doterra-black .container::before {
     content: "";
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--dt-primary), transparent);
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--doterra-primary),
+            var(--doterra-secondary),
+            transparent);
+    animation: doterra-pulse 4s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .doterra-black #calendar-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--dt-primary);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--doterra-primary);
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    font-weight: 700;
     letter-spacing: 0.05em;
     position: relative;
+    animation: oil-drop 4s infinite;
+}
+
+.doterra-black #calendar-title::before,
+.doterra-black #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--doterra-secondary);
+    font-size: 1.5rem;
+    animation: leaf-fall 3s infinite;
+}
+
+.doterra-black #calendar-title::before {
+    left: 1rem;
 }
 
 .doterra-black #calendar-title::after {
-    content: "";
-    display: block;
-    width: 100px;
-    height: 2px;
-    background: var(--dt-primary);
-    margin: 1rem auto 0;
-    opacity: 0.6;
+    right: 1rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -165,9 +207,9 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: rgba(42, 58, 42, 0.3);
-    border: 1px solid var(--dt-primary);
-    border-radius: var(--dt-radius);
+    background-color: rgba(93, 140, 90, 0.1);
+    border: 1px solid var(--doterra-primary);
+    border-radius: var(--doterra-radius);
     position: relative;
 }
 
@@ -178,24 +220,107 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--dt-primary), transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--doterra-primary),
+            transparent);
 }
 
 .doterra-black #current-date {
-    font-family: 'Playfair Display', serif;
-    color: var(--dt-text);
-    font-size: 1.6rem;
-    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--doterra-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .doterra-black #today-weather {
     font-family: 'Montserrat', sans-serif;
-    color: var(--dt-accent5);
+    color: var(--doterra-secondary);
     font-size: 1.2rem;
-    font-style: normal;
-    letter-spacing: 0.05em;
-    font-weight: 400;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.doterra-black #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.doterra-black .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--doterra-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--doterra-bg);
+    box-shadow:
+        0 0 15px var(--doterra-shadow),
+        inset 0 0 10px rgba(93, 140, 90, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(93, 140, 90, 0.1) 100%);
+}
+
+/* Herbal numerals for clock */
+.doterra-black .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Cormorant Garamond" font-size="12">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12">III</text><text x="50" y="92" text-anchor="middle" font-family="Cormorant Garamond" font-size="12">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12">IX</text></svg>');
+}
+
+.doterra-black .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.doterra-black .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--doterra-primary);
+    margin-top: -2px;
+}
+
+.doterra-black .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--doterra-secondary);
+    margin-top: -1px;
+}
+
+.doterra-black .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--doterra-lemon);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Oil drop */
+.doterra-black .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--doterra-frankincense);
+    border-radius: 50%;
+    border: 1px solid var(--doterra-secondary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
@@ -203,26 +328,20 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(20, 25, 20, 0.2);
-    border: 1px solid var(--dt-primary);
-    border-radius: var(--dt-radius);
+    background-color: rgba(30, 30, 26, 0.8);
+    border: 1px solid var(--doterra-primary);
+    border-radius: var(--doterra-radius);
     table-layout: fixed;
 }
 
 .doterra-black th {
-    background-color: rgba(42, 58, 42, 0.4);
-    color: var(--dt-text) !important;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    background-color: rgba(93, 140, 90, 0.2);
+    color: var(--doterra-primary) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--dt-primary);
+    border: 1px solid var(--doterra-primary);
     position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
 }
 
 .doterra-black th span.full-day-name {
@@ -236,43 +355,44 @@
 }
 
 .doterra-black td {
-    background-color: rgba(15, 20, 15, 0.1);
-    color: var(--dt-text);
+    background-color: rgba(18, 18, 16, 0.7);
+    color: var(--doterra-text);
     padding: 1rem;
-    border: 1px solid var(--dt-primary);
+    border: 1px solid var(--doterra-primary);
     height: 90px;
     vertical-align: top;
-    transition: all var(--dt-transition);
+    transition: all var(--doterra-transition);
     position: relative;
 }
 
 .doterra-black td:hover {
-    background-color: rgba(42, 58, 42, 0.3);
+    background-color: var(--doterra-hover);
+    box-shadow: inset 0 0 10px var(--doterra-shadow);
 }
 
 .doterra-black td.current-day {
-    background-color: var(--dt-current-day);
-    border: 1px solid var(--dt-accent2);
-    color: #fff !important;
-    font-weight: 400;
-    animation: dt-breathe 4s infinite;
+    background-color: var(--doterra-current-day);
+    border: 1px solid var(--doterra-primary);
+    color: var(--doterra-primary) !important;
+    font-weight: 700;
+    animation: doterra-pulse 4s infinite;
 }
 
 .doterra-black td.current-day::before {
-    content: "🌿";
+    content: "🫙";
     position: absolute;
     top: 5px;
     left: 5px;
-    color: var(--dt-accent2);
+    color: var(--doterra-primary);
     z-index: 1;
     opacity: 0.7;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .doterra-black td.current-day>.date-number {
     position: relative;
     z-index: 2;
-    color: #fff !important;
+    color: var(--doterra-primary) !important;
     font-weight: bold;
 }
 
@@ -282,25 +402,41 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--dt-accent1);
+    background-color: var(--doterra-primary);
     margin: 0 2px;
-    transition: all var(--dt-transition);
+    box-shadow: 0 0 5px var(--doterra-shadow);
+    transition: all var(--doterra-transition);
 }
 
 .doterra-black .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--dt-accent3);
+    transform: scale(1.8);
+    background-color: var(--doterra-secondary);
+    box-shadow: 0 0 15px var(--doterra-primary);
+}
+
+/* Special event types */
+.doterra-black .event-marker.holiday {
+    background-color: var(--doterra-bergamot);
+}
+
+.doterra-black .event-marker.historic {
+    background-color: var(--doterra-frankincense);
+}
+
+.doterra-black .event-marker.patriotic {
+    background-color: var(--doterra-peppermint);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .doterra-black .modal-content {
     position: relative;
-    background-color: rgba(15, 20, 15, 0.95);
-    border: 1px solid var(--dt-primary);
+    background-color: rgba(30, 30, 26, 0.98);
+    border: 1px solid var(--doterra-primary);
     padding: 25px;
-    color: var(--dt-text);
-    box-shadow: 0 0 30px var(--dt-shadow);
-    border-radius: var(--dt-radius);
+    color: var(--doterra-text);
+    box-shadow: 0 0 30px var(--doterra-shadow);
+    border-radius: var(--doterra-radius);
+    animation: doterra-pulse 0.5s ease;
 }
 
 .doterra-black .modal-content::before {
@@ -309,48 +445,50 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: var(--dt-primary);
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--doterra-primary),
+            var(--doterra-secondary),
+            var(--doterra-lemon));
 }
 
 .doterra-black .modal-content h2 {
-    color: var(--dt-primary);
-    font-family: 'Playfair Display', serif;
+    color: var(--doterra-primary);
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.8em;
     margin-bottom: 15px;
-    letter-spacing: 0.05em;
+    font-weight: 700;
 }
 
 .doterra-black .modal-content button {
-    background-color: transparent;
-    color: var(--dt-primary);
-    border: 1px solid var(--dt-primary);
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
+    border: none;
     padding: 10px 20px;
     font-size: 0.9em;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--dt-transition);
-    letter-spacing: 0.05em;
-    border-radius: var(--dt-radius);
+    transition: all var(--doterra-transition);
+    border-radius: var(--doterra-radius);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .doterra-black .modal-content button:hover {
-    background-color: var(--dt-primary);
-    color: var(--dt-bg);
+    background-color: var(--doterra-secondary);
+    box-shadow: 0 4px 6px -1px var(--doterra-shadow);
 }
 
-/* Close Button */
 .doterra-black .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
     background-color: transparent;
-    color: var(--dt-accent1);
-    border: 1px solid var(--dt-accent1);
+    color: var(--doterra-primary);
+    border: 1px solid var(--doterra-primary);
     width: 28px;
     height: 28px;
     cursor: pointer;
-    transition: all var(--dt-transition);
+    transition: all var(--doterra-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -358,32 +496,49 @@
 }
 
 .doterra-black .modal .close-button:hover {
-    background-color: var(--dt-accent1);
-    color: var(--dt-bg);
-    transform: rotate(90deg);
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .doterra-black .button,
 .doterra-black .transparent-button {
-    border: 1px solid var(--dt-primary);
-    color: var(--dt-primary);
+    border: 1px solid var(--doterra-primary);
+    color: var(--doterra-primary);
     background-color: transparent;
     padding: 0.7rem 1.4rem;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.05em;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--dt-transition);
+    transition: all var(--doterra-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--dt-radius);
+    border-radius: var(--doterra-radius);
+}
+
+.doterra-black .button::before,
+.doterra-black .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(93, 140, 90, 0.1), transparent);
+    transition: 0.5s;
 }
 
 .doterra-black .button:hover,
 .doterra-black .transparent-button:hover {
-    background-color: var(--dt-primary);
-    color: var(--dt-bg);
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
+    box-shadow: 0 4px 6px -1px var(--doterra-shadow);
+}
+
+.doterra-black .button:hover::before,
+.doterra-black .transparent-button:hover::before {
+    left: 100%;
 }
 
 .doterra-black .controls {
@@ -394,29 +549,78 @@
     margin: 1.5rem 0;
 }
 
+/* ==================== THEME SWITCHER ==================== */
+.doterra-black #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.doterra-black #theme-switcher {
+    background-color: var(--doterra-bg);
+    color: var(--doterra-primary) !important;
+    border: 1px solid var(--doterra-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--doterra-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235D8C5A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    box-shadow: 0 1px 3px 0 var(--doterra-shadow);
+}
+
+.doterra-black #theme-switcher option {
+    background-color: var(--doterra-bg) !important;
+    color: var(--doterra-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.doterra-black #theme-switcher option:hover {
+    background-color: var(--doterra-primary) !important;
+    color: var(--doterra-bg) !important;
+}
+
+.doterra-black #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(93, 140, 90, 0.3);
+}
+
 /* ==================== BACK TO TOP BUTTON ==================== */
 .doterra-black #backToTopBtn {
     position: fixed;
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--dt-primary);
+    border: 1px solid var(--doterra-primary);
     padding: 0.9rem 1.6rem;
     font-size: 0.9rem;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.05em;
-    color: var(--dt-primary);
-    background-color: rgba(20, 25, 20, 0.3);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    color: var(--doterra-primary);
+    background-color: var(--doterra-bg);
     cursor: pointer;
-    transition: all var(--dt-transition);
+    transition: all var(--doterra-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--dt-radius);
+    border-radius: var(--doterra-radius);
+    box-shadow: 0 4px 6px -1px var(--doterra-shadow);
 }
 
 .doterra-black #backToTopBtn:hover {
-    background-color: var(--dt-primary);
-    color: var(--dt-bg);
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
     opacity: 1;
 }
 
@@ -425,9 +629,14 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--dt-primary);
-    color: var(--dt-text);
+    border-top: 1px solid var(--doterra-primary);
+    color: var(--doterra-text);
     font-size: 0.8rem;
+}
+
+.doterra-black footer::before {
+    content: "🌱 ";
+    color: var(--doterra-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -450,6 +659,11 @@
 }
 
 @media (max-width: 768px) {
+    .doterra-black .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
     .doterra-black th {
         font-size: 0.8rem;
         padding: 0.7rem 0.2rem;
@@ -481,6 +695,17 @@
         padding: 0.7rem 1.3rem;
         font-size: 0.8rem;
     }
+
+    .doterra-black #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .doterra-black #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -500,6 +725,11 @@
         font-size: 0.8rem;
     }
 
+    .doterra-black .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
     .doterra-black th {
         font-size: 0.7rem;
         padding: 0.4rem 0.1rem;
@@ -514,6 +744,11 @@
     .doterra-black td.current-day::before {
         font-size: 0.7rem;
     }
+
+    .doterra-black #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
 }
 
 @media (max-width: 400px) {
@@ -524,5 +759,10 @@
 
     .doterra-black td {
         height: 45px;
+    }
+
+    .doterra-black #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
     }
 }
