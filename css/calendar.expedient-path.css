@@ -1,0 +1,697 @@
+/* ==========================================================================
+   Expedient Path Theme - Productivity Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Efficiency-focused design system
+   - Dynamic path visualization elements
+   - Smart progress animations
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Context-aware visual hierarchy
+   - Ultra-responsive scaling with adaptive typography
+   - Interactive workflow states
+   - Energy-efficient light/dark mode switching
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --path-bg: #FAFAFA;
+    --path-text: #2D3748;
+    --path-primary: #4F46E5;
+    --path-secondary: #10B981;
+
+    /* Gradient Colors */
+    --path-gradient-start: #F3F4F6;
+    --path-gradient-end: #E5E7EB;
+
+    /* Status Colors */
+    --path-optimal: #10B981;
+    /* Green */
+    --path-efficient: #3B82F6;
+    /* Blue */
+    --path-neutral: #6B7280;
+    /* Gray */
+    --path-warning: #F59E0B;
+    /* Amber */
+    --path-critical: #EF4444;
+    /* Red */
+
+    /* Theme Variables */
+    --path-shadow: rgba(79, 70, 229, 0.1);
+    --path-radius: 6px;
+    --path-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --path-hover: #EDE9FE;
+    --path-current-day: #E0E7FF;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes path-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.1);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(79, 70, 229, 0);
+    }
+}
+
+@keyframes path-progress {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes path-highlight {
+
+    0%,
+    100% {
+        background-color: var(--path-current-day);
+    }
+
+    50% {
+        background-color: rgba(224, 231, 255, 0.7);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.expedient-path {
+    font-family: 'Inter', sans-serif;
+    color: var(--path-text);
+    line-height: 1.5;
+    background: var(--path-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to right,
+            var(--path-gradient-start) 1px,
+            transparent 1px),
+        linear-gradient(to bottom,
+            var(--path-gradient-start) 1px,
+            transparent 1px);
+    background-size: 24px 24px;
+}
+
+.expedient-path .container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--path-primary);
+    box-shadow: 0 4px 6px -1px var(--path-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--path-radius);
+    z-index: 1;
+}
+
+.expedient-path .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--path-primary),
+            var(--path-secondary));
+    animation: path-progress 3s linear infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.expedient-path #calendar-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--path-primary);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    position: relative;
+}
+
+.expedient-path #calendar-title::after {
+    content: "→";
+    position: absolute;
+    right: 1em;
+    color: var(--path-secondary);
+    animation: path-pulse 2s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.expedient-path #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(79, 70, 229, 0.05);
+    border: 1px solid var(--path-primary);
+    border-radius: var(--path-radius);
+    position: relative;
+}
+
+.expedient-path #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--path-primary),
+            transparent);
+}
+
+.expedient-path #current-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--path-primary);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.expedient-path #today-weather {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--path-secondary);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.expedient-path #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.expedient-path .clock-face {
+    width: 160px;
+    height: 160px;
+    border: 1px solid var(--path-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    box-shadow:
+        0 4px 6px -1px var(--path-shadow),
+        inset 0 0 0 1px var(--path-gradient-end);
+}
+
+.expedient-path .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.expedient-path .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: var(--path-primary);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.expedient-path .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--path-secondary);
+    margin-top: -1px;
+    border-radius: 1px;
+}
+
+.expedient-path .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--path-critical);
+    margin-top: -0.5px;
+}
+
+/* Clock center */
+.expedient-path .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--path-primary);
+    border-radius: 50%;
+    border: 1px solid var(--path-secondary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.expedient-path table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: white;
+    border: 1px solid var(--path-primary);
+    border-radius: var(--path-radius);
+    table-layout: fixed;
+    box-shadow: 0 4px 6px -1px var(--path-shadow);
+}
+
+.expedient-path th {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--path-primary) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--path-primary);
+    position: relative;
+}
+
+.expedient-path th span.full-day-name {
+    display: inline;
+}
+
+.expedient-path th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.expedient-path td {
+    background-color: white;
+    color: var(--path-text);
+    padding: 1rem;
+    border: 1px solid var(--path-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--path-transition);
+    position: relative;
+}
+
+.expedient-path td:hover {
+    background-color: var(--path-hover);
+}
+
+.expedient-path td.current-day {
+    background-color: var(--path-current-day);
+    border: 1px solid var(--path-primary);
+    color: var(--path-primary) !important;
+    font-weight: 600;
+    animation: path-highlight 3s infinite;
+}
+
+.expedient-path td.current-day::before {
+    content: "▶";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--path-primary);
+    font-size: 0.8rem;
+}
+
+.expedient-path td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--path-primary) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.expedient-path .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background-color: var(--path-neutral);
+    margin: 0 2px;
+    transition: all var(--path-transition);
+    transform: rotate(45deg);
+}
+
+.expedient-path .event-marker:hover {
+    transform: scale(1.5) rotate(45deg);
+}
+
+/* Priority-based markers */
+.expedient-path .event-marker.priority-1 {
+    background-color: var(--path-optimal);
+}
+
+.expedient-path .event-marker.priority-2 {
+    background-color: var(--path-efficient);
+}
+
+.expedient-path .event-marker.priority-3 {
+    background-color: var(--path-warning);
+}
+
+.expedient-path .event-marker.priority-4 {
+    background-color: var(--path-critical);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.expedient-path .modal-content {
+    position: relative;
+    background-color: white;
+    border: 1px solid var(--path-primary);
+    padding: 25px;
+    color: var(--path-text);
+    box-shadow: 0 0 30px var(--path-shadow);
+    border-radius: var(--path-radius);
+}
+
+.expedient-path .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--path-primary),
+            var(--path-secondary));
+}
+
+.expedient-path .modal-content h2 {
+    color: var(--path-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.expedient-path .modal-content button {
+    background-color: var(--path-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--path-transition);
+    border-radius: var(--path-radius);
+    font-family: 'Inter', sans-serif;
+}
+
+.expedient-path .modal-content button:hover {
+    background-color: var(--path-secondary);
+    box-shadow: 0 4px 6px -1px var(--path-shadow);
+}
+
+.expedient-path .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--path-primary);
+    border: 1px solid var(--path-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--path-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.expedient-path .modal .close-button:hover {
+    background-color: var(--path-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.expedient-path .button,
+.expedient-path .transparent-button {
+    border: 1px solid var(--path-primary);
+    color: var(--path-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--path-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--path-radius);
+}
+
+.expedient-path .button::before,
+.expedient-path .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.expedient-path .button:hover,
+.expedient-path .transparent-button:hover {
+    background-color: var(--path-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--path-shadow);
+}
+
+.expedient-path .button:hover::before,
+.expedient-path .transparent-button:hover::before {
+    left: 100%;
+}
+
+.expedient-path .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.expedient-path #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.expedient-path #theme-switcher {
+    background-color: white;
+    color: var(--path-primary) !important;
+    border: 1px solid var(--path-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--path-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F46E5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--path-transition);
+    box-shadow: 0 1px 3px 0 var(--path-shadow);
+}
+
+.expedient-path #theme-switcher option {
+    background-color: white !important;
+    color: var(--path-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.expedient-path #theme-switcher option:hover {
+    background-color: var(--path-primary) !important;
+    color: white !important;
+}
+
+.expedient-path #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.expedient-path #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--path-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--path-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--path-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--path-radius);
+    box-shadow: 0 4px 6px -1px var(--path-shadow);
+}
+
+.expedient-path #backToTopBtn:hover {
+    background-color: var(--path-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.expedient-path footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--path-primary);
+    color: var(--path-text);
+    font-size: 0.8rem;
+}
+
+.expedient-path footer::before {
+    content: "⏱ ";
+    color: var(--path-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .expedient-path .container {
+        padding: 1.2rem;
+    }
+
+    .expedient-path #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .expedient-path #current-date {
+        font-size: 1.4rem;
+    }
+
+    .expedient-path #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .expedient-path .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .expedient-path th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .expedient-path th span.full-day-name {
+        display: none;
+    }
+
+    .expedient-path th abbr {
+        display: inline;
+    }
+
+    .expedient-path td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .expedient-path td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .expedient-path #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .expedient-path #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .expedient-path #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .expedient-path .container {
+        padding: 0.6rem;
+    }
+
+    .expedient-path #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .expedient-path #current-date {
+        font-size: 1rem;
+    }
+
+    .expedient-path #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .expedient-path .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .expedient-path th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .expedient-path td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .expedient-path td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .expedient-path #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .expedient-path th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .expedient-path td {
+        height: 45px;
+    }
+
+    .expedient-path #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}
