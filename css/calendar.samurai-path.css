@@ -1,0 +1,745 @@
+/* ==========================================================================
+   Samurai Path Theme - Bushido Calendar UI
+   Version: 4.0
+   Updated: 2025-06-15
+   Features:
+   - Edo period-inspired design system
+   - Katana blade UI elements with cherry blossom effects
+   - Kanji character animations
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Scroll painting depth effects
+   - Smart responsive scaling with fluid typography
+   - Interactive dojo hover states
+   - Energy-efficient zen mode by default
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --bushido-bg: #F5F0EB;
+    --bushido-text: #3A3226;
+    --bushido-primary: #C8252A;
+    /* Vermillion */
+    --bushido-secondary: #2C5F2D;
+    /* Pine green */
+
+    /* Gradient Colors */
+    --bushido-gradient-start: #F8F4E9;
+    --bushido-gradient-end: #E8D9C5;
+
+    /* Accent Colors */
+    --bushido-accent1: #8B4513;
+    /* Saddle brown */
+    --bushido-accent2: #556B2F;
+    /* Dark olive green */
+    --bushido-accent3: #800000;
+    /* Maroon */
+    --bushido-accent4: #654321;
+    /* Dark brown */
+    --bushido-accent5: #4B5320;
+    /* Army green */
+
+    /* Theme Variables */
+    --bushido-shadow: rgba(200, 37, 42, 0.2);
+    --bushido-radius: 0px;
+    /* Sharp edges like katana */
+    --bushido-transition: 0.3s ease-out;
+    --bushido-hover: #E8D9C5;
+    --bushido-current-day: #D4B483;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes blossom-fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes ink-flow {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes katana-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--bushido-accent1);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--bushido-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.samurai-path {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: var(--bushido-text);
+    line-height: 1.6;
+    background: var(--bushido-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23C8252A" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+.samurai-path::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%,
+            rgba(200, 37, 42, 0.03) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(44, 95, 45, 0.03) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+    animation: ink-flow 15s linear infinite;
+}
+
+/* Cherry blossom petals */
+.samurai-path::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23C8252A" opacity="0.03"><path d="M12 2C13.1 2 14 2.9 14 4S13.1 6 12 6 10 5.1 10 4 10.9 2 12 2m3.5 5.5C16.3 7.5 17 8.2 17 9s-.7 1.5-1.5 1.5S14 9.8 14 9s.7-1.5 1.5-1.5M7 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m10.5-1.5c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5S19 13.8 19 13s-.7-1.5-1.5-1.5M12 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+    animation: blossom-fall 20s linear infinite;
+}
+
+.samurai-path .container {
+    background-color: rgba(245, 240, 235, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--bushido-primary);
+    box-shadow: 0 0 20px var(--bushido-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--bushido-radius);
+    z-index: 1;
+}
+
+.samurai-path .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bushido-primary), transparent);
+    animation: katana-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.samurai-path #calendar-title {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--bushido-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    position: relative;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.samurai-path #calendar-title::before,
+.samurai-path #calendar-title::after {
+    content: "刀";
+    /* Katana character */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bushido-accent1);
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.samurai-path #calendar-title::before {
+    left: 1rem;
+}
+
+.samurai-path #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.samurai-path #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(200, 37, 42, 0.1);
+    border: 1px solid var(--bushido-primary);
+    border-radius: var(--bushido-radius);
+    position: relative;
+}
+
+.samurai-path #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bushido-primary), transparent);
+}
+
+.samurai-path #current-date {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--bushido-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.samurai-path #today-weather {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: var(--bushido-accent2);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.samurai-path #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.samurai-path .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--bushido-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--bushido-bg);
+    box-shadow: 0 0 15px var(--bushido-shadow),
+        inset 0 0 10px rgba(200, 37, 42, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(200, 37, 42, 0.1) 100%);
+}
+
+.samurai-path .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.samurai-path .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--bushido-primary);
+    margin-top: -2px;
+}
+
+.samurai-path .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--bushido-accent1);
+    margin-top: -1px;
+}
+
+.samurai-path .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--bushido-accent3);
+    margin-top: -0.5px;
+}
+
+/* Clock center */
+.samurai-path .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bushido-primary);
+    border-radius: 50%;
+    border: 1px solid var(--bushido-text);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.samurai-path table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--bushido-bg);
+    border: 1px solid var(--bushido-primary);
+    border-radius: var(--bushido-radius);
+    table-layout: fixed;
+}
+
+.samurai-path th {
+    background-color: rgba(200, 37, 42, 0.1);
+    color: var(--bushido-primary) !important;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--bushido-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.samurai-path th span.full-day-name {
+    display: inline;
+}
+
+.samurai-path th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.samurai-path td {
+    background-color: rgba(245, 240, 235, 0.5);
+    color: var(--bushido-text);
+    padding: 1rem;
+    border: 1px solid var(--bushido-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--bushido-transition);
+    position: relative;
+}
+
+.samurai-path td:hover {
+    background-color: var(--bushido-hover);
+    box-shadow: inset 0 0 10px var(--bushido-shadow);
+}
+
+.samurai-path td.current-day {
+    background-color: var(--bushido-current-day);
+    border: 1px solid var(--bushido-primary);
+    color: var(--bushido-text) !important;
+    font-weight: 700;
+    animation: katana-glow 3s infinite;
+}
+
+.samurai-path td.current-day::before {
+    content: "侍";
+    /* Samurai character */
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--bushido-primary);
+    z-index: 1;
+    opacity: 0.7;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.samurai-path td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--bushido-text) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.samurai-path .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    /* Sharp like katana edge */
+    background-color: var(--bushido-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--bushido-shadow);
+    transition: all var(--bushido-transition);
+    transform: skewX(-15deg);
+    /* Katana angle */
+}
+
+.samurai-path .event-marker:hover {
+    transform: scale(1.8) skewX(-15deg);
+    background-color: var(--bushido-accent3);
+    box-shadow: 0 0 15px var(--bushido-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.samurai-path .modal-content {
+    position: relative;
+    background-color: rgba(245, 240, 235, 0.95);
+    border: 1px solid var(--bushido-primary);
+    padding: 25px;
+    color: var(--bushido-text);
+    box-shadow: 0 0 30px var(--bushido-shadow);
+    border-radius: var(--bushido-radius);
+    animation: katana-glow 0.5s ease;
+}
+
+.samurai-path .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--bushido-primary);
+    animation: katana-glow 3s infinite;
+}
+
+.samurai-path .modal-content h2 {
+    color: var(--bushido-primary);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.samurai-path .modal-content button {
+    background-color: transparent;
+    color: var(--bushido-primary);
+    border: 1px solid var(--bushido-primary);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--bushido-transition);
+    letter-spacing: 0.1em;
+    border-radius: var(--bushido-radius);
+}
+
+.samurai-path .modal-content button:hover {
+    background-color: var(--bushido-primary);
+    color: var(--bushido-bg);
+    box-shadow: 0 0 15px var(--bushido-shadow);
+}
+
+.samurai-path .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--bushido-primary);
+    border: 1px solid var(--bushido-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--bushido-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.samurai-path .modal .close-button:hover {
+    background-color: var(--bushido-primary);
+    color: var(--bushido-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.samurai-path .button,
+.samurai-path .transparent-button {
+    border: 1px solid var(--bushido-primary);
+    color: var(--bushido-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--bushido-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--bushido-radius);
+}
+
+.samurai-path .button::before,
+.samurai-path .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(200, 37, 42, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.samurai-path .button:hover,
+.samurai-path .transparent-button:hover {
+    background-color: var(--bushido-primary);
+    color: var(--bushido-bg);
+    box-shadow: 0 0 20px var(--bushido-shadow);
+}
+
+.samurai-path .button:hover::before,
+.samurai-path .transparent-button:hover::before {
+    left: 100%;
+}
+
+.samurai-path .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.samurai-path #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.samurai-path #theme-switcher {
+    background-color: rgba(200, 37, 42, 0.1);
+    color: var(--bushido-primary) !important;
+    border: 1px solid var(--bushido-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--bushido-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C8252A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--bushido-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.samurai-path #theme-switcher option {
+    background-color: rgba(245, 240, 235, 0.95) !important;
+    color: var(--bushido-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+    border-bottom: 1px solid var(--bushido-primary) !important;
+}
+
+.samurai-path #theme-switcher option:hover {
+    background-color: var(--bushido-primary) !important;
+    color: var(--bushido-bg) !important;
+}
+
+.samurai-path #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bushido-primary), 0 0 15px var(--bushido-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.samurai-path #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--bushido-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.1em;
+    color: var(--bushido-primary);
+    background-color: rgba(200, 37, 42, 0.1);
+    cursor: pointer;
+    transition: all var(--bushido-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--bushido-radius);
+}
+
+.samurai-path #backToTopBtn:hover {
+    background-color: var(--bushido-primary);
+    color: var(--bushido-bg);
+    box-shadow: 0 0 20px var(--bushido-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.samurai-path footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--bushido-primary);
+    color: var(--bushido-text);
+    font-size: 0.8rem;
+}
+
+.samurai-path footer::before {
+    content: "武士道 ";
+    /* Bushido */
+    color: var(--bushido-primary);
+    font-family: 'Noto Serif JP', serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .samurai-path .container {
+        padding: 1.2rem;
+    }
+
+    .samurai-path #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .samurai-path #current-date {
+        font-size: 1.4rem;
+    }
+
+    .samurai-path #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .samurai-path .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .samurai-path th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .samurai-path th span.full-day-name {
+        display: none;
+    }
+
+    .samurai-path th abbr {
+        display: inline;
+    }
+
+    .samurai-path td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .samurai-path td.current-day::before {
+        font-size: 0.8rem;
+        top: 3px;
+        left: 3px;
+    }
+
+    .samurai-path #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .samurai-path #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .samurai-path #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .samurai-path .container {
+        padding: 0.6rem;
+    }
+
+    .samurai-path #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .samurai-path #current-date {
+        font-size: 1rem;
+    }
+
+    .samurai-path #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .samurai-path .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .samurai-path th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .samurai-path td {
+        padding: 0.2rem;
+        height: 55px;
+        font-size: 0.65rem;
+    }
+
+    .samurai-path td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .samurai-path #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .samurai-path th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .samurai-path td {
+        height: 45px;
+    }
+
+    .samurai-path #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}

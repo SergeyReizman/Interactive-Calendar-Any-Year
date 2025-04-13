@@ -89,7 +89,7 @@ const applyTheme = (theme) => {
     'pure-light', 
     'purple-fog', 'quantum-programmer', 'quiet-evening',
     'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'red-lake', 'red-squirrel', 'rising-sun',
-    'robin-good', 'royal-caribbean', 'sea-diamonds', 'sea-lions', 'sea-star',
+    'robin-good', 'royal-caribbean', 'samurai-path', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shaolin-monastery',
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow',
     'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'success-motivation', 'sword-of-fate',
