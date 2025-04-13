@@ -65,7 +65,7 @@ const applyTheme = (theme) => {
     'desert-mirage', 'distant-skies', 
     'doterra-black','dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 
     'divi-divi-trees', 'essential-oils', 'everest-view', 'executive-management',
-    'exotic-island', 'expedient-path', 'fast-track', 'fiji-islands',
+    'exotic-island', 'exponential-acceleration', 'expedient-path', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 
     'free-flight', 'forgotten-dreams', 'frozen-wilderness', 'full-pink-moon',
     'galactic-glow', 'genghis-khan-arrow',
