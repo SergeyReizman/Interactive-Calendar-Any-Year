@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Doterra Black Theme - Organic Wellness Calendar UI
-   Version: 4.0
-   Updated: 2025-06-15
+   doTERRA Black Theme - Organic Wellness Calendar UI
+   Version: 4.1
+   Updated: 2025-06-20
    Features:
    - Nature-inspired design system
    - Essential oil bottle UI elements
@@ -11,13 +11,14 @@
    - Smart responsive scaling with fluid typography
    - Interactive hover states with soothing transitions
    - Aromatherapy-inspired color modes
+   - Optimized visibility for calendar days and modal events
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@400;600&display=swap');
 
 :root {
     /* Core Color Palette */
-    --doterra-bg: #121210;
+    --doterra-bg: #1a1a1a;
     --doterra-text: #E8E8E0;
     --doterra-primary: #5D8C5A;
     /* Sage green */
@@ -47,6 +48,8 @@
     --doterra-transition: 0.4s ease-in-out;
     --doterra-hover: #1E1E1A;
     --doterra-current-day: #2D3A2B;
+    --doterra-modal-text: #f0f0f0;
+    /* Brighter text for modals */
 }
 
 /* ==================== ANIMATIONS ==================== */
@@ -323,12 +326,12 @@
     border: 1px solid var(--doterra-secondary);
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+/* ==================== CALENDAR TABLE - ENHANCED VISIBILITY ==================== */
 .doterra-black table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(30, 30, 26, 0.8);
+    background-color: rgba(30, 30, 26, 0.9);
     border: 1px solid var(--doterra-primary);
     border-radius: var(--doterra-radius);
     table-layout: fixed;
@@ -342,6 +345,7 @@
     padding: 1rem 0.5rem;
     border: 1px solid var(--doterra-primary);
     position: relative;
+    font-size: 1.1rem;
 }
 
 .doterra-black th span.full-day-name {
@@ -355,7 +359,7 @@
 }
 
 .doterra-black td {
-    background-color: rgba(18, 18, 16, 0.7);
+    background-color: rgba(207, 164, 219, 0.9);
     color: var(--doterra-text);
     padding: 1rem;
     border: 1px solid var(--doterra-primary);
@@ -363,6 +367,7 @@
     vertical-align: top;
     transition: all var(--doterra-transition);
     position: relative;
+    font-weight: 500;
 }
 
 .doterra-black td:hover {
@@ -370,12 +375,27 @@
     box-shadow: inset 0 0 10px var(--doterra-shadow);
 }
 
+.doterra-black .date-number {
+    display: block;
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: var(--doterra-text) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 .doterra-black td.current-day {
     background-color: var(--doterra-current-day);
-    border: 1px solid var(--doterra-primary);
+    border: 2px solid var(--doterra-primary);
     color: var(--doterra-primary) !important;
     font-weight: 700;
     animation: doterra-pulse 4s infinite;
+}
+
+.doterra-black td.current-day .date-number {
+    color: var(--doterra-primary) !important;
+    font-size: 1.2em;
+    font-weight: 800;
 }
 
 .doterra-black td.current-day::before {
@@ -389,23 +409,17 @@
     font-size: 1rem;
 }
 
-.doterra-black td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--doterra-primary) !important;
-    font-weight: bold;
-}
-
-/* ==================== EVENT MARKERS ==================== */
+/* ==================== EVENT MARKERS - ENHANCED VISIBILITY ==================== */
 .doterra-black .event-marker {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: var(--doterra-primary);
-    margin: 0 2px;
+    margin: 2px;
     box-shadow: 0 0 5px var(--doterra-shadow);
     transition: all var(--doterra-transition);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .doterra-black .event-marker:hover {
@@ -417,26 +431,30 @@
 /* Special event types */
 .doterra-black .event-marker.holiday {
     background-color: var(--doterra-bergamot);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .doterra-black .event-marker.historic {
     background-color: var(--doterra-frankincense);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .doterra-black .event-marker.patriotic {
     background-color: var(--doterra-peppermint);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* ==================== MODAL STYLES ==================== */
+/* ==================== MODAL STYLES - ENHANCED VISIBILITY ==================== */
 .doterra-black .modal-content {
     position: relative;
-    background-color: rgba(30, 30, 26, 0.98);
-    border: 1px solid var(--doterra-primary);
+    background-color: rgba(20, 20, 18, 0.98);
+    border: 2px solid var(--doterra-primary);
     padding: 25px;
-    color: var(--doterra-text);
+    color: var(--doterra-modal-text);
     box-shadow: 0 0 30px var(--doterra-shadow);
     border-radius: var(--doterra-radius);
     animation: doterra-pulse 0.5s ease;
+    line-height: 1.7;
 }
 
 .doterra-black .modal-content::before {
@@ -456,8 +474,30 @@
     color: var(--doterra-primary);
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.8em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.doterra-black .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.doterra-black .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--doterra-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.doterra-black .modal-content .event-description {
+    background-color: rgba(93, 140, 90, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--doterra-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--doterra-radius) var(--doterra-radius) 0;
 }
 
 .doterra-black .modal-content button {
@@ -665,7 +705,7 @@
     }
 
     .doterra-black th {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         padding: 0.7rem 0.2rem;
     }
 
@@ -680,7 +720,11 @@
     .doterra-black td {
         padding: 0.5rem;
         height: 65px;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .doterra-black .date-number {
+        font-size: 1em;
     }
 
     .doterra-black td.current-day::before {
@@ -705,6 +749,11 @@
     .doterra-black #theme-switcher option {
         font-size: 0.8rem;
         padding: 8px !important;
+    }
+
+    .doterra-black .event-marker {
+        width: 8px;
+        height: 8px;
     }
 }
 
@@ -731,14 +780,14 @@
     }
 
     .doterra-black th {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         padding: 0.4rem 0.1rem;
     }
 
     .doterra-black td {
         padding: 0.2rem;
         height: 55px;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
     }
 
     .doterra-black td.current-day::before {
@@ -749,11 +798,19 @@
         min-width: 150px;
         font-size: 0.75rem;
     }
+
+    .doterra-black .modal-content {
+        padding: 15px;
+    }
+
+    .doterra-black .modal-content h2 {
+        font-size: 1.5em;
+    }
 }
 
 @media (max-width: 400px) {
     .doterra-black th {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         padding: 0.3rem 0.1rem;
     }
 
