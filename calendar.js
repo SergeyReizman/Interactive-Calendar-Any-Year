@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'daruma-doll', 'deep-forest', 'deep-ocean', 
     'desert-mirage', 'distant-skies', 
-    'doterra-black','dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 
+    'doterra-black', 'doterra-colors', 'dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 
     'divi-divi-trees', 'essential-oils', 'everest-view', 'executive-management',
     'exotic-island', 'exponential-acceleration', 'expedient-path', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 

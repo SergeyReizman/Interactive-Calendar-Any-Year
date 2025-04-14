@@ -1,0 +1,883 @@
+/* ==========================================================================
+   doTERRA Wellness Calendar Theme - Botanical Calendar UI
+   Version: 4.1
+   Updated: 2025-06-20
+   Features:
+   - Nature-inspired design system
+   - Soft organic UI elements
+   - Gentle transition effects
+   - Enhanced accessibility with WCAG 2.1 AA compliance
+   - Leaf and botanical textures
+   - Responsive scaling with fluid typography
+   - Interactive hover states with subtle pulses
+   - Optimized for mobile devices
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --doterra-bg: #FAF9F6;
+    /* Softer, lighter background */
+    --doterra-text: #3B2E26;
+    /* Richer, more readable earth tone */
+    --doterra-primary: #8E63C2;
+    /* Slightly deeper herbal lavender */
+
+    /* Herbal Lavender */
+    --doterra-secondary: #84B96B;
+    /* Balanced botanical sage green */
+
+    /* Gradient Colors */
+    --doterra-gradient-start: #F5E5E0;
+    /* Gentle blush mist */
+    --doterra-gradient-end: #E6F4D8;
+    /* Brighter tea-leaf inspired green */
+
+    /* Accent Colors */
+    --doterra-warning: #E2A95B;
+    /* Slightly richer warm amber */
+    --doterra-success: #78B26D;
+    /* More vibrant herbal green */
+    --doterra-processor: #6936A3;
+    /* Deepened lavender for CTAs */
+    --doterra-error: #D66150;
+    /* Softer, earthier terracotta red */
+    --doterra-data: #6899D1;
+    /* Balanced info blue for charts, links */
+
+    /* Theme Variables */
+    --doterra-shadow: rgba(144, 99, 205, 0.18);
+    /* Slightly stronger for better depth */
+    --doterra-radius: 12px;
+    /* Organic rounded look */
+    --doterra-transition: 0.3s ease-in-out;
+    --doterra-hover: #F7EAE6;
+    /* Subtle hover lavender-beige blend */
+    --doterra-current-day: #E6F4D8;
+    /* Soft green highlight for calendar */
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes herbal-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--doterra-primary-light),
+            0 0 10px rgba(144, 99, 205, 0.3);
+        opacity: 0.9;
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--doterra-primary-light),
+            0 0 30px rgba(144, 99, 205, 0.4);
+        opacity: 1;
+    }
+}
+
+@keyframes leaf-pulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes doterra-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--doterra-primary-light);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--doterra-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.doterra-colors {
+    font-family: 'Inter', sans-serif;
+    color: var(--doterra-text);
+    line-height: 1.6;
+    background: var(--doterra-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to right,
+            rgba(139, 174, 95, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(to bottom,
+            rgba(144, 99, 205, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+}
+
+.doterra-colors::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(144, 99, 205, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(139, 174, 95, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Leaf pattern overlay */
+.doterra-colors::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path fill="%239063CD" d="M50 0Q60 30 80 30Q70 50 80 70Q60 70 50 100Q40 70 20 70Q30 50 20 30Q40 30 50 0Z"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.doterra-colors .container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--doterra-primary-light);
+    box-shadow: 0 0 20px var(--doterra-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--doterra-radius);
+    z-index: 1;
+}
+
+.doterra-colors .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--doterra-primary),
+            var(--doterra-secondary),
+            transparent);
+    animation: doterra-pulse 1.5s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.doterra-colors #calendar-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--doterra-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: herbal-glow 2s infinite;
+}
+
+.doterra-colors #calendar-title::before,
+.doterra-colors #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--doterra-secondary);
+    font-size: 1.5rem;
+    animation: leaf-pulse 1.5s infinite;
+}
+
+.doterra-colors #calendar-title::before {
+    left: 1rem;
+}
+
+.doterra-colors #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.doterra-colors #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(144, 99, 205, 0.1);
+    border: 1px solid var(--doterra-primary-light);
+    border-radius: var(--doterra-radius);
+    position: relative;
+}
+
+.doterra-colors #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--doterra-primary),
+            transparent);
+}
+
+.doterra-colors #current-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--doterra-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.doterra-colors #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--doterra-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.doterra-colors #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.doterra-colors .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--doterra-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--doterra-bg);
+    box-shadow:
+        0 0 15px var(--doterra-shadow),
+        inset 0 0 10px rgba(144, 99, 205, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(144, 99, 205, 0.1) 100%);
+}
+
+/* Digital numerals for clock */
+.doterra-colors .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Inter" font-size="12">12</text><text x="82" y="55" text-anchor="middle" font-family="Inter" font-size="12">3</text><text x="50" y="92" text-anchor="middle" font-family="Inter" font-size="12">6</text><text x="18" y="55" text-anchor="middle" font-family="Inter" font-size="12">9</text></svg>');
+}
+
+.doterra-colors .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.doterra-colors .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--doterra-primary);
+    margin-top: -2px;
+}
+
+.doterra-colors .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--doterra-secondary);
+    margin-top: -1px;
+}
+
+.doterra-colors .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--doterra-success);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Processor core */
+.doterra-colors .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--doterra-processor);
+    border-radius: 50%;
+    border: 1px solid var(--doterra-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.doterra-colors table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--doterra-primary-light);
+    border-radius: var(--doterra-radius);
+    table-layout: fixed;
+}
+
+.doterra-colors th {
+    background-color: rgba(144, 99, 205, 0.1);
+    color: var(--doterra-primary) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--doterra-primary-light);
+    position: relative;
+}
+
+/* Weekday name variants */
+.doterra-colors th span.full-day-name {
+    display: inline;
+}
+
+.doterra-colors th span.short-day-name {
+    display: none;
+}
+
+.doterra-colors th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.doterra-colors td {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--doterra-text);
+    padding: 1rem;
+    border: 1px solid var(--doterra-primary-light);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--doterra-transition);
+    position: relative;
+    word-break: break-word;
+    overflow: hidden;
+}
+
+.doterra-colors td:hover {
+    background-color: var(--doterra-hover);
+    box-shadow: inset 0 0 10px var(--doterra-shadow);
+}
+
+.doterra-colors td.current-day {
+    background-color: var(--doterra-current-day);
+    border: 1px solid var(--doterra-secondary);
+    color: var(--doterra-primary) !important;
+    font-weight: 600;
+    animation: doterra-pulse 2s infinite;
+}
+
+.doterra-colors td.current-day::before {
+    content: "🌱";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--doterra-secondary);
+    z-index: 1;
+    opacity: 0.7;
+    font-size: 1rem;
+}
+
+.doterra-colors td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--doterra-primary) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.doterra-colors .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--doterra-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--doterra-shadow);
+    transition: all var(--doterra-transition);
+}
+
+.doterra-colors .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--doterra-secondary);
+    box-shadow: 0 0 15px var(--doterra-primary-light);
+}
+
+/* Special event types */
+.doterra-colors .event-marker.holiday {
+    background-color: var(--doterra-warning);
+}
+
+.doterra-colors .event-marker.historic {
+    background-color: var(--doterra-processor);
+}
+
+.doterra-colors .event-marker.patriotic {
+    background-color: var(--doterra-data);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.doterra-colors .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--doterra-primary);
+    padding: 25px;
+    color: var(--doterra-text);
+    box-shadow: 0 0 30px var(--doterra-shadow);
+    border-radius: var(--doterra-radius);
+    animation: doterra-pulse 0.5s ease;
+}
+
+.doterra-colors .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--doterra-primary),
+            var(--doterra-secondary),
+            var(--doterra-success));
+}
+
+.doterra-colors .modal-content h2 {
+    color: var(--doterra-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.doterra-colors .modal-content button {
+    background-color: var(--doterra-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    border-radius: var(--doterra-radius);
+    font-family: 'Inter', sans-serif;
+}
+
+.doterra-colors .modal-content button:hover {
+    background-color: var(--doterra-secondary);
+    box-shadow: 0 4px 6px -1px var(--doterra-shadow);
+}
+
+.doterra-colors .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--doterra-primary);
+    border: 1px solid var(--doterra-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.doterra-colors .modal .close-button:hover {
+    background-color: var(--doterra-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.doterra-colors .button,
+.doterra-colors .transparent-button {
+    border: 1px solid var(--doterra-primary);
+    color: var(--doterra-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--doterra-radius);
+}
+
+.doterra-colors .button::before,
+.doterra-colors .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(144, 99, 205, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.doterra-colors .button:hover,
+.doterra-colors .transparent-button:hover {
+    background-color: var(--doterra-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--doterra-shadow);
+}
+
+.doterra-colors .button:hover::before,
+.doterra-colors .transparent-button:hover::before {
+    left: 100%;
+}
+
+.doterra-colors .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.doterra-colors #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.doterra-colors #theme-switcher {
+    background-color: white;
+    color: var(--doterra-primary) !important;
+    border: 1px solid var(--doterra-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--doterra-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239063CD'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    box-shadow: 0 1px 3px 0 var(--doterra-shadow);
+}
+
+.doterra-colors #theme-switcher option {
+    background-color: white !important;
+    color: var(--doterra-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.doterra-colors #theme-switcher option:hover {
+    background-color: var(--doterra-primary) !important;
+    color: white !important;
+}
+
+.doterra-colors #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(144, 99, 205, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.doterra-colors #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--doterra-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--doterra-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--doterra-radius);
+    box-shadow: 0 4px 6px -1px var(--doterra-shadow);
+}
+
+.doterra-colors #backToTopBtn:hover {
+    background-color: var(--doterra-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.doterra-colors footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--doterra-primary);
+    color: var(--doterra-text);
+    font-size: 0.8rem;
+}
+
+.doterra-colors footer::before {
+    content: "🌿 ";
+    color: var(--doterra-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .doterra-colors .container {
+        padding: 1.5rem;
+    }
+
+    .doterra-colors #calendar-title {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .doterra-colors #current-date {
+        font-size: 1.5rem;
+    }
+
+    .doterra-colors #today-weather {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .doterra-colors .container {
+        padding: 1.2rem;
+    }
+
+    .doterra-colors .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Weekday header adjustments */
+    .doterra-colors th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .doterra-colors th span.full-day-name {
+        display: none;
+    }
+
+    .doterra-colors th abbr {
+        display: inline;
+    }
+
+    .doterra-colors th span.short-day-name {
+        display: none;
+    }
+
+    /* Calendar cell adjustments */
+    .doterra-colors td {
+        padding: 0.5rem;
+        height: 70px;
+        font-size: 0.7rem;
+    }
+
+    .doterra-colors td.current-day::before {
+        font-size: 0.7rem;
+        top: 2px;
+        left: 2px;
+    }
+
+    /* Event marker adjustments */
+    .doterra-colors .event-marker {
+        width: 6px;
+        height: 6px;
+        margin: 0 1px;
+    }
+
+    /* Back to top button */
+    .doterra-colors #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    /* Theme switcher */
+    .doterra-colors #theme-switcher {
+        padding: 0.5rem 1.6rem 0.5rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .doterra-colors .container {
+        padding: 0.8rem;
+    }
+
+    .doterra-colors #calendar-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .doterra-colors #calendar-title::before,
+    .doterra-colors #calendar-title::after {
+        font-size: 1.2rem;
+    }
+
+    .doterra-colors #current-date {
+        font-size: 1.2rem;
+    }
+
+    .doterra-colors #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .doterra-colors .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Weekday header adjustments */
+    .doterra-colors th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .doterra-colors th abbr {
+        display: none;
+    }
+
+    .doterra-colors th span.short-day-name {
+        display: inline;
+    }
+
+    /* Calendar cell adjustments */
+    .doterra-colors td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.6rem;
+    }
+
+    /* Theme switcher */
+    .doterra-colors #theme-switcher {
+        min-width: 130px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .doterra-colors .container {
+        padding: 0.5rem;
+    }
+
+    .doterra-colors #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .doterra-colors #calendar-title::before,
+    .doterra-colors #calendar-title::after {
+        display: none;
+    }
+
+    .doterra-colors #current-date {
+        font-size: 1rem;
+    }
+
+    .doterra-colors #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .doterra-colors .clock-face {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Weekday header adjustments - single letters */
+    .doterra-colors th {
+        font-size: 0.55rem;
+        padding: 0.3rem 0;
+        letter-spacing: -0.5px;
+    }
+
+    .doterra-colors th span.short-day-name {
+        font-size: 0.6rem;
+    }
+
+    /* Calendar cell adjustments */
+    .doterra-colors td {
+        height: 50px;
+        padding: 0.2rem;
+        font-size: 0.55rem;
+    }
+
+    .doterra-colors td.current-day::before {
+        font-size: 0.6rem;
+    }
+
+    /* Event marker adjustments */
+    .doterra-colors .event-marker {
+        width: 5px;
+        height: 5px;
+    }
+
+    /* Theme switcher */
+    .doterra-colors #theme-switcher {
+        min-width: 110px;
+        font-size: 0.7rem;
+    }
+}
+
+/* For extremely narrow screens (like foldables) */
+@media (max-width: 320px) {
+    .doterra-colors th {
+        font-size: 0.5rem;
+        padding: 0.2rem 0;
+    }
+
+    .doterra-colors td {
+        height: 45px;
+        font-size: 0.5rem;
+    }
+
+    .doterra-colors .controls {
+        flex-direction: column;
+    }
+
+    .doterra-colors #theme-switcher-container {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
