@@ -1,7 +1,7 @@
 /* ==========================================================================
    Exponential Acceleration Theme - Futuristic Calendar UI
-   Version: 4.0
-   Updated: 2025-06-15
+   Version: 4.1
+   Updated: 2025-06-20
    Features:
    - Cyberpunk-inspired design system
    - Neon UI elements with glow effects
@@ -11,6 +11,7 @@
    - Smart responsive scaling with fluid typography
    - Interactive hover states with energy pulses
    - Dynamic light/dark mode switching
+   - Optimized for mobile devices
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
@@ -344,8 +345,13 @@
     position: relative;
 }
 
+/* Weekday name variants */
 .exponential-acceleration th span.full-day-name {
     display: inline;
+}
+
+.exponential-acceleration th span.short-day-name {
+    display: none;
 }
 
 .exponential-acceleration th abbr {
@@ -363,6 +369,8 @@
     vertical-align: top;
     transition: all var(--accel-transition);
     position: relative;
+    word-break: break-word;
+    overflow: hidden;
 }
 
 .exponential-acceleration td:hover {
@@ -642,31 +650,40 @@
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .exponential-acceleration .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .exponential-acceleration #calendar-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
     }
 
     .exponential-acceleration #current-date {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .exponential-acceleration #today-weather {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .exponential-acceleration .container {
+        padding: 1.2rem;
+    }
+
     .exponential-acceleration .clock-face {
         width: 140px;
         height: 140px;
     }
 
+    /* Weekday header adjustments */
     .exponential-acceleration th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .exponential-acceleration th span.full-day-name {
@@ -677,44 +694,114 @@
         display: inline;
     }
 
+    .exponential-acceleration th span.short-day-name {
+        display: none;
+    }
+
+    /* Calendar cell adjustments */
     .exponential-acceleration td {
         padding: 0.5rem;
-        height: 65px;
-        font-size: 0.75rem;
+        height: 70px;
+        font-size: 0.7rem;
     }
 
     .exponential-acceleration td.current-day::before {
-        font-size: 0.8rem;
-        top: 3px;
-        left: 3px;
+        font-size: 0.7rem;
+        top: 2px;
+        left: 2px;
     }
 
+    /* Event marker adjustments */
+    .exponential-acceleration .event-marker {
+        width: 6px;
+        height: 6px;
+        margin: 0 1px;
+    }
+
+    /* Back to top button */
     .exponential-acceleration #backToTopBtn {
         right: 15px;
         bottom: 15px;
-        padding: 0.7rem 1.3rem;
+        padding: 0.6rem 1.2rem;
         font-size: 0.8rem;
     }
 
+    /* Theme switcher */
     .exponential-acceleration #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        padding: 0.5rem 1.6rem 0.5rem 0.7rem;
         font-size: 0.8rem;
-        min-width: 170px;
-    }
-
-    .exponential-acceleration #theme-switcher option {
-        font-size: 0.8rem;
-        padding: 8px !important;
+        min-width: 150px;
     }
 }
 
 @media (max-width: 576px) {
     .exponential-acceleration .container {
-        padding: 0.6rem;
+        padding: 0.8rem;
+    }
+
+    .exponential-acceleration #calendar-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .exponential-acceleration #calendar-title::before,
+    .exponential-acceleration #calendar-title::after {
+        font-size: 1.2rem;
+    }
+
+    .exponential-acceleration #current-date {
+        font-size: 1.2rem;
+    }
+
+    .exponential-acceleration #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .exponential-acceleration .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Weekday header adjustments */
+    .exponential-acceleration th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .exponential-acceleration th abbr {
+        display: none;
+    }
+
+    .exponential-acceleration th span.short-day-name {
+        display: inline;
+    }
+
+    /* Calendar cell adjustments */
+    .exponential-acceleration td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.6rem;
+    }
+
+    /* Theme switcher */
+    .exponential-acceleration #theme-switcher {
+        min-width: 130px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .exponential-acceleration .container {
+        padding: 0.5rem;
     }
 
     .exponential-acceleration #calendar-title {
         font-size: 1.4rem;
+    }
+
+    .exponential-acceleration #calendar-title::before,
+    .exponential-acceleration #calendar-title::after {
+        display: none;
     }
 
     .exponential-acceleration #current-date {
@@ -726,43 +813,63 @@
     }
 
     .exponential-acceleration .clock-face {
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
     }
 
+    /* Weekday header adjustments - single letters */
     .exponential-acceleration th {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.55rem;
+        padding: 0.3rem 0;
+        letter-spacing: -0.5px;
     }
 
+    .exponential-acceleration th span.short-day-name {
+        font-size: 0.6rem;
+    }
+
+    /* Calendar cell adjustments */
     .exponential-acceleration td {
+        height: 50px;
         padding: 0.2rem;
-        height: 55px;
-        font-size: 0.65rem;
+        font-size: 0.55rem;
     }
 
     .exponential-acceleration td.current-day::before {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
 
+    /* Event marker adjustments */
+    .exponential-acceleration .event-marker {
+        width: 5px;
+        height: 5px;
+    }
+
+    /* Theme switcher */
     .exponential-acceleration #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
+        min-width: 110px;
+        font-size: 0.7rem;
     }
 }
 
-@media (max-width: 400px) {
+/* For extremely narrow screens (like foldables) */
+@media (max-width: 320px) {
     .exponential-acceleration th {
-        font-size: 0.6rem;
-        padding: 0.3rem 0.1rem;
+        font-size: 0.5rem;
+        padding: 0.2rem 0;
     }
 
     .exponential-acceleration td {
         height: 45px;
+        font-size: 0.5rem;
     }
 
-    .exponential-acceleration #theme-switcher {
-        min-width: 130px;
-        font-size: 0.7rem;
+    .exponential-acceleration .controls {
+        flex-direction: column;
+    }
+
+    .exponential-acceleration #theme-switcher-container {
+        width: 100%;
+        margin: 0.5rem 0;
     }
 }
