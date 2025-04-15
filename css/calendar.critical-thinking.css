@@ -1,0 +1,797 @@
+/* ==========================================================================
+   Critical Thinking Theme - Intellectual Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Academic color scheme
+   - Typography optimized for readability
+   - Clean, distraction-free interface
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Enhanced accessibility (WCAG 2.1 AA)
+   - Focus-oriented design
+   - Fluid typography scaling
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+:root {
+    /* Academic Color Palette */
+    --think-bg: #F8F9FA;
+    --think-text: #212529;
+    --think-primary: #2C3E50;
+    /* Dark slate */
+    --think-secondary: #6C757D;
+    /* Medium gray */
+
+    /* Gradient Colors */
+    --think-gradient-start: #F8F9FA;
+    --think-gradient-end: #E9ECEF;
+
+    /* Accent Colors */
+    --think-blue: #3498DB;
+    /* Thinking blue */
+    --think-green: #28A745;
+    /* Growth green */
+    --think-red: #DC3545;
+    /* Critical red */
+    --think-yellow: #FFC107;
+    /* Highlight yellow */
+    --think-white: #FFFFFF;
+    /* Pure white */
+
+    /* Theme Variables */
+    --think-shadow: rgba(44, 62, 80, 0.1);
+    --think-radius: 4px;
+    /* Subtle rounding */
+    --think-transition: 0.2s ease-in-out;
+    --think-hover: #E9ECEF;
+    --think-current-day: #E2E6EA;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes focus-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 0 5px rgba(52, 152, 219, 0.1);
+    }
+}
+
+@keyframes thought-emerge {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes think-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 1px var(--think-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 0 3px var(--think-blue);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.critical-thinking {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--think-text);
+    line-height: 1.6;
+    background: var(--think-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.critical-thinking::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(44, 62, 80, 0.02) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(44, 62, 80, 0.02) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Thought bubbles pattern */
+.critical-thinking::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.02"><circle cx="20" cy="20" r="5" fill="%232C3E50"/><circle cx="50" cy="50" r="5" fill="%232C3E50"/><circle cx="80" cy="80" r="5" fill="%232C3E50"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.critical-thinking .container {
+    background-color: var(--think-white);
+    padding: 2rem;
+    border: 1px solid var(--think-primary);
+    box-shadow: 0 0 20px var(--think-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--think-radius);
+    z-index: 1;
+}
+
+.critical-thinking .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--think-primary),
+            var(--think-blue),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.critical-thinking #calendar-title {
+    font-family: 'Merriweather', serif;
+    color: var(--think-primary);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    animation: thought-emerge 0.8s ease-out;
+}
+
+.critical-thinking #calendar-title::before,
+.critical-thinking #calendar-title::after {
+    content: "💭";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--think-blue);
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.critical-thinking #calendar-title::before {
+    left: 1rem;
+}
+
+.critical-thinking #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.critical-thinking #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(44, 62, 80, 0.05);
+    border: 1px solid var(--think-primary);
+    border-radius: var(--think-radius);
+    position: relative;
+}
+
+.critical-thinking #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--think-primary),
+            transparent);
+}
+
+.critical-thinking #current-date {
+    font-family: 'Merriweather', serif;
+    color: var(--think-primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.critical-thinking #today-weather {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--think-secondary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.critical-thinking #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.critical-thinking .clock-face {
+    width: 160px;
+    height: 160px;
+    border: 1px solid var(--think-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--think-white);
+    box-shadow:
+        0 0 10px var(--think-shadow),
+        inset 0 0 5px rgba(44, 62, 80, 0.05);
+}
+
+/* Minimalist numerals */
+.critical-thinking .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Merriweather" font-size="10" fill="%232C3E50">12</text><text x="82" y="55" text-anchor="middle" font-family="Merriweather" font-size="10" fill="%232C3E50">3</text><text x="50" y="92" text-anchor="middle" font-family="Merriweather" font-size="10" fill="%232C3E50">6</text><text x="18" y="55" text-anchor="middle" font-family="Merriweather" font-size="10" fill="%232C3E50">9</text></svg>');
+}
+
+.critical-thinking .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.critical-thinking .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: var(--think-primary);
+    margin-top: -1.5px;
+}
+
+.critical-thinking .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--think-secondary);
+    margin-top: -1px;
+}
+
+.critical-thinking .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--think-red);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Focus point */
+.critical-thinking .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--think-primary);
+    border-radius: 50%;
+    border: 1px solid var(--think-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.critical-thinking table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: var(--think-white);
+    border: 1px solid var(--think-primary);
+    border-radius: var(--think-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.critical-thinking th {
+    background-color: rgba(44, 62, 80, 0.05);
+    color: var(--think-primary) !important;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    padding: 0.9rem 0.4rem;
+    border: 1px solid var(--think-primary);
+    position: relative;
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.critical-thinking th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.critical-thinking th .short-day {
+    display: none;
+}
+
+.critical-thinking td {
+    background-color: var(--think-white);
+    color: var(--think-text);
+    padding: 0.9rem 0.4rem;
+    border: 1px solid var(--think-primary);
+    height: 85px;
+    vertical-align: top;
+    transition: all var(--think-transition);
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.critical-thinking td:hover {
+    background-color: var(--think-hover);
+    animation: focus-pulse 2s infinite;
+}
+
+.critical-thinking .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--think-text);
+}
+
+.critical-thinking td.current-day {
+    background-color: var(--think-current-day);
+    border: 1px solid var(--think-blue);
+    color: var(--think-primary) !important;
+    animation: think-glow 3s infinite;
+}
+
+.critical-thinking td.current-day .date-number {
+    color: var(--think-primary) !important;
+    font-weight: 700;
+}
+
+.critical-thinking td.current-day::before {
+    content: "🔍";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--think-blue);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.critical-thinking .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--think-primary);
+    margin: 0 1px;
+    transition: all var(--think-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.critical-thinking .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--think-blue);
+}
+
+/* Special event types */
+.critical-thinking .event-marker.holiday {
+    background-color: var(--think-green);
+}
+
+.critical-thinking .event-marker.historic {
+    background-color: var(--think-secondary);
+}
+
+.critical-thinking .event-marker.patriotic {
+    background-color: var(--think-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.critical-thinking .modal-content {
+    position: relative;
+    background-color: var(--think-white);
+    border: 1px solid var(--think-primary);
+    padding: 20px;
+    color: var(--think-text);
+    box-shadow: 0 0 25px var(--think-shadow);
+    border-radius: var(--think-radius);
+    animation: thought-emerge 0.5s ease-out;
+}
+
+.critical-thinking .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--think-primary),
+            var(--think-blue),
+            var(--think-green));
+}
+
+.critical-thinking .modal-content h2 {
+    color: var(--think-primary);
+    font-family: 'Merriweather', serif;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.critical-thinking .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1em;
+    line-height: 1.7;
+}
+
+.critical-thinking .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--think-blue);
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-family: 'Merriweather', serif;
+}
+
+.critical-thinking .modal-content .event-description {
+    background-color: rgba(44, 62, 80, 0.05);
+    padding: 15px;
+    border-left: 3px solid var(--think-blue);
+    margin: 15px 0;
+    border-radius: 0 var(--think-radius) var(--think-radius) 0;
+}
+
+.critical-thinking .modal-content button {
+    background-color: var(--think-primary);
+    color: var(--think-white);
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--think-transition);
+    border-radius: var(--think-radius);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.critical-thinking .modal-content button:hover {
+    background-color: var(--think-blue);
+    box-shadow: 0 2px 5px -1px var(--think-shadow);
+}
+
+.critical-thinking .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: var(--think-primary);
+    border: 1px solid var(--think-primary);
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: all var(--think-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.9em;
+}
+
+.critical-thinking .modal .close-button:hover {
+    background-color: var(--think-primary);
+    color: var(--think-white);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.critical-thinking .button,
+.critical-thinking .transparent-button {
+    border: 1px solid var(--think-primary);
+    color: var(--think-primary);
+    background-color: transparent;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--think-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--think-radius);
+}
+
+.critical-thinking .button::before,
+.critical-thinking .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(44, 62, 80, 0.05), transparent);
+    transition: 0.5s;
+}
+
+.critical-thinking .button:hover,
+.critical-thinking .transparent-button:hover {
+    background-color: var(--think-primary);
+    color: var(--think-white);
+    box-shadow: 0 2px 5px -1px var(--think-shadow);
+}
+
+.critical-thinking .button:hover::before,
+.critical-thinking .transparent-button:hover::before {
+    left: 100%;
+}
+
+.critical-thinking .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.critical-thinking #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.critical-thinking #theme-switcher {
+    background-color: var(--think-white);
+    color: var(--think-primary) !important;
+    border: 1px solid var(--think-primary);
+    padding: 0.6rem 1.8rem 0.6rem 0.8rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--think-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C3E50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--think-transition);
+    box-shadow: 0 1px 3px 0 var(--think-shadow);
+}
+
+.critical-thinking #theme-switcher option {
+    background-color: var(--think-white) !important;
+    color: var(--think-primary) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 10px !important;
+}
+
+.critical-thinking #theme-switcher option:hover {
+    background-color: var(--think-primary) !important;
+    color: var(--think-white) !important;
+}
+
+.critical-thinking #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.critical-thinking #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: 1px solid var(--think-primary);
+    padding: 0.7rem 1.3rem;
+    font-size: 0.85rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    color: var(--think-primary);
+    background-color: var(--think-white);
+    cursor: pointer;
+    transition: all var(--think-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--think-radius);
+    box-shadow: 0 2px 5px -1px var(--think-shadow);
+}
+
+.critical-thinking #backToTopBtn:hover {
+    background-color: var(--think-primary);
+    color: var(--think-white);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.critical-thinking footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--think-primary);
+    color: var(--think-text);
+    font-size: 0.8rem;
+}
+
+.critical-thinking footer::before {
+    content: "🧠 ";
+    color: var(--think-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .critical-thinking .container {
+        padding: 1.5rem;
+    }
+
+    .critical-thinking #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .critical-thinking #current-date {
+        font-size: 1.4rem;
+    }
+
+    .critical-thinking #today-weather {
+        font-size: 1rem;
+    }
+
+    .critical-thinking th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .critical-thinking .container {
+        padding: 1rem;
+    }
+
+    .critical-thinking #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .critical-thinking .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .critical-thinking th .full-day {
+        display: none;
+    }
+
+    .critical-thinking th .short-day {
+        display: inline;
+    }
+
+    .critical-thinking th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .critical-thinking td {
+        padding: 0.6rem 0.2rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .critical-thinking #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .critical-thinking #theme-switcher {
+        min-width: 160px;
+        font-size: 0.8rem;
+        padding: 0.5rem 1.6rem 0.5rem 0.7rem;
+    }
+
+    .critical-thinking .modal-content {
+        padding: 15px;
+    }
+
+    .critical-thinking .modal-content h2 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 576px) {
+    .critical-thinking .container {
+        padding: 0.8rem;
+    }
+
+    .critical-thinking #calendar-title {
+        font-size: 1.3rem;
+    }
+
+    .critical-thinking #current-date {
+        font-size: 1.1rem;
+    }
+
+    .critical-thinking #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .critical-thinking .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .critical-thinking th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .critical-thinking td {
+        padding: 0.4rem 0.15rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .critical-thinking td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .critical-thinking #theme-switcher {
+        min-width: 140px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .critical-thinking th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .critical-thinking td {
+        height: 55px;
+        font-size: 0.7rem;
+    }
+
+    .critical-thinking #theme-switcher {
+        min-width: 120px;
+        font-size: 0.7rem;
+    }
+
+    .critical-thinking #calendar-title {
+        font-size: 1.1rem;
+    }
+}
