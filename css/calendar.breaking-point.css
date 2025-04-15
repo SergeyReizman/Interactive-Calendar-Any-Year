@@ -1,0 +1,822 @@
+/* ==========================================================================
+   Breaking Point Theme - Racing Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Dark industrial color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Urban-inspired UI elements
+   - Animated glitch effects
+   - Enhanced accessibility
+   - Concrete textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
+
+:root {
+    /* Industrial Color Palette */
+    --bp-bg: #121218;
+    --bp-text: #E0E0E0;
+    --bp-primary: #FF4D00;
+    /* Neon orange */
+    --bp-secondary: #00FFC2;
+    /* Cyber teal */
+
+    /* Gradient Colors */
+    --bp-gradient-start: #1A001A;
+    --bp-gradient-end: #001A1A;
+
+    /* Accent Colors */
+    --bp-red: #FF003C;
+    --bp-yellow: #FFE600;
+    --bp-green: #00FF6A;
+    --bp-purple: #B200FF;
+    --bp-silver: #A0A0A0;
+
+    /* Theme Variables */
+    --bp-shadow: rgba(255, 77, 0, 0.3);
+    --bp-radius: 4px;
+    --bp-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --bp-hover: #1E1E24;
+    --bp-current-day: #2A1E2E;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes bp-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--bp-primary),
+            0 0 10px rgba(0, 255, 194, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--bp-primary),
+            0 0 25px rgba(0, 255, 194, 0.7);
+    }
+}
+
+@keyframes bp-glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes bp-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--bp-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--bp-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.breaking-point {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--bp-text);
+    line-height: 1.6;
+    background: var(--bp-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(255, 77, 0, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(255, 77, 0, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+}
+
+.breaking-point::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(255, 77, 0, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(0, 255, 194, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.breaking-point::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><line x1="0" y1="0" x2="40" y2="40" stroke="%23FF4D00" stroke-width="1"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.breaking-point .container {
+    background-color: rgba(18, 18, 24, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--bp-primary);
+    box-shadow: 0 0 30px var(--bp-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--bp-radius);
+    z-index: 1;
+}
+
+.breaking-point .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bp-primary),
+            var(--bp-secondary),
+            transparent);
+    animation: bp-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.breaking-point #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bp-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: bp-pulse 3s infinite;
+    text-transform: uppercase;
+}
+
+.breaking-point #calendar-title::before,
+.breaking-point #calendar-title::after {
+    content: "⏱";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bp-secondary);
+    font-size: 1.5rem;
+}
+
+.breaking-point #calendar-title::before {
+    left: 1rem;
+    animation: bp-pulse 2.5s infinite 0.5s;
+}
+
+.breaking-point #calendar-title::after {
+    right: 1rem;
+    animation: bp-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.breaking-point #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 77, 0, 0.1);
+    border: 1px solid var(--bp-primary);
+    border-radius: var(--bp-radius);
+    position: relative;
+}
+
+.breaking-point #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bp-primary),
+            transparent);
+}
+
+.breaking-point #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bp-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.breaking-point #today-weather {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--bp-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.breaking-point #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.breaking-point .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--bp-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--bp-bg);
+    box-shadow:
+        0 0 15px var(--bp-shadow),
+        inset 0 0 10px rgba(255, 77, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 77, 0, 0.1) 100%);
+}
+
+.breaking-point .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%23FF4D00">12</text><text x="82" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%23FF4D00">3</text><text x="50" y="92" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%23FF4D00">6</text><text x="18" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%23FF4D00">9</text></svg>');
+}
+
+.breaking-point .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.breaking-point .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--bp-primary);
+    margin-top: -2px;
+}
+
+.breaking-point .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--bp-secondary);
+    margin-top: -1px;
+}
+
+.breaking-point .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--bp-yellow);
+    margin-top: -0.5px;
+}
+
+.breaking-point .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bp-silver);
+    border-radius: 50%;
+    border: 1px solid var(--bp-secondary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.breaking-point table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(30, 30, 40, 0.9);
+    border: 1px solid var(--bp-primary);
+    border-radius: var(--bp-radius);
+    table-layout: fixed;
+}
+
+.breaking-point th {
+    background-color: rgba(255, 77, 0, 0.15);
+    color: var(--bp-primary) !important;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bp-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.breaking-point th .full-day {
+    display: inline;
+}
+
+.breaking-point th .short-day {
+    display: none;
+}
+
+.breaking-point td {
+    background-color: rgba(25, 25, 35, 0.9);
+    color: var(--bp-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bp-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--bp-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.breaking-point td:hover {
+    background-color: var(--bp-hover);
+    box-shadow: inset 0 0 15px var(--bp-shadow);
+}
+
+.breaking-point .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--bp-text);
+}
+
+.breaking-point td.current-day {
+    background-color: var(--bp-current-day);
+    border: 2px solid var(--bp-secondary);
+    color: var(--bp-secondary) !important;
+    font-weight: 700;
+    animation: bp-glow 3s infinite;
+}
+
+.breaking-point td.current-day .date-number {
+    color: var(--bp-secondary) !important;
+    font-weight: 800;
+}
+
+.breaking-point td.current-day::before {
+    content: "⚠";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--bp-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.breaking-point .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bp-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--bp-shadow);
+    transition: all var(--bp-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.breaking-point .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--bp-secondary);
+    box-shadow: 0 0 15px var(--bp-primary);
+}
+
+.breaking-point .event-marker.holiday {
+    background-color: var(--bp-yellow);
+}
+
+.breaking-point .event-marker.historic {
+    background-color: var(--bp-silver);
+}
+
+.breaking-point .event-marker.patriotic {
+    background-color: var(--bp-purple);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.breaking-point .modal-content {
+    position: relative;
+    background-color: rgba(30, 30, 30, 0.98);
+    border: 1px solid var(--bp-primary);
+    padding: 25px;
+    color: var(--bp-text);
+    box-shadow: 0 0 30px var(--bp-shadow);
+    border-radius: var(--bp-radius);
+    animation: bp-glow 0.5s ease;
+}
+
+.breaking-point .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bp-primary),
+            var(--bp-secondary),
+            var(--bp-yellow));
+}
+
+.breaking-point .modal-content h2 {
+    color: var(--bp-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.breaking-point .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.breaking-point .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--bp-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.breaking-point .modal-content .event-description {
+    background-color: rgba(255, 77, 0, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--bp-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--bp-radius) var(--bp-radius) 0;
+}
+
+.breaking-point .modal-content button {
+    background-color: var(--bp-primary);
+    color: var(--bp-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    border-radius: var(--bp-radius);
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+}
+
+.breaking-point .modal-content button:hover {
+    background-color: var(--bp-secondary);
+    box-shadow: 0 4px 6px -1px var(--bp-shadow);
+}
+
+.breaking-point .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--bp-primary);
+    border: 1px solid var(--bp-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.breaking-point .modal .close-button:hover {
+    background-color: var(--bp-primary);
+    color: var(--bp-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.breaking-point .button,
+.breaking-point .transparent-button {
+    border: 1px solid var(--bp-primary);
+    color: var(--bp-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--bp-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.breaking-point .button::before,
+.breaking-point .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 77, 0, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.breaking-point .button:hover,
+.breaking-point .transparent-button:hover {
+    background-color: var(--bp-primary);
+    color: var(--bp-bg);
+    box-shadow: 0 4px 6px -1px var(--bp-shadow);
+}
+
+.breaking-point .button:hover::before,
+.breaking-point .transparent-button:hover::before {
+    left: 100%;
+}
+
+.breaking-point .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.breaking-point #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.breaking-point #theme-switcher {
+    background-color: var(--bp-bg);
+    color: var(--bp-primary) !important;
+    border: 1px solid var(--bp-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--bp-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF4D00'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    box-shadow: 0 1px 3px 0 var(--bp-shadow);
+}
+
+.breaking-point #theme-switcher option {
+    background-color: var(--bp-bg) !important;
+    color: var(--bp-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.breaking-point #theme-switcher option:hover {
+    background-color: var(--bp-primary) !important;
+    color: var(--bp-bg) !important;
+}
+
+.breaking-point #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 77, 0, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.breaking-point #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--bp-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    color: var(--bp-primary);
+    background-color: var(--bp-bg);
+    cursor: pointer;
+    transition: all var(--bp-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--bp-radius);
+    box-shadow: 0 4px 6px -1px var(--bp-shadow);
+    text-transform: uppercase;
+}
+
+.breaking-point #backToTopBtn:hover {
+    background-color: var(--bp-primary);
+    color: var(--bp-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.breaking-point footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--bp-primary);
+    color: var(--bp-text);
+    font-size: 0.8rem;
+}
+
+.breaking-point footer::before {
+    content: "⚡";
+    color: var(--bp-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .breaking-point .container {
+        padding: 1.2rem;
+    }
+
+    .breaking-point #calendar-title {
+        font-size: 2rem;
+    }
+
+    .breaking-point #current-date {
+        font-size: 1.5rem;
+    }
+
+    .breaking-point #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .breaking-point th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .breaking-point .container {
+        padding: 1rem;
+    }
+
+    .breaking-point #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .breaking-point .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .breaking-point th .full-day {
+        display: none;
+    }
+
+    .breaking-point th .short-day {
+        display: inline;
+    }
+
+    .breaking-point th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .breaking-point td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .breaking-point #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .breaking-point #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .breaking-point .modal-content {
+        padding: 15px;
+    }
+
+    .breaking-point .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .breaking-point .container {
+        padding: 0.8rem;
+    }
+
+    .breaking-point #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .breaking-point #current-date {
+        font-size: 1.1rem;
+    }
+
+    .breaking-point #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .breaking-point .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .breaking-point th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .breaking-point td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .breaking-point td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .breaking-point #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .breaking-point th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .breaking-point td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .breaking-point #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .breaking-point #calendar-title {
+        font-size: 1.2rem;
+    }
+}
