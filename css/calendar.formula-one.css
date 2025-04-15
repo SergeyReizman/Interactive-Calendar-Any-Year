@@ -1,0 +1,820 @@
+/* ==========================================================================
+   Formula One Theme - Racing Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Blue racing color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Racing-inspired UI elements
+   - Animated speed effects
+   - Enhanced accessibility
+   - Carbon fiber textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@400;600&display=swap');
+
+:root {
+    /* Blue Racing Color Palette */
+    --f1-bg: #0a0a12;
+    --f1-text: #F0F0FF;
+    --f1-primary: #005AFF;
+    /* Renault/McLaren blue */
+    --f1-secondary: #00F0FF;
+    /* Cyan accent */
+
+    /* Gradient Colors */
+    --f1-gradient-start: #000A1A;
+    --f1-gradient-end: #001A0A;
+
+    /* Accent Colors */
+    --f1-red: #FF1801;
+    /* Ferrari red */
+    --f1-yellow: #FFD700;
+    /* Safety car */
+    --f1-green: #00A651;
+    /* Racing green */
+    --f1-orange: #FF7B08;
+    /* McLaren orange */
+    --f1-silver: #C0C0C0;
+    /* Metallic */
+
+    /* Theme Variables */
+    --f1-shadow: rgba(0, 90, 255, 0.3);
+    --f1-radius: 3px;
+    /* Sharp edges */
+    --f1-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --f1-hover: #1E1E2E;
+    --f1-current-day: #1A1A3A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes f1-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--f1-primary),
+            0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--f1-primary),
+            0 0 25px rgba(0, 240, 255, 0.7);
+    }
+}
+
+@keyframes speed-line {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes f1-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--f1-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--f1-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.formula-one {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--f1-text);
+    line-height: 1.6;
+    background: var(--f1-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(0, 90, 255, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(0, 90, 255, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: speed-line 2s linear infinite;
+}
+
+.formula-one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(0, 90, 255, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(0, 240, 255, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Speed line pattern */
+.formula-one::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><line x1="0" y1="0" x2="40" y2="40" stroke="%23005AFF" stroke-width="1"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.formula-one .container {
+    background-color: rgba(10, 10, 20, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--f1-primary);
+    box-shadow: 0 0 30px var(--f1-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--f1-radius);
+    z-index: 1;
+}
+
+.formula-one .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--f1-primary),
+            var(--f1-secondary),
+            transparent);
+    animation: f1-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.formula-one #calendar-title {
+    font-family: 'Russo One', sans-serif;
+    color: var(--f1-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: f1-pulse 3s infinite;
+    text-transform: uppercase;
+}
+
+.formula-one #calendar-title::before,
+.formula-one #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--f1-secondary);
+    font-size: 1.5rem;
+}
+
+.formula-one #calendar-title::before {
+    left: 1rem;
+    animation: f1-pulse 2.5s infinite 0.5s;
+}
+
+.formula-one #calendar-title::after {
+    right: 1rem;
+    animation: f1-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.formula-one #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 90, 255, 0.1);
+    border: 1px solid var(--f1-primary);
+    border-radius: var(--f1-radius);
+    position: relative;
+}
+
+.formula-one #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--f1-primary),
+            transparent);
+}
+
+.formula-one #current-date {
+    font-family: 'Russo One', sans-serif;
+    color: var(--f1-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.formula-one #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--f1-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.formula-one #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.formula-one .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--f1-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--f1-bg);
+    box-shadow:
+        0 0 15px var(--f1-shadow),
+        inset 0 0 10px rgba(0, 90, 255, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(0, 90, 255, 0.1) 100%);
+}
+
+/* Racing numerals for clock */
+.formula-one .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">12</text><text x="82" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">3</text><text x="50" y="92" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">6</text><text x="18" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">9</text></svg>');
+}
+
+.formula-one .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.formula-one .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--f1-primary);
+    margin-top: -2px;
+}
+
+.formula-one .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--f1-secondary);
+    margin-top: -1px;
+}
+
+.formula-one .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--f1-yellow);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Wheel nut */
+.formula-one .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--f1-silver);
+    border-radius: 50%;
+    border: 1px solid var(--f1-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.formula-one table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 20, 40, 0.9);
+    border: 1px solid var(--f1-primary);
+    border-radius: var(--f1-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.formula-one th {
+    background-color: rgba(0, 90, 255, 0.15);
+    color: var(--f1-primary) !important;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--f1-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.formula-one th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.formula-one th .short-day {
+    display: none;
+}
+
+.formula-one td {
+    background-color: rgba(15, 15, 30, 0.9);
+    color: var(--f1-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--f1-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--f1-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.formula-one td:hover {
+    background-color: var(--f1-hover);
+    box-shadow: inset 0 0 15px var(--f1-shadow);
+}
+
+.formula-one .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--f1-text);
+}
+
+.formula-one td.current-day {
+    background-color: var(--f1-current-day);
+    border: 2px solid var(--f1-secondary);
+    color: var(--f1-secondary) !important;
+    font-weight: 700;
+    animation: f1-glow 3s infinite;
+}
+
+.formula-one td.current-day .date-number {
+    color: var(--f1-secondary) !important;
+    font-weight: 800;
+}
+
+.formula-one td.current-day::before {
+    content: "🏁";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--f1-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.formula-one .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--f1-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--f1-shadow);
+    transition: all var(--f1-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.formula-one .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--f1-secondary);
+    box-shadow: 0 0 15px var(--f1-primary);
+}
+
+/* Special event types */
+.formula-one .event-marker.holiday {
+    background-color: var(--f1-yellow);
+}
+
+.formula-one .event-marker.historic {
+    background-color: var(--f1-silver);
+}
+
+.formula-one .event-marker.patriotic {
+    background-color: var(--f1-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.formula-one .modal-content {
+    position: relative;
+    background-color: rgba(20, 20, 20, 0.98);
+    border: 1px solid var(--f1-primary);
+    padding: 25px;
+    color: var(--f1-text);
+    box-shadow: 0 0 30px var(--f1-shadow);
+    border-radius: var(--f1-radius);
+    animation: f1-glow 0.5s ease;
+}
+
+.formula-one .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--f1-primary),
+            var(--f1-secondary),
+            var(--f1-yellow));
+}
+
+.formula-one .modal-content h2 {
+    color: var(--f1-primary);
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.formula-one .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.formula-one .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--f1-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.formula-one .modal-content .event-description {
+    background-color: rgba(0, 90, 255, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--f1-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--f1-radius) var(--f1-radius) 0;
+}
+
+.formula-one .modal-content button {
+    background-color: var(--f1-primary);
+    color: var(--f1-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--f1-transition);
+    border-radius: var(--f1-radius);
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
+}
+
+.formula-one .modal-content button:hover {
+    background-color: var(--f1-secondary);
+    box-shadow: 0 4px 6px -1px var(--f1-shadow);
+}
+
+.formula-one .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--f1-primary);
+    border: 1px solid var(--f1-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--f1-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.formula-one .modal .close-button:hover {
+    background-color: var(--f1-primary);
+    color: var(--f1-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.formula-one .button,
+.formula-one .transparent-button {
+    border: 1px solid var(--f1-primary);
+    color: var(--f1-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--f1-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--f1-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.formula-one .button::before,
+.formula-one .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 90, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.formula-one .button:hover,
+.formula-one .transparent-button:hover {
+    background-color: var(--f1-primary);
+    color: var(--f1-bg);
+    box-shadow: 0 4px 6px -1px var(--f1-shadow);
+}
+
+.formula-one .button:hover::before,
+.formula-one .transparent-button:hover::before {
+    left: 100%;
+}
+
+.formula-one .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.formula-one #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.formula-one #theme-switcher {
+    background-color: var(--f1-bg);
+    color: var(--f1-primary) !important;
+    border: 1px solid var(--f1-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--f1-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23005AFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--f1-transition);
+    box-shadow: 0 1px 3px 0 var(--f1-shadow);
+}
+
+.formula-one #theme-switcher option {
+    background-color: var(--f1-bg) !important;
+    color: var(--f1-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.formula-one #theme-switcher option:hover {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-bg) !important;
+}
+
+.formula-one #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 90, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.formula-one #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--f1-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    color: var(--f1-primary);
+    background-color: var(--f1-bg);
+    cursor: pointer;
+    transition: all var(--f1-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--f1-radius);
+    box-shadow: 0 4px 6px -1px var(--f1-shadow);
+    text-transform: uppercase;
+}
+
+.formula-one #backToTopBtn:hover {
+    background-color: var(--f1-primary);
+    color: var(--f1-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.formula-one footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--f1-primary);
+    color: var(--f1-text);
+    font-size: 0.8rem;
+}
+
+.formula-one footer::before {
+    content: "🏎 ";
+    color: var(--f1-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .formula-one .container {
+        padding: 1.2rem;
+    }
+
+    .formula-one #calendar-title {
+        font-size: 2rem;
+    }
+
+    .formula-one #current-date {
+        font-size: 1.5rem;
+    }
+
+    .formula-one #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .formula-one th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .formula-one .container {
+        padding: 1rem;
+    }
+
+    .formula-one #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .formula-one .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .formula-one th .full-day {
+        display: none;
+    }
+
+    .formula-one th .short-day {
+        display: inline;
+    }
+
+    .formula-one th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .formula-one td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .formula-one #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .formula-one #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .formula-one .modal-content {
+        padding: 15px;
+    }
+
+    .formula-one .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .formula-one .container {
+        padding: 0.8rem;
+    }
+
+    .formula-one #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .formula-one #current-date {
+        font-size: 1.1rem;
+    }
+
+    .formula-one #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .formula-one .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .formula-one th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .formula-one td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .formula-one td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .formula-one #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .formula-one th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .formula-one td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .formula-one #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .formula-one #calendar-title {
+        font-size: 1.2rem;
+    }
+}
