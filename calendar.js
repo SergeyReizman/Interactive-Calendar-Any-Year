@@ -86,7 +86,7 @@ const applyTheme = (theme) => {
     'okinawa-breeze', 'one-step-ahead', 'on-the-island', 'orange-country', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'practical-experience', 'precious-question', 
     'pure-light', 
-    'purple-fog', 'quantum-programmer', 'quiet-evening',
+    'purple-fog', 'quantum-programmer', 'queen-of-ambience', 'quiet-evening',
     'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'red-lake', 'red-squirrel', 'rising-sun',
     'robin-good', 'royal-caribbean', 'samurai-path', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shaolin-monastery',

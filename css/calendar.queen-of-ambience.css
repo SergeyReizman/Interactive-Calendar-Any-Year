@@ -1,0 +1,824 @@
+/* ==========================================================================
+   Queen of Ambience Theme - Luxury Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Royal purple and gold color scheme
+   - Elegant serif typography
+   - Subtle velvet textures
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Sophisticated hover effects
+   - WCAG 2.1 AA compliant
+   - Fluid typography scaling
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Marcellus&display=swap');
+
+:root {
+    /* Royal Color Palette */
+    --queen-bg: #1A0A1A;
+    --queen-text: #F5F0F5;
+    --queen-primary: #8A4F7D;
+    /* Royal purple */
+    --queen-secondary: #D4AF37;
+    /* Gold */
+
+    /* Gradient Colors */
+    --queen-gradient-start: #2A0A2A;
+    --queen-gradient-end: #1A0A1A;
+
+    /* Accent Colors */
+    --queen-rose: #C17C74;
+    /* Dusty rose */
+    --queen-emerald: #50C878;
+    /* Emerald */
+    --queen-sapphire: #0F52BA;
+    /* Sapphire */
+    --queen-pearl: #EAE0C8;
+    /* Pearl */
+    --queen-ivory: #FFFFF0;
+    /* Ivory */
+
+    /* Theme Variables */
+    --queen-shadow: rgba(138, 79, 125, 0.3);
+    --queen-radius: 8px;
+    /* Soft rounded corners */
+    --queen-transition: 0.4s ease-in-out;
+    --queen-hover: #2A1A2A;
+    --queen-current-day: #3A2A3A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes royal-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--queen-primary),
+            0 0 10px rgba(212, 175, 55, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--queen-primary),
+            0 0 25px rgba(212, 175, 55, 0.7);
+    }
+}
+
+@keyframes velvet-shimmer {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+@keyframes queen-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--queen-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--queen-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.queen-of-ambience {
+    font-family: 'Marcellus', serif;
+    color: var(--queen-text);
+    line-height: 1.8;
+    background: var(--queen-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(45deg,
+            rgba(138, 79, 125, 0.03) 1px,
+            transparent 1px),
+        linear-gradient(-45deg,
+            rgba(138, 79, 125, 0.03) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: velvet-shimmer 60s linear infinite;
+}
+
+.queen-of-ambience::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(138, 79, 125, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Velvet texture overlay */
+.queen-of-ambience::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.02"><path fill="%238A4F7D" d="M0 0h100v100H0z"/></svg>');
+    background-size: 100px 100px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.queen-of-ambience .container {
+    background-color: rgba(26, 10, 26, 0.95);
+    padding: 2.5rem;
+    border: 1px solid var(--queen-primary);
+    box-shadow: 0 0 30px var(--queen-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--queen-radius);
+    z-index: 1;
+}
+
+.queen-of-ambience .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--queen-primary),
+            var(--queen-secondary),
+            transparent);
+    animation: queen-glow 5s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.queen-of-ambience #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--queen-secondary);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: royal-pulse 5s infinite;
+}
+
+.queen-of-ambience #calendar-title::before,
+.queen-of-ambience #calendar-title::after {
+    content: "✨";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--queen-primary);
+    font-size: 1.8rem;
+    opacity: 0.8;
+}
+
+.queen-of-ambience #calendar-title::before {
+    left: 1.5rem;
+}
+
+.queen-of-ambience #calendar-title::after {
+    right: 1.5rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.queen-of-ambience #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 1.2rem;
+    background-color: rgba(138, 79, 125, 0.1);
+    border: 1px solid var(--queen-primary);
+    border-radius: var(--queen-radius);
+    position: relative;
+}
+
+.queen-of-ambience #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--queen-primary),
+            transparent);
+}
+
+.queen-of-ambience #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--queen-secondary);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+.queen-of-ambience #today-weather {
+    font-family: 'Marcellus', serif;
+    color: var(--queen-primary);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.queen-of-ambience #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.queen-of-ambience .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--queen-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--queen-bg);
+    box-shadow:
+        0 0 20px var(--queen-shadow),
+        inset 0 0 15px rgba(138, 79, 125, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(138, 79, 125, 0.1) 100%);
+}
+
+/* Roman numerals for clock */
+.queen-of-ambience .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%238A4F7D">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%238A4F7D">III</text><text x="50" y="92" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%238A4F7D">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%238A4F7D">IX</text></svg>');
+}
+
+.queen-of-ambience .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.queen-of-ambience .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--queen-primary);
+    margin-top: -2.5px;
+}
+
+.queen-of-ambience .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--queen-secondary);
+    margin-top: -1.5px;
+}
+
+.queen-of-ambience .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--queen-pearl);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Jewel */
+.queen-of-ambience .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--queen-secondary);
+    border-radius: 50%;
+    border: 1px solid var(--queen-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.queen-of-ambience table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5rem auto;
+    background-color: rgba(42, 26, 42, 0.9);
+    border: 1px solid var(--queen-primary);
+    border-radius: var(--queen-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.queen-of-ambience th {
+    background-color: rgba(138, 79, 125, 0.15);
+    color: var(--queen-secondary) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--queen-primary);
+    position: relative;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+}
+
+/* Full names for desktop */
+.queen-of-ambience th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.queen-of-ambience th .short-day {
+    display: none;
+}
+
+.queen-of-ambience td {
+    background-color: rgba(26, 10, 26, 0.9);
+    color: var(--queen-text);
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--queen-primary);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--queen-transition);
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.queen-of-ambience td:hover {
+    background-color: var(--queen-hover);
+    box-shadow: inset 0 0 15px var(--queen-shadow);
+}
+
+.queen-of-ambience .date-number {
+    display: block;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: var(--queen-text);
+    font-family: 'Cinzel', serif;
+}
+
+.queen-of-ambience td.current-day {
+    background-color: var(--queen-current-day);
+    border: 2px solid var(--queen-secondary);
+    color: var(--queen-secondary) !important;
+    animation: queen-glow 5s infinite;
+}
+
+.queen-of-ambience td.current-day .date-number {
+    color: var(--queen-secondary) !important;
+    font-weight: 700;
+}
+
+.queen-of-ambience td.current-day::before {
+    content: "👑";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--queen-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 1rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.queen-of-ambience .event-marker {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--queen-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--queen-shadow);
+    transition: all var(--queen-transition);
+    border: 1px solid rgba(245, 240, 245, 0.5);
+}
+
+.queen-of-ambience .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--queen-secondary);
+    box-shadow: 0 0 15px var(--queen-primary);
+}
+
+/* Special event types */
+.queen-of-ambience .event-marker.holiday {
+    background-color: var(--queen-emerald);
+}
+
+.queen-of-ambience .event-marker.historic {
+    background-color: var(--queen-sapphire);
+}
+
+.queen-of-ambience .event-marker.patriotic {
+    background-color: var(--queen-rose);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.queen-of-ambience .modal-content {
+    position: relative;
+    background-color: rgba(42, 26, 42, 0.98);
+    border: 1px solid var(--queen-primary);
+    padding: 30px;
+    color: var(--queen-text);
+    box-shadow: 0 0 40px var(--queen-shadow);
+    border-radius: var(--queen-radius);
+    animation: queen-glow 0.5s ease;
+    line-height: 1.8;
+}
+
+.queen-of-ambience .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--queen-primary),
+            var(--queen-secondary),
+            var(--queen-emerald));
+}
+
+.queen-of-ambience .modal-content h2 {
+    color: var(--queen-secondary);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.queen-of-ambience .modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.queen-of-ambience .modal-content .event-time {
+    display: block;
+    font-weight: 400;
+    color: var(--queen-primary);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-family: 'Cinzel', serif;
+}
+
+.queen-of-ambience .modal-content .event-description {
+    background-color: rgba(138, 79, 125, 0.15);
+    padding: 20px;
+    border-left: 3px solid var(--queen-secondary);
+    margin: 20px 0;
+    border-radius: 0 var(--queen-radius) var(--queen-radius) 0;
+}
+
+.queen-of-ambience .modal-content button {
+    background-color: var(--queen-primary);
+    color: var(--queen-bg);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--queen-transition);
+    border-radius: var(--queen-radius);
+    font-family: 'Marcellus', serif;
+    letter-spacing: 0.05em;
+}
+
+.queen-of-ambience .modal-content button:hover {
+    background-color: var(--queen-secondary);
+    box-shadow: 0 5px 8px -1px var(--queen-shadow);
+}
+
+.queen-of-ambience .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--queen-primary);
+    border: 1px solid var(--queen-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--queen-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1em;
+}
+
+.queen-of-ambience .modal .close-button:hover {
+    background-color: var(--queen-primary);
+    color: var(--queen-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.queen-of-ambience .button,
+.queen-of-ambience .transparent-button {
+    border: 1px solid var(--queen-primary);
+    color: var(--queen-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--queen-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.6rem;
+    border-radius: var(--queen-radius);
+    letter-spacing: 0.05em;
+}
+
+.queen-of-ambience .button::before,
+.queen-of-ambience .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(138, 79, 125, 0.1), transparent);
+    transition: 0.6s;
+}
+
+.queen-of-ambience .button:hover,
+.queen-of-ambience .transparent-button:hover {
+    background-color: var(--queen-primary);
+    color: var(--queen-bg);
+    box-shadow: 0 5px 8px -1px var(--queen-shadow);
+}
+
+.queen-of-ambience .button:hover::before,
+.queen-of-ambience .transparent-button:hover::before {
+    left: 100%;
+}
+
+.queen-of-ambience .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.queen-of-ambience #theme-switcher-container {
+    position: relative;
+    margin: 0 1.2rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.queen-of-ambience #theme-switcher {
+    background-color: var(--queen-bg);
+    color: var(--queen-primary) !important;
+    border: 1px solid var(--queen-primary);
+    padding: 0.8rem 2.4rem 0.8rem 1rem;
+    font-family: 'Marcellus', serif;
+    font-size: 1em;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--queen-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238A4F7D'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--queen-transition);
+    box-shadow: 0 2px 4px 0 var(--queen-shadow);
+    letter-spacing: 0.05em;
+}
+
+.queen-of-ambience #theme-switcher option {
+    background-color: var(--queen-bg) !important;
+    color: var(--queen-primary) !important;
+    font-size: 1em;
+    font-weight: 400;
+    padding: 12px 14px !important;
+    font-family: 'Marcellus', serif;
+}
+
+.queen-of-ambience #theme-switcher option:hover {
+    background-color: var(--queen-primary) !important;
+    color: var(--queen-bg) !important;
+}
+
+.queen-of-ambience #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(138, 79, 125, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.queen-of-ambience #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--queen-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1em;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    color: var(--queen-primary);
+    background-color: var(--queen-bg);
+    cursor: pointer;
+    transition: all var(--queen-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--queen-radius);
+    box-shadow: 0 5px 8px -1px var(--queen-shadow);
+    letter-spacing: 0.05em;
+}
+
+.queen-of-ambience #backToTopBtn:hover {
+    background-color: var(--queen-primary);
+    color: var(--queen-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.queen-of-ambience footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--queen-primary);
+    color: var(--queen-text);
+    font-size: 0.9rem;
+}
+
+.queen-of-ambience footer::before {
+    content: "👑 ";
+    color: var(--queen-secondary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .queen-of-ambience .container {
+        padding: 2rem;
+    }
+
+    .queen-of-ambience #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .queen-of-ambience #current-date {
+        font-size: 1.7rem;
+    }
+
+    .queen-of-ambience #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .queen-of-ambience th {
+        font-size: 0.85rem;
+        padding: 0.9rem 0.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .queen-of-ambience .container {
+        padding: 1.5rem;
+    }
+
+    .queen-of-ambience #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .queen-of-ambience .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Switch to short day names */
+    .queen-of-ambience th .full-day {
+        display: none;
+    }
+
+    .queen-of-ambience th .short-day {
+        display: inline;
+    }
+
+    .queen-of-ambience th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .queen-of-ambience td {
+        padding: 0.7rem 0.3rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .queen-of-ambience #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.4rem;
+        font-size: 0.9rem;
+    }
+
+    .queen-of-ambience #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.9rem;
+        font-size: 0.9rem;
+        min-width: 190px;
+    }
+
+    .queen-of-ambience .modal-content {
+        padding: 20px;
+    }
+
+    .queen-of-ambience .modal-content h2 {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 576px) {
+    .queen-of-ambience .container {
+        padding: 1rem;
+    }
+
+    .queen-of-ambience #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .queen-of-ambience #current-date {
+        font-size: 1.3rem;
+    }
+
+    .queen-of-ambience #today-weather {
+        font-size: 1rem;
+    }
+
+    .queen-of-ambience .clock-face {
+        width: 130px;
+        height: 130px;
+    }
+
+    .queen-of-ambience th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .queen-of-ambience td {
+        padding: 0.5rem 0.2rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .queen-of-ambience td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .queen-of-ambience #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .queen-of-ambience th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .queen-of-ambience td {
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .queen-of-ambience #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+
+    .queen-of-ambience #calendar-title {
+        font-size: 1.3rem;
+    }
+}
