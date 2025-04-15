@@ -1,8 +1,10 @@
 /* ==========================================================================
    Grands Prix Theme - Racing Calendar UI
-   Version: 4.0
-   Updated: 2025-06-20
+   Version: 4.1
+   Updated: 2025-06-25
    Features:
+   - Fixed weekday header spacing issues
+   - Optimized mobile display
    - Motorsport-inspired design system
    - Racing flag UI elements
    - Animated checkered patterns
@@ -327,7 +329,7 @@
     border: 1px solid var(--racing-secondary);
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+/* ==================== CALENDAR TABLE - FIXED HEADERS ==================== */
 .grands-prix table {
     width: 100%;
     border-collapse: collapse;
@@ -341,34 +343,40 @@
 .grands-prix th {
     background-color: rgba(225, 6, 0, 0.2);
     color: var(--racing-primary) !important;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 500;
-    padding: 1rem 0.5rem;
+    font-family: 'Titillium Web', sans-serif;
+    /* Changed to more readable font */
+    font-weight: 600;
+    padding: 0.75rem 0.25rem;
     border: 1px solid var(--racing-primary);
     position: relative;
-    letter-spacing: 0.05em;
+    letter-spacing: normal;
     text-transform: uppercase;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.grands-prix th span.full-day-name {
+/* Full day names for larger screens */
+.grands-prix th .full-day-name {
     display: inline;
 }
 
-.grands-prix th abbr {
+/* 3-letter abbreviations for smaller screens */
+.grands-prix th .short-day-name {
     display: none;
-    text-decoration: none;
-    border-bottom: none;
 }
 
 .grands-prix td {
     background-color: rgba(20, 20, 20, 0.9);
     color: var(--racing-text);
-    padding: 1rem;
+    padding: 0.75rem 0.25rem;
     border: 1px solid var(--racing-primary);
     height: 90px;
     vertical-align: top;
     transition: all var(--racing-transition);
     position: relative;
+    font-size: 0.85rem;
 }
 
 .grands-prix td:hover {
@@ -376,30 +384,35 @@
     box-shadow: inset 0 0 10px var(--racing-shadow);
 }
 
+.grands-prix .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--racing-text);
+}
+
 .grands-prix td.current-day {
     background-color: var(--racing-current-day);
-    border: 1px solid var(--racing-primary);
+    border: 2px solid var(--racing-primary);
     color: var(--racing-primary) !important;
     font-weight: 700;
     animation: racing-glow 4s infinite;
 }
 
+.grands-prix td.current-day .date-number {
+    color: var(--racing-primary) !important;
+    font-weight: 800;
+}
+
 .grands-prix td.current-day::before {
-    content: "🏎️";
+    content: "🏎";
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 3px;
+    left: 3px;
     color: var(--racing-primary);
     z-index: 1;
     opacity: 0.7;
-    font-size: 1rem;
-}
-
-.grands-prix td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--racing-primary) !important;
-    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -409,15 +422,16 @@
     height: 8px;
     border-radius: 50%;
     background-color: var(--racing-primary);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--racing-shadow);
+    margin: 0 1px;
+    box-shadow: 0 0 3px var(--racing-shadow);
     transition: all var(--racing-transition);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .grands-prix .event-marker:hover {
-    transform: scale(1.8);
+    transform: scale(1.5);
     background-color: var(--racing-secondary);
-    box-shadow: 0 0 15px var(--racing-primary);
+    box-shadow: 0 0 10px var(--racing-primary);
 }
 
 /* Special event types */
@@ -438,7 +452,7 @@
     position: relative;
     background-color: rgba(20, 20, 20, 0.98);
     border: 1px solid var(--racing-primary);
-    padding: 25px;
+    padding: 20px;
     color: var(--racing-text);
     box-shadow: 0 0 30px var(--racing-shadow);
     border-radius: var(--racing-radius);
@@ -461,7 +475,7 @@
 .grands-prix .modal-content h2 {
     color: var(--racing-primary);
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.8em;
+    font-size: 1.5em;
     margin-bottom: 15px;
     font-weight: 700;
     text-transform: uppercase;
@@ -469,7 +483,8 @@
 
 .grands-prix .modal-content p {
     margin-bottom: 15px;
-    font-size: 1.05em;
+    font-size: 1em;
+    line-height: 1.5;
 }
 
 .grands-prix .modal-content .event-time {
@@ -477,14 +492,14 @@
     font-weight: 600;
     color: var(--racing-secondary);
     margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .grands-prix .modal-content .event-description {
     background-color: rgba(225, 6, 0, 0.15);
-    padding: 15px;
+    padding: 12px;
     border-left: 3px solid var(--racing-primary);
-    margin: 15px 0;
+    margin: 12px 0;
     border-radius: 0 var(--racing-radius) var(--racing-radius) 0;
 }
 
@@ -492,8 +507,8 @@
     background-color: var(--racing-primary);
     color: var(--racing-bg);
     border: none;
-    padding: 10px 20px;
-    font-size: 0.9em;
+    padding: 8px 16px;
+    font-size: 0.85em;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--racing-transition);
@@ -509,19 +524,20 @@
 
 .grands-prix .modal .close-button {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 10px;
+    right: 10px;
     background-color: transparent;
     color: var(--racing-primary);
     border: 1px solid var(--racing-primary);
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     transition: all var(--racing-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-size: 0.8em;
 }
 
 .grands-prix .modal .close-button:hover {
@@ -535,17 +551,18 @@
     border: 1px solid var(--racing-primary);
     color: var(--racing-primary);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--racing-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
+    margin: 0.4rem;
     border-radius: var(--racing-radius);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-size: 0.85rem;
 }
 
 .grands-prix .button::before,
@@ -577,14 +594,14 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .grands-prix #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
-    min-width: 200px;
+    margin: 0 0.8rem;
+    min-width: 180px;
     z-index: 1000;
 }
 
@@ -592,9 +609,9 @@
     background-color: var(--racing-bg);
     color: var(--racing-primary) !important;
     border: 1px solid var(--racing-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    padding: 0.6rem 1.8rem 0.6rem 0.8rem;
     font-family: 'Titillium Web', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     width: 100%;
     border-radius: var(--racing-radius);
@@ -603,8 +620,8 @@
     -moz-appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E10600'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.5rem center;
+    background-size: 0.8rem;
     cursor: pointer;
     transition: all var(--racing-transition);
     box-shadow: 0 1px 3px 0 var(--racing-shadow);
@@ -613,9 +630,9 @@
 .grands-prix #theme-switcher option {
     background-color: var(--racing-bg) !important;
     color: var(--racing-primary) !important;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    padding: 10px 12px !important;
+    padding: 8px 10px !important;
 }
 
 .grands-prix #theme-switcher option:hover {
@@ -631,14 +648,14 @@
 /* ==================== BACK TO TOP BUTTON ==================== */
 .grands-prix #backToTopBtn {
     position: fixed;
-    right: 25px;
-    bottom: 25px;
+    right: 20px;
+    bottom: 20px;
     z-index: 9999;
     border: 1px solid var(--racing-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 500;
+    padding: 0.7rem 1.3rem;
+    font-size: 0.85rem;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
     color: var(--racing-primary);
     background-color: var(--racing-bg);
     cursor: pointer;
@@ -659,11 +676,11 @@
 /* ==================== FOOTER ==================== */
 .grands-prix footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.2rem;
+    margin-top: 1.8rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--racing-primary);
     color: var(--racing-text);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .grands-prix footer::before {
@@ -674,75 +691,86 @@
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .grands-prix .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .grands-prix #calendar-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .grands-prix #current-date {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .grands-prix #today-weather {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    .grands-prix th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
     }
 }
 
 @media (max-width: 768px) {
+    .grands-prix .container {
+        padding: 1rem;
+    }
+
+    .grands-prix #calendar-title {
+        font-size: 1.7rem;
+    }
+
     .grands-prix .clock-face {
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
     }
 
-    .grands-prix th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
-    }
-
-    .grands-prix th span.full-day-name {
+    /* Switch to short day names */
+    .grands-prix th .full-day-name {
         display: none;
     }
 
-    .grands-prix th abbr {
+    .grands-prix th .short-day-name {
         display: inline;
     }
 
-    .grands-prix td {
-        padding: 0.5rem;
-        height: 65px;
-        font-size: 0.75rem;
+    .grands-prix th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.15rem;
     }
 
-    .grands-prix td.current-day::before {
-        font-size: 0.8rem;
-        top: 3px;
-        left: 3px;
+    .grands-prix td {
+        padding: 0.5rem 0.15rem;
+        height: 70px;
+        font-size: 0.75rem;
     }
 
     .grands-prix #backToTopBtn {
         right: 15px;
         bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
     }
 
     .grands-prix #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        min-width: 160px;
         font-size: 0.8rem;
-        min-width: 170px;
+        padding: 0.5rem 1.6rem 0.5rem 0.7rem;
     }
 
-    .grands-prix #theme-switcher option {
-        font-size: 0.8rem;
-        padding: 8px !important;
+    .grands-prix .modal-content {
+        padding: 15px;
+    }
+
+    .grands-prix .modal-content h2 {
+        font-size: 1.3em;
     }
 }
 
 @media (max-width: 576px) {
     .grands-prix .container {
-        padding: 0.6rem;
+        padding: 0.8rem;
     }
 
     .grands-prix #calendar-title {
@@ -750,51 +778,69 @@
     }
 
     .grands-prix #current-date {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .grands-prix #today-weather {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 
     .grands-prix .clock-face {
-        width: 110px;
-        height: 110px;
+        width: 120px;
+        height: 120px;
     }
 
     .grands-prix th {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         padding: 0.4rem 0.1rem;
     }
 
     .grands-prix td {
-        padding: 0.2rem;
-        height: 55px;
-        font-size: 0.65rem;
+        padding: 0.3rem 0.1rem;
+        height: 60px;
+        font-size: 0.7rem;
     }
 
     .grands-prix td.current-day::before {
         font-size: 0.7rem;
+        top: 2px;
+        left: 2px;
     }
 
     .grands-prix #theme-switcher {
-        min-width: 150px;
+        min-width: 140px;
         font-size: 0.75rem;
+    }
+
+    .grands-prix .button,
+    .grands-prix .transparent-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 400px) {
     .grands-prix th {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         padding: 0.3rem 0.1rem;
     }
 
     .grands-prix td {
-        height: 45px;
+        height: 50px;
+        font-size: 0.65rem;
     }
 
     .grands-prix #theme-switcher {
-        min-width: 130px;
+        min-width: 120px;
         font-size: 0.7rem;
+    }
+
+    .grands-prix #calendar-title {
+        font-size: 1.2rem;
+    }
+
+    .grands-prix #calendar-title::before,
+    .grands-prix #calendar-title::after {
+        font-size: 1rem;
     }
 }
