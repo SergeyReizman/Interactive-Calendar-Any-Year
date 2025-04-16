@@ -1,0 +1,803 @@
+/* ==========================================================================
+   Inspiration Line Theme - Creative Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Creative color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Artistic UI elements
+   - Animated creative effects
+   - Enhanced accessibility
+   - Watercolor textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Quicksand:wght@400;600&display=swap');
+
+:root {
+    /* Creative Color Palette */
+    --il-bg: #F9F7F5;
+    --il-text: #3A3A3A;
+    --il-primary: #4A6FA5;
+    /* Soft blue */
+    --il-secondary: #E85A4F;
+    /* Coral accent */
+
+    /* Gradient Colors */
+    --il-gradient-start: #F5F9FF;
+    --il-gradient-end: #FFF9F5;
+
+    /* Accent Colors */
+    --il-red: #E85A4F;
+    --il-yellow: #FFC145;
+    --il-green: #88B04B;
+    --il-blue: #4A6FA5;
+    --il-purple: #9B5DE5;
+
+    /* Theme Variables */
+    --il-shadow: rgba(74, 111, 165, 0.2);
+    --il-radius: 6px;
+    --il-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --il-hover: #F0F4FF;
+    --il-current-day: #E8F0FF;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes il-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--il-primary),
+            0 0 10px rgba(232, 90, 79, 0.2);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--il-primary),
+            0 0 25px rgba(232, 90, 79, 0.3);
+    }
+}
+
+@keyframes il-watercolor {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes il-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--il-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--il-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.inspiration-line {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--il-text);
+    line-height: 1.6;
+    background: var(--il-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(74, 111, 165, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(232, 90, 79, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+}
+
+.inspiration-line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(74, 111, 165, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(232, 90, 79, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.inspiration-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><path d="M20,20 Q30,10 40,20 T20,40 T0,20 T20,0 Z" fill="%234A6FA5"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.inspiration-line .container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--il-primary);
+    box-shadow: 0 0 30px var(--il-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--il-radius);
+    z-index: 1;
+}
+
+.inspiration-line .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--il-primary),
+            var(--il-secondary));
+    animation: il-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.inspiration-line #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--il-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: il-pulse 3s infinite;
+}
+
+.inspiration-line #calendar-title::before,
+.inspiration-line #calendar-title::after {
+    content: "✏️";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--il-secondary);
+    font-size: 1.5rem;
+}
+
+.inspiration-line #calendar-title::before {
+    left: 1rem;
+    animation: il-pulse 2.5s infinite 0.5s;
+}
+
+.inspiration-line #calendar-title::after {
+    right: 1rem;
+    animation: il-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.inspiration-line #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(74, 111, 165, 0.1);
+    border: 1px solid var(--il-primary);
+    border-radius: var(--il-radius);
+    position: relative;
+}
+
+.inspiration-line #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--il-primary),
+            transparent);
+}
+
+.inspiration-line #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--il-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.inspiration-line #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--il-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.inspiration-line #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.inspiration-line .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--il-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--il-bg);
+    box-shadow:
+        0 0 15px var(--il-shadow),
+        inset 0 0 10px rgba(74, 111, 165, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(74, 111, 165, 0.1) 100%);
+}
+
+.inspiration-line .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234A6FA5">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234A6FA5">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234A6FA5">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234A6FA5">9</text></svg>');
+}
+
+.inspiration-line .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inspiration-line .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--il-primary);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.inspiration-line .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--il-secondary);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.inspiration-line .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--il-yellow);
+    margin-top: -0.5px;
+}
+
+.inspiration-line .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid var(--il-secondary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.inspiration-line table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: white;
+    border: 1px solid var(--il-primary);
+    border-radius: var(--il-radius);
+    table-layout: fixed;
+}
+
+.inspiration-line th {
+    background-color: rgba(74, 111, 165, 0.8);
+    color: white !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid white;
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.inspiration-line th .full-day {
+    display: inline;
+}
+
+.inspiration-line th .short-day {
+    display: none;
+}
+
+.inspiration-line td {
+    background-color: white;
+    color: var(--il-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(74, 111, 165, 0.1);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--il-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.inspiration-line td:hover {
+    background-color: var(--il-hover);
+    box-shadow: inset 0 0 15px var(--il-shadow);
+}
+
+.inspiration-line .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--il-text);
+}
+
+.inspiration-line td.current-day {
+    background-color: var(--il-current-day);
+    border: 2px solid var(--il-secondary);
+    color: var(--il-secondary) !important;
+    font-weight: 700;
+    animation: il-glow 3s infinite;
+}
+
+.inspiration-line td.current-day .date-number {
+    color: var(--il-secondary) !important;
+    font-weight: 800;
+}
+
+.inspiration-line td.current-day::before {
+    content: "🖌️";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--il-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.inspiration-line .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--il-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--il-shadow);
+    transition: all var(--il-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.inspiration-line .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--il-secondary);
+    box-shadow: 0 0 15px var(--il-primary);
+}
+
+.inspiration-line .event-marker.holiday {
+    background-color: var(--il-yellow);
+}
+
+.inspiration-line .event-marker.historic {
+    background-color: var(--il-green);
+}
+
+.inspiration-line .event-marker.patriotic {
+    background-color: var(--il-purple);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.inspiration-line .modal-content {
+    position: relative;
+    background-color: white;
+    border: 1px solid var(--il-primary);
+    padding: 25px;
+    color: var(--il-text);
+    box-shadow: 0 0 30px var(--il-shadow);
+    border-radius: var(--il-radius);
+    animation: il-glow 0.5s ease;
+}
+
+.inspiration-line .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--il-primary),
+            var(--il-secondary));
+}
+
+.inspiration-line .modal-content h2 {
+    color: var(--il-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.inspiration-line .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.inspiration-line .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--il-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.inspiration-line .modal-content .event-description {
+    background-color: rgba(74, 111, 165, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--il-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--il-radius) var(--il-radius) 0;
+}
+
+.inspiration-line .modal-content button {
+    background-color: var(--il-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--il-transition);
+    border-radius: var(--il-radius);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.inspiration-line .modal-content button:hover {
+    background-color: var(--il-secondary);
+    box-shadow: 0 4px 6px -1px var(--il-shadow);
+}
+
+.inspiration-line .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: white;
+    color: var(--il-primary);
+    border: 1px solid var(--il-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--il-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.inspiration-line .modal .close-button:hover {
+    background-color: var(--il-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.inspiration-line .button,
+.inspiration-line .transparent-button {
+    border: 1px solid var(--il-primary);
+    color: var(--il-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--il-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--il-radius);
+}
+
+.inspiration-line .button::before,
+.inspiration-line .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 111, 165, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.inspiration-line .button:hover,
+.inspiration-line .transparent-button:hover {
+    background-color: var(--il-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--il-shadow);
+}
+
+.inspiration-line .button:hover::before,
+.inspiration-line .transparent-button:hover::before {
+    left: 100%;
+}
+
+.inspiration-line .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.inspiration-line #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.inspiration-line #theme-switcher {
+    background-color: white;
+    color: var(--il-primary) !important;
+    border: 1px solid var(--il-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--il-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A6FA5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--il-transition);
+    box-shadow: 0 1px 3px 0 var(--il-shadow);
+}
+
+.inspiration-line #theme-switcher option {
+    background-color: white !important;
+    color: var(--il-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.inspiration-line #theme-switcher option:hover {
+    background-color: var(--il-primary) !important;
+    color: white !important;
+}
+
+.inspiration-line #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.inspiration-line #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--il-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    color: var(--il-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--il-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--il-radius);
+    box-shadow: 0 4px 6px -1px var(--il-shadow);
+}
+
+.inspiration-line #backToTopBtn:hover {
+    background-color: var(--il-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.inspiration-line footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--il-primary);
+    color: var(--il-text);
+    font-size: 0.8rem;
+}
+
+.inspiration-line footer::before {
+    content: "🎨";
+    color: var(--il-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .inspiration-line .container {
+        padding: 1.2rem;
+    }
+
+    .inspiration-line #calendar-title {
+        font-size: 2rem;
+    }
+
+    .inspiration-line #current-date {
+        font-size: 1.5rem;
+    }
+
+    .inspiration-line #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .inspiration-line th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .inspiration-line .container {
+        padding: 1rem;
+    }
+
+    .inspiration-line #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .inspiration-line .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .inspiration-line th .full-day {
+        display: none;
+    }
+
+    .inspiration-line th .short-day {
+        display: inline;
+    }
+
+    .inspiration-line th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .inspiration-line td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .inspiration-line #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .inspiration-line #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .inspiration-line .modal-content {
+        padding: 15px;
+    }
+
+    .inspiration-line .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .inspiration-line .container {
+        padding: 0.8rem;
+    }
+
+    .inspiration-line #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .inspiration-line #current-date {
+        font-size: 1.1rem;
+    }
+
+    .inspiration-line #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .inspiration-line .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .inspiration-line th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .inspiration-line td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .inspiration-line td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .inspiration-line #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .inspiration-line th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .inspiration-line td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .inspiration-line #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .inspiration-line #calendar-title {
+        font-size: 1.2rem;
+    }
+}
