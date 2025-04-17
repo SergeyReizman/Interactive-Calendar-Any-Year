@@ -1,0 +1,662 @@
+/* ==========================================================================
+   Golden Eagle Theme - Majestic Gold and Earth Tones
+   Version: 2.2
+   Updated: 2023-11-15
+   Features:
+   - Rich golden color palette inspired by eagles
+   - Earthy tones for natural elegance
+   - Enhanced contrast for perfect readability
+   - Smooth transitions and animations
+   - Majestic accent colors against deep brown background
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Marcellus+SC&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --ge-bg: #1a120b;
+    --ge-text: #e5d9b6;
+    --ge-primary: #d4af37;
+    --ge-secondary: #a67c52;
+
+    /* Gradient Colors */
+    --ge-gradient-start: #1a120b;
+    --ge-gradient-end: #2c1a0d;
+
+    /* Accent Colors */
+    --ge-accent1: #8b5a2b;
+    --ge-accent2: #6b4423;
+    --ge-accent3: #c19a6b;
+    --ge-accent4: #e6c200;
+    --ge-accent5: #b8860b;
+
+    /* Theme Variables */
+    --ge-shadow: rgba(0, 0, 0, 0.5);
+    --ge-radius: 20px;
+    --ge-transition: 0.3s ease-in-out;
+    --ge-hover: #d4af37;
+    --ge-current-day: #a67c52;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ge-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--ge-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--ge-primary);
+    }
+}
+
+@keyframes ge-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ge-colorShift {
+
+    0%,
+    100% {
+        border-color: var(--ge-primary);
+    }
+
+    33% {
+        border-color: var(--ge-secondary);
+    }
+
+    66% {
+        border-color: var(--ge-accent4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.golden-eagle {
+    font-family: 'Marcellus SC', serif;
+    color: var(--ge-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--ge-gradient-start), var(--ge-gradient-end));
+    min-height: 100vh;
+}
+
+.golden-eagle .container {
+    background-color: rgba(42, 28, 13, 0.95);
+    padding: 2rem;
+    border: 2px solid var(--ge-primary);
+    box-shadow: 0 0 30px var(--ge-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ge-radius);
+    animation: ge-colorShift 15s infinite;
+}
+
+.golden-eagle .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ge-primary), transparent);
+    animation: ge-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.golden-eagle #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--ge-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--ge-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.golden-eagle #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--ge-primary);
+    border-radius: var(--ge-radius);
+    position: relative;
+}
+
+.golden-eagle #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ge-primary), transparent);
+}
+
+.golden-eagle #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--ge-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--ge-shadow);
+}
+
+.golden-eagle #today-weather {
+    font-family: 'Marcellus SC', serif;
+    color: var(--ge-secondary);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.golden-eagle #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.golden-eagle .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--ge-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ge-bg);
+    box-shadow: 0 0 20px var(--ge-shadow);
+}
+
+.golden-eagle .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.golden-eagle .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--ge-primary);
+    margin-top: -4px;
+}
+
+.golden-eagle .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--ge-secondary);
+    margin-top: -3px;
+}
+
+.golden-eagle .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--ge-accent5);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.golden-eagle table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(42, 28, 13, 0.9);
+    border: 2px solid var(--ge-primary);
+    border-radius: var(--ge-radius);
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS - PERFECT VISIBILITY */
+.golden-eagle th {
+    background-color: rgba(139, 90, 43, 0.95);
+    color: var(--ge-text) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--ge-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.golden-eagle th span.full-day-name {
+    display: inline;
+}
+
+.golden-eagle th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.golden-eagle td {
+    background-color: rgba(139, 90, 43, 0.1);
+    color: var(--ge-text);
+    padding: 1.2rem;
+    border: 1px solid var(--ge-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ge-transition);
+    position: relative;
+}
+
+.golden-eagle td:hover {
+    background-color: rgba(212, 175, 55, 0.2);
+    box-shadow: inset 0 0 15px var(--ge-shadow);
+}
+
+/* Current date highlight - OPTIMIZED VISIBILITY */
+.golden-eagle td.current-day {
+    background-color: rgba(166, 124, 82, 0.8);
+    border: 2px solid var(--ge-text);
+    color: #1a120b !important;
+    font-weight: 700;
+    animation: ge-pulse 2s infinite;
+}
+
+.golden-eagle td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--ge-text);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.golden-eagle td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #1a120b !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.golden-eagle .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ge-accent5);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--ge-shadow);
+    transition: all var(--ge-transition);
+}
+
+.golden-eagle .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--ge-primary);
+    box-shadow: 0 0 15px var(--ge-accent5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.golden-eagle .modal-content {
+    position: relative;
+    background-color: rgba(42, 28, 13, 0.98);
+    border: 2px solid var(--ge-primary);
+    padding: 30px;
+    color: var(--ge-text);
+    box-shadow: 0 0 40px var(--ge-shadow);
+    border-radius: var(--ge-radius);
+    animation: ge-fadeIn 0.4s ease;
+}
+
+.golden-eagle .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ge-primary);
+    animation: ge-pulse 2s infinite;
+}
+
+.golden-eagle .modal-content h2 {
+    color: var(--ge-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.golden-eagle .modal-content button {
+    background-color: transparent;
+    color: var(--ge-primary);
+    border: 2px solid var(--ge-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ge-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--ge-radius);
+}
+
+.golden-eagle .modal-content button:hover {
+    background-color: var(--ge-primary);
+    color: var(--ge-text);
+    box-shadow: 0 0 15px var(--ge-shadow);
+}
+
+/* Close Button */
+.golden-eagle .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--ge-primary);
+    border: 2px solid var(--ge-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ge-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.golden-eagle .modal .close-button:hover {
+    background-color: var(--ge-primary);
+    color: var(--ge-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.golden-eagle .button,
+.golden-eagle .transparent-button {
+    border: 2px solid var(--ge-primary);
+    color: var(--ge-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--ge-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ge-radius);
+}
+
+.golden-eagle .button::before,
+.golden-eagle .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.golden-eagle .button:hover,
+.golden-eagle .transparent-button:hover {
+    background-color: var(--ge-primary);
+    color: var(--ge-text);
+    box-shadow: 0 0 20px var(--ge-shadow);
+}
+
+.golden-eagle .button:hover::before,
+.golden-eagle .transparent-button:hover::before {
+    left: 100%;
+}
+
+.golden-eagle .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.golden-eagle #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.golden-eagle #theme-switcher {
+    background-color: rgba(139, 90, 43, 0.9);
+    color: var(--ge-text) !important;
+    border: 2px solid var(--ge-primary);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Marcellus SC', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ge-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e5d9b6'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ge-transition);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.golden-eagle #theme-switcher option {
+    background-color: rgba(139, 90, 43, 0.98) !important;
+    color: var(--ge-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--ge-primary) !important;
+}
+
+.golden-eagle #theme-switcher option:hover {
+    background-color: var(--ge-primary) !important;
+}
+
+.golden-eagle #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--ge-primary), 0 0 15px var(--ge-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.golden-eagle #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--ge-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ge-primary);
+    background-color: rgba(139, 90, 43, 0.3);
+    cursor: pointer;
+    transition: all var(--ge-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ge-radius);
+}
+
+.golden-eagle #backToTopBtn:hover {
+    background-color: var(--ge-primary);
+    color: var(--ge-text);
+    box-shadow: 0 0 20px var(--ge-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.golden-eagle footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ge-primary);
+    color: var(--ge-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .golden-eagle .container {
+        padding: 1.5rem;
+    }
+
+    .golden-eagle #calendar-title {
+        font-size: 2rem;
+    }
+
+    .golden-eagle #current-date {
+        font-size: 1.5rem;
+    }
+
+    .golden-eagle #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .golden-eagle .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .golden-eagle th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .golden-eagle th span.full-day-name {
+        display: none;
+    }
+
+    .golden-eagle th abbr {
+        display: inline;
+    }
+
+    .golden-eagle td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .golden-eagle td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .golden-eagle #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .golden-eagle #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .golden-eagle #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .golden-eagle .container {
+        padding: 0.8rem;
+    }
+
+    .golden-eagle #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .golden-eagle #current-date {
+        font-size: 1.1rem;
+    }
+
+    .golden-eagle #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .golden-eagle .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .golden-eagle th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .golden-eagle td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .golden-eagle td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .golden-eagle #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .golden-eagle th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .golden-eagle td {
+        height: 50px;
+    }
+
+    .golden-eagle #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
