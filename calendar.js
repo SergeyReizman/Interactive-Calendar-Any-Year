@@ -52,7 +52,8 @@ const generateStars = () => {
 const applyTheme = (theme) => {
   body.classList.remove(
     'abandoned-castle', 'action-time', 'adelaide-skyline', 'adriatic-sea', 'aloe-vera', 'alpine-landscape', 'amazon-dolphin',
-    'amazon-river', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 'art-studio', 'autumn-harvest', 
+    'amazon-river', 'andromeda-galaxy', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 'art-studio', 
+    'autumn-harvest', 
     'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'black-fashion', 'black-bird', 
     'black-coffee', 'black-hacker',

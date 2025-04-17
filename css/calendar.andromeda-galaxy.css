@@ -1,0 +1,657 @@
+/* ==========================================================================
+   Andromeda Galaxy Theme - Cosmic Deep Space
+   Version: 2.5
+   Updated: 2023-11-15
+   Features:
+   - Galactic color palette inspired by Andromeda
+   - Preserved all original structure and animations
+   - Stellar contrasts for readability
+   - Nebula-like effects and transitions
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Cosmic Color Palette */
+    --ag-bg: #0A0E17;
+    /* Deep Space */
+    --ag-container-bg: #12182D;
+    /* Galactic Core */
+    --ag-text: #E0E7FF;
+    /* Starlight */
+    --ag-primary: #6D5BBA;
+    /* Nebula Purple */
+    --ag-secondary: #4AC6E8;
+    /* Quasar Blue */
+
+    /* Gradient Colors */
+    --ag-gradient-start: #0A0E17;
+    /* Deep Space */
+    --ag-gradient-end: #1A1F3D;
+    /* Spiral Arm */
+    --ag-container-gradient: linear-gradient(145deg, #12182D 0%, #1E2747 100%);
+
+    /* Cosmic Accents */
+    --ag-accent1: #8A4FFF;
+    /* Ionized Gas */
+    --ag-accent2: #FF6B8B;
+    /* Red Giant */
+    --ag-accent3: #FFD166;
+    /* Yellow Dwarf */
+    --ag-accent4: #06D6A0;
+    /* Green Nebula */
+    --ag-accent5: #EF476F;
+    /* Supernova */
+    --ag-accent6: #118AB2;
+    /* Blue Hypergiant */
+    --ag-accent7: #073B4C;
+    /* Dark Matter */
+    --ag-accent8: #FF9E00;
+    /* Orange Star */
+    --ag-accent9: #8338EC;
+    /* Plasma Wave */
+    --ag-accent10: #3A86FF;
+    /* Pulsar */
+
+    /* Theme Variables */
+    --ag-shadow: rgba(109, 91, 186, 0.3);
+    /* Nebula Glow */
+    --ag-radius: 16px;
+    --ag-transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ag-hover: #8A4FFF;
+    --ag-current-day: #4AC6E8;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ag-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--ag-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--ag-primary);
+    }
+}
+
+@keyframes ag-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ag-colorShift {
+
+    0%,
+    100% {
+        border-color: var(--ag-primary);
+    }
+
+    33% {
+        border-color: var(--ag-secondary);
+    }
+
+    66% {
+        border-color: var(--ag-accent4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.andromeda-galaxy {
+    font-family: 'Space Mono', monospace;
+    color: var(--ag-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--ag-gradient-start), var(--ag-gradient-end));
+    min-height: 100vh;
+}
+
+.andromeda-galaxy .container {
+    background: var(--ag-container-gradient);
+    padding: 2rem;
+    border: 1px solid var(--ag-primary);
+    box-shadow: 0 0 30px var(--ag-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--ag-radius);
+    animation: ag-colorShift 20s infinite;
+}
+
+.andromeda-galaxy .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ag-primary), transparent);
+    animation: ag-pulse 4s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.andromeda-galaxy #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ag-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--ag-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.andromeda-galaxy #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(109, 91, 186, 0.15);
+    border: 1px solid var(--ag-primary);
+    border-radius: var(--ag-radius);
+    position: relative;
+}
+
+.andromeda-galaxy #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ag-primary), transparent);
+}
+
+.andromeda-galaxy #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ag-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--ag-shadow);
+}
+
+.andromeda-galaxy #today-weather {
+    font-family: 'Space Mono', monospace;
+    color: var(--ag-secondary);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.andromeda-galaxy #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.andromeda-galaxy .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--ag-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ag-container-bg);
+    box-shadow: 0 0 20px var(--ag-shadow);
+}
+
+.andromeda-galaxy .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.andromeda-galaxy .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--ag-primary);
+    margin-top: -3px;
+}
+
+.andromeda-galaxy .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--ag-secondary);
+    margin-top: -2px;
+}
+
+.andromeda-galaxy .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ag-accent5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.andromeda-galaxy table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    margin: 2rem auto;
+    background-color: rgba(30, 39, 73, 0.8);
+    border: 1px solid var(--ag-primary);
+    border-radius: var(--ag-radius);
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.andromeda-galaxy th {
+    background: linear-gradient(to bottom, var(--ag-accent9), var(--ag-accent1));
+    color: var(--ag-text) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    border-radius: 8px;
+}
+
+.andromeda-galaxy th span.full-day-name {
+    display: inline;
+}
+
+.andromeda-galaxy th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.andromeda-galaxy td {
+    background-color: rgba(109, 91, 186, 0.1);
+    color: var(--ag-text);
+    padding: 1.2rem;
+    border: 1px solid rgba(109, 91, 186, 0.3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ag-transition);
+    position: relative;
+    border-radius: 8px;
+}
+
+.andromeda-galaxy td:hover {
+    background-color: rgba(138, 79, 255, 0.2);
+    box-shadow: 0 0 15px var(--ag-shadow);
+}
+
+/* Current date highlight */
+.andromeda-galaxy td.current-day {
+    background: linear-gradient(135deg, rgba(74, 198, 232, 0.8), rgba(74, 198, 232, 0.6));
+    border: 1px solid var(--ag-text);
+    color: #0A0E17 !important;
+    font-weight: 700;
+    animation: ag-pulse 3s infinite;
+}
+
+.andromeda-galaxy td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--ag-text);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.andromeda-galaxy td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: #0A0E17 !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.andromeda-galaxy .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--ag-accent5);
+    margin: 0 1px;
+    transition: all var(--ag-transition);
+}
+
+.andromeda-galaxy .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--ag-primary);
+    box-shadow: 0 0 10px var(--ag-accent5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.andromeda-galaxy .modal-content {
+    position: relative;
+    background: var(--ag-container-gradient);
+    border: 1px solid var(--ag-primary);
+    padding: 30px;
+    color: var(--ag-text);
+    box-shadow: 0 0 40px var(--ag-shadow);
+    border-radius: var(--ag-radius);
+    animation: ag-fadeIn 0.4s ease;
+}
+
+.andromeda-galaxy .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--ag-primary);
+    animation: ag-pulse 3s infinite;
+}
+
+.andromeda-galaxy .modal-content h2 {
+    color: var(--ag-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+}
+
+.andromeda-galaxy .modal-content button {
+    background-color: transparent;
+    color: var(--ag-primary);
+    border: 1px solid var(--ag-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ag-transition);
+    letter-spacing: 0.1em;
+    border-radius: var(--ag-radius);
+}
+
+.andromeda-galaxy .modal-content button:hover {
+    background-color: var(--ag-primary);
+    color: var(--ag-text);
+    box-shadow: 0 0 15px var(--ag-shadow);
+}
+
+/* Close Button */
+.andromeda-galaxy .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--ag-primary);
+    border: 1px solid var(--ag-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ag-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.andromeda-galaxy .modal .close-button:hover {
+    background-color: var(--ag-primary);
+    color: var(--ag-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.andromeda-galaxy .button,
+.andromeda-galaxy .transparent-button {
+    border: 1px solid var(--ag-primary);
+    color: var(--ag-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--ag-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ag-radius);
+}
+
+.andromeda-galaxy .button:hover,
+.andromeda-galaxy .transparent-button:hover {
+    background-color: var(--ag-primary);
+    color: var(--ag-text);
+    box-shadow: 0 0 20px var(--ag-shadow);
+}
+
+.andromeda-galaxy .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: var(--ag-radius);
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.andromeda-galaxy #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.andromeda-galaxy #theme-switcher {
+    background-color: rgba(30, 39, 73, 0.9);
+    color: var(--ag-text) !important;
+    border: 1px solid var(--ag-primary);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ag-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E7FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ag-transition);
+}
+
+.andromeda-galaxy #theme-switcher option {
+    background-color: rgba(30, 39, 73, 0.98) !important;
+    color: var(--ag-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.andromeda-galaxy #theme-switcher option:hover {
+    background-color: var(--ag-primary) !important;
+}
+
+.andromeda-galaxy #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--ag-primary), 0 0 15px var(--ag-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.andromeda-galaxy #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--ag-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--ag-primary);
+    background-color: rgba(30, 39, 73, 0.7);
+    cursor: pointer;
+    transition: all var(--ag-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ag-radius);
+}
+
+.andromeda-galaxy #backToTopBtn:hover {
+    background-color: var(--ag-primary);
+    color: var(--ag-text);
+    box-shadow: 0 0 20px var(--ag-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.andromeda-galaxy footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ag-primary);
+    color: var(--ag-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .andromeda-galaxy .container {
+        padding: 1.5rem;
+    }
+
+    .andromeda-galaxy #calendar-title {
+        font-size: 2rem;
+    }
+
+    .andromeda-galaxy #current-date {
+        font-size: 1.5rem;
+    }
+
+    .andromeda-galaxy #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .andromeda-galaxy .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .andromeda-galaxy th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .andromeda-galaxy th span.full-day-name {
+        display: none;
+    }
+
+    .andromeda-galaxy th abbr {
+        display: inline;
+    }
+
+    .andromeda-galaxy td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .andromeda-galaxy td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .andromeda-galaxy #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .andromeda-galaxy #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .andromeda-galaxy .container {
+        padding: 0.8rem;
+    }
+
+    .andromeda-galaxy #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .andromeda-galaxy #current-date {
+        font-size: 1.1rem;
+    }
+
+    .andromeda-galaxy #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .andromeda-galaxy .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .andromeda-galaxy th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .andromeda-galaxy td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .andromeda-galaxy td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .andromeda-galaxy #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .andromeda-galaxy th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .andromeda-galaxy td {
+        height: 50px;
+    }
+
+    .andromeda-galaxy #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
