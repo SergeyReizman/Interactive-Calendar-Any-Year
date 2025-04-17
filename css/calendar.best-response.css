@@ -1,0 +1,635 @@
+/* ==========================================================================
+   Best Response Theme - Optimal Calendar Design
+   Version: 2.5
+   Updated: 2023-11-15
+   Features:
+   - Clean, responsive calendar layout
+   - Preserved all original structure and animations
+   - Optimal contrast and readability
+   - Professional aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --br-bg: #F0F5F8;
+    --br-container-bg: #FFFFFF;
+    --br-text: #3B3C4D;
+    --br-primary: #3A5B8B;
+    --br-secondary: #5E8BD4;
+
+    /* Gradient Colors */
+    --br-gradient-start: #F0F5F8;
+    --br-gradient-end: #D8E8ED;
+    --br-container-gradient: linear-gradient(145deg, #FFFFFF 0%, #F0F5F8 100%);
+
+    /* Accent Colors */
+    --br-accent1: #3D5B8E;
+    --br-accent2: #5E8DC8;
+    --br-accent3: #B5D8E8;
+    --br-accent4: #888BA8;
+    --br-accent5: #6D8BB3;
+    --br-accent6: #7A7D9D;
+    --br-accent7: #93C1D9;
+    --br-accent8: #9EA8B5;
+    --br-accent9: #84A8C2;
+    --br-accent10: #A7BF9C;
+    --br-accent11: #A5C3A8;
+    --br-accent12: #80B2D1;
+
+    /* Theme Variables */
+    --br-shadow: rgba(58, 91, 139, 0.15);
+    --br-radius: 16px;
+    --br-transition: 0.3s ease-in-out;
+    --br-hover: #3D5B8E;
+    --br-current-day: #5E8BD4;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes br-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 8px var(--br-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--br-primary);
+    }
+}
+
+@keyframes br-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes br-colorShift {
+
+    0%,
+    100% {
+        border-color: var(--br-primary);
+    }
+
+    33% {
+        border-color: var(--br-secondary);
+    }
+
+    66% {
+        border-color: var(--br-accent4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.best-response {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--br-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--br-gradient-start), var(--br-gradient-end));
+    min-height: 100vh;
+}
+
+.best-response .container {
+    background: var(--br-container-gradient);
+    padding: 2rem;
+    border: 1px solid var(--br-primary);
+    box-shadow: 0 0 25px var(--br-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--br-radius);
+    animation: br-colorShift 20s infinite;
+}
+
+.best-response .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--br-primary), transparent);
+    animation: br-pulse 4s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.best-response #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--br-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.best-response #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(58, 91, 139, 0.1);
+    border: 1px solid var(--br-primary);
+    border-radius: var(--br-radius);
+    position: relative;
+}
+
+.best-response #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--br-primary), transparent);
+}
+
+.best-response #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--br-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.best-response #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--br-accent2);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.best-response #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.best-response .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--br-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 0 15px var(--br-shadow);
+}
+
+.best-response .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.best-response .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--br-primary);
+    margin-top: -3px;
+}
+
+.best-response .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--br-secondary);
+    margin-top: -2px;
+}
+
+.best-response .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--br-accent5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.best-response table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    margin: 2rem auto;
+    background-color: transparent;
+    border: none;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.best-response th {
+    background: linear-gradient(to bottom, var(--br-accent1), var(--br-accent6));
+    color: white !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    border-radius: 8px;
+}
+
+.best-response th span.full-day-name {
+    display: inline;
+}
+
+.best-response th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.best-response td {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--br-text);
+    padding: 1.2rem;
+    border: none;
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--br-transition);
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--br-shadow);
+}
+
+.best-response td:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--br-shadow);
+}
+
+/* Current date highlight */
+.best-response td.current-day {
+    background: linear-gradient(135deg, var(--br-secondary), var(--br-accent12));
+    color: white !important;
+    font-weight: 500;
+    animation: br-pulse 3s infinite;
+}
+
+.best-response td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.best-response td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.best-response .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--br-accent5);
+    margin: 0 1px;
+    transition: all var(--br-transition);
+}
+
+.best-response .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--br-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.best-response .modal-content {
+    position: relative;
+    background: white;
+    border: 1px solid var(--br-primary);
+    padding: 30px;
+    color: var(--br-text);
+    box-shadow: 0 0 30px var(--br-shadow);
+    border-radius: var(--br-radius);
+    animation: br-fadeIn 0.4s ease;
+}
+
+.best-response .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--br-primary);
+    animation: br-pulse 3s infinite;
+}
+
+.best-response .modal-content h2 {
+    color: var(--br-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+}
+
+.best-response .modal-content button {
+    background-color: transparent;
+    color: var(--br-primary);
+    border: 1px solid var(--br-primary);
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--br-transition);
+    letter-spacing: 0.05em;
+    border-radius: var(--br-radius);
+}
+
+.best-response .modal-content button:hover {
+    background-color: var(--br-primary);
+    color: white;
+}
+
+/* Close Button */
+.best-response .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--br-primary);
+    border: 1px solid var(--br-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--br-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.best-response .modal .close-button:hover {
+    background-color: var(--br-primary);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.best-response .button,
+.best-response .transparent-button {
+    border: 1px solid var(--br-primary);
+    color: var(--br-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all var(--br-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--br-radius);
+}
+
+.best-response .button:hover,
+.best-response .transparent-button:hover {
+    background-color: var(--br-primary);
+    color: white;
+}
+
+.best-response .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: var(--br-radius);
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.best-response #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.best-response #theme-switcher {
+    background-color: white;
+    color: var(--br-text) !important;
+    border: 1px solid var(--br-primary);
+    padding: 0.7rem 2rem 0.7rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--br-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B3C4D'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--br-transition);
+}
+
+.best-response #theme-switcher option {
+    background-color: white !important;
+    color: var(--br-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 15px !important;
+}
+
+.best-response #theme-switcher option:hover {
+    background-color: var(--br-primary) !important;
+}
+
+.best-response #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--br-primary);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.best-response #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--br-primary);
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 0.05em;
+    color: var(--br-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--br-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--br-radius);
+}
+
+.best-response #backToTopBtn:hover {
+    background-color: var(--br-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.best-response footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--br-primary);
+    color: var(--br-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .best-response .container {
+        padding: 1.5rem;
+    }
+
+    .best-response #calendar-title {
+        font-size: 2rem;
+    }
+
+    .best-response #current-date {
+        font-size: 1.5rem;
+    }
+
+    .best-response #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .best-response .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .best-response th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .best-response th span.full-day-name {
+        display: none;
+    }
+
+    .best-response th abbr {
+        display: inline;
+    }
+
+    .best-response td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .best-response td.current-day::before {
+        width: 16px;
+        height: 16px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .best-response #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .best-response #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .best-response .container {
+        padding: 0.8rem;
+    }
+
+    .best-response #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .best-response #current-date {
+        font-size: 1.1rem;
+    }
+
+    .best-response #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .best-response .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .best-response th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .best-response td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .best-response td.current-day::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .best-response #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .best-response th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .best-response td {
+        height: 50px;
+    }
+
+    .best-response #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
