@@ -55,7 +55,7 @@ const applyTheme = (theme) => {
     'amazon-river', 'andromeda-galaxy', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 'art-studio', 
     'autumn-harvest', 
     'bamboo-flute',
-    'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response',
+    'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 'big-fashion',
     'black-fashion', 'black-bird', 
     'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-orange', 'black-velvet', 'black-violet', 'blue-bird', 'blue-ice', 
