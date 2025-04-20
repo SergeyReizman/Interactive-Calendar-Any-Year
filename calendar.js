@@ -83,7 +83,7 @@ const applyTheme = (theme) => {
     'iceland-volcanoes' , 
     'imaginary-world', 'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
     'invincible-zone', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
-    'lemongrass-sky', 'life-quality', 'lions-mane', 'logical-intelligence',
+    'lemongrass-sky', 'life-quality', 'limited-edition', 'lions-mane', 'logical-intelligence',
     'love-station', 'lucid-dream', 'lunar-eclipse', 'macaroni-penguin',
     'magellanic-penguin', 'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'midnight-alchemy', 'midnight-train', 'midnight-elegance',

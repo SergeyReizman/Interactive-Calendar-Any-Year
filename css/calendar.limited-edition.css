@@ -1,0 +1,742 @@
+/* ==========================================================================
+   Limited Edition Theme - Premium Dark Blue & Gold
+   Version: 3.0 LE
+   Updated: 2023-11-15
+   Features:
+   - Luxurious dark blue and gold color palette
+   - Perfect viewport-centered mobile experience
+   - Enhanced contrast for maximum readability
+   - Smooth animations and transitions
+   - Fully responsive design
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Marcellus+SC&display=swap');
+
+:root {
+    /* New Core Color Palette */
+    --le-bg: #0a1a2e;
+    /* Deep Navy Blue */
+    --le-container-bg: #162a47;
+    /* Darker Blue */
+    --le-text: #f0f0f0;
+    /* Off-White */
+    --le-primary: #d4af37;
+    /* Gold */
+    --le-secondary: #b8860b;
+    /* Darker Gold */
+
+    /* New Gradient Colors */
+    --le-gradient-start: #0a1a2e;
+    /* Deep Navy */
+    --le-gradient-end: #1a3a6a;
+    /* Medium Blue */
+    --le-container-gradient: linear-gradient(145deg, #162a47 0%, #1e3b6a 100%);
+
+    /* New Accent Colors */
+    --le-accent1: #8b5a2b;
+    /* Bronze */
+    --le-accent2: #6b4423;
+    /* Dark Bronze */
+    --le-accent3: #c19a6b;
+    /* Light Tan */
+    --le-accent4: #ffd700;
+    /* Bright Gold */
+    --le-accent5: #c0a062;
+    /* Muted Gold */
+
+    /* Theme Variables */
+    --le-shadow: rgba(212, 175, 55, 0.3);
+    /* Gold shadow */
+    --le-radius: 20px;
+    --le-transition: 0.3s ease-in-out;
+    --le-hover: #ffd700;
+    --le-current-day: #b8860b;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes le-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--le-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--le-primary);
+    }
+}
+
+@keyframes le-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes le-colorShift {
+
+    0%,
+    100% {
+        border-color: var(--le-primary);
+    }
+
+    33% {
+        border-color: var(--le-secondary);
+    }
+
+    66% {
+        border-color: var(--le-accent4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.limited-edition {
+    font-family: 'Marcellus SC', serif;
+    color: var(--le-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--le-gradient-start), var(--le-gradient-end));
+    min-height: 100vh;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.limited-edition .container {
+    background: var(--le-container-gradient);
+    padding: 2rem;
+    border: 2px solid var(--le-primary);
+    box-shadow: 0 0 30px var(--le-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--le-radius);
+    animation: le-colorShift 15s infinite;
+}
+
+.limited-edition .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--le-primary), transparent);
+    animation: le-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.limited-edition #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--le-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.limited-edition #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(22, 42, 71, 0.8);
+    border: 1px solid var(--le-primary);
+    border-radius: var(--le-radius);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.limited-edition #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--le-primary), transparent);
+}
+
+.limited-edition #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--le-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.limited-edition #today-weather {
+    font-family: 'Marcellus SC', serif;
+    color: var(--le-accent3);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.limited-edition #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.limited-edition .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--le-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--le-container-bg);
+    box-shadow: 0 0 20px var(--le-shadow);
+    background: radial-gradient(circle at center, #1e3b6a 0%, #162a47 100%);
+}
+
+.limited-edition .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.limited-edition .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--le-primary);
+    margin-top: -4px;
+}
+
+.limited-edition .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--le-secondary);
+    margin-top: -3px;
+}
+
+.limited-edition .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--le-accent5);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.limited-edition table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(22, 42, 71, 0.9);
+    border: 2px solid var(--le-primary);
+    border-radius: var(--le-radius);
+    table-layout: fixed;
+    backdrop-filter: blur(3px);
+}
+
+/* DAY OF WEEK HEADERS */
+.limited-edition th {
+    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.9), rgba(212, 175, 55, 0.7));
+    color: var(--le-text) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--le-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.limited-edition th span.full-day-name {
+    display: inline;
+}
+
+.limited-edition th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.limited-edition td {
+    background-color: rgba(30, 59, 106, 0.7);
+    color: var(--le-text);
+    padding: 1.2rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--le-transition);
+    position: relative;
+}
+
+.limited-edition td:hover {
+    background-color: rgba(30, 59, 106, 0.9);
+    box-shadow: inset 0 0 15px var(--le-shadow);
+}
+
+/* Current date highlight */
+.limited-edition td.current-day {
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.8), rgba(184, 134, 11, 0.9));
+    border: 2px solid var(--le-text);
+    color: var(--le-text) !important;
+    font-weight: 700;
+    animation: le-pulse 2s infinite;
+}
+
+.limited-edition td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--le-text);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.limited-edition td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--le-text) !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.limited-edition .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--le-accent4);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--le-shadow);
+    transition: all var(--le-transition);
+}
+
+.limited-edition .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--le-primary);
+    box-shadow: 0 0 15px var(--le-accent4);
+}
+
+/* ==================== MODAL STYLES (Viewport-Centered) ==================== */
+.limited-edition .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+}
+
+.limited-edition .modal-content {
+    position: relative;
+    background: var(--le-container-gradient);
+    border: 2px solid var(--le-primary);
+    padding: 30px;
+    color: var(--le-text);
+    box-shadow: 0 0 40px var(--le-shadow);
+    border-radius: var(--le-radius);
+    animation: le-fadeIn 0.4s ease;
+    max-width: 100%;
+    width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
+}
+
+.limited-edition .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--le-primary);
+    animation: le-pulse 2s infinite;
+}
+
+.limited-edition .modal-content h2 {
+    color: var(--le-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.limited-edition .modal-content button {
+    background-color: transparent;
+    color: var(--le-primary);
+    border: 2px solid var(--le-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--le-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--le-radius);
+}
+
+.limited-edition .modal-content button:hover {
+    background-color: var(--le-primary);
+    color: var(--le-text);
+    box-shadow: 0 0 15px var(--le-shadow);
+}
+
+/* Close Button */
+.limited-edition .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--le-primary);
+    border: 2px solid var(--le-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--le-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.limited-edition .modal .close-button:hover {
+    background-color: var(--le-primary);
+    color: var(--le-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.limited-edition .button,
+.limited-edition .transparent-button {
+    border: 2px solid var(--le-primary);
+    color: var(--le-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--le-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--le-radius);
+}
+
+.limited-edition .button::before,
+.limited-edition .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.limited-edition .button:hover,
+.limited-edition .transparent-button:hover {
+    background-color: var(--le-primary);
+    color: var(--le-text);
+    box-shadow: 0 0 20px var(--le-shadow);
+}
+
+.limited-edition .button:hover::before,
+.limited-edition .transparent-button:hover::before {
+    left: 100%;
+}
+
+.limited-edition .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    background-color: rgba(22, 42, 71, 0.8);
+    padding: 1rem;
+    border-radius: var(--le-radius);
+    backdrop-filter: blur(3px);
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.limited-edition #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.limited-edition #theme-switcher {
+    background-color: rgba(22, 42, 71, 0.9);
+    color: var(--le-text) !important;
+    border: 2px solid var(--le-primary);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Marcellus SC', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--le-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0f0f0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--le-transition);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+}
+
+.limited-edition #theme-switcher option {
+    background-color: rgba(22, 42, 71, 0.95) !important;
+    color: var(--le-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--le-primary) !important;
+}
+
+.limited-edition #theme-switcher option:hover {
+    background-color: var(--le-primary) !important;
+}
+
+.limited-edition #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--le-primary), 0 0 15px var(--le-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.limited-edition #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--le-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--le-primary);
+    background-color: rgba(22, 42, 71, 0.9);
+    cursor: pointer;
+    transition: all var(--le-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--le-radius);
+    backdrop-filter: blur(3px);
+}
+
+.limited-edition #backToTopBtn:hover {
+    background-color: var(--le-primary);
+    color: var(--le-text);
+    box-shadow: 0 0 20px var(--le-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.limited-edition footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--le-primary);
+    color: var(--le-text);
+    font-size: 0.9rem;
+    background-color: rgba(22, 42, 71, 0.8);
+    border-radius: 0 0 var(--le-radius) var(--le-radius);
+    backdrop-filter: blur(3px);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .limited-edition .container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    .limited-edition #calendar-title {
+        font-size: 2rem;
+    }
+
+    .limited-edition #current-date {
+        font-size: 1.5rem;
+    }
+
+    .limited-edition #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .limited-edition {
+        padding: 10px;
+        justify-content: flex-start;
+    }
+
+    .limited-edition .container {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .limited-edition .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .limited-edition th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .limited-edition th span.full-day-name {
+        display: none;
+    }
+
+    .limited-edition th abbr {
+        display: inline;
+    }
+
+    .limited-edition td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .limited-edition td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .limited-edition #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .limited-edition #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .limited-edition #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .limited-edition {
+        padding: 5px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .limited-edition .container {
+        padding: 0.8rem;
+        margin: 0.5rem auto;
+    }
+
+    .limited-edition #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .limited-edition #current-date {
+        font-size: 1.1rem;
+    }
+
+    .limited-edition #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .limited-edition .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .limited-edition th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .limited-edition td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .limited-edition td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .limited-edition #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+
+    .limited-edition .modal {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20vh;
+    }
+
+    .limited-edition .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .limited-edition th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .limited-edition td {
+        height: 50px;
+    }
+
+    .limited-edition #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
