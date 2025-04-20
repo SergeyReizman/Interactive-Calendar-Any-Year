@@ -1,0 +1,491 @@
+/* ==========================================================================
+   High-Style Calendar - Luxury Edition
+   Version: 3.3
+   Updated: 2025-07-20
+   Features:
+   - Luxury color scheme
+   - Viewport-centered modals
+   - Premium button styling
+   - Mobile-responsive design
+   - Elegant UI elements
+   - Animated transitions
+   - Enhanced typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Luxury Color Palette */
+    --luxury-bg: #F8F5F2;
+    --luxury-text: #333333;
+    --luxury-primary: #B38B59;
+    /* Gold primary */
+    --luxury-secondary: #5D4037;
+    /* Rich brown */
+    --luxury-accent: #8C6A4F;
+    /* Bronze accent */
+
+    /* Neutral Colors */
+    --luxury-cream: #FFFFF8;
+    --luxury-ivory: #FFFFF0;
+    --luxury-stone: #D8D2C9;
+    --luxury-ebony: #2A2118;
+
+    /* Theme Variables */
+    --luxury-shadow: rgba(179, 139, 89, 0.2);
+    --luxury-radius: 4px;
+    --luxury-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --luxury-hover: #E8D9C5;
+    --luxury-current-day: #F0E6D9;
+    --luxury-glow: 0 0 10px rgba(179, 139, 89, 0.3);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes luxury-fade {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes luxury-pulse {
+
+    0%,
+    100% {
+        box-shadow: var(--luxury-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(179, 139, 89, 0.5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.high-style {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--luxury-text);
+    line-height: 1.6;
+    background: var(--luxury-bg);
+    min-height: 100vh;
+    position: relative;
+}
+
+.high-style .container {
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid var(--luxury-primary);
+    box-shadow: var(--luxury-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: var(--luxury-radius);
+}
+
+.high-style .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--luxury-primary),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.high-style #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--luxury-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.high-style #calendar-title::before,
+.high-style #calendar-title::after {
+    content: "❖";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--luxury-primary);
+    font-size: 1.5rem;
+    opacity: 0.6;
+}
+
+.high-style #calendar-title::before {
+    left: 1rem;
+}
+
+.high-style #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE DISPLAY ==================== */
+.high-style #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--luxury-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.high-style table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: white;
+    border: 1px solid var(--luxury-primary);
+    border-radius: var(--luxury-radius);
+    table-layout: fixed;
+}
+
+.high-style th {
+    background-color: rgba(179, 139, 89, 0.1);
+    color: var(--luxury-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--luxury-primary);
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.high-style td {
+    background-color: white;
+    color: var(--luxury-text);
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--luxury-primary);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--luxury-transition);
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.high-style td:hover {
+    background-color: var(--luxury-hover);
+}
+
+.high-style .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--luxury-text);
+}
+
+.high-style td.current-day {
+    background-color: var(--luxury-current-day);
+    border: 2px solid var(--luxury-primary);
+    color: var(--luxury-primary) !important;
+    font-weight: 600;
+    animation: luxury-pulse 3s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.high-style .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--luxury-primary);
+    margin: 0 1px;
+    transition: all var(--luxury-transition);
+}
+
+.high-style .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--luxury-secondary);
+}
+
+/* ==================== VIEWPORT-CENTERED MODAL ==================== */
+.high-style .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    overscroll-behavior: contain;
+}
+
+.high-style .modal-content {
+    background: white;
+    border: 1px solid var(--luxury-primary);
+    border-radius: var(--luxury-radius);
+    box-shadow: 0 0 30px var(--luxury-shadow);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: luxury-fade 0.3s ease-out;
+}
+
+.high-style .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--luxury-primary);
+}
+
+.high-style .modal-header {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.high-style .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--luxury-primary);
+    margin-bottom: 0.5rem;
+}
+
+.high-style .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--luxury-primary);
+    transition: all var(--luxury-transition);
+}
+
+.high-style .modal-close:hover {
+    color: var(--luxury-secondary);
+}
+
+.high-style .modal-body {
+    margin-bottom: 2rem;
+}
+
+.high-style .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* ==================== PREMIUM BUTTON STYLES ==================== */
+.high-style .button,
+.high-style .transparent-button,
+.high-style #backToTopBtn {
+    border: 1px solid var(--luxury-primary);
+    color: var(--luxury-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--luxury-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--luxury-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+.high-style .button::before,
+.high-style .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(179, 139, 89, 0.1),
+            transparent);
+    transition: 0.5s;
+}
+
+.high-style .button:hover,
+.high-style .transparent-button:hover,
+.high-style #backToTopBtn:hover {
+    background-color: var(--luxury-primary);
+    color: white;
+    box-shadow: var(--luxury-glow);
+}
+
+.high-style .button:hover::before,
+.high-style .transparent-button:hover::before {
+    left: 100%;
+}
+
+.high-style .button.primary {
+    background-color: var(--luxury-primary);
+    color: white;
+}
+
+.high-style .button.primary:hover {
+    background-color: var(--luxury-secondary);
+    border-color: var(--luxury-secondary);
+}
+
+.high-style .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== NAVIGATION CONTROLS ==================== */
+.high-style .calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.high-style .month-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--luxury-primary);
+    font-weight: 500;
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.high-style #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    opacity: 0.9;
+    display: none;
+}
+
+/* ==================== FOOTER ==================== */
+.high-style footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--luxury-primary);
+    color: var(--luxury-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .high-style .container {
+        padding: 1.5rem;
+    }
+
+    .high-style #calendar-title {
+        font-size: 2rem;
+    }
+
+    .high-style #current-date {
+        font-size: 1.5rem;
+    }
+
+    .high-style th,
+    .high-style td {
+        padding: 0.8rem 0.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .high-style .container {
+        padding: 1rem;
+    }
+
+    .high-style #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .high-style th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .high-style td {
+        height: 80px;
+        padding: 0.6rem 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    .high-style .modal-content {
+        padding: 1.5rem;
+    }
+
+    .high-style .button,
+    .high-style .transparent-button,
+    .high-style #backToTopBtn {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .high-style #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .high-style #current-date {
+        font-size: 1.2rem;
+    }
+
+    .high-style th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .high-style td {
+        height: 70px;
+        padding: 0.5rem 0.1rem;
+        font-size: 0.7rem;
+    }
+
+    .high-style .modal-content {
+        padding: 1.2rem;
+    }
+
+    .high-style .button,
+    .high-style .transparent-button,
+    .high-style #backToTopBtn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .high-style th {
+        font-size: 0.65rem;
+    }
+
+    .high-style td {
+        height: 60px;
+    }
+
+    .high-style #calendar-title {
+        font-size: 1.2rem;
+    }
+}
