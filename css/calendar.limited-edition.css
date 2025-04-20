@@ -1,123 +1,148 @@
 /* ==========================================================================
-   Limited Edition Theme - Premium Dark Blue & Gold
-   Version: 3.0 LE
-   Updated: 2023-11-15
+   Limited Edition Theme - Premium Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
    Features:
-   - Luxurious dark blue and gold color palette
-   - Perfect viewport-centered mobile experience
-   - Enhanced contrast for maximum readability
-   - Smooth animations and transitions
-   - Fully responsive design
+   - Gold & platinum color scheme
+   - Embossed textures
+   - Luxury typography
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Metallic effects
+   - Enhanced accessibility
+   - Fluid typography scaling
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Marcellus+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap');
 
 :root {
-    /* New Core Color Palette */
-    --le-bg: #0a1a2e;
-    /* Deep Navy Blue */
-    --le-container-bg: #162a47;
-    /* Darker Blue */
-    --le-text: #f0f0f0;
-    /* Off-White */
-    --le-primary: #d4af37;
+    /* Premium Color Palette */
+    --le-bg: #FAFAFA;
+    --le-text: #2C2C2C;
+    --le-primary: #C0A062;
     /* Gold */
-    --le-secondary: #b8860b;
-    /* Darker Gold */
+    --le-secondary: #A8A8A8;
+    /* Platinum */
 
-    /* New Gradient Colors */
-    --le-gradient-start: #0a1a2e;
-    /* Deep Navy */
-    --le-gradient-end: #1a3a6a;
-    /* Medium Blue */
-    --le-container-gradient: linear-gradient(145deg, #162a47 0%, #1e3b6a 100%);
+    /* Gradient Colors */
+    --le-gradient-start: #F5F5F5;
+    --le-gradient-end: #E5E5E5;
 
-    /* New Accent Colors */
-    --le-accent1: #8b5a2b;
-    /* Bronze */
-    --le-accent2: #6b4423;
-    /* Dark Bronze */
-    --le-accent3: #c19a6b;
-    /* Light Tan */
-    --le-accent4: #ffd700;
-    /* Bright Gold */
-    --le-accent5: #c0a062;
-    /* Muted Gold */
+    /* Accent Colors */
+    --le-emerald: #50C878;
+    --le-sapphire: #0F52BA;
+    --le-ruby: #E0115F;
+    --le-onyx: #353839;
+    --le-white: #FFFFFF;
 
     /* Theme Variables */
-    --le-shadow: rgba(212, 175, 55, 0.3);
-    /* Gold shadow */
-    --le-radius: 20px;
-    --le-transition: 0.3s ease-in-out;
-    --le-hover: #ffd700;
-    --le-current-day: #b8860b;
+    --le-shadow: rgba(192, 160, 98, 0.2);
+    --le-radius: 3px;
+    --le-transition: 0.3s ease-out;
+    --le-hover: #F0F0F0;
+    --le-current-day: #F5F0E6;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes le-pulse {
+@keyframes gold-glow {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--le-primary);
+        box-shadow: 0 0 5px var(--le-primary);
     }
 
     50% {
-        box-shadow: 0 0 25px var(--le-primary);
+        box-shadow: 0 0 15px var(--le-primary);
     }
 }
 
-@keyframes le-fadeIn {
-    from {
+@keyframes emboss-effect {
+    0% {
+        transform: translateY(-10px);
         opacity: 0;
-        transform: translateY(10px);
     }
 
-    to {
-        opacity: 1;
+    100% {
         transform: translateY(0);
+        opacity: 1;
     }
 }
 
-@keyframes le-colorShift {
+@keyframes diamond-sparkle {
 
     0%,
     100% {
-        border-color: var(--le-primary);
+        opacity: 0.7;
     }
 
-    33% {
-        border-color: var(--le-secondary);
-    }
-
-    66% {
-        border-color: var(--le-accent4);
+    50% {
+        opacity: 1;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .limited-edition {
-    font-family: 'Marcellus SC', serif;
+    font-family: 'Montserrat', sans-serif;
     color: var(--le-text);
     line-height: 1.6;
-    background: linear-gradient(135deg, var(--le-gradient-start), var(--le-gradient-end));
+    background: var(--le-bg);
     min-height: 100vh;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to right,
+            rgba(192, 160, 98, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(to bottom,
+            rgba(168, 168, 168, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+}
+
+.limited-edition::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(192, 160, 98, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(168, 168, 168, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+/* Diamond pattern overlay */
+.limited-edition::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path fill="%23C0A062" d="M50 0L100 50L50 100L0 50Z"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+    animation: diamond-sparkle 3s infinite;
 }
 
 .limited-edition .container {
-    background: var(--le-container-gradient);
+    background-color: rgba(255, 255, 255, 0.97);
     padding: 2rem;
-    border: 2px solid var(--le-primary);
-    box-shadow: 0 0 30px var(--le-shadow);
+    border: 1px solid var(--le-primary);
+    box-shadow: 0 0 20px var(--le-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
-    margin: 2rem auto;
+    margin: 0 auto;
     border-radius: var(--le-radius);
-    animation: le-colorShift 15s infinite;
+    z-index: 1;
 }
 
 .limited-edition .container::before {
@@ -126,9 +151,13 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--le-primary), transparent);
-    animation: le-pulse 3s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--le-primary),
+            var(--le-secondary),
+            transparent);
+    animation: gold-glow 4s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
@@ -136,11 +165,31 @@
     font-family: 'Cinzel', serif;
     color: var(--le-primary);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    position: relative;
+    animation: emboss-effect 1s ease-out;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.limited-edition #calendar-title::before,
+.limited-edition #calendar-title::after {
+    content: "💎";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--le-secondary);
+    font-size: 1.8rem;
+    opacity: 0.8;
+}
+
+.limited-edition #calendar-title::before {
+    left: 1rem;
+}
+
+.limited-edition #calendar-title::after {
+    right: 1rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -148,11 +197,10 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: rgba(22, 42, 71, 0.8);
+    background-color: rgba(192, 160, 98, 0.1);
     border: 1px solid var(--le-primary);
     border-radius: var(--le-radius);
     position: relative;
-    backdrop-filter: blur(5px);
 }
 
 .limited-edition #date-weather-container::after {
@@ -161,25 +209,25 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--le-primary), transparent);
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--le-primary),
+            transparent);
 }
 
 .limited-edition #current-date {
     font-family: 'Cinzel', serif;
     color: var(--le-primary);
     font-size: 1.8rem;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .limited-edition #today-weather {
-    font-family: 'Marcellus SC', serif;
-    color: var(--le-accent3);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--le-secondary);
+    font-size: 1.2rem;
     font-weight: 500;
 }
 
@@ -191,14 +239,30 @@
 }
 
 .limited-edition .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 12px solid var(--le-primary);
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--le-primary);
     border-radius: 50%;
     position: relative;
-    background-color: var(--le-container-bg);
-    box-shadow: 0 0 20px var(--le-shadow);
-    background: radial-gradient(circle at center, #1e3b6a 0%, #162a47 100%);
+    background-color: var(--le-white);
+    box-shadow:
+        0 0 15px var(--le-shadow),
+        inset 0 0 10px rgba(192, 160, 98, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(192, 160, 98, 0.1) 100%);
+}
+
+/* Roman numerals */
+.limited-edition .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23C0A062">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23C0A062">III</text><text x="50" y="92" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23C0A062">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23C0A062">IX</text></svg>');
 }
 
 .limited-edition .hand {
@@ -207,117 +271,129 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .limited-edition .hour-hand {
     width: 40%;
     left: 10%;
-    height: 8px;
+    height: 4px;
     background: var(--le-primary);
-    margin-top: -4px;
+    margin-top: -2px;
 }
 
 .limited-edition .minute-hand {
     width: 48%;
     left: 2%;
-    height: 6px;
+    height: 2px;
     background: var(--le-secondary);
-    margin-top: -3px;
+    margin-top: -1px;
 }
 
 .limited-edition .second-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--le-accent5);
-    margin-top: -1.5px;
+    height: 1px;
+    background: var(--le-ruby);
+    margin-top: -0.5px;
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+/* Clock center - Diamond */
+.limited-edition .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--le-primary);
+    border-radius: 50%;
+    border: 1px solid var(--le-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
 .limited-edition table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(22, 42, 71, 0.9);
-    border: 2px solid var(--le-primary);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--le-primary);
     border-radius: var(--le-radius);
     table-layout: fixed;
-    backdrop-filter: blur(3px);
 }
 
-/* DAY OF WEEK HEADERS */
+/* Weekday headers - responsive solution */
 .limited-edition th {
-    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.9), rgba(212, 175, 55, 0.7));
-    color: var(--le-text) !important;
+    background-color: rgba(192, 160, 98, 0.1);
+    color: var(--le-primary) !important;
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     padding: 1rem 0.5rem;
     border: 1px solid var(--le-primary);
     position: relative;
+    font-size: 0.9rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 0;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.limited-edition th span.full-day-name {
+/* Full names for desktop */
+.limited-edition th .full-day {
     display: inline;
 }
 
-.limited-edition th abbr {
+/* Short names for mobile */
+.limited-edition th .short-day {
     display: none;
-    text-decoration: none;
-    border-bottom: none;
 }
 
 .limited-edition td {
-    background-color: rgba(30, 59, 106, 0.7);
+    background-color: rgba(255, 255, 255, 0.97);
     color: var(--le-text);
-    padding: 1.2rem;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    height: 100px;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--le-primary);
+    height: 90px;
     vertical-align: top;
     transition: all var(--le-transition);
     position: relative;
+    font-size: 0.9rem;
 }
 
 .limited-edition td:hover {
-    background-color: rgba(30, 59, 106, 0.9);
-    box-shadow: inset 0 0 15px var(--le-shadow);
+    background-color: var(--le-hover);
+    box-shadow: inset 0 0 10px var(--le-shadow);
 }
 
-/* Current date highlight */
+.limited-edition .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--le-text);
+}
+
 .limited-edition td.current-day {
-    background: linear-gradient(135deg, rgba(184, 134, 11, 0.8), rgba(184, 134, 11, 0.9));
-    border: 2px solid var(--le-text);
-    color: var(--le-text) !important;
+    background-color: var(--le-current-day);
+    border: 2px solid var(--le-primary);
+    color: var(--le-primary) !important;
     font-weight: 700;
-    animation: le-pulse 2s infinite;
+    animation: gold-glow 4s infinite;
+}
+
+.limited-edition td.current-day .date-number {
+    color: var(--le-primary) !important;
+    font-weight: 700;
 }
 
 .limited-edition td.current-day::before {
-    content: "";
+    content: "✨";
     position: absolute;
     top: 5px;
-    right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--le-text);
-    border-radius: 50%;
+    left: 5px;
+    color: var(--le-primary);
     z-index: 1;
-    opacity: 0.7;
-}
-
-.limited-edition td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--le-text) !important;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+    font-size: 1rem;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -326,48 +402,42 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--le-accent4);
-    margin: 0 2px;
+    background-color: var(--le-primary);
+    margin: 0 1px;
     box-shadow: 0 0 5px var(--le-shadow);
     transition: all var(--le-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .limited-edition .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--le-primary);
-    box-shadow: 0 0 15px var(--le-accent4);
+    transform: scale(1.8);
+    background-color: var(--le-secondary);
+    box-shadow: 0 0 15px var(--le-primary);
 }
 
-/* ==================== MODAL STYLES (Viewport-Centered) ==================== */
-.limited-edition .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    backdrop-filter: blur(10px);
-    padding: 20px;
+/* Special event types */
+.limited-edition .event-marker.holiday {
+    background-color: var(--le-emerald);
 }
 
+.limited-edition .event-marker.historic {
+    background-color: var(--le-sapphire);
+}
+
+.limited-edition .event-marker.patriotic {
+    background-color: var(--le-onyx);
+}
+
+/* ==================== MODAL STYLES ==================== */
 .limited-edition .modal-content {
     position: relative;
-    background: var(--le-container-gradient);
-    border: 2px solid var(--le-primary);
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--le-primary);
+    padding: 25px;
     color: var(--le-text);
-    box-shadow: 0 0 40px var(--le-shadow);
+    box-shadow: 0 0 30px var(--le-shadow);
     border-radius: var(--le-radius);
-    animation: le-fadeIn 0.4s ease;
-    max-width: 100%;
-    width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    margin: auto;
+    animation: gold-glow 0.5s ease;
 }
 
 .limited-edition .modal-content::before {
@@ -376,50 +446,69 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--le-primary);
-    animation: le-pulse 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--le-primary),
+            var(--le-secondary),
+            var(--le-emerald));
 }
 
 .limited-edition .modal-content h2 {
     color: var(--le-primary);
     font-family: 'Cinzel', serif;
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.limited-edition .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.limited-edition .modal-content .event-time {
+    display: block;
+    font-weight: 500;
+    color: var(--le-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.limited-edition .modal-content .event-description {
+    background-color: rgba(192, 160, 98, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--le-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--le-radius) var(--le-radius) 0;
 }
 
 .limited-edition .modal-content button {
-    background-color: transparent;
-    color: var(--le-primary);
-    border: 2px solid var(--le-primary);
-    padding: 12px 24px;
-    font-size: 1em;
-    font-weight: 600;
+    background-color: var(--le-primary);
+    color: var(--le-white);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
     cursor: pointer;
     transition: all var(--le-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
     border-radius: var(--le-radius);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .limited-edition .modal-content button:hover {
-    background-color: var(--le-primary);
-    color: var(--le-text);
-    box-shadow: 0 0 15px var(--le-shadow);
+    background-color: var(--le-secondary);
+    box-shadow: 0 4px 6px -1px var(--le-shadow);
 }
 
-/* Close Button */
 .limited-edition .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
     color: var(--le-primary);
-    border: 2px solid var(--le-primary);
-    width: 32px;
-    height: 32px;
+    border: 1px solid var(--le-primary);
+    width: 28px;
+    height: 28px;
     cursor: pointer;
     transition: all var(--le-transition);
     display: flex;
@@ -430,20 +519,18 @@
 
 .limited-edition .modal .close-button:hover {
     background-color: var(--le-primary);
-    color: var(--le-text);
-    transform: rotate(90deg);
+    color: var(--le-white);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .limited-edition .button,
 .limited-edition .transparent-button {
-    border: 2px solid var(--le-primary);
+    border: 1px solid var(--le-primary);
     color: var(--le-primary);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
+    padding: 0.7rem 1.4rem;
     font-family: 'Cinzel', serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--le-transition);
     position: relative;
@@ -460,15 +547,15 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(192, 160, 98, 0.1), transparent);
     transition: 0.5s;
 }
 
 .limited-edition .button:hover,
 .limited-edition .transparent-button:hover {
     background-color: var(--le-primary);
-    color: var(--le-text);
-    box-shadow: 0 0 20px var(--le-shadow);
+    color: var(--le-white);
+    box-shadow: 0 4px 6px -1px var(--le-shadow);
 }
 
 .limited-edition .button:hover::before,
@@ -482,87 +569,80 @@
     align-items: center;
     flex-wrap: wrap;
     margin: 1.5rem 0;
-    background-color: rgba(22, 42, 71, 0.8);
-    padding: 1rem;
-    border-radius: var(--le-radius);
-    backdrop-filter: blur(3px);
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .limited-edition #theme-switcher-container {
     position: relative;
     margin: 0 1rem;
-    min-width: 220px;
+    min-width: 200px;
     z-index: 1000;
 }
 
 .limited-edition #theme-switcher {
-    background-color: rgba(22, 42, 71, 0.9);
-    color: var(--le-text) !important;
-    border: 2px solid var(--le-primary);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Marcellus SC', serif;
-    font-size: 1rem;
-    font-weight: 600;
+    background-color: var(--le-white);
+    color: var(--le-primary) !important;
+    border: 1px solid var(--le-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
     width: 100%;
     border-radius: var(--le-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0f0f0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C0A062'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.7rem center;
-    background-size: 1rem;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
     cursor: pointer;
     transition: all var(--le-transition);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(3px);
+    box-shadow: 0 1px 3px 0 var(--le-shadow);
 }
 
 .limited-edition #theme-switcher option {
-    background-color: rgba(22, 42, 71, 0.95) !important;
-    color: var(--le-text) !important;
-    font-size: 1rem;
+    background-color: var(--le-white) !important;
+    color: var(--le-primary) !important;
+    font-size: 0.9rem;
     font-weight: 500;
-    padding: 12px 15px !important;
-    border-bottom: 1px solid var(--le-primary) !important;
+    padding: 10px 12px !important;
 }
 
 .limited-edition #theme-switcher option:hover {
     background-color: var(--le-primary) !important;
+    color: var(--le-white) !important;
 }
 
 .limited-edition #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--le-primary), 0 0 15px var(--le-shadow);
+    box-shadow: 0 0 0 3px rgba(192, 160, 98, 0.3);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .limited-edition #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 2px solid var(--le-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
+    border: 1px solid var(--le-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
     font-family: 'Cinzel', serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 700;
     color: var(--le-primary);
-    background-color: rgba(22, 42, 71, 0.9);
+    background-color: var(--le-white);
     cursor: pointer;
     transition: all var(--le-transition);
     opacity: 0.9;
     display: none;
     border-radius: var(--le-radius);
-    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 6px -1px var(--le-shadow);
 }
 
 .limited-edition #backToTopBtn:hover {
     background-color: var(--le-primary);
-    color: var(--le-text);
-    box-shadow: 0 0 20px var(--le-shadow);
+    color: var(--le-white);
     opacity: 1;
 }
 
@@ -570,20 +650,21 @@
 .limited-edition footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.5rem;
+    padding-top: 1.2rem;
     border-top: 1px solid var(--le-primary);
     color: var(--le-text);
-    font-size: 0.9rem;
-    background-color: rgba(22, 42, 71, 0.8);
-    border-radius: 0 0 var(--le-radius) var(--le-radius);
-    backdrop-filter: blur(3px);
+    font-size: 0.8rem;
+}
+
+.limited-edition footer::before {
+    content: "💎 ";
+    color: var(--le-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .limited-edition .container {
-        padding: 1.5rem;
-        margin: 1rem auto;
+        padding: 1.2rem;
     }
 
     .limited-edition #calendar-title {
@@ -595,92 +676,82 @@
     }
 
     .limited-edition #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .limited-edition th {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.3rem;
     }
 }
 
 @media (max-width: 768px) {
-    .limited-edition {
-        padding: 10px;
-        justify-content: flex-start;
-    }
-
     .limited-edition .container {
-        margin: 1rem auto;
         padding: 1rem;
     }
 
+    .limited-edition #calendar-title {
+        font-size: 1.7rem;
+    }
+
     .limited-edition .clock-face {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
     }
 
-    .limited-edition th {
-        font-size: 0.85rem;
-        padding: 0.8rem 0.3rem;
-    }
-
-    .limited-edition th span.full-day-name {
+    /* Switch to short day names */
+    .limited-edition th .full-day {
         display: none;
     }
 
-    .limited-edition th abbr {
+    .limited-edition th .short-day {
         display: inline;
     }
 
+    .limited-edition th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+
     .limited-edition td {
-        padding: 0.6rem;
+        padding: 0.7rem 0.2rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    .limited-edition td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
-    }
-
     .limited-edition #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
     }
 
     .limited-edition #theme-switcher {
-        padding: 0.7rem 2rem 0.7rem 0.8rem;
-        font-size: 0.9rem;
-        min-width: 180px;
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
     }
 
-    .limited-edition #theme-switcher option {
-        font-size: 0.9rem;
-        padding: 10px !important;
+    .limited-edition .modal-content {
+        padding: 15px;
+    }
+
+    .limited-edition .modal-content h2 {
+        font-size: 1.5em;
     }
 }
 
 @media (max-width: 576px) {
-    .limited-edition {
-        padding: 5px;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
     .limited-edition .container {
         padding: 0.8rem;
-        margin: 0.5rem auto;
     }
 
     .limited-edition #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
+        font-size: 1.4rem;
     }
 
     .limited-edition #current-date {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .limited-edition #today-weather {
@@ -688,55 +759,48 @@
     }
 
     .limited-edition .clock-face {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
 
     .limited-edition th {
-        font-size: 0.75rem;
-        padding: 0.5rem 0.2rem;
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
     }
 
     .limited-edition td {
-        padding: 0.3rem;
+        padding: 0.5rem 0.15rem;
         height: 60px;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
 
     .limited-edition td.current-day::before {
-        width: 16px;
-        height: 16px;
+        font-size: 0.8rem;
     }
 
     .limited-edition #theme-switcher {
-        min-width: 160px;
-        font-size: 0.85rem;
-    }
-
-    .limited-edition .modal {
-        padding: 10px;
-        align-items: flex-start;
-        padding-top: 20vh;
-    }
-
-    .limited-edition .modal-content {
-        width: 95%;
-        padding: 20px;
+        min-width: 150px;
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .limited-edition th {
         font-size: 0.65rem;
-        padding: 0.4rem 0.1rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .limited-edition td {
         height: 50px;
+        font-size: 0.7rem;
     }
 
     .limited-edition #theme-switcher {
-        min-width: 140px;
-        font-size: 0.8rem;
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .limited-edition #calendar-title {
+        font-size: 1.2rem;
     }
 }
