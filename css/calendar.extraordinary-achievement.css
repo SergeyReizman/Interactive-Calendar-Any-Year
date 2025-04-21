@@ -1,0 +1,816 @@
+/* ==========================================================================
+   Extraordinary Achievement Theme
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Gold championship color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Trophy-inspired UI elements
+   - Animated celebration effects
+   - Enhanced accessibility
+   - Carbon fiber textures with gold accents
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@400;600&display=swap');
+
+:root {
+    /* Gold Championship Color Palette */
+    --ea-bg: #0a0a12;
+    --ea-text: #F0F0FF;
+    --ea-primary: #FFD700;
+    /* Gold */
+    --ea-secondary: #C0C0C0;
+    /* Silver */
+
+    /* Gradient Colors */
+    --ea-gradient-start: #1A0A00;
+    --ea-gradient-end: #0A001A;
+
+    /* Accent Colors */
+    --ea-red: #FF1801;
+    /* Ferrari red */
+    --ea-blue: #005AFF;
+    /* Renault/McLaren blue */
+    --ea-green: #00A651;
+    /* Racing green */
+    --ea-orange: #FF7B08;
+    /* McLaren orange */
+    --ea-purple: #800080;
+    /* Royal purple */
+
+    /* Theme Variables */
+    --ea-shadow: rgba(255, 215, 0, 0.3);
+    --ea-radius: 3px;
+    --ea-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --ea-hover: #1E1E2E;
+    --ea-current-day: #3A3A1A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ea-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--ea-primary),
+            0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--ea-primary),
+            0 0 25px rgba(255, 215, 0, 0.7);
+    }
+}
+
+@keyframes trophy-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ea-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ea-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--ea-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.extraordinary-achievement {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--ea-text);
+    line-height: 1.6;
+    background: var(--ea-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(255, 215, 0, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(255, 215, 0, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+}
+
+.extraordinary-achievement::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(255, 215, 0, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(192, 192, 192, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Trophy pattern */
+.extraordinary-achievement::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" opacity="0.03"><path d="M30 5L35 15H45L37 25L42 35L30 30L18 35L23 25L15 15H25Z" fill="%23FFD700"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.extraordinary-achievement .container {
+    background-color: rgba(10, 10, 20, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--ea-primary);
+    box-shadow: 0 0 30px var(--ea-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ea-radius);
+    z-index: 1;
+}
+
+.extraordinary-achievement .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ea-primary),
+            var(--ea-secondary),
+            transparent);
+    animation: ea-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.extraordinary-achievement #title {
+    font-family: 'Russo One', sans-serif;
+    color: var(--ea-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: ea-pulse 3s infinite;
+    text-transform: uppercase;
+}
+
+.extraordinary-achievement #title::before,
+.extraordinary-achievement #title::after {
+    content: "🏆";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+.extraordinary-achievement #title::before {
+    left: 1rem;
+    animation: trophy-spin 5s infinite linear;
+}
+
+.extraordinary-achievement #title::after {
+    right: 1rem;
+    animation: trophy-spin 5s infinite reverse linear;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.extraordinary-achievement #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--ea-primary);
+    border-radius: var(--ea-radius);
+    position: relative;
+}
+
+.extraordinary-achievement #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ea-primary),
+            transparent);
+}
+
+.extraordinary-achievement #current-date {
+    font-family: 'Russo One', sans-serif;
+    color: var(--ea-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.extraordinary-achievement #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--ea-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.extraordinary-achievement #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.extraordinary-achievement .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--ea-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ea-bg);
+    box-shadow:
+        0 0 15px var(--ea-shadow),
+        inset 0 0 10px rgba(255, 215, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 215, 0, 0.1) 100%);
+}
+
+/* Racing numerals for clock */
+.extraordinary-achievement .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FFD700">12</text><text x="82" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FFD700">3</text><text x="50" y="92" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FFD700">6</text><text x="18" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FFD700">9</text></svg>');
+}
+
+.extraordinary-achievement .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.extraordinary-achievement .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ea-primary);
+    margin-top: -2px;
+}
+
+.extraordinary-achievement .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ea-secondary);
+    margin-top: -1px;
+}
+
+.extraordinary-achievement .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ea-red);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Trophy base */
+.extraordinary-achievement .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--ea-primary);
+    border-radius: 50%;
+    border: 1px solid var(--ea-secondary);
+    box-shadow: 0 0 5px var(--ea-shadow);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.extraordinary-achievement table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 20, 40, 0.9);
+    border: 1px solid var(--ea-primary);
+    border-radius: var(--ea-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers */
+.extraordinary-achievement th {
+    background-color: rgba(255, 215, 0, 0.15);
+    color: var(--ea-primary) !important;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ea-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.extraordinary-achievement th .full-day {
+    display: inline;
+}
+
+.extraordinary-achievement th .short-day {
+    display: none;
+}
+
+.extraordinary-achievement td {
+    background-color: rgba(15, 15, 30, 0.9);
+    color: var(--ea-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ea-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ea-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.extraordinary-achievement td:hover {
+    background-color: var(--ea-hover);
+    box-shadow: inset 0 0 15px var(--ea-shadow);
+}
+
+.extraordinary-achievement .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--ea-text);
+}
+
+.extraordinary-achievement td.current-day {
+    background-color: var(--ea-current-day);
+    border: 2px solid var(--ea-primary);
+    color: var(--ea-primary) !important;
+    font-weight: 700;
+    animation: ea-glow 3s infinite;
+}
+
+.extraordinary-achievement td.current-day .date-number {
+    color: var(--ea-primary) !important;
+    font-weight: 800;
+}
+
+.extraordinary-achievement td.current-day::before {
+    content: "🏅";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ea-primary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.extraordinary-achievement .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ea-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--ea-shadow);
+    transition: all var(--ea-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.extraordinary-achievement .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ea-secondary);
+    box-shadow: 0 0 15px var(--ea-primary);
+}
+
+/* Special event types */
+.extraordinary-achievement .event-marker.holiday {
+    background-color: var(--ea-blue);
+}
+
+.extraordinary-achievement .event-marker.historic {
+    background-color: var(--ea-purple);
+}
+
+.extraordinary-achievement .event-marker.patriotic {
+    background-color: var(--ea-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.extraordinary-achievement .modal-content {
+    position: relative;
+    background-color: rgba(20, 20, 20, 0.98);
+    border: 1px solid var(--ea-primary);
+    padding: 25px;
+    color: var(--ea-text);
+    box-shadow: 0 0 30px var(--ea-shadow);
+    border-radius: var(--ea-radius);
+    animation: ea-glow 0.5s ease;
+}
+
+.extraordinary-achievement .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ea-primary),
+            var(--ea-secondary),
+            var(--ea-blue));
+}
+
+.extraordinary-achievement .modal-content h2 {
+    color: var(--ea-primary);
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.extraordinary-achievement .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.extraordinary-achievement .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--ea-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.extraordinary-achievement .modal-content .event-description {
+    background-color: rgba(255, 215, 0, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--ea-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ea-radius) var(--ea-radius) 0;
+}
+
+.extraordinary-achievement .modal-content button {
+    background-color: var(--ea-primary);
+    color: var(--ea-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ea-transition);
+    border-radius: var(--ea-radius);
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
+}
+
+.extraordinary-achievement .modal-content button:hover {
+    background-color: var(--ea-secondary);
+    box-shadow: 0 4px 6px -1px var(--ea-shadow);
+}
+
+.extraordinary-achievement .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ea-primary);
+    border: 1px solid var(--ea-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ea-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.extraordinary-achievement .modal .close-button:hover {
+    background-color: var(--ea-primary);
+    color: var(--ea-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.extraordinary-achievement .button,
+.extraordinary-achievement .transparent-button {
+    border: 1px solid var(--ea-primary);
+    color: var(--ea-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--ea-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ea-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.extraordinary-achievement .button::before,
+.extraordinary-achievement .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.extraordinary-achievement .button:hover,
+.extraordinary-achievement .transparent-button:hover {
+    background-color: var(--ea-primary);
+    color: var(--ea-bg);
+    box-shadow: 0 4px 6px -1px var(--ea-shadow);
+}
+
+.extraordinary-achievement .button:hover::before,
+.extraordinary-achievement .transparent-button:hover::before {
+    left: 100%;
+}
+
+.extraordinary-achievement .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.extraordinary-achievement #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.extraordinary-achievement #theme-switcher {
+    background-color: var(--ea-bg);
+    color: var(--ea-primary) !important;
+    border: 1px solid var(--ea-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ea-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ea-transition);
+    box-shadow: 0 1px 3px 0 var(--ea-shadow);
+}
+
+.extraordinary-achievement #theme-switcher option {
+    background-color: var(--ea-bg) !important;
+    color: var(--ea-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.extraordinary-achievement #theme-switcher option:hover {
+    background-color: var(--ea-primary) !important;
+    color: var(--ea-bg) !important;
+}
+
+.extraordinary-achievement #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.extraordinary-achievement #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ea-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    color: var(--ea-primary);
+    background-color: var(--ea-bg);
+    cursor: pointer;
+    transition: all var(--ea-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ea-radius);
+    box-shadow: 0 4px 6px -1px var(--ea-shadow);
+    text-transform: uppercase;
+}
+
+.extraordinary-achievement #backToTopBtn:hover {
+    background-color: var(--ea-primary);
+    color: var(--ea-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.extraordinary-achievement footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ea-primary);
+    color: var(--ea-text);
+    font-size: 0.8rem;
+}
+
+.extraordinary-achievement footer::before {
+    content: "🏆 ";
+    color: var(--ea-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .extraordinary-achievement .container {
+        padding: 1.2rem;
+    }
+
+    .extraordinary-achievement #title {
+        font-size: 2rem;
+    }
+
+    .extraordinary-achievement #current-date {
+        font-size: 1.5rem;
+    }
+
+    .extraordinary-achievement #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .extraordinary-achievement th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .extraordinary-achievement .container {
+        padding: 1rem;
+    }
+
+    .extraordinary-achievement #title {
+        font-size: 1.7rem;
+    }
+
+    .extraordinary-achievement .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .extraordinary-achievement th .full-day {
+        display: none;
+    }
+
+    .extraordinary-achievement th .short-day {
+        display: inline;
+    }
+
+    .extraordinary-achievement th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .extraordinary-achievement td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .extraordinary-achievement #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .extraordinary-achievement #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .extraordinary-achievement .modal-content {
+        padding: 15px;
+    }
+
+    .extraordinary-achievement .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .extraordinary-achievement .container {
+        padding: 0.8rem;
+    }
+
+    .extraordinary-achievement #title {
+        font-size: 1.4rem;
+    }
+
+    .extraordinary-achievement #current-date {
+        font-size: 1.1rem;
+    }
+
+    .extraordinary-achievement #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .extraordinary-achievement .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .extraordinary-achievement th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .extraordinary-achievement td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .extraordinary-achievement td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .extraordinary-achievement #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .extraordinary-achievement th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .extraordinary-achievement td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .extraordinary-achievement #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .extraordinary-achievement #title {
+        font-size: 1.2rem;
+    }
+}
