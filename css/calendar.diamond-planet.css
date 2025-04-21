@@ -1,6 +1,6 @@
 /* ==========================================================================
    Diamond Planet Calendar Theme
-   Version: 4.1
+   Version: 4.3
    Updated: 2025-06-25
    Features:
    - Cosmic diamond color scheme
@@ -11,6 +11,7 @@
    - Enhanced accessibility
    - Prismatic effects
    - Fluid typography
+   - Fully visible modal
    ========================================================================== */
 
    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;500&display=swap');
@@ -19,11 +20,9 @@
        /* Cosmic Diamond Color Palette */
        --dp-bg: #0a0a1a;
        --dp-text: #e0e0ff;
-       --dp-primary: #00f9ff; /* Diamond cyan */
-       --dp-secondary: #a56dff; /* Cosmic purple */
-   
-       /* Accent Colors */
-       --dp-accent: #ff4df0; /* Pink nebula */
+       --dp-primary: #00f9ff;
+       --dp-secondary: #a56dff;
+       --dp-accent: #ff4df0;
        --dp-dark: #000033;
        --dp-light: #ffffff;
        --dp-border: #3d3d7a;
@@ -38,13 +37,13 @@
    
    /* ==================== ANIMATIONS ==================== */
    @keyframes dp-pulse {
-       0%, 100% { 
+       0%, 100% {
            text-shadow: 0 0 10px var(--dp-primary),
-                       0 0 20px rgba(0, 249, 255, 0.5);
+               0 0 20px rgba(0, 249, 255, 0.5);
        }
-       50% { 
+       50% {
            text-shadow: 0 0 20px var(--dp-primary),
-                       0 0 40px rgba(165, 109, 255, 0.7);
+               0 0 40px rgba(165, 109, 255, 0.7);
        }
    }
    
@@ -68,7 +67,7 @@
        min-height: 100vh;
        position: relative;
        overflow-x: hidden;
-       background-image: 
+       background-image:
            radial-gradient(circle at 20% 30%, rgba(0, 249, 255, 0.05) 0%, transparent 25%),
            radial-gradient(circle at 80% 70%, rgba(165, 109, 255, 0.05) 0%, transparent 25%),
            url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" opacity="0.03"><path d="M0 50 L100 50 M50 0 L50 100" stroke="%2300f9ff" stroke-width="1"/></svg>');
@@ -81,7 +80,7 @@
        left: 0;
        right: 0;
        bottom: 0;
-       background: 
+       background:
            linear-gradient(135deg, rgba(0, 249, 255, 0.02) 0%, transparent 50%),
            linear-gradient(-135deg, rgba(165, 109, 255, 0.02) 0%, transparent 50%);
        pointer-events: none;
@@ -287,7 +286,6 @@
        box-shadow: 0 0 15px var(--dp-shadow);
    }
    
-   /* Special event types */
    .diamond-planet .event-marker.holiday {
        background-color: var(--dp-accent);
    }
@@ -300,17 +298,58 @@
        background-color: var(--dp-light);
    }
    
-   /* ==================== MODAL STYLES ==================== */
-   .diamond-planet .modal-content {
+   /* ==================== MODAL STYLES (FIXED VISIBILITY) ==================== */
+   .diamond-planet .modal {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       display: none;
+       justify-content: center;
+       align-items: center;
+       z-index: 10000;
+   }
+   
+   .diamond-planet .modal.active {
+       display: flex;
+   }
+   
+   .diamond-planet .modal-overlay {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background-color: rgba(0, 0, 30, 0.95);
+       backdrop-filter: blur(5px);
+   }
+   
+   .diamond-planet .modal-container {
        position: relative;
-       background-color: rgba(10, 10, 30, 0.95);
+       z-index: 2;
+       width: 90%;
+       max-width: 600px;
+       max-height: 90vh;
+       overflow-y: auto;
+       margin: 20px;
+       animation: modalFadeIn 0.3s ease-out;
+   }
+   
+   @keyframes modalFadeIn {
+       from { opacity: 0; transform: translateY(-20px); }
+       to { opacity: 1; transform: translateY(0); }
+   }
+   
+   .diamond-planet .modal-content {
+       background-color: rgba(10, 10, 30, 0.98);
        border: 1px solid var(--dp-primary);
-       padding: 2rem;
+       padding: 2.5rem;
        color: var(--dp-text);
        box-shadow: 0 0 50px var(--dp-shadow);
        border-radius: var(--dp-radius);
        backdrop-filter: blur(10px);
-       animation: dp-pulse 5s infinite;
+       position: relative;
    }
    
    .diamond-planet .modal-content::before {
@@ -321,6 +360,7 @@
        right: 0;
        height: 3px;
        background: linear-gradient(90deg, var(--dp-primary), var(--dp-secondary), var(--dp-accent));
+       animation: dp-pulse 4s infinite;
    }
    
    .diamond-planet .modal-content h2 {
@@ -377,27 +417,29 @@
        box-shadow: 0 5px 20px var(--dp-shadow);
    }
    
-   .diamond-planet .modal .close-button {
+   .diamond-planet .modal-close {
        position: absolute;
        top: 15px;
        right: 15px;
        background-color: transparent;
        color: var(--dp-primary);
        border: 1px solid var(--dp-primary);
-       width: 32px;
-       height: 32px;
+       width: 36px;
+       height: 36px;
        cursor: pointer;
        transition: all var(--dp-transition);
        display: flex;
        align-items: center;
        justify-content: center;
        border-radius: 50%;
-       font-size: 1rem;
+       font-size: 1.2rem;
+       z-index: 3;
    }
    
-   .diamond-planet .modal .close-button:hover {
+   .diamond-planet .modal-close:hover {
        background-color: var(--dp-primary);
        color: var(--dp-dark);
+       transform: rotate(90deg);
    }
    
    /* ==================== BUTTONS & CONTROLS ==================== */
@@ -446,7 +488,7 @@
        position: fixed;
        right: 30px;
        bottom: 30px;
-       z-index: 9999;
+       z-index: 999;
        border: 1px solid var(--dp-primary);
        color: var(--dp-dark);
        background-color: var(--dp-primary);
@@ -509,11 +551,9 @@
        .diamond-planet #calendar-title {
            font-size: 2.5rem;
        }
-       
        .diamond-planet table {
            border-spacing: 8px;
        }
-       
        .diamond-planet td {
            height: 90px;
        }
@@ -524,31 +564,32 @@
            padding: 1.5rem;
            margin: 1rem auto;
        }
-       
        .diamond-planet #calendar-title {
            font-size: 2rem;
        }
-       
-       /* Switch to short day names */
        .diamond-planet th .full-day {
            display: none;
        }
-       
        .diamond-planet th .short-day {
            display: inline;
        }
-       
        .diamond-planet th {
            font-size: 0.8rem;
            padding: 0.8rem 0.3rem;
        }
-       
        .diamond-planet td {
            padding: 0.8rem 0.3rem;
            height: 80px;
            font-size: 0.85rem;
        }
-   
+       .diamond-planet .modal-content {
+           padding: 1.8rem;
+       }
+       .diamond-planet .modal-close {
+           width: 32px;
+           height: 32px;
+           font-size: 1rem;
+       }
        .diamond-planet #backToTopBtn {
            right: 20px;
            bottom: 20px;
@@ -561,30 +602,34 @@
        .diamond-planet .container {
            padding: 1.2rem;
        }
-       
        .diamond-planet #calendar-title {
            font-size: 1.8rem;
        }
-       
        .diamond-planet #current-date {
            font-size: 1.5rem;
        }
-       
        .diamond-planet table {
            border-spacing: 6px;
        }
-       
        .diamond-planet td {
            height: 70px;
            font-size: 0.8rem;
        }
-       
        .diamond-planet .button,
        .diamond-planet .transparent-button {
            padding: 0.7rem 1.4rem;
            font-size: 0.9rem;
        }
-   
+       .diamond-planet .modal-content {
+           padding: 1.5rem;
+       }
+       .diamond-planet .modal-container {
+           width: 95%;
+           margin: 1rem;
+       }
+       .diamond-planet .modal-content h2 {
+           font-size: 1.5em;
+       }
        .diamond-planet #backToTopBtn {
            padding: 0.6rem 1.2rem;
            font-size: 0.8rem;
@@ -597,27 +642,25 @@
        .diamond-planet #calendar-title {
            font-size: 1.6rem;
        }
-       
        .diamond-planet th {
            font-size: 0.7rem;
            padding: 0.7rem 0.2rem;
        }
-       
        .diamond-planet td {
            height: 60px;
            font-size: 0.75rem;
        }
-       
        .diamond-planet .controls {
            flex-direction: column;
        }
-       
        .diamond-planet .button,
        .diamond-planet .transparent-button {
            width: 100%;
            margin: 0.3rem 0;
        }
-   
+       .diamond-planet .modal-content {
+           padding: 1rem;
+       }
        .diamond-planet #backToTopBtn {
            width: auto;
            padding: 0.6rem 1rem;
