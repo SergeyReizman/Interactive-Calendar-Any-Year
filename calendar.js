@@ -69,7 +69,7 @@ const applyTheme = (theme) => {
     'crossroads-stone',
     'crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'daruma-doll', 'deep-forest', 'deep-ocean', 
-    'desert-mirage', 'distant-skies', 
+    'desert-mirage', 'diamond-planet', 'distant-skies', 
     'doterra-black', 'doterra-colors', 'doterra-green', 
     'dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 
     'divi-divi-trees', 'essential-oils', 'everest-view', 'executive-management',
