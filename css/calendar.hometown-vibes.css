@@ -1,0 +1,804 @@
+/* ==========================================================================  
+   Hometown Vibes Theme - Cozy Nostalgic Calendar  
+   Version: 3.0  
+   Updated: 2025-04-22  
+   Features:  
+   - Warm, nostalgic color palette  
+   - Comfortable vintage-inspired design  
+   - Perfect viewport-sized modal for all devices  
+   - Cozy animations and textures  
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --hk-bg: #F5F1E6;
+    /* Creamy parchment */
+    --hk-text: #3E3A36;
+    /* Warm charcoal */
+    --hk-primary: #8B5A2B;
+    /* Rustic brown */
+    --hk-secondary: #6B8E23;
+    /* Olive green */
+
+    /* Gradient Colors */
+    --hk-gradient-start: #F9F5EB;
+    /* Light cream */
+    --hk-gradient-end: #EDE4D3;
+    /* Warm beige */
+
+    /* Accent Colors */
+    --hk-accent1: #8B5A2B;
+    /* Rustic brown */
+    --hk-accent2: #6B8E23;
+    /* Olive green */
+    --hk-accent3: #CD853F;
+    /* Goldenrod */
+    --hk-accent4: #A0522D;
+    /* Sienna */
+    --hk-accent5: #D2B48C;
+    /* Tan */
+
+    /* Theme Variables */
+    --hk-shadow: rgba(139, 90, 43, 0.15);
+    /* Subtle brown shadow */
+    --hk-radius: 12px;
+    --hk-transition: 0.3s ease-out;
+    --hk-hover: #ECE5D5;
+    /* Light warm hover */
+    --hk-current-day: #8B5A2B;
+    /* Rustic highlight */
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes hk-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hk-softPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes hk-underline {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.hometown-vibes {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--hk-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--hk-gradient-start), var(--hk-gradient-end));
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.hometown-vibes::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%238B5A2B" stroke-width="0.3" stroke-opacity="0.05"/></svg>');
+    background-size: 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==================== MODAL STYLES (Viewport Optimized) ==================== */
+.hometown-vibes .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(245, 241, 230, 0.97);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    backdrop-filter: blur(2px);
+}
+
+.hometown-vibes .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: var(--hk-bg);
+    border: 1px solid rgba(139, 90, 43, 0.3);
+    padding: 25px;
+    color: var(--hk-text);
+    box-shadow: 0 5px 25px rgba(139, 90, 43, 0.1);
+    border-radius: var(--hk-radius);
+    animation: hk-fadeIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.hometown-vibes .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
+    border-radius: var(--hk-radius) var(--hk-radius) 0 0;
+}
+
+.hometown-vibes .modal-header {
+    color: var(--hk-text);
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    margin-bottom: 15px;
+    font-weight: 700;
+    padding-right: 40px;
+    position: relative;
+}
+
+.hometown-vibes .modal-header::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2), transparent);
+    animation: hk-underline 0.6s ease-out;
+}
+
+.hometown-vibes .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.hometown-vibes .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.hometown-vibes .modal-content button {
+    background: var(--hk-bg);
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    padding: 10px 22px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    border-radius: calc(var(--hk-radius) - 4px);
+    font-family: 'Open Sans', sans-serif;
+    min-width: 110px;
+}
+
+.hometown-vibes .modal-content button:hover {
+    background: var(--hk-accent1);
+    color: var(--hk-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba(139, 90, 43, 0.1);
+}
+
+/* Close Button */
+.hometown-vibes .modal .close-button {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: var(--hk-bg);
+    color: var(--hk-text);
+    border: 1px solid rgba(139, 90, 43, 0.3);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    z-index: 1;
+}
+
+.hometown-vibes .modal .close-button:hover {
+    background: var(--hk-accent1);
+    color: var(--hk-bg);
+    border-color: var(--hk-accent1);
+}
+
+/* ==================== CONTAINER STYLES ==================== */
+.hometown-vibes .container {
+    background: var(--hk-bg);
+    padding: 2.5rem;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+    box-shadow: 0 5px 20px rgba(139, 90, 43, 0.1);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--hk-radius);
+    animation: hk-fadeIn 0.6s ease-out;
+    z-index: 1;
+}
+
+.hometown-vibes .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
+    border-radius: var(--hk-radius) var(--hk-radius) 0 0;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.hometown-vibes #calendar-title {
+    font-family: 'Merriweather', serif;
+    color: var(--hk-text);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.hometown-vibes #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
+    border-radius: 2px;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.hometown-vibes #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 1.8rem;
+    background: var(--hk-bg);
+    border: 1px solid rgba(139, 90, 43, 0.15);
+    border-radius: var(--hk-radius);
+    position: relative;
+    box-shadow: 0 3px 15px rgba(139, 90, 43, 0.05);
+}
+
+.hometown-vibes #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
+    border-radius: 2px;
+}
+
+.hometown-vibes #current-date {
+    font-family: 'Merriweather', serif;
+    color: var(--hk-text);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.hometown-vibes #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--hk-accent1);
+    font-size: 1.2rem;
+    font-style: normal;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.hometown-vibes #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.hometown-vibes .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(139, 90, 43, 0.3);
+    border-radius: 50%;
+    position: relative;
+    background: var(--hk-bg);
+    box-shadow:
+        0 5px 20px rgba(139, 90, 43, 0.1),
+        inset 0 0 10px rgba(139, 90, 43, 0.05);
+}
+
+.hometown-vibes .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hometown-vibes .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--hk-text);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.hometown-vibes .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--hk-text);
+    margin-top: -1.5px;
+    border-radius: 3px;
+}
+
+.hometown-vibes .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--hk-accent1);
+    margin-top: -1px;
+    border-radius: 2px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.hometown-vibes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5rem auto;
+    background: var(--hk-bg);
+    border: 1px solid rgba(139, 90, 43, 0.15);
+    border-radius: var(--hk-radius);
+    table-layout: fixed;
+    box-shadow: 0 5px 20px rgba(139, 90, 43, 0.1);
+}
+
+/* DAY OF WEEK HEADERS */
+.hometown-vibes th {
+    background: var(--hk-bg);
+    color: var(--hk-text) !important;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1.2rem 0.5rem;
+    border: 1px solid rgba(139, 90, 43, 0.1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.hometown-vibes th span.full-day-name {
+    display: inline;
+}
+
+.hometown-vibes th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.hometown-vibes td {
+    background: var(--hk-bg);
+    color: var(--hk-text);
+    padding: 1.2rem;
+    border: 1px solid rgba(139, 90, 43, 0.1);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--hk-transition);
+    position: relative;
+}
+
+.hometown-vibes td:hover {
+    background: var(--hk-hover);
+    box-shadow: inset 0 0 15px rgba(139, 90, 43, 0.05);
+}
+
+/* Current date highlight */
+.hometown-vibes td.current-day {
+    background: rgba(139, 90, 43, 0.08);
+    border: 1px solid var(--hk-accent1);
+    color: var(--hk-text) !important;
+    font-weight: 400;
+    animation: hk-softPulse 3s infinite;
+}
+
+.hometown-vibes td.current-day::before {
+    content: "•";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: var(--hk-accent1);
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+.hometown-vibes td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--hk-accent1) !important;
+    font-weight: 600;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.hometown-vibes .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--hk-accent1);
+    margin: 0 3px;
+    transition: all var(--hk-transition);
+}
+
+.hometown-vibes .event-marker:hover {
+    transform: scale(1.8);
+    background: var(--hk-accent3);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.hometown-vibes .button,
+.hometown-vibes .transparent-button {
+    border: 1px solid var(--hk-accent1);
+    color: var(--hk-accent1);
+    background: var(--hk-bg);
+    padding: 0.8rem 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: calc(var(--hk-radius) - 4px);
+}
+
+.hometown-vibes .button::before,
+.hometown-vibes .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 90, 43, 0.1), transparent);
+    transition: 0.6s;
+}
+
+.hometown-vibes .button:hover,
+.hometown-vibes .transparent-button:hover {
+    background: var(--hk-accent1);
+    color: var(--hk-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 15px rgba(139, 90, 43, 0.1);
+}
+
+.hometown-vibes .button:hover::before,
+.hometown-vibes .transparent-button:hover::before {
+    left: 100%;
+}
+
+.hometown-vibes .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.hometown-vibes #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.hometown-vibes #theme-switcher {
+    background: var(--hk-bg);
+    color: var(--hk-text) !important;
+    border: 1px solid rgba(139, 90, 43, 0.3);
+    padding: 0.8rem 2.4rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: calc(var(--hk-radius) - 4px);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B5A2B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    box-shadow: 0 3px 15px rgba(139, 90, 43, 0.05);
+}
+
+.hometown-vibes #theme-switcher option {
+    background: var(--hk-bg) !important;
+    color: var(--hk-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 15px !important;
+}
+
+.hometown-vibes #theme-switcher option:hover {
+    background: var(--hk-accent1) !important;
+    color: var(--hk-bg) !important;
+}
+
+.hometown-vibes #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.2), 0 5px 20px rgba(139, 90, 43, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.hometown-vibes #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--hk-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--hk-accent1);
+    background: var(--hk-bg);
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: calc(var(--hk-radius) - 4px);
+    box-shadow: 0 3px 15px rgba(139, 90, 43, 0.1);
+}
+
+.hometown-vibes #backToTopBtn:hover {
+    background: var(--hk-accent1);
+    color: var(--hk-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(139, 90, 43, 0.2);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.hometown-vibes footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(139, 90, 43, 0.2);
+    color: var(--hk-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .hometown-vibes .container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .hometown-vibes .container {
+        padding: 1.8rem;
+    }
+
+    .hometown-vibes #calendar-title {
+        font-size: 2rem;
+    }
+
+    .hometown-vibes #current-date {
+        font-size: 1.6rem;
+    }
+
+    .hometown-vibes #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .hometown-vibes td {
+        height: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hometown-vibes .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .hometown-vibes th {
+        font-size: 0.85rem;
+        padding: 1rem 0.3rem;
+    }
+
+    .hometown-vibes th span.full-day-name {
+        display: none;
+    }
+
+    .hometown-vibes th abbr {
+        display: inline;
+    }
+
+    .hometown-vibes td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.8rem;
+    }
+
+    /* Modal adjustments for medium screens */
+    .hometown-vibes .modal-content {
+        padding: 22px;
+    }
+
+    .hometown-vibes .modal-header {
+        font-size: 1.7rem;
+    }
+
+    .hometown-vibes #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.9rem 1.5rem;
+    }
+
+    .hometown-vibes #theme-switcher {
+        min-width: 200px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hometown-vibes .container {
+        padding: 1.2rem;
+    }
+
+    .hometown-vibes #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .hometown-vibes #current-date {
+        font-size: 1.3rem;
+    }
+
+    .hometown-vibes #today-weather {
+        font-size: 1rem;
+    }
+
+    .hometown-vibes .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .hometown-vibes th {
+        font-size: 0.75rem;
+        padding: 0.8rem 0.2rem;
+    }
+
+    .hometown-vibes td {
+        padding: 0.6rem;
+        height: 80px;
+        font-size: 0.75rem;
+    }
+
+    /* Modal adjustments for small screens */
+    .hometown-vibes .modal-overlay {
+        padding: 15px;
+    }
+
+    .hometown-vibes .modal-content {
+        padding: 18px;
+        max-height: calc(100vh - 30px);
+    }
+
+    .hometown-vibes .modal-header {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+
+    .hometown-vibes .modal .close-button {
+        top: 12px;
+        right: 12px;
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
+    }
+
+    .hometown-vibes .modal-content button {
+        padding: 9px 16px;
+        font-size: 0.85rem;
+        min-width: 90px;
+    }
+
+    .hometown-vibes #theme-switcher {
+        min-width: 180px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hometown-vibes th {
+        font-size: 0.7rem;
+        padding: 0.7rem 0.1rem;
+    }
+
+    .hometown-vibes td {
+        height: 70px;
+        padding: 0.4rem;
+    }
+
+    /* Modal adjustments for extra small screens */
+    .hometown-vibes .modal-content {
+        padding: 15px;
+    }
+
+    .hometown-vibes .modal-header {
+        font-size: 1.2rem;
+    }
+
+    .hometown-vibes .modal-body {
+        font-size: 0.9rem;
+    }
+
+    .hometown-vibes .modal-footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .hometown-vibes .modal-content button {
+        width: 100%;
+    }
+
+    .hometown-vibes #theme-switcher {
+        min-width: 160px;
+        font-size: 0.8rem;
+    }
+}
