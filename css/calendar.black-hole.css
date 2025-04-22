@@ -1,319 +1,447 @@
 /* ==========================================================================
-   Black Hole Theme - Cosmic Calendar UI
-   Version: 4.4
-   Updated: 2025-09-01
+   BLACK HOLE - Ultimate Cosmic Calendar
+   Version: 5.0
+   Updated: 2025-10-15
    Features:
-   - Event horizon positioning system
-   - Fixed quantum modal viewport centering
-   - Complete spacetime styling
-   - No-scroll modal interaction
+   - Event Horizon UI with perfect date visibility
+   - Fixed-position quantum modal (no scroll needed)
+   - Pulsing accretion disk effects
+   - Enhanced spacetime contrast
    ========================================================================== */
 
-   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
 
-   :root {
-       /* Singularity Color Variables */
-       --event-horizon: #000000;
-       --accretion-disk: #8A2BE2;
-       --photon-ring: #00CED1;
-       --hawking-radiation: #FF1493;
-       --spaghettification: #FFD700;
-       --cosmic-string: rgba(0, 206, 209, 0.4);
-   
-       /* Relativity Measures */
-       --planck-time: 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-       --schwarzschild-radius: 8px;
-       --gravitational-constant: 1.5;
-   }
-   
-   /* ==================== SPACETIME ANIMATIONS ==================== */
-   @keyframes singularity-pulse {
-       0%, 100% {
-           box-shadow: 0 0 10px var(--accretion-disk),
-                      0 0 20px var(--photon-ring);
-       }
-       50% {
-           box-shadow: 0 0 30px var(--accretion-disk),
-                      0 0 50px var(--photon-ring),
-                      0 0 70px var(--hawking-radiation);
-       }
-   }
-   
-   @keyframes spaghettify {
-       0% { transform: scale(1); }
-       50% { transform: scale(0.9, 1.5); }
-       100% { transform: scale(1); }
-   }
-   
-   @keyframes accretion-rotate {
-       from { transform: rotate(0deg); }
-       to { transform: rotate(360deg); }
-   }
-   
-   /* ==================== EVENT HORIZON BASE ==================== */
-   .black-hole {
-       font-family: 'Space Mono', monospace;
-       color: #E0E0FF;
-       background: 
-           radial-gradient(ellipse at center, 
-               var(--event-horizon) 0%, 
-               #0F0C24 60%, 
-               #1A0A2A 100%);
-       min-height: 100vh;
-       position: relative;
-       overflow-x: hidden;
-   }
-   
-   .black-hole::before {
-       content: "";
-       position: absolute;
-       top: -50%;
-       left: -50%;
-       width: 200%;
-       height: 200%;
-       background: 
-           radial-gradient(circle at 30% 30%, 
-               rgba(138, 43, 226, 0.1) 0%, 
-               transparent 25%),
-           repeating-conic-gradient(from 0deg, 
-               transparent 0deg 15deg, 
-               rgba(0, 206, 209, 0.03) 15deg 30deg);
-       animation: accretion-rotate 60s linear infinite;
-       z-index: 0;
-   }
-   
-   .black-hole .singularity-container {
-       background: rgba(0, 0, 0, 0.9);
-       border: 1px solid var(--accretion-disk);
-       box-shadow: 
-           inset 0 0 30px rgba(138, 43, 226, 0.3),
-           0 0 50px rgba(0, 206, 209, 0.2);
-       border-radius: var(--schwarzschild-radius);
-       position: relative;
-       z-index: 1;
-       max-width: 1600px;
-       margin: 2rem auto;
-       padding: 2rem;
-       overflow: hidden;
-   }
-   
-   /* ==================== QUANTUM MODAL (FIXED VIEWPORT) ==================== */
-   .black-hole .modal-overlay {
-       position: fixed;
-       top: 0;
-       left: 0;
-       right: 0;
-       bottom: 0;
-       background: rgba(0, 0, 0, 0.9);
-       z-index: 1000;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       backdrop-filter: blur(5px);
-   }
-   
-   .black-hole .modal-content {
-       position: relative;
-       width: 90%;
-       max-width: 600px;
-       max-height: 90vh;
-       overflow-y: auto;
-       background: 
-           radial-gradient(ellipse at center, 
-               rgba(15, 10, 30, 0.95) 0%, 
-               rgba(0, 0, 0, 0.95) 100%);
-       border: 1px solid var(--photon-ring);
-       box-shadow: 
-           0 0 50px var(--accretion-disk),
-           inset 0 0 20px var(--photon-ring);
-       border-radius: var(--schwarzschild-radius);
-       padding: 2rem;
-       animation: singularity-pulse 3s infinite;
-       transform: perspective(1000px) rotateX(5deg);
-   }
-   
-   .black-hole .modal-content h2 {
-       color: var(--photon-ring);
-       font-family: 'Orbitron', sans-serif;
-       text-shadow: 0 0 10px var(--accretion-disk);
-       border-bottom: 1px solid var(--accretion-disk);
-       padding-bottom: 0.5rem;
-       margin-top: 0;
-   }
-   
-   .black-hole .modal-close {
-       position: absolute;
-       top: 1rem;
-       right: 1rem;
-       background: transparent;
-       border: 1px solid var(--hawking-radiation);
-       color: var(--hawking-radiation);
-       width: 2rem;
-       height: 2rem;
-       border-radius: 50%;
-       cursor: pointer;
-       transition: var(--planck-time);
-   }
-   
-   .black-hole .modal-close:hover {
-       background: var(--hawking-radiation);
-       color: black;
-       transform: rotate(90deg);
-   }
-   
-   /* ==================== SPACETIME CALENDAR GRID ==================== */
-   .black-hole .calendar-grid {
-       width: 100%;
-       border-collapse: collapse;
-       margin: 2rem 0;
-       background: rgba(15, 10, 30, 0.7);
-       border: 1px solid var(--accretion-disk);
-   }
-   
-   .black-hole .calendar-header th {
-       background: rgba(138, 43, 226, 0.2);
-       color: var(--photon-ring) !important;
-       padding: 1rem;
-       border: 1px solid var(--accretion-disk);
-       text-transform: uppercase;
-       letter-spacing: 0.1em;
-   }
-   
-   .black-hole .calendar-cell {
-       padding: 1rem;
-       border: 1px solid rgba(138, 43, 226, 0.3);
-       height: 100px;
-       vertical-align: top;
-       transition: var(--planck-time);
-       position: relative;
-   }
-   
-   .black-hole .calendar-cell:hover {
-       background: rgba(30, 20, 50, 0.9);
-       box-shadow: 
-           inset 0 0 15px var(--accretion-disk),
-           0 0 20px var(--cosmic-string);
-       transform: scale(1.03);
-       z-index: 2;
-   }
-   
-   .black-hole .current-day {
-       background: rgba(20, 0, 40, 0.9) !important;
-       border: 2px solid var(--hawking-radiation) !important;
-       animation: singularity-pulse 2s infinite;
-   }
-   
-   .black-hole .current-day::before {
-       content: "🌀";
-       position: absolute;
-       top: 5px;
-       left: 5px;
-       font-size: 1.2rem;
-       filter: drop-shadow(0 0 5px var(--photon-ring));
-   }
-   
-   /* ==================== QUANTUM CONTROLS ==================== */
-   .black-hole .controls-container {
-       display: flex;
-       justify-content: center;
-       gap: 1rem;
-       flex-wrap: wrap;
-       margin: 2rem 0;
-   }
-   
-   .black-hole .quantum-button {
-       background: transparent;
-       border: 1px solid var(--photon-ring);
-       color: var(--photon-ring);
-       padding: 0.8rem 1.5rem;
-       font-family: 'Orbitron', sans-serif;
-       cursor: pointer;
-       transition: var(--planck-time);
-       text-transform: uppercase;
-       letter-spacing: 0.1em;
-       position: relative;
-       overflow: hidden;
-   }
-   
-   .black-hole .quantum-button:hover {
-       background: var(--accretion-disk);
-       color: black;
-       box-shadow: 0 0 20px var(--cosmic-string);
-       animation: spaghettify 0.5s;
-   }
-   
-   .black-hole .quantum-button::before {
-       content: "";
-       position: absolute;
-       top: 0;
-       left: -100%;
-       width: 100%;
-       height: 100%;
-       background: linear-gradient(
-           90deg,
-           transparent,
-           rgba(0, 206, 209, 0.2),
-           transparent
-       );
-       transition: 0.5s;
-   }
-   
-   .black-hole .quantum-button:hover::before {
-       left: 100%;
-   }
-   
-   /* ==================== SPACETIME RESPONSIVENESS ==================== */
-   @media (max-width: 992px) {
-       .black-hole .singularity-container {
-           padding: 1.5rem;
-       }
-       
-       .black-hole .calendar-cell {
-           height: 80px;
-           padding: 0.8rem;
-       }
-   }
-   
-   @media (max-width: 768px) {
-       :root {
-           --schwarzschild-radius: 6px;
-       }
-       
-       .black-hole .calendar-header th {
-           padding: 0.8rem 0.5rem;
-           font-size: 0.9rem;
-       }
-       
-       .black-hole .calendar-cell {
-           height: 70px;
-           padding: 0.6rem;
-           font-size: 0.9rem;
-       }
-       
-       .black-hole .modal-content {
-           width: 95%;
-           padding: 1.5rem;
-       }
-   }
-   
-   @media (max-width: 480px) {
-       :root {
-           --schwarzschild-radius: 4px;
-           --gravitational-constant: 1.2;
-       }
-       
-       .black-hole .calendar-cell {
-           height: 60px;
-           padding: 0.4rem;
-           font-size: 0.8rem;
-       }
-       
-       .black-hole .quantum-button {
-           padding: 0.6rem 1rem;
-           font-size: 0.8rem;
-       }
-       
-       .black-hole .modal-content {
-           padding: 1rem;
-       }
-   }
+:root {
+    /* Cosmic Constants */
+    --singularity-core: #000000;
+    --accretion-primary: #9D00FF;
+    /* Vibrant purple */
+    --accretion-secondary: #00F0FF;
+    /* Cyan */
+    --event-glow: 0 0 20px rgba(157, 0, 255, 0.7);
+    --photon-ring: 0 0 0 2px #00F0FF,
+        0 0 15px #9D00FF,
+        0 0 30px rgba(0, 240, 255, 0.5);
+
+    /* Relativity Measures */
+    --planck-time: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    --schwarzschild-radius: 10px;
+}
+
+/* ==================== SPACETIME ANIMATIONS ==================== */
+@keyframes hawking-pulse {
+
+    0%,
+    100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+        box-shadow: var(--photon-ring);
+    }
+}
+
+@keyframes spaghettify {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95, 1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes accretion-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== EVENT HORIZON BASE ==================== */
+.black-hole {
+    font-family: 'Space Mono', monospace;
+    color: #F0F0FF;
+    background:
+        radial-gradient(ellipse at center,
+            #000000 0%,
+            #110822 50%,
+            #1E0A3A 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.black-hole::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 30% 30%,
+            rgba(157, 0, 255, 0.15) 0%,
+            transparent 30%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 10deg,
+            rgba(0, 240, 255, 0.05) 10deg 20deg);
+    animation: accretion-spin 80s linear infinite;
+    z-index: 0;
+}
+
+/* ==================== COSMIC CONTAINER ==================== */
+.black-hole .cosmic-container {
+    background: rgba(5, 0, 15, 0.92);
+    border: 1px solid var(--accretion-primary);
+    box-shadow:
+        inset 0 0 40px rgba(157, 0, 255, 0.25),
+        0 0 60px rgba(0, 240, 255, 0.15);
+    border-radius: var(--schwarzschild-radius);
+    position: relative;
+    z-index: 1;
+    max-width: 1600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+/* ==================== DATE DISPLAY (ENHANCED VISIBILITY) ==================== */
+.black-hole .current-date-display {
+    background: linear-gradient(to right,
+            rgba(157, 0, 255, 0.15),
+            rgba(0, 240, 255, 0.1));
+    border: 1px solid var(--accretion-primary);
+    border-radius: var(--schwarzschild-radius);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.black-hole .current-date-display::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--accretion-primary),
+            var(--accretion-secondary),
+            transparent);
+}
+
+.black-hole .date-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: var(--accretion-secondary);
+    text-shadow:
+        0 0 10px var(--accretion-primary),
+        0 0 20px rgba(0, 240, 255, 0.3);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.black-hole .time-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== QUANTUM MODAL (PERFECTLY VISIBLE) ==================== */
+.black-hole .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.black-hole .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background:
+        radial-gradient(ellipse at center,
+            rgba(20, 5, 40, 0.98) 0%,
+            rgba(5, 0, 15, 0.98) 100%);
+    border: 1px solid var(--accretion-secondary);
+    box-shadow:
+        0 0 60px var(--accretion-primary),
+        inset 0 0 30px var(--accretion-secondary);
+    border-radius: var(--schwarzschild-radius);
+    padding: 2.5rem;
+    animation: hawking-pulse 4s infinite;
+}
+
+.black-hole .modal-header {
+    color: var(--accretion-secondary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--accretion-primary);
+    text-shadow: 0 0 15px var(--accretion-primary);
+}
+
+.black-hole .modal-body {
+    color: #F0F0FF;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.black-hole .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--accretion-secondary);
+    color: var(--accretion-secondary);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--planck-time);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.black-hole .modal-close:hover {
+    background: var(--accretion-secondary);
+    color: #000;
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* ==================== CALENDAR GRID (ENHANCED CONTRAST) ==================== */
+.black-hole .calendar-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: rgba(15, 5, 30, 0.8);
+    border: 1px solid var(--accretion-primary);
+}
+
+.black-hole .calendar-header th {
+    background: rgba(157, 0, 255, 0.25);
+    color: var(--accretion-secondary) !important;
+    padding: 1.2rem;
+    border: 1px solid var(--accretion-primary);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px var(--accretion-primary);
+}
+
+.black-hole .calendar-cell {
+    padding: 1.2rem;
+    border: 1px solid rgba(157, 0, 255, 0.3);
+    height: 120px;
+    vertical-align: top;
+    background: rgba(10, 0, 25, 0.7);
+    transition: var(--planck-time);
+    position: relative;
+}
+
+.black-hole .calendar-cell:hover {
+    background: rgba(30, 5, 50, 0.9);
+    box-shadow:
+        inset 0 0 20px var(--accretion-primary),
+        0 0 30px var(--event-glow);
+    transform: scale(1.03);
+    z-index: 2;
+}
+
+.black-hole .cell-date {
+    display: block;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.black-hole .current-day {
+    background: rgba(25, 0, 50, 0.9) !important;
+    border: 2px solid var(--accretion-secondary) !important;
+    animation: hawking-pulse 3s infinite;
+}
+
+.black-hole .current-day .cell-date {
+    color: var(--accretion-secondary);
+    font-size: 1.3rem;
+}
+
+.black-hole .current-day::after {
+    content: "●";
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: var(--accretion-secondary);
+    font-size: 0.8rem;
+    animation: spaghettify 2s infinite;
+}
+
+/* ==================== COSMIC CONTROLS ==================== */
+.black-hole .cosmic-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.black-hole .cosmic-button {
+    background: transparent;
+    border: 1px solid var(--accretion-secondary);
+    color: var(--accretion-secondary);
+    padding: 1rem 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--planck-time);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--schwarzschild-radius);
+}
+
+.black-hole .cosmic-button:hover {
+    background: var(--accretion-primary);
+    color: #000;
+    box-shadow: var(--photon-ring);
+    transform: translateY(-3px);
+}
+
+.black-hole .cosmic-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(0, 240, 255, 0.2),
+            transparent);
+    transition: 0.6s;
+}
+
+.black-hole .cosmic-button:hover::before {
+    left: 100%;
+}
+
+/* ==================== SPACETIME RESPONSIVENESS ==================== */
+@media (max-width: 1200px) {
+    .black-hole .calendar-cell {
+        height: 100px;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .black-hole .cosmic-container {
+        padding: 1.5rem;
+    }
+
+    .black-hole .date-text {
+        font-size: 1.8rem;
+    }
+
+    .black-hole .time-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --schwarzschild-radius: 8px;
+    }
+
+    .black-hole .calendar-header th {
+        padding: 1rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .black-hole .calendar-cell {
+        height: 80px;
+        padding: 0.8rem;
+    }
+
+    .black-hole .cell-date {
+        font-size: 1rem;
+    }
+
+    .black-hole .current-day .cell-date {
+        font-size: 1.1rem;
+    }
+
+    .black-hole .modal-content {
+        padding: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --schwarzschild-radius: 6px;
+    }
+
+    .black-hole .calendar-cell {
+        height: 70px;
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .black-hole .cosmic-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .black-hole .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .black-hole .calendar-cell {
+        height: 60px;
+        padding: 0.5rem;
+    }
+
+    .black-hole .cell-date {
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .black-hole .cosmic-controls {
+        gap: 1rem;
+    }
+
+    .black-hole .modal-header {
+        font-size: 1.5rem;
+    }
+}
