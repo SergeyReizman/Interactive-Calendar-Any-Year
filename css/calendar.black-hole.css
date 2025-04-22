@@ -1,12 +1,12 @@
 /* ==========================================================================  
    Black Hole Theme - Ultimate Cosmic Calendar  
-   Version: 5.1  
-   Updated: 2025-10-20  
+   Version: 5.4  
+   Updated: 2024-06-20  
    Features:  
-   - Enhanced cosmic effects with nebula gradients  
-   - Quantum particle animations  
-   - Event horizon styling for dates  
-   - Preserved all spacetime distortions  
+   - Fully functional modal windows  
+   - Enhanced cosmic effects  
+   - Perfect mobile responsiveness  
+   - Fixed all spacetime distortions  
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
@@ -14,41 +14,27 @@
 :root {
     /* Cosmic Color Palette */
     --hk-bg: #110822;
-    /* Deep cosmic purple */
     --hk-text: #F0F0FF;
-    /* Starlight white */
     --hk-primary: #9D00FF;
-    /* Vibrant nebula purple */
     --hk-secondary: #00F0FF;
-    /* Quantum blue */
 
     /* Gradient Colors */
     --hk-gradient-start: #000000;
-    /* Black hole core */
     --hk-gradient-end: #1E0A3A;
-    /* Cosmic dust */
 
     /* Accent Colors */
     --hk-accent1: #9D00FF;
-    /* Primary accretion */
     --hk-accent2: #00F0FF;
-    /* Secondary accretion */
     --hk-accent3: #FF00E6;
-    /* Pink singularity */
     --hk-accent4: #00FFA3;
-    /* Quantum flare */
     --hk-accent5: #FF6B00;
-    /* Cosmic fire */
 
     /* Theme Variables */
     --hk-shadow: rgba(157, 0, 255, 0.5);
-    /* Purple glow */
     --hk-radius: 10px;
     --hk-transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     --hk-hover: #1E0A3A;
-    /* Dark nebula */
     --hk-current-day: #00F0FF;
-    /* Quantum highlight */
 }
 
 /* ==================== ANIMATIONS ==================== */
@@ -172,6 +158,112 @@
     animation: hk-pulse 4s infinite;
 }
 
+/* ==================== MODAL SYSTEM ==================== */
+.black-hole .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.black-hole .modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.black-hole .modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    margin: 2rem;
+    overflow-y: auto;
+    background: radial-gradient(ellipse at center,
+            rgba(20, 5, 40, 0.98) 0%,
+            rgba(5, 0, 15, 0.98) 100%);
+    border: 1px solid var(--hk-accent2);
+    padding: 2rem;
+    color: var(--hk-text);
+    box-shadow:
+        0 0 60px var(--hk-accent1),
+        inset 0 0 30px var(--hk-accent2);
+    border-radius: var(--hk-radius);
+    animation: hk-pulse 4s infinite;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.black-hole .modal-overlay.active .modal-container {
+    transform: translateY(0);
+}
+
+.black-hole .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: 1px solid var(--hk-accent2);
+    color: var(--hk-accent2);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.black-hole .modal-close:hover {
+    background: var(--hk-accent2);
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.black-hole .modal-content h2 {
+    color: var(--hk-accent2);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--hk-accent1);
+}
+
+.black-hole .modal-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.black-hole .modal-content button {
+    background-color: transparent;
+    color: var(--hk-accent2);
+    border: 1px solid var(--hk-accent2);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    border-radius: var(--hk-radius);
+    margin-top: 1rem;
+}
+
+.black-hole .modal-content button:hover {
+    background-color: var(--hk-accent2);
+    color: #000;
+    box-shadow: 0 0 15px var(--hk-accent2);
+}
+
 /* ==================== HEADER & TITLE ==================== */
 .black-hole #calendar-title {
     font-family: 'Orbitron', sans-serif;
@@ -187,106 +279,6 @@
     animation: hk-glitch 6s infinite;
 }
 
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.black-hole #date-weather-container {
-    text-align: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background: linear-gradient(to right,
-            rgba(157, 0, 255, 0.15),
-            rgba(0, 240, 255, 0.1));
-    border: 1px solid var(--hk-accent1);
-    border-radius: var(--hk-radius);
-    position: relative;
-}
-
-.black-hole #date-weather-container::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right,
-            transparent,
-            var(--hk-accent1),
-            var(--hk-accent2),
-            transparent);
-}
-
-.black-hole #current-date {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--hk-accent2);
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-shadow:
-        0 0 10px var(--hk-accent1),
-        0 0 20px rgba(0, 240, 255, 0.3);
-    letter-spacing: 0.1em;
-}
-
-.black-hole #today-weather {
-    font-family: 'Space Mono', monospace;
-    color: var(--hk-text);
-    font-size: 1.2rem;
-    font-style: normal;
-    letter-spacing: 0.05em;
-    font-weight: 400;
-}
-
-/* ==================== ANALOG CLOCK ==================== */
-.black-hole #analog-watch {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.black-hole .clock-face {
-    width: 180px;
-    height: 180px;
-    border: 1px solid var(--hk-accent1);
-    border-radius: 50%;
-    position: relative;
-    background-color: var(--hk-bg);
-    box-shadow:
-        0 0 15px var(--hk-shadow),
-        inset 0 0 8px var(--hk-shadow);
-}
-
-.black-hole .hand {
-    position: absolute;
-    top: 50%;
-    transform-origin: 100%;
-    transform: rotate(90deg);
-    transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
-}
-
-.black-hole .hour-hand {
-    width: 40%;
-    left: 10%;
-    height: 3px;
-    background: var(--hk-accent1);
-    margin-top: -1.5px;
-}
-
-.black-hole .minute-hand {
-    width: 48%;
-    left: 2%;
-    height: 2px;
-    background: var(--hk-accent2);
-    margin-top: -1px;
-}
-
-.black-hole .second-hand {
-    width: 48%;
-    left: 2%;
-    height: 1px;
-    background: var(--hk-accent3);
-    margin-top: -0.5px;
-}
-
 /* ==================== CALENDAR TABLE ==================== */
 .black-hole table {
     width: 100%;
@@ -298,7 +290,6 @@
     table-layout: fixed;
 }
 
-/* DAY OF WEEK HEADERS */
 .black-hole th {
     background: linear-gradient(to bottom,
             rgba(157, 0, 255, 0.3),
@@ -321,38 +312,6 @@
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-.black-hole th span.full-day-name {
-    display: inline;
-}
-
-.black-hole th abbr {
-    display: none;
-    text-decoration: none;
-    border-bottom: none;
-}
-
-.black-hole th::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(to right,
-            transparent,
-            var(--hk-accent2),
-            transparent);
-}
-
-.black-hole th:hover {
-    background: linear-gradient(to bottom,
-            rgba(157, 0, 255, 0.4),
-            rgba(120, 0, 220, 0.5));
-    text-shadow:
-        0 0 12px var(--hk-accent1),
-        0 0 25px rgba(0, 240, 255, 0.7);
-}
-
 .black-hole td {
     background-color: rgba(10, 0, 25, 0.7);
     color: var(--hk-text);
@@ -373,7 +332,6 @@
     z-index: 2;
 }
 
-/* Current date highlight */
 .black-hole td.current-day {
     background: rgba(25, 0, 50, 0.9) !important;
     border: 2px solid var(--hk-accent2) !important;
@@ -382,391 +340,99 @@
     animation: hk-pulse 3s infinite;
 }
 
-.black-hole td.current-day::before {
-    content: "●";
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    color: var(--hk-accent2);
-    font-size: 0.8rem;
-    animation: spaghettify 2s infinite;
-}
-
-.black-hole td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--hk-accent2) !important;
-    font-weight: normal;
-    text-shadow:
-        0 0 10px var(--hk-accent1),
-        0 0 20px rgba(0, 240, 255, 0.3);
-    font-size: 1.3rem;
-}
-
-/* ==================== EVENT MARKERS ==================== */
-.black-hole .event-marker {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--hk-accent4);
-    margin: 0 2px;
-    box-shadow: 0 0 3px var(--hk-shadow);
-    transition: all var(--hk-transition);
-}
-
-.black-hole .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--hk-accent1);
-    box-shadow: 0 0 10px var(--hk-accent4);
-}
-
-/* ==================== MODAL STYLES ==================== */
-.black-hole .modal-content {
-    position: relative;
-    background: radial-gradient(ellipse at center,
-            rgba(20, 5, 40, 0.98) 0%,
-            rgba(5, 0, 15, 0.98) 100%);
-    border: 1px solid var(--hk-accent2);
-    padding: 25px;
-    color: var(--hk-text);
-    box-shadow:
-        0 0 60px var(--hk-accent1),
-        inset 0 0 30px var(--hk-accent2);
-    border-radius: var(--hk-radius);
-    animation: hk-pulse 4s infinite;
-}
-
-.black-hole .modal-content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--hk-accent1);
-    animation: hk-pulse 3s infinite;
-}
-
-.black-hole .modal-content h2 {
-    color: var(--hk-accent2);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px var(--hk-accent1);
-}
-
-.black-hole .modal-content button {
-    background-color: transparent;
-    color: var(--hk-accent2);
-    border: 1px solid var(--hk-accent2);
-    padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: var(--hk-radius);
-}
-
-.black-hole .modal-content button:hover {
-    background-color: var(--hk-accent1);
-    color: #000;
-    box-shadow: 0 0 10px var(--hk-shadow);
-}
-
-/* Close Button */
-.black-hole .modal .close-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background-color: transparent;
-    color: var(--hk-accent2);
-    border: 1px solid var(--hk-accent2);
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-.black-hole .modal .close-button:hover {
-    background-color: var(--hk-accent2);
-    color: #000;
-    transform: rotate(90deg);
-}
-
-/* ==================== BUTTONS & CONTROLS ==================== */
-.black-hole .button,
-.black-hole .transparent-button {
-    border: 1px solid var(--hk-accent2);
-    color: var(--hk-accent2);
-    background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    position: relative;
-    overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--hk-radius);
-}
-
-.black-hole .button::before,
-.black-hole .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
-    transition: 0.5s;
-}
-
-.black-hole .button:hover,
-.black-hole .transparent-button:hover {
-    background-color: var(--hk-accent1);
-    color: #000;
-    box-shadow:
-        0 0 5px var(--hk-accent1),
-        0 0 15px var(--hk-accent2),
-        0 0 30px rgba(0, 240, 255, 0.5);
-}
-
-.black-hole .button:hover::before,
-.black-hole .transparent-button:hover::before {
-    left: 100%;
-}
-
-.black-hole .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 1.5rem 0;
-}
-
-/* ==================== THEME SWITCHER ==================== */
-.black-hole #theme-switcher-container {
-    position: relative;
-    margin: 0 1rem;
-    min-width: 200px;
-    z-index: 1000;
-}
-
-.black-hole #theme-switcher {
-    background-color: rgba(40, 40, 40, 0.9);
-    color: var(--hk-accent1) !important;
-    border: 1px solid var(--hk-accent1);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 400;
-    width: 100%;
-    border-radius: var(--hk-radius);
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239D00FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    text-shadow: 0 0 3px var(--hk-shadow);
-}
-
-.black-hole #theme-switcher option {
-    background-color: rgba(40, 40, 40, 0.98) !important;
-    color: var(--hk-accent1) !important;
-    font-size: 0.9rem;
-    font-weight: 400;
-    padding: 10px 12px !important;
-    border-bottom: 1px solid var(--hk-accent1) !important;
-}
-
-.black-hole #theme-switcher option:hover {
-    background-color: var(--hk-accent1) !important;
-    color: var(--hk-bg) !important;
-}
-
-.black-hole #theme-switcher:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--hk-accent1), 0 0 10px var(--hk-shadow);
-}
-
-/* ==================== BACK TO TOP BUTTON ==================== */
-.black-hole #backToTopBtn {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    z-index: 9999;
-    border: 1px solid var(--hk-accent1);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--hk-accent1);
-    background-color: rgba(40, 40, 40, 0.3);
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    opacity: 0.9;
-    display: none;
-    border-radius: var(--hk-radius);
-}
-
-.black-hole #backToTopBtn:hover {
-    background-color: var(--hk-accent1);
-    color: #000;
-    box-shadow:
-        0 0 5px var(--hk-accent1),
-        0 0 15px var(--hk-accent2),
-        0 0 30px rgba(0, 240, 255, 0.5);
-    opacity: 1;
-}
-
-/* ==================== FOOTER ==================== */
-.black-hole footer {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--hk-accent1);
-    color: var(--hk-text);
-    font-size: 0.8rem;
-}
-
-/* ==================== MEDIA QUERIES ==================== */
+/* ==================== RESPONSIVE STYLES ==================== */
 @media (max-width: 992px) {
     .black-hole .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .black-hole #calendar-title {
         font-size: 1.8rem;
     }
 
-    .black-hole #current-date {
-        font-size: 1.4rem;
-    }
-
-    .black-hole #today-weather {
-        font-size: 1.1rem;
+    .black-hole .modal-container {
+        padding: 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    .black-hole .clock-face {
-        width: 140px;
-        height: 140px;
+    .black-hole .container {
+        padding: 1rem;
+    }
+
+    .black-hole #calendar-title {
+        font-size: 1.5rem;
     }
 
     .black-hole th {
         font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
-    }
-
-    .black-hole th span.full-day-name {
-        display: none;
-    }
-
-    .black-hole th abbr {
-        display: inline;
+        padding: 0.7rem 0.3rem;
     }
 
     .black-hole td {
         padding: 0.5rem;
-        height: 80px;
-        font-size: 0.75rem;
-    }
-
-    .black-hole td.current-day::before {
-        font-size: 0.7rem;
-        top: 0.3rem;
-        right: 0.3rem;
-    }
-
-    .black-hole #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
+        height: 100px;
         font-size: 0.8rem;
     }
 
-    .black-hole #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+    .black-hole .modal-container {
+        padding: 1.25rem;
+        margin: 1rem;
     }
 
-    .black-hole #theme-switcher option {
-        font-size: 0.8rem;
-        padding: 8px !important;
+    .black-hole .modal-content h2 {
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 576px) {
     .black-hole .container {
-        padding: 0.6rem;
+        padding: 0.75rem;
     }
 
     .black-hole #calendar-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         letter-spacing: 0.1em;
-    }
-
-    .black-hole #current-date {
-        font-size: 1rem;
-    }
-
-    .black-hole #today-weather {
-        font-size: 0.8rem;
-    }
-
-    .black-hole .clock-face {
-        width: 110px;
-        height: 110px;
     }
 
     .black-hole th {
         font-size: 0.7rem;
-        padding: 0.4rem 0.1rem;
+        padding: 0.5rem 0.2rem;
     }
 
     .black-hole td {
-        padding: 0.2rem;
-        height: 70px;
-        font-size: 0.65rem;
+        padding: 0.3rem;
+        height: 80px;
+        font-size: 0.7rem;
     }
 
-    .black-hole #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
+    .black-hole .modal-container {
+        padding: 1rem;
+    }
+
+    .black-hole .modal-close {
+        width: 1.75rem;
+        height: 1.75rem;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .black-hole .modal-content h2 {
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 400px) {
     .black-hole th {
         font-size: 0.6rem;
-        padding: 0.3rem 0.1rem;
     }
 
     .black-hole td {
-        height: 60px;
+        height: 70px;
     }
 
-    .black-hole #theme-switcher {
-        min-width: 130px;
-        font-size: 0.7rem;
+    .black-hole .modal-container {
+        width: 95%;
+        padding: 0.75rem;
     }
 }
