@@ -210,11 +210,13 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: transparent;
-    border: 1px solid var(--hk-accent2);
-    color: var(--hk-accent2);
-    width: 2rem;
-    height: 2rem;
+    background: linear-gradient(135deg,
+            var(--hk-accent1) 0%,
+            var(--hk-accent3) 100%);
+    color: #000;
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -223,12 +225,22 @@
     transition: all var(--hk-transition);
     font-size: 1rem;
     line-height: 1;
+    font-weight: bold;
+    box-shadow:
+        0 0 10px var(--hk-accent1),
+        0 0 20px rgba(0, 240, 255, 0.3);
+    z-index: 2;
 }
 
 .black-hole .modal-close:hover {
-    background: var(--hk-accent2);
+    background: linear-gradient(135deg,
+            var(--hk-accent2) 0%,
+            var(--hk-accent4) 100%);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow:
+        0 0 20px var(--hk-accent2),
+        0 0 30px var(--hk-accent1);
     color: #000;
-    transform: rotate(90deg);
 }
 
 .black-hole .modal-content h2 {
@@ -246,22 +258,84 @@
     line-height: 1.6;
 }
 
-.black-hole .modal-content button {
-    background-color: transparent;
-    color: var(--hk-accent2);
-    border: 1px solid var(--hk-accent2);
-    padding: 0.75rem 1.5rem;
+/* ==================== BUTTON STYLES ==================== */
+.black-hole button {
+    background: linear-gradient(135deg,
+            var(--hk-accent1) 0%,
+            var(--hk-accent3) 50%,
+            var(--hk-accent2) 100%);
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.8rem;
     font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
     cursor: pointer;
     transition: all var(--hk-transition);
-    border-radius: var(--hk-radius);
-    margin-top: 1rem;
+    border-radius: 50px;
+    margin: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow:
+        0 0 10px var(--hk-accent1),
+        0 0 20px var(--hk-accent3),
+        0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.black-hole .modal-content button:hover {
-    background-color: var(--hk-accent2);
+.black-hole button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            var(--hk-accent2) 0%,
+            var(--hk-accent4) 50%,
+            var(--hk-accent1) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--hk-transition);
+}
+
+.black-hole button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 20px var(--hk-accent2),
+        0 0 30px var(--hk-accent1),
+        0 8px 25px rgba(0, 0, 0, 0.4);
     color: #000;
-    box-shadow: 0 0 15px var(--hk-accent2);
+}
+
+.black-hole button:hover::before {
+    opacity: 1;
+}
+
+.black-hole button:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 0 10px var(--hk-accent2),
+        0 0 15px var(--hk-accent1),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.black-hole .primary-action {
+    background: linear-gradient(135deg,
+            var(--hk-accent2) 0%,
+            var(--hk-accent4) 100%);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 0 15px var(--hk-accent2),
+        0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+.black-hole .primary-action:hover {
+    box-shadow:
+        0 0 25px var(--hk-accent2),
+        0 0 35px var(--hk-accent4),
+        0 0 45px rgba(0, 240, 255, 0.7);
 }
 
 /* ==================== HEADER & TITLE ==================== */
@@ -383,6 +457,16 @@
     .black-hole .modal-content h2 {
         font-size: 1.4rem;
     }
+
+    .black-hole button {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.9rem;
+    }
+
+    .black-hole .modal-close {
+        width: 2rem;
+        height: 2rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -411,14 +495,19 @@
     }
 
     .black-hole .modal-close {
-        width: 1.75rem;
-        height: 1.75rem;
+        width: 1.8rem;
+        height: 1.8rem;
         top: 0.75rem;
         right: 0.75rem;
     }
 
     .black-hole .modal-content h2 {
         font-size: 1.2rem;
+    }
+
+    .black-hole button {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
     }
 }
 
