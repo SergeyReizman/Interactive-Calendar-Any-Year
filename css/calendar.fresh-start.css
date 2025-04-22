@@ -1,0 +1,769 @@
+/* ==========================================================================  
+   Fresh Start Theme - Every Day is a New Beginning  
+   Version: 3.1  
+   Updated: 2025-04-22  
+   Features:  
+   - Clean, minimalist design  
+   - Soothing pastel color palette  
+   - Viewport-optimized modal for all screens  
+   - Subtle growth animations  
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --hk-bg: #F9F9F7;
+    /* Warm ivory */
+    --hk-text: #333333;
+    /* Soft black */
+    --hk-primary: #88C9A1;
+    /* Sage green */
+    --hk-secondary: #A8D8EA;
+    /* Sky blue */
+
+    /* Gradient Colors */
+    --hk-gradient-start: #F5F5F5;
+    /* Light gray */
+    --hk-gradient-end: #FFFFFF;
+    /* Pure white */
+
+    /* Accent Colors */
+    --hk-accent1: #88C9A1;
+    /* Primary green */
+    --hk-accent2: #A8D8EA;
+    /* Secondary blue */
+    --hk-accent3: #F7DBA7;
+    /* Warm sand */
+    --hk-accent4: #E8B9AB;
+    /* Blush pink */
+    --hk-accent5: #C5B3E6;
+    /* Lavender */
+
+    /* Theme Variables */
+    --hk-shadow: rgba(136, 201, 161, 0.2);
+    /* Soft green shadow */
+    --hk-radius: 12px;
+    --hk-transition: 0.3s ease;
+    --hk-hover: #E8F4EA;
+    /* Light green hover */
+    --hk-current-day: #88C9A1;
+    /* Green highlight */
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes hk-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hk-grow {
+    0% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes hk-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 rgba(136, 201, 161, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(136, 201, 161, 0.2);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.fresh-start {
+    font-family: 'Inter', sans-serif;
+    color: var(--hk-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--hk-gradient-start), var(--hk-gradient-end));
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==================== MODAL STYLES (Viewport Optimized) ==================== */
+.fresh-start .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.fresh-start .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid rgba(136, 201, 161, 0.3);
+    padding: 25px;
+    color: var(--hk-text);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--hk-radius);
+    animation: hk-fadeIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.fresh-start .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
+    opacity: 0.8;
+}
+
+.fresh-start .modal-header {
+    color: var(--hk-text);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    margin-bottom: 15px;
+    font-weight: 400;
+    padding-right: 30px;
+}
+
+.fresh-start .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+.fresh-start .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.fresh-start .modal-content button {
+    background-color: white;
+    color: var(--hk-accent1);
+    border: 1px solid var(--hk-accent1);
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    border-radius: var(--hk-radius);
+    font-family: 'Inter', sans-serif;
+    min-width: 100px;
+}
+
+.fresh-start .modal-content button:hover {
+    background-color: var(--hk-accent1);
+    color: white;
+    box-shadow: 0 4px 10px rgba(136, 201, 201, 0.3);
+}
+
+/* Close Button */
+.fresh-start .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--hk-text);
+    border: 1px solid rgba(136, 201, 161, 0.3);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+.fresh-start .modal .close-button:hover {
+    background-color: var(--hk-accent1);
+    color: white;
+    border-color: var(--hk-accent1);
+}
+
+/* ==================== CONTAINER STYLES ==================== */
+.fresh-start .container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border: 1px solid rgba(136, 201, 161, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--hk-radius);
+    animation: hk-fadeIn 0.6s ease-out;
+}
+
+.fresh-start .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
+    opacity: 0.8;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.fresh-start #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--hk-text);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: inline-block;
+}
+
+.fresh-start #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.fresh-start #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(136, 201, 161, 0.2);
+    border-radius: var(--hk-radius);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.fresh-start #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--hk-accent1);
+    border-radius: 3px;
+}
+
+.fresh-start #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--hk-text);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.fresh-start #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--hk-accent1);
+    font-size: 1.2rem;
+    font-style: normal;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.fresh-start #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.fresh-start .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(136, 201, 161, 0.3);
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.05),
+        inset 0 0 10px rgba(0, 0, 0, 0.03);
+}
+
+.fresh-start .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.fresh-start .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--hk-text);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.fresh-start .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--hk-text);
+    margin-top: -1.5px;
+    border-radius: 3px;
+}
+
+.fresh-start .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--hk-accent1);
+    margin-top: -1px;
+    border-radius: 2px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.fresh-start table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: white;
+    border: 1px solid rgba(136, 201, 161, 0.2);
+    border-radius: var(--hk-radius);
+    table-layout: fixed;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* DAY OF WEEK HEADERS */
+.fresh-start th {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--hk-text) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 0.5rem;
+    border: 1px solid rgba(136, 201, 161, 0.1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.fresh-start th span.full-day-name {
+    display: inline;
+}
+
+.fresh-start th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.fresh-start td {
+    background-color: white;
+    color: var(--hk-text);
+    padding: 1rem;
+    border: 1px solid rgba(136, 201, 161, 0.1);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--hk-transition);
+    position: relative;
+}
+
+.fresh-start td:hover {
+    background-color: var(--hk-hover);
+}
+
+/* Current date highlight */
+.fresh-start td.current-day {
+    background-color: rgba(136, 201, 161, 0.1);
+    border: 1px solid var(--hk-accent1);
+    color: var(--hk-text) !important;
+    font-weight: 400;
+    animation: hk-pulse 3s infinite;
+}
+
+.fresh-start td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--hk-accent1);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.fresh-start td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--hk-accent1) !important;
+    font-weight: 600;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.fresh-start .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--hk-accent1);
+    margin: 0 2px;
+    transition: all var(--hk-transition);
+}
+
+.fresh-start .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--hk-accent4);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.fresh-start .button,
+.fresh-start .transparent-button {
+    border: 1px solid var(--hk-accent1);
+    color: var(--hk-accent1);
+    background-color: white;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--hk-radius);
+    font-weight: 500;
+}
+
+.fresh-start .button::before,
+.fresh-start .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(136, 201, 161, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.fresh-start .button:hover,
+.fresh-start .transparent-button:hover {
+    background-color: var(--hk-accent1);
+    color: white;
+    box-shadow: 0 4px 15px rgba(136, 201, 161, 0.3);
+    transform: translateY(-2px);
+}
+
+.fresh-start .button:hover::before,
+.fresh-start .transparent-button:hover::before {
+    left: 100%;
+}
+
+.fresh-start .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.fresh-start #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.fresh-start #theme-switcher {
+    background-color: white;
+    color: var(--hk-text) !important;
+    border: 1px solid rgba(136, 201, 161, 0.3);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: var(--hk-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2388C9A1'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.fresh-start #theme-switcher option {
+    background-color: white !important;
+    color: var(--hk-text) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+}
+
+.fresh-start #theme-switcher option:hover {
+    background-color: var(--hk-accent1) !important;
+    color: white !important;
+}
+
+.fresh-start #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--hk-accent1), 0 4px 15px rgba(136, 201, 161, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.fresh-start #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--hk-accent1);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--hk-accent1);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--hk-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.fresh-start #backToTopBtn:hover {
+    background-color: var(--hk-accent1);
+    color: white;
+    box-shadow: 0 4px 15px rgba(136, 201, 161, 0.3);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.fresh-start footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(136, 201, 161, 0.2);
+    color: var(--hk-text);
+    font-size: 0.8rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .fresh-start .container {
+        padding: 1.2rem;
+    }
+
+    .fresh-start #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .fresh-start #current-date {
+        font-size: 1.4rem;
+    }
+
+    .fresh-start #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .fresh-start .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .fresh-start th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .fresh-start th span.full-day-name {
+        display: none;
+    }
+
+    .fresh-start th abbr {
+        display: inline;
+    }
+
+    .fresh-start td {
+        padding: 0.5rem;
+        height: 80px;
+        font-size: 0.75rem;
+    }
+
+    .fresh-start td.current-day::before {
+        width: 6px;
+        height: 6px;
+        top: 3px;
+        right: 3px;
+    }
+
+    /* Modal adjustments for medium screens */
+    .fresh-start .modal-content {
+        padding: 20px;
+    }
+
+    .fresh-start .modal-header {
+        font-size: 1.6rem;
+    }
+
+    .fresh-start #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .fresh-start #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .fresh-start #theme-switcher option {
+        font-size: 0.8rem;
+        padding: 8px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .fresh-start .container {
+        padding: 0.6rem;
+    }
+
+    .fresh-start #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .fresh-start #current-date {
+        font-size: 1rem;
+    }
+
+    .fresh-start #today-weather {
+        font-size: 0.8rem;
+    }
+
+    .fresh-start .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .fresh-start th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .fresh-start td {
+        padding: 0.2rem;
+        height: 70px;
+        font-size: 0.65rem;
+    }
+
+    /* Modal adjustments for small screens */
+    .fresh-start .modal-overlay {
+        padding: 10px;
+    }
+
+    .fresh-start .modal-content {
+        padding: 15px;
+        max-height: calc(100vh - 20px);
+    }
+
+    .fresh-start .modal-header {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .fresh-start .modal .close-button {
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        font-size: 1rem;
+    }
+
+    .fresh-start .modal-content button {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+        min-width: 80px;
+    }
+
+    .fresh-start #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .fresh-start th {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.1rem;
+    }
+
+    .fresh-start td {
+        height: 60px;
+    }
+
+    /* Modal adjustments for extra small screens */
+    .fresh-start .modal-content {
+        padding: 12px;
+    }
+
+    .fresh-start .modal-header {
+        font-size: 1.2rem;
+    }
+
+    .fresh-start .modal-body {
+        font-size: 0.9rem;
+    }
+
+    .fresh-start #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+}
