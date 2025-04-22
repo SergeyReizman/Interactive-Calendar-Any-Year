@@ -1,532 +1,319 @@
 /* ==========================================================================
-  Black Hole Theme - Ultimate Visibility & Mobile Fix
-  Version: 3.1
-  Updated: 2025-04-22 (Complete Visibility & Mobile Overhaul)
-  Features:
-  - Perfect visibility on all devices
-  - No weekday overlapping
-  - Maintained cosmic aesthetic
-  - Full mobile responsiveness
-  - Enhanced contrast throughout
-  ========================================================================== */
+   Black Hole Theme - Cosmic Calendar UI
+   Version: 4.4
+   Updated: 2025-09-01
+   Features:
+   - Event horizon positioning system
+   - Fixed quantum modal viewport centering
+   - Complete spacetime styling
+   - No-scroll modal interaction
+   ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Marcellus+SC&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
 
-:root {
-  /* High-Contrast Color Palette */
-  --bh-bg: #0A0A16;
-  /* Deep cosmic black */
-  --bh-container-bg: #24243A;
-  /* Brighter container */
-  --bh-text: #FFFFFF;
-  /* Pure white text */
-  --bh-primary: #C24EFF;
-  /* Vibrant purple */
-  --bh-secondary: #00F9FF;
-  /* Neon blue */
-
-  /* Enhanced Accents */
-  --bh-accent1: #6A1EBA;
-  /* Deep indigo */
-  --bh-accent2: #7A6AFF;
-  /* Slate blue */
-  --bh-accent3: #9A3CFF;
-  /* Blue violet */
-  --bh-accent4: #2AA0FF;
-  /* Dodger blue */
-  --bh-accent5: #FF6B00;
-  /* Fiery orange */
-
-  /* Theme Variables */
-  --bh-shadow: rgba(194, 78, 255, 0.8);
-  --bh-radius: 15px;
-  --bh-transition: 0.2s ease-in-out;
-  --bh-hover: #D580FF;
-  --bh-current-day: #FFEE00;
-  /* Bright gold */
-
-  /* Mobile Variables */
-  --bh-mobile-font: 0.85rem;
-  --bh-mobile-padding: 0.5rem;
-}
-
-/* ==================== ANIMATIONS ==================== */
-@keyframes bh-pulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px var(--bh-primary);
-  }
-
-  50% {
-    box-shadow: 0 0 35px var(--bh-primary);
-  }
-}
-
-@keyframes bh-fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bh-colorShift {
-
-  0%,
-  100% {
-    border-color: var(--bh-primary);
-  }
-
-  33% {
-    border-color: var(--bh-secondary);
-  }
-
-  66% {
-    border-color: var(--bh-accent4);
-  }
-}
-
-/* ==================== BASE STYLES ==================== */
-.black-hole {
-  font-family: 'Marcellus SC', serif;
-  color: var(--bh-text);
-  line-height: 1.6;
-  background: linear-gradient(135deg, var(--bh-bg), #1A1A32);
-  min-height: 100vh;
-}
-
-.black-hole .container {
-  background: var(--bh-container-bg);
-  padding: 2rem;
-  border: 2px solid var(--bh-primary);
-  box-shadow: 0 0 40px var(--bh-shadow);
-  position: relative;
-  overflow: hidden;
-  max-width: 1600px;
-  margin: 2rem auto;
-  border-radius: var(--bh-radius);
-  animation: bh-colorShift 15s infinite;
-}
-
-.black-hole .container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--bh-primary), transparent);
-  animation: bh-pulse 3s infinite;
-}
-
-/* ==================== HEADER & TITLE ==================== */
-.black-hole #calendar-title {
-  font-family: 'Cinzel', serif;
-  color: var(--bh-primary);
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  text-shadow: 0 0 15px var(--bh-shadow), 2px 2px 5px rgba(0, 0, 0, 0.9);
-}
-
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.black-hole #date-weather-container {
-  text-align: center;
-  margin: 2rem 0;
-  padding: 1.2rem;
-  background-color: rgba(40, 40, 66, 0.95);
-  border: 1px solid var(--bh-primary);
-  border-radius: var(--bh-radius);
-  position: relative;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-}
-
-.black-hole #date-weather-container::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--bh-primary), transparent);
-}
-
-.black-hole #current-date {
-  font-family: 'Cinzel', serif;
-  color: var(--bh-primary);
-  font-size: 1.8rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px var(--bh-shadow), 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-.black-hole #today-weather {
-  font-family: 'Marcellus SC', serif;
-  color: var(--bh-secondary);
-  font-size: 1.4rem;
-  font-style: italic;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-  text-shadow: 0 0 8px rgba(0, 249, 255, 0.7), 1px 1px 2px rgba(0, 0, 0, 0.6);
-}
-
-/* ==================== ANALOG CLOCK ==================== */
-.black-hole #analog-watch {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.black-hole .clock-face {
-  width: 200px;
-  height: 200px;
-  border: 12px solid var(--bh-primary);
-  border-radius: 50%;
-  position: relative;
-  background: radial-gradient(circle at center, #24243A 0%, #121228 100%);
-  box-shadow: 0 0 30px var(--bh-shadow), 0 0 10px rgba(255, 255, 255, 0.2) inset;
-}
-
-.black-hole .hand {
-  position: absolute;
-  top: 50%;
-  transform-origin: 100%;
-  transform: rotate(90deg);
-  transition: all 0.05s;
-  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.black-hole .hour-hand {
-  width: 40%;
-  left: 10%;
-  height: 8px;
-  background: var(--bh-primary);
-  margin-top: -4px;
-}
-
-.black-hole .minute-hand {
-  width: 48%;
-  left: 2%;
-  height: 6px;
-  background: var(--bh-secondary);
-  margin-top: -3px;
-}
-
-.black-hole .second-hand {
-  width: 48%;
-  left: 2%;
-  height: 3px;
-  background: var(--bh-accent5);
-  margin-top: -1.5px;
-}
-
-/* ==================== CALENDAR TABLE ==================== */
-.black-hole table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem auto;
-  background-color: rgba(40, 40, 66, 0.98);
-  border: 2px solid var(--bh-primary);
-  border-radius: var(--bh-radius);
-  table-layout: fixed;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-}
-
-/* Weekday Header Fix */
-.black-hole th {
-  font-size: 0.8rem;
-  padding: 0.8rem 0.3rem;
-  text-transform: uppercase;
-  background: linear-gradient(to bottom, rgba(194, 78, 255, 0.95), rgba(194, 78, 255, 0.85));
-  color: var(--bh-text) !important;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  border: 1px solid var(--bh-primary);
-  text-shadow: 0 0 10px var(--bh-shadow), 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.black-hole th abbr {
-  display: inline-block;
-  width: 3ch;
-  text-align: center;
-}
-
-/* Calendar Cells */
-.black-hole td {
-  background-color: rgba(40, 40, 70, 0.95) !important;
-  color: var(--bh-text);
-  padding: 1rem;
-  border: 1px solid rgba(194, 78, 255, 0.6);
-  height: 100px;
-  vertical-align: top;
-  font-size: 1rem;
-  transition: all var(--bh-transition);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-.black-hole td:hover {
-  background-color: rgba(106, 30, 186, 0.9) !important;
-  box-shadow: inset 0 0 20px var(--bh-shadow), 0 0 8px rgba(255, 255, 255, 0.1);
-}
-
-/* Current Day */
-.black-hole td.current-day {
-  background: linear-gradient(135deg, rgba(255, 238, 0, 0.95), rgba(255, 238, 0, 1)) !important;
-  border: 2px solid var(--bh-text);
-  color: #0A0A16 !important;
-  font-weight: bold;
-  animation: bh-pulse 2s infinite;
-}
-
-/* ==================== EVENT MARKERS ==================== */
-.black-hole .event-marker {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: var(--bh-accent5);
-  margin: 2px 4px;
-  box-shadow: 0 0 12px var(--bh-accent5);
-  transition: all var(--bh-transition);
-}
-
-.black-hole .event-marker:hover {
-  transform: scale(1.4);
-  background-color: var(--bh-primary);
-  box-shadow: 0 0 25px var(--bh-accent5), 0 0 8px rgba(255, 255, 255, 0.2);
-}
-
-.black-hole .event-text {
-  color: var(--bh-text) !important;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px #000000;
-  margin-top: 4px;
-  display: block;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 2px 5px;
-  border-radius: 4px;
-}
-
-/* ==================== MODAL STYLES ==================== */
-.black-hole .modal-content {
-  background: linear-gradient(145deg, #2A2A4A, #1E1E3E) !important;
-  border: 2px solid var(--bh-primary);
-  color: var(--bh-text);
-  box-shadow: 0 0 50px var(--bh-shadow), 0 0 15px rgba(255, 255, 255, 0.2);
-  border-radius: var(--bh-radius);
-  animation: bh-fadeIn 0.4s ease;
-}
-
-.black-hole .modal-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--bh-primary);
-  animation: bh-pulse 2s infinite;
-  border-radius: var(--bh-radius) var(--bh-radius) 0 0;
-  box-shadow: 0 0 10px var(--bh-primary);
-}
-
-.black-hole .modal-content h2 {
-  color: var(--bh-primary);
-  font-family: 'Cinzel', serif;
-  padding: 1rem;
-  border-bottom: 1px solid var(--bh-primary);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 15px var(--bh-shadow), 1px 1px 3px rgba(0, 0, 0, 0.9);
-}
-
-.black-hole .modal-content .event-details {
-  color: var(--bh-text);
-  font-size: 1.1rem;
-  line-height: 1.6;
-  padding: 1rem;
-  background: rgba(40, 40, 70, 0.9);
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-
-.black-hole .modal-content button {
-  color: var(--bh-primary);
-  border: 2px solid var(--bh-primary);
-  background-color: rgba(40, 40, 70, 0.9);
-  padding: 0.8rem 1.6rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Cinzel', serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all var(--bh-transition);
-  box-shadow: 0 0 10px rgba(194, 78, 255, 0.6);
-}
-
-.black-hole .modal-content button:hover {
-  background-color: var(--bh-primary);
-  color: var(--bh-text);
-  box-shadow: 0 0 20px var(--bh-primary);
-}
-
-/* ==================== BUTTONS & CONTROLS ==================== */
-.black-hole .button,
-.black-hole .transparent-button {
-  border: 2px solid var(--bh-primary);
-  color: var(--bh-primary);
-  background-color: rgba(40, 40, 70, 0.9);
-  padding: 0.8rem 1.6rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Cinzel', serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all var(--bh-transition);
-  box-shadow: 0 0 10px rgba(194, 78, 255, 0.6);
-}
-
-.black-hole .button:hover,
-.black-hole .transparent-button:hover {
-  background-color: var(--bh-primary);
-  color: var(--bh-text);
-  box-shadow: 0 0 20px var(--bh-primary);
-}
-
-.black-hole .controls {
-  background-color: rgba(40, 40, 70, 0.95);
-  padding: 1rem;
-  border-radius: var(--bh-radius);
-  margin-bottom: 1rem;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-}
-
-/* ==================== THEME SWITCHER ==================== */
-.black-hole #theme-switcher {
-  background-color: rgba(40, 40, 70, 0.95);
-  border: 2px solid var(--bh-primary);
-  color: var(--bh-primary);
-  padding: 0.7rem 1.3rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: 'Cinzel', serif;
-  transition: all var(--bh-transition);
-  box-shadow: 0 0 10px rgba(194, 78, 255, 0.6);
-}
-
-.black-hole #theme-switcher:hover {
-  background-color: var(--bh-primary);
-  color: var(--bh-text);
-  box-shadow: 0 0 20px var(--bh-primary);
-}
-
-/* ==================== BACK TO TOP BUTTON ==================== */
-.black-hole #backToTopBtn {
-  border: 2px solid var(--bh-primary);
-  color: var(--bh-primary);
-  background-color: rgba(40, 40, 70, 0.95);
-  padding: 0.8rem 1.4rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all var(--bh-transition);
-  box-shadow: 0 0 10px rgba(194, 78, 255, 0.6);
-}
-
-.black-hole #backToTopBtn:hover {
-  background-color: var(--bh-primary);
-  color: var(--bh-text);
-  box-shadow: 0 0 20px var(--bh-primary);
-}
-
-/* ==================== FOOTER ==================== */
-.black-hole footer {
-  border-top: 1px solid var(--bh-primary);
-  background-color: rgba(40, 40, 70, 0.95);
-  color: var(--bh-text);
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-/* ==================== MOBILE OPTIMIZATIONS ==================== */
-@media (max-width: 768px) {
-  .black-hole .container {
-    padding: 1rem;
-    margin: 1rem auto;
-  }
-
-  .black-hole #calendar-title {
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
-  }
-
-  /* Weekday Header Fix */
-  .black-hole th {
-    font-size: 0.7rem;
-    padding: 0.5rem 0.1rem;
-    letter-spacing: normal;
-  }
-
-  .black-hole th abbr {
-    display: inline-block;
-    width: 3ch;
-    text-align: center;
-  }
-
-  .black-hole td {
-    padding: 0.5rem;
-    height: 80px;
-    font-size: 0.85rem;
-  }
-
-  .black-hole .event-marker {
-    width: 10px;
-    height: 10px;
-    margin: 1px 2px;
-  }
-
-  .black-hole .clock-face {
-    width: 160px;
-    height: 160px;
-  }
-
-  .black-hole #current-date {
-    font-size: 1.5rem;
-  }
-
-  .black-hole #today-weather {
-    font-size: 1.2rem;
-  }
-}
-
-@media (min-width: 769px) {
-  .black-hole th abbr {
-    display: inline;
-    width: auto;
-  }
-}
-
-/* ==================== FORCED VISIBILITY ==================== */
-/* Ensures all text remains visible */
-.black-hole,
-.black-hole p,
-.black-hole span,
-.black-hole div,
-.black-hole td,
-.black-hole th {
-  color: var(--bh-text) !important;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-}
+   :root {
+       /* Singularity Color Variables */
+       --event-horizon: #000000;
+       --accretion-disk: #8A2BE2;
+       --photon-ring: #00CED1;
+       --hawking-radiation: #FF1493;
+       --spaghettification: #FFD700;
+       --cosmic-string: rgba(0, 206, 209, 0.4);
+   
+       /* Relativity Measures */
+       --planck-time: 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+       --schwarzschild-radius: 8px;
+       --gravitational-constant: 1.5;
+   }
+   
+   /* ==================== SPACETIME ANIMATIONS ==================== */
+   @keyframes singularity-pulse {
+       0%, 100% {
+           box-shadow: 0 0 10px var(--accretion-disk),
+                      0 0 20px var(--photon-ring);
+       }
+       50% {
+           box-shadow: 0 0 30px var(--accretion-disk),
+                      0 0 50px var(--photon-ring),
+                      0 0 70px var(--hawking-radiation);
+       }
+   }
+   
+   @keyframes spaghettify {
+       0% { transform: scale(1); }
+       50% { transform: scale(0.9, 1.5); }
+       100% { transform: scale(1); }
+   }
+   
+   @keyframes accretion-rotate {
+       from { transform: rotate(0deg); }
+       to { transform: rotate(360deg); }
+   }
+   
+   /* ==================== EVENT HORIZON BASE ==================== */
+   .black-hole {
+       font-family: 'Space Mono', monospace;
+       color: #E0E0FF;
+       background: 
+           radial-gradient(ellipse at center, 
+               var(--event-horizon) 0%, 
+               #0F0C24 60%, 
+               #1A0A2A 100%);
+       min-height: 100vh;
+       position: relative;
+       overflow-x: hidden;
+   }
+   
+   .black-hole::before {
+       content: "";
+       position: absolute;
+       top: -50%;
+       left: -50%;
+       width: 200%;
+       height: 200%;
+       background: 
+           radial-gradient(circle at 30% 30%, 
+               rgba(138, 43, 226, 0.1) 0%, 
+               transparent 25%),
+           repeating-conic-gradient(from 0deg, 
+               transparent 0deg 15deg, 
+               rgba(0, 206, 209, 0.03) 15deg 30deg);
+       animation: accretion-rotate 60s linear infinite;
+       z-index: 0;
+   }
+   
+   .black-hole .singularity-container {
+       background: rgba(0, 0, 0, 0.9);
+       border: 1px solid var(--accretion-disk);
+       box-shadow: 
+           inset 0 0 30px rgba(138, 43, 226, 0.3),
+           0 0 50px rgba(0, 206, 209, 0.2);
+       border-radius: var(--schwarzschild-radius);
+       position: relative;
+       z-index: 1;
+       max-width: 1600px;
+       margin: 2rem auto;
+       padding: 2rem;
+       overflow: hidden;
+   }
+   
+   /* ==================== QUANTUM MODAL (FIXED VIEWPORT) ==================== */
+   .black-hole .modal-overlay {
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: rgba(0, 0, 0, 0.9);
+       z-index: 1000;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       backdrop-filter: blur(5px);
+   }
+   
+   .black-hole .modal-content {
+       position: relative;
+       width: 90%;
+       max-width: 600px;
+       max-height: 90vh;
+       overflow-y: auto;
+       background: 
+           radial-gradient(ellipse at center, 
+               rgba(15, 10, 30, 0.95) 0%, 
+               rgba(0, 0, 0, 0.95) 100%);
+       border: 1px solid var(--photon-ring);
+       box-shadow: 
+           0 0 50px var(--accretion-disk),
+           inset 0 0 20px var(--photon-ring);
+       border-radius: var(--schwarzschild-radius);
+       padding: 2rem;
+       animation: singularity-pulse 3s infinite;
+       transform: perspective(1000px) rotateX(5deg);
+   }
+   
+   .black-hole .modal-content h2 {
+       color: var(--photon-ring);
+       font-family: 'Orbitron', sans-serif;
+       text-shadow: 0 0 10px var(--accretion-disk);
+       border-bottom: 1px solid var(--accretion-disk);
+       padding-bottom: 0.5rem;
+       margin-top: 0;
+   }
+   
+   .black-hole .modal-close {
+       position: absolute;
+       top: 1rem;
+       right: 1rem;
+       background: transparent;
+       border: 1px solid var(--hawking-radiation);
+       color: var(--hawking-radiation);
+       width: 2rem;
+       height: 2rem;
+       border-radius: 50%;
+       cursor: pointer;
+       transition: var(--planck-time);
+   }
+   
+   .black-hole .modal-close:hover {
+       background: var(--hawking-radiation);
+       color: black;
+       transform: rotate(90deg);
+   }
+   
+   /* ==================== SPACETIME CALENDAR GRID ==================== */
+   .black-hole .calendar-grid {
+       width: 100%;
+       border-collapse: collapse;
+       margin: 2rem 0;
+       background: rgba(15, 10, 30, 0.7);
+       border: 1px solid var(--accretion-disk);
+   }
+   
+   .black-hole .calendar-header th {
+       background: rgba(138, 43, 226, 0.2);
+       color: var(--photon-ring) !important;
+       padding: 1rem;
+       border: 1px solid var(--accretion-disk);
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+   }
+   
+   .black-hole .calendar-cell {
+       padding: 1rem;
+       border: 1px solid rgba(138, 43, 226, 0.3);
+       height: 100px;
+       vertical-align: top;
+       transition: var(--planck-time);
+       position: relative;
+   }
+   
+   .black-hole .calendar-cell:hover {
+       background: rgba(30, 20, 50, 0.9);
+       box-shadow: 
+           inset 0 0 15px var(--accretion-disk),
+           0 0 20px var(--cosmic-string);
+       transform: scale(1.03);
+       z-index: 2;
+   }
+   
+   .black-hole .current-day {
+       background: rgba(20, 0, 40, 0.9) !important;
+       border: 2px solid var(--hawking-radiation) !important;
+       animation: singularity-pulse 2s infinite;
+   }
+   
+   .black-hole .current-day::before {
+       content: "🌀";
+       position: absolute;
+       top: 5px;
+       left: 5px;
+       font-size: 1.2rem;
+       filter: drop-shadow(0 0 5px var(--photon-ring));
+   }
+   
+   /* ==================== QUANTUM CONTROLS ==================== */
+   .black-hole .controls-container {
+       display: flex;
+       justify-content: center;
+       gap: 1rem;
+       flex-wrap: wrap;
+       margin: 2rem 0;
+   }
+   
+   .black-hole .quantum-button {
+       background: transparent;
+       border: 1px solid var(--photon-ring);
+       color: var(--photon-ring);
+       padding: 0.8rem 1.5rem;
+       font-family: 'Orbitron', sans-serif;
+       cursor: pointer;
+       transition: var(--planck-time);
+       text-transform: uppercase;
+       letter-spacing: 0.1em;
+       position: relative;
+       overflow: hidden;
+   }
+   
+   .black-hole .quantum-button:hover {
+       background: var(--accretion-disk);
+       color: black;
+       box-shadow: 0 0 20px var(--cosmic-string);
+       animation: spaghettify 0.5s;
+   }
+   
+   .black-hole .quantum-button::before {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: -100%;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(
+           90deg,
+           transparent,
+           rgba(0, 206, 209, 0.2),
+           transparent
+       );
+       transition: 0.5s;
+   }
+   
+   .black-hole .quantum-button:hover::before {
+       left: 100%;
+   }
+   
+   /* ==================== SPACETIME RESPONSIVENESS ==================== */
+   @media (max-width: 992px) {
+       .black-hole .singularity-container {
+           padding: 1.5rem;
+       }
+       
+       .black-hole .calendar-cell {
+           height: 80px;
+           padding: 0.8rem;
+       }
+   }
+   
+   @media (max-width: 768px) {
+       :root {
+           --schwarzschild-radius: 6px;
+       }
+       
+       .black-hole .calendar-header th {
+           padding: 0.8rem 0.5rem;
+           font-size: 0.9rem;
+       }
+       
+       .black-hole .calendar-cell {
+           height: 70px;
+           padding: 0.6rem;
+           font-size: 0.9rem;
+       }
+       
+       .black-hole .modal-content {
+           width: 95%;
+           padding: 1.5rem;
+       }
+   }
+   
+   @media (max-width: 480px) {
+       :root {
+           --schwarzschild-radius: 4px;
+           --gravitational-constant: 1.2;
+       }
+       
+       .black-hole .calendar-cell {
+           height: 60px;
+           padding: 0.4rem;
+           font-size: 0.8rem;
+       }
+       
+       .black-hole .quantum-button {
+           padding: 0.6rem 1rem;
+           font-size: 0.8rem;
+       }
+       
+       .black-hole .modal-content {
+           padding: 1rem;
+       }
+   }
