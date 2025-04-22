@@ -1,13 +1,22 @@
-/* ==========================================================================  
-   Black Hole Theme - Ultimate Cosmic Calendar  
-   Version: 5.4.1  
-   Updated: 2024-06-20  
-   Fixes:
-   - Fixed modal positioning on mobile devices
-   - Ensured modal always centers in viewport
+/* ==========================================================================
+   Black Hole Theme - Ultimate Cosmic Calendar
+   Version: 5.5
+   Updated: 2024-06-20
+   Purpose: Provides a cosmic, futuristic calendar experience
+   Sections:
+     - Variables: Cosmic color palette and theme settings
+     - Keyframe Animations: Space-themed animations
+     - Base Styles: Global cosmic container styles
+     - Layout: Structures the calendar grid
+     - Typography: Futuristic font styles
+     - Interactive Elements: Hover effects and day styling
+     - Modals: Space-themed modal windows
+     - Event List: Styles for cosmic events
+     - Buttons & Navigation: Galactic button styles
+     - Calendar Header & Title: Cosmic header styling
+     - Week Number & No Events: Special element styles
+     - Responsive Design: Adapts to different screen sizes
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
     /* Cosmic Color Palette */
@@ -15,40 +24,39 @@
     --hk-text: #F0F0FF;
     --hk-primary: #9D00FF;
     --hk-secondary: #00F0FF;
-
-    /* Gradient Colors */
-    --hk-gradient-start: #000000;
-    --hk-gradient-end: #1E0A3A;
-
-    /* Accent Colors */
-    --hk-accent1: #9D00FF;
-    --hk-accent2: #00F0FF;
-    --hk-accent3: #FF00E6;
-    --hk-accent4: #00FFA3;
-    --hk-accent5: #FF6B00;
-
-    /* Theme Variables */
+    --hk-header-accent: #1E0A3A;
+    --hk-button-accent: #FF00E6;
+    --hk-hover-accent: #00FFA3;
     --hk-shadow: rgba(157, 0, 255, 0.5);
+
+    /* Spacing and Borders */
     --hk-radius: 10px;
+    --hk-border: 1px solid var(--hk-primary);
+
+    /* Transitions and Animations */
     --hk-transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    --hk-hover: #1E0A3A;
-    --hk-current-day: #00F0FF;
+    --hk-scanline-animation: hk-scanline 10s linear infinite;
+
+    /* Typography */
+    --hk-font-family: 'Space Mono', monospace;
+    --hk-title-font: 'Orbitron', sans-serif;
+    --hk-font-size: 1em;
 }
 
-/* ==================== ANIMATIONS ==================== */
+/* Keyframe Animations */
 @keyframes hk-glitch {
 
     0%,
     100% {
-        text-shadow: 0 0 5px var(--hk-accent1),
-            0 0 10px var(--hk-accent2),
-            0 0 15px var(--hk-accent3);
+        text-shadow: 0 0 5px var(--hk-primary),
+            0 0 10px var(--hk-secondary),
+            0 0 15px var(--hk-button-accent);
     }
 
     50% {
-        text-shadow: 0 0 8px var(--hk-accent2),
-            0 0 13px var(--hk-accent1),
-            0 0 18px var(--hk-accent3);
+        text-shadow: 0 0 8px var(--hk-secondary),
+            0 0 13px var(--hk-primary),
+            0 0 18px var(--hk-button-accent);
     }
 }
 
@@ -66,11 +74,11 @@
 
     0%,
     100% {
-        box-shadow: 0 0 5px var(--hk-accent1);
+        box-shadow: 0 0 5px var(--hk-primary);
     }
 
     50% {
-        box-shadow: 0 0 15px var(--hk-accent2);
+        box-shadow: 0 0 15px var(--hk-secondary);
     }
 }
 
@@ -84,18 +92,19 @@
     }
 }
 
-/* ==================== BASE STYLES ==================== */
+/* Base Styles */
 .black-hole {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--hk-font-family);
     color: var(--hk-text);
-    line-height: 1.5;
+    line-height: 1.6;
     background: radial-gradient(ellipse at center,
-            var(--hk-gradient-start) 0%,
+            #000000 0%,
             var(--hk-bg) 50%,
-            var(--hk-gradient-end) 100%);
+            var(--hk-header-accent) 100%);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    font-size: var(--hk-font-size);
 }
 
 .black-hole::before {
@@ -125,7 +134,7 @@
     bottom: 0;
     background: linear-gradient(rgba(240, 240, 255, 0.03) 1px, transparent 1px);
     background-size: 100% 3px;
-    animation: hk-scanline 10s linear infinite;
+    animation: var(--hk-scanline-animation);
     pointer-events: none;
     z-index: 0;
 }
@@ -133,7 +142,7 @@
 .black-hole .container {
     background-color: rgba(5, 0, 15, 0.92);
     padding: 2rem;
-    border: 1px solid var(--hk-accent1);
+    border: 1px solid var(--hk-primary);
     box-shadow:
         inset 0 0 40px rgba(157, 0, 255, 0.25),
         0 0 60px rgba(0, 240, 255, 0.15);
@@ -152,11 +161,95 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+    background: linear-gradient(90deg, transparent, var(--hk-primary), transparent);
     animation: hk-pulse 4s infinite;
 }
 
-/* ==================== MODAL SYSTEM ==================== */
+/* Layout */
+.black-hole .calendar-container {
+    padding: 20px;
+    background: rgba(15, 5, 30, 0.8);
+    border-radius: var(--hk-radius);
+    border: 1px dashed var(--hk-secondary);
+}
+
+.black-hole table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: rgba(15, 5, 30, 0.8);
+    border: 1px solid var(--hk-primary);
+    border-radius: var(--hk-radius);
+    table-layout: fixed;
+    box-shadow: 0 0 30px rgba(157, 0, 255, 0.3);
+}
+
+.black-hole th,
+.black-hole td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid rgba(157, 0, 255, 0.3);
+    transition: all var(--hk-transition);
+    word-wrap: break-word;
+}
+
+/* Typography */
+.black-hole th {
+    background: linear-gradient(to bottom,
+            rgba(157, 0, 255, 0.3),
+            rgba(100, 0, 200, 0.4));
+    color: var(--hk-text) !important;
+    font-family: var(--hk-title-font);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow:
+        0 0 8px var(--hk-primary),
+        0 0 15px rgba(0, 240, 255, 0.5);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.black-hole td {
+    background-color: rgba(10, 0, 25, 0.7);
+    color: var(--hk-text);
+    height: 120px;
+    vertical-align: top;
+}
+
+/* Interactive Elements */
+.black-hole td:hover {
+    background: rgba(30, 5, 50, 0.9);
+    box-shadow:
+        inset 0 0 20px var(--hk-primary),
+        0 0 30px rgba(157, 0, 255, 0.7);
+    transform: scale(1.03);
+    z-index: 2;
+}
+
+.black-hole td.current-day {
+    background: rgba(25, 0, 50, 0.9) !important;
+    border: 2px solid var(--hk-secondary) !important;
+    color: #fff !important;
+    font-weight: 400;
+    animation: hk-pulse 3s infinite;
+}
+
+.black-hole .event-marker {
+    background-color: var(--hk-secondary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: transform var(--hk-transition);
+    box-shadow: 0 0 5px var(--hk-primary);
+}
+
+.black-hole .event-marker:hover {
+    background-color: var(--hk-hover-accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 10px var(--hk-secondary);
+}
+
+/* Modals */
 .black-hole .modal-overlay {
     position: fixed;
     top: 0;
@@ -172,9 +265,7 @@
     pointer-events: none;
     transition: opacity 0.3s ease;
     padding: 1rem;
-    /* Added padding for mobile safety */
     box-sizing: border-box;
-    /* Ensure padding doesn't affect width */
 }
 
 .black-hole .modal-overlay.active {
@@ -185,38 +276,169 @@
 .black-hole .modal-container {
     position: relative;
     width: 100%;
-    /* Changed from 90% to 100% */
     max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
     background: radial-gradient(ellipse at center,
             rgba(20, 5, 40, 0.98) 0%,
             rgba(5, 0, 15, 0.98) 100%);
-    border: 1px solid var(--hk-accent2);
+    border: 1px solid var(--hk-secondary);
     padding: 2rem;
     color: var(--hk-text);
     box-shadow:
-        0 0 60px var(--hk-accent1),
-        inset 0 0 30px var(--hk-accent2);
+        0 0 60px var(--hk-primary),
+        inset 0 0 30px var(--hk-secondary);
     border-radius: var(--hk-radius);
     animation: hk-pulse 4s infinite;
     transform: translateY(20px);
     transition: transform 0.3s ease;
     margin: 0;
-    /* Removed fixed margin */
 }
 
 .black-hole .modal-overlay.active .modal-container {
     transform: translateY(0);
 }
 
+.black-hole .modal-content h2 {
+    color: var(--hk-secondary);
+    font-family: var(--hk-title-font);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--hk-primary);
+}
+
+.black-hole .modal-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Event List */
+.black-hole .event-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--hk-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.black-hole .event-list li:last-child {
+    border-bottom: none;
+}
+
+/* Buttons & Navigation */
+.black-hole button {
+    background: linear-gradient(135deg,
+            var(--hk-primary) 0%,
+            var(--hk-button-accent) 50%,
+            var(--hk-secondary) 100%);
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-family: var(--hk-title-font);
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    border-radius: 50px;
+    margin: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow:
+        0 0 10px var(--hk-primary),
+        0 0 20px var(--hk-button-accent),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.black-hole button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            var(--hk-secondary) 0%,
+            var(--hk-hover-accent) 50%,
+            var(--hk-primary) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--hk-transition);
+}
+
+.black-hole button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+        0 0 20px var(--hk-secondary),
+        0 0 30px var(--hk-primary),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+    color: #000;
+}
+
+.black-hole button:hover::before {
+    opacity: 1;
+}
+
+.black-hole button:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 0 10px var(--hk-secondary),
+        0 0 15px var(--hk-primary),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.black-hole .primary-action {
+    background: linear-gradient(135deg,
+            var(--hk-secondary) 0%,
+            var(--hk-hover-accent) 100%);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 0 15px var(--hk-secondary),
+        0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+.black-hole .primary-action:hover {
+    box-shadow:
+        0 0 25px var(--hk-secondary),
+        0 0 35px var(--hk-hover-accent),
+        0 0 45px rgba(0, 240, 255, 0.7);
+}
+
+/* Calendar Header & Title */
+.black-hole .calendar-header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--hk-secondary);
+    text-shadow: 0 0 10px var(--hk-primary);
+}
+
+.black-hole #calendar-title {
+    font-family: var(--hk-title-font);
+    color: var(--hk-secondary);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow:
+        0 0 10px var(--hk-primary),
+        0 0 20px rgba(0, 240, 255, 0.3);
+    animation: hk-glitch 6s infinite;
+}
+
+/* Modal Close */
 .black-hole .modal-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
     background: linear-gradient(135deg,
-            var(--hk-accent1) 0%,
-            var(--hk-accent3) 100%);
+            var(--hk-primary) 0%,
+            var(--hk-button-accent) 100%);
     color: #000;
     border: none;
     width: 2.5rem;
@@ -231,194 +453,41 @@
     line-height: 1;
     font-weight: bold;
     box-shadow:
-        0 0 10px var(--hk-accent1),
+        0 0 10px var(--hk-primary),
         0 0 20px rgba(0, 240, 255, 0.3);
     z-index: 2;
 }
 
 .black-hole .modal-close:hover {
     background: linear-gradient(135deg,
-            var(--hk-accent2) 0%,
-            var(--hk-accent4) 100%);
+            var(--hk-secondary) 0%,
+            var(--hk-hover-accent) 100%);
     transform: rotate(90deg) scale(1.1);
     box-shadow:
-        0 0 20px var(--hk-accent2),
-        0 0 30px var(--hk-accent1);
+        0 0 20px var(--hk-secondary),
+        0 0 30px var(--hk-primary);
     color: #000;
 }
 
-.black-hole .modal-content h2 {
-    color: var(--hk-accent2);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 15px var(--hk-accent1);
+/* Week Number & No Events */
+.black-hole .week-number {
+    color: var(--hk-secondary);
+    font-size: 0.85em;
+    padding: 2px 4px;
+    background: rgba(157, 0, 255, 0.2);
+    border-radius: 4px;
+    margin: 1px;
 }
 
-.black-hole .modal-content p {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-/* ==================== BUTTON STYLES ==================== */
-.black-hole button {
-    background: linear-gradient(135deg,
-            var(--hk-accent1) 0%,
-            var(--hk-accent3) 50%,
-            var(--hk-accent2) 100%);
-    color: #000;
-    border: none;
-    padding: 0.8rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Orbitron', sans-serif;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    border-radius: 50px;
-    margin: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    box-shadow:
-        0 0 10px var(--hk-accent1),
-        0 0 20px var(--hk-accent3),
-        0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.black-hole button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg,
-            var(--hk-accent2) 0%,
-            var(--hk-accent4) 50%,
-            var(--hk-accent1) 100%);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity var(--hk-transition);
-}
-
-.black-hole button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow:
-        0 0 20px var(--hk-accent2),
-        0 0 30px var(--hk-accent1),
-        0 8px 25px rgba(0, 0, 0, 0.4);
-    color: #000;
-}
-
-.black-hole button:hover::before {
-    opacity: 1;
-}
-
-.black-hole button:active {
-    transform: translateY(1px);
-    box-shadow:
-        0 0 10px var(--hk-accent2),
-        0 0 15px var(--hk-accent1),
-        0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.black-hole .primary-action {
-    background: linear-gradient(135deg,
-            var(--hk-accent2) 0%,
-            var(--hk-accent4) 100%);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    box-shadow:
-        0 0 15px var(--hk-accent2),
-        0 0 25px rgba(0, 240, 255, 0.5);
-}
-
-.black-hole .primary-action:hover {
-    box-shadow:
-        0 0 25px var(--hk-accent2),
-        0 0 35px var(--hk-accent4),
-        0 0 45px rgba(0, 240, 255, 0.7);
-}
-
-/* ==================== HEADER & TITLE ==================== */
-.black-hole #calendar-title {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--hk-accent2);
+.black-hole .no-events {
+    font-style: italic;
+    color: var(--hk-secondary);
     text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow:
-        0 0 10px var(--hk-accent1),
-        0 0 20px rgba(0, 240, 255, 0.3);
-    animation: hk-glitch 6s infinite;
+    margin-top: 8px;
+    font-size: 0.9em;
 }
 
-/* ==================== CALENDAR TABLE ==================== */
-.black-hole table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background: rgba(15, 5, 30, 0.8);
-    border: 1px solid var(--hk-accent1);
-    border-radius: var(--hk-radius);
-    table-layout: fixed;
-}
-
-.black-hole th {
-    background: linear-gradient(to bottom,
-            rgba(157, 0, 255, 0.3),
-            rgba(100, 0, 200, 0.4));
-    color: #FFFFFF !important;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--hk-accent1);
-    position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-    text-shadow:
-        0 0 8px var(--hk-accent1),
-        0 0 15px rgba(0, 240, 255, 0.5);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
-}
-
-.black-hole td {
-    background-color: rgba(10, 0, 25, 0.7);
-    color: var(--hk-text);
-    padding: 1rem;
-    border: 1px solid rgba(157, 0, 255, 0.3);
-    height: 120px;
-    vertical-align: top;
-    transition: all var(--hk-transition);
-    position: relative;
-}
-
-.black-hole td:hover {
-    background: rgba(30, 5, 50, 0.9);
-    box-shadow:
-        inset 0 0 20px var(--hk-accent1),
-        0 0 30px rgba(157, 0, 255, 0.7);
-    transform: scale(1.03);
-    z-index: 2;
-}
-
-.black-hole td.current-day {
-    background: rgba(25, 0, 50, 0.9) !important;
-    border: 2px solid var(--hk-accent2) !important;
-    color: #fff !important;
-    font-weight: 400;
-    animation: hk-pulse 3s infinite;
-}
-
-/* ==================== RESPONSIVE STYLES ==================== */
+/* Responsive Design */
 @media (max-width: 992px) {
     .black-hole .container {
         padding: 1.5rem;
