@@ -1,0 +1,672 @@
+/* ==========================================================================
+  SHADES OF BLUE CALENDAR
+  A sophisticated blue-themed calendar with viewport-centered modals
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700;900&display=swap');
+
+:root {
+    /* ----- CORE COLORS ----- */
+    --blue-bg: #F5F9FF;
+    --blue-text: #0A1A2A;
+    --blue-primary: #0066CC;
+    --blue-secondary: #003366;
+
+    /* ----- NEUTRAL PALETTE ----- */
+    --blue-cream: #E6F0FF;
+    --blue-ivory: #D6E6FF;
+    --blue-cashmere: #C2D6EC;
+    --blue-stone: #A3B8CC;
+    --blue-taupe: #7F99B3;
+    --blue-mink: #5C7A99;
+    --blue-espresso: #3A5A80;
+
+    /* ----- ACCENT COLORS ----- */
+    --blue-gold: #4D8BFF;
+    --blue-silver: #E6ECF2;
+    --blue-denim: #2A4D80;
+    --blue-leather: #1A334D;
+    --blue-ruby: #004080;
+
+    /* ----- SPECIAL EFFECTS ----- */
+    --blue-glow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    --blue-shadow-sm: 0 2px 8px rgba(10, 26, 42, 0.08);
+    --blue-shadow-md: 0 4px 16px rgba(10, 26, 42, 0.12);
+    --blue-shadow-lg: 0 8px 32px rgba(10, 26, 42, 0.16);
+
+    /* ----- TYPOGRAPHY ----- */
+    --font-main: 'Montserrat', sans-serif;
+    --font-display: 'Playfair Display', serif;
+
+    /* ----- DIMENSIONS ----- */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+
+    /* ----- TRANSITIONS ----- */
+    --transition-fast: 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-normal: 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-slow: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ================ BASE STYLES ================ */
+.shades-of-blue {
+    font-family: var(--font-main);
+    color: var(--blue-text);
+    line-height: 1.6;
+    background-color: var(--blue-bg);
+    background-image:
+        linear-gradient(90deg, transparent 98%, var(--blue-primary) 98%),
+        linear-gradient(90deg, transparent 96%, var(--blue-secondary) 96%);
+    background-size: 40px 40px;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.shades-of-blue * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================ LAYOUT CONTAINERS ================ */
+.shades-of-blue .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--blue-shadow-lg);
+    border: 1px solid var(--blue-cashmere);
+    position: relative;
+    overflow: hidden;
+}
+
+.shades-of-blue .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--blue-primary) 0%,
+            var(--blue-primary) 33%,
+            var(--blue-secondary) 33%,
+            var(--blue-secondary) 66%,
+            white 66%,
+            white 100%);
+}
+
+.shades-of-blue .calendar-container {
+    padding: 2rem;
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--blue-cashmere);
+    position: relative;
+    z-index: 1;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ================ TYPOGRAPHY ================ */
+.shades-of-blue h1,
+.shades-of-blue h2,
+.shades-of-blue h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--blue-secondary);
+}
+
+.shades-of-blue .calendar-header {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.shades-of-blue .calendar-title {
+    font-size: 1.25rem;
+    color: var(--blue-primary);
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* ================ CALENDAR TABLE ================ */
+.shades-of-blue table {
+    width: 100%;
+    min-width: 600px;
+    margin: 2rem auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius-md);
+    box-shadow: var(--blue-shadow-sm);
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid var(--blue-cashmere);
+    table-layout: fixed;
+}
+
+.shades-of-blue th {
+    background: var(--blue-secondary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    padding: 1rem 0.5rem;
+    border-color: var(--blue-secondary);
+    min-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.shades-of-blue td {
+    background-color: white;
+    color: var(--blue-text);
+    font-weight: 400;
+    padding: 1.25rem 1rem;
+    border: 1px solid var(--blue-cashmere);
+    transition: all var(--transition-fast);
+    position: relative;
+    vertical-align: top;
+    height: 100px;
+}
+
+.shades-of-blue td:hover {
+    background: rgba(0, 102, 204, 0.03);
+    box-shadow: inset 0 0 0 1px var(--blue-primary);
+}
+
+.shades-of-blue td.current-day {
+    background: white;
+    border: 2px solid var(--blue-primary);
+    font-weight: 600;
+    color: var(--blue-primary);
+    animation: fashionPulse 3s infinite;
+}
+
+/* ================ CALENDAR ELEMENTS ================ */
+.shades-of-blue .day-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.shades-of-blue .event-marker {
+    background-color: var(--blue-primary);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    display: inline-block;
+    box-shadow: 0 0 0 1px white;
+    margin: 0 1px;
+}
+
+.shades-of-blue .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--blue-gold);
+    box-shadow: 0 0 0 2px var(--blue-secondary);
+}
+
+.shades-of-blue .week-number {
+    color: var(--blue-gold);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--blue-gold);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.shades-of-blue .no-events {
+    font-style: italic;
+    color: var(--blue-taupe);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* ================ NAVIGATION CONTROLS ================ */
+.shades-of-blue .calendar-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.shades-of-blue .calendar-navigation button {
+    background: white;
+    border: 1px solid var(--blue-cashmere);
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    color: var(--blue-text);
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.shades-of-blue .calendar-navigation button:hover {
+    color: var(--blue-primary);
+    border-color: var(--blue-primary);
+}
+
+.shades-of-blue .month-year-display {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blue-secondary);
+}
+
+/* ================ BUTTONS ================ */
+.shades-of-blue .button,
+.shades-of-blue #backToTopBtn {
+    border-radius: var(--radius-md);
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    border: 1px solid var(--blue-secondary);
+    color: var(--blue-secondary);
+    background: white;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.shades-of-blue .button:hover,
+.shades-of-blue #backToTopBtn:hover {
+    background: var(--blue-secondary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(10, 26, 42, 0.1);
+}
+
+.shades-of-blue .button.secondary {
+    background: var(--blue-gold);
+    color: var(--blue-secondary);
+    border: none;
+}
+
+.shades-of-blue .button.secondary:hover {
+    background: var(--blue-leather);
+    color: white;
+}
+
+/* ================ MODAL STYLES (PERFECTLY CENTERED) ================ */
+.shades-of-blue .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.shades-of-blue .modal-content {
+    background: white;
+    border: 1px solid var(--blue-cashmere);
+    border-radius: var(--radius-md);
+    box-shadow: var(--blue-shadow-lg);
+    padding: 2.5rem;
+    color: var(--blue-text);
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.shades-of-blue .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--blue-primary);
+}
+
+.shades-of-blue .modal-header {
+    margin-bottom: 1.5rem;
+}
+
+.shades-of-blue .modal-header h2 {
+    color: var(--blue-primary);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.shades-of-blue .modal-body {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.shades-of-blue .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.shades-of-blue .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--blue-text);
+    background: none;
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.shades-of-blue .modal-close:hover {
+    background: rgba(0, 102, 204, 0.1);
+    color: var(--blue-primary);
+}
+
+/* ================ EVENT LIST ================ */
+.shades-of-blue .event-list {
+    list-style: none;
+}
+
+.shades-of-blue .event-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--blue-cashmere);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: catwalk 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.shades-of-blue .event-list li:last-child {
+    border-bottom: none;
+}
+
+.shades-of-blue .event-details {
+    flex: 1;
+}
+
+.shades-of-blue .event-time {
+    color: var(--blue-primary);
+    font-weight: 600;
+    margin-right: 1rem;
+    min-width: 80px;
+}
+
+.shades-of-blue .event-title {
+    font-weight: 500;
+}
+
+.shades-of-blue .event-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.shades-of-blue .event-list button {
+    background: transparent;
+    color: var(--blue-primary);
+    border: 1px solid var(--blue-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.shades-of-blue .event-list button:hover {
+    background: var(--blue-primary);
+    color: white;
+}
+
+/* ================ FORM ELEMENTS ================ */
+.shades-of-blue .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.shades-of-blue .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--blue-secondary);
+}
+
+.shades-of-blue .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--blue-cashmere);
+    border-radius: var(--radius-md);
+    font-family: var(--font-main);
+    transition: all var(--transition-fast);
+}
+
+.shades-of-blue .form-control:focus {
+    outline: none;
+    border-color: var(--blue-primary);
+    box-shadow: var(--blue-glow);
+}
+
+/* ================ UTILITY CLASSES ================ */
+.shades-of-blue .text-center {
+    text-align: center;
+}
+
+.shades-of-blue .text-primary {
+    color: var(--blue-primary);
+}
+
+.shades-of-blue .text-secondary {
+    color: var(--blue-secondary);
+}
+
+.shades-of-blue .mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.shades-of-blue .mb-2 {
+    margin-bottom: 1rem;
+}
+
+.shades-of-blue .mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.shades-of-blue .mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* ================ ANIMATIONS ================ */
+@keyframes fashionPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: var(--blue-glow);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 6px rgba(0, 102, 204, 0.1);
+    }
+}
+
+@keyframes catwalk {
+    0% {
+        transform: translateX(-15px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ================ RESPONSIVE ADJUSTMENTS ================ */
+@media (max-width: 992px) {
+    .shades-of-blue .container {
+        padding: 2rem;
+    }
+
+    .shades-of-blue .calendar-header {
+        font-size: 2rem;
+    }
+
+    .shades-of-blue td {
+        height: 80px;
+        padding: 1rem 0.75rem;
+    }
+
+    .shades-of-blue th {
+        font-size: 0.75rem;
+        padding: 0.75rem 0.25rem;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 768px) {
+    .shades-of-blue .container {
+        padding: 1.5rem;
+    }
+
+    .shades-of-blue .calendar-container {
+        padding: 1.5rem;
+    }
+
+    .shades-of-blue .calendar-header {
+        font-size: 1.75rem;
+        letter-spacing: 2px;
+    }
+
+    .shades-of-blue td {
+        height: 70px;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .shades-of-blue .day-number {
+        font-size: 0.9rem;
+    }
+
+    .shades-of-blue .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .shades-of-blue th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    .shades-of-blue table {
+        min-width: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .shades-of-blue .container {
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .shades-of-blue .calendar-header {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .shades-of-blue th,
+    .shades-of-blue td {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .shades-of-blue .event-marker {
+        width: 5px;
+        height: 5px;
+    }
+
+    .shades-of-blue .button,
+    .shades-of-blue #backToTopBtn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .shades-of-blue .modal-content {
+        padding: 1.25rem;
+        max-height: 85vh;
+    }
+
+    .shades-of-blue .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .shades-of-blue th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .shades-of-blue table {
+        min-width: 400px;
+    }
+
+    /* Show abbreviated weekday names on very small screens */
+    .shades-of-blue .weekday-abbr {
+        display: inline;
+    }
+
+    .shades-of-blue .weekday-full {
+        display: none;
+    }
+}
+
+/* For screens wider than 1200px - ensure cells don't get too wide */
+@media (min-width: 1200px) {
+    .shades-of-blue table {
+        max-width: 1100px;
+    }
+}
