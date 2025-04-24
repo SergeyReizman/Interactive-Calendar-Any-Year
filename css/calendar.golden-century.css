@@ -1,540 +1,586 @@
 /* ==========================================================================
-   Golden Century Theme - Regal Historical Calendar UI
-   Version: 4.3
-   Updated: 2025-07-01
+   Golden Century Theme - Premium Historical Calendar UI
+   Version: 5.1
+   Updated: 2025-07-10
    Features:
-   - Royal gold/antique color scheme with perfect contrast
-   - Exceptional date and event visibility
-   - WCAG 2.1 AAA compliant
-   - Vintage textures with modern clarity
+   - Back to Top button removed
+   - WCAG 2.1 AAA compliant contrast
+   - Enhanced golden century aesthetic
+   - Flawless date/event visibility
    - Fully responsive design
    ========================================================================== */
 
-   @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400;700&family=Cardo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400;700&family=Cardo:wght@400;700&display=swap');
 
-   :root {
-       /* Enhanced Contrast Color Palette */
-       --golden-bg: #1A150E;
-       --golden-text: #FFF9F0;
-       --golden-primary: #D4B87B;
-       --golden-secondary: #9C8A6B;
-       
-       /* Optimized Visibility Variables */
-       --golden-date-text: #FFF9F0;
-       --golden-date-size: 1.3em;
-       --golden-date-weight: 600;
-       --golden-modal-bg: #2A241B;
-       --golden-modal-text: #FFF9F0;
-       --golden-current-day: #6D5C44;
-       --golden-current-day-text: #FFFDF5;
-       
-       /* Accent Colors */
-       --golden-accent1: #C19A6B;
-       --golden-accent2: #8A9D6B;
-       --golden-accent3: #D4B87B;
-       --golden-accent4: #B38E6D;
-       --golden-accent5: #9C8A6B;
-       
-       /* Theme Variables */
-       --golden-shadow: rgba(212, 184, 123, 0.5);
-       --golden-radius: 5px;
-       --golden-transition: 0.3s ease-in-out;
-       --golden-hover: #3A3328;
-       --golden-border: 1px solid rgba(212, 184, 123, 0.4);
-   }
-   
-   /* ==================== ANIMATIONS ==================== */
-   @keyframes golden-glow {
-       0%, 100% {
-           text-shadow: 0 0 8px var(--golden-accent1),
-               0 0 16px var(--golden-primary);
-       }
-       50% {
-           text-shadow: 0 0 12px var(--golden-primary),
-               0 0 24px var(--golden-accent1);
-       }
-   }
-   
-   @keyframes golden-pulse {
-       0%, 100% {
-           box-shadow: 0 0 10px var(--golden-shadow);
-       }
-       50% {
-           box-shadow: 0 0 20px var(--golden-primary);
-       }
-   }
-   
-   /* ==================== BASE STYLES ==================== */
-   .golden-century {
-       font-family: 'Cardo', serif;
-       color: var(--golden-text);
-       line-height: 1.7;
-       background: 
-           linear-gradient(rgba(26, 21, 14, 0.95), rgba(26, 21, 14, 0.95)),
-           url('data:image/svg+xml;utf8,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 Q100,10 180,20 T200,100" fill="none" stroke="%23D4B87B" stroke-width="0.8" opacity="0.08"/></svg>');
-       background-size: 200px 200px;
-       min-height: 100vh;
-       position: relative;
-   }
-   
-   .golden-century .container {
-       background-color: rgba(42, 36, 27, 0.92);
-       padding: 3rem;
-       border: var(--golden-border);
-       box-shadow: 0 0 30px var(--golden-shadow);
-       position: relative;
-       max-width: 1600px;
-       margin: 2rem auto;
-       border-radius: var(--golden-radius);
-       z-index: 1;
-   }
-   
-   .golden-century .container::before {
-       content: "";
-       position: absolute;
-       top: 0;
-       left: 0;
-       right: 0;
-       height: 2px;
-       background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
-       animation: golden-pulse 4s infinite;
-   }
-   
-   /* ==================== HEADER & TITLE ==================== */
-   .golden-century #calendar-title {
-       font-family: 'IM Fell English', serif;
-       color: var(--golden-primary);
-       text-align: center;
-       font-size: 3rem;
-       margin: 0 0 2rem 0;
-       letter-spacing: 0.1em;
-       text-shadow: 0 0 15px var(--golden-shadow);
-       animation: golden-glow 6s infinite;
-       position: relative;
-       padding-bottom: 1.5rem;
-   }
-   
-   .golden-century #calendar-title::after {
-       content: "";
-       position: absolute;
-       bottom: 0;
-       left: 30%;
-       right: 30%;
-       height: 2px;
-       background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
-       box-shadow: 0 0 10px var(--golden-primary);
-   }
-   
-   /* ==================== DATE & WEATHER DISPLAY ==================== */
-   .golden-century #date-weather-container {
-       text-align: center;
-       margin: 3rem 0;
-       padding: 2rem;
-       background-color: rgba(109, 92, 68, 0.4);
-       border: var(--golden-border);
-       border-radius: var(--golden-radius);
-       position: relative;
-   }
-   
-   .golden-century #date-weather-container::before,
-   .golden-century #date-weather-container::after {
-       content: "✧";
-       position: absolute;
-       color: var(--golden-primary);
-       font-size: 1.5rem;
-       top: 50%;
-       transform: translateY(-50%);
-       text-shadow: 0 0 8px var(--golden-shadow);
-   }
-   
-   .golden-century #date-weather-container::before {
-       left: 1.5rem;
-   }
-   
-   .golden-century #date-weather-container::after {
-       right: 1.5rem;
-   }
-   
-   .golden-century #current-date {
-       font-family: 'IM Fell English', serif;
-       color: var(--golden-primary);
-       font-size: 2.2rem;
-       margin-bottom: 0.8rem;
-       text-shadow: 0 0 8px var(--golden-shadow);
-   }
-   
-   .golden-century #today-weather {
-       font-family: 'Cardo', serif;
-       color: var(--golden-accent3);
-       font-size: 1.6rem;
-       font-style: italic;
-       letter-spacing: 0.08em;
-   }
-   
-   /* ==================== CALENDAR TABLE - OPTIMIZED VISIBILITY ==================== */
-   .golden-century table {
-       width: 100%;
-       border-collapse: separate;
-       margin: 3rem auto;
-       background-color: rgba(58, 50, 38, 0.6);
-       border: var(--golden-border);
-       border-radius: var(--golden-radius);
-       border-spacing: 0;
-       box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-   }
-   
-   .golden-century th {
-       background-color: rgba(109, 92, 68, 0.6);
-       color: var(--golden-primary) !important;
-       font-family: 'IM Fell English', serif;
-       font-size: 1.1rem;
-       font-weight: 400;
-       letter-spacing: 0.08em;
-       padding: 1.5rem 0.8rem;
-       border-bottom: var(--golden-border);
-       text-shadow: 0 0 5px var(--golden-shadow);
-   }
-   
-   .golden-century td {
-       background-color: rgba(70, 62, 50, 0.5);
-       color: var(--golden-date-text);
-       padding: 1.5rem;
-       border-right: var(--golden-border);
-       border-bottom: var(--golden-border);
-       height: 120px;
-       vertical-align: top;
-       transition: all var(--golden-transition);
-   }
-   
-   .golden-century td .date-number {
-       font-weight: var(--golden-date-weight);
-       color: var(--golden-date-text);
-       font-size: var(--golden-date-size);
-       display: block;
-       margin-bottom: 10px;
-       position: relative;
-       z-index: 2;
-   }
-   
-   .golden-century td:hover {
-       background-color: rgba(109, 92, 68, 0.5);
-       box-shadow: inset 0 0 20px var(--golden-shadow);
-   }
-   
-   .golden-century td.current-day {
-       background-color: var(--golden-current-day);
-       color: var(--golden-current-day-text) !important;
-   }
-   
-   .golden-century td.current-day .date-number {
-       color: var(--golden-current-day-text) !important;
-       font-weight: 700;
-   }
-   
-   .golden-century td.current-day::before {
-       content: "✧";
-       position: absolute;
-       top: 10px;
-       left: 10px;
-       color: var(--golden-primary);
-       z-index: 1;
-       font-size: 1.2rem;
-       text-shadow: 0 0 8px var(--golden-shadow);
-   }
-   
-   /* ==================== EVENT MARKERS ==================== */
-   .golden-century .event-marker {
-       display: inline-block;
-       width: 14px;
-       height: 14px;
-       border-radius: 50%;
-       background-color: var(--golden-accent1);
-       margin: 4px;
-       box-shadow: 0 0 8px var(--golden-shadow);
-       transition: all var(--golden-transition);
-       position: relative;
-       z-index: 2;
-   }
-   
-   .golden-century .event-marker:hover {
-       transform: scale(2);
-       background-color: var(--golden-primary);
-       box-shadow: 0 0 20px var(--golden-accent1);
-   }
-   
-   /* ==================== MODAL STYLES - PERFECT VISIBILITY ==================== */
-   .golden-century .modal-content {
-       position: relative;
-       background: 
-           linear-gradient(rgba(42, 36, 27, 0.97), rgba(42, 36, 27, 0.97)),
-           url('data:image/svg+xml;utf8,<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><path d="M15,15 Q75,30 135,15" fill="none" stroke="%23D4B87B" stroke-width="0.5" opacity="0.1"/></svg>');
-       background-size: 150px 150px;
-       border: 2px solid var(--golden-primary);
-       padding: 40px;
-       color: var(--golden-modal-text);
-       box-shadow: 0 0 40px var(--golden-shadow);
-       border-radius: var(--golden-radius);
-   }
-   
-   .golden-century .modal-content::before {
-       content: "";
-       position: absolute;
-       top: 0;
-       left: 0;
-       right: 0;
-       height: 3px;
-       background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
-       animation: golden-pulse 4s infinite;
-   }
-   
-   .golden-century .modal-content h2 {
-       color: var(--golden-primary);
-       font-family: 'IM Fell English', serif;
-       font-size: 2.5rem;
-       margin-bottom: 2rem;
-       letter-spacing: 0.1em;
-       text-align: center;
-       padding-bottom: 1.5rem;
-       border-bottom: 1px solid rgba(212, 184, 123, 0.5);
-       text-shadow: 0 0 10px var(--golden-shadow);
-   }
-   
-   .golden-century .modal-content p,
-   .golden-century .modal-content div,
-   .golden-century .modal-content span {
-       color: var(--golden-modal-text);
-       line-height: 1.8;
-       font-size: 1.2rem;
-   }
-   
-   .golden-century .modal-content .event-title {
-       font-weight: 700;
-       color: var(--golden-primary);
-       font-size: 1.6rem;
-       margin: 2rem 0 1rem 0;
-       font-family: 'IM Fell English', serif;
-       text-shadow: 0 0 8px var(--golden-shadow);
-   }
-   
-   .golden-century .modal-content .event-details {
-       background: rgba(70, 62, 50, 0.7);
-       padding: 25px;
-       border-radius: var(--golden-radius);
-       margin: 2rem 0;
-       border-left: 5px solid var(--golden-primary);
-       box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
-   }
-   
-   /* ==================== BUTTONS & CONTROLS ==================== */
-   .golden-century .button,
-   .golden-century .transparent-button {
-       border: 2px solid var(--golden-primary);
-       color: var(--golden-primary);
-       background-color: transparent;
-       padding: 1rem 2rem;
-       font-family: 'IM Fell English', serif;
-       font-size: 1.1rem;
-       letter-spacing: 0.1em;
-       cursor: pointer;
-       transition: all var(--golden-transition);
-       margin: 1rem;
-       border-radius: var(--golden-radius);
-       position: relative;
-       overflow: hidden;
-   }
-   
-   .golden-century .button::before,
-   .golden-century .transparent-button::before {
-       content: "";
-       position: absolute;
-       top: 0;
-       left: -100%;
-       width: 100%;
-       height: 100%;
-       background: linear-gradient(90deg, transparent, rgba(212, 184, 123, 0.2), transparent);
-       transition: 0.6s;
-   }
-   
-   .golden-century .button:hover,
-   .golden-century .transparent-button:hover {
-       background-color: var(--golden-primary);
-       color: var(--golden-bg);
-       box-shadow: 0 0 25px var(--golden-shadow);
-       text-shadow: 0 0 5px var(--golden-shadow);
-   }
-   
-   .golden-century .button:hover::before,
-   .golden-century .transparent-button:hover::before {
-       left: 100%;
-   }
-   
-   .golden-century .controls {
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       flex-wrap: wrap;
-       margin: 2rem 0;
-   }
-   
-   /* ==================== RESPONSIVE DESIGN ==================== */
-   @media (max-width: 1440px) {
-       .golden-century .container {
-           margin: 1.5rem auto;
-           padding: 2.5rem;
-       }
-       
-       .golden-century #calendar-title {
-           font-size: 2.7rem;
-       }
-       
-       .golden-century td {
-           height: 110px;
-       }
-   }
-   
-   @media (max-width: 1200px) {
-       .golden-century #calendar-title {
-           font-size: 2.5rem;
-       }
-       
-       .golden-century #current-date {
-           font-size: 2rem;
-       }
-       
-       .golden-century td {
-           height: 100px;
-           padding: 1.2rem;
-       }
-       
-       .golden-century .modal-content {
-           padding: 35px;
-       }
-   }
-   
-   @media (max-width: 992px) {
-       .golden-century .container {
-           padding: 2rem;
-       }
-   
-       .golden-century #calendar-title {
-           font-size: 2.3rem;
-           margin-bottom: 1.5rem;
-       }
-   
-       .golden-century #current-date {
-           font-size: 1.8rem;
-       }
-   
-       .golden-century #today-weather {
-           font-size: 1.4rem;
-       }
-       
-       .golden-century td {
-           height: 90px;
-           padding: 1rem;
-       }
-       
-       .golden-century .modal-content {
-           padding: 30px;
-       }
-       
-       .golden-century .modal-content h2 {
-           font-size: 2.2rem;
-       }
-   }
-   
-   @media (max-width: 768px) {
-       .golden-century th {
-           font-size: 1rem;
-           padding: 1.2rem 0.5rem;
-       }
-   
-       .golden-century td {
-           padding: 0.8rem;
-           height: 80px;
-       }
-       
-       .golden-century td .date-number {
-           font-size: 1.2em;
-       }
-   
-       .golden-century .modal-content {
-           padding: 25px;
-       }
-       
-       .golden-century .modal-content h2 {
-           font-size: 2rem;
-       }
-       
-       .golden-century .modal-content p,
-       .golden-century .modal-content div,
-       .golden-century .modal-content span {
-           font-size: 1.1rem;
-       }
-   }
-   
-   @media (max-width: 576px) {
-       .golden-century .container {
-           padding: 1.5rem;
-           margin: 1rem auto;
-       }
-   
-       .golden-century #calendar-title {
-           font-size: 2rem;
-           padding-bottom: 1rem;
-       }
-   
-       .golden-century #current-date {
-           font-size: 1.6rem;
-       }
-   
-       .golden-century #today-weather {
-           font-size: 1.2rem;
-       }
-   
-       .golden-century td {
-           padding: 0.6rem;
-           height: 70px;
-       }
-       
-       .golden-century td .date-number {
-           font-size: 1.1em;
-       }
-   
-       .golden-century .modal-content {
-           padding: 20px;
-       }
-       
-       .golden-century .modal-content h2 {
-           font-size: 1.8rem;
-       }
-       
-       .golden-century .modal-content p,
-       .golden-century .modal-content div,
-       .golden-century .modal-content span {
-           font-size: 1rem;
-       }
-   }
-   
-   @media (max-width: 400px) {
-       .golden-century #calendar-title {
-           font-size: 1.8rem;
-       }
-       
-       .golden-century th {
-           font-size: 0.9rem;
-           padding: 1rem 0.3rem;
-       }
-   
-       .golden-century td {
-           height: 60px;
-       }
-       
-       .golden-century td .date-number {
-           font-size: 1em;
-       }
-   
-       .golden-century .modal-content {
-           padding: 15px;
-       }
-   }
+:root {
+    /* Enhanced Color Palette */
+    --golden-bg: #1A150E;
+    --golden-text: #FFF9F0;
+    --golden-primary: #D4B87B;
+    --golden-secondary: #9C8A6B;
+
+    /* Optimized Visibility Variables */
+    --golden-date-text: #FFF9F0;
+    --golden-date-size: 1.3em;
+    --golden-date-weight: 600;
+    --golden-modal-bg: #2A241B;
+    --golden-modal-text: #FFF9F0;
+    --golden-current-day: #6D5C44;
+    --golden-current-day-text: #FFFDF5;
+
+    /* Accent Colors */
+    --golden-accent1: #C19A6B;
+    --golden-accent2: #8A9D6B;
+    --golden-accent3: #D4B87B;
+    --golden-accent4: #B38E6D;
+    --golden-accent5: #9C8A6B;
+
+    /* Theme Variables */
+    --golden-shadow: rgba(212, 184, 123, 0.5);
+    --golden-radius: 5px;
+    --golden-transition: 0.3s ease-in-out;
+    --golden-hover: #3A3328;
+    --golden-border: 1px solid rgba(212, 184, 123, 0.4);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes golden-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 8px var(--golden-accent1),
+            0 0 16px var(--golden-primary);
+    }
+
+    50% {
+        text-shadow: 0 0 12px var(--golden-primary),
+            0 0 24px var(--golden-accent1);
+    }
+}
+
+@keyframes golden-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--golden-shadow);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--golden-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.golden-century {
+    font-family: 'Cardo', serif;
+    color: var(--golden-text);
+    line-height: 1.7;
+    background:
+        linear-gradient(rgba(26, 21, 14, 0.95), rgba(26, 21, 14, 0.95)),
+        url('data:image/svg+xml;utf8,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 Q100,10 180,20 T200,100" fill="none" stroke="%23D4B87B" stroke-width="0.8" opacity="0.08"/></svg>');
+    background-size: 200px 200px;
+    min-height: 100vh;
+    position: relative;
+}
+
+.golden-century .container {
+    background-color: rgba(42, 36, 27, 0.92);
+    padding: 3rem;
+    border: var(--golden-border);
+    box-shadow: 0 0 30px var(--golden-shadow);
+    position: relative;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--golden-radius);
+    z-index: 1;
+}
+
+.golden-century .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
+    animation: golden-pulse 4s infinite;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.golden-century .button,
+.golden-century .transparent-button,
+.golden-century .modal-content button,
+.golden-century .modal .close-button {
+    border: 2px solid var(--golden-primary);
+    color: var(--golden-primary);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'IM Fell English', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--golden-transition);
+    margin: 0.5rem;
+    border-radius: var(--golden-radius);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.golden-century .button::before,
+.golden-century .transparent-button::before,
+.golden-century .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 184, 123, 0.2), transparent);
+    transition: 0.6s;
+}
+
+.golden-century .button:hover,
+.golden-century .transparent-button:hover,
+.golden-century .modal-content button:hover {
+    background-color: var(--golden-primary);
+    color: var(--golden-bg);
+    box-shadow: 0 0 25px var(--golden-shadow);
+    text-shadow: 0 0 5px var(--golden-shadow);
+}
+
+.golden-century .button:hover::before,
+.golden-century .transparent-button:hover::before,
+.golden-century .modal-content button:hover::before {
+    left: 100%;
+}
+
+/* Special case for close button */
+.golden-century .modal .close-button {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    top: 20px;
+    right: 20px;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.golden-century #calendar-title {
+    font-family: 'IM Fell English', serif;
+    color: var(--golden-primary);
+    text-align: center;
+    font-size: 3rem;
+    margin: 0 0 2rem 0;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--golden-shadow);
+    animation: golden-glow 6s infinite;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.golden-century #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    right: 30%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
+    box-shadow: 0 0 10px var(--golden-primary);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.golden-century #date-weather-container {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: rgba(109, 92, 68, 0.4);
+    border: var(--golden-border);
+    border-radius: var(--golden-radius);
+    position: relative;
+}
+
+.golden-century #date-weather-container::before,
+.golden-century #date-weather-container::after {
+    content: "✧";
+    position: absolute;
+    color: var(--golden-primary);
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: 0 0 8px var(--golden-shadow);
+}
+
+.golden-century #date-weather-container::before {
+    left: 1.5rem;
+}
+
+.golden-century #date-weather-container::after {
+    right: 1.5rem;
+}
+
+.golden-century #current-date {
+    font-family: 'IM Fell English', serif;
+    color: var(--golden-primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 8px var(--golden-shadow);
+}
+
+.golden-century #today-weather {
+    font-family: 'Cardo', serif;
+    color: var(--golden-accent3);
+    font-size: 1.6rem;
+    font-style: italic;
+    letter-spacing: 0.08em;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.golden-century table {
+    width: 100%;
+    border-collapse: separate;
+    margin: 3rem auto;
+    background-color: rgba(58, 50, 38, 0.6);
+    border: var(--golden-border);
+    border-radius: var(--golden-radius);
+    border-spacing: 0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.golden-century th {
+    background-color: rgba(109, 92, 68, 0.6);
+    color: var(--golden-primary) !important;
+    font-family: 'IM Fell English', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 1.5rem 0.8rem;
+    border-bottom: var(--golden-border);
+    text-shadow: 0 0 5px var(--golden-shadow);
+}
+
+.golden-century td {
+    background-color: rgba(70, 62, 50, 0.5);
+    color: var(--golden-date-text);
+    padding: 1.5rem;
+    border-right: var(--golden-border);
+    border-bottom: var(--golden-border);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--golden-transition);
+}
+
+.golden-century td:last-child {
+    border-right: none;
+}
+
+.golden-century tr:last-child td {
+    border-bottom: none;
+}
+
+.golden-century td .date-number {
+    font-weight: var(--golden-date-weight);
+    color: var(--golden-date-text);
+    font-size: var(--golden-date-size);
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.golden-century td:hover {
+    background-color: rgba(109, 92, 68, 0.5);
+    box-shadow: inset 0 0 20px var(--golden-shadow);
+}
+
+.golden-century td.current-day {
+    background-color: var(--golden-current-day);
+    color: var(--golden-current-day-text) !important;
+}
+
+.golden-century td.current-day .date-number {
+    color: var(--golden-current-day-text) !important;
+    font-weight: 700;
+}
+
+.golden-century td.current-day::before {
+    content: "✧";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--golden-primary);
+    z-index: 1;
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px var(--golden-shadow);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.golden-century .event-marker {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--golden-accent1);
+    margin: 4px;
+    box-shadow: 0 0 8px var(--golden-shadow);
+    transition: all var(--golden-transition);
+    position: relative;
+    z-index: 2;
+}
+
+.golden-century .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--golden-primary);
+    box-shadow: 0 0 20px var(--golden-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.golden-century .modal-content {
+    position: relative;
+    background:
+        linear-gradient(rgba(42, 36, 27, 0.97), rgba(42, 36, 27, 0.97)),
+        url('data:image/svg+xml;utf8,<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><path d="M15,15 Q75,30 135,15" fill="none" stroke="%23D4B87B" stroke-width="0.5" opacity="0.1"/></svg>');
+    background-size: 150px 150px;
+    border: 2px solid var(--golden-primary);
+    padding: 40px;
+    color: var(--golden-modal-text);
+    box-shadow: 0 0 40px var(--golden-shadow);
+    border-radius: var(--golden-radius);
+}
+
+.golden-century .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
+    animation: golden-pulse 4s infinite;
+}
+
+.golden-century .modal-content h2 {
+    color: var(--golden-primary);
+    font-family: 'IM Fell English', serif;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(212, 184, 123, 0.5);
+    text-shadow: 0 0 10px var(--golden-shadow);
+}
+
+.golden-century .modal-content p,
+.golden-century .modal-content div,
+.golden-century .modal-content span {
+    color: var(--golden-modal-text);
+    line-height: 1.8;
+    font-size: 1.2rem;
+}
+
+.golden-century .modal-content .event-title {
+    font-weight: 700;
+    color: var(--golden-primary);
+    font-size: 1.6rem;
+    margin: 2rem 0 1rem 0;
+    font-family: 'IM Fell English', serif;
+    text-shadow: 0 0 8px var(--golden-shadow);
+}
+
+.golden-century .modal-content .event-details {
+    background: rgba(70, 62, 50, 0.7);
+    padding: 25px;
+    border-radius: var(--golden-radius);
+    margin: 2rem 0;
+    border-left: 5px solid var(--golden-primary);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== CONTROLS ==================== */
+.golden-century .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== FOOTER ==================== */
+.golden-century footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--golden-accent3);
+    color: var(--golden-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1440px) {
+    .golden-century .container {
+        margin: 1.5rem auto;
+        padding: 2.5rem;
+    }
+
+    .golden-century #calendar-title {
+        font-size: 2.7rem;
+    }
+
+    .golden-century td {
+        height: 110px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .golden-century #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .golden-century #current-date {
+        font-size: 2rem;
+    }
+
+    .golden-century td {
+        height: 100px;
+        padding: 1.2rem;
+    }
+
+    .golden-century .modal-content {
+        padding: 35px;
+    }
+}
+
+@media (max-width: 992px) {
+    .golden-century .container {
+        padding: 2rem;
+    }
+
+    .golden-century #calendar-title {
+        font-size: 2.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .golden-century #current-date {
+        font-size: 1.8rem;
+    }
+
+    .golden-century #today-weather {
+        font-size: 1.4rem;
+    }
+
+    .golden-century td {
+        height: 90px;
+        padding: 1rem;
+    }
+
+    .golden-century .modal-content {
+        padding: 30px;
+    }
+
+    .golden-century .modal-content h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .golden-century th {
+        font-size: 1rem;
+        padding: 1.2rem 0.5rem;
+    }
+
+    .golden-century td {
+        padding: 0.8rem;
+        height: 80px;
+    }
+
+    .golden-century td .date-number {
+        font-size: 1.2em;
+    }
+
+    .golden-century .modal-content {
+        padding: 25px;
+    }
+
+    .golden-century .modal-content h2 {
+        font-size: 2rem;
+    }
+
+    .golden-century .modal-content p,
+    .golden-century .modal-content div,
+    .golden-century .modal-content span {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .golden-century .container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    .golden-century #calendar-title {
+        font-size: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .golden-century #current-date {
+        font-size: 1.6rem;
+    }
+
+    .golden-century #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .golden-century td {
+        padding: 0.6rem;
+        height: 70px;
+    }
+
+    .golden-century td .date-number {
+        font-size: 1.1em;
+    }
+
+    .golden-century .modal-content {
+        padding: 20px;
+    }
+
+    .golden-century .modal-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .golden-century .modal-content p,
+    .golden-century .modal-content div,
+    .golden-century .modal-content span {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .golden-century #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .golden-century th {
+        font-size: 0.9rem;
+        padding: 1rem 0.3rem;
+    }
+
+    .golden-century td {
+        height: 60px;
+    }
+
+    .golden-century td .date-number {
+        font-size: 1em;
+    }
+
+    .golden-century .modal-content {
+        padding: 15px;
+    }
+}
