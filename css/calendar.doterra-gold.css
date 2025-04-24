@@ -1,0 +1,754 @@
+/* ==========================================================================
+   Doterra Gold Theme - Luxury Earth-Inspired Calendar UI
+   Version: 4.2
+   Updated: 2025-06-25
+   Features:
+   - Premium gold and earth-tone color scheme
+   - Excellent date and event visibility
+   - WCAG 2.1 AA compliant contrast
+   - Natural texture background
+   - Responsive design with enhanced mobile readability
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=EB+Garamond:wght@400;500&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --doterra-bg: #12120E;
+    --doterra-text: #F5F0E6;
+    --doterra-primary: #D4AF37;
+    --doterra-secondary: #7D6B4D;
+
+    /* Enhanced Visibility Colors */
+    --doterra-date-text: #F5F0E6;
+    --doterra-modal-bg: #1E1E18;
+    --doterra-modal-text: #F5F0E6;
+    --doterra-current-day: #4D4230;
+    --doterra-current-day-text: #FFF8E1;
+
+    /* Accent Colors */
+    --doterra-accent1: #B38B6D;
+    --doterra-accent2: #8A9A5B;
+    --doterra-accent3: #C19A6B;
+    --doterra-accent4: #A67C52;
+    --doterra-accent5: #8B7355;
+
+    /* Theme Variables */
+    --doterra-shadow: rgba(212, 175, 55, 0.4);
+    --doterra-radius: 3px;
+    --doterra-transition: 0.25s ease-in-out;
+    --doterra-hover: #2A2A20;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes doterra-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--doterra-accent1),
+            0 0 10px var(--doterra-primary),
+            0 0 15px var(--doterra-accent3);
+    }
+
+    50% {
+        text-shadow: 0 0 8px var(--doterra-accent3),
+            0 0 13px var(--doterra-primary),
+            0 0 18px var(--doterra-accent1);
+    }
+}
+
+@keyframes doterra-texture-scan {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+@keyframes doterra-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--doterra-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--doterra-accent3);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.doterra-gold {
+    font-family: 'EB Garamond', serif;
+    color: var(--doterra-text);
+    line-height: 1.6;
+    background: var(--doterra-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.doterra-gold::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="none" stroke="%23D4AF37" stroke-width="0.2" opacity="0.05"/></svg>');
+    background-size: 100px 100px;
+    animation: doterra-texture-scan 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.doterra-gold .container {
+    background-color: rgba(26, 26, 20, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--doterra-primary);
+    box-shadow: 0 0 20px var(--doterra-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--doterra-radius);
+    z-index: 1;
+}
+
+.doterra-gold .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--doterra-primary), transparent);
+    animation: doterra-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.doterra-gold #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--doterra-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px var(--doterra-shadow);
+    animation: doterra-glow 5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.doterra-gold #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background-color: rgba(61, 53, 38, 0.4);
+    border: 1px solid var(--doterra-accent3);
+    border-radius: var(--doterra-radius);
+    position: relative;
+}
+
+.doterra-gold #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--doterra-accent3), transparent);
+}
+
+.doterra-gold #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--doterra-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--doterra-shadow);
+}
+
+.doterra-gold #today-weather {
+    font-family: 'EB Garamond', serif;
+    color: var(--doterra-accent3);
+    font-size: 1.3rem;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.doterra-gold #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.doterra-gold .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--doterra-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--doterra-bg);
+    box-shadow: 0 0 20px var(--doterra-shadow),
+        inset 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.doterra-gold .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.doterra-gold .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--doterra-primary);
+    margin-top: -3px;
+}
+
+.doterra-gold .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--doterra-accent3);
+    margin-top: -2px;
+}
+
+.doterra-gold .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--doterra-accent2);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE - ENHANCED VISIBILITY ==================== */
+.doterra-gold table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(30, 30, 25, 0.3);
+    border: 1px solid var(--doterra-accent3);
+    border-radius: var(--doterra-radius);
+    table-layout: fixed;
+}
+
+.doterra-gold th {
+    background-color: rgba(61, 53, 38, 0.5);
+    color: var(--doterra-primary) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--doterra-accent3);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 3px var(--doterra-shadow);
+}
+
+.doterra-gold th span.full-day-name {
+    display: inline;
+}
+
+.doterra-gold th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.doterra-gold td {
+    background-color: rgba(40, 40, 35, 0.3);
+    color: var(--doterra-date-text);
+    padding: 1rem;
+    border: 1px solid var(--doterra-accent3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--doterra-transition);
+    position: relative;
+}
+
+.doterra-gold td .date-number {
+    font-weight: 500;
+    color: var(--doterra-date-text);
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.doterra-gold td:hover {
+    background-color: rgba(61, 53, 38, 0.5);
+    box-shadow: inset 0 0 15px var(--doterra-shadow);
+}
+
+.doterra-gold td.current-day {
+    background-color: var(--doterra-current-day);
+    border: 1px solid var(--doterra-primary);
+    color: var(--doterra-current-day-text) !important;
+    font-weight: 500;
+    animation: doterra-pulse 3s infinite;
+}
+
+.doterra-gold td.current-day .date-number {
+    color: var(--doterra-current-day-text) !important;
+    font-weight: 600;
+}
+
+.doterra-gold td.current-day::before {
+    content: "♔";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: var(--doterra-primary);
+    z-index: 1;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.doterra-gold .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--doterra-accent1);
+    margin: 2px;
+    box-shadow: 0 0 5px var(--doterra-shadow);
+    transition: all var(--doterra-transition);
+}
+
+.doterra-gold .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--doterra-primary);
+    box-shadow: 0 0 15px var(--doterra-accent1);
+}
+
+/* ==================== MODAL STYLES - ENHANCED VISIBILITY ==================== */
+.doterra-gold .modal-content {
+    position: relative;
+    background-color: var(--doterra-modal-bg);
+    border: 1px solid var(--doterra-primary);
+    padding: 30px;
+    color: var(--doterra-modal-text);
+    box-shadow: 0 0 30px var(--doterra-shadow);
+    border-radius: var(--doterra-radius);
+    animation: doterra-pulse 0.5s ease;
+}
+
+.doterra-gold .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--doterra-primary);
+    animation: doterra-pulse 3s infinite;
+}
+
+.doterra-gold .modal-content h2 {
+    color: var(--doterra-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 10px;
+}
+
+.doterra-gold .modal-content p,
+.doterra-gold .modal-content div,
+.doterra-gold .modal-content span {
+    color: var(--doterra-modal-text);
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.doterra-gold .modal-content .event-title {
+    font-weight: 600;
+    color: var(--doterra-primary);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.doterra-gold .modal-content .event-details {
+    background: rgba(40, 40, 35, 0.6);
+    padding: 15px;
+    border-radius: var(--doterra-radius);
+    margin: 15px 0;
+    border-left: 3px solid var(--doterra-primary);
+}
+
+.doterra-gold .modal-content button {
+    background-color: transparent;
+    color: var(--doterra-primary);
+    border: 1px solid var(--doterra-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--doterra-radius);
+    margin-top: 15px;
+}
+
+.doterra-gold .modal-content button:hover {
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
+    box-shadow: 0 0 15px var(--doterra-shadow);
+}
+
+.doterra-gold .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--doterra-accent1);
+    border: 1px solid var(--doterra-accent1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.doterra-gold .modal .close-button:hover {
+    background-color: var(--doterra-accent1);
+    color: var(--doterra-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.doterra-gold .button,
+.doterra-gold .transparent-button {
+    border: 1px solid var(--doterra-primary);
+    color: var(--doterra-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--doterra-radius);
+}
+
+.doterra-gold .button::before,
+.doterra-gold .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.doterra-gold .button:hover,
+.doterra-gold .transparent-button:hover {
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
+    box-shadow: 0 0 20px var(--doterra-shadow);
+}
+
+.doterra-gold .button:hover::before,
+.doterra-gold .transparent-button:hover::before {
+    left: 100%;
+}
+
+.doterra-gold .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.doterra-gold #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.doterra-gold #theme-switcher {
+    background-color: rgba(61, 53, 38, 0.5);
+    color: var(--doterra-primary) !important;
+    border: 1px solid var(--doterra-primary);
+    padding: 0.8rem 2.4rem 0.8rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--doterra-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 3px var(--doterra-shadow);
+}
+
+.doterra-gold #theme-switcher option {
+    background-color: rgba(30, 30, 25, 0.95) !important;
+    color: var(--doterra-primary) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--doterra-primary) !important;
+}
+
+.doterra-gold #theme-switcher option:hover {
+    background-color: var(--doterra-primary) !important;
+    color: var(--doterra-bg) !important;
+}
+
+.doterra-gold #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--doterra-primary), 0 0 15px var(--doterra-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.doterra-gold #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--doterra-primary);
+    padding: 1rem 1.8rem;
+    font-size: 0.95rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--doterra-primary);
+    background-color: rgba(61, 53, 38, 0.4);
+    cursor: pointer;
+    transition: all var(--doterra-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--doterra-radius);
+}
+
+.doterra-gold #backToTopBtn:hover {
+    background-color: var(--doterra-primary);
+    color: var(--doterra-bg);
+    box-shadow: 0 0 20px var(--doterra-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.doterra-gold footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--doterra-accent3);
+    color: var(--doterra-text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .doterra-gold #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .doterra-gold td {
+        height: 90px;
+    }
+}
+
+@media (max-width: 992px) {
+    .doterra-gold .container {
+        padding: 1.5rem;
+    }
+
+    .doterra-gold #calendar-title {
+        font-size: 2rem;
+    }
+
+    .doterra-gold #current-date {
+        font-size: 1.6rem;
+    }
+
+    .doterra-gold #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .doterra-gold td {
+        height: 80px;
+        padding: 0.8rem;
+    }
+
+    .doterra-gold .modal-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .doterra-gold .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .doterra-gold th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .doterra-gold th span.full-day-name {
+        display: none;
+    }
+
+    .doterra-gold th abbr {
+        display: inline;
+    }
+
+    .doterra-gold td {
+        padding: 0.6rem;
+        height: 70px;
+    }
+
+    .doterra-gold td .date-number {
+        font-size: 1em;
+    }
+
+    .doterra-gold td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .doterra-gold #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.4rem;
+        font-size: 0.85rem;
+    }
+
+    .doterra-gold #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.85rem;
+        min-width: 180px;
+    }
+
+    .doterra-gold .modal-content {
+        padding: 20px;
+    }
+
+    .doterra-gold .modal-content h2 {
+        font-size: 1.7em;
+    }
+}
+
+@media (max-width: 576px) {
+    .doterra-gold .container {
+        padding: 1rem;
+    }
+
+    .doterra-gold #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .doterra-gold #current-date {
+        font-size: 1.3rem;
+    }
+
+    .doterra-gold #today-weather {
+        font-size: 1rem;
+    }
+
+    .doterra-gold .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .doterra-gold th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .doterra-gold td {
+        padding: 0.4rem;
+        height: 60px;
+    }
+
+    .doterra-gold td .date-number {
+        font-size: 0.9em;
+    }
+
+    .doterra-gold #theme-switcher {
+        min-width: 160px;
+        font-size: 0.8rem;
+    }
+
+    .doterra-gold .modal-content {
+        padding: 15px;
+    }
+
+    .doterra-gold .modal-content h2 {
+        font-size: 1.5em;
+    }
+
+    .doterra-gold .modal-content p,
+    .doterra-gold .modal-content div,
+    .doterra-gold .modal-content span {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 400px) {
+    .doterra-gold #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .doterra-gold th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .doterra-gold td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .doterra-gold td .date-number {
+        font-size: 0.8em;
+    }
+
+    .doterra-gold #theme-switcher {
+        min-width: 140px;
+        font-size: 0.75rem;
+    }
+
+    .doterra-gold .modal-content {
+        padding: 12px;
+    }
+}
