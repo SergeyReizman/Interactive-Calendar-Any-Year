@@ -91,7 +91,7 @@ const applyTheme = (theme) => {
     'magellanic-penguin', 'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'midnight-alchemy', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'monochrome-ink','moonlit-path', 'morning-forest', 'mount-fuji', 'mountain-lake', 
-    'mountain-peak', 'new-ai', 'new-black', 'next-step', 'neon-nights',
+    'mountain-peak', 'new-ai', 'new-black', 'new-style', 'next-step', 'neon-nights',
     'niagara-falls', 'night-dragon', 'north-pole', 'northern-nights', 'ocean-surf', 'ocean-view', 
     'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'on-the-island', 'orange-country', 'pink-lake', 'pirate-ship', 

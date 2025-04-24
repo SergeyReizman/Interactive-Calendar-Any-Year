@@ -1,0 +1,637 @@
+/* ==========================================================================
+  NEW STYLE CALENDAR
+  A modern, clean calendar theme with viewport-centered modals
+  ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;700;800&display=swap');
+
+:root {
+    /* ----- CORE COLORS ----- */
+    --new-bg: #F8FAFC;
+    --new-text: #1E293B;
+    --new-primary: #3B82F6;
+    --new-secondary: #6366F1;
+
+    /* ----- NEUTRAL PALETTE ----- */
+    --new-cream: #F1F5F9;
+    --new-ivory: #E2E8F0;
+    --new-cashmere: #CBD5E1;
+    --new-stone: #94A3B8;
+    --new-taupe: #64748B;
+    --new-mink: #475569;
+    --new-espresso: #334155;
+
+    /* ----- ACCENT COLORS ----- */
+    --new-gold: #F59E0B;
+    --new-silver: #E2E8F0;
+    --new-denim: #2563EB;
+    --new-leather: #1E40AF;
+    --new-ruby: #DC2626;
+
+    /* ----- SPECIAL EFFECTS ----- */
+    --new-glow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    --new-shadow-sm: 0 1px 3px rgba(30, 41, 59, 0.08);
+    --new-shadow-md: 0 4px 6px rgba(30, 41, 59, 0.12);
+    --new-shadow-lg: 0 10px 15px rgba(30, 41, 59, 0.16);
+
+    /* ----- TYPOGRAPHY ----- */
+    --font-main: 'Inter', sans-serif;
+    --font-display: 'Manrope', sans-serif;
+
+    /* ----- DIMENSIONS ----- */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* ----- TRANSITIONS ----- */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================ BASE STYLES ================ */
+.new-style {
+    font-family: var(--font-main);
+    color: var(--new-text);
+    line-height: 1.5;
+    background-color: var(--new-bg);
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.new-style * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================ LAYOUT CONTAINERS ================ */
+.new-style .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--new-shadow-lg);
+    border: 1px solid var(--new-ivory);
+    position: relative;
+    overflow: hidden;
+}
+
+.new-style .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--new-primary) 0%,
+            var(--new-primary) 50%,
+            var(--new-secondary) 50%,
+            var(--new-secondary) 100%);
+}
+
+.new-style .calendar-container {
+    padding: 1.5rem;
+    background: white;
+    border-radius: var(--radius-md);
+    position: relative;
+    z-index: 1;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ================ TYPOGRAPHY ================ */
+.new-style h1,
+.new-style h2,
+.new-style h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--new-espresso);
+}
+
+.new-style .calendar-header {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.new-style .calendar-title {
+    font-size: 1.125rem;
+    color: var(--new-primary);
+    margin-bottom: 1.75rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ================ CALENDAR TABLE ================ */
+.new-style table {
+    width: 100%;
+    min-width: 600px;
+    margin: 1.5rem auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: white;
+    table-layout: fixed;
+}
+
+.new-style th {
+    background: var(--new-secondary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    padding: 1rem 0.5rem;
+    min-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.new-style td {
+    background-color: white;
+    color: var(--new-text);
+    font-weight: 400;
+    padding: 1rem;
+    border: 1px solid var(--new-ivory);
+    transition: all var(--transition-fast);
+    position: relative;
+    vertical-align: top;
+    height: 90px;
+}
+
+.new-style td:hover {
+    background: rgba(59, 130, 246, 0.03);
+}
+
+.new-style td.current-day {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid var(--new-primary);
+    font-weight: 500;
+    color: var(--new-primary);
+    animation: newPulse 3s infinite;
+}
+
+/* ================ CALENDAR ELEMENTS ================ */
+.new-style .day-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.new-style .event-marker {
+    background-color: var(--new-primary);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    display: inline-block;
+    margin: 0 1px;
+}
+
+.new-style .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--new-gold);
+}
+
+.new-style .week-number {
+    color: var(--new-gold);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.3rem;
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--new-gold);
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+}
+
+.new-style .no-events {
+    font-style: italic;
+    color: var(--new-stone);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* ================ NAVIGATION CONTROLS ================ */
+.new-style .calendar-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.new-style .calendar-navigation button {
+    background: white;
+    border: 1px solid var(--new-cashmere);
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    color: var(--new-text);
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+}
+
+.new-style .calendar-navigation button:hover {
+    color: var(--new-primary);
+    border-color: var(--new-primary);
+    background: var(--new-cream);
+}
+
+.new-style .month-year-display {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--new-espresso);
+}
+
+/* ================ BUTTONS ================ */
+.new-style .button,
+.new-style #backToTopBtn {
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1.75rem;
+    font-size: 0.875rem;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    border: 1px solid var(--new-secondary);
+    color: var(--new-secondary);
+    background: white;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.new-style .button:hover,
+.new-style #backToTopBtn:hover {
+    background: var(--new-secondary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--new-shadow-md);
+}
+
+.new-style .button.secondary {
+    background: var(--new-gold);
+    color: white;
+    border: none;
+}
+
+.new-style .button.secondary:hover {
+    background: var(--new-leather);
+    color: white;
+}
+
+/* ================ MODAL STYLES ================ */
+.new-style .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.new-style .modal-content {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--new-shadow-lg);
+    padding: 2rem;
+    color: var(--new-text);
+    text-align: center;
+    position: relative;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalAppear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.new-style .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--new-primary), var(--new-secondary));
+}
+
+.new-style .modal-header {
+    margin-bottom: 1.25rem;
+}
+
+.new-style .modal-header h2 {
+    color: var(--new-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.new-style .modal-body {
+    margin-bottom: 1.75rem;
+    text-align: left;
+}
+
+.new-style .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.new-style .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--new-stone);
+    background: none;
+    border: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+}
+
+.new-style .modal-close:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--new-primary);
+}
+
+/* ================ EVENT LIST ================ */
+.new-style .event-list {
+    list-style: none;
+}
+
+.new-style .event-list li {
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--new-ivory);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-style .event-list li:last-child {
+    border-bottom: none;
+}
+
+.new-style .event-details {
+    flex: 1;
+}
+
+.new-style .event-time {
+    color: var(--new-primary);
+    font-weight: 600;
+    margin-right: 1rem;
+    min-width: 70px;
+}
+
+.new-style .event-title {
+    font-weight: 500;
+}
+
+.new-style .event-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.new-style .event-list button {
+    background: transparent;
+    color: var(--new-primary);
+    border: 1px solid var(--new-primary);
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.new-style .event-list button:hover {
+    background: var(--new-primary);
+    color: white;
+}
+
+/* ================ FORM ELEMENTS ================ */
+.new-style .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.new-style .form-label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-weight: 600;
+    color: var(--new-espresso);
+}
+
+.new-style .form-control {
+    width: 100%;
+    padding: 0.6875rem 0.875rem;
+    border: 1px solid var(--new-cashmere);
+    border-radius: var(--radius-md);
+    font-family: var(--font-main);
+    transition: all var(--transition-fast);
+}
+
+.new-style .form-control:focus {
+    outline: none;
+    border-color: var(--new-primary);
+    box-shadow: var(--new-glow);
+}
+
+/* ================ UTILITY CLASSES ================ */
+.new-style .text-center {
+    text-align: center;
+}
+
+.new-style .text-primary {
+    color: var(--new-primary);
+}
+
+.new-style .text-secondary {
+    color: var(--new-secondary);
+}
+
+.new-style .mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.new-style .mb-2 {
+    margin-bottom: 1rem;
+}
+
+.new-style .mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.new-style .mb-4 {
+    margin-bottom: 2rem;
+}
+
+/* ================ ANIMATIONS ================ */
+@keyframes newPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+    }
+}
+
+@keyframes catwalk {
+    0% {
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ================ RESPONSIVE ADJUSTMENTS ================ */
+@media (max-width: 992px) {
+    .new-style .container {
+        padding: 1.5rem;
+    }
+
+    .new-style .calendar-header {
+        font-size: 2rem;
+    }
+
+    .new-style td {
+        height: 80px;
+        padding: 0.875rem;
+    }
+
+    .new-style th {
+        font-size: 0.8125rem;
+        padding: 0.875rem 0.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-style .container {
+        padding: 1.25rem;
+    }
+
+    .new-style .calendar-container {
+        padding: 1rem;
+    }
+
+    .new-style .calendar-header {
+        font-size: 1.75rem;
+    }
+
+    .new-style td {
+        height: 70px;
+        padding: 0.75rem;
+    }
+
+    .new-style .day-number {
+        font-size: 0.8125rem;
+    }
+
+    .new-style .modal-content {
+        padding: 1.5rem;
+    }
+
+    .new-style th {
+        font-size: 0.75rem;
+    }
+
+    .new-style table {
+        min-width: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .new-style .container {
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .new-style .calendar-header {
+        font-size: 1.5rem;
+    }
+
+    .new-style th,
+    .new-style td {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .new-style .event-marker {
+        width: 4px;
+        height: 4px;
+    }
+
+    .new-style .button,
+    .new-style #backToTopBtn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.8125rem;
+    }
+
+    .new-style .modal-content {
+        padding: 1.25rem;
+    }
+
+    .new-style .modal-header h2 {
+        font-size: 1.375rem;
+    }
+
+    .new-style th {
+        font-size: 0.6875rem;
+    }
+
+    .new-style table {
+        min-width: 400px;
+    }
+
+    .new-style .weekday-abbr {
+        display: inline;
+    }
+
+    .new-style .weekday-full {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .new-style table {
+        max-width: 1100px;
+    }
+}
