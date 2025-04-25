@@ -1,0 +1,814 @@
+/* ==========================================================================
+   The Dead Sea Theme - Mineral Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Mineral-rich color scheme inspired by Dead Sea waters
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Salt crystal-inspired UI elements
+   - Animated water effects
+   - Enhanced accessibility
+   - Mineral texture backgrounds
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    /* The Dead Sea Color Palette */
+    --ds-bg: #0a1218;
+    --ds-text: #F0F8FF;
+    --ds-primary: #00B4D8;
+    /* Deep turquoise */
+    --ds-secondary: #48CAE4;
+    /* Lighter turquoise */
+
+    /* Mineral Colors */
+    --ds-mineral-blue: #0096C7;
+    /* Deep water */
+    --ds-mineral-green: #00B4A6;
+    /* Algae accents */
+    --ds-salt-white: #E2EAFC;
+    /* Salt crystals */
+    --ds-mud-brown: #8B5A2B;
+    /* Mineral mud */
+    --ds-gold: #D4AF37;
+    /* Sun reflection */
+
+    /* Gradient Colors */
+    --ds-gradient-start: #000A12;
+    --ds-gradient-end: #001A1A;
+
+    /* Theme Variables */
+    --ds-shadow: rgba(0, 180, 216, 0.3);
+    --ds-radius: 4px;
+    --ds-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --ds-hover: #1E2E3A;
+    --ds-current-day: #1A3A4A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ds-sparkle {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--ds-primary),
+            0 0 10px rgba(72, 202, 228, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--ds-primary),
+            0 0 25px rgba(72, 202, 228, 0.7);
+    }
+}
+
+@keyframes water-ripple {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes ds-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ds-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--ds-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-dead-sea {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ds-text);
+    line-height: 1.6;
+    background: var(--ds-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(0, 180, 216, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(0, 180, 216, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: water-ripple 3s linear infinite;
+}
+
+.the-dead-sea::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(0, 180, 216, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(72, 202, 228, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Water ripple pattern */
+.the-dead-sea::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><circle cx="20" cy="20" r="5" fill="%2300B4D8"/><circle cx="30" cy="30" r="3" fill="%2300B4D8"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.the-dead-sea .container {
+    background-color: rgba(10, 18, 24, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--ds-primary);
+    box-shadow: 0 0 30px var(--ds-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ds-radius);
+    z-index: 1;
+}
+
+.the-dead-sea .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ds-primary),
+            var(--ds-secondary),
+            transparent);
+    animation: ds-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-dead-sea #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--ds-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: ds-sparkle 3s infinite;
+}
+
+.the-dead-sea #calendar-title::before,
+.the-dead-sea #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ds-secondary);
+    font-size: 1.5rem;
+}
+
+.the-dead-sea #calendar-title::before {
+    left: 1rem;
+    animation: ds-sparkle 2.5s infinite 0.5s;
+}
+
+.the-dead-sea #calendar-title::after {
+    right: 1rem;
+    animation: ds-sparkle 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-dead-sea #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 180, 216, 0.1);
+    border: 1px solid var(--ds-primary);
+    border-radius: var(--ds-radius);
+    position: relative;
+}
+
+.the-dead-sea #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ds-primary),
+            transparent);
+}
+
+.the-dead-sea #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--ds-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.the-dead-sea #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ds-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-dead-sea #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.the-dead-sea .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--ds-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ds-bg);
+    box-shadow:
+        0 0 15px var(--ds-shadow),
+        inset 0 0 10px rgba(0, 180, 216, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(0, 180, 216, 0.1) 100%);
+}
+
+/* Water-themed numerals for clock */
+.the-dead-sea .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%2300B4D8">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%2300B4D8">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%2300B4D8">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%2300B4D8">9</text></svg>');
+}
+
+.the-dead-sea .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.the-dead-sea .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ds-primary);
+    margin-top: -2px;
+}
+
+.the-dead-sea .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ds-secondary);
+    margin-top: -1px;
+}
+
+.the-dead-sea .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ds-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Water vortex */
+.the-dead-sea .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--ds-salt-white);
+    border-radius: 50%;
+    border: 1px solid var(--ds-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.the-dead-sea table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 30, 40, 0.9);
+    border: 1px solid var(--ds-primary);
+    border-radius: var(--ds-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.the-dead-sea th {
+    background-color: rgba(0, 180, 216, 0.15);
+    color: var(--ds-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ds-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.the-dead-sea th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.dead-sea th .short-day {
+    display: none;
+}
+
+.the-dead-sea td {
+    background-color: rgba(15, 25, 35, 0.9);
+    color: var(--ds-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ds-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ds-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.the-dead-sea td:hover {
+    background-color: var(--ds-hover);
+    box-shadow: inset 0 0 15px var(--ds-shadow);
+}
+
+.the-dead-sea .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--ds-text);
+}
+
+.the-dead-sea td.current-day {
+    background-color: var(--ds-current-day);
+    border: 2px solid var(--ds-secondary);
+    color: var(--ds-secondary) !important;
+    font-weight: 700;
+    animation: ds-glow 3s infinite;
+}
+
+.the-dead-sea td.current-day .date-number {
+    color: var(--ds-secondary) !important;
+    font-weight: 800;
+}
+
+.the-dead-sea td.current-day::before {
+    content: "💎";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ds-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-dead-sea .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ds-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--ds-shadow);
+    transition: all var(--ds-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.the-dead-sea .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ds-secondary);
+    box-shadow: 0 0 15px var(--ds-primary);
+}
+
+/* Special event types */
+.the-dead-sea .event-marker.holiday {
+    background-color: var(--ds-gold);
+}
+
+.the-dead-sea .event-marker.historic {
+    background-color: var(--ds-salt-white);
+}
+
+.the-dead-sea .event-marker.patriotic {
+    background-color: var(--ds-mineral-green);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-dead-sea .modal-content {
+    position: relative;
+    background-color: rgba(20, 25, 30, 0.98);
+    border: 1px solid var(--ds-primary);
+    padding: 25px;
+    color: var(--ds-text);
+    box-shadow: 0 0 30px var(--ds-shadow);
+    border-radius: var(--ds-radius);
+    animation: ds-glow 0.5s ease;
+}
+
+.the-dead-sea .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ds-primary),
+            var(--ds-secondary),
+            var(--ds-gold));
+}
+
+.the-dead-sea .modal-content h2 {
+    color: var(--ds-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.the-dead-sea .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.the-dead-sea .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--ds-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.the-dead-sea .modal-content .event-description {
+    background-color: rgba(0, 180, 216, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--ds-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ds-radius) var(--ds-radius) 0;
+}
+
+.the-dead-sea .modal-content button {
+    background-color: var(--ds-primary);
+    color: var(--ds-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ds-transition);
+    border-radius: var(--ds-radius);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.the-dead-sea .modal-content button:hover {
+    background-color: var(--ds-secondary);
+    box-shadow: 0 4px 6px -1px var(--ds-shadow);
+}
+
+.the-dead-sea .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ds-primary);
+    border: 1px solid var(--ds-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ds-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.the-dead-sea .modal .close-button:hover {
+    background-color: var(--ds-primary);
+    color: var(--ds-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-dead-sea .button,
+.the-dead-sea .transparent-button {
+    border: 1px solid var(--ds-primary);
+    color: var(--ds-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ds-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ds-radius);
+    letter-spacing: 0.05em;
+}
+
+.the-dead-sea .button::before,
+.the-dead-sea .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.the-dead-sea .button:hover,
+.the-dead-sea .transparent-button:hover {
+    background-color: var(--ds-primary);
+    color: var(--ds-bg);
+    box-shadow: 0 4px 6px -1px var(--ds-shadow);
+}
+
+.dead-sea .button:hover::before,
+.dead-sea .transparent-button:hover::before {
+    left: 100%;
+}
+
+.the-dead-sea .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-dead-sea #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.the-dead-sea #theme-switcher {
+    background-color: var(--ds-bg);
+    color: var(--ds-primary) !important;
+    border: 1px solid var(--ds-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ds-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300B4D8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ds-transition);
+    box-shadow: 0 1px 3px 0 var(--ds-shadow);
+}
+
+.the-dead-sea #theme-switcher option {
+    background-color: var(--ds-bg) !important;
+    color: var(--ds-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.the-dead-sea #theme-switcher option:hover {
+    background-color: var(--ds-primary) !important;
+    color: var(--ds-bg) !important;
+}
+
+.the-dead-sea #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-dead-sea #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ds-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--ds-primary);
+    background-color: var(--ds-bg);
+    cursor: pointer;
+    transition: all var(--ds-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ds-radius);
+    box-shadow: 0 4px 6px -1px var(--ds-shadow);
+}
+
+.the-dead-sea #backToTopBtn:hover {
+    background-color: var(--ds-primary);
+    color: var(--ds-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.the-dead-sea.dead-sea footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ds-primary);
+    color: var(--ds-text);
+    font-size: 0.8rem;
+}
+
+.the-dead-sea-sea footer::before {
+    content: "🧂 ";
+    color: var(--ds-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-dead-sea .container {
+        padding: 1.2rem;
+    }
+
+    .the-dead-sea #calendar-title {
+        font-size: 2rem;
+    }
+
+    .the-dead-sea #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-dead-sea #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .the-dead-sea th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-dead-sea .container {
+        padding: 1rem;
+    }
+
+    .the-dead-sea #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .the-dead-sea .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .the-dead-sea th .full-day {
+        display: none;
+    }
+
+    .the-dead-sea th .short-day {
+        display: inline;
+    }
+
+    .the-dead-sea th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .the-dead-sea td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .the-dead-sea #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .the-dead-sea #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .the-dead-sea .modal-content {
+        padding: 15px;
+    }
+
+    .the-dead-sea .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-dead-sea .container {
+        padding: 0.8rem;
+    }
+
+    .the-dead-sea #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .the-dead-sea #current-date {
+        font-size: 1.1rem;
+    }
+
+    .the-dead-sea #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .the-dead-sea .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .the-dead-sea th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .the-dead-sea td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .the-dead-sea td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .the-dead-sea #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-dead-sea th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .the-dead-sea td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .the-dead-sea #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .the-dead-sea #calendar-title {
+        font-size: 1.2rem;
+    }
+}
