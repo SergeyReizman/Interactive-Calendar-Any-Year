@@ -1,232 +1,147 @@
-/* ==========================================================================  
-   Fresh Start Theme - Every Day is a New Beginning  
-   Version: 3.1  
-   Updated: 2025-04-22  
-   Features:  
-   - Clean, minimalist design  
-   - Soothing pastel color palette  
-   - Viewport-optimized modal for all screens  
-   - Subtle growth animations  
+/* ==========================================================================
+   Fresh Start Theme - Renewal Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Clean, airy color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Nature-inspired UI elements
+   - Animated growth effects
+   - Enhanced clarity
+   - Organic textures
+   - Balanced typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Work+Sans:wght@400;600&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --hk-bg: #F9F9F7;
-    /* Warm ivory */
-    --hk-text: #333333;
-    /* Soft black */
-    --hk-primary: #88C9A1;
-    /* Sage green */
-    --hk-secondary: #A8D8EA;
-    /* Sky blue */
+    /* Fresh Start Color Palette */
+    --fs-bg: #F8FBF8;
+    --fs-text: #334433;
+    --fs-primary: #4CAF50;
+    /* Growth green */
+    --fs-secondary: #8BC34A;
+    /* Fresh lime */
+
+    /* Nature Colors */
+    --fs-sky: #03A9F4;
+    --fs-sun: #FFC107;
+    --fs-earth: #795548;
+    --fs-water: #00BCD4;
+    --fs-blossom: #E91E63;
 
     /* Gradient Colors */
-    --hk-gradient-start: #F5F5F5;
-    /* Light gray */
-    --hk-gradient-end: #FFFFFF;
-    /* Pure white */
-
-    /* Accent Colors */
-    --hk-accent1: #88C9A1;
-    /* Primary green */
-    --hk-accent2: #A8D8EA;
-    /* Secondary blue */
-    --hk-accent3: #F7DBA7;
-    /* Warm sand */
-    --hk-accent4: #E8B9AB;
-    /* Blush pink */
-    --hk-accent5: #C5B3E6;
-    /* Lavender */
+    --fs-gradient-start: #F1F8E9;
+    --fs-gradient-end: #E8F5E9;
 
     /* Theme Variables */
-    --hk-shadow: rgba(136, 201, 161, 0.2);
-    /* Soft green shadow */
-    --hk-radius: 12px;
-    --hk-transition: 0.3s ease;
-    --hk-hover: #E8F4EA;
-    /* Light green hover */
-    --hk-current-day: #88C9A1;
-    /* Green highlight */
+    --fs-shadow: rgba(76, 175, 80, 0.2);
+    --fs-radius: 8px;
+    --fs-transition: 0.3s ease-in-out;
+    --fs-hover: #E8F5E9;
+    --fs-current-day: #C8E6C9;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes hk-fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes hk-grow {
-    0% {
-        transform: scale(0.95);
-    }
-
-    50% {
-        transform: scale(1.03);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes hk-pulse {
+@keyframes fs-breathe {
 
     0%,
     100% {
-        box-shadow: 0 0 0 rgba(136, 201, 161, 0.4);
+        transform: scale(1);
+        opacity: 0.8;
     }
 
     50% {
-        box-shadow: 0 0 15px rgba(136, 201, 161, 0.2);
+        transform: scale(1.02);
+        opacity: 1;
+    }
+}
+
+@keyframes leaf-fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes fs-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--fs-shadow);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--fs-shadow);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .fresh-start {
-    font-family: 'Inter', sans-serif;
-    color: var(--hk-text);
+    font-family: 'Work Sans', sans-serif;
+    color: var(--fs-text);
     line-height: 1.6;
-    background: linear-gradient(135deg, var(--hk-gradient-start), var(--hk-gradient-end));
+    background: var(--fs-bg);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(76, 175, 80, 0.03) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(76, 175, 80, 0.03) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: leaf-fall 6s linear infinite;
 }
 
-/* ==================== MODAL STYLES (Viewport Optimized) ==================== */
-.fresh-start .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.95);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.fresh-start .modal-content {
-    position: relative;
-    width: 100%;
-    max-width: 700px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    background-color: white;
-    border: 1px solid rgba(136, 201, 161, 0.3);
-    padding: 25px;
-    color: var(--hk-text);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: var(--hk-radius);
-    animation: hk-fadeIn 0.4s ease-out;
-    display: flex;
-    flex-direction: column;
-}
-
-.fresh-start .modal-content::before {
+.fresh-start::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
-    opacity: 0.8;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(139, 195, 74, 0.03) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(0, 188, 212, 0.03) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.fresh-start .modal-header {
-    color: var(--hk-text);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 5vw, 1.8rem);
-    margin-bottom: 15px;
-    font-weight: 400;
-    padding-right: 30px;
-}
-
-.fresh-start .modal-body {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 10px;
-    margin-bottom: 20px;
-}
-
-.fresh-start .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-.fresh-start .modal-content button {
-    background-color: white;
-    color: var(--hk-accent1);
-    border: 1px solid var(--hk-accent1);
-    padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    border-radius: var(--hk-radius);
-    font-family: 'Inter', sans-serif;
-    min-width: 100px;
-}
-
-.fresh-start .modal-content button:hover {
-    background-color: var(--hk-accent1);
-    color: white;
-    box-shadow: 0 4px 10px rgba(136, 201, 201, 0.3);
-}
-
-/* Close Button */
-.fresh-start .modal .close-button {
+/* Leaf pattern */
+.fresh-start::after {
+    content: "";
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: var(--hk-text);
-    border: 1px solid rgba(136, 201, 161, 0.3);
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: all var(--hk-transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><path d="M20,5 Q30,10 20,20 Q10,30 20,35" stroke="%234CAF50" fill="none" stroke-width="0.5"/></svg>');
+    pointer-events: none;
+    z-index: 0;
 }
 
-.fresh-start .modal .close-button:hover {
-    background-color: var(--hk-accent1);
-    color: white;
-    border-color: var(--hk-accent1);
-}
-
-/* ==================== CONTAINER STYLES ==================== */
 .fresh-start .container {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(248, 251, 248, 0.95);
     padding: 2rem;
-    border: 1px solid rgba(136, 201, 161, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--fs-primary);
+    box-shadow: 0 0 20px var(--fs-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
-    margin: 0 auto;
-    border-radius: var(--hk-radius);
-    animation: hk-fadeIn 0.6s ease-out;
+    margin: 2rem auto;
+    border-radius: var(--fs-radius);
+    z-index: 1;
 }
 
 .fresh-start .container::before {
@@ -235,73 +150,87 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--hk-accent1), var(--hk-accent2));
-    opacity: 0.8;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--fs-primary),
+            var(--fs-secondary),
+            transparent);
+    animation: fs-glow 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .fresh-start #calendar-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--hk-text);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--fs-primary);
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     position: relative;
-    display: inline-block;
+    animation: fs-breathe 4s infinite;
+}
+
+.fresh-start #calendar-title::before,
+.fresh-start #calendar-title::after {
+    content: "🌱";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--fs-secondary);
+    font-size: 1.5rem;
+    animation: fs-breathe 3s infinite;
+}
+
+.fresh-start #calendar-title::before {
+    left: 1rem;
 }
 
 .fresh-start #calendar-title::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+    right: 1rem;
+    animation-delay: 0.5s;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .fresh-start #date-weather-container {
     text-align: center;
     margin: 2rem 0;
-    padding: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(136, 201, 161, 0.2);
-    border-radius: var(--hk-radius);
+    padding: 1rem;
+    background-color: rgba(76, 175, 80, 0.05);
+    border: 1px solid var(--fs-primary);
+    border-radius: var(--fs-radius);
     position: relative;
-    backdrop-filter: blur(5px);
 }
 
 .fresh-start #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: var(--hk-accent1);
-    border-radius: 3px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--fs-primary),
+            transparent);
 }
 
 .fresh-start #current-date {
-    font-family: 'Playfair Display', serif;
-    color: var(--hk-text);
-    font-size: 1.6rem;
-    font-weight: 400;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--fs-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
 }
 
 .fresh-start #today-weather {
-    font-family: 'Inter', sans-serif;
-    color: var(--hk-accent1);
+    font-family: 'Work Sans', sans-serif;
+    color: var(--fs-secondary);
     font-size: 1.2rem;
-    font-style: normal;
     letter-spacing: 0.05em;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -314,13 +243,28 @@
 .fresh-start .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid rgba(136, 201, 161, 0.3);
+    border: 1px solid var(--fs-primary);
     border-radius: 50%;
     position: relative;
-    background-color: white;
+    background-color: var(--fs-bg);
     box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.05),
-        inset 0 0 10px rgba(0, 0, 0, 0.03);
+        0 0 10px var(--fs-shadow),
+        inset 0 0 5px rgba(76, 175, 80, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(76, 175, 80, 0.05) 100%);
+}
+
+/* Nature-inspired numerals for clock */
+.fresh-start .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><text x="50" y="18" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">12</text><text x="82" y="55" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">3</text><text x="50" y="92" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">6</text><text x="18" y="55" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">9</text></svg>');
 }
 
 .fresh-start .hand {
@@ -329,14 +273,14 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fresh-start .hour-hand {
     width: 40%;
     left: 10%;
     height: 4px;
-    background: var(--hk-text);
+    background: var(--fs-primary);
     margin-top: -2px;
     border-radius: 2px;
 }
@@ -344,134 +288,259 @@
 .fresh-start .minute-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--hk-text);
-    margin-top: -1.5px;
-    border-radius: 3px;
+    height: 2px;
+    background: var(--fs-secondary);
+    margin-top: -1px;
+    border-radius: 1px;
 }
 
 .fresh-start .second-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--hk-accent1);
-    margin-top: -1px;
-    border-radius: 2px;
+    height: 1px;
+    background: var(--fs-blossom);
+    margin-top: -0.5px;
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+/* Clock center - Seed */
+.fresh-start .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--fs-primary);
+    border-radius: 50%;
+    border: 1px solid var(--fs-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
 .fresh-start table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: white;
-    border: 1px solid rgba(136, 201, 161, 0.2);
-    border-radius: var(--hk-radius);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--fs-primary);
+    border-radius: var(--fs-radius);
     table-layout: fixed;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
-/* DAY OF WEEK HEADERS */
+/* Weekday headers - responsive solution */
 .fresh-start th {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: var(--hk-text) !important;
-    font-family: 'Inter', sans-serif;
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--fs-primary) !important;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 1rem 0.5rem;
-    border: 1px solid rgba(136, 201, 161, 0.1);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(76, 175, 80, 0.3);
     position: relative;
+    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 0;
 }
 
-.fresh-start th span.full-day-name {
+/* Full names for desktop */
+.fresh-start th .full-day {
     display: inline;
 }
 
-.fresh-start th abbr {
+/* Short names for mobile */
+.fresh-start th .short-day {
     display: none;
-    text-decoration: none;
-    border-bottom: none;
 }
 
 .fresh-start td {
-    background-color: white;
-    color: var(--hk-text);
-    padding: 1rem;
-    border: 1px solid rgba(136, 201, 161, 0.1);
-    height: 120px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--fs-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--hk-transition);
+    transition: all var(--fs-transition);
     position: relative;
+    font-size: 0.85rem;
 }
 
 .fresh-start td:hover {
-    background-color: var(--hk-hover);
+    background-color: var(--fs-hover);
+    box-shadow: inset 0 0 10px var(--fs-shadow);
 }
 
-/* Current date highlight */
+.fresh-start .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--fs-text);
+}
+
 .fresh-start td.current-day {
-    background-color: rgba(136, 201, 161, 0.1);
-    border: 1px solid var(--hk-accent1);
-    color: var(--hk-text) !important;
-    font-weight: 400;
-    animation: hk-pulse 3s infinite;
+    background-color: var(--fs-current-day);
+    border: 2px solid var(--fs-secondary);
+    color: var(--fs-primary) !important;
+    font-weight: 700;
+}
+
+.fresh-start td.current-day .date-number {
+    color: var(--fs-primary) !important;
+    font-weight: 800;
 }
 
 .fresh-start td.current-day::before {
-    content: "";
+    content: "✨";
     position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 8px;
-    height: 8px;
-    background-color: var(--hk-accent1);
-    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    color: var(--fs-secondary);
     z-index: 1;
-}
-
-.fresh-start td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--hk-accent1) !important;
-    font-weight: 600;
+    opacity: 0.8;
+    font-size: 0.9rem;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .fresh-start .event-marker {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: var(--hk-accent1);
-    margin: 0 2px;
-    transition: all var(--hk-transition);
+    background-color: var(--fs-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--fs-shadow);
+    transition: all var(--fs-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .fresh-start .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--hk-accent4);
+    transform: scale(1.8);
+    background-color: var(--fs-secondary);
+    box-shadow: 0 0 15px var(--fs-shadow);
+}
+
+/* Special event types */
+.fresh-start .event-marker.holiday {
+    background-color: var(--fs-sun);
+}
+
+.fresh-start .event-marker.historic {
+    background-color: var(--fs-earth);
+}
+
+.fresh-start .event-marker.patriotic {
+    background-color: var(--fs-sky);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.fresh-start .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--fs-primary);
+    padding: 25px;
+    color: var(--fs-text);
+    box-shadow: 0 0 30px var(--fs-shadow);
+    border-radius: var(--fs-radius);
+    animation: fs-glow 0.5s ease;
+}
+
+.fresh-start .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--fs-primary),
+            var(--fs-secondary),
+            var(--fs-blossom));
+}
+
+.fresh-start .modal-content h2 {
+    color: var(--fs-primary);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.fresh-start .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.fresh-start .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--fs-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.fresh-start .modal-content .event-description {
+    background-color: rgba(76, 175, 80, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--fs-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--fs-radius) var(--fs-radius) 0;
+}
+
+.fresh-start .modal-content button {
+    background-color: var(--fs-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--fs-transition);
+    border-radius: var(--fs-radius);
+    font-family: 'Work Sans', sans-serif;
+}
+
+.fresh-start .modal-content button:hover {
+    background-color: var(--fs-secondary);
+    box-shadow: 0 4px 6px -1px var(--fs-shadow);
+}
+
+.fresh-start .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--fs-primary);
+    border: 1px solid var(--fs-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--fs-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.fresh-start .modal .close-button:hover {
+    background-color: var(--fs-primary);
+    color: white;
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .fresh-start .button,
 .fresh-start .transparent-button {
-    border: 1px solid var(--hk-accent1);
-    color: var(--hk-accent1);
-    background-color: white;
+    border: 1px solid var(--fs-primary);
+    color: var(--fs-primary);
+    background-color: transparent;
     padding: 0.7rem 1.4rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--hk-transition);
+    transition: all var(--fs-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--hk-radius);
-    font-weight: 500;
+    border-radius: var(--fs-radius);
+    letter-spacing: 0.05em;
 }
 
 .fresh-start .button::before,
@@ -482,16 +551,15 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(136, 201, 161, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
     transition: 0.5s;
 }
 
 .fresh-start .button:hover,
 .fresh-start .transparent-button:hover {
-    background-color: var(--hk-accent1);
+    background-color: var(--fs-primary);
     color: white;
-    box-shadow: 0 4px 15px rgba(136, 201, 161, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px var(--fs-shadow);
 }
 
 .fresh-start .button:hover::before,
@@ -516,43 +584,43 @@
 }
 
 .fresh-start #theme-switcher {
-    background-color: white;
-    color: var(--hk-text) !important;
-    border: 1px solid rgba(136, 201, 161, 0.3);
+    background-color: var(--fs-bg);
+    color: var(--fs-primary) !important;
+    border: 1px solid var(--fs-primary);
     padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 600;
     width: 100%;
-    border-radius: var(--hk-radius);
+    border-radius: var(--fs-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2388C9A1'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.6rem center;
     background-size: 0.9rem;
     cursor: pointer;
-    transition: all var(--hk-transition);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: all var(--fs-transition);
+    box-shadow: 0 1px 3px 0 var(--fs-shadow);
 }
 
 .fresh-start #theme-switcher option {
-    background-color: white !important;
-    color: var(--hk-text) !important;
+    background-color: var(--fs-bg) !important;
+    color: var(--fs-primary) !important;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 600;
     padding: 10px 12px !important;
 }
 
 .fresh-start #theme-switcher option:hover {
-    background-color: var(--hk-accent1) !important;
+    background-color: var(--fs-primary) !important;
     color: white !important;
 }
 
 .fresh-start #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--hk-accent1), 0 4px 15px rgba(136, 201, 161, 0.3);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -561,24 +629,24 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--hk-accent1);
+    border: 1px solid var(--fs-primary);
     padding: 0.9rem 1.6rem;
     font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
-    color: var(--hk-accent1);
-    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: var(--fs-primary);
+    background-color: var(--fs-bg);
     cursor: pointer;
-    transition: all var(--hk-transition);
+    transition: all var(--fs-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--hk-radius);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-radius: var(--fs-radius);
+    box-shadow: 0 4px 6px -1px var(--fs-shadow);
 }
 
 .fresh-start #backToTopBtn:hover {
-    background-color: var(--hk-accent1);
+    background-color: var(--fs-primary);
     color: white;
-    box-shadow: 0 4px 15px rgba(136, 201, 161, 0.3);
     opacity: 1;
 }
 
@@ -587,9 +655,14 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.2rem;
-    border-top: 1px solid rgba(136, 201, 161, 0.2);
-    color: var(--hk-text);
+    border-top: 1px solid var(--fs-primary);
+    color: var(--fs-text);
     font-size: 0.8rem;
+}
+
+.fresh-start footer::before {
+    content: "🌿 ";
+    color: var(--fs-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -599,57 +672,55 @@
     }
 
     .fresh-start #calendar-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .fresh-start #current-date {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .fresh-start #today-weather {
         font-size: 1.1rem;
     }
+
+    .fresh-start th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .fresh-start .container {
+        padding: 1rem;
+    }
+
+    .fresh-start #calendar-title {
+        font-size: 1.7rem;
+    }
+
     .fresh-start .clock-face {
         width: 140px;
         height: 140px;
     }
 
-    .fresh-start th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
-    }
-
-    .fresh-start th span.full-day-name {
+    /* Switch to short day names */
+    .fresh-start th .full-day {
         display: none;
     }
 
-    .fresh-start th abbr {
+    .fresh-start th .short-day {
         display: inline;
     }
 
+    .fresh-start th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
     .fresh-start td {
-        padding: 0.5rem;
-        height: 80px;
-        font-size: 0.75rem;
-    }
-
-    .fresh-start td.current-day::before {
-        width: 6px;
-        height: 6px;
-        top: 3px;
-        right: 3px;
-    }
-
-    /* Modal adjustments for medium screens */
-    .fresh-start .modal-content {
-        padding: 20px;
-    }
-
-    .fresh-start .modal-header {
-        font-size: 1.6rem;
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
     .fresh-start #backToTopBtn {
@@ -665,15 +736,18 @@
         min-width: 170px;
     }
 
-    .fresh-start #theme-switcher option {
-        font-size: 0.8rem;
-        padding: 8px !important;
+    .fresh-start .modal-content {
+        padding: 15px;
+    }
+
+    .fresh-start .modal-content h2 {
+        font-size: 1.5em;
     }
 }
 
 @media (max-width: 576px) {
     .fresh-start .container {
-        padding: 0.6rem;
+        padding: 0.8rem;
     }
 
     .fresh-start #calendar-title {
@@ -681,11 +755,11 @@
     }
 
     .fresh-start #current-date {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .fresh-start #today-weather {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .fresh-start .clock-face {
@@ -694,43 +768,18 @@
     }
 
     .fresh-start th {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .fresh-start td {
-        padding: 0.2rem;
-        height: 70px;
-        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
     }
 
-    /* Modal adjustments for small screens */
-    .fresh-start .modal-overlay {
-        padding: 10px;
-    }
-
-    .fresh-start .modal-content {
-        padding: 15px;
-        max-height: calc(100vh - 20px);
-    }
-
-    .fresh-start .modal-header {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-    }
-
-    .fresh-start .modal .close-button {
-        top: 10px;
-        right: 10px;
-        width: 25px;
-        height: 25px;
-        font-size: 1rem;
-    }
-
-    .fresh-start .modal-content button {
-        padding: 8px 15px;
-        font-size: 0.8rem;
-        min-width: 80px;
+    .fresh-start td.current-day::before {
+        font-size: 0.7rem;
     }
 
     .fresh-start #theme-switcher {
@@ -742,28 +791,20 @@
 @media (max-width: 400px) {
     .fresh-start th {
         font-size: 0.6rem;
-        padding: 0.3rem 0.1rem;
+        padding: 0.4rem 0.1rem;
     }
 
     .fresh-start td {
-        height: 60px;
-    }
-
-    /* Modal adjustments for extra small screens */
-    .fresh-start .modal-content {
-        padding: 12px;
-    }
-
-    .fresh-start .modal-header {
-        font-size: 1.2rem;
-    }
-
-    .fresh-start .modal-body {
-        font-size: 0.9rem;
+        height: 50px;
+        font-size: 0.7rem;
     }
 
     .fresh-start #theme-switcher {
         min-width: 130px;
         font-size: 0.7rem;
+    }
+
+    .fresh-start #calendar-title {
+        font-size: 1.2rem;
     }
 }
