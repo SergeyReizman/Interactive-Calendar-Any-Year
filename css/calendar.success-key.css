@@ -1,0 +1,814 @@
+/* ==========================================================================
+   Success Key Theme - Achievement Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Gold and emerald success color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Trophy-inspired UI elements
+   - Animated celebration effects
+   - Enhanced accessibility
+   - Luxury textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    /* Success Color Palette */
+    --sk-bg: #0a0f0a;
+    --sk-text: #F0FFF0;
+    --sk-primary: #FFD700;
+    /* Gold */
+    --sk-secondary: #50C878;
+    /* Emerald green */
+
+    /* Achievement Colors */
+    --sk-bronze: #CD7F32;
+    --sk-silver: #C0C0C0;
+    --sk-platinum: #E5E4E2;
+    --sk-ruby: #9B111E;
+    --sk-sapphire: #0F52BA;
+
+    /* Gradient Colors */
+    --sk-gradient-start: #0A1A0A;
+    --sk-gradient-end: #1A0A1A;
+
+    /* Theme Variables */
+    --sk-shadow: rgba(255, 215, 0, 0.3);
+    --sk-radius: 4px;
+    --sk-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --sk-hover: #1E2A1E;
+    --sk-current-day: #2A3A2A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sk-sparkle {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--sk-primary),
+            0 0 10px rgba(80, 200, 120, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--sk-primary),
+            0 0 25px rgba(80, 200, 120, 0.7);
+    }
+}
+
+@keyframes confetti-fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes sk-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--sk-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--sk-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.success-key {
+    font-family: 'Roboto', sans-serif;
+    color: var(--sk-text);
+    line-height: 1.6;
+    background: var(--sk-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(255, 215, 0, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(255, 215, 0, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: confetti-fall 3s linear infinite;
+}
+
+.success-key::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(255, 215, 0, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(80, 200, 120, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Confetti pattern */
+.success-key::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><rect x="15" y="5" width="10" height="10" fill="%23FFD700"/><circle cx="30" cy="30" r="3" fill="%2350C878"/><polygon points="5,20 10,25 5,30" fill="%23FFD700"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.success-key .container {
+    background-color: rgba(10, 15, 10, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--sk-primary);
+    box-shadow: 0 0 30px var(--sk-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--sk-radius);
+    z-index: 1;
+}
+
+.success-key .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--sk-primary),
+            var(--sk-secondary),
+            transparent);
+    animation: sk-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.success-key #calendar-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sk-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: sk-sparkle 3s infinite;
+    text-transform: uppercase;
+}
+
+.success-key #calendar-title::before,
+.success-key #calendar-title::after {
+    content: "🏆";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sk-secondary);
+    font-size: 1.5rem;
+}
+
+.success-key #calendar-title::before {
+    left: 1rem;
+    animation: sk-sparkle 2.5s infinite 0.5s;
+}
+
+.success-key #calendar-title::after {
+    right: 1rem;
+    animation: sk-sparkle 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.success-key #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--sk-primary);
+    border-radius: var(--sk-radius);
+    position: relative;
+}
+
+.success-key #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--sk-primary),
+            transparent);
+}
+
+.success-key #current-date {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sk-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.success-key #today-weather {
+    font-family: 'Roboto', sans-serif;
+    color: var(--sk-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.success-key #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.success-key .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--sk-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--sk-bg);
+    box-shadow:
+        0 0 15px var(--sk-shadow),
+        inset 0 0 10px rgba(255, 215, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 215, 0, 0.1) 100%);
+}
+
+/* Achievement numerals for clock */
+.success-key .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23FFD700">12</text><text x="82" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23FFD700">3</text><text x="50" y="92" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23FFD700">6</text><text x="18" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23FFD700">9</text></svg>');
+}
+
+.success-key .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.success-key .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--sk-primary);
+    margin-top: -2px;
+}
+
+.success-key .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--sk-secondary);
+    margin-top: -1px;
+}
+
+.success-key .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--sk-ruby);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Medal */
+.success-key .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--sk-platinum);
+    border-radius: 50%;
+    border: 1px solid var(--sk-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.success-key table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 30, 20, 0.9);
+    border: 1px solid var(--sk-primary);
+    border-radius: var(--sk-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.success-key th {
+    background-color: rgba(255, 215, 0, 0.15);
+    color: var(--sk-primary) !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--sk-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.success-key th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.success-key th .short-day {
+    display: none;
+}
+
+.success-key td {
+    background-color: rgba(15, 25, 15, 0.9);
+    color: var(--sk-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--sk-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--sk-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.success-key td:hover {
+    background-color: var(--sk-hover);
+    box-shadow: inset 0 0 15px var(--sk-shadow);
+}
+
+.success-key .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--sk-text);
+}
+
+.success-key td.current-day {
+    background-color: var(--sk-current-day);
+    border: 2px solid var(--sk-secondary);
+    color: var(--sk-secondary) !important;
+    font-weight: 700;
+    animation: sk-glow 3s infinite;
+}
+
+.success-key td.current-day .date-number {
+    color: var(--sk-secondary) !important;
+    font-weight: 800;
+}
+
+.success-key td.current-day::before {
+    content: "⭐";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--sk-primary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.success-key .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--sk-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--sk-shadow);
+    transition: all var(--sk-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.success-key .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--sk-secondary);
+    box-shadow: 0 0 15px var(--sk-primary);
+}
+
+/* Special event types */
+.success-key .event-marker.holiday {
+    background-color: var(--sk-ruby);
+}
+
+.success-key .event-marker.historic {
+    background-color: var(--sk-silver);
+}
+
+.success-key .event-marker.patriotic {
+    background-color: var(--sk-sapphire);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.success-key .modal-content {
+    position: relative;
+    background-color: rgba(20, 25, 20, 0.98);
+    border: 1px solid var(--sk-primary);
+    padding: 25px;
+    color: var(--sk-text);
+    box-shadow: 0 0 30px var(--sk-shadow);
+    border-radius: var(--sk-radius);
+    animation: sk-glow 0.5s ease;
+}
+
+.success-key .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--sk-primary),
+            var(--sk-secondary),
+            var(--sk-ruby));
+}
+
+.success-key .modal-content h2 {
+    color: var(--sk-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.success-key .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.success-key .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--sk-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.success-key .modal-content .event-description {
+    background-color: rgba(255, 215, 0, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--sk-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--sk-radius) var(--sk-radius) 0;
+}
+
+.success-key .modal-content button {
+    background-color: var(--sk-primary);
+    color: var(--sk-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sk-transition);
+    border-radius: var(--sk-radius);
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+}
+
+.success-key .modal-content button:hover {
+    background-color: var(--sk-secondary);
+    box-shadow: 0 4px 6px -1px var(--sk-shadow);
+}
+
+.success-key .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--sk-primary);
+    border: 1px solid var(--sk-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--sk-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.success-key .modal .close-button:hover {
+    background-color: var(--sk-primary);
+    color: var(--sk-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.success-key .button,
+.success-key .transparent-button {
+    border: 1px solid var(--sk-primary);
+    color: var(--sk-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--sk-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--sk-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.success-key .button::before,
+.success-key .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.success-key .button:hover,
+.success-key .transparent-button:hover {
+    background-color: var(--sk-primary);
+    color: var(--sk-bg);
+    box-shadow: 0 4px 6px -1px var(--sk-shadow);
+}
+
+.success-key .button:hover::before,
+.success-key .transparent-button:hover::before {
+    left: 100%;
+}
+
+.success-key .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.success-key #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.success-key #theme-switcher {
+    background-color: var(--sk-bg);
+    color: var(--sk-primary) !important;
+    border: 1px solid var(--sk-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--sk-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--sk-transition);
+    box-shadow: 0 1px 3px 0 var(--sk-shadow);
+}
+
+.success-key #theme-switcher option {
+    background-color: var(--sk-bg) !important;
+    color: var(--sk-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.success-key #theme-switcher option:hover {
+    background-color: var(--sk-primary) !important;
+    color: var(--sk-bg) !important;
+}
+
+.success-key #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.success-key #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--sk-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--sk-primary);
+    background-color: var(--sk-bg);
+    cursor: pointer;
+    transition: all var(--sk-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--sk-radius);
+    box-shadow: 0 4px 6px -1px var(--sk-shadow);
+    text-transform: uppercase;
+}
+
+.success-key #backToTopBtn:hover {
+    background-color: var(--sk-primary);
+    color: var(--sk-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.success-key footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--sk-primary);
+    color: var(--sk-text);
+    font-size: 0.8rem;
+}
+
+.success-key footer::before {
+    content: "🔑 ";
+    color: var(--sk-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .success-key .container {
+        padding: 1.2rem;
+    }
+
+    .success-key #calendar-title {
+        font-size: 2rem;
+    }
+
+    .success-key #current-date {
+        font-size: 1.5rem;
+    }
+
+    .success-key #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .success-key th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .success-key .container {
+        padding: 1rem;
+    }
+
+    .success-key #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .success-key .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .success-key th .full-day {
+        display: none;
+    }
+
+    .success-key th .short-day {
+        display: inline;
+    }
+
+    .success-key th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .success-key td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .success-key #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .success-key #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .success-key .modal-content {
+        padding: 15px;
+    }
+
+    .success-key .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .success-key .container {
+        padding: 0.8rem;
+    }
+
+    .success-key #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .success-key #current-date {
+        font-size: 1.1rem;
+    }
+
+    .success-key #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .success-key .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .success-key th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .success-key td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .success-key td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .success-key #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .success-key th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .success-key td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .success-key #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .success-key #calendar-title {
+        font-size: 1.2rem;
+    }
+}
