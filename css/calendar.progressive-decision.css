@@ -1,0 +1,753 @@
+/* ==========================================================================
+   Progressive Decision Theme - Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Modern decision-focused color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Clean UI elements
+   - Subtle animated effects
+   - Enhanced accessibility
+   - Minimal texture backgrounds
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Progressive Decision Color Palette */
+    --pd-bg: #f8f9fa;
+    --pd-text: #212529;
+    --pd-primary: #1a73e8;
+    /* Google blue */
+    --pd-secondary: #34a853;
+    /* Google green */
+
+    /* Decision Colors */
+    --pd-option-blue: #4285f4;
+    --pd-option-red: #ea4335;
+    --pd-option-yellow: #fbbc05;
+    --pd-option-purple: #9c27b0;
+    --pd-highlight: #ff6d00;
+
+    /* Gradient Colors */
+    --pd-gradient-start: #ffffff;
+    --pd-gradient-end: #e8f0fe;
+
+    /* Theme Variables */
+    --pd-shadow: rgba(26, 115, 232, 0.3);
+    --pd-radius: 6px;
+    --pd-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --pd-hover: #f1f3f4;
+    --pd-current-day: #e8f0fe;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes pd-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--pd-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--pd-primary);
+    }
+}
+
+@keyframes decision-fade {
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes pd-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--pd-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--pd-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.progressive-decision {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--pd-text);
+    line-height: 1.6;
+    background: var(--pd-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom right,
+            var(--pd-gradient-start),
+            var(--pd-gradient-end));
+}
+
+.progressive-decision .container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--pd-primary);
+    box-shadow: 0 0 30px var(--pd-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--pd-radius);
+    z-index: 1;
+}
+
+.progressive-decision .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--pd-primary),
+            var(--pd-secondary),
+            transparent);
+    animation: pd-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.progressive-decision #calendar-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--pd-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+.progressive-decision #calendar-title::before,
+.progressive-decision #calendar-title::after {
+    content: "•";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--pd-secondary);
+    font-size: 1.5rem;
+}
+
+.progressive-decision #calendar-title::before {
+    left: 1rem;
+}
+
+.progressive-decision #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.progressive-decision #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(26, 115, 232, 0.1);
+    border: 1px solid var(--pd-primary);
+    border-radius: var(--pd-radius);
+    position: relative;
+}
+
+.progressive-decision #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--pd-primary),
+            transparent);
+}
+
+.progressive-decision #current-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--pd-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.progressive-decision #today-weather {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--pd-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.progressive-decision #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.progressive-decision .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--pd-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--pd-bg);
+    box-shadow:
+        0 0 15px var(--pd-shadow),
+        inset 0 0 10px rgba(26, 115, 232, 0.1);
+}
+
+.progressive-decision .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressive-decision .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--pd-primary);
+    margin-top: -2px;
+}
+
+.progressive-decision .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--pd-secondary);
+    margin-top: -1px;
+}
+
+.progressive-decision .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--pd-highlight);
+    margin-top: -0.5px;
+}
+
+.progressive-decision .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--pd-highlight);
+    border-radius: 50%;
+    border: 1px solid var(--pd-secondary);
+    animation: pd-glow 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.progressive-decision table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--pd-primary);
+    border-radius: var(--pd-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.progressive-decision th {
+    background-color: rgba(26, 115, 232, 0.1);
+    color: var(--pd-primary) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--pd-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.progressive-decision th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.progressive-decision th .short-day {
+    display: none;
+}
+
+.progressive-decision td {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--pd-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--pd-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--pd-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.progressive-decision td:hover {
+    background-color: var(--pd-hover);
+    box-shadow: inset 0 0 15px var(--pd-shadow);
+}
+
+.progressive-decision .date-number {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--pd-text);
+}
+
+.progressive-decision td.current-day {
+    background-color: var(--pd-current-day);
+    border: 2px solid var(--pd-primary);
+    color: var(--pd-primary) !important;
+    font-weight: 700;
+    animation: pd-pulse 3s infinite;
+}
+
+.progressive-decision td.current-day .date-number {
+    color: var(--pd-primary) !important;
+    font-weight: 800;
+}
+
+.progressive-decision td.current-day::before {
+    content: "✓";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--pd-primary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.progressive-decision .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pd-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--pd-shadow);
+    transition: all var(--pd-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.progressive-decision .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--pd-secondary);
+    box-shadow: 0 0 15px var(--pd-primary);
+}
+
+/* Special event types */
+.progressive-decision .event-marker.holiday {
+    background-color: var(--pd-highlight);
+}
+
+.progressive-decision .event-marker.historic {
+    background-color: var(--pd-option-purple);
+}
+
+.progressive-decision .event-marker.patriotic {
+    background-color: var(--pd-option-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.progressive-decision .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--pd-primary);
+    padding: 25px;
+    color: var(--pd-text);
+    box-shadow: 0 0 30px var(--pd-shadow);
+    border-radius: var(--pd-radius);
+    animation: pd-glow 0.5s ease;
+}
+
+.progressive-decision .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--pd-primary),
+            var(--pd-secondary),
+            var(--pd-highlight));
+}
+
+.progressive-decision .modal-content h2 {
+    color: var(--pd-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.progressive-decision .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.progressive-decision .modal-content .event-time {
+    display: block;
+    font-weight: 700;
+    color: var(--pd-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.progressive-decision .modal-content .event-description {
+    background-color: rgba(26, 115, 232, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--pd-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--pd-radius) var(--pd-radius) 0;
+}
+
+.progressive-decision .modal-content button {
+    background-color: var(--pd-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--pd-transition);
+    border-radius: var(--pd-radius);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.progressive-decision .modal-content button:hover {
+    background-color: var(--pd-secondary);
+    box-shadow: 0 4px 6px -1px var(--pd-shadow);
+}
+
+.progressive-decision .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--pd-primary);
+    border: 1px solid var(--pd-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--pd-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.progressive-decision .modal .close-button:hover {
+    background-color: var(--pd-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.progressive-decision .button,
+.progressive-decision .transparent-button {
+    border: 1px solid var(--pd-primary);
+    color: var(--pd-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--pd-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--pd-radius);
+    letter-spacing: 0.05em;
+}
+
+.progressive-decision .button::before,
+.progressive-decision .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(26, 115, 232, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.progressive-decision .button:hover,
+.progressive-decision .transparent-button:hover {
+    background-color: var(--pd-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--pd-shadow);
+}
+
+.progressive-decision .button:hover::before,
+.progressive-decision .transparent-button:hover::before {
+    left: 100%;
+}
+
+.progressive-decision .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.progressive-decision #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.progressive-decision #theme-switcher {
+    background-color: white;
+    color: var(--pd-primary) !important;
+    border: 1px solid var(--pd-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    width: 100%;
+    border-radius: var(--pd-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a73e8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--pd-transition);
+    box-shadow: 0 1px 3px 0 var(--pd-shadow);
+}
+
+.progressive-decision #theme-switcher option {
+    background-color: white !important;
+    color: var(--pd-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
+}
+
+.progressive-decision #theme-switcher option:hover {
+    background-color: var(--pd-primary) !important;
+    color: white !important;
+}
+
+.progressive-decision #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.progressive-decision #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--pd-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--pd-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--pd-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--pd-radius);
+    box-shadow: 0 4px 6px -1px var(--pd-shadow);
+}
+
+.progressive-decision #backToTopBtn:hover {
+    background-color: var(--pd-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.progressive-decision footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--pd-primary);
+    color: var(--pd-text);
+    font-size: 0.8rem;
+}
+
+.progressive-decision footer::before {
+    content: "✓ ";
+    color: var(--pd-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .progressive-decision .container {
+        padding: 1.2rem;
+    }
+
+    .progressive-decision #calendar-title {
+        font-size: 2rem;
+    }
+
+    .progressive-decision #current-date {
+        font-size: 1.5rem;
+    }
+
+    .progressive-decision #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .progressive-decision th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .progressive-decision .container {
+        padding: 1rem;
+    }
+
+    .progressive-decision #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .progressive-decision .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .progressive-decision th .full-day {
+        display: none;
+    }
+
+    .progressive-decision th .short-day {
+        display: inline;
+    }
+
+    .progressive-decision th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .progressive-decision td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .progressive-decision #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .progressive-decision #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .progressive-decision .modal-content {
+        padding: 15px;
+    }
+
+    .progressive-decision .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .progressive-decision .container {
+        padding: 0.8rem;
+    }
+
+    .progressive-decision #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .progressive-decision #current-date {
+        font-size: 1.1rem;
+    }
+
+    .progressive-decision #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .progressive-decision .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .progressive-decision th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .progressive-decision td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .progressive-decision td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .progressive-decision #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .progressive-decision th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .progressive-decision td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .progressive-decision #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .progressive-decision #calendar-title {
+        font-size: 1.2rem;
+    }
+}
