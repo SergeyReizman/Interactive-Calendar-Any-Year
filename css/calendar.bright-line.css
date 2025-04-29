@@ -3,35 +3,82 @@
    Version: 4.1
    Updated: 2025-06-25
    Features:
-   - Ultra-clean black and white design
+   - Clean, high-contrast color scheme
    - Optimized weekday headers
-   - Mobile-responsive layout
-   - Precise line-based UI elements
-   - Enhanced readability
-   - No-frills typography
-   - Maximum contrast
-   - Essential functionality
+   - Mobile-responsive design
+   - Geometric UI elements
+   - Subtle animation effects
+   - Enhanced accessibility
+   - Crisp typography
+   - Minimal visual clutter
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto+Mono:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@500&display=swap');
 
 :root {
     /* Bright Line Color Palette */
     --bl-bg: #FFFFFF;
-    --bl-text: #000000;
-    --bl-primary: #000000;
-    --bl-secondary: #555555;
+    --bl-text: #222222;
+    --bl-primary: #0066FF;
+    /* Vivid blue */
+    --bl-secondary: #FF3B30;
+    /* Alert red */
 
     /* Accent Colors */
-    --bl-accent: #000000;
-    --bl-hover: #F5F5F5;
-    --bl-current: #EDEDED;
+    --bl-accent-blue: #005CE6;
+    --bl-accent-green: #28CD41;
+    --bl-accent-yellow: #FFCC00;
+    --bl-accent-purple: #AF52DE;
+    --bl-accent-orange: #FF9500;
+
+    /* Neutral Colors */
+    --bl-light-gray: #F2F2F7;
+    --bl-medium-gray: #C7C7CC;
+    --bl-dark-gray: #8E8E93;
 
     /* Theme Variables */
     --bl-shadow: rgba(0, 0, 0, 0.1);
-    --bl-radius: 0px;
-    --bl-transition: 0.15s ease-out;
-    --bl-border: 2px solid var(--bl-primary);
+    --bl-radius: 6px;
+    --bl-transition: 0.2s ease-out;
+    --bl-hover: #F8F8F8;
+    --bl-current-day: #E6F0FF;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes bl-fade {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes bl-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes bl-highlight {
+
+    0%,
+    100% {
+        background-color: var(--bl-current-day);
+    }
+
+    50% {
+        background-color: rgba(0, 102, 255, 0.15);
+    }
 }
 
 /* ==================== BASE STYLES ==================== */
@@ -48,7 +95,8 @@
 .bright-line .container {
     background-color: var(--bl-bg);
     padding: 2rem;
-    border: var(--bl-border);
+    border: 1px solid var(--bl-medium-gray);
+    box-shadow: 0 2px 12px var(--bl-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
@@ -56,16 +104,47 @@
     border-radius: var(--bl-radius);
 }
 
+.bright-line .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bl-primary),
+            var(--bl-accent-purple));
+}
+
 /* ==================== HEADER & TITLE ==================== */
 .bright-line #calendar-title {
-    font-family: 'Roboto Mono', monospace;
-    color: var(--bl-primary);
+    font-family: 'Inter', sans-serif;
+    color: var(--bl-text);
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: -0.02em;
-    text-transform: uppercase;
+    position: relative;
+}
+
+.bright-line #calendar-title::before,
+.bright-line #calendar-title::after {
+    content: "—";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bl-medium-gray);
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.bright-line #calendar-title::before {
+    left: 1rem;
+}
+
+.bright-line #calendar-title::after {
+    right: 1rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -73,22 +152,23 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    border-bottom: var(--bl-border);
+    background-color: var(--bl-light-gray);
+    border-radius: var(--bl-radius);
 }
 
 .bright-line #current-date {
     font-family: 'Roboto Mono', monospace;
-    color: var(--bl-primary);
-    font-size: 1.5rem;
+    color: var(--bl-text);
+    font-size: 1.6rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
 }
 
 .bright-line #today-weather {
     font-family: 'Inter', sans-serif;
-    color: var(--bl-secondary);
-    font-size: 1rem;
-    font-weight: 400;
+    color: var(--bl-dark-gray);
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -101,7 +181,7 @@
 .bright-line .clock-face {
     width: 160px;
     height: 160px;
-    border: var(--bl-border);
+    border: 2px solid var(--bl-text);
     border-radius: 50%;
     position: relative;
     background-color: var(--bl-bg);
@@ -119,16 +199,16 @@
 .bright-line .hour-hand {
     width: 35%;
     left: 15%;
-    height: 3px;
-    background: var(--bl-primary);
-    margin-top: -1.5px;
+    height: 4px;
+    background: var(--bl-text);
+    margin-top: -2px;
 }
 
 .bright-line .minute-hand {
     width: 45%;
     left: 5%;
     height: 2px;
-    background: var(--bl-primary);
+    background: var(--bl-text);
     margin-top: -1px;
 }
 
@@ -140,6 +220,7 @@
     margin-top: -0.5px;
 }
 
+/* Clock center dot */
 .bright-line .clock-face::after {
     content: "";
     position: absolute;
@@ -148,7 +229,7 @@
     transform: translate(-50%, -50%);
     width: 8px;
     height: 8px;
-    background-color: var(--bl-primary);
+    background-color: var(--bl-text);
     border-radius: 50%;
 }
 
@@ -158,22 +239,18 @@
     border-collapse: collapse;
     margin: 2rem auto;
     background-color: var(--bl-bg);
-    border: var(--bl-border);
     table-layout: fixed;
 }
 
 .bright-line th {
-    background-color: var(--bl-bg);
-    color: var(--bl-primary) !important;
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 500;
-    padding: 1rem 0.3rem;
-    border: var(--bl-border);
+    background-color: var(--bl-light-gray);
+    color: var(--bl-text) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-bottom: 2px solid var(--bl-medium-gray);
     position: relative;
-    font-size: 0.8rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.85rem;
 }
 
 /* Full names for desktop */
@@ -189,13 +266,13 @@
 .bright-line td {
     background-color: var(--bl-bg);
     color: var(--bl-text);
-    padding: 0.8rem 0.3rem;
-    border: var(--bl-border);
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--bl-light-gray);
     height: 100px;
     vertical-align: top;
     transition: all var(--bl-transition);
     position: relative;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
 .bright-line td:hover {
@@ -205,14 +282,32 @@
 .bright-line .date-number {
     display: block;
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     color: var(--bl-text);
     font-family: 'Roboto Mono', monospace;
 }
 
 .bright-line td.current-day {
-    background-color: var(--bl-current);
+    background-color: var(--bl-current-day);
+    color: var(--bl-primary) !important;
     font-weight: 600;
+    animation: bl-highlight 3s infinite;
+}
+
+.bright-line td.current-day .date-number {
+    color: var(--bl-primary) !important;
+    font-weight: 700;
+}
+
+.bright-line td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--bl-primary);
+    border-radius: 50%;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -230,64 +325,116 @@
     transform: scale(1.5);
 }
 
+/* Special event types */
+.bright-line .event-marker.holiday {
+    background-color: var(--bl-accent-orange);
+}
+
+.bright-line .event-marker.historic {
+    background-color: var(--bl-accent-purple);
+}
+
+.bright-line .event-marker.patriotic {
+    background-color: var(--bl-secondary);
+}
+
 /* ==================== MODAL STYLES ==================== */
 .bright-line .modal-content {
     position: relative;
     background-color: var(--bl-bg);
-    border: var(--bl-border);
-    padding: 2rem;
+    border: 1px solid var(--bl-medium-gray);
+    padding: 25px;
     color: var(--bl-text);
+    box-shadow: 0 4px 20px var(--bl-shadow);
+    border-radius: var(--bl-radius);
+}
+
+.bright-line .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bl-primary),
+            var(--bl-accent-purple));
 }
 
 .bright-line .modal-content h2 {
-    color: var(--bl-primary);
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.5em;
-    margin-bottom: 1rem;
-    font-weight: 500;
+    color: var(--bl-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.bright-line .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1em;
 }
 
 .bright-line .modal-content .event-time {
     display: block;
     font-weight: 600;
     color: var(--bl-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
     font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+}
+
+.bright-line .modal-content .event-description {
+    background-color: var(--bl-light-gray);
+    padding: 15px;
+    border-left: 3px solid var(--bl-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--bl-radius) var(--bl-radius) 0;
 }
 
 .bright-line .modal-content button {
     background-color: var(--bl-primary);
-    color: var(--bl-bg);
+    color: white;
     border: none;
-    padding: 0.7rem 1.4rem;
+    padding: 10px 20px;
     font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--bl-transition);
+    border-radius: var(--bl-radius);
     font-family: 'Inter', sans-serif;
-    margin-top: 1rem;
+}
+
+.bright-line .modal-content button:hover {
+    background-color: var(--bl-accent-blue);
 }
 
 .bright-line .modal .close-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
-    color: var(--bl-primary);
-    border: var(--bl-border);
-    width: 2rem;
-    height: 2rem;
+    color: var(--bl-dark-gray);
+    border: none;
+    width: 28px;
+    height: 28px;
     cursor: pointer;
+    transition: all var(--bl-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    border-radius: 50%;
+    font-size: 1.2em;
+}
+
+.bright-line .modal .close-button:hover {
+    color: var(--bl-text);
+    background-color: var(--bl-light-gray);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .bright-line .button,
 .bright-line .transparent-button {
-    border: var(--bl-border);
+    border: 2px solid var(--bl-primary);
     color: var(--bl-primary);
     background-color: transparent;
     padding: 0.7rem 1.4rem;
@@ -295,13 +442,16 @@
     font-weight: 600;
     cursor: pointer;
     transition: all var(--bl-transition);
+    position: relative;
+    overflow: hidden;
     margin: 0.5rem;
+    border-radius: var(--bl-radius);
 }
 
 .bright-line .button:hover,
 .bright-line .transparent-button:hover {
     background-color: var(--bl-primary);
-    color: var(--bl-bg);
+    color: white;
 }
 
 .bright-line .controls {
@@ -313,42 +463,70 @@
 }
 
 /* ==================== THEME SWITCHER ==================== */
+.bright-line #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+}
+
 .bright-line #theme-switcher {
     background-color: var(--bl-bg);
-    color: var(--bl-primary) !important;
-    border: var(--bl-border);
+    color: var(--bl-text) !important;
+    border: 2px solid var(--bl-medium-gray);
     padding: 0.7rem 2.2rem 0.7rem 0.9rem;
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
     width: 100%;
+    border-radius: var(--bl-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222222'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.6rem center;
     background-size: 0.9rem;
     cursor: pointer;
+    transition: all var(--bl-transition);
+}
+
+.bright-line #theme-switcher option {
+    background-color: var(--bl-bg) !important;
+    color: var(--bl-text) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.bright-line #theme-switcher:focus {
+    outline: none;
+    border-color: var(--bl-primary);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .bright-line #backToTopBtn {
     position: fixed;
-    right: 2rem;
-    bottom: 2rem;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: var(--bl-border);
-    padding: 0.7rem 1.4rem;
+    border: 2px solid var(--bl-medium-gray);
+    padding: 0.9rem 1.6rem;
     font-size: 0.9rem;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    color: var(--bl-primary);
+    color: var(--bl-text);
     background-color: var(--bl-bg);
     cursor: pointer;
     transition: all var(--bl-transition);
     opacity: 0.9;
     display: none;
+    border-radius: var(--bl-radius);
+    box-shadow: 0 2px 8px var(--bl-shadow);
+}
+
+.bright-line #backToTopBtn:hover {
+    border-color: var(--bl-primary);
+    color: var(--bl-primary);
 }
 
 /* ==================== FOOTER ==================== */
@@ -356,13 +534,48 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.2rem;
-    border-top: var(--bl-border);
-    color: var(--bl-text);
+    border-top: 1px solid var(--bl-light-gray);
+    color: var(--bl-dark-gray);
     font-size: 0.8rem;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .bright-line .container {
+        padding: 1.5rem;
+    }
+
+    .bright-line #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .bright-line #current-date {
+        font-size: 1.4rem;
+    }
+
+    .bright-line #today-weather {
+        font-size: 1rem;
+    }
+
+    .bright-line th {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.3rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .bright-line .container {
+        padding: 1.2rem;
+    }
+
+    .bright-line #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .bright-line .clock-face {
+        width: 140px;
+        height: 140px;
+    }
 
     /* Switch to short day names */
     .bright-line th .full-day {
@@ -373,8 +586,36 @@
         display: inline;
     }
 
+    .bright-line th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+
     .bright-line td {
+        padding: 0.7rem 0.2rem;
         height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .bright-line #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .bright-line #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .bright-line .modal-content {
+        padding: 20px;
+    }
+
+    .bright-line .modal-content h2 {
+        font-size: 1.4em;
     }
 }
 
@@ -384,10 +625,66 @@
     }
 
     .bright-line #calendar-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+    }
+
+    .bright-line #current-date {
+        font-size: 1.2rem;
+    }
+
+    .bright-line #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .bright-line .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .bright-line th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.1rem;
     }
 
     .bright-line td {
+        padding: 0.5rem 0.1rem;
         height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .bright-line td.current-day::before {
+        width: 5px;
+        height: 5px;
+    }
+
+    .bright-line #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .bright-line th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .bright-line td {
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .bright-line #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .bright-line #calendar-title {
+        font-size: 1.2rem;
+    }
+
+    .bright-line #calendar-title::before,
+    .bright-line #calendar-title::after {
+        display: none;
     }
 }
