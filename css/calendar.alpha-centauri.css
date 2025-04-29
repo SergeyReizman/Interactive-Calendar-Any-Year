@@ -1,0 +1,812 @@
+/* ==========================================================================
+   Alpha Centauri Theme - Stellar Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Cosmic color scheme inspired by Alpha Centauri system
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Stellar-inspired UI elements
+   - Animated cosmic effects
+   - Enhanced accessibility
+   - Nebula texture backgrounds
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Alpha Centauri Color Palette */
+    --ac-bg: #0a0c18;
+    --ac-text: #E0E8FF;
+    --ac-primary: #7B68EE;
+    /* Medium slate blue */
+    --ac-secondary: #9370DB;
+    /* Medium purple */
+
+    /* Stellar Colors */
+    --ac-star-blue: #4169E1;
+    /* Royal blue */
+    --ac-star-orange: #FF8C00;
+    /* Dark orange */
+    --ac-nebula-pink: #DB7093;
+    /* Pale violet red */
+    --ac-planet-brown: #CD853F;
+    /* Peru */
+    --ac-gold: #FFD700;
+    /* Gold */
+
+    /* Gradient Colors */
+    --ac-gradient-start: #000012;
+    --ac-gradient-end: #1A003A;
+
+    /* Theme Variables */
+    --ac-shadow: rgba(123, 104, 238, 0.3);
+    --ac-radius: 4px;
+    --ac-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --ac-hover: #1E1E3A;
+    --ac-current-day: #2A1E4A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ac-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--ac-primary),
+            0 0 10px rgba(147, 112, 219, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--ac-primary),
+            0 0 25px rgba(147, 112, 219, 0.7);
+    }
+}
+
+@keyframes cosmic-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes ac-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ac-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--ac-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.alpha-centauri {
+    font-family: 'Space Mono', monospace;
+    color: var(--ac-text);
+    line-height: 1.6;
+    background: var(--ac-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(123, 104, 238, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(147, 112, 219, 0.05) 0%,
+            transparent 20%);
+    background-size: 100px 100px;
+    animation: cosmic-drift 60s linear infinite;
+}
+
+.alpha-centauri::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center,
+            rgba(123, 104, 238, 0.03) 0%,
+            transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Starfield pattern */
+.alpha-centauri::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><circle cx="20" cy="20" r="1" fill="%237B68EE"/><circle cx="50" cy="50" r="0.8" fill="%237B68EE"/><circle cx="80" cy="30" r="0.6" fill="%239370DB"/><circle cx="30" cy="80" r="0.7" fill="%239370DB"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.alpha-centauri .container {
+    background-color: rgba(10, 12, 24, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--ac-primary);
+    box-shadow: 0 0 30px var(--ac-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ac-radius);
+    z-index: 1;
+}
+
+.alpha-centauri .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ac-primary),
+            var(--ac-secondary),
+            transparent);
+    animation: ac-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.alpha-centauri #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ac-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: ac-pulse 3s infinite;
+}
+
+.alpha-centauri #calendar-title::before,
+.alpha-centauri #calendar-title::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ac-secondary);
+    font-size: 1.5rem;
+}
+
+.alpha-centauri #calendar-title::before {
+    left: 1rem;
+    animation: ac-pulse 2.5s infinite 0.5s;
+}
+
+.alpha-centauri #calendar-title::after {
+    right: 1rem;
+    animation: ac-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.alpha-centauri #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(123, 104, 238, 0.1);
+    border: 1px solid var(--ac-primary);
+    border-radius: var(--ac-radius);
+    position: relative;
+}
+
+.alpha-centauri #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ac-primary),
+            transparent);
+}
+
+.alpha-centauri #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ac-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.alpha-centauri #today-weather {
+    font-family: 'Space Mono', monospace;
+    color: var(--ac-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.alpha-centauri #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.alpha-centauri .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--ac-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ac-bg);
+    box-shadow:
+        0 0 15px var(--ac-shadow),
+        inset 0 0 10px rgba(123, 104, 238, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(123, 104, 238, 0.1) 100%);
+}
+
+/* Constellation numerals for clock */
+.alpha-centauri .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B68EE">XII</text><text x="82" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B68EE">III</text><text x="50" y="92" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B68EE">VI</text><text x="18" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B68EE">IX</text></svg>');
+}
+
+.alpha-centauri .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alpha-centauri .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ac-primary);
+    margin-top: -2px;
+}
+
+.alpha-centauri .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ac-secondary);
+    margin-top: -1px;
+}
+
+.alpha-centauri .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ac-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Pulsar */
+.alpha-centauri .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--ac-gold);
+    border-radius: 50%;
+    border: 1px solid var(--ac-secondary);
+    animation: ac-glow 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.alpha-centauri table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 20, 40, 0.9);
+    border: 1px solid var(--ac-primary);
+    border-radius: var(--ac-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.alpha-centauri th {
+    background-color: rgba(123, 104, 238, 0.15);
+    color: var(--ac-primary) !important;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ac-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.alpha-centauri th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.alpha-centauri th .short-day {
+    display: none;
+}
+
+.alpha-centauri td {
+    background-color: rgba(15, 15, 35, 0.9);
+    color: var(--ac-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ac-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ac-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.alpha-centauri td:hover {
+    background-color: var(--ac-hover);
+    box-shadow: inset 0 0 15px var(--ac-shadow);
+}
+
+.alpha-centauri .date-number {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--ac-text);
+}
+
+.alpha-centauri td.current-day {
+    background-color: var(--ac-current-day);
+    border: 2px solid var(--ac-secondary);
+    color: var(--ac-secondary) !important;
+    font-weight: 700;
+    animation: ac-glow 3s infinite;
+}
+
+.alpha-centauri td.current-day .date-number {
+    color: var(--ac-secondary) !important;
+    font-weight: 800;
+}
+
+.alpha-centauri td.current-day::before {
+    content: "★";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ac-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.alpha-centauri .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ac-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--ac-shadow);
+    transition: all var(--ac-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.alpha-centauri .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ac-secondary);
+    box-shadow: 0 0 15px var(--ac-primary);
+}
+
+/* Special event types */
+.alpha-centauri .event-marker.holiday {
+    background-color: var(--ac-gold);
+}
+
+.alpha-centauri .event-marker.historic {
+    background-color: var(--ac-nebula-pink);
+}
+
+.alpha-centauri .event-marker.patriotic {
+    background-color: var(--ac-star-orange);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.alpha-centauri .modal-content {
+    position: relative;
+    background-color: rgba(20, 20, 30, 0.98);
+    border: 1px solid var(--ac-primary);
+    padding: 25px;
+    color: var(--ac-text);
+    box-shadow: 0 0 30px var(--ac-shadow);
+    border-radius: var(--ac-radius);
+    animation: ac-glow 0.5s ease;
+}
+
+.alpha-centauri .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ac-primary),
+            var(--ac-secondary),
+            var(--ac-gold));
+}
+
+.alpha-centauri .modal-content h2 {
+    color: var(--ac-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.alpha-centauri .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.alpha-centauri .modal-content .event-time {
+    display: block;
+    font-weight: 700;
+    color: var(--ac-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.alpha-centauri .modal-content .event-description {
+    background-color: rgba(123, 104, 238, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--ac-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ac-radius) var(--ac-radius) 0;
+}
+
+.alpha-centauri .modal-content button {
+    background-color: var(--ac-primary);
+    color: var(--ac-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    border-radius: var(--ac-radius);
+    font-family: 'Space Mono', monospace;
+}
+
+.alpha-centauri .modal-content button:hover {
+    background-color: var(--ac-secondary);
+    box-shadow: 0 4px 6px -1px var(--ac-shadow);
+}
+
+.alpha-centauri .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ac-primary);
+    border: 1px solid var(--ac-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.alpha-centauri .modal .close-button:hover {
+    background-color: var(--ac-primary);
+    color: var(--ac-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.alpha-centauri .button,
+.alpha-centauri .transparent-button {
+    border: 1px solid var(--ac-primary);
+    color: var(--ac-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ac-radius);
+    letter-spacing: 0.1em;
+}
+
+.alpha-centauri .button::before,
+.alpha-centauri .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(123, 104, 238, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.alpha-centauri .button:hover,
+.alpha-centauri .transparent-button:hover {
+    background-color: var(--ac-primary);
+    color: var(--ac-bg);
+    box-shadow: 0 4px 6px -1px var(--ac-shadow);
+}
+
+.alpha-centauri .button:hover::before,
+.alpha-centauri .transparent-button:hover::before {
+    left: 100%;
+}
+
+.alpha-centauri .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.alpha-centauri #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.alpha-centauri #theme-switcher {
+    background-color: var(--ac-bg);
+    color: var(--ac-primary) !important;
+    border: 1px solid var(--ac-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    width: 100%;
+    border-radius: var(--ac-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237B68EE'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    box-shadow: 0 1px 3px 0 var(--ac-shadow);
+}
+
+.alpha-centauri #theme-switcher option {
+    background-color: var(--ac-bg) !important;
+    color: var(--ac-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
+}
+
+.alpha-centauri #theme-switcher option:hover {
+    background-color: var(--ac-primary) !important;
+    color: var(--ac-bg) !important;
+}
+
+.alpha-centauri #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 104, 238, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.alpha-centauri #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ac-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--ac-primary);
+    background-color: var(--ac-bg);
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ac-radius);
+    box-shadow: 0 4px 6px -1px var(--ac-shadow);
+}
+
+.alpha-centauri #backToTopBtn:hover {
+    background-color: var(--ac-primary);
+    color: var(--ac-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.alpha-centauri footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ac-primary);
+    color: var(--ac-text);
+    font-size: 0.8rem;
+}
+
+.alpha-centauri footer::before {
+    content: "🪐 ";
+    color: var(--ac-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .alpha-centauri .container {
+        padding: 1.2rem;
+    }
+
+    .alpha-centauri #calendar-title {
+        font-size: 2rem;
+    }
+
+    .alpha-centauri #current-date {
+        font-size: 1.5rem;
+    }
+
+    .alpha-centauri #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .alpha-centauri th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .alpha-centauri .container {
+        padding: 1rem;
+    }
+
+    .alpha-centauri #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .alpha-centauri .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .alpha-centauri th .full-day {
+        display: none;
+    }
+
+    .alpha-centauri th .short-day {
+        display: inline;
+    }
+
+    .alpha-centauri th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .alpha-centauri td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .alpha-centauri #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .alpha-centauri #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .alpha-centauri .modal-content {
+        padding: 15px;
+    }
+
+    .alpha-centauri .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .alpha-centauri .container {
+        padding: 0.8rem;
+    }
+
+    .alpha-centauri #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .alpha-centauri #current-date {
+        font-size: 1.1rem;
+    }
+
+    .alpha-centauri #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .alpha-centauri .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .alpha-centauri th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .alpha-centauri td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .alpha-centauri td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .alpha-centauri #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .alpha-centauri th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .alpha-centauri td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .alpha-centauri #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .alpha-centauri #calendar-title {
+        font-size: 1.2rem;
+    }
+}

@@ -51,7 +51,8 @@ const generateStars = () => {
 // Theme Management
 const applyTheme = (theme) => {
   body.classList.remove(
-    'abandoned-castle', 'action-time', 'adelaide-skyline', 'adriatic-sea', 'aloe-vera', 'alpine-landscape', 'amazon-dolphin',
+    'abandoned-castle', 'action-time', 'adelaide-skyline', 'adriatic-sea', 'aloe-vera', 
+    'alpha-centauri', 'alpine-landscape', 'amazon-dolphin',
     'amazon-river', 'andromeda-galaxy', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 'art-studio', 
     'autumn-harvest', 'away-from-home',
     'bamboo-flute',
