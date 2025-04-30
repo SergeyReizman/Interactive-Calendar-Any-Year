@@ -1,0 +1,730 @@
+/* ==========================================================================
+   Random Coincidence Theme - Serendipitous Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Chaotic yet harmonious color scheme
+   - Dynamic weekday headers
+   - Mobile-responsive design
+   - Unexpected UI elements
+   - Playful animations
+   - Enhanced serendipity
+   - Organic texture patterns
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Patrick+Hand&display=swap');
+
+:root {
+    /* Random Coincidence Color Palette */
+    --rc-bg: #FFF5F5;
+    --rc-text: #333333;
+    --rc-primary: #FF6B6B;
+    /* Coral */
+    --rc-secondary: #4ECDC4;
+    /* Tiffany blue */
+
+    /* Accent Colors */
+    --rc-accent1: #FFBE0B;
+    /* Amber */
+    --rc-accent2: #FB5607;
+    /* Pumpkin */
+    --rc-accent3: #8338EC;
+    /* Electric purple */
+    --rc-accent4: #3A86FF;
+    /* Azure */
+    --rc-accent5: #FF006E;
+    /* Rose */
+
+    /* Gradient Colors */
+    --rc-gradient-start: #FFEEEE;
+    --rc-gradient-end: #EEFFFF;
+
+    /* Theme Variables */
+    --rc-shadow: rgba(255, 107, 107, 0.3);
+    --rc-radius: 8px;
+    --rc-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --rc-hover: #FFE2E2;
+    --rc-current-day: #E0F7FA;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes rc-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes rc-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rc-color-shift {
+
+    0%,
+    100% {
+        background-color: var(--rc-accent1);
+    }
+
+    20% {
+        background-color: var(--rc-accent2);
+    }
+
+    40% {
+        background-color: var(--rc-accent3);
+    }
+
+    60% {
+        background-color: var(--rc-accent4);
+    }
+
+    80% {
+        background-color: var(--rc-accent5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.random-coincidence {
+    font-family: 'Patrick Hand', cursive;
+    color: var(--rc-text);
+    line-height: 1.6;
+    background: var(--rc-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 10% 20%,
+            rgba(255, 107, 107, 0.1) 0%,
+            transparent 20%),
+        radial-gradient(circle at 90% 80%,
+            rgba(78, 205, 196, 0.1) 0%,
+            transparent 20%);
+}
+
+.random-coincidence .container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border: 2px dashed var(--rc-primary);
+    box-shadow: 0 0 30px var(--rc-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--rc-radius);
+    z-index: 1;
+}
+
+.random-coincidence .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--rc-accent1),
+            var(--rc-accent2),
+            var(--rc-accent3),
+            var(--rc-accent4),
+            var(--rc-accent5));
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.random-coincidence #calendar-title {
+    font-family: 'Comic Neue', cursive;
+    color: var(--rc-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: rc-bounce 2s infinite;
+}
+
+.random-coincidence #calendar-title::before,
+.random-coincidence #calendar-title::after {
+    content: "✨";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rc-secondary);
+    font-size: 1.5rem;
+    animation: rc-spin 4s linear infinite;
+}
+
+.random-coincidence #calendar-title::before {
+    left: 1rem;
+}
+
+.random-coincidence #calendar-title::after {
+    right: 1rem;
+    animation-direction: reverse;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.random-coincidence #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 2px dotted var(--rc-primary);
+    border-radius: var(--rc-radius);
+    position: relative;
+}
+
+.random-coincidence #current-date {
+    font-family: 'Comic Neue', cursive;
+    color: var(--rc-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.random-coincidence #today-weather {
+    font-family: 'Patrick Hand', cursive;
+    color: var(--rc-secondary);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.random-coincidence #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.random-coincidence .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--rc-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--rc-bg);
+    box-shadow:
+        0 0 15px var(--rc-shadow),
+        inset 0 0 10px rgba(255, 107, 107, 0.1);
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><text x="50" y="18" text-anchor="middle" font-family="Comic Neue" font-size="12" fill="%23FF6B6B">12</text><text x="82" y="55" text-anchor="middle" font-family="Comic Neue" font-size="12" fill="%234ECDC4">3</text><text x="50" y="92" text-anchor="middle" font-family="Comic Neue" font-size="12" fill="%23FF6B6B">6</text><text x="18" y="55" text-anchor="middle" font-family="Comic Neue" font-size="12" fill="%234ECDC4">9</text></svg>');
+}
+
+.random-coincidence .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.random-coincidence .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--rc-primary);
+    margin-top: -2px;
+}
+
+.random-coincidence .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--rc-secondary);
+    margin-top: -1px;
+}
+
+.random-coincidence .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--rc-accent5);
+    margin-top: -0.5px;
+}
+
+.random-coincidence .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--rc-accent5);
+    border-radius: 50%;
+    border: 2px solid var(--rc-secondary);
+    animation: rc-color-shift 10s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.random-coincidence table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    margin: 2rem auto;
+    background-color: transparent;
+}
+
+.random-coincidence th {
+    background-color: rgba(255, 107, 107, 0.2);
+    color: var(--rc-primary) !important;
+    font-family: 'Patrick Hand', cursive;
+    font-weight: 700;
+    padding: 0.8rem 0.3rem;
+    border: 2px solid var(--rc-primary);
+    position: relative;
+    font-size: 0.9rem;
+    border-radius: var(--rc-radius);
+}
+
+.random-coincidence th .full-day {
+    display: inline;
+}
+
+.random-coincidence th .short-day {
+    display: none;
+}
+
+.random-coincidence td {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--rc-text);
+    padding: 0.8rem 0.3rem;
+    border: 2px solid var(--rc-secondary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--rc-transition);
+    position: relative;
+    font-size: 0.85rem;
+    border-radius: var(--rc-radius);
+}
+
+.random-coincidence td:hover {
+    background-color: var(--rc-hover);
+    transform: rotate(1deg);
+    box-shadow: 0 5px 15px var(--rc-shadow);
+}
+
+.random-coincidence .date-number {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--rc-text);
+}
+
+.random-coincidence td.current-day {
+    background-color: var(--rc-current-day);
+    border: 3px solid var(--rc-accent3);
+    color: var(--rc-accent3) !important;
+    font-weight: 700;
+    animation: rc-bounce 1s infinite;
+}
+
+.random-coincidence td.current-day .date-number {
+    color: var(--rc-accent3) !important;
+    font-weight: 800;
+}
+
+.random-coincidence td.current-day::before {
+    content: "🎉";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.random-coincidence .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--rc-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--rc-shadow);
+    transition: all var(--rc-transition);
+    border: 1px solid white;
+}
+
+.random-coincidence .event-marker:hover {
+    transform: scale(1.8) rotate(20deg);
+    background-color: var(--rc-secondary);
+}
+
+.random-coincidence .event-marker.holiday {
+    background-color: var(--rc-accent1);
+}
+
+.random-coincidence .event-marker.historic {
+    background-color: var(--rc-accent2);
+}
+
+.random-coincidence .event-marker.patriotic {
+    background-color: var(--rc-accent4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.random-coincidence .modal-content {
+    position: relative;
+    background-color: white;
+    border: 3px solid var(--rc-primary);
+    padding: 25px;
+    color: var(--rc-text);
+    box-shadow: 0 0 30px var(--rc-shadow);
+    border-radius: var(--rc-radius);
+}
+
+.random-coincidence .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(45deg,
+            var(--rc-primary),
+            var(--rc-primary) 10px,
+            var(--rc-secondary) 10px,
+            var(--rc-secondary) 20px);
+}
+
+.random-coincidence .modal-content h2 {
+    color: var(--rc-primary);
+    font-family: 'Comic Neue', cursive;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.random-coincidence .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.random-coincidence .modal-content .event-time {
+    display: block;
+    font-weight: 700;
+    color: var(--rc-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.random-coincidence .modal-content .event-description {
+    background-color: rgba(255, 107, 107, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--rc-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--rc-radius) var(--rc-radius) 0;
+}
+
+.random-coincidence .modal-content button {
+    background-color: var(--rc-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--rc-transition);
+    border-radius: var(--rc-radius);
+    font-family: 'Patrick Hand', cursive;
+}
+
+.random-coincidence .modal-content button:hover {
+    background-color: var(--rc-secondary);
+    transform: scale(1.05);
+}
+
+.random-coincidence .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--rc-primary);
+    border: 2px solid var(--rc-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--rc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Comic Neue', cursive;
+}
+
+.random-coincidence .modal .close-button:hover {
+    background-color: var(--rc-primary);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.random-coincidence .button,
+.random-coincidence .transparent-button {
+    border: 2px solid var(--rc-primary);
+    color: var(--rc-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--rc-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--rc-radius);
+}
+
+.random-coincidence .button:hover,
+.random-coincidence .transparent-button:hover {
+    background-color: var(--rc-primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.random-coincidence .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.random-coincidence #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.random-coincidence #theme-switcher {
+    background-color: white;
+    color: var(--rc-primary) !important;
+    border: 2px solid var(--rc-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.9rem;
+    font-weight: 700;
+    width: 100%;
+    border-radius: var(--rc-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B6B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--rc-transition);
+}
+
+.random-coincidence #theme-switcher option {
+    background-color: white !important;
+    color: var(--rc-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.random-coincidence #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.random-coincidence #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 2px solid var(--rc-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+    color: var(--rc-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--rc-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--rc-radius);
+}
+
+.random-coincidence #backToTopBtn:hover {
+    background-color: var(--rc-primary);
+    color: white;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ==================== FOOTER ==================== */
+.random-coincidence footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 2px dashed var(--rc-primary);
+    color: var(--rc-text);
+    font-size: 0.8rem;
+}
+
+.random-coincidence footer::before {
+    content: "🎲 ";
+    color: var(--rc-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .random-coincidence .container {
+        padding: 1.2rem;
+    }
+
+    .random-coincidence #calendar-title {
+        font-size: 2rem;
+    }
+
+    .random-coincidence #current-date {
+        font-size: 1.5rem;
+    }
+
+    .random-coincidence #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .random-coincidence th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .random-coincidence .container {
+        padding: 1rem;
+    }
+
+    .random-coincidence #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .random-coincidence .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .random-coincidence th .full-day {
+        display: none;
+    }
+
+    .random-coincidence th .short-day {
+        display: inline;
+    }
+
+    .random-coincidence th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .random-coincidence td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .random-coincidence #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .random-coincidence #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .random-coincidence .modal-content {
+        padding: 15px;
+    }
+
+    .random-coincidence .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .random-coincidence .container {
+        padding: 0.8rem;
+    }
+
+    .random-coincidence #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .random-coincidence #current-date {
+        font-size: 1.1rem;
+    }
+
+    .random-coincidence #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .random-coincidence .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .random-coincidence th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .random-coincidence td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .random-coincidence td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .random-coincidence #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .random-coincidence th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .random-coincidence td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .random-coincidence #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .random-coincidence #calendar-title {
+        font-size: 1.2rem;
+    }
+}
