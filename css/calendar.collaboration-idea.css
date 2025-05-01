@@ -1,0 +1,603 @@
+/* ==========================================================================
+   Collaboration Idea Theme - Team Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Collaborative color scheme
+   - Interactive idea elements
+   - Mobile-responsive design
+   - Brainstorm-friendly UI
+   - Dynamic sticky-note effects
+   - Enhanced team visibility
+   - Whiteboard textures
+   - Creative typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap');
+
+:root {
+    /* Collaboration Color Palette */
+    --ci-bg: #f9f7f3;
+    --ci-text: #2d3436;
+    --ci-primary: #0984e3;
+    /* Idea blue */
+    --ci-secondary: #00b894;
+    /* Growth green */
+
+    /* Team Colors */
+    --ci-team1: #6c5ce7;
+    /* Creative purple */
+    --ci-team2: #fd79a8;
+    /* Energy pink */
+    --ci-team3: #fdcb6e;
+    /* Highlight yellow */
+    --ci-team4: #e17055;
+    /* Urgent orange */
+    --ci-team5: #00cec9;
+    /* Calm teal */
+
+    /* Whiteboard Colors */
+    --ci-whiteboard: #f0f3f9;
+    --ci-whiteboard-border: #dfe6e9;
+
+    /* Theme Variables */
+    --ci-shadow: rgba(9, 132, 227, 0.2);
+    --ci-radius: 8px;
+    --ci-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ci-hover: #e3f2fd;
+    --ci-current-day: #dff9fb;
+    --ci-sticky-note: #fffacd;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ci-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes ci-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes ci-rotate {
+    0% {
+        transform: rotate(-2deg);
+    }
+
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.collaboration-idea {
+    font-family: 'Figtree', sans-serif;
+    color: var(--ci-text);
+    line-height: 1.6;
+    background: var(--ci-bg);
+    min-height: 100vh;
+    position: relative;
+    background-image:
+        linear-gradient(var(--ci-whiteboard) 1px, transparent 1px),
+        linear-gradient(90deg, var(--ci-whiteboard) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.collaboration-idea .container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--ci-radius);
+    box-shadow: 0 10px 30px var(--ci-shadow);
+    position: relative;
+    max-width: 1600px;
+    margin: 0 auto;
+    border: 1px solid var(--ci-whiteboard-border);
+    overflow: hidden;
+}
+
+.collaboration-idea .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--ci-primary),
+            var(--ci-team1),
+            var(--ci-team2),
+            var(--ci-team3),
+            var(--ci-team4),
+            var(--ci-team5));
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.collaboration-idea #calendar-title {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--ci-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+.collaboration-idea #calendar-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--ci-sticky-note);
+    z-index: -1;
+    transform: rotate(-1deg);
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== TEAM INDICATORS ==================== */
+.collaboration-idea .team-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0 2rem;
+}
+
+.collaboration-idea .team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.collaboration-idea .team-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    border: 2px solid white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all var(--ci-transition);
+}
+
+.collaboration-idea .team-avatar:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Team color assignments */
+.collaboration-idea .team-1 {
+    background-color: var(--ci-team1);
+}
+
+.collaboration-idea .team-2 {
+    background-color: var(--ci-team2);
+}
+
+.collaboration-idea .team-3 {
+    background-color: var(--ci-team3);
+}
+
+.collaboration-idea .team-4 {
+    background-color: var(--ci-team4);
+}
+
+.collaboration-idea .team-5 {
+    background-color: var(--ci-team5);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.collaboration-idea #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--ci-sticky-note);
+    border-radius: var(--ci-radius);
+    position: relative;
+    transform: rotate(1deg);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.05);
+    animation: ci-rotate 4s ease-in-out infinite alternate;
+}
+
+.collaboration-idea #current-date {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--ci-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.collaboration-idea #today-weather {
+    font-family: 'Figtree', sans-serif;
+    color: var(--ci-secondary);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.collaboration-idea table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+}
+
+.collaboration-idea th {
+    background-color: var(--ci-primary);
+    color: white !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--ci-radius);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.collaboration-idea th .full-day {
+    display: inline;
+}
+
+.collaboration-idea th .short-day {
+    display: none;
+}
+
+.collaboration-idea td {
+    background-color: white;
+    color: var(--ci-text);
+    padding: 1rem 0.5rem;
+    border-radius: var(--ci-radius);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ci-transition);
+    position: relative;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--ci-whiteboard-border);
+}
+
+.collaboration-idea td:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px var(--ci-shadow);
+    z-index: 2;
+}
+
+.collaboration-idea .date-number {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--ci-text);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.collaboration-idea td.current-day {
+    background-color: var(--ci-current-day);
+    border: 2px solid var(--ci-secondary);
+    animation: ci-bounce 1s infinite;
+}
+
+.collaboration-idea td.current-day .date-number {
+    color: var(--ci-secondary) !important;
+}
+
+.collaboration-idea td.current-day::before {
+    content: "💡";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.collaboration-idea .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ci-primary);
+    margin: 0 1px;
+    transition: all var(--ci-transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.collaboration-idea .event-marker:hover {
+    transform: scale(1.8);
+}
+
+/* Team-specific event colors */
+.collaboration-idea .event-marker.team-1 {
+    background-color: var(--ci-team1);
+}
+
+.collaboration-idea .event-marker.team-2 {
+    background-color: var(--ci-team2);
+}
+
+.collaboration-idea .event-marker.team-3 {
+    background-color: var(--ci-team3);
+}
+
+.collaboration-idea .event-marker.team-4 {
+    background-color: var(--ci-team4);
+}
+
+.collaboration-idea .event-marker.team-5 {
+    background-color: var(--ci-team5);
+}
+
+/* Event types */
+.collaboration-idea .event-marker.meeting {
+    background-color: var(--ci-primary);
+    border-radius: 2px;
+    width: 12px;
+}
+
+.collaboration-idea .event-marker.deadline {
+    border-radius: 0;
+    transform: rotate(45deg);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.collaboration-idea .modal-content {
+    position: relative;
+    background-color: white;
+    padding: 2rem;
+    color: var(--ci-text);
+    border-radius: var(--ci-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--ci-whiteboard-border);
+}
+
+.collaboration-idea .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--ci-primary),
+            var(--ci-team1),
+            var(--ci-team2),
+            var(--ci-team3),
+            var(--ci-team4),
+            var(--ci-team5));
+}
+
+.collaboration-idea .modal-content h2 {
+    color: var(--ci-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.collaboration-idea .modal-content .event-team {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: var(--ci-primary);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.collaboration-idea .modal-content p {
+    margin-bottom: 1rem;
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+.collaboration-idea .modal-content .event-time {
+    display: block;
+    font-weight: 700;
+    color: var(--ci-secondary);
+    margin-bottom: 1rem;
+    font-size: 1.1em;
+}
+
+.collaboration-idea .modal-content .event-description {
+    background-color: var(--ci-sticky-note);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: var(--ci-radius);
+    position: relative;
+    transform: rotate(1deg);
+}
+
+.collaboration-idea .modal-content button {
+    background-color: var(--ci-primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ci-transition);
+    border-radius: var(--ci-radius);
+    font-family: 'Figtree', sans-serif;
+}
+
+.collaboration-idea .modal-content button:hover {
+    background-color: var(--ci-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--ci-shadow);
+}
+
+.collaboration-idea .modal .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    color: var(--ci-text);
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ci-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-radius: 50%;
+}
+
+.collaboration-idea .modal .close-button:hover {
+    background-color: var(--ci-whiteboard);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.collaboration-idea .button,
+.collaboration-idea .transparent-button {
+    border: 2px solid var(--ci-primary);
+    color: var(--ci-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ci-transition);
+    position: relative;
+    margin: 0.5rem;
+    border-radius: var(--ci-radius);
+}
+
+.collaboration-idea .button:hover,
+.collaboration-idea .transparent-button:hover {
+    background-color: var(--ci-primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--ci-shadow);
+}
+
+.collaboration-idea .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .collaboration-idea .container {
+        padding: 1.5rem;
+    }
+
+    .collaboration-idea #calendar-title {
+        font-size: 2rem;
+    }
+
+    .collaboration-idea #current-date {
+        font-size: 1.5rem;
+    }
+
+    .collaboration-idea th {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .collaboration-idea .container {
+        padding: 1.2rem;
+    }
+
+    .collaboration-idea #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .collaboration-idea th .full-day {
+        display: none;
+    }
+
+    .collaboration-idea th .short-day {
+        display: inline;
+    }
+
+    .collaboration-idea th {
+        font-size: 0.7rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .collaboration-idea td {
+        padding: 0.7rem 0.2rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+
+    .collaboration-idea .team-indicator {
+        gap: 0.5rem;
+    }
+
+    .collaboration-idea .team-avatar {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 576px) {
+    .collaboration-idea .container {
+        padding: 1rem;
+    }
+
+    .collaboration-idea #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .collaboration-idea #current-date {
+        font-size: 1.1rem;
+    }
+
+    .collaboration-idea th {
+        font-size: 0.65rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .collaboration-idea td {
+        padding: 0.6rem 0.1rem;
+        height: 70px;
+        font-size: 0.75rem;
+    }
+
+    .collaboration-idea .team-indicator {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 400px) {
+    .collaboration-idea th {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .collaboration-idea td {
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .collaboration-idea #calendar-title {
+        font-size: 1.2rem;
+    }
+}

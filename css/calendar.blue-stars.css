@@ -1,0 +1,622 @@
+/* ==========================================================================
+   Blue Stars Theme - Celestial Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Deep blue celestial color scheme
+   - Starry night effects
+   - Mobile-responsive design
+   - Constellation patterns
+   - Subtle twinkling animations
+   - Enhanced night mode readability
+   - Galactic textures
+   - Celestial typography
+   ========================================================================== */
+
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+   :root {
+       /* Celestial Color Palette */
+       --bs-bg: #0a0e23;
+       --bs-text: #e0e8ff;
+       --bs-primary: #4a6bff; /* Stellar blue */
+       --bs-secondary: #6d8eff; /* Lighter stellar blue */
+       
+       /* Star Colors */
+       --bs-star-blue: #5d8aff;
+       --bs-star-white: #ffffff;
+       --bs-star-gold: #ffd700;
+       --bs-nebula-purple: #9d4edd;
+       --bs-comet-teal: #00cecb;
+   
+       /* Gradient Colors */
+       --bs-gradient-start: #000428;
+       --bs-gradient-end: #004e92;
+   
+       /* Theme Variables */
+       --bs-shadow: rgba(74, 107, 255, 0.3);
+       --bs-radius: 6px;
+       --bs-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+       --bs-hover: #1a1f3a;
+       --bs-current-day: #1e2a6d;
+       --bs-star-size: 1px;
+   }
+   
+   /* ==================== ANIMATIONS ==================== */
+   @keyframes bs-twinkle {
+       0%, 100% { opacity: 0.3; }
+       50% { opacity: 1; }
+   }
+   
+   @keyframes bs-shooting-star {
+       0% { 
+           transform: translateX(-100px) translateY(100px);
+           opacity: 0;
+       }
+       20%, 80% { opacity: 1; }
+       100% { 
+           transform: translateX(calc(100vw + 100px)) translateY(-100px);
+           opacity: 0;
+       }
+   }
+   
+   @keyframes bs-pulse {
+       0%, 100% { box-shadow: 0 0 5px var(--bs-primary); }
+       50% { box-shadow: 0 0 15px var(--bs-primary); }
+   }
+   
+   /* ==================== BASE STYLES ==================== */
+   .blue-stars {
+       font-family: 'Space Grotesk', sans-serif;
+       color: var(--bs-text);
+       line-height: 1.6;
+       background: var(--bs-bg);
+       min-height: 100vh;
+       position: relative;
+       overflow-x: hidden;
+       background-image: 
+           radial-gradient(ellipse at top, 
+               var(--bs-gradient-start), 
+               var(--bs-gradient-end)),
+           url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.3"><circle cx="20" cy="20" r="%v" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="%v" fill="white" opacity="0.6"/><circle cx="80" cy="30" r="%v" fill="white" opacity="0.7"/><circle cx="30" cy="80" r="%v" fill="white" opacity="0.5"/></svg>'.replace(/%v/g, var(--bs-star-size)));
+   }
+   
+   /* Shooting star */
+   .blue-stars::before {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 4px;
+       height: 4px;
+       background: white;
+       border-radius: 50%;
+       box-shadow: 
+           0 0 10px 2px white,
+           0 0 20px 4px var(--bs-primary);
+       animation: bs-shooting-star 10s linear infinite;
+       opacity: 0;
+   }
+   
+   .blue-stars .container {
+       background-color: rgba(10, 14, 35, 0.9);
+       padding: 2rem;
+       border: 1px solid var(--bs-primary);
+       box-shadow: 0 0 30px var(--bs-shadow);
+       position: relative;
+       overflow: hidden;
+       max-width: 1600px;
+       margin: 0 auto;
+       border-radius: var(--bs-radius);
+       z-index: 1;
+   }
+   
+   .blue-stars .container::before {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 3px;
+       background: linear-gradient(90deg,
+               transparent,
+               var(--bs-primary),
+               var(--bs-secondary),
+               transparent);
+       animation: bs-pulse 3s infinite;
+   }
+   
+   /* Constellation pattern */
+   .blue-stars .container::after {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background-image: 
+           radial-gradient(circle at 70% 30%, 
+               rgba(109, 142, 255, 0.05) 0%, 
+               transparent 20%),
+           radial-gradient(circle at 30% 70%, 
+               rgba(157, 78, 221, 0.05) 0%, 
+               transparent 20%);
+       pointer-events: none;
+       z-index: -1;
+   }
+   
+   /* ==================== HEADER & TITLE ==================== */
+   .blue-stars #calendar-title {
+       font-family: 'Orbitron', sans-serif;
+       color: var(--bs-primary);
+       text-align: center;
+       font-size: 2.5rem;
+       margin-bottom: 1.5rem;
+       font-weight: 500;
+       letter-spacing: 0.1em;
+       position: relative;
+       text-shadow: 0 0 10px var(--bs-shadow);
+   }
+   
+   .blue-stars #calendar-title::before,
+   .blue-stars #calendar-title::after {
+       content: "✧";
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       color: var(--bs-secondary);
+       font-size: 1.5rem;
+       animation: bs-twinkle 2s infinite;
+   }
+   
+   .blue-stars #calendar-title::before {
+       left: 1rem;
+       animation-delay: 0.5s;
+   }
+   
+   .blue-stars #calendar-title::after {
+       right: 1rem;
+   }
+   
+   /* ==================== DATE & WEATHER DISPLAY ==================== */
+   .blue-stars #date-weather-container {
+       text-align: center;
+       margin: 2rem 0;
+       padding: 1rem;
+       background-color: rgba(74, 107, 255, 0.1);
+       border: 1px solid var(--bs-primary);
+       border-radius: var(--bs-radius);
+       position: relative;
+   }
+   
+   .blue-stars #date-weather-container::after {
+       content: "";
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       height: 1px;
+       background: linear-gradient(90deg,
+               transparent,
+               var(--bs-primary),
+               transparent);
+   }
+   
+   .blue-stars #current-date {
+       font-family: 'Orbitron', sans-serif;
+       color: var(--bs-primary);
+       font-size: 1.8rem;
+       font-weight: 500;
+       margin-bottom: 0.5rem;
+       letter-spacing: 0.1em;
+   }
+   
+   .blue-stars #today-weather {
+       font-family: 'Space Grotesk', sans-serif;
+       color: var(--bs-secondary);
+       font-size: 1.2rem;
+       letter-spacing: 0.05em;
+       font-weight: 600;
+   }
+   
+   /* ==================== ANALOG CLOCK ==================== */
+   .blue-stars #analog-watch {
+       display: flex;
+       justify-content: center;
+       margin: 2rem 0;
+   }
+   
+   .blue-stars .clock-face {
+       width: 180px;
+       height: 180px;
+       border: 1px solid var(--bs-primary);
+       border-radius: 50%;
+       position: relative;
+       background-color: var(--bs-bg);
+       box-shadow:
+           0 0 15px var(--bs-shadow),
+           inset 0 0 10px rgba(74, 107, 255, 0.1);
+       background-image:
+           radial-gradient(circle at center,
+               transparent 65%,
+               rgba(74, 107, 255, 0.1) 100%);
+   }
+   
+   /* Constellation numerals for clock */
+   .blue-stars .clock-face::before {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234a6bff">XII</text><text x="82" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234a6bff">III</text><text x="50" y="92" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234a6bff">VI</text><text x="18" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234a6bff">IX</text></svg>');
+   }
+   
+   .blue-stars .hand {
+       position: absolute;
+       top: 50%;
+       transform-origin: 100%;
+       transform: rotate(90deg);
+       transition: all 0.05s;
+       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+   }
+   
+   .blue-stars .hour-hand {
+       width: 40%;
+       left: 10%;
+       height: 4px;
+       background: var(--bs-primary);
+       margin-top: -2px;
+   }
+   
+   .blue-stars .minute-hand {
+       width: 48%;
+       left: 2%;
+       height: 2px;
+       background: var(--bs-secondary);
+       margin-top: -1px;
+   }
+   
+   .blue-stars .second-hand {
+       width: 48%;
+       left: 2%;
+       height: 1px;
+       background: var(--bs-star-gold);
+       margin-top: -0.5px;
+   }
+   
+   /* Clock center - Pulsar */
+   .blue-stars .clock-face::after {
+       content: "";
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       width: 10px;
+       height: 10px;
+       background-color: var(--bs-star-gold);
+       border-radius: 50%;
+       border: 1px solid var(--bs-secondary);
+       animation: bs-pulse 1s infinite;
+   }
+   
+   /* ==================== CALENDAR TABLE ==================== */
+   .blue-stars table {
+       width: 100%;
+       border-collapse: collapse;
+       margin: 2rem auto;
+       background-color: rgba(20, 25, 60, 0.9);
+       border: 1px solid var(--bs-primary);
+       border-radius: var(--bs-radius);
+       table-layout: fixed;
+   }
+   
+   .blue-stars th {
+       background-color: rgba(74, 107, 255, 0.2);
+       color: var(--bs-primary) !important;
+       font-family: 'Space Grotesk', sans-serif;
+       font-weight: 600;
+       padding: 0.8rem 0.3rem;
+       border: 1px solid var(--bs-primary);
+       position: relative;
+       font-size: 0.8rem;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+   }
+   
+   .blue-stars th .full-day {
+       display: inline;
+   }
+   
+   .blue-stars th .short-day {
+       display: none;
+   }
+   
+   .blue-stars td {
+       background-color: rgba(15, 20, 45, 0.9);
+       color: var(--bs-text);
+       padding: 0.8rem 0.3rem;
+       border: 1px solid var(--bs-primary);
+       height: 90px;
+       vertical-align: top;
+       transition: all var(--bs-transition);
+       position: relative;
+       font-size: 0.85rem;
+   }
+   
+   .blue-stars td:hover {
+       background-color: var(--bs-hover);
+       box-shadow: inset 0 0 15px var(--bs-shadow);
+   }
+   
+   .blue-stars .date-number {
+       display: block;
+       font-weight: 600;
+       margin-bottom: 3px;
+       color: var(--bs-text);
+   }
+   
+   .blue-stars td.current-day {
+       background-color: var(--bs-current-day);
+       border: 2px solid var(--bs-secondary);
+       color: var(--bs-secondary) !important;
+       font-weight: 600;
+       animation: bs-pulse 3s infinite;
+   }
+   
+   .blue-stars td.current-day .date-number {
+       color: var(--bs-secondary) !important;
+       font-weight: 700;
+   }
+   
+   .blue-stars td.current-day::before {
+       content: "★";
+       position: absolute;
+       top: 3px;
+       left: 3px;
+       color: var(--bs-star-gold);
+       z-index: 1;
+       opacity: 0.8;
+       font-size: 0.9rem;
+       animation: bs-twinkle 2s infinite;
+   }
+   
+   /* ==================== EVENT MARKERS ==================== */
+   .blue-stars .event-marker {
+       display: inline-block;
+       width: 8px;
+       height: 8px;
+       border-radius: 50%;
+       background-color: var(--bs-primary);
+       margin: 0 1px;
+       box-shadow: 0 0 5px var(--bs-shadow);
+       transition: all var(--bs-transition);
+       border: 1px solid rgba(255, 255, 255, 0.5);
+       animation: bs-twinkle 3s infinite;
+   }
+   
+   .blue-stars .event-marker:hover {
+       transform: scale(1.8);
+       background-color: var(--bs-secondary);
+       box-shadow: 0 0 15px var(--bs-primary);
+   }
+   
+   /* Special event types */
+   .blue-stars .event-marker.holiday {
+       background-color: var(--bs-star-gold);
+       animation-delay: 0.5s;
+   }
+   
+   .blue-stars .event-marker.historic {
+       background-color: var(--bs-nebula-purple);
+       animation-delay: 1s;
+   }
+   
+   .blue-stars .event-marker.patriotic {
+       background-color: var(--bs-comet-teal);
+       animation-delay: 1.5s;
+   }
+   
+   /* ==================== MODAL STYLES ==================== */
+   .blue-stars .modal-content {
+       position: relative;
+       background-color: rgba(20, 25, 60, 0.98);
+       border: 1px solid var(--bs-primary);
+       padding: 25px;
+       color: var(--bs-text);
+       box-shadow: 0 0 30px var(--bs-shadow);
+       border-radius: var(--bs-radius);
+       animation: bs-pulse 0.5s ease;
+   }
+   
+   .blue-stars .modal-content::before {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 4px;
+       background: linear-gradient(90deg,
+               var(--bs-primary),
+               var(--bs-secondary),
+               var(--bs-star-gold));
+   }
+   
+   .blue-stars .modal-content h2 {
+       color: var(--bs-primary);
+       font-family: 'Orbitron', sans-serif;
+       font-size: 1.8em;
+       margin-bottom: 15px;
+       font-weight: 500;
+   }
+   
+   .blue-stars .modal-content p {
+       margin-bottom: 15px;
+       font-size: 1.05em;
+   }
+   
+   .blue-stars .modal-content .event-time {
+       display: block;
+       font-weight: 600;
+       color: var(--bs-secondary);
+       margin-bottom: 10px;
+       font-size: 1.1em;
+   }
+   
+   .blue-stars .modal-content .event-description {
+       background-color: rgba(74, 107, 255, 0.15);
+       padding: 15px;
+       border-left: 3px solid var(--bs-primary);
+       margin: 15px 0;
+       border-radius: 0 var(--bs-radius) var(--bs-radius) 0;
+   }
+   
+   .blue-stars .modal-content button {
+       background-color: var(--bs-primary);
+       color: var(--bs-bg);
+       border: none;
+       padding: 10px 20px;
+       font-size: 0.9em;
+       font-weight: 600;
+       cursor: pointer;
+       transition: all var(--bs-transition);
+       border-radius: var(--bs-radius);
+       font-family: 'Space Grotesk', sans-serif;
+   }
+   
+   .blue-stars .modal-content button:hover {
+       background-color: var(--bs-secondary);
+       box-shadow: 0 4px 6px -1px var(--bs-shadow);
+   }
+   
+   .blue-stars .modal .close-button {
+       position: absolute;
+       top: 12px;
+       right: 12px;
+       background-color: transparent;
+       color: var(--bs-primary);
+       border: 1px solid var(--bs-primary);
+       width: 28px;
+       height: 28px;
+       cursor: pointer;
+       transition: all var(--bs-transition);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border-radius: 50%;
+   }
+   
+   .blue-stars .modal .close-button:hover {
+       background-color: var(--bs-primary);
+       color: var(--bs-bg);
+   }
+   
+   /* ==================== MEDIA QUERIES ==================== */
+   @media (max-width: 992px) {
+       .blue-stars .container {
+           padding: 1.2rem;
+       }
+   
+       .blue-stars #calendar-title {
+           font-size: 2rem;
+       }
+   
+       .blue-stars #current-date {
+           font-size: 1.5rem;
+       }
+   
+       .blue-stars #today-weather {
+           font-size: 1.1rem;
+       }
+   
+       .blue-stars th {
+           font-size: 0.75rem;
+           padding: 0.7rem 0.2rem;
+       }
+   }
+   
+   @media (max-width: 768px) {
+       .blue-stars .container {
+           padding: 1rem;
+       }
+   
+       .blue-stars #calendar-title {
+           font-size: 1.7rem;
+       }
+   
+       .blue-stars .clock-face {
+           width: 140px;
+           height: 140px;
+       }
+   
+       .blue-stars th .full-day {
+           display: none;
+       }
+   
+       .blue-stars th .short-day {
+           display: inline;
+       }
+   
+       .blue-stars th {
+           font-size: 0.7rem;
+           padding: 0.6rem 0.15rem;
+       }
+   
+       .blue-stars td {
+           padding: 0.6rem 0.15rem;
+           height: 70px;
+           font-size: 0.8rem;
+       }
+   }
+   
+   @media (max-width: 576px) {
+       .blue-stars .container {
+           padding: 0.8rem;
+       }
+   
+       .blue-stars #calendar-title {
+           font-size: 1.4rem;
+       }
+   
+       .blue-stars #current-date {
+           font-size: 1.1rem;
+       }
+   
+       .blue-stars #today-weather {
+           font-size: 0.9rem;
+       }
+   
+       .blue-stars .clock-face {
+           width: 110px;
+           height: 110px;
+       }
+   
+       .blue-stars th {
+           font-size: 0.65rem;
+           padding: 0.5rem 0.1rem;
+       }
+   
+       .blue-stars td {
+           padding: 0.4rem 0.1rem;
+           height: 60px;
+           font-size: 0.75rem;
+       }
+   }
+   
+   @media (max-width: 400px) {
+       .blue-stars th {
+           font-size: 0.6rem;
+           padding: 0.4rem 0.1rem;
+       }
+   
+       .blue-stars td {
+           height: 50px;
+           font-size: 0.7rem;
+       }
+   
+       .blue-stars #calendar-title {
+           font-size: 1.2rem;
+       }
+   }
