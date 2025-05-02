@@ -1,67 +1,49 @@
 /* ==========================================================================
-   Collaboration Idea Theme - Team Calendar UI
+   Collaboration Idea Theme - Team Productivity Calendar UI
    Version: 4.1
    Updated: 2025-06-25
    Features:
-   - Collaborative color scheme
-   - Interactive idea elements
-   - Mobile-responsive design
-   - Brainstorm-friendly UI
-   - Dynamic sticky-note effects
-   - Enhanced team visibility
+   - Clean, modern collaborative workspace design
+   - Soft pastel color scheme
+   - Post-it note inspired elements
+   - Mobile-responsive layout
+   - Subtle connection animations
+   - Enhanced readability for team use
    - Whiteboard textures
-   - Creative typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap');
 
 :root {
-    /* Collaboration Color Palette */
-    --ci-bg: #f9f7f3;
-    --ci-text: #2d3436;
-    --ci-primary: #0984e3;
-    /* Idea blue */
-    --ci-secondary: #00b894;
-    /* Growth green */
+    /* Collaborative Color Palette */
+    --ci-bg: #f8f9fa;
+    --ci-text: #2d3748;
+    --ci-primary: #4f46e5;
+    /* Indigo */
+    --ci-secondary: #7c3aed;
+    /* Lighter indigo */
 
-    /* Team Colors */
-    --ci-team1: #6c5ce7;
-    /* Creative purple */
-    --ci-team2: #fd79a8;
-    /* Energy pink */
-    --ci-team3: #fdcb6e;
-    /* Highlight yellow */
-    --ci-team4: #e17055;
-    /* Urgent orange */
-    --ci-team5: #00cec9;
-    /* Calm teal */
+    /* Accent Colors */
+    --ci-postit-yellow: #fef08a;
+    --ci-postit-blue: #bfdbfe;
+    --ci-postit-pink: #fbcfe8;
+    --ci-postit-green: #bbf7d0;
+    --ci-highlight: #f59e0b;
 
-    /* Whiteboard Colors */
-    --ci-whiteboard: #f0f3f9;
-    --ci-whiteboard-border: #dfe6e9;
+    /* Gradient Colors */
+    --ci-gradient-start: #f0f4ff;
+    --ci-gradient-end: #e0e7ff;
 
     /* Theme Variables */
-    --ci-shadow: rgba(9, 132, 227, 0.2);
+    --ci-shadow: rgba(79, 70, 229, 0.15);
     --ci-radius: 8px;
-    --ci-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    --ci-hover: #e3f2fd;
-    --ci-current-day: #dff9fb;
-    --ci-sticky-note: #fffacd;
+    --ci-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --ci-hover: #eef2ff;
+    --ci-current-day: #e0e7ff;
+    --ci-border: 1px solid #e2e8f0;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes ci-bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
 @keyframes ci-pulse {
 
     0%,
@@ -70,44 +52,72 @@
     }
 
     50% {
-        transform: scale(1.05);
+        transform: scale(1.03);
     }
 }
 
-@keyframes ci-rotate {
+@keyframes ci-connect-dots {
     0% {
-        transform: rotate(-2deg);
+        stroke-dashoffset: 50;
     }
 
     100% {
-        transform: rotate(2deg);
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes ci-fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .collaboration-idea {
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--ci-text);
     line-height: 1.6;
     background: var(--ci-bg);
     min-height: 100vh;
     position: relative;
+    overflow-x: hidden;
     background-image:
-        linear-gradient(var(--ci-whiteboard) 1px, transparent 1px),
-        linear-gradient(90deg, var(--ci-whiteboard) 1px, transparent 1px);
-    background-size: 20px 20px;
+        linear-gradient(to bottom,
+            var(--ci-gradient-start),
+            var(--ci-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><circle cx="20" cy="20" r="2" fill="%234f46e5"/><circle cx="50" cy="50" r="2" fill="%234f46e5"/><circle cx="80" cy="30" r="2" fill="%234f46e5"/><circle cx="30" cy="80" r="2" fill="%234f46e5"/><path d="M20,20 L50,50 L80,30 M50,50 L30,80" stroke="%234f46e5" stroke-width="0.5" stroke-dasharray="5,3"/></svg>');
+}
+
+/* Connection lines animation */
+.collaboration-idea::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M10% 15% Q25% 0% 40% 15% T70% 15% M60% 30% Q75% 15% 90% 30% M30% 45% Q45% 30% 60% 45% T90% 45%" stroke="%237c3aed" stroke-width="0.5" stroke-dasharray="8,4" fill="none" opacity="0.3"><animate attributeName="stroke-dashoffset" values="50;0" dur="15s" repeatCount="indefinite"/></path></svg>');
+    pointer-events: none;
+    z-index: 0;
 }
 
 .collaboration-idea .container {
     background-color: white;
     padding: 2rem;
-    border-radius: var(--ci-radius);
-    box-shadow: 0 10px 30px var(--ci-shadow);
+    border: var(--ci-border);
+    box-shadow: 0 4px 20px var(--ci-shadow);
     position: relative;
+    overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border: 1px solid var(--ci-whiteboard-border);
-    overflow: hidden;
+    border-radius: var(--ci-radius);
+    z-index: 1;
 }
 
 .collaboration-idea .container::before {
@@ -116,141 +126,206 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 6px;
+    height: 4px;
     background: linear-gradient(90deg,
             var(--ci-primary),
-            var(--ci-team1),
-            var(--ci-team2),
-            var(--ci-team3),
-            var(--ci-team4),
-            var(--ci-team5));
+            var(--ci-secondary));
+    opacity: 0.8;
 }
 
-/* ==================== HEADER & TITLE ==================== */
-.collaboration-idea #calendar-title {
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--ci-primary);
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-    padding: 0 1rem;
-}
-
-.collaboration-idea #calendar-title::before {
+/* Whiteboard texture */
+.collaboration-idea .container::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--ci-sticky-note);
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(121, 130, 247, 0.03) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(190, 199, 255, 0.03) 0%,
+            transparent 20%);
+    pointer-events: none;
     z-index: -1;
-    transform: rotate(-1deg);
-    border-radius: 4px;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== TEAM INDICATORS ==================== */
-.collaboration-idea .team-indicator {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 1rem 0 2rem;
+/* ==================== HEADER & TITLE ==================== */
+.collaboration-idea #calendar-title {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--ci-primary);
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    animation: ci-fade-in 0.5s ease-out;
 }
 
-.collaboration-idea .team-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.8rem;
+.collaboration-idea #calendar-title::before,
+.collaboration-idea #calendar-title::after {
+    content: "•";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ci-secondary);
+    font-size: 1.8rem;
+    opacity: 0.6;
 }
 
-.collaboration-idea .team-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    margin-bottom: 0.5rem;
-    border: 2px solid white;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    transition: all var(--ci-transition);
+.collaboration-idea #calendar-title::before {
+    left: 1.5rem;
 }
 
-.collaboration-idea .team-avatar:hover {
-    transform: scale(1.2) rotate(5deg);
-}
-
-/* Team color assignments */
-.collaboration-idea .team-1 {
-    background-color: var(--ci-team1);
-}
-
-.collaboration-idea .team-2 {
-    background-color: var(--ci-team2);
-}
-
-.collaboration-idea .team-3 {
-    background-color: var(--ci-team3);
-}
-
-.collaboration-idea .team-4 {
-    background-color: var(--ci-team4);
-}
-
-.collaboration-idea .team-5 {
-    background-color: var(--ci-team5);
+.collaboration-idea #calendar-title::after {
+    right: 1.5rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .collaboration-idea #date-weather-container {
     text-align: center;
     margin: 2rem 0;
-    padding: 1.5rem;
-    background-color: var(--ci-sticky-note);
+    padding: 1.2rem;
+    background-color: white;
+    border: var(--ci-border);
     border-radius: var(--ci-radius);
     position: relative;
-    transform: rotate(1deg);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.05);
-    animation: ci-rotate 4s ease-in-out infinite alternate;
+    box-shadow: 0 2px 10px var(--ci-shadow);
+}
+
+.collaboration-idea #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ci-secondary),
+            transparent);
 }
 
 .collaboration-idea #current-date {
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--ci-text);
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--ci-primary);
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 .collaboration-idea #today-weather {
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--ci-secondary);
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.collaboration-idea #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.collaboration-idea .clock-face {
+    width: 180px;
+    height: 180px;
+    border: var(--ci-border);
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    box-shadow:
+        0 4px 15px var(--ci-shadow),
+        inset 0 0 0 1px rgba(79, 70, 229, 0.1);
+}
+
+/* Modern clock numerals */
+.collaboration-idea .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.4"><text x="50" y="18" text-anchor="middle" font-family="Inter" font-size="10" fill="%234f46e5">12</text><text x="82" y="55" text-anchor="middle" font-family="Inter" font-size="10" fill="%234f46e5">3</text><text x="50" y="92" text-anchor="middle" font-family="Inter" font-size="10" fill="%234f46e5">6</text><text x="18" y="55" text-anchor="middle" font-family="Inter" font-size="10" fill="%234f46e5">9</text></svg>');
+}
+
+.collaboration-idea .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collaboration-idea .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: var(--ci-primary);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.collaboration-idea .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: var(--ci-secondary);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.collaboration-idea .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--ci-highlight);
+    margin-top: -0.5px;
+}
+
+/* Clock center dot */
+.collaboration-idea .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--ci-primary);
+    border-radius: 50%;
+    border: 2px solid var(--ci-secondary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .collaboration-idea table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 8px;
+    border-spacing: 4px;
     margin: 2rem auto;
     background-color: transparent;
+    table-layout: fixed;
 }
 
 .collaboration-idea th {
     background-color: var(--ci-primary);
     color: white !important;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    padding: 1rem 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
     border-radius: var(--ci-radius);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px var(--ci-shadow);
 }
 
 .collaboration-idea th .full-day {
@@ -264,107 +339,123 @@
 .collaboration-idea td {
     background-color: white;
     color: var(--ci-text);
-    padding: 1rem 0.5rem;
-    border-radius: var(--ci-radius);
-    height: 100px;
+    padding: 0.8rem 0.5rem;
+    border: var(--ci-border);
+    height: 90px;
     vertical-align: top;
     transition: all var(--ci-transition);
     position: relative;
     font-size: 0.85rem;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--ci-whiteboard-border);
+    border-radius: var(--ci-radius);
+    box-shadow: 0 1px 3px var(--ci-shadow);
 }
 
 .collaboration-idea td:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px var(--ci-shadow);
-    z-index: 2;
+    background-color: var(--ci-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--ci-shadow);
 }
 
 .collaboration-idea .date-number {
-    display: block;
-    font-weight: 700;
+    display: inline-block;
+    font-weight: 600;
     margin-bottom: 4px;
     color: var(--ci-text);
-    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--ci-hover);
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 0.8rem;
 }
 
 .collaboration-idea td.current-day {
     background-color: var(--ci-current-day);
-    border: 2px solid var(--ci-secondary);
-    animation: ci-bounce 1s infinite;
+    border: 1px solid var(--ci-secondary);
+    color: var(--ci-primary) !important;
+    font-weight: 500;
+    animation: ci-pulse 3s infinite;
 }
 
 .collaboration-idea td.current-day .date-number {
-    color: var(--ci-secondary) !important;
+    background-color: var(--ci-primary);
+    color: white !important;
+    font-weight: 600;
 }
 
 .collaboration-idea td.current-day::before {
-    content: "💡";
+    content: "";
     position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 1rem;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--ci-highlight);
+    border-radius: 50%;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .collaboration-idea .event-marker {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
     background-color: var(--ci-primary);
-    margin: 0 1px;
+    margin: 2px 0;
     transition: all var(--ci-transition);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.collaboration-idea .event-marker::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .collaboration-idea .event-marker:hover {
-    transform: scale(1.8);
+    height: 6px;
+    box-shadow: 0 1px 4px var(--ci-shadow);
 }
 
-/* Team-specific event colors */
-.collaboration-idea .event-marker.team-1 {
-    background-color: var(--ci-team1);
+.collaboration-idea .event-marker:hover::after {
+    transform: translateX(100%);
 }
 
-.collaboration-idea .event-marker.team-2 {
-    background-color: var(--ci-team2);
+/* Special event types */
+.collaboration-idea .event-marker.holiday {
+    background-color: var(--ci-postit-yellow);
 }
 
-.collaboration-idea .event-marker.team-3 {
-    background-color: var(--ci-team3);
+.collaboration-idea .event-marker.historic {
+    background-color: var(--ci-postit-blue);
 }
 
-.collaboration-idea .event-marker.team-4 {
-    background-color: var(--ci-team4);
+.collaboration-idea .event-marker.patriotic {
+    background-color: var(--ci-postit-green);
 }
 
-.collaboration-idea .event-marker.team-5 {
-    background-color: var(--ci-team5);
-}
-
-/* Event types */
 .collaboration-idea .event-marker.meeting {
-    background-color: var(--ci-primary);
-    border-radius: 2px;
-    width: 12px;
-}
-
-.collaboration-idea .event-marker.deadline {
-    border-radius: 0;
-    transform: rotate(45deg);
+    background-color: var(--ci-postit-pink);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .collaboration-idea .modal-content {
     position: relative;
     background-color: white;
-    padding: 2rem;
+    border: var(--ci-border);
+    padding: 25px;
     color: var(--ci-text);
+    box-shadow: 0 8px 30px var(--ci-shadow);
     border-radius: var(--ci-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--ci-whiteboard-border);
+    animation: ci-fade-in 0.3s ease-out;
 }
 
 .collaboration-idea .modal-content::before {
@@ -373,130 +464,227 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 6px;
+    height: 4px;
     background: linear-gradient(90deg,
             var(--ci-primary),
-            var(--ci-team1),
-            var(--ci-team2),
-            var(--ci-team3),
-            var(--ci-team4),
-            var(--ci-team5));
+            var(--ci-secondary));
 }
 
 .collaboration-idea .modal-content h2 {
     color: var(--ci-primary);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.8em;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.collaboration-idea .modal-content .event-team {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    background-color: var(--ci-primary);
-    color: white;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
 .collaboration-idea .modal-content p {
-    margin-bottom: 1rem;
+    margin-bottom: 15px;
     font-size: 1.05em;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .collaboration-idea .modal-content .event-time {
     display: block;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--ci-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
     font-size: 1.1em;
 }
 
 .collaboration-idea .modal-content .event-description {
-    background-color: var(--ci-sticky-note);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: var(--ci-radius);
-    position: relative;
-    transform: rotate(1deg);
+    background-color: var(--ci-hover);
+    padding: 15px;
+    border-left: 3px solid var(--ci-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ci-radius) var(--ci-radius) 0;
 }
 
 .collaboration-idea .modal-content button {
     background-color: var(--ci-primary);
     color: white;
     border: none;
-    padding: 0.8rem 1.6rem;
+    padding: 10px 20px;
     font-size: 0.9em;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--ci-transition);
     border-radius: var(--ci-radius);
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .collaboration-idea .modal-content button:hover {
     background-color: var(--ci-secondary);
-    transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--ci-shadow);
 }
 
 .collaboration-idea .modal .close-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
-    color: var(--ci-text);
-    border: none;
-    width: 32px;
-    height: 32px;
+    color: var(--ci-primary);
+    border: 1px solid var(--ci-primary);
+    width: 28px;
+    height: 28px;
     cursor: pointer;
     transition: all var(--ci-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
     border-radius: 50%;
 }
 
 .collaboration-idea .modal .close-button:hover {
-    background-color: var(--ci-whiteboard);
-    transform: rotate(90deg);
-}
-
-/* ==================== BUTTONS & CONTROLS ==================== */
-.collaboration-idea .button,
-.collaboration-idea .transparent-button {
-    border: 2px solid var(--ci-primary);
-    color: var(--ci-primary);
-    background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all var(--ci-transition);
-    position: relative;
-    margin: 0.5rem;
-    border-radius: var(--ci-radius);
-}
-
-.collaboration-idea .button:hover,
-.collaboration-idea .transparent-button:hover {
     background-color: var(--ci-primary);
     color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px var(--ci-shadow);
 }
 
-.collaboration-idea .controls {
+/* ==================== BUTTON STYLES ==================== */
+.collaboration-idea button {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--ci-primary), var(--ci-secondary));
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ci-transition);
+    border-radius: var(--ci-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--ci-shadow);
+}
+
+.collaboration-idea button:hover {
+    background: linear-gradient(135deg, var(--ci-secondary), var(--ci-primary));
+    box-shadow:
+        0 4px 12px var(--ci-shadow);
+    transform: translateY(-2px);
+}
+
+.collaboration-idea button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--ci-shadow);
+}
+
+/* Ripple effect on buttons */
+.collaboration-idea button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.collaboration-idea button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+/* Special button variants */
+.collaboration-idea button.secondary {
+    background: white;
+    color: var(--ci-primary);
+    border: 1px solid var(--ci-primary);
+    box-shadow: none;
+}
+
+.collaboration-idea button.secondary:hover {
+    background: var(--ci-hover);
+    color: var(--ci-primary);
+}
+
+.collaboration-idea button.danger {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+}
+
+.collaboration-idea button.danger:hover {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    box-shadow: 0 4px 12px rgba(248, 113, 113, 0.3);
+}
+
+/* Button with plus icon */
+.collaboration-idea button.with-icon::after {
+    content: "+";
+    margin-left: 8px;
+    display: inline-block;
+}
+
+/* Small buttons */
+.collaboration-idea button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+/* Button group styling */
+.collaboration-idea .button-group {
     display: flex;
-    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.collaboration-idea .button-group button {
+    flex: 1;
+}
+
+/* Floating action button */
+.collaboration-idea .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    margin: 2rem 0;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--ci-shadow);
+    z-index: 100;
+    background: linear-gradient(135deg, var(--ci-primary), var(--ci-secondary));
+    color: white;
+}
+
+.collaboration-idea .fab:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Pulsing effect for important buttons */
+.collaboration-idea button.important {
+    animation: ci-pulse 2s infinite;
+}
+
+/* Disabled button */
+.collaboration-idea button:disabled {
+    background: rgba(79, 70, 229, 0.1);
+    color: rgba(45, 55, 72, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -506,16 +694,20 @@
     }
 
     .collaboration-idea #calendar-title {
-        font-size: 2rem;
+        font-size: 2.1rem;
     }
 
     .collaboration-idea #current-date {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+    }
+
+    .collaboration-idea #today-weather {
+        font-size: 1.1rem;
     }
 
     .collaboration-idea th {
         font-size: 0.8rem;
-        padding: 0.8rem 0.3rem;
+        padding: 0.7rem 0.2rem;
     }
 }
 
@@ -525,7 +717,12 @@
     }
 
     .collaboration-idea #calendar-title {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
+    }
+
+    .collaboration-idea .clock-face {
+        width: 150px;
+        height: 150px;
     }
 
     .collaboration-idea th .full-day {
@@ -537,23 +734,14 @@
     }
 
     .collaboration-idea th {
-        font-size: 0.7rem;
-        padding: 0.7rem 0.2rem;
+        font-size: 0.75rem;
+        padding: 0.6rem 0.15rem;
     }
 
     .collaboration-idea td {
-        padding: 0.7rem 0.2rem;
+        padding: 0.6rem 0.15rem;
         height: 80px;
         font-size: 0.8rem;
-    }
-
-    .collaboration-idea .team-indicator {
-        gap: 0.5rem;
-    }
-
-    .collaboration-idea .team-avatar {
-        width: 28px;
-        height: 28px;
     }
 }
 
@@ -563,33 +751,38 @@
     }
 
     .collaboration-idea #calendar-title {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .collaboration-idea #current-date {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+    }
+
+    .collaboration-idea #today-weather {
+        font-size: 1rem;
+    }
+
+    .collaboration-idea .clock-face {
+        width: 120px;
+        height: 120px;
     }
 
     .collaboration-idea th {
-        font-size: 0.65rem;
-        padding: 0.6rem 0.1rem;
+        font-size: 0.7rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .collaboration-idea td {
-        padding: 0.6rem 0.1rem;
+        padding: 0.5rem 0.1rem;
         height: 70px;
         font-size: 0.75rem;
-    }
-
-    .collaboration-idea .team-indicator {
-        flex-wrap: wrap;
     }
 }
 
 @media (max-width: 400px) {
     .collaboration-idea th {
-        font-size: 0.6rem;
-        padding: 0.5rem 0.1rem;
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
     }
 
     .collaboration-idea td {
@@ -598,6 +791,6 @@
     }
 
     .collaboration-idea #calendar-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 }
