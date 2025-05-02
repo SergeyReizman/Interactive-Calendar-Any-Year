@@ -1,0 +1,689 @@
+/* ==========================================================================
+   Golden Opportunity Theme - Luxurious Gold with Professional Blue
+   Version: 2.3
+   Updated: 2023-11-15
+   Features:
+   - Sophisticated golden color palette for professional elegance
+   - Deep blue backgrounds for trust and reliability
+   - High contrast for perfect readability
+   - Smooth transitions and refined animations
+   - Golden accents against professional blue backdrops
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Marcellus+SC&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --go-bg: #1E3A8A;
+    /* Navy Blue */
+    --go-container-bg: #F0F8FF;
+    /* Alice Blue */
+    --go-text: #1a120b;
+    /* Dark Brown */
+    --go-primary: #FFD700;
+    /* Gold */
+    --go-secondary: #B8860B;
+    /* Dark Goldenrod */
+
+    /* Gradient Colors */
+    --go-gradient-start: #1E3A8A;
+    /* Navy Blue */
+    --go-gradient-end: #3B4CCA;
+    /* Royal Blue */
+    --go-container-gradient: linear-gradient(145deg, #F0F8FF 0%, #E1F5FE 100%);
+
+    /* Accent Colors */
+    --go-accent1: #8B8000;
+    /* Dark Gold */
+    --go-accent2: #DAA520;
+    /* Goldenrod */
+    --go-accent3: #C5B358;
+    /* Vegas Gold */
+    --go-accent4: #FFDF00;
+    /* Bright Gold */
+    --go-accent5: #CFB53B;
+    /* Old Gold */
+
+    /* Theme Variables */
+    --go-shadow: rgba(30, 58, 138, 0.3);
+    /* Navy Blue shadow */
+    --go-radius: 16px;
+    --go-transition: 0.3s ease-in-out;
+    --go-hover: #FFD700;
+    --go-current-day: #B8860B;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes go-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--go-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--go-primary);
+    }
+}
+
+@keyframes go-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes go-colorShift {
+
+    0%,
+    100% {
+        border-color: var(--go-primary);
+    }
+
+    33% {
+        border-color: var(--go-secondary);
+    }
+
+    66% {
+        border-color: var(--go-accent4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.golden-opportunity {
+    font-family: 'Marcellus SC', serif;
+    color: var(--go-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--go-gradient-start), var(--go-gradient-end));
+    min-height: 100vh;
+}
+
+.golden-opportunity .container {
+    background: var(--go-container-gradient);
+    padding: 2rem;
+    border: 2px solid var(--go-primary);
+    box-shadow: 0 0 30px var(--go-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--go-radius);
+    animation: go-colorShift 15s infinite;
+}
+
+.golden-opportunity .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--go-primary), transparent);
+    animation: go-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.golden-opportunity #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--go-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.golden-opportunity #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--go-primary);
+    border-radius: var(--go-radius);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.golden-opportunity #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--go-primary), transparent);
+}
+
+.golden-opportunity #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--go-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.golden-opportunity #today-weather {
+    font-family: 'Marcellus SC', serif;
+    color: var(--go-secondary);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.golden-opportunity #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.golden-opportunity .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--go-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 0 20px var(--go-shadow);
+    background: radial-gradient(circle at center, #FFFFFF 0%, #F0F8FF 100%);
+}
+
+.golden-opportunity .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.golden-opportunity .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--go-primary);
+    margin-top: -4px;
+}
+
+.golden-opportunity .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--go-secondary);
+    margin-top: -3px;
+}
+
+.golden-opportunity .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--go-accent5);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.golden-opportunity table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 2px solid var(--go-primary);
+    border-radius: var(--go-radius);
+    table-layout: fixed;
+    backdrop-filter: blur(3px);
+}
+
+/* DAY OF WEEK HEADERS */
+.golden-opportunity th {
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.7));
+    color: var(--go-text) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--go-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.golden-opportunity th span.full-day-name {
+    display: inline;
+}
+
+.golden-opportunity th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.golden-opportunity td {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: var(--go-text);
+    padding: 1.2rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--go-transition);
+    position: relative;
+}
+
+.golden-opportunity td:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 15px var(--go-shadow);
+}
+
+/* Current date highlight */
+.golden-opportunity td.current-day {
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.8), rgba(184, 134, 11, 0.9));
+    border: 2px solid var(--go-text);
+    color: white !important;
+    font-weight: 700;
+    animation: go-pulse 2s infinite;
+}
+
+.golden-opportunity td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--go-text);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.golden-opportunity td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: white !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.golden-opportunity .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--go-accent5);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--go-shadow);
+    transition: all var(--go-transition);
+}
+
+.golden-opportunity .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--go-primary);
+    box-shadow: 0 0 15px var(--go-accent5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.golden-opportunity .modal-content {
+    position: relative;
+    background: linear-gradient(145deg, #F0F8FF 0%, #E1F5FE 100%);
+    border: 2px solid var(--go-primary);
+    padding: 30px;
+    color: var(--go-text);
+    box-shadow: 0 0 40px var(--go-shadow);
+    border-radius: var(--go-radius);
+    animation: go-fadeIn 0.4s ease;
+}
+
+.golden-opportunity .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--go-primary);
+    animation: go-pulse 2s infinite;
+}
+
+.golden-opportunity .modal-content h2 {
+    color: var(--go-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.golden-opportunity .modal-content button {
+    background-color: transparent;
+    color: var(--go-primary);
+    border: 2px solid var(--go-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--go-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--go-radius);
+}
+
+.golden-opportunity .modal-content button:hover {
+    background-color: var(--go-primary);
+    color: var(--go-text);
+    box-shadow: 0 0 15px var(--go-shadow);
+}
+
+/* Close Button */
+.golden-opportunity .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--go-primary);
+    border: 2px solid var(--go-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--go-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.golden-opportunity .modal .close-button:hover {
+    background-color: var(--go-primary);
+    color: var(--go-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.golden-opportunity .button,
+.golden-opportunity .transparent-button {
+    border: 2px solid var(--go-primary);
+    color: var(--go-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--go-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--go-radius);
+}
+
+.golden-opportunity .button::before,
+.golden-opportunity .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.golden-opportunity .button:hover,
+.golden-opportunity .transparent-button:hover {
+    background-color: var(--go-primary);
+    color: var(--go-text);
+    box-shadow: 0 0 20px var(--go-shadow);
+}
+
+.golden-opportunity .button:hover::before,
+.golden-opportunity .transparent-button:hover::before {
+    left: 100%;
+}
+
+.golden-opportunity .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-radius: var(--go-radius);
+    backdrop-filter: blur(3px);
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.golden-opportunity #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.golden-opportunity #theme-switcher {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--go-text) !important;
+    border: 2px solid var(--go-primary);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Marcellus SC', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--go-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a120b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--go-transition);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+}
+
+.golden-opportunity #theme-switcher option {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    color: var(--go-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--go-primary) !important;
+}
+
+.golden-opportunity #theme-switcher option:hover {
+    background-color: var(--go-primary) !important;
+}
+
+.golden-opportunity #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--go-primary), 0 0 15px var(--go-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.golden-opportunity #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--go-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--go-primary);
+    background-color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all var(--go-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--go-radius);
+    backdrop-filter: blur(3px);
+}
+
+.golden-opportunity #backToTopBtn:hover {
+    background-color: var(--go-primary);
+    color: var(--go-text);
+    box-shadow: 0 0 20px var(--go-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.golden-opportunity footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--go-primary);
+    color: var(--go-text);
+    font-size: 0.9rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0 0 var(--go-radius) var(--go-radius);
+    backdrop-filter: blur(3px);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .golden-opportunity .container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    .golden-opportunity #calendar-title {
+        font-size: 2rem;
+    }
+
+    .golden-opportunity #current-date {
+        font-size: 1.5rem;
+    }
+
+    .golden-opportunity #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .golden-opportunity .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .golden-opportunity th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .golden-opportunity th span.full-day-name {
+        display: none;
+    }
+
+    .golden-opportunity th abbr {
+        display: inline;
+    }
+
+    .golden-opportunity td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .golden-opportunity td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .golden-opportunity #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .golden-opportunity #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .golden-opportunity #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .golden-opportunity .container {
+        padding: 0.8rem;
+        margin: 0.5rem auto;
+    }
+
+    .golden-opportunity #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .golden-opportunity #current-date {
+        font-size: 1.1rem;
+    }
+
+    .golden-opportunity #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .golden-opportunity .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .golden-opportunity th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .golden-opportunity td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .golden-opportunity td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .golden-opportunity #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .golden-opportunity th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .golden-opportunity td {
+        height: 50px;
+    }
+
+    .golden-opportunity #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}

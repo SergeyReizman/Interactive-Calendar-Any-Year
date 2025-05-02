@@ -80,7 +80,7 @@ const applyTheme = (theme) => {
     'free-flight', 'fresh-start', 'frozen-wilderness', 'full-pink-moon', 'galactic-glow', 
     'genghis-khan-arrow',
     'giant-petrel', 'golden-century', 'golden-coast', 'golden-eagle',
-    'golden-gate', 'golden-horizon', 'grand-prix', 'great-idea',
+    'golden-gate', 'golden-horizon', 'golden-opportunity', 'grand-prix', 'great-idea',
     'great-lakes', 'great-wall', 'green-city', 'green-coffee',
     'greenland-icebergs', 'greyscale', 'guangzhou-lights', 'heavy-rain', 'hidden-trail', 
     'high-intelligence','high-performance', 
