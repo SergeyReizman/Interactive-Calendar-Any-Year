@@ -1,119 +1,135 @@
 /* ==========================================================================
-   Golden Opportunity Theme - Luxurious Gold with Professional Blue
-   Version: 2.3
-   Updated: 2023-11-15
+   Golden Opportunity Theme - Premium Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
    Features:
-   - Sophisticated golden color palette for professional elegance
-   - Deep blue backgrounds for trust and reliability
-   - High contrast for perfect readability
-   - Smooth transitions and refined animations
-   - Golden accents against professional blue backdrops
+   - Rich gold and dark color scheme
+   - Metallic shine effects
+   - Luxury watch-inspired design
+   - Mobile-responsive layout
+   - Subtle glitter animations
+   - Premium typography
+   - Embossed textures
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Marcellus+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;600&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --go-bg: #1E3A8A;
-    /* Navy Blue */
-    --go-container-bg: #F0F8FF;
-    /* Alice Blue */
-    --go-text: #1a120b;
-    /* Dark Brown */
-    --go-primary: #FFD700;
-    /* Gold */
-    --go-secondary: #B8860B;
-    /* Dark Goldenrod */
+    /* Luxury Color Palette */
+    --go-bg: #1a1a1a;
+    --go-text: #e8e8e8;
+    --go-primary: #d4af37;
+    /* Classic gold */
+    --go-secondary: #ffd700;
+    /* Brighter gold */
+
+    /* Metallic Colors */
+    --go-gold-dark: #b8860b;
+    --go-gold-light: #f5d07a;
+    --go-silver: #c0c0c0;
+    --go-bronze: #cd7f32;
+    --go-pearl: #f8f8ff;
 
     /* Gradient Colors */
-    --go-gradient-start: #1E3A8A;
-    /* Navy Blue */
-    --go-gradient-end: #3B4CCA;
-    /* Royal Blue */
-    --go-container-gradient: linear-gradient(145deg, #F0F8FF 0%, #E1F5FE 100%);
-
-    /* Accent Colors */
-    --go-accent1: #8B8000;
-    /* Dark Gold */
-    --go-accent2: #DAA520;
-    /* Goldenrod */
-    --go-accent3: #C5B358;
-    /* Vegas Gold */
-    --go-accent4: #FFDF00;
-    /* Bright Gold */
-    --go-accent5: #CFB53B;
-    /* Old Gold */
+    --go-gradient-start: #2a1a00;
+    --go-gradient-end: #4a3a10;
 
     /* Theme Variables */
-    --go-shadow: rgba(30, 58, 138, 0.3);
-    /* Navy Blue shadow */
-    --go-radius: 16px;
-    --go-transition: 0.3s ease-in-out;
-    --go-hover: #FFD700;
-    --go-current-day: #B8860B;
+    --go-shadow: rgba(212, 175, 55, 0.3);
+    --go-radius: 6px;
+    --go-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --go-hover: #2a2a2a;
+    --go-current-day: #3a2a00;
+    --go-gold-size: 1px;
 }
 
 /* ==================== ANIMATIONS ==================== */
+@keyframes go-glitter {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--go-secondary);
+    }
+}
+
+@keyframes go-metallic-shine {
+    0% {
+        transform: translateX(-100px) translateY(100px);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(-100px);
+        opacity: 0;
+    }
+}
+
 @keyframes go-pulse {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--go-primary);
+        box-shadow: 0 0 5px var(--go-primary);
     }
 
     50% {
-        box-shadow: 0 0 25px var(--go-primary);
-    }
-}
-
-@keyframes go-fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes go-colorShift {
-
-    0%,
-    100% {
-        border-color: var(--go-primary);
-    }
-
-    33% {
-        border-color: var(--go-secondary);
-    }
-
-    66% {
-        border-color: var(--go-accent4);
+        box-shadow: 0 0 20px var(--go-primary);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .golden-opportunity {
-    font-family: 'Marcellus SC', serif;
+    font-family: 'Montserrat', sans-serif;
     color: var(--go-text);
     line-height: 1.6;
-    background: linear-gradient(135deg, var(--go-gradient-start), var(--go-gradient-end));
+    background: var(--go-bg);
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom,
+            var(--go-gradient-start),
+            var(--go-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.3"><rect x="20" y="20" width="4" height="4" fill="%23d4af37" opacity="0.8" transform="rotate(45, 22, 22)"/><rect x="50" y="50" width="4" height="4" fill="%23d4af37" opacity="0.6" transform="rotate(45, 52, 52)"/><rect x="80" y="30" width="4" height="4" fill="%23d4af37" opacity="0.7" transform="rotate(45, 82, 32)"/><rect x="30" y="80" width="4" height="4" fill="%23d4af37" opacity="0.5" transform="rotate(45, 32, 82)"/></svg>');
+}
+
+/* Metallic shine effect */
+.golden-opportunity::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px 2px white,
+        0 0 20px 4px var(--go-primary);
+    animation: go-metallic-shine 12s linear infinite;
+    opacity: 0;
 }
 
 .golden-opportunity .container {
-    background: var(--go-container-gradient);
+    background-color: rgba(26, 26, 26, 0.95);
     padding: 2rem;
-    border: 2px solid var(--go-primary);
+    border: 1px solid var(--go-primary);
     box-shadow: 0 0 30px var(--go-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
-    margin: 2rem auto;
+    margin: 0 auto;
     border-radius: var(--go-radius);
-    animation: go-colorShift 15s infinite;
+    z-index: 1;
 }
 
 .golden-opportunity .container::before {
@@ -122,33 +138,76 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--go-primary), transparent);
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--go-primary),
+            var(--go-secondary),
+            transparent);
     animation: go-pulse 3s infinite;
+}
+
+/* Embossed pattern */
+.golden-opportunity .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(255, 215, 0, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .golden-opportunity #calendar-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Playfair Display', serif;
     color: var(--go-primary);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 10px var(--go-shadow);
+}
+
+.golden-opportunity #calendar-title::before,
+.golden-opportunity #calendar-title::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--go-secondary);
+    font-size: 2rem;
+    animation: go-glitter 2s infinite;
+}
+
+.golden-opportunity #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.golden-opportunity #calendar-title::after {
+    right: 1rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .golden-opportunity #date-weather-container {
     text-align: center;
     margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1.2rem;
+    background-color: rgba(212, 175, 55, 0.1);
     border: 1px solid var(--go-primary);
     border-radius: var(--go-radius);
     position: relative;
-    backdrop-filter: blur(5px);
 }
 
 .golden-opportunity #date-weather-container::after {
@@ -157,26 +216,28 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--go-primary), transparent);
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--go-primary),
+            transparent);
 }
 
 .golden-opportunity #current-date {
-    font-family: 'Cinzel', serif;
+    font-family: 'Playfair Display', serif;
     color: var(--go-primary);
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.05em;
 }
 
 .golden-opportunity #today-weather {
-    font-family: 'Marcellus SC', serif;
+    font-family: 'Montserrat', sans-serif;
     color: var(--go-secondary);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
-    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -189,12 +250,28 @@
 .golden-opportunity .clock-face {
     width: 200px;
     height: 200px;
-    border: 12px solid var(--go-primary);
+    border: 2px solid var(--go-primary);
     border-radius: 50%;
     position: relative;
-    background-color: white;
-    box-shadow: 0 0 20px var(--go-shadow);
-    background: radial-gradient(circle at center, #FFFFFF 0%, #F0F8FF 100%);
+    background-color: var(--go-bg);
+    box-shadow:
+        0 0 20px var(--go-shadow),
+        inset 0 0 15px rgba(212, 175, 55, 0.2);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(212, 175, 55, 0.1) 100%);
+}
+
+/* Roman numerals for clock */
+.golden-opportunity .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.5"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23d4af37">XII</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23d4af37">III</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23d4af37">VI</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23d4af37">IX</text></svg>');
 }
 
 .golden-opportunity .hand {
@@ -203,31 +280,50 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .golden-opportunity .hour-hand {
     width: 40%;
     left: 10%;
-    height: 8px;
+    height: 5px;
     background: var(--go-primary);
-    margin-top: -4px;
+    margin-top: -2.5px;
+    border-radius: 3px;
 }
 
 .golden-opportunity .minute-hand {
     width: 48%;
     left: 2%;
-    height: 6px;
+    height: 3px;
     background: var(--go-secondary);
-    margin-top: -3px;
+    margin-top: -1.5px;
+    border-radius: 3px;
 }
 
 .golden-opportunity .second-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--go-accent5);
-    margin-top: -1.5px;
+    height: 1px;
+    background: var(--go-pearl);
+    margin-top: -0.5px;
+    box-shadow: 0 0 5px white;
+}
+
+/* Clock center - Jewel */
+.golden-opportunity .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--go-primary);
+    border-radius: 50%;
+    border: 2px solid var(--go-secondary);
+    animation: go-pulse 1s infinite;
+    box-shadow: 0 0 10px var(--go-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
@@ -235,115 +331,132 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.85);
-    border: 2px solid var(--go-primary);
+    background-color: rgba(40, 40, 40, 0.9);
+    border: 1px solid var(--go-primary);
     border-radius: var(--go-radius);
     table-layout: fixed;
-    backdrop-filter: blur(3px);
 }
 
-/* DAY OF WEEK HEADERS */
 .golden-opportunity th {
-    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.7));
-    color: var(--go-text) !important;
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 0.5rem;
+    background-color: rgba(212, 175, 55, 0.2);
+    color: var(--go-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.3rem;
     border: 1px solid var(--go-primary);
     position: relative;
+    font-size: 0.9rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 0;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.05em;
 }
 
-.golden-opportunity th span.full-day-name {
+.golden-opportunity th .full-day {
     display: inline;
 }
 
-.golden-opportunity th abbr {
+.golden-opportunity th .short-day {
     display: none;
-    text-decoration: none;
-    border-bottom: none;
 }
 
 .golden-opportunity td {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(30, 30, 30, 0.9);
     color: var(--go-text);
-    padding: 1.2rem;
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 1rem 0.3rem;
+    border: 1px solid var(--go-primary);
     height: 100px;
     vertical-align: top;
     transition: all var(--go-transition);
     position: relative;
+    font-size: 0.9rem;
 }
 
 .golden-opportunity td:hover {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--go-hover);
     box-shadow: inset 0 0 15px var(--go-shadow);
 }
 
-/* Current date highlight */
+.golden-opportunity .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--go-text);
+    font-size: 1.1rem;
+}
+
 .golden-opportunity td.current-day {
-    background: linear-gradient(135deg, rgba(184, 134, 11, 0.8), rgba(184, 134, 11, 0.9));
-    border: 2px solid var(--go-text);
-    color: white !important;
+    background-color: var(--go-current-day);
+    border: 2px solid var(--go-secondary);
+    color: var(--go-secondary) !important;
+    font-weight: 600;
+    animation: go-pulse 3s infinite;
+}
+
+.golden-opportunity td.current-day .date-number {
+    color: var(--go-secondary) !important;
     font-weight: 700;
-    animation: go-pulse 2s infinite;
+    font-size: 1.2rem;
 }
 
 .golden-opportunity td.current-day::before {
-    content: "";
+    content: "✦";
     position: absolute;
     top: 5px;
-    right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--go-text);
-    border-radius: 50%;
+    left: 5px;
+    color: var(--go-secondary);
     z-index: 1;
-    opacity: 0.7;
-}
-
-.golden-opportunity td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: white !important;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+    font-size: 1rem;
+    animation: go-glitter 2s infinite;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .golden-opportunity .event-marker {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: var(--go-accent5);
+    background-color: var(--go-primary);
     margin: 0 2px;
     box-shadow: 0 0 5px var(--go-shadow);
     transition: all var(--go-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: go-glitter 3s infinite;
 }
 
 .golden-opportunity .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--go-primary);
-    box-shadow: 0 0 15px var(--go-accent5);
+    transform: scale(1.8);
+    background-color: var(--go-secondary);
+    box-shadow: 0 0 15px var(--go-primary);
+}
+
+/* Special event types */
+.golden-opportunity .event-marker.holiday {
+    background-color: var(--go-gold-light);
+    animation-delay: 0.5s;
+}
+
+.golden-opportunity .event-marker.historic {
+    background-color: var(--go-silver);
+    animation-delay: 1s;
+}
+
+.golden-opportunity .event-marker.patriotic {
+    background-color: var(--go-bronze);
+    animation-delay: 1.5s;
 }
 
 /* ==================== MODAL STYLES ==================== */
 .golden-opportunity .modal-content {
     position: relative;
-    background: linear-gradient(145deg, #F0F8FF 0%, #E1F5FE 100%);
+    background-color: rgba(40, 40, 40, 0.98);
     border: 2px solid var(--go-primary);
     padding: 30px;
     color: var(--go-text);
     box-shadow: 0 0 40px var(--go-shadow);
     border-radius: var(--go-radius);
-    animation: go-fadeIn 0.4s ease;
+    animation: go-pulse 0.5s ease;
 }
 
 .golden-opportunity .modal-content::before {
@@ -352,48 +465,71 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--go-primary);
-    animation: go-pulse 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--go-primary),
+            var(--go-secondary),
+            var(--go-pearl));
 }
 
 .golden-opportunity .modal-content h2 {
     color: var(--go-primary);
-    font-family: 'Cinzel', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2em;
     margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.golden-opportunity .modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+.golden-opportunity .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--go-secondary);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-family: 'Playfair Display', serif;
+}
+
+.golden-opportunity .modal-content .event-description {
+    background-color: rgba(212, 175, 55, 0.15);
+    padding: 20px;
+    border-left: 3px solid var(--go-primary);
+    margin: 20px 0;
+    border-radius: 0 var(--go-radius) var(--go-radius) 0;
 }
 
 .golden-opportunity .modal-content button {
-    background-color: transparent;
-    color: var(--go-primary);
-    border: 2px solid var(--go-primary);
-    padding: 12px 24px;
+    background-color: var(--go-primary);
+    color: var(--go-bg);
+    border: none;
+    padding: 12px 25px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--go-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
     border-radius: var(--go-radius);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
 }
 
 .golden-opportunity .modal-content button:hover {
-    background-color: var(--go-primary);
-    color: var(--go-text);
-    box-shadow: 0 0 15px var(--go-shadow);
+    background-color: var(--go-secondary);
+    box-shadow: 0 4px 8px -1px var(--go-shadow);
 }
 
-/* Close Button */
 .golden-opportunity .modal .close-button {
     position: absolute;
     top: 15px;
     right: 15px;
     background-color: transparent;
     color: var(--go-primary);
-    border: 2px solid var(--go-primary);
+    border: 1px solid var(--go-primary);
     width: 32px;
     height: 32px;
     cursor: pointer;
@@ -402,288 +538,263 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-size: 1.2em;
 }
 
 .golden-opportunity .modal .close-button:hover {
     background-color: var(--go-primary);
-    color: var(--go-text);
-    transform: rotate(90deg);
+    color: var(--go-bg);
 }
 
-/* ==================== BUTTONS & CONTROLS ==================== */
-.golden-opportunity .button,
-.golden-opportunity .transparent-button {
-    border: 2px solid var(--go-primary);
-    color: var(--go-primary);
-    background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Cinzel', serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+/* ==================== BUTTON STYLES ==================== */
+.golden-opportunity button {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, var(--go-primary), var(--go-secondary));
+    color: var(--go-bg);
+    border: none;
+    padding: 12px 28px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--go-transition);
+    border-radius: var(--go-radius);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--go-radius);
+    box-shadow:
+        0 3px 10px var(--go-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.golden-opportunity .button::before,
-.golden-opportunity .transparent-button::before {
+.golden-opportunity button:hover {
+    background: linear-gradient(135deg, var(--go-secondary), var(--go-primary));
+    box-shadow:
+        0 5px 15px var(--go-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-3px);
+}
+
+.golden-opportunity button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 5px var(--go-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Metallic shine effect on buttons */
+.golden-opportunity button::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
-    transition: 0.5s;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
-.golden-opportunity .button:hover,
-.golden-opportunity .transparent-button:hover {
-    background-color: var(--go-primary);
+.golden-opportunity button:hover::before {
+    transform: scale(1);
+}
+
+/* Special button variants */
+.golden-opportunity button.secondary {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 215, 0, 0.2));
+    color: var(--go-secondary);
+    border: 1px solid var(--go-primary);
+    box-shadow: none;
+}
+
+.golden-opportunity button.secondary:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.3));
     color: var(--go-text);
-    box-shadow: 0 0 20px var(--go-shadow);
 }
 
-.golden-opportunity .button:hover::before,
-.golden-opportunity .transparent-button:hover::before {
-    left: 100%;
+.golden-opportunity button.danger {
+    background: linear-gradient(135deg, #c08000, #e0a020);
+    box-shadow: 0 3px 10px rgba(192, 128, 0, 0.4);
 }
 
-.golden-opportunity .controls {
+.golden-opportunity button.danger:hover {
+    background: linear-gradient(135deg, #e0a020, #c08000);
+    box-shadow: 0 5px 15px rgba(224, 160, 32, 0.5);
+}
+
+/* Button with diamond icon */
+.golden-opportunity button.with-icon::after {
+    content: "✦";
+    margin-left: 10px;
+    display: inline-block;
+    animation: go-glitter 2s infinite;
+}
+
+/* Small buttons */
+.golden-opportunity button.small {
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+/* Button group styling */
+.golden-opportunity .button-group {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 1.5rem 0;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 1rem;
-    border-radius: var(--go-radius);
-    backdrop-filter: blur(3px);
+    gap: 15px;
+    margin: 25px 0;
 }
 
-/* ==================== THEME SWITCHER ==================== */
-.golden-opportunity #theme-switcher-container {
-    position: relative;
-    margin: 0 1rem;
-    min-width: 220px;
-    z-index: 1000;
+.golden-opportunity .button-group button {
+    flex: 1;
 }
 
-.golden-opportunity #theme-switcher {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: var(--go-text) !important;
-    border: 2px solid var(--go-primary);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Marcellus SC', serif;
-    font-size: 1rem;
-    font-weight: 600;
-    width: 100%;
-    border-radius: var(--go-radius);
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a120b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.7rem center;
-    background-size: 1rem;
-    cursor: pointer;
-    transition: all var(--go-transition);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3px);
-}
-
-.golden-opportunity #theme-switcher option {
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    color: var(--go-text) !important;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 12px 15px !important;
-    border-bottom: 1px solid var(--go-primary) !important;
-}
-
-.golden-opportunity #theme-switcher option:hover {
-    background-color: var(--go-primary) !important;
-}
-
-.golden-opportunity #theme-switcher:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--go-primary), 0 0 15px var(--go-shadow);
-}
-
-/* ==================== BACK TO TOP BUTTON ==================== */
-.golden-opportunity #backToTopBtn {
+/* Floating action button */
+.golden-opportunity .fab {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
-    z-index: 9999;
-    border: 2px solid var(--go-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Cinzel', serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--go-primary);
-    background-color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    transition: all var(--go-transition);
-    opacity: 0.9;
-    display: none;
-    border-radius: var(--go-radius);
-    backdrop-filter: blur(3px);
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    padding: 0;
+    box-shadow:
+        0 5px 15px var(--go-shadow),
+        0 0 25px rgba(212, 175, 55, 0.4);
+    z-index: 100;
 }
 
-.golden-opportunity #backToTopBtn:hover {
-    background-color: var(--go-primary);
-    color: var(--go-text);
-    box-shadow: 0 0 20px var(--go-shadow);
-    opacity: 1;
+.golden-opportunity .fab:hover {
+    transform: translateY(-3px) scale(1.1);
 }
 
-/* ==================== FOOTER ==================== */
-.golden-opportunity footer {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--go-primary);
-    color: var(--go-text);
-    font-size: 0.9rem;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 0 0 var(--go-radius) var(--go-radius);
-    backdrop-filter: blur(3px);
+/* Pulsing effect for important buttons */
+.golden-opportunity button.important {
+    animation: go-pulse 2s infinite;
+}
+
+/* Disabled button */
+.golden-opportunity button:disabled {
+    background: rgba(212, 175, 55, 0.1);
+    color: rgba(232, 232, 232, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .golden-opportunity .container {
         padding: 1.5rem;
-        margin: 1rem auto;
+    }
+
+    .golden-opportunity #calendar-title {
+        font-size: 2.3rem;
+    }
+
+    .golden-opportunity #current-date {
+        font-size: 1.7rem;
+    }
+
+    .golden-opportunity #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .golden-opportunity th {
+        font-size: 0.85rem;
+        padding: 0.9rem 0.3rem;
+    }
+
+    .golden-opportunity td {
+        height: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .golden-opportunity .container {
+        padding: 1.2rem;
     }
 
     .golden-opportunity #calendar-title {
         font-size: 2rem;
     }
 
-    .golden-opportunity #current-date {
-        font-size: 1.5rem;
-    }
-
-    .golden-opportunity #today-weather {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 768px) {
     .golden-opportunity .clock-face {
         width: 160px;
         height: 160px;
     }
 
-    .golden-opportunity th {
-        font-size: 0.85rem;
-        padding: 0.8rem 0.3rem;
-    }
-
-    .golden-opportunity th span.full-day-name {
+    .golden-opportunity th .full-day {
         display: none;
     }
 
-    .golden-opportunity th abbr {
+    .golden-opportunity th .short-day {
         display: inline;
     }
 
-    .golden-opportunity td {
-        padding: 0.6rem;
-        height: 70px;
+    .golden-opportunity th {
         font-size: 0.8rem;
+        padding: 0.8rem 0.2rem;
     }
 
-    .golden-opportunity td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
-    }
-
-    .golden-opportunity #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-    }
-
-    .golden-opportunity #theme-switcher {
-        padding: 0.7rem 2rem 0.7rem 0.8rem;
-        font-size: 0.9rem;
-        min-width: 180px;
-    }
-
-    .golden-opportunity #theme-switcher option {
-        font-size: 0.9rem;
-        padding: 10px !important;
+    .golden-opportunity td {
+        padding: 0.8rem 0.2rem;
+        height: 80px;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 576px) {
     .golden-opportunity .container {
-        padding: 0.8rem;
-        margin: 0.5rem auto;
+        padding: 1rem;
     }
 
     .golden-opportunity #calendar-title {
         font-size: 1.6rem;
-        letter-spacing: 0.1em;
     }
 
     .golden-opportunity #current-date {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .golden-opportunity #today-weather {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .golden-opportunity .clock-face {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
     }
 
     .golden-opportunity th {
         font-size: 0.75rem;
-        padding: 0.5rem 0.2rem;
+        padding: 0.7rem 0.15rem;
     }
 
     .golden-opportunity td {
-        padding: 0.3rem;
-        height: 60px;
-        font-size: 0.7rem;
-    }
-
-    .golden-opportunity td.current-day::before {
-        width: 16px;
-        height: 16px;
-    }
-
-    .golden-opportunity #theme-switcher {
-        min-width: 160px;
-        font-size: 0.85rem;
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 400px) {
     .golden-opportunity th {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.7rem;
+        padding: 0.6rem 0.1rem;
     }
 
     .golden-opportunity td {
-        height: 50px;
+        height: 60px;
+        font-size: 0.75rem;
     }
 
-    .golden-opportunity #theme-switcher {
-        min-width: 140px;
-        font-size: 0.8rem;
+    .golden-opportunity #calendar-title {
+        font-size: 1.4rem;
     }
 }
