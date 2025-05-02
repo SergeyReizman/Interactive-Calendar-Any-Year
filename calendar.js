@@ -106,7 +106,7 @@ const applyTheme = (theme) => {
     'robin-good', 'royal-caribbean', 'samurai-path', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery',
-    'shift-in-perception', 'silicon-valley', 'sky-eagle', 'solar-flare', 'spring-meadow', 
+    'shift-in-perception', 'silicon-valley', 'sky-eagle', 'skylight-window', 'solar-flare', 'spring-meadow', 
     'statue-of-liberty', 'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'strategic-planning',
     'success-key','success-motivation', 
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 'the-dead-sea',
