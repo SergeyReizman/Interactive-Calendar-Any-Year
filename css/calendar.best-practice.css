@@ -277,6 +277,8 @@
 .best-practice .modal-content h2 {
     color: var(--bp-primary);
     font-size: var(--bp-font-size-lg);
+    padding-inline-end: var(--bp-space-xl);
+    /* Ensure space for close button */
 }
 
 .best-practice .modal-content .event-time {
@@ -293,14 +295,51 @@
     border-radius: 0 var(--bp-border-radius) var(--bp-border-radius) 0;
 }
 
+/* Enhanced Close Button Styles */
 .best-practice .modal .close-button {
     position: absolute;
-    inset-block-start: var(--bp-space-sm);
-    inset-inline-end: var(--bp-space-sm);
-    padding: var(--bp-space-xs);
-    background: none;
+    inset-block-start: var(--bp-space-md);
+    inset-inline-end: var(--bp-space-md);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    background-color: var(--bp-error);
+    color: white;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
+    transition:
+        background-color var(--bp-transition-fast),
+        transform var(--bp-transition-fast);
+    z-index: var(--bp-z-modal);
+}
+
+.best-practice .modal .close-button:hover,
+.best-practice .modal .close-button:focus {
+    background-color: color-mix(in srgb, var(--bp-error) 90%, black);
+    transform: scale(1.1);
+}
+
+.best-practice .modal .close-button:active {
+    transform: scale(0.95);
+}
+
+.best-practice .modal .close-button::before,
+.best-practice .modal .close-button::after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 2px;
+    background-color: white;
+}
+
+.best-practice .modal .close-button::before {
+    transform: rotate(45deg);
+}
+
+.best-practice .modal .close-button::after {
+    transform: rotate(-45deg);
 }
 
 /* ==================== BUTTON STYLES ==================== */
@@ -390,6 +429,14 @@
 
     .best-practice .clock-face {
         --clock-size: 140px;
+    }
+
+    /* Adjust modal close button for mobile */
+    .best-practice .modal .close-button {
+        width: 2rem;
+        height: 2rem;
+        inset-block-start: var(--bp-space-sm);
+        inset-inline-end: var(--bp-space-sm);
     }
 }
 
