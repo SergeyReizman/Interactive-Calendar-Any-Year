@@ -1,62 +1,51 @@
 /* ==========================================================================
-   Dream Adventure Theme - Team Productivity Calendar UI (Vibrant Edition)
+   Dream Adventure Theme - Whimsical Calendar UI
    Version: 4.1
    Updated: 2025-06-25
    Features:
-   - Whimsical adventure-inspired design
-   - Vibrant dreamy color palette
-   - Cloud and mountain elements
-   - Mobile-responsive layout
+   - Pastel fantasy color scheme
+   - Cloud and star effects
+   - Mobile-responsive design
+   - Magical glowing elements
    - Subtle floating animations
-   - Enhanced readability for team use
-   - Sky-like textures
+   - Enhanced dream mode readability
+   - Storybook textures
+   - Enchanted typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Sans+Pro:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Comic+Neue:wght@400;700&display=swap');
 
 :root {
-    /* Vibrant Dream Adventure Color Palette */
-    --ci-bg: #f0f8ff;
-    --ci-text: #2a2d4d;
-    --ci-primary: #5e72e4;
-    /* Vibrant blue */
-    --ci-secondary: #825ee4;
-    /* Purple */
+    /* Dreamy Color Palette */
+    --da-bg: #f0f5ff;
+    --da-text: #3a3d6b;
+    --da-primary: #a78bfa;
+    /* Lavender */
+    --da-secondary: #67e8f9;
+    /* Sky blue */
 
-    /* Accent Colors */
-    --ci-postit-yellow: #ffed6a;
-    --ci-postit-blue: #6ad4ff;
-    --ci-postit-pink: #ff6ad4;
-    --ci-postit-green: #6aff87;
-    --ci-highlight: #ff9e5e;
+    /* Magical Colors */
+    --da-star-pink: #f9a8d4;
+    --da-star-yellow: #fde047;
+    --da-cloud-white: #ffffff;
+    --da-magic-purple: #c084fc;
+    --da-fairy-teal: #5eead4;
 
     /* Gradient Colors */
-    --ci-gradient-start: #e0f0ff;
-    --ci-gradient-end: #d0e0ff;
+    --da-gradient-start: #c7d2fe;
+    --da-gradient-end: #a5b4fc;
 
     /* Theme Variables */
-    --ci-shadow: rgba(94, 114, 228, 0.2);
-    --ci-radius: 8px;
-    --ci-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --ci-hover: #e0e8ff;
-    --ci-current-day: #d0e0ff;
-    --ci-border: 1px solid #c6d6f0;
+    --da-shadow: rgba(167, 139, 250, 0.3);
+    --da-radius: 12px;
+    --da-transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --da-hover: #e0e7ff;
+    --da-current-day: #d8b4fe;
+    --da-star-size: 2px;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes ci-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.03);
-    }
-}
-
-@keyframes ci-float {
+@keyframes da-float {
 
     0%,
     100% {
@@ -64,61 +53,75 @@
     }
 
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-10px);
     }
 }
 
-@keyframes ci-fade-in {
-    0% {
-        opacity: 0;
-        transform: translateY(5px);
+@keyframes da-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.6;
     }
 
-    100% {
+    50% {
         opacity: 1;
-        transform: translateY(0);
+    }
+}
+
+@keyframes da-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 8px var(--da-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--da-primary);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .dream-adventure {
-    font-family: 'Inter', sans-serif;
-    color: var(--ci-text);
+    font-family: 'Comic Neue', cursive;
+    color: var(--da-text);
     line-height: 1.6;
-    background: var(--ci-bg);
+    background: var(--da-bg);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
     background-image:
-        linear-gradient(to bottom,
-            var(--ci-gradient-start),
-            var(--ci-gradient-end)),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.07"><path d="M30,20 Q40,10 50,20 T70,20" fill="none" stroke="%235e72e4" stroke-width="0.7"/><path d="M20,40 Q30,30 40,40 T60,40" fill="none" stroke="%23825ee4" stroke-width="0.7"/><path d="M40,60 Q50,50 60,60 T80,60" fill="none" stroke="%235e72e4" stroke-width="0.7"/></svg>');
+        radial-gradient(ellipse at top,
+            var(--da-gradient-start),
+            var(--da-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="3" fill="%23a78bfa"/><circle cx="50" cy="50" r="2" fill="%2367e8f9"/><circle cx="80" cy="30" r="4" fill="%23f9a8d4"/><circle cx="30" cy="80" r="3" fill="%23fde047"/></svg>');
 }
 
-/* Cloud connection lines animation */
+/* Floating cloud */
 .dream-adventure::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><path d="M10% 15% Q25% 5% 40% 15% T70% 15% M60% 30% Q75% 20% 90% 30% M30% 45% Q45% 35% 60% 45% T90% 45%" stroke="%23825ee4" stroke-width="0.7" stroke-dasharray="8,4" fill="none" opacity="0.4"><animate attributeName="stroke-dashoffset" values="50;0" dur="15s" repeatCount="indefinite"/></path></svg>');
-    pointer-events: none;
-    z-index: 0;
+    top: 10%;
+    right: 5%;
+    width: 100px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(10px);
+    opacity: 0.7;
+    animation: da-float 8s ease-in-out infinite;
 }
 
 .dream-adventure .container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 2rem;
-    border: var(--ci-border);
-    box-shadow: 0 4px 20px var(--ci-shadow);
+    border: 2px dashed var(--da-primary);
+    box-shadow: 0 0 30px var(--da-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--ci-radius);
+    border-radius: var(--da-radius);
     z-index: 1;
 }
 
@@ -130,12 +133,14 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--ci-primary),
-            var(--ci-secondary));
-    opacity: 0.9;
+            transparent,
+            var(--da-primary),
+            var(--da-secondary),
+            transparent);
+    animation: da-pulse 4s infinite;
 }
 
-/* Sky texture */
+/* Magical sparkle pattern */
 .dream-adventure .container::after {
     content: "";
     position: absolute;
@@ -145,10 +150,10 @@
     bottom: 0;
     background-image:
         radial-gradient(circle at 70% 30%,
-            rgba(94, 114, 228, 0.08) 0%,
+            rgba(167, 139, 250, 0.05) 0%,
             transparent 20%),
         radial-gradient(circle at 30% 70%,
-            rgba(130, 94, 228, 0.08) 0%,
+            rgba(103, 232, 249, 0.05) 0%,
             transparent 20%);
     pointer-events: none;
     z-index: -1;
@@ -156,76 +161,78 @@
 
 /* ==================== HEADER & TITLE ==================== */
 .dream-adventure #calendar-title {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: var(--ci-primary);
+    font-family: 'Fredoka One', cursive;
+    color: var(--da-primary);
     text-align: center;
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     margin-bottom: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
+    letter-spacing: 0.05em;
     position: relative;
-    animation: ci-fade-in 0.5s ease-out;
-    text-shadow: 0 2px 4px rgba(94, 114, 228, 0.1);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    animation: da-float 6s ease-in-out infinite;
 }
 
 .dream-adventure #calendar-title::before,
 .dream-adventure #calendar-title::after {
-    content: "✧";
+    content: "✨";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--ci-secondary);
+    color: var(--da-star-yellow);
     font-size: 1.8rem;
-    opacity: 0.8;
+    animation: da-twinkle 2s infinite;
 }
 
 .dream-adventure #calendar-title::before {
-    left: 1.5rem;
+    left: 1rem;
+    animation-delay: 0.3s;
 }
 
 .dream-adventure #calendar-title::after {
-    right: 1.5rem;
+    right: 1rem;
+    animation-delay: 0.7s;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .dream-adventure #date-weather-container {
     text-align: center;
     margin: 2rem 0;
-    padding: 1.2rem;
-    background-color: white;
-    border: var(--ci-border);
-    border-radius: var(--ci-radius);
+    padding: 1.5rem;
+    background-color: rgba(167, 139, 250, 0.1);
+    border: 2px dotted var(--da-primary);
+    border-radius: var(--da-radius);
     position: relative;
-    box-shadow: 0 2px 10px var(--ci-shadow);
-    animation: ci-float 6s infinite;
 }
 
 .dream-adventure #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
+    left: 0;
+    right: 0;
     height: 2px;
     background: linear-gradient(90deg,
             transparent,
-            var(--ci-secondary),
+            var(--da-secondary),
             transparent);
 }
 
 .dream-adventure #current-date {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: var(--ci-primary);
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-family: 'Fredoka One', cursive;
+    color: var(--da-primary);
+    font-size: 2rem;
+    font-weight: 400;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
 }
 
 .dream-adventure #today-weather {
-    font-family: 'Inter', sans-serif;
-    color: var(--ci-secondary);
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-family: 'Comic Neue', cursive;
+    color: var(--da-secondary);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    font-weight: 700;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -238,16 +245,20 @@
 .dream-adventure .clock-face {
     width: 180px;
     height: 180px;
-    border: var(--ci-border);
+    border: 3px solid var(--da-primary);
     border-radius: 50%;
     position: relative;
     background-color: white;
     box-shadow:
-        0 4px 15px var(--ci-shadow),
-        inset 0 0 0 1px rgba(94, 114, 228, 0.15);
+        0 0 20px var(--da-shadow),
+        inset 0 0 15px rgba(167, 139, 250, 0.2);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(167, 139, 250, 0.1) 100%);
 }
 
-/* Modern clock numerals */
+/* Whimsical numerals for clock */
 .dream-adventure .clock-face::before {
     content: "";
     position: absolute;
@@ -255,7 +266,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.5"><text x="50" y="18" text-anchor="middle" font-family="Inter" font-size="10" fill="%235e72e4">12</text><text x="82" y="55" text-anchor="middle" font-family="Inter" font-size="10" fill="%235e72e4">3</text><text x="50" y="92" text-anchor="middle" font-family="Inter" font-size="10" fill="%235e72e4">6</text><text x="18" y="55" text-anchor="middle" font-family="Inter" font-size="10" fill="%235e72e4">9</text></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Fredoka One" font-size="12" fill="%23a78bfa">12</text><text x="82" y="55" text-anchor="middle" font-family="Fredoka One" font-size="12" fill="%23a78bfa">3</text><text x="50" y="92" text-anchor="middle" font-family="Fredoka One" font-size="12" fill="%23a78bfa">6</text><text x="18" y="55" text-anchor="middle" font-family="Fredoka One" font-size="12" fill="%23a78bfa">9</text></svg>');
 }
 
 .dream-adventure .hand {
@@ -268,68 +279,70 @@
 }
 
 .dream-adventure .hour-hand {
-    width: 35%;
-    left: 15%;
-    height: 4px;
-    background: var(--ci-primary);
-    margin-top: -2px;
-    border-radius: 2px;
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--da-primary);
+    margin-top: -3px;
+    border-radius: 4px;
 }
 
 .dream-adventure .minute-hand {
-    width: 45%;
-    left: 5%;
-    height: 3px;
-    background: var(--ci-secondary);
-    margin-top: -1.5px;
-    border-radius: 2px;
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--da-secondary);
+    margin-top: -2px;
+    border-radius: 4px;
 }
 
 .dream-adventure .second-hand {
-    width: 45%;
-    left: 5%;
-    height: 1px;
-    background: var(--ci-highlight);
-    margin-top: -0.5px;
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--da-star-pink);
+    margin-top: -1px;
+    border-radius: 4px;
 }
 
-/* Clock center dot */
+/* Clock center - Magic orb */
 .dream-adventure .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background-color: var(--ci-primary);
+    width: 12px;
+    height: 12px;
+    background-color: var(--da-primary);
     border-radius: 50%;
-    border: 2px solid var(--ci-secondary);
+    border: 2px solid var(--da-secondary);
+    animation: da-pulse 2s infinite;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .dream-adventure table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 4px;
+    border-collapse: collapse;
     margin: 2rem auto;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--da-primary);
+    border-radius: var(--da-radius);
     table-layout: fixed;
 }
 
 .dream-adventure th {
-    background-color: var(--ci-primary);
-    color: white !important;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    padding: 0.8rem 0.3rem;
-    border-radius: var(--ci-radius);
+    background-color: rgba(167, 139, 250, 0.2);
+    color: var(--da-primary) !important;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border: 2px solid var(--da-primary);
     position: relative;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    box-shadow: 0 2px 5px var(--ci-shadow);
 }
 
 .dream-adventure th .full-day {
@@ -341,125 +354,100 @@
 }
 
 .dream-adventure td {
-    background-color: white;
-    color: var(--ci-text);
-    padding: 0.8rem 0.5rem;
-    border: var(--ci-border);
-    height: 90px;
+    background-color: rgba(240, 245, 255, 0.9);
+    color: var(--da-text);
+    padding: 1rem 0.5rem;
+    border: 2px solid var(--da-primary);
+    height: 100px;
     vertical-align: top;
-    transition: all var(--ci-transition);
+    transition: all var(--da-transition);
     position: relative;
-    font-size: 0.85rem;
-    border-radius: var(--ci-radius);
-    box-shadow: 0 1px 3px var(--ci-shadow);
+    font-size: 0.9rem;
 }
 
 .dream-adventure td:hover {
-    background-color: var(--ci-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--ci-shadow);
+    background-color: var(--da-hover);
+    box-shadow: inset 0 0 20px var(--da-shadow);
 }
 
 .dream-adventure .date-number {
-    display: inline-block;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: var(--ci-text);
-    background-color: var(--ci-hover);
-    padding: 2px 6px;
-    border-radius: 12px;
-    font-size: 0.8rem;
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--da-text);
 }
 
 .dream-adventure td.current-day {
-    background-color: var(--ci-current-day);
-    border: 1px solid var(--ci-secondary);
-    color: var(--ci-primary) !important;
-    font-weight: 500;
-    animation: ci-pulse 3s infinite;
+    background-color: var(--da-current-day);
+    border: 3px solid var(--da-secondary);
+    color: var(--da-primary) !important;
+    font-weight: 700;
+    animation: da-pulse 4s infinite;
 }
 
 .dream-adventure td.current-day .date-number {
-    background-color: var(--ci-primary);
-    color: white !important;
-    font-weight: 600;
+    color: var(--da-primary) !important;
+    font-weight: 700;
 }
 
 .dream-adventure td.current-day::before {
-    content: "";
+    content: "🌟";
     position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 6px;
-    height: 6px;
-    background-color: var(--ci-highlight);
-    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    color: var(--da-star-yellow);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 1rem;
+    animation: da-twinkle 2s infinite;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .dream-adventure .event-marker {
-    display: block;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background-color: var(--ci-primary);
-    margin: 2px 0;
-    transition: all var(--ci-transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.dream-adventure .event-marker::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.5),
-            transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--da-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 8px var(--da-shadow);
+    transition: all var(--da-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: da-twinkle 3s infinite;
 }
 
 .dream-adventure .event-marker:hover {
-    height: 6px;
-    box-shadow: 0 1px 4px var(--ci-shadow);
-}
-
-.dream-adventure .event-marker:hover::after {
-    transform: translateX(100%);
+    transform: scale(1.8);
+    background-color: var(--da-secondary);
+    box-shadow: 0 0 20px var(--da-primary);
 }
 
 /* Special event types */
 .dream-adventure .event-marker.holiday {
-    background-color: var(--ci-postit-yellow);
+    background-color: var(--da-star-pink);
+    animation-delay: 0.5s;
 }
 
 .dream-adventure .event-marker.historic {
-    background-color: var(--ci-postit-blue);
+    background-color: var(--da-magic-purple);
+    animation-delay: 1s;
 }
 
 .dream-adventure .event-marker.patriotic {
-    background-color: var(--ci-postit-green);
-}
-
-.dream-adventure .event-marker.meeting {
-    background-color: var(--ci-postit-pink);
+    background-color: var(--da-fairy-teal);
+    animation-delay: 1.5s;
 }
 
 /* ==================== MODAL STYLES ==================== */
 .dream-adventure .modal-content {
     position: relative;
-    background-color: white;
-    border: var(--ci-border);
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 3px solid var(--da-primary);
     padding: 25px;
-    color: var(--ci-text);
-    box-shadow: 0 8px 30px var(--ci-shadow);
-    border-radius: var(--ci-radius);
-    animation: ci-fade-in 0.3s ease-out;
+    color: var(--da-text);
+    box-shadow: 0 0 40px var(--da-shadow);
+    border-radius: var(--da-radius);
+    animation: da-pulse 0.5s ease;
 }
 
 .dream-adventure .modal-content::before {
@@ -470,56 +458,56 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--ci-primary),
-            var(--ci-secondary));
+            var(--da-primary),
+            var(--da-secondary),
+            var(--da-star-pink));
 }
 
 .dream-adventure .modal-content h2 {
-    color: var(--ci-primary);
-    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--da-primary);
+    font-family: 'Fredoka One', cursive;
     font-size: 1.8em;
     margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .dream-adventure .modal-content p {
     margin-bottom: 15px;
     font-size: 1.05em;
-    line-height: 1.7;
 }
 
 .dream-adventure .modal-content .event-time {
     display: block;
-    font-weight: 600;
-    color: var(--ci-secondary);
+    font-weight: 700;
+    color: var(--da-secondary);
     margin-bottom: 10px;
     font-size: 1.1em;
 }
 
 .dream-adventure .modal-content .event-description {
-    background-color: var(--ci-hover);
+    background-color: rgba(167, 139, 250, 0.15);
     padding: 15px;
-    border-left: 3px solid var(--ci-primary);
+    border-left: 3px solid var(--da-primary);
     margin: 15px 0;
-    border-radius: 0 var(--ci-radius) var(--ci-radius) 0;
+    border-radius: 0 var(--da-radius) var(--da-radius) 0;
 }
 
 .dream-adventure .modal-content button {
-    background-color: var(--ci-primary);
+    background-color: var(--da-primary);
     color: white;
     border: none;
     padding: 10px 20px;
     font-size: 0.9em;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--ci-transition);
-    border-radius: var(--ci-radius);
-    font-family: 'Inter', sans-serif;
+    transition: all var(--da-transition);
+    border-radius: var(--da-radius);
+    font-family: 'Comic Neue', cursive;
 }
 
 .dream-adventure .modal-content button:hover {
-    background-color: var(--ci-secondary);
-    box-shadow: 0 4px 8px var(--ci-shadow);
+    background-color: var(--da-secondary);
+    box-shadow: 0 4px 6px -1px var(--da-shadow);
 }
 
 .dream-adventure .modal .close-button {
@@ -527,12 +515,12 @@
     top: 12px;
     right: 12px;
     background-color: transparent;
-    color: var(--ci-primary);
-    border: 1px solid var(--ci-primary);
+    color: var(--da-primary);
+    border: 2px solid var(--da-primary);
     width: 28px;
     height: 28px;
     cursor: pointer;
-    transition: all var(--ci-transition);
+    transition: all var(--da-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -540,105 +528,99 @@
 }
 
 .dream-adventure .modal .close-button:hover {
-    background-color: var(--ci-primary);
+    background-color: var(--da-primary);
     color: white;
 }
 
 /* ==================== BUTTON STYLES ==================== */
 .dream-adventure button {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, var(--ci-primary), var(--ci-secondary));
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(135deg, var(--da-primary), var(--da-secondary));
     color: white;
     border: none;
-    padding: 10px 24px;
+    padding: 12px 24px;
     font-size: 0.95em;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--ci-transition);
-    border-radius: var(--ci-radius);
+    transition: all var(--da-transition);
+    border-radius: var(--da-radius);
     position: relative;
     overflow: hidden;
     box-shadow:
-        0 2px 8px var(--ci-shadow);
+        0 3px 10px var(--da-shadow),
+        0 0 0 2px rgba(255, 255, 255, 0.3) inset;
+    letter-spacing: 0.05em;
 }
 
 .dream-adventure button:hover {
-    background: linear-gradient(135deg, var(--ci-secondary), var(--ci-primary));
+    background: linear-gradient(135deg, var(--da-secondary), var(--da-primary));
     box-shadow:
-        0 4px 12px var(--ci-shadow);
-    transform: translateY(-2px);
+        0 5px 15px var(--da-shadow),
+        0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+    transform: translateY(-3px);
 }
 
 .dream-adventure button:active {
     transform: translateY(0);
     box-shadow:
-        0 1px 4px var(--ci-shadow);
+        0 2px 5px var(--da-shadow),
+        0 0 0 2px rgba(255, 255, 255, 0.3) inset;
 }
 
-/* Ripple effect on buttons */
-.dream-adventure button::after {
+/* Magic sparkle effect on buttons */
+.dream-adventure button::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
-.dream-adventure button:focus:not(:active)::after {
-    animation: ripple 1s ease-out;
-}
-
-@keyframes ripple {
-    0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: scale(20, 20);
-        opacity: 0;
-    }
+.dream-adventure button:hover::before {
+    transform: scale(1);
 }
 
 /* Special button variants */
 .dream-adventure button.secondary {
-    background: white;
-    color: var(--ci-primary);
-    border: 1px solid var(--ci-primary);
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(103, 232, 249, 0.2));
+    color: var(--da-primary);
+    border: 2px solid var(--da-primary);
     box-shadow: none;
 }
 
 .dream-adventure button.secondary:hover {
-    background: var(--ci-hover);
-    color: var(--ci-primary);
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(103, 232, 249, 0.3));
+    color: var(--da-text);
 }
 
 .dream-adventure button.danger {
-    background: linear-gradient(135deg, #ef4444, #f87171);
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+    background: linear-gradient(135deg, #f9a8d4, #f472b6);
+    box-shadow: 0 3px 10px rgba(249, 168, 212, 0.3);
 }
 
 .dream-adventure button.danger:hover {
-    background: linear-gradient(135deg, #f87171, #ef4444);
-    box-shadow: 0 4px 12px rgba(248, 113, 113, 0.3);
+    background: linear-gradient(135deg, #f472b6, #f9a8d4);
+    box-shadow: 0 5px 15px rgba(249, 168, 212, 0.4);
 }
 
-/* Button with plus icon */
+/* Button with magic icon */
 .dream-adventure button.with-icon::after {
-    content: "+";
+    content: "✨";
     margin-left: 8px;
     display: inline-block;
+    animation: da-twinkle 2s infinite;
 }
 
 /* Small buttons */
 .dream-adventure button.small {
-    padding: 6px 12px;
+    padding: 8px 16px;
     font-size: 0.8em;
 }
 
@@ -667,10 +649,10 @@
     font-size: 1.5em;
     padding: 0;
     box-shadow:
-        0 4px 12px var(--ci-shadow);
+        0 4px 15px var(--da-shadow),
+        0 0 25px rgba(167, 139, 250, 0.3);
     z-index: 100;
-    background: linear-gradient(135deg, var(--ci-primary), var(--ci-secondary));
-    color: white;
+    animation: da-float 4s ease-in-out infinite;
 }
 
 .dream-adventure .fab:hover {
@@ -679,13 +661,13 @@
 
 /* Pulsing effect for important buttons */
 .dream-adventure button.important {
-    animation: ci-pulse 2s infinite;
+    animation: da-pulse 2s infinite;
 }
 
 /* Disabled button */
 .dream-adventure button:disabled {
-    background: rgba(94, 114, 228, 0.1);
-    color: rgba(42, 45, 77, 0.5);
+    background: rgba(167, 139, 250, 0.1);
+    color: rgba(58, 61, 107, 0.5);
     cursor: not-allowed;
     transform: none !important;
     box-shadow: none !important;
@@ -698,11 +680,11 @@
     }
 
     .dream-adventure #calendar-title {
-        font-size: 2.1rem;
+        font-size: 2.2rem;
     }
 
     .dream-adventure #current-date {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
     }
 
     .dream-adventure #today-weather {
@@ -710,8 +692,8 @@
     }
 
     .dream-adventure th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
+        font-size: 0.85rem;
+        padding: 0.9rem 0.3rem;
     }
 }
 
@@ -721,7 +703,7 @@
     }
 
     .dream-adventure #calendar-title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
 
     .dream-adventure .clock-face {
@@ -738,14 +720,14 @@
     }
 
     .dream-adventure th {
-        font-size: 0.75rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.8rem;
+        padding: 0.8rem 0.2rem;
     }
 
     .dream-adventure td {
-        padding: 0.6rem 0.15rem;
+        padding: 0.8rem 0.2rem;
         height: 80px;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -755,7 +737,7 @@
     }
 
     .dream-adventure #calendar-title {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .dream-adventure #current-date {
@@ -772,29 +754,29 @@
     }
 
     .dream-adventure th {
-        font-size: 0.7rem;
-        padding: 0.5rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.7rem 0.15rem;
     }
 
     .dream-adventure td {
-        padding: 0.5rem 0.1rem;
+        padding: 0.6rem 0.15rem;
         height: 70px;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 400px) {
     .dream-adventure th {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.7rem;
+        padding: 0.6rem 0.1rem;
     }
 
     .dream-adventure td {
         height: 60px;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
 
     .dream-adventure #calendar-title {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
 }
