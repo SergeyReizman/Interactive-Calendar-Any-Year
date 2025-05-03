@@ -1,0 +1,780 @@
+/* ==========================================================================
+   DōTERRA Power Theme - Wellness Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Earthy essential oil color scheme
+   - Natural botanical elements
+   - Mobile-responsive design
+   - Leaf and plant patterns
+   - Subtle organic animations
+   - Enhanced readability for wellness tracking
+   - Natural textures
+   - Clean typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    /* Natural Color Palette */
+    --dt-bg: #f5f9f0;
+    --dt-text: #2a3325;
+    --dt-primary: #5a7242;
+    /* Earthy green */
+    --dt-secondary: #8aa67a;
+    /* Lighter green */
+
+    /* Essential Oil Colors */
+    --dt-lavender: #967bb6;
+    --dt-peppermint: #4d9e8f;
+    --dt-lemon: #f5d76e;
+    --dt-oregano: #c0392b;
+    --dt-frankincense: #e67e22;
+
+    /* Gradient Colors */
+    --dt-gradient-start: #f5f9f0;
+    --dt-gradient-end: #d4e6c3;
+
+    /* Theme Variables */
+    --dt-shadow: rgba(90, 114, 66, 0.2);
+    --dt-radius: 6px;
+    --dt-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --dt-hover: #e8f0e1;
+    --dt-current-day: #d4e6c3;
+    --dt-leaf-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dt-pulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes dt-leaf-fall {
+    0% {
+        transform: translateX(-100px) translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes dt-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--dt-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--dt-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.doterra-power {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--dt-text);
+    line-height: 1.6;
+    background: var(--dt-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom,
+            var(--dt-gradient-start),
+            var(--dt-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><path d="M20,20 Q30,10 40,20 T60,20 T80,20" stroke="%235a7242" fill="none" stroke-width="1"/><path d="M50,50 Q60,40 70,50 T90,50" stroke="%235a7242" fill="none" stroke-width="1"/><path d="M30,80 Q40,70 50,80 T70,80" stroke="%235a7242" fill="none" stroke-width="1"/></svg>');
+}
+
+/* Falling leaf */
+.doterra-power::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    background: var(--dt-primary);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: dt-leaf-fall 15s linear infinite;
+    opacity: 0;
+}
+
+.doterra-power .container {
+    background-color: rgba(245, 249, 240, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--dt-primary);
+    box-shadow: 0 0 20px var(--dt-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--dt-radius);
+    z-index: 1;
+}
+
+.doterra-power .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dt-primary),
+            var(--dt-secondary),
+            transparent);
+    animation: dt-glow 3s infinite;
+}
+
+/* Leaf pattern */
+.doterra-power .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(90, 114, 66, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(138, 166, 122, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.doterra-power #calendar-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dt-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 5px var(--dt-shadow);
+}
+
+.doterra-power #calendar-title::before,
+.doterra-power #calendar-title::after {
+    content: "❀";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dt-secondary);
+    font-size: 1.5rem;
+    animation: dt-pulse 2s infinite;
+}
+
+.doterra-power #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.doterra-power #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WELLNESS DISPLAY ==================== */
+.doterra-power #date-wellness-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(90, 114, 66, 0.1);
+    border: 1px solid var(--dt-primary);
+    border-radius: var(--dt-radius);
+    position: relative;
+}
+
+.doterra-power #date-wellness-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dt-primary),
+            transparent);
+}
+
+.doterra-power #current-date {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dt-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.doterra-power #today-wellness {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--dt-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.doterra-power #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.doterra-power .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--dt-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dt-bg);
+    box-shadow:
+        0 0 10px var(--dt-shadow),
+        inset 0 0 10px rgba(90, 114, 66, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(90, 114, 66, 0.1) 100%);
+}
+
+/* Leaf numerals for clock */
+.doterra-power .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Poppins" font-size="12" fill="%235a7242">XII</text><text x="82" y="55" text-anchor="middle" font-family="Poppins" font-size="12" fill="%235a7242">III</text><text x="50" y="92" text-anchor="middle" font-family="Poppins" font-size="12" fill="%235a7242">VI</text><text x="18" y="55" text-anchor="middle" font-family="Poppins" font-size="12" fill="%235a7242">IX</text></svg>');
+}
+
+.doterra-power .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.doterra-power .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--dt-primary);
+    margin-top: -2px;
+}
+
+.doterra-power .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--dt-secondary);
+    margin-top: -1px;
+}
+
+.doterra-power .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--dt-frankincense);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Essential oil drop */
+.doterra-power .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--dt-frankincense);
+    border-radius: 50%;
+    border: 1px solid var(--dt-secondary);
+    animation: dt-glow 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.doterra-power table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--dt-primary);
+    border-radius: var(--dt-radius);
+    table-layout: fixed;
+}
+
+.doterra-power th {
+    background-color: rgba(90, 114, 66, 0.2);
+    color: var(--dt-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--dt-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.doterra-power th .full-day {
+    display: inline;
+}
+
+.doterra-power th .short-day {
+    display: none;
+}
+
+.doterra-power td {
+    background-color: rgba(245, 249, 240, 0.9);
+    color: var(--dt-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--dt-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--dt-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.doterra-power td:hover {
+    background-color: var(--dt-hover);
+    box-shadow: inset 0 0 10px var(--dt-shadow);
+}
+
+.doterra-power .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--dt-text);
+}
+
+.doterra-power td.current-day {
+    background-color: var(--dt-current-day);
+    border: 2px solid var(--dt-secondary);
+    color: var(--dt-secondary) !important;
+    font-weight: 600;
+    animation: dt-glow 3s infinite;
+}
+
+.doterra-power td.current-day .date-number {
+    color: var(--dt-secondary) !important;
+    font-weight: 700;
+}
+
+.doterra-power td.current-day::before {
+    content: "❀";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--dt-lavender);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: dt-pulse 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.doterra-power .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dt-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--dt-shadow);
+    transition: all var(--dt-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: dt-pulse 3s infinite;
+}
+
+.doterra-power .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--dt-secondary);
+    box-shadow: 0 0 10px var(--dt-primary);
+}
+
+/* Special event types */
+.doterra-power .event-marker.wellness {
+    background-color: var(--dt-peppermint);
+    animation-delay: 0.5s;
+}
+
+.doterra-power .event-marker.class {
+    background-color: var(--dt-lavender);
+    animation-delay: 1s;
+}
+
+.doterra-power .event-marker.important {
+    background-color: var(--dt-oregano);
+    animation-delay: 1.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.doterra-power .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--dt-primary);
+    padding: 25px;
+    color: var(--dt-text);
+    box-shadow: 0 0 20px var(--dt-shadow);
+    border-radius: var(--dt-radius);
+    animation: dt-glow 0.5s ease;
+}
+
+.doterra-power .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--dt-primary),
+            var(--dt-secondary),
+            var(--dt-lavender));
+}
+
+.doterra-power .modal-content h2 {
+    color: var(--dt-primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.doterra-power .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.doterra-power .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--dt-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.doterra-power .modal-content .event-description {
+    background-color: rgba(90, 114, 66, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--dt-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--dt-radius) var(--dt-radius) 0;
+}
+
+.doterra-power .modal-content button {
+    background-color: var(--dt-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dt-transition);
+    border-radius: var(--dt-radius);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.doterra-power .modal-content button:hover {
+    background-color: var(--dt-secondary);
+    box-shadow: 0 4px 6px -1px var(--dt-shadow);
+}
+
+.doterra-power .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--dt-primary);
+    border: 1px solid var(--dt-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--dt-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.doterra-power .modal .close-button:hover {
+    background-color: var(--dt-primary);
+    color: white;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.doterra-power button {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, var(--dt-primary), var(--dt-secondary));
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dt-transition);
+    border-radius: var(--dt-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--dt-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+}
+
+.doterra-power button:hover {
+    background: linear-gradient(135deg, var(--dt-secondary), var(--dt-primary));
+    box-shadow:
+        0 4px 12px var(--dt-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.doterra-power button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--dt-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Leaf effect on buttons */
+.doterra-power button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.doterra-power button:hover::before {
+    transform: scale(1);
+}
+
+/* Special button variants */
+.doterra-power button.secondary {
+    background: linear-gradient(135deg, rgba(90, 114, 66, 0.1), rgba(138, 166, 122, 0.2));
+    color: var(--dt-primary);
+    border: 1px solid var(--dt-primary);
+    box-shadow: none;
+}
+
+.doterra-power button.secondary:hover {
+    background: linear-gradient(135deg, rgba(90, 114, 66, 0.2), rgba(138, 166, 122, 0.3));
+    color: var(--dt-text);
+}
+
+.doterra-power button.danger {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    box-shadow: 0 2px 8px rgba(192, 57, 43, 0.3);
+}
+
+.doterra-power button.danger:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+}
+
+/* Button with leaf icon */
+.doterra-power button.with-icon::after {
+    content: "❀";
+    margin-left: 8px;
+    display: inline-block;
+    animation: dt-pulse 2s infinite;
+}
+
+/* Small buttons */
+.doterra-power button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+/* Button group styling */
+.doterra-power .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.doterra-power .button-group button {
+    flex: 1;
+}
+
+/* Floating action button */
+.doterra-power .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--dt-shadow),
+        0 0 20px rgba(90, 114, 66, 0.3);
+    z-index: 100;
+}
+
+.doterra-power .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Pulsing effect for important buttons */
+.doterra-power button.important {
+    animation: dt-glow 2s infinite;
+}
+
+/* Disabled button */
+.doterra-power button:disabled {
+    background: rgba(90, 114, 66, 0.1);
+    color: rgba(42, 51, 37, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .doterra-power .container {
+        padding: 1.2rem;
+    }
+
+    .doterra-power #calendar-title {
+        font-size: 2rem;
+    }
+
+    .doterra-power #current-date {
+        font-size: 1.5rem;
+    }
+
+    .doterra-power #today-wellness {
+        font-size: 1.1rem;
+    }
+
+    .doterra-power th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .doterra-power .container {
+        padding: 1rem;
+    }
+
+    .doterra-power #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .doterra-power .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .doterra-power th .full-day {
+        display: none;
+    }
+
+    .doterra-power th .short-day {
+        display: inline;
+    }
+
+    .doterra-power th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .doterra-power td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .doterra-power .container {
+        padding: 0.8rem;
+    }
+
+    .doterra-power #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .doterra-power #current-date {
+        font-size: 1.1rem;
+    }
+
+    .doterra-power #today-wellness {
+        font-size: 0.9rem;
+    }
+
+    .doterra-power .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .doterra-power th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .doterra-power td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .doterra-power th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .doterra-power td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .doterra-power #calendar-title {
+        font-size: 1.2rem;
+    }
+}
