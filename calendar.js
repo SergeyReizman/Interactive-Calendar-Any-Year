@@ -72,7 +72,7 @@ const applyTheme = (theme) => {
     'cyber-pulse', 'dark-mode', 'dartagnans-rapier', 'daruma-doll', 'deep-forest', 'deep-ocean', 
     'desert-mirage', 'diamond-planet', 'distant-skies', 
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 'doterra-new',
-    'dragon-flame', 'dragonfly','emerald-stream', 'emperor-penguin', 
+    'dragon-flame', 'dragonfly', 'dream-adventure', 'emerald-stream', 'emperor-penguin', 
     'divi-divi-trees', 'essential-oils', 'everest-view', 'executive-management',
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
     'extraordinary-achievement', 'fast-track', 'fiji-islands',
