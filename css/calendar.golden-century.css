@@ -1,97 +1,134 @@
 /* ==========================================================================
-   Golden Century Theme - Premium Historical Calendar UI
-   Version: 5.1
-   Updated: 2025-07-10
+   Golden Century Theme - Regal Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
    Features:
-   - Back to Top button removed
-   - WCAG 2.1 AAA compliant contrast
-   - Enhanced golden century aesthetic
-   - Flawless date/event visibility
-   - Fully responsive design
+   - Royal gold and purple color scheme
+   - Ornamental filigree elements
+   - Mobile-responsive design
+   - Heraldic patterns
+   - Subtle shimmering animations
+   - Enhanced readability
+   - Luxurious textures
+   - Elegant typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:wght@400;700&family=Cardo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Marcellus:wght@400;600&display=swap');
 
 :root {
-    /* Enhanced Color Palette */
-    --golden-bg: #1A150E;
-    --golden-text: #FFF9F0;
-    --golden-primary: #D4B87B;
-    --golden-secondary: #9C8A6B;
-
-    /* Optimized Visibility Variables */
-    --golden-date-text: #FFF9F0;
-    --golden-date-size: 1.3em;
-    --golden-date-weight: 600;
-    --golden-modal-bg: #2A241B;
-    --golden-modal-text: #FFF9F0;
-    --golden-current-day: #6D5C44;
-    --golden-current-day-text: #FFFDF5;
+    /* Regal Color Palette */
+    --gc-bg: #1a0f1f;
+    --gc-text: #f0e6d2;
+    --gc-primary: #d4af37;
+    /* Royal gold */
+    --gc-secondary: #b8860b;
+    /* Darker gold */
 
     /* Accent Colors */
-    --golden-accent1: #C19A6B;
-    --golden-accent2: #8A9D6B;
-    --golden-accent3: #D4B87B;
-    --golden-accent4: #B38E6D;
-    --golden-accent5: #9C8A6B;
+    --gc-gold-light: #f5d076;
+    --gc-gold-dark: #8b6914;
+    --gc-purple: #6a0dad;
+    --gc-red: #b22222;
+    --gc-silver: #c0c0c0;
+
+    /* Gradient Colors */
+    --gc-gradient-start: #2c1a3d;
+    --gc-gradient-end: #1a0f1f;
 
     /* Theme Variables */
-    --golden-shadow: rgba(212, 184, 123, 0.5);
-    --golden-radius: 5px;
-    --golden-transition: 0.3s ease-in-out;
-    --golden-hover: #3A3328;
-    --golden-border: 1px solid rgba(212, 184, 123, 0.4);
+    --gc-shadow: rgba(212, 175, 55, 0.3);
+    --gc-radius: 6px;
+    --gc-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --gc-hover: #2a1d2f;
+    --gc-current-day: #3d2b1f;
+    --gc-ornament-size: 1px;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes golden-glow {
+@keyframes gc-shimmer {
 
     0%,
     100% {
-        text-shadow: 0 0 8px var(--golden-accent1),
-            0 0 16px var(--golden-primary);
+        opacity: 0.8;
     }
 
     50% {
-        text-shadow: 0 0 12px var(--golden-primary),
-            0 0 24px var(--golden-accent1);
+        opacity: 1;
     }
 }
 
-@keyframes golden-pulse {
+@keyframes gc-sparkle {
+    0% {
+        transform: translateX(-100px) translateY(100px);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+@keyframes gc-pulse {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--golden-shadow);
+        box-shadow: 0 0 5px var(--gc-primary);
     }
 
     50% {
-        box-shadow: 0 0 20px var(--golden-primary);
+        box-shadow: 0 0 15px var(--gc-primary);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .golden-century {
-    font-family: 'Cardo', serif;
-    color: var(--golden-text);
-    line-height: 1.7;
-    background:
-        linear-gradient(rgba(26, 21, 14, 0.95), rgba(26, 21, 14, 0.95)),
-        url('data:image/svg+xml;utf8,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 Q100,10 180,20 T200,100" fill="none" stroke="%23D4B87B" stroke-width="0.8" opacity="0.08"/></svg>');
-    background-size: 200px 200px;
+    font-family: 'Marcellus', serif;
+    color: var(--gc-text);
+    line-height: 1.6;
+    background: var(--gc-bg);
     min-height: 100vh;
     position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom,
+            var(--gc-gradient-start),
+            var(--gc-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.2"><path d="M20,20 Q30,10 40,20 T60,20 T80,20" stroke="%23d4af37" fill="none" stroke-width="1" stroke-linecap="round"/><path d="M50,50 Q60,40 70,50 T90,50" stroke="%23d4af37" fill="none" stroke-width="1" stroke-linecap="round"/><path d="M30,80 Q40,70 50,80 T70,80" stroke="%23d4af37" fill="none" stroke-width="1" stroke-linecap="round"/></svg>');
+}
+
+/* Sparkle effect */
+.golden-century::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px 2px white,
+        0 0 20px 4px var(--gc-primary);
+    animation: gc-sparkle 12s linear infinite;
+    opacity: 0;
 }
 
 .golden-century .container {
-    background-color: rgba(42, 36, 27, 0.92);
-    padding: 3rem;
-    border: var(--golden-border);
-    box-shadow: 0 0 30px var(--golden-shadow);
+    background-color: rgba(26, 15, 31, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--gc-primary);
+    box-shadow: 0 0 30px var(--gc-shadow);
     position: relative;
+    overflow: hidden;
     max-width: 1600px;
-    margin: 2rem auto;
-    border-radius: var(--golden-radius);
+    margin: 0 auto;
+    border-radius: var(--gc-radius);
     z-index: 1;
 }
 
@@ -101,256 +138,318 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
-    animation: golden-pulse 4s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--gc-primary),
+            var(--gc-secondary),
+            transparent);
+    animation: gc-pulse 3s infinite;
 }
 
-/* ==================== BUTTON STYLES ==================== */
-.golden-century .button,
-.golden-century .transparent-button,
-.golden-century .modal-content button,
-.golden-century .modal .close-button {
-    border: 2px solid var(--golden-primary);
-    color: var(--golden-primary);
-    background-color: transparent;
-    padding: 1rem 2rem;
-    font-family: 'IM Fell English', serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all var(--golden-transition);
-    margin: 0.5rem;
-    border-radius: var(--golden-radius);
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
-
-.golden-century .button::before,
-.golden-century .transparent-button::before,
-.golden-century .modal-content button::before {
+/* Heraldic pattern */
+.golden-century .container::after {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 184, 123, 0.2), transparent);
-    transition: 0.6s;
-}
-
-.golden-century .button:hover,
-.golden-century .transparent-button:hover,
-.golden-century .modal-content button:hover {
-    background-color: var(--golden-primary);
-    color: var(--golden-bg);
-    box-shadow: 0 0 25px var(--golden-shadow);
-    text-shadow: 0 0 5px var(--golden-shadow);
-}
-
-.golden-century .button:hover::before,
-.golden-century .transparent-button:hover::before,
-.golden-century .modal-content button:hover::before {
-    left: 100%;
-}
-
-/* Special case for close button */
-.golden-century .modal .close-button {
-    padding: 0;
-    width: 36px;
-    height: 36px;
-    margin: 0;
-    top: 20px;
-    right: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(212, 175, 55, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(106, 13, 173, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .golden-century #calendar-title {
-    font-family: 'IM Fell English', serif;
-    color: var(--golden-primary);
+    font-family: 'Cinzel', serif;
+    color: var(--gc-primary);
     text-align: center;
-    font-size: 3rem;
-    margin: 0 0 2rem 0;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
     letter-spacing: 0.1em;
-    text-shadow: 0 0 15px var(--golden-shadow);
-    animation: golden-glow 6s infinite;
     position: relative;
-    padding-bottom: 1.5rem;
+    text-shadow: 0 0 10px var(--gc-shadow);
+}
+
+.golden-century #calendar-title::before,
+.golden-century #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gc-secondary);
+    font-size: 1.5rem;
+    animation: gc-shimmer 2s infinite;
+}
+
+.golden-century #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
 }
 
 .golden-century #calendar-title::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 30%;
-    right: 30%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
-    box-shadow: 0 0 10px var(--golden-primary);
+    right: 1rem;
 }
 
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.golden-century #date-weather-container {
+/* ==================== DATE & ROYAL DISPLAY ==================== */
+.golden-century #date-royal-container {
     text-align: center;
-    margin: 3rem 0;
-    padding: 2rem;
-    background-color: rgba(109, 92, 68, 0.4);
-    border: var(--golden-border);
-    border-radius: var(--golden-radius);
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(200, 203, 192, 0.1);
+    border: 1px solid var(--gc-primary);
+    border-radius: var(--gc-radius);
     position: relative;
 }
 
-.golden-century #date-weather-container::before,
-.golden-century #date-weather-container::after {
-    content: "✧";
+.golden-century #date-royal-container::after {
+    content: "";
     position: absolute;
-    color: var(--golden-primary);
-    font-size: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    text-shadow: 0 0 8px var(--golden-shadow);
-}
-
-.golden-century #date-weather-container::before {
-    left: 1.5rem;
-}
-
-.golden-century #date-weather-container::after {
-    right: 1.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--gc-primary),
+            transparent);
 }
 
 .golden-century #current-date {
-    font-family: 'IM Fell English', serif;
-    color: var(--golden-primary);
-    font-size: 2.2rem;
-    margin-bottom: 0.8rem;
-    text-shadow: 0 0 8px var(--golden-shadow);
+    font-family: 'Cinzel', serif;
+    color: var(--gc-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
 }
 
-.golden-century #today-weather {
-    font-family: 'Cardo', serif;
-    color: var(--golden-accent3);
-    font-size: 1.6rem;
-    font-style: italic;
-    letter-spacing: 0.08em;
+.golden-century #today-royal {
+    font-family: 'Marcellus', serif;
+    color: var(--gc-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.golden-century #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.golden-century .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--gc-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--gc-bg);
+    box-shadow:
+        0 0 15px var(--gc-shadow),
+        inset 0 0 10px rgba(212, 175, 55, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(212, 175, 55, 0.1) 100%);
+}
+
+/* Roman numerals for clock */
+.golden-century .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23d4af37">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23d4af37">III</text><text x="50" y="92" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23d4af37">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23d4af37">IX</text></svg>');
+}
+
+.golden-century .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.golden-century .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--gc-primary);
+    margin-top: -2px;
+}
+
+.golden-century .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--gc-secondary);
+    margin-top: -1px;
+}
+
+.golden-century .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--gc-silver);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Crown jewel */
+.golden-century .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--gc-purple);
+    border-radius: 50%;
+    border: 1px solid var(--gc-secondary);
+    animation: gc-pulse 1s infinite;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .golden-century table {
     width: 100%;
-    border-collapse: separate;
-    margin: 3rem auto;
-    background-color: rgba(58, 50, 38, 0.6);
-    border: var(--golden-border);
-    border-radius: var(--golden-radius);
-    border-spacing: 0;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(127, 23, 224, 0.9);
+    border: 1px solid var(--gc-primary);
+    border-radius: var(--gc-radius);
+    table-layout: fixed;
 }
 
 .golden-century th {
-    background-color: rgba(109, 92, 68, 0.6);
-    color: var(--golden-primary) !important;
-    font-family: 'IM Fell English', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    padding: 1.5rem 0.8rem;
-    border-bottom: var(--golden-border);
-    text-shadow: 0 0 5px var(--golden-shadow);
+    background-color: rgba(239, 241, 243, 0.2);
+    color: var(--gc-primary) !important;
+    font-family: 'Marcellus', serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--gc-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.golden-century th .full-day {
+    display: inline;
+}
+
+.golden-century th .short-day {
+    display: none;
 }
 
 .golden-century td {
-    background-color: rgba(70, 62, 50, 0.5);
-    color: var(--golden-date-text);
-    padding: 1.5rem;
-    border-right: var(--golden-border);
-    border-bottom: var(--golden-border);
-    height: 120px;
+    background-color: rgba(229, 223, 235, 0.9);
+    color: var(--gc-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--gc-primary);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--golden-transition);
-}
-
-.golden-century td:last-child {
-    border-right: none;
-}
-
-.golden-century tr:last-child td {
-    border-bottom: none;
-}
-
-.golden-century td .date-number {
-    font-weight: var(--golden-date-weight);
-    color: var(--golden-date-text);
-    font-size: var(--golden-date-size);
-    display: block;
-    margin-bottom: 10px;
+    transition: all var(--gc-transition);
     position: relative;
-    z-index: 2;
+    font-size: 0.85rem;
 }
 
 .golden-century td:hover {
-    background-color: rgba(109, 92, 68, 0.5);
-    box-shadow: inset 0 0 20px var(--golden-shadow);
+    background-color: var(--gc-hover);
+    box-shadow: inset 0 0 15px var(--gc-shadow);
+}
+
+.golden-century .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--gc-text);
 }
 
 .golden-century td.current-day {
-    background-color: var(--golden-current-day);
-    color: var(--golden-current-day-text) !important;
+    background-color: var(--gc-current-day);
+    border: 2px solid var(--gc-secondary);
+    color: var(--gc-primary) !important;
+    font-weight: 600;
+    animation: gc-pulse 3s infinite;
 }
 
 .golden-century td.current-day .date-number {
-    color: var(--golden-current-day-text) !important;
+    color: var(--gc-primary) !important;
     font-weight: 700;
 }
 
 .golden-century td.current-day::before {
-    content: "✧";
+    content: "♔";
     position: absolute;
-    top: 10px;
-    left: 10px;
-    color: var(--golden-primary);
+    top: 3px;
+    left: 3px;
+    color: var(--gc-primary);
     z-index: 1;
-    font-size: 1.2rem;
-    text-shadow: 0 0 8px var(--golden-shadow);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: gc-shimmer 2s infinite;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .golden-century .event-marker {
     display: inline-block;
-    width: 14px;
-    height: 14px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: var(--golden-accent1);
-    margin: 4px;
-    box-shadow: 0 0 8px var(--golden-shadow);
-    transition: all var(--golden-transition);
-    position: relative;
-    z-index: 2;
+    background-color: var(--gc-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--gc-shadow);
+    transition: all var(--gc-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: gc-shimmer 3s infinite;
 }
 
 .golden-century .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--golden-primary);
-    box-shadow: 0 0 20px var(--golden-accent1);
+    transform: scale(1.8);
+    background-color: var(--gc-secondary);
+    box-shadow: 0 0 15px var(--gc-primary);
+}
+
+/* Special event types */
+.golden-century .event-marker.holiday {
+    background-color: var(--gc-purple);
+    animation-delay: 0.5s;
+}
+
+.golden-century .event-marker.historic {
+    background-color: var(--gc-red);
+    animation-delay: 1s;
+}
+
+.golden-century .event-marker.royal {
+    background-color: var(--gc-silver);
+    animation-delay: 1.5s;
 }
 
 /* ==================== MODAL STYLES ==================== */
 .golden-century .modal-content {
     position: relative;
-    background:
-        linear-gradient(rgba(42, 36, 27, 0.97), rgba(42, 36, 27, 0.97)),
-        url('data:image/svg+xml;utf8,<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><path d="M15,15 Q75,30 135,15" fill="none" stroke="%23D4B87B" stroke-width="0.5" opacity="0.1"/></svg>');
-    background-size: 150px 150px;
-    border: 2px solid var(--golden-primary);
-    padding: 40px;
-    color: var(--golden-modal-text);
-    box-shadow: 0 0 40px var(--golden-shadow);
-    border-radius: var(--golden-radius);
+    background-color: rgba(190, 241, 206, 0.98);
+    border: 1px solid var(--gc-primary);
+    padding: 25px;
+    color: var(--gc-text);
+    box-shadow: 0 0 30px var(--gc-shadow);
+    border-radius: var(--gc-radius);
+    animation: gc-pulse 0.5s ease;
 }
 
 .golden-century .modal-content::before {
@@ -359,228 +458,327 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--golden-primary), transparent);
-    animation: golden-pulse 4s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--gc-primary),
+            var(--gc-secondary),
+            var(--gc-purple));
 }
 
 .golden-century .modal-content h2 {
-    color: var(--golden-primary);
-    font-family: 'IM Fell English', serif;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.1em;
-    text-align: center;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(212, 184, 123, 0.5);
-    text-shadow: 0 0 10px var(--golden-shadow);
+    color: var(--gc-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
-.golden-century .modal-content p,
-.golden-century .modal-content div,
-.golden-century .modal-content span {
-    color: var(--golden-modal-text);
-    line-height: 1.8;
-    font-size: 1.2rem;
+.golden-century .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
 }
 
-.golden-century .modal-content .event-title {
-    font-weight: 700;
-    color: var(--golden-primary);
-    font-size: 1.6rem;
-    margin: 2rem 0 1rem 0;
-    font-family: 'IM Fell English', serif;
-    text-shadow: 0 0 8px var(--golden-shadow);
+.golden-century .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--gc-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
 }
 
-.golden-century .modal-content .event-details {
-    background: rgba(70, 62, 50, 0.7);
-    padding: 25px;
-    border-radius: var(--golden-radius);
-    margin: 2rem 0;
-    border-left: 5px solid var(--golden-primary);
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+.golden-century .modal-content .event-description {
+    background-color: rgba(212, 175, 55, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--gc-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--gc-radius) var(--gc-radius) 0;
 }
 
-/* ==================== CONTROLS ==================== */
-.golden-century .controls {
+.golden-century .modal-content button {
+    background-color: var(--gc-primary);
+    color: var(--gc-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--gc-transition);
+    border-radius: var(--gc-radius);
+    font-family: 'Marcellus', serif;
+}
+
+.golden-century .modal-content button:hover {
+    background-color: var(--gc-secondary);
+    box-shadow: 0 4px 6px -1px var(--gc-shadow);
+}
+
+.golden-century .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--gc-primary);
+    border: 1px solid var(--gc-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--gc-transition);
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    margin: 2rem 0;
+    justify-content: center;
+    border-radius: 50%;
 }
 
-/* ==================== FOOTER ==================== */
-.golden-century footer {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--golden-accent3);
-    color: var(--golden-text);
-    font-size: 0.95rem;
-    line-height: 1.6;
+.golden-century .modal .close-button:hover {
+    background-color: var(--gc-primary);
+    color: var(--gc-bg);
 }
 
-/* ==================== RESPONSIVE DESIGN ==================== */
-@media (max-width: 1440px) {
+/* ==================== BUTTON STYLES ==================== */
+.golden-century button {
+    font-family: 'Marcellus', serif;
+    background: linear-gradient(135deg, var(--gc-primary), var(--gc-secondary));
+    color: var(--gc-bg);
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--gc-transition);
+    border-radius: var(--gc-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--gc-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.golden-century button:hover {
+    background: linear-gradient(135deg, var(--gc-secondary), var(--gc-primary));
+    box-shadow:
+        0 4px 12px var(--gc-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.golden-century button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--gc-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Regal effect on buttons */
+.golden-century button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.golden-century button:hover::before {
+    transform: scale(1);
+}
+
+/* Special button variants */
+.golden-century button.secondary {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.2));
+    color: var(--gc-primary);
+    border: 1px solid var(--gc-primary);
+    box-shadow: none;
+}
+
+.golden-century button.secondary:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(184, 134, 11, 0.3));
+    color: var(--gc-text);
+}
+
+.golden-century button.danger {
+    background: linear-gradient(135deg, #b22222, #ff4a4a);
+    box-shadow: 0 2px 8px rgba(178, 34, 34, 0.3);
+}
+
+.golden-century button.danger:hover {
+    background: linear-gradient(135deg, #ff4a4a, #b22222);
+    box-shadow: 0 4px 12px rgba(178, 34, 34, 0.4);
+}
+
+/* Button with crown icon */
+.golden-century button.with-icon::after {
+    content: "♔";
+    margin-left: 8px;
+    display: inline-block;
+    animation: gc-shimmer 2s infinite;
+}
+
+/* Small buttons */
+.golden-century button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+/* Button group styling */
+.golden-century .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.golden-century .button-group button {
+    flex: 1;
+}
+
+/* Floating action button */
+.golden-century .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--gc-shadow),
+        0 0 20px rgba(212, 175, 55, 0.3);
+    z-index: 100;
+}
+
+.golden-century .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Pulsing effect for important buttons */
+.golden-century button.important {
+    animation: gc-pulse 2s infinite;
+}
+
+/* Disabled button */
+.golden-century button:disabled {
+    background: rgba(212, 175, 55, 0.1);
+    color: rgba(240, 230, 210, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
     .golden-century .container {
-        margin: 1.5rem auto;
-        padding: 2.5rem;
-    }
-
-    .golden-century #calendar-title {
-        font-size: 2.7rem;
-    }
-
-    .golden-century td {
-        height: 110px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .golden-century #calendar-title {
-        font-size: 2.5rem;
-    }
-
-    .golden-century #current-date {
-        font-size: 2rem;
-    }
-
-    .golden-century td {
-        height: 100px;
         padding: 1.2rem;
     }
 
-    .golden-century .modal-content {
-        padding: 35px;
-    }
-}
-
-@media (max-width: 992px) {
-    .golden-century .container {
-        padding: 2rem;
-    }
-
     .golden-century #calendar-title {
-        font-size: 2.3rem;
-        margin-bottom: 1.5rem;
+        font-size: 2rem;
     }
 
     .golden-century #current-date {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
-    .golden-century #today-weather {
-        font-size: 1.4rem;
+    .golden-century #today-royal {
+        font-size: 1.1rem;
     }
 
-    .golden-century td {
-        height: 90px;
-        padding: 1rem;
-    }
-
-    .golden-century .modal-content {
-        padding: 30px;
-    }
-
-    .golden-century .modal-content h2 {
-        font-size: 2.2rem;
+    .golden-century th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
     }
 }
 
 @media (max-width: 768px) {
+    .golden-century .container {
+        padding: 1rem;
+    }
+
+    .golden-century #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .golden-century .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .golden-century th .full-day {
+        display: none;
+    }
+
+    .golden-century th .short-day {
+        display: inline;
+    }
+
     .golden-century th {
-        font-size: 1rem;
-        padding: 1.2rem 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
     }
 
     .golden-century td {
-        padding: 0.8rem;
-        height: 80px;
-    }
-
-    .golden-century td .date-number {
-        font-size: 1.2em;
-    }
-
-    .golden-century .modal-content {
-        padding: 25px;
-    }
-
-    .golden-century .modal-content h2 {
-        font-size: 2rem;
-    }
-
-    .golden-century .modal-content p,
-    .golden-century .modal-content div,
-    .golden-century .modal-content span {
-        font-size: 1.1rem;
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 576px) {
     .golden-century .container {
-        padding: 1.5rem;
-        margin: 1rem auto;
+        padding: 0.8rem;
     }
 
     .golden-century #calendar-title {
-        font-size: 2rem;
-        padding-bottom: 1rem;
+        font-size: 1.4rem;
     }
 
     .golden-century #current-date {
-        font-size: 1.6rem;
+        font-size: 1.1rem;
     }
 
-    .golden-century #today-weather {
-        font-size: 1.2rem;
+    .golden-century #today-royal {
+        font-size: 0.9rem;
+    }
+
+    .golden-century .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .golden-century th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .golden-century td {
-        padding: 0.6rem;
-        height: 70px;
-    }
-
-    .golden-century td .date-number {
-        font-size: 1.1em;
-    }
-
-    .golden-century .modal-content {
-        padding: 20px;
-    }
-
-    .golden-century .modal-content h2 {
-        font-size: 1.8rem;
-    }
-
-    .golden-century .modal-content p,
-    .golden-century .modal-content div,
-    .golden-century .modal-content span {
-        font-size: 1rem;
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
-    .golden-century #calendar-title {
-        font-size: 1.8rem;
-    }
-
     .golden-century th {
-        font-size: 0.9rem;
-        padding: 1rem 0.3rem;
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
     }
 
     .golden-century td {
-        height: 60px;
+        height: 50px;
+        font-size: 0.7rem;
     }
 
-    .golden-century td .date-number {
-        font-size: 1em;
-    }
-
-    .golden-century .modal-content {
-        padding: 15px;
+    .golden-century #calendar-title {
+        font-size: 1.2rem;
     }
 }
