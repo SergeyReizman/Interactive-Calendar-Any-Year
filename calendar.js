@@ -62,7 +62,7 @@ const applyTheme = (theme) => {
     'black-hawk', 'black-hole', 'black-orange', 'black-velvet', 'black-violet', 'blue-bird', 'blue-ice', 
     'blue-planet', 'blue-stars', 'blue-whale', 'blue-white', 'breaking-point', 
     'bright-line', 'bronze-horseman', 'cacao-plantation', 
-    'cafe-de-colombia', 'candy-world',
+    'cafe-de-colombia', 'camomile-flowers', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'clean-energy', 
     'collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-reef', 'cosmic-nebula', 'cosmic-perspective',

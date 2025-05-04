@@ -1,0 +1,786 @@
+/* ==========================================================================
+   Camomile Flowers Theme - Celestial Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Soft floral color scheme
+   - Delicate petal effects
+   - Mobile-responsive design
+   - Botanical patterns
+   - Subtle blooming animations
+   - Enhanced daylight readability
+   - Organic textures
+   - Elegant typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap');
+
+:root {
+    /* Floral Color Palette */
+    --cf-bg: #fff9f5;
+    --cf-text: #4a3a2a;
+    --cf-primary: #a8d8b9;
+    /* Soft green */
+    --cf-secondary: #f0c8c8;
+    /* Blush pink */
+
+    /* Flower Colors */
+    --cf-daisy-white: #ffffff;
+    --cf-camomile-yellow: #f9e076;
+    --cf-rose-pink: #f4a6b4;
+    --cf-lavender-purple: #c4a8d8;
+    --cf-mint-teal: #a8d8c8;
+
+    /* Gradient Colors */
+    --cf-gradient-start: #fff9f5;
+    --cf-gradient-end: #f0e6d2;
+
+    /* Theme Variables */
+    --cf-shadow: rgba(168, 216, 185, 0.3);
+    --cf-radius: 8px;
+    --cf-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --cf-hover: #f5efe6;
+    --cf-current-day: #d8e8c0;
+    --cf-petal-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes cf-bloom {
+
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+@keyframes cf-falling-petal {
+    0% {
+        transform: translateX(-100px) translateY(-50px);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(100px);
+        opacity: 0;
+    }
+}
+
+@keyframes cf-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--cf-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--cf-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.camomile-flowers {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--cf-text);
+    line-height: 1.6;
+    background: var(--cf-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(ellipse at top,
+            var(--cf-gradient-start),
+            var(--cf-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><path d="M50 20 Q60 40 50 60 Q40 40 50 20" fill="%23a8d8b9" opacity="0.6"/><circle cx="50" cy="50" r="2" fill="%23f9e076" opacity="0.8"/></svg>');
+}
+
+/* Falling petal */
+.camomile-flowers::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50% 50% 0 50%;
+    box-shadow:
+        0 0 5px 1px white,
+        0 0 10px 2px var(--cf-secondary);
+    animation: cf-falling-petal 15s linear infinite;
+    opacity: 0;
+}
+
+.camomile-flowers .container {
+    background-color: rgba(255, 249, 245, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--cf-primary);
+    box-shadow: 0 0 20px var(--cf-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--cf-radius);
+    z-index: 1;
+}
+
+.camomile-flowers .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--cf-primary),
+            var(--cf-secondary),
+            transparent);
+    animation: cf-pulse 3s infinite;
+}
+
+/* Floral pattern */
+.camomile-flowers .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(168, 216, 185, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(244, 166, 180, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.camomile-flowers #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--cf-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 5px var(--cf-shadow);
+}
+
+.camomile-flowers #calendar-title::before,
+.camomile-flowers #calendar-title::after {
+    content: "✿";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cf-secondary);
+    font-size: 1.5rem;
+    animation: cf-bloom 2s infinite;
+}
+
+.camomile-flowers #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.camomile-flowers #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.camomile-flowers #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(168, 216, 185, 0.2);
+    border: 1px solid var(--cf-primary);
+    border-radius: var(--cf-radius);
+    position: relative;
+}
+
+.camomile-flowers #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--cf-primary),
+            transparent);
+}
+
+.camomile-flowers #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--cf-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.camomile-flowers #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--cf-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.camomile-flowers #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.camomile-flowers .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--cf-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--cf-bg);
+    box-shadow:
+        0 0 10px var(--cf-shadow),
+        inset 0 0 10px rgba(168, 216, 185, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(168, 216, 185, 0.1) 100%);
+}
+
+/* Floral numerals for clock */
+.camomile-flowers .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23a8d8b9">XII</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23a8d8b9">III</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23a8d8b9">VI</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23a8d8b9">IX</text></svg>');
+}
+
+.camomile-flowers .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.camomile-flowers .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--cf-primary);
+    margin-top: -2px;
+}
+
+.camomile-flowers .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--cf-secondary);
+    margin-top: -1px;
+}
+
+.camomile-flowers .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--cf-camomile-yellow);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Flower */
+.camomile-flowers .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--cf-camomile-yellow);
+    border-radius: 50%;
+    border: 1px solid var(--cf-secondary);
+    animation: cf-pulse 1.5s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.camomile-flowers table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 253, 250, 0.95);
+    border: 1px solid var(--cf-primary);
+    border-radius: var(--cf-radius);
+    table-layout: fixed;
+}
+
+.camomile-flowers th {
+    background-color: rgba(168, 216, 185, 0.3);
+    color: var(--cf-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--cf-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.camomile-flowers th .full-day {
+    display: inline;
+}
+
+.camomile-flowers th .short-day {
+    display: none;
+}
+
+.camomile-flowers td {
+    background-color: rgba(255, 251, 245, 0.95);
+    color: var(--cf-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--cf-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--cf-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.camomile-flowers td:hover {
+    background-color: var(--cf-hover);
+    box-shadow: inset 0 0 10px var(--cf-shadow);
+}
+
+.camomile-flowers .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--cf-text);
+}
+
+.camomile-flowers td.current-day {
+    background-color: var(--cf-current-day);
+    border: 2px solid var(--cf-secondary);
+    color: var(--cf-secondary) !important;
+    font-weight: 600;
+    animation: cf-pulse 3s infinite;
+}
+
+.camomile-flowers td.current-day .date-number {
+    color: var(--cf-secondary) !important;
+    font-weight: 700;
+}
+
+.camomile-flowers td.current-day::before {
+    content: "✿";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--cf-camomile-yellow);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: cf-bloom 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.camomile-flowers .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cf-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 3px var(--cf-shadow);
+    transition: all var(--cf-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: cf-bloom 3s infinite;
+}
+
+.camomile-flowers .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--cf-secondary);
+    box-shadow: 0 0 10px var(--cf-primary);
+}
+
+/* Special event types */
+.camomile-flowers .event-marker.holiday {
+    background-color: var(--cf-camomile-yellow);
+    animation-delay: 0.5s;
+}
+
+.camomile-flowers .event-marker.historic {
+    background-color: var(--cf-lavender-purple);
+    animation-delay: 1s;
+}
+
+.camomile-flowers .event-marker.patriotic {
+    background-color: var(--cf-mint-teal);
+    animation-delay: 1.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.camomile-flowers .modal-content {
+    position: relative;
+    background-color: rgba(255, 253, 250, 0.98);
+    border: 1px solid var(--cf-primary);
+    padding: 25px;
+    color: var(--cf-text);
+    box-shadow: 0 0 20px var(--cf-shadow);
+    border-radius: var(--cf-radius);
+    animation: cf-pulse 0.5s ease;
+}
+
+.camomile-flowers .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--cf-primary),
+            var(--cf-secondary),
+            var(--cf-camomile-yellow));
+}
+
+.camomile-flowers .modal-content h2 {
+    color: var(--cf-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.camomile-flowers .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.camomile-flowers .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--cf-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.camomile-flowers .modal-content .event-description {
+    background-color: rgba(168, 216, 185, 0.2);
+    padding: 15px;
+    border-left: 3px solid var(--cf-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--cf-radius) var(--cf-radius) 0;
+}
+
+.camomile-flowers .modal-content button {
+    background-color: var(--cf-primary);
+    color: var(--cf-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--cf-transition);
+    border-radius: var(--cf-radius);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.camomile-flowers .modal-content button:hover {
+    background-color: var(--cf-secondary);
+    box-shadow: 0 4px 6px -1px var(--cf-shadow);
+}
+
+.camomile-flowers .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--cf-primary);
+    border: 1px solid var(--cf-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--cf-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.camomile-flowers .modal .close-button:hover {
+    background-color: var(--cf-primary);
+    color: var(--cf-bg);
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.camomile-flowers button {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, var(--cf-primary), var(--cf-secondary));
+    color: var(--cf-text);
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--cf-transition);
+    border-radius: var(--cf-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 5px var(--cf-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+}
+
+.camomile-flowers button:hover {
+    background: linear-gradient(135deg, var(--cf-secondary), var(--cf-primary));
+    box-shadow:
+        0 4px 8px var(--cf-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.camomile-flowers button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 3px var(--cf-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Floral effect on buttons */
+.camomile-flowers button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.camomile-flowers button:hover::before {
+    transform: scale(1);
+}
+
+/* Special button variants */
+.camomile-flowers button.secondary {
+    background: linear-gradient(135deg, rgba(168, 216, 185, 0.2), rgba(240, 200, 200, 0.3));
+    color: var(--cf-primary);
+    border: 1px solid var(--cf-primary);
+    box-shadow: none;
+}
+
+.camomile-flowers button.secondary:hover {
+    background: linear-gradient(135deg, rgba(168, 216, 185, 0.3), rgba(240, 200, 200, 0.4));
+    color: var(--cf-text);
+}
+
+.camomile-flowers button.danger {
+    background: linear-gradient(135deg, #ffb8b8, #ffd8d8);
+    box-shadow: 0 2px 5px rgba(255, 184, 184, 0.3);
+    color: #8a5a5a;
+}
+
+.camomile-flowers button.danger:hover {
+    background: linear-gradient(135deg, #ffd8d8, #ffb8b8);
+    box-shadow: 0 4px 8px rgba(255, 184, 184, 0.4);
+}
+
+/* Button with flower icon */
+.camomile-flowers button.with-icon::after {
+    content: "✿";
+    margin-left: 8px;
+    display: inline-block;
+    animation: cf-bloom 2s infinite;
+}
+
+/* Small buttons */
+.camomile-flowers button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+/* Button group styling */
+.camomile-flowers .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.camomile-flowers .button-group button {
+    flex: 1;
+}
+
+/* Floating action button */
+.camomile-flowers .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 8px var(--cf-shadow),
+        0 0 15px rgba(168, 216, 185, 0.3);
+    z-index: 100;
+}
+
+.camomile-flowers .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Pulsing effect for important buttons */
+.camomile-flowers button.important {
+    animation: cf-pulse 2s infinite;
+}
+
+/* Disabled button */
+.camomile-flowers button:disabled {
+    background: rgba(168, 216, 185, 0.1);
+    color: rgba(74, 58, 42, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .camomile-flowers .container {
+        padding: 1.2rem;
+    }
+
+    .camomile-flowers #calendar-title {
+        font-size: 2rem;
+    }
+
+    .camomile-flowers #current-date {
+        font-size: 1.5rem;
+    }
+
+    .camomile-flowers #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .camomile-flowers th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .camomile-flowers .container {
+        padding: 1rem;
+    }
+
+    .camomile-flowers #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .camomile-flowers .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .camomile-flowers th .full-day {
+        display: none;
+    }
+
+    .camomile-flowers th .short-day {
+        display: inline;
+    }
+
+    .camomile-flowers th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .camomile-flowers td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .camomile-flowers .container {
+        padding: 0.8rem;
+    }
+
+    .camomile-flowers #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .camomile-flowers #current-date {
+        font-size: 1.1rem;
+    }
+
+    .camomile-flowers #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .camomile-flowers .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .camomile-flowers th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .camomile-flowers td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .camomile-flowers th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .camomile-flowers td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .camomile-flowers #calendar-title {
+        font-size: 1.2rem;
+    }
+}
