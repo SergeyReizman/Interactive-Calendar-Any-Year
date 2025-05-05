@@ -73,7 +73,7 @@ const applyTheme = (theme) => {
     'desert-mirage', 'diamond-planet', 'distant-skies', 
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 'doterra-new', 'doterra-power',
     'dragon-flame', 'dragonfly', 'dream-adventure', 'emerald-stream', 'emperor-penguin', 
-    'divi-divi-trees', 'essential-oils', 'everest-view', 'executive-management',
+    'divi-divi-trees', 'essential-oils', 'everest-view', 'excellent-performance', 'executive-management',
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
     'extraordinary-achievement', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'formula-one',

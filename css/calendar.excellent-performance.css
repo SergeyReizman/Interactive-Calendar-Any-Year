@@ -1,0 +1,763 @@
+/* ==========================================================================
+   Excellent Performance Theme - Modern Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Premium performance color scheme
+   - Elegant visual effects
+   - Mobile-responsive design
+   - Modern patterns
+   - Subtle animations
+   - Enhanced readability
+   - Sophisticated textures
+   - Clean typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+:root {
+    /* Premium Color Palette */
+    --bs-bg: #121212;
+    --bs-text: #f5f5f5;
+    --bs-primary: #4CAF50;
+    --bs-secondary: #8BC34A;
+    --bs-star-blue: #2196F3;
+    --bs-star-white: #ffffff;
+    --bs-star-gold: #FFC107;
+    --bs-nebula-purple: #9C27B0;
+    --bs-comet-teal: #00BCD4;
+    --bs-gradient-start: #1B5E20;
+    --bs-gradient-end: #2E7D32;
+    --bs-shadow: rgba(76, 175, 80, 0.3);
+    --bs-radius: 6px;
+    --bs-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bs-hover: #1E1E1E;
+    --bs-current-day: #2E7D32;
+    --bs-star-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes bs-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes bs-shooting-star {
+    0% {
+        transform: translateX(-100px) translateY(100px);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+@keyframes bs-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--bs-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--bs-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.excellent-performance {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--bs-text);
+    line-height: 1.6;
+    background: var(--bs-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(ellipse at top,
+            var(--bs-gradient-start),
+            var(--bs-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.3"><circle cx="20" cy="20" r="2" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="2" fill="white" opacity="0.6"/><circle cx="80" cy="30" r="2" fill="white" opacity="0.7"/><circle cx="30" cy="80" r="2" fill="white" opacity="0.5"/></svg>');
+}
+
+.excellent-performance::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px 2px white,
+        0 0 20px 4px var(--bs-primary);
+    animation: bs-shooting-star 10s linear infinite;
+    opacity: 0;
+}
+
+.excellent-performance .container {
+    background-color: rgba(18, 18, 18, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--bs-primary);
+    box-shadow: 0 0 30px var(--bs-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--bs-radius);
+    z-index: 1;
+}
+
+.excellent-performance .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bs-primary),
+            var(--bs-secondary),
+            transparent);
+    animation: bs-pulse 3s infinite;
+}
+
+.excellent-performance .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(139, 195, 74, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(156, 39, 176, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.excellent-performance #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bs-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    position: relative;
+    text-shadow: 0 0 10px var(--bs-shadow);
+}
+
+.excellent-performance #calendar-title::before,
+.excellent-performance #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bs-secondary);
+    font-size: 1.5rem;
+    animation: bs-twinkle 2s infinite;
+}
+
+.excellent-performance #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.excellent-performance #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.excellent-performance #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--bs-primary);
+    border-radius: var(--bs-radius);
+    position: relative;
+}
+
+.excellent-performance #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bs-primary),
+            transparent);
+}
+
+.excellent-performance #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bs-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.excellent-performance #today-weather {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--bs-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.excellent-performance #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.excellent-performance .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--bs-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--bs-bg);
+    box-shadow:
+        0 0 15px var(--bs-shadow),
+        inset 0 0 10px rgba(76, 175, 80, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(76, 175, 80, 0.1) 100%);
+}
+
+.excellent-performance .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">XII</text><text x="82" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">III</text><text x="50" y="92" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">VI</text><text x="18" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">IX</text></svg>');
+}
+
+.excellent-performance .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.excellent-performance .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--bs-primary);
+    margin-top: -2px;
+}
+
+.excellent-performance .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--bs-secondary);
+    margin-top: -1px;
+}
+
+.excellent-performance .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--bs-star-gold);
+    margin-top: -0.5px;
+}
+
+.excellent-performance .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bs-star-gold);
+    border-radius: 50%;
+    border: 1px solid var(--bs-secondary);
+    animation: bs-pulse 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.excellent-performance table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(30, 30, 30, 0.9);
+    border: 1px solid var(--bs-primary);
+    border-radius: var(--bs-radius);
+    table-layout: fixed;
+}
+
+.excellent-performance th {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: var(--bs-primary) !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bs-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.excellent-performance th .full-day {
+    display: inline;
+}
+
+.excellent-performance th .short-day {
+    display: none;
+}
+
+.excellent-performance td {
+    background-color: rgba(20, 20, 20, 0.9);
+    color: var(--bs-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bs-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--bs-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.excellent-performance td:hover {
+    background-color: var(--bs-hover);
+    box-shadow: inset 0 0 15px var(--bs-shadow);
+}
+
+.excellent-performance .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--bs-text);
+}
+
+.excellent-performance td.current-day {
+    background-color: var(--bs-current-day);
+    border: 2px solid var(--bs-secondary);
+    color: var(--bs-secondary) !important;
+    font-weight: 600;
+    animation: bs-pulse 3s infinite;
+}
+
+.excellent-performance td.current-day .date-number {
+    color: var(--bs-secondary) !important;
+    font-weight: 700;
+}
+
+.excellent-performance td.current-day::before {
+    content: "★";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--bs-star-gold);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: bs-twinkle 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.excellent-performance .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bs-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--bs-shadow);
+    transition: all var(--bs-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: bs-twinkle 3s infinite;
+}
+
+.excellent-performance .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--bs-secondary);
+    box-shadow: 0 0 15px var(--bs-primary);
+}
+
+.excellent-performance .event-marker.holiday {
+    background-color: var(--bs-star-gold);
+    animation-delay: 0.5s;
+}
+
+.excellent-performance .event-marker.historic {
+    background-color: var(--bs-nebula-purple);
+    animation-delay: 1s;
+}
+
+.excellent-performance .event-marker.patriotic {
+    background-color: var(--bs-comet-teal);
+    animation-delay: 1.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.excellent-performance .modal-content {
+    position: relative;
+    background-color: rgba(30, 30, 30, 0.98);
+    border: 1px solid var(--bs-primary);
+    padding: 25px;
+    color: var(--bs-text);
+    box-shadow: 0 0 30px var(--bs-shadow);
+    border-radius: var(--bs-radius);
+    animation: bs-pulse 0.5s ease;
+}
+
+.excellent-performance .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bs-primary),
+            var(--bs-secondary),
+            var(--bs-star-gold));
+}
+
+.excellent-performance .modal-content h2 {
+    color: var(--bs-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.excellent-performance .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.excellent-performance .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--bs-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.excellent-performance .modal-content .event-description {
+    background-color: rgba(76, 175, 80, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--bs-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--bs-radius) var(--bs-radius) 0;
+}
+
+.excellent-performance .modal-content button {
+    background-color: var(--bs-primary);
+    color: var(--bs-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--bs-transition);
+    border-radius: var(--bs-radius);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.excellent-performance .modal-content button:hover {
+    background-color: var(--bs-secondary);
+    box-shadow: 0 4px 6px -1px var(--bs-shadow);
+}
+
+.excellent-performance .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--bs-primary);
+    border: 1px solid var(--bs-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--bs-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.excellent-performance .modal .close-button:hover {
+    background-color: var(--bs-primary);
+    color: var(--bs-bg);
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.excellent-performance button {
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, var(--bs-primary), var(--bs-secondary));
+    color: var(--bs-bg);
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--bs-transition);
+    border-radius: var(--bs-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--bs-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.excellent-performance button:hover {
+    background: linear-gradient(135deg, var(--bs-secondary), var(--bs-primary));
+    box-shadow:
+        0 4px 12px var(--bs-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.excellent-performance button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--bs-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.excellent-performance button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.excellent-performance button:hover::before {
+    transform: scale(1);
+}
+
+.excellent-performance button.secondary {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.2));
+    color: var(--bs-secondary);
+    border: 1px solid var(--bs-primary);
+    box-shadow: none;
+}
+
+.excellent-performance button.secondary:hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(139, 195, 74, 0.3));
+    color: var(--bs-text);
+}
+
+.excellent-performance button.danger {
+    background: linear-gradient(135deg, #f44336, #ff7961);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.excellent-performance button.danger:hover {
+    background: linear-gradient(135deg, #ff7961, #f44336);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+.excellent-performance button.with-icon::after {
+    content: "✧";
+    margin-left: 8px;
+    display: inline-block;
+    animation: bs-twinkle 2s infinite;
+}
+
+.excellent-performance button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+.excellent-performance .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.excellent-performance .button-group button {
+    flex: 1;
+}
+
+.excellent-performance .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--bs-shadow),
+        0 0 20px rgba(76, 175, 80, 0.3);
+    z-index: 100;
+}
+
+.excellent-performance .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.excellent-performance button.important {
+    animation: bs-pulse 2s infinite;
+}
+
+.excellent-performance button:disabled {
+    background: rgba(76, 175, 80, 0.1);
+    color: rgba(245, 245, 245, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .excellent-performance .container {
+        padding: 1.2rem;
+    }
+
+    .excellent-performance #calendar-title {
+        font-size: 2rem;
+    }
+
+    .excellent-performance #current-date {
+        font-size: 1.5rem;
+    }
+
+    .excellent-performance #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .excellent-performance th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .excellent-performance .container {
+        padding: 1rem;
+    }
+
+    .excellent-performance #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .excellent-performance .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .excellent-performance th .full-day {
+        display: none;
+    }
+
+    .excellent-performance th .short-day {
+        display: inline;
+    }
+
+    .excellent-performance th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .excellent-performance td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .excellent-performance .container {
+        padding: 0.8rem;
+    }
+
+    .excellent-performance #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .excellent-performance #current-date {
+        font-size: 1.1rem;
+    }
+
+    .excellent-performance #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .excellent-performance .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .excellent-performance th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .excellent-performance td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .excellent-performance th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .excellent-performance td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .excellent-performance #calendar-title {
+        font-size: 1.2rem;
+    }
+}
