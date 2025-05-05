@@ -86,7 +86,7 @@ const applyTheme = (theme) => {
     'greyscale', 'guangzhou-lights', 'heavy-rain', 'hidden-trail', 
     'high-intelligence','high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
-    'hurricane-clouds', 'hyperloop', 'ice-palace',
+    'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 
     'imaginary-world', 'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
     'invincible-zone', 'japan-emperor','kilimanjaro-outskirts', 'lavender-bliss', 
