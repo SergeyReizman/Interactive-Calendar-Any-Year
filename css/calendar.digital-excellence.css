@@ -1,0 +1,763 @@
+/* ==========================================================================
+   Digital Excellence Theme - Modern Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Premium performance color scheme
+   - Elegant visual effects
+   - Mobile-responsive design
+   - Modern patterns
+   - Subtle animations
+   - Enhanced readability
+   - Sophisticated textures
+   - Clean typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;600&display=swap');
+
+:root {
+    /* Premium Color Palette */
+    --de-bg: #121212;
+    --de-text: #f5f5f5;
+    --de-primary: #06b8f3;
+    --de-secondary: #8BC34A;
+    --de-star-blue: #2196F3;
+    --de-star-white: #ffffff;
+    --de-star-gold: #FFC107;
+    --de-nebula-purple: #9C27B0;
+    --de-comet-teal: #00BCD4;
+    --de-gradient-start: #1B5E20;
+    --de-gradient-end: #2E7D32;
+    --de-shadow: rgba(76, 175, 80, 0.3);
+    --de-radius: 6px;
+    --de-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --de-hover: #1E1E1E;
+    --de-current-day: #2E7D32;
+    --de-star-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes de-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes de-shooting-star {
+    0% {
+        transform: translateX(-100px) translateY(100px);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+@keyframes de-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--de-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--de-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.digital-excellence {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--de-text);
+    line-height: 1.6;
+    background: var(--de-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(ellipse at top,
+            var(--de-gradient-start),
+            var(--de-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.3"><circle cx="20" cy="20" r="2" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="2" fill="white" opacity="0.6"/><circle cx="80" cy="30" r="2" fill="white" opacity="0.7"/><circle cx="30" cy="80" r="2" fill="white" opacity="0.5"/></svg>');
+}
+
+.digital-excellence::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px 2px white,
+        0 0 20px 4px var(--de-primary);
+    animation: de-shooting-star 10s linear infinite;
+    opacity: 0;
+}
+
+.digital-excellence .container {
+    background-color: rgba(18, 18, 18, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--de-primary);
+    box-shadow: 0 0 30px var(--de-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--de-radius);
+    z-index: 1;
+}
+
+.digital-excellence .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--de-primary),
+            var(--de-secondary),
+            transparent);
+    animation: de-pulse 3s infinite;
+}
+
+.digital-excellence .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(139, 195, 74, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(156, 39, 176, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.digital-excellence #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--de-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    position: relative;
+    text-shadow: 0 0 10px var(--de-shadow);
+}
+
+.digital-excellence #calendar-title::before,
+.digital-excellence #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--de-secondary);
+    font-size: 1.5rem;
+    animation: de-twinkle 2s infinite;
+}
+
+.digital-excellence #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.digital-excellence #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.digital-excellence #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--de-primary);
+    border-radius: var(--de-radius);
+    position: relative;
+}
+
+.digital-excellence #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--de-primary),
+            transparent);
+}
+
+.digital-excellence #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--de-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.digital-excellence #today-weather {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--de-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.digital-excellence #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.digital-excellence .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--de-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--de-bg);
+    box-shadow:
+        0 0 15px var(--de-shadow),
+        inset 0 0 10px rgba(76, 175, 80, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(76, 175, 80, 0.1) 100%);
+}
+
+.digital-excellence .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">XII</text><text x="82" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">III</text><text x="50" y="92" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">VI</text><text x="18" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%234CAF50">IX</text></svg>');
+}
+
+.digital-excellence .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.digital-excellence .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--de-primary);
+    margin-top: -2px;
+}
+
+.digital-excellence .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--de-secondary);
+    margin-top: -1px;
+}
+
+.digital-excellence .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--de-star-gold);
+    margin-top: -0.5px;
+}
+
+.digital-excellence .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--de-star-gold);
+    border-radius: 50%;
+    border: 1px solid var(--de-secondary);
+    animation: de-pulse 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.digital-excellence table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(30, 30, 30, 0.9);
+    border: 1px solid var(--de-primary);
+    border-radius: var(--de-radius);
+    table-layout: fixed;
+}
+
+.digital-excellence th {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: var(--de-primary) !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--de-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.digital-excellence th .full-day {
+    display: inline;
+}
+
+.digital-excellence th .short-day {
+    display: none;
+}
+
+.digital-excellence td {
+    background-color: rgba(20, 20, 20, 0.9);
+    color: var(--de-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--de-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--de-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.digital-excellence td:hover {
+    background-color: var(--de-hover);
+    box-shadow: inset 0 0 15px var(--de-shadow);
+}
+
+.digital-excellence .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--de-text);
+}
+
+.digital-excellence td.current-day {
+    background-color: var(--de-current-day);
+    border: 2px solid var(--de-secondary);
+    color: var(--de-secondary) !important;
+    font-weight: 600;
+    animation: de-pulse 3s infinite;
+}
+
+.digital-excellence td.current-day .date-number {
+    color: var(--de-secondary) !important;
+    font-weight: 700;
+}
+
+.digital-excellence td.current-day::before {
+    content: "★";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--de-star-gold);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: de-twinkle 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.digital-excellence .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--de-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--de-shadow);
+    transition: all var(--de-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: de-twinkle 3s infinite;
+}
+
+.digital-excellence .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--de-secondary);
+    box-shadow: 0 0 15px var(--de-primary);
+}
+
+.digital-excellence .event-marker.holiday {
+    background-color: var(--de-star-gold);
+    animation-delay: 0.5s;
+}
+
+.digital-excellence .event-marker.historic {
+    background-color: var(--de-nebula-purple);
+    animation-delay: 1s;
+}
+
+.digital-excellence .event-marker.patriotic {
+    background-color: var(--de-comet-teal);
+    animation-delay: 1.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.digital-excellence .modal-content {
+    position: relative;
+    background-color: rgba(30, 30, 30, 0.98);
+    border: 1px solid var(--de-primary);
+    padding: 25px;
+    color: var(--de-text);
+    box-shadow: 0 0 30px var(--de-shadow);
+    border-radius: var(--de-radius);
+    animation: de-pulse 0.5s ease;
+}
+
+.digital-excellence .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--de-primary),
+            var(--de-secondary),
+            var(--de-star-gold));
+}
+
+.digital-excellence .modal-content h2 {
+    color: var(--de-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.digital-excellence .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.digital-excellence .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--de-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.digital-excellence .modal-content .event-description {
+    background-color: rgba(76, 175, 80, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--de-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--de-radius) var(--de-radius) 0;
+}
+
+.digital-excellence .modal-content button {
+    background-color: var(--de-primary);
+    color: var(--de-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--de-transition);
+    border-radius: var(--de-radius);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.digital-excellence .modal-content button:hover {
+    background-color: var(--de-secondary);
+    box-shadow: 0 4px 6px -1px var(--de-shadow);
+}
+
+.digital-excellence .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--de-primary);
+    border: 1px solid var(--de-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--de-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.digital-excellence .modal .close-button:hover {
+    background-color: var(--de-primary);
+    color: var(--de-bg);
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.digital-excellence button {
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, var(--de-primary), var(--de-secondary));
+    color: var(--de-bg);
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--de-transition);
+    border-radius: var(--de-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--de-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.digital-excellence button:hover {
+    background: linear-gradient(135deg, var(--de-secondary), var(--de-primary));
+    box-shadow:
+        0 4px 12px var(--de-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.digital-excellence button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--de-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.digital-excellence button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.digital-excellence button:hover::before {
+    transform: scale(1);
+}
+
+.digital-excellence button.secondary {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.2));
+    color: var(--de-secondary);
+    border: 1px solid var(--de-primary);
+    box-shadow: none;
+}
+
+.digital-excellence button.secondary:hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(139, 195, 74, 0.3));
+    color: var(--de-text);
+}
+
+.digital-excellence button.danger {
+    background: linear-gradient(135deg, #f44336, #ff7961);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.digital-excellence button.danger:hover {
+    background: linear-gradient(135deg, #ff7961, #f44336);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+.digital-excellence button.with-icon::after {
+    content: "✧";
+    margin-left: 8px;
+    display: inline-block;
+    animation: de-twinkle 2s infinite;
+}
+
+.digital-excellence button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+.digital-excellence .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.digital-excellence .button-group button {
+    flex: 1;
+}
+
+.digital-excellence .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--de-shadow),
+        0 0 20px rgba(76, 175, 80, 0.3);
+    z-index: 100;
+}
+
+.digital-excellence .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.digital-excellence button.important {
+    animation: de-pulse 2s infinite;
+}
+
+.digital-excellence button:disabled {
+    background: rgba(76, 175, 80, 0.1);
+    color: rgba(245, 245, 245, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .digital-excellence .container {
+        padding: 1.2rem;
+    }
+
+    .digital-excellence #calendar-title {
+        font-size: 2rem;
+    }
+
+    .digital-excellence #current-date {
+        font-size: 1.5rem;
+    }
+
+    .digital-excellence #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .digital-excellence th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .digital-excellence .container {
+        padding: 1rem;
+    }
+
+    .digital-excellence #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .digital-excellence .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .digital-excellence th .full-day {
+        display: none;
+    }
+
+    .digital-excellence th .short-day {
+        display: inline;
+    }
+
+    .digital-excellence th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .digital-excellence td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .digital-excellence .container {
+        padding: 0.8rem;
+    }
+
+    .digital-excellence #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .digital-excellence #current-date {
+        font-size: 1.1rem;
+    }
+
+    .digital-excellence #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .digital-excellence .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .digital-excellence th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .digital-excellence td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .digital-excellence th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .digital-excellence td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .digital-excellence #calendar-title {
+        font-size: 1.2rem;
+    }
+}
