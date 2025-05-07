@@ -113,7 +113,7 @@ const applyTheme = (theme) => {
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 'the-dead-sea',
     'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
-    'wild-rose', 'wild-wonders', 'winter-wonderland'
+    'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience'
 
   );
 
