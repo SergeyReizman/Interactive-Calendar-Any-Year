@@ -1,0 +1,763 @@
+/* ==========================================================================
+   A Thing of Beauty Theme - Elegant Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Sophisticated color palette
+   - Delicate floral accents
+   - Refined typography
+   - Subtle organic animations
+   - Mobile-responsive design
+   - Vintage-inspired elements
+   - Enhanced readability
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=EB+Garamond:wght@400;600&display=swap');
+
+:root {
+    /* Elegant Color Palette */
+    --atb-bg: #f9f5f0;
+    --atb-text: #3a3226;
+    --atb-primary: #8c6a56;
+    /* Warm taupe */
+    --atb-secondary: #a38f7d;
+    /* Lighter taupe */
+
+    /* Accent Colors */
+    --atb-rose: #d4a59a;
+    --atb-cream: #f0e6d2;
+    --atb-gold: #c0a878;
+    --atb-green: #7a8b78;
+    --atb-blue: #9ab7c4;
+
+    /* Gradient Colors */
+    --atb-gradient-start: #f8f3ec;
+    --atb-gradient-end: #e8e0d5;
+
+    /* Theme Variables */
+    --atb-shadow: rgba(140, 106, 86, 0.2);
+    --atb-radius: 8px;
+    --atb-transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --atb-hover: #f0e6d2;
+    --atb-current-day: #e8d5c5;
+    --atb-floral-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes atb-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes atb-fade {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes atb-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--atb-shadow);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--atb-shadow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-thing-of-beauty {
+    font-family: 'EB Garamond', serif;
+    color: var(--atb-text);
+    line-height: 1.6;
+    background: var(--atb-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom,
+            var(--atb-gradient-start),
+            var(--atb-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M30,50 Q50,30 70,50 T90,50" fill="none" stroke="%238c6a56" stroke-width="0.5"/></svg>');
+}
+
+/* Decorative corner */
+.a-thing-of-beauty::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M0,0 C20,40 40,20 100,0" fill="none" stroke="%238c6a56" stroke-width="1"/></svg>');
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.a-thing-of-beauty .container {
+    background-color: rgba(249, 245, 240, 0.95);
+    padding: 2.5rem;
+    border: 1px solid var(--atb-primary);
+    box-shadow: 0 0 20px var(--atb-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--atb-radius);
+    z-index: 1;
+}
+
+.a-thing-of-beauty .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--atb-primary),
+            var(--atb-secondary),
+            transparent);
+}
+
+/* Floral pattern */
+.a-thing-of-beauty .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" opacity="0.03"><path d="M100,50 Q125,25 150,50 T200,50" fill="none" stroke="%238c6a56" stroke-width="0.5"/></svg>');
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-thing-of-beauty #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--atb-primary);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 5px var(--atb-shadow);
+}
+
+.a-thing-of-beauty #calendar-title::before,
+.a-thing-of-beauty #calendar-title::after {
+    content: "❀";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--atb-rose);
+    font-size: 1.8rem;
+    animation: atb-float 3s infinite;
+}
+
+.a-thing-of-beauty #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.a-thing-of-beauty #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-thing-of-beauty #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(140, 106, 86, 0.08);
+    border: 1px solid var(--atb-primary);
+    border-radius: var(--atb-radius);
+    position: relative;
+}
+
+.a-thing-of-beauty #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--atb-primary),
+            transparent);
+}
+
+.a-thing-of-beauty #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--atb-primary);
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.a-thing-of-beauty #today-weather {
+    font-family: 'EB Garamond', serif;
+    color: var(--atb-secondary);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.a-thing-of-beauty #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.a-thing-of-beauty .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--atb-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--atb-cream);
+    box-shadow:
+        0 0 15px var(--atb-shadow),
+        inset 0 0 10px rgba(140, 106, 86, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(140, 106, 86, 0.05) 100%);
+}
+
+/* Roman numerals for clock */
+.a-thing-of-beauty .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%238c6a56">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%238c6a56">III</text><text x="50" y="92" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%238c6a56">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%238c6a56">IX</text></svg>');
+}
+
+.a-thing-of-beauty .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.a-thing-of-beauty .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--atb-primary);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.a-thing-of-beauty .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--atb-secondary);
+    margin-top: -1px;
+    border-radius: 1px;
+}
+
+.a-thing-of-beauty .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--atb-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Rosette */
+.a-thing-of-beauty .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--atb-gold);
+    border-radius: 50%;
+    border: 1px solid var(--atb-primary);
+    box-shadow: 0 0 5px var(--atb-shadow);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-thing-of-beauty table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--atb-primary);
+    border-radius: var(--atb-radius);
+    table-layout: fixed;
+}
+
+.a-thing-of-beauty th {
+    background-color: rgba(140, 106, 86, 0.1);
+    color: var(--atb-primary) !important;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    padding: 1rem 0.3rem;
+    border: 1px solid var(--atb-primary);
+    position: relative;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.a-thing-of-beauty th .full-day {
+    display: inline;
+}
+
+.a-thing-of-beauty th .short-day {
+    display: none;
+}
+
+.a-thing-of-beauty td {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: var(--atb-text);
+    padding: 1rem 0.3rem;
+    border: 1px solid var(--atb-primary);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--atb-transition);
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.a-thing-of-beauty td:hover {
+    background-color: var(--atb-hover);
+    box-shadow: inset 0 0 15px var(--atb-shadow);
+}
+
+.a-thing-of-beauty .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--atb-text);
+}
+
+.a-thing-of-beauty td.current-day {
+    background-color: var(--atb-current-day);
+    border: 2px solid var(--atb-gold);
+    color: var(--atb-primary) !important;
+    font-weight: 600;
+}
+
+.a-thing-of-beauty td.current-day .date-number {
+    color: var(--atb-primary) !important;
+    font-weight: 700;
+}
+
+.a-thing-of-beauty td.current-day::before {
+    content: "❀";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--atb-rose);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: atb-fade 3s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-thing-of-beauty .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--atb-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 3px var(--atb-shadow);
+    transition: all var(--atb-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.a-thing-of-beauty .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--atb-secondary);
+    box-shadow: 0 0 8px var(--atb-shadow);
+}
+
+/* Special event types */
+.a-thing-of-beauty .event-marker.holiday {
+    background-color: var(--atb-rose);
+}
+
+.a-thing-of-beauty .event-marker.historic {
+    background-color: var(--atb-green);
+}
+
+.a-thing-of-beauty .event-marker.patriotic {
+    background-color: var(--atb-blue);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-thing-of-beauty .modal-content {
+    position: relative;
+    background-color: rgba(249, 245, 240, 0.98);
+    border: 1px solid var(--atb-primary);
+    padding: 30px;
+    color: var(--atb-text);
+    box-shadow: 0 0 30px var(--atb-shadow);
+    border-radius: var(--atb-radius);
+}
+
+.a-thing-of-beauty .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--atb-primary),
+            var(--atb-secondary),
+            var(--atb-gold));
+}
+
+.a-thing-of-beauty .modal-content h2 {
+    color: var(--atb-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.a-thing-of-beauty .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.a-thing-of-beauty .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--atb-secondary);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.a-thing-of-beauty .modal-content .event-description {
+    background-color: rgba(140, 106, 86, 0.08);
+    padding: 20px;
+    border-left: 3px solid var(--atb-primary);
+    margin: 20px 0;
+    border-radius: 0 var(--atb-radius) var(--atb-radius) 0;
+}
+
+.a-thing-of-beauty .modal-content button {
+    background-color: var(--atb-primary);
+    color: var(--atb-cream);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--atb-transition);
+    border-radius: var(--atb-radius);
+    font-family: 'EB Garamond', serif;
+}
+
+.a-thing-of-beauty .modal-content button:hover {
+    background-color: var(--atb-secondary);
+    box-shadow: 0 4px 8px -1px var(--atb-shadow);
+}
+
+.a-thing-of-beauty .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--atb-primary);
+    border: 1px solid var(--atb-primary);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--atb-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.a-thing-of-beauty .modal .close-button:hover {
+    background-color: var(--atb-primary);
+    color: var(--atb-cream);
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.a-thing-of-beauty button {
+    font-family: 'EB Garamond', serif;
+    background: linear-gradient(135deg, var(--atb-primary), var(--atb-secondary));
+    color: var(--atb-cream);
+    border: none;
+    padding: 12px 28px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--atb-transition);
+    border-radius: var(--atb-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--atb-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+}
+
+.a-thing-of-beauty button:hover {
+    background: linear-gradient(135deg, var(--atb-secondary), var(--atb-primary));
+    box-shadow:
+        0 4px 12px var(--atb-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.a-thing-of-beauty button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--atb-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Button effect */
+.a-thing-of-beauty button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.a-thing-of-beauty button:hover::before {
+    transform: scale(1);
+}
+
+/* Special button variants */
+.a-thing-of-beauty button.secondary {
+    background: linear-gradient(135deg, rgba(140, 106, 86, 0.1), rgba(163, 143, 125, 0.2));
+    color: var(--atb-primary);
+    border: 1px solid var(--atb-primary);
+    box-shadow: none;
+}
+
+.a-thing-of-beauty button.secondary:hover {
+    background: linear-gradient(135deg, rgba(140, 106, 86, 0.2), rgba(163, 143, 125, 0.3));
+    color: var(--atb-text);
+}
+
+.a-thing-of-beauty button.danger {
+    background: linear-gradient(135deg, #d4a59a, #e8c4bc);
+    box-shadow: 0 2px 8px rgba(212, 165, 154, 0.3);
+}
+
+.a-thing-of-beauty button.danger:hover {
+    background: linear-gradient(135deg, #e8c4bc, #d4a59a);
+    box-shadow: 0 4px 12px rgba(212, 165, 154, 0.4);
+}
+
+/* Button with floral icon */
+.a-thing-of-beauty button.with-icon::after {
+    content: "❀";
+    margin-left: 8px;
+    display: inline-block;
+    animation: atb-fade 3s infinite;
+}
+
+/* Small buttons */
+.a-thing-of-beauty button.small {
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+/* Button group styling */
+.a-thing-of-beauty .button-group {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.a-thing-of-beauty .button-group button {
+    flex: 1;
+}
+
+/* Floating action button */
+.a-thing-of-beauty .fab {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--atb-shadow),
+        0 0 20px rgba(140, 106, 86, 0.3);
+    z-index: 100;
+}
+
+.a-thing-of-beauty .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Pulsing effect for important buttons */
+.a-thing-of-beauty button.important {
+    animation: atb-pulse 2s infinite;
+}
+
+/* Disabled button */
+.a-thing-of-beauty button:disabled {
+    background: rgba(140, 106, 86, 0.1);
+    color: rgba(58, 50, 38, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .a-thing-of-beauty .container {
+        padding: 2rem;
+    }
+
+    .a-thing-of-beauty #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .a-thing-of-beauty #current-date {
+        font-size: 1.7rem;
+    }
+
+    .a-thing-of-beauty #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .a-thing-of-beauty th {
+        font-size: 0.85rem;
+        padding: 0.9rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-thing-of-beauty .container {
+        padding: 1.5rem;
+    }
+
+    .a-thing-of-beauty #calendar-title {
+        font-size: 2rem;
+    }
+
+    .a-thing-of-beauty .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .a-thing-of-beauty th .full-day {
+        display: none;
+    }
+
+    .a-thing-of-beauty th .short-day {
+        display: inline;
+    }
+
+    .a-thing-of-beauty th {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.15rem;
+    }
+
+    .a-thing-of-beauty td {
+        padding: 0.8rem 0.15rem;
+        height: 90px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-thing-of-beauty .container {
+        padding: 1.2rem;
+    }
+
+    .a-thing-of-beauty #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .a-thing-of-beauty #current-date {
+        font-size: 1.3rem;
+    }
+
+    .a-thing-of-beauty #today-weather {
+        font-size: 1rem;
+    }
+
+    .a-thing-of-beauty .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .a-thing-of-beauty th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.1rem;
+    }
+
+    .a-thing-of-beauty td {
+        padding: 0.6rem 0.1rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-thing-of-beauty th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .a-thing-of-beauty td {
+        height: 70px;
+        font-size: 0.75rem;
+    }
+
+    .a-thing-of-beauty #calendar-title {
+        font-size: 1.5rem;
+    }
+}
