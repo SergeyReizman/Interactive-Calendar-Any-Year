@@ -1,0 +1,762 @@
+/* ==========================================================================
+   Coastal Pacific Theme - Modern Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Coastal color scheme
+   - Ocean-inspired visual effects
+   - Mobile-responsive design
+   - Nautical patterns
+   - Subtle wave animations
+   - Enhanced readability
+   - Watercolor textures
+   - Clean typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    /* Coastal Color Palette */
+    --cp-bg: #0a1a2e;
+    --cp-text: #e8f4f8;
+    --cp-primary: #2a9d8f;
+    --cp-secondary: #8ab4f8;
+    --cp-sand: #e9c46a;
+    --cp-coral: #f4a261;
+    --cp-wave-blue: #219ebc;
+    --cp-deep-blue: #1d3557;
+    --cp-gradient-start: #023047;
+    --cp-gradient-end: #219ebc;
+    --cp-shadow: rgba(42, 157, 143, 0.3);
+    --cp-radius: 6px;
+    --cp-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --cp-hover: #14213d;
+    --cp-current-day: #219ebc;
+    --cp-wave-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes cp-wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes cp-sunrise {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+
+@keyframes cp-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--cp-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--cp-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.coastal-pacific {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--cp-text);
+    line-height: 1.6;
+    background: var(--cp-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom,
+            var(--cp-gradient-start),
+            var(--cp-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.3"><path d="M20,80 Q50,60 80,80" stroke="%238ab4f8" fill="none" stroke-width="1"/><path d="M10,70 Q40,50 70,70" stroke="%238ab4f8" fill="none" stroke-width="1"/></svg>');
+}
+
+.coastal-pacific::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px 2px white,
+        0 0 20px 4px var(--cp-primary);
+    animation: cp-sunrise 10s linear infinite;
+    opacity: 0;
+}
+
+.coastal-pacific .container {
+    background-color: rgba(10, 26, 46, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--cp-primary);
+    box-shadow: 0 0 30px var(--cp-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--cp-radius);
+    z-index: 1;
+}
+
+.coastal-pacific .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--cp-primary),
+            var(--cp-secondary),
+            transparent);
+    animation: cp-pulse 3s infinite;
+}
+
+.coastal-pacific .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(138, 180, 248, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(244, 162, 97, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.coastal-pacific #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--cp-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    position: relative;
+    text-shadow: 0 0 10px var(--cp-shadow);
+}
+
+.coastal-pacific #calendar-title::before,
+.coastal-pacific #calendar-title::after {
+    content: "~";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cp-secondary);
+    font-size: 1.5rem;
+    animation: cp-wave 2s infinite;
+}
+
+.coastal-pacific #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.coastal-pacific #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.coastal-pacific #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(42, 157, 143, 0.1);
+    border: 1px solid var(--cp-primary);
+    border-radius: var(--cp-radius);
+    position: relative;
+}
+
+.coastal-pacific #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--cp-primary),
+            transparent);
+}
+
+.coastal-pacific #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--cp-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.coastal-pacific #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--cp-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.coastal-pacific #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.coastal-pacific .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--cp-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--cp-bg);
+    box-shadow:
+        0 0 15px var(--cp-shadow),
+        inset 0 0 10px rgba(42, 157, 143, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(42, 157, 143, 0.1) 100%);
+}
+
+.coastal-pacific .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%232a9d8f">XII</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%232a9d8f">III</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%232a9d8f">VI</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%232a9d8f">IX</text></svg>');
+}
+
+.coastal-pacific .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coastal-pacific .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--cp-primary);
+    margin-top: -2px;
+}
+
+.coastal-pacific .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--cp-secondary);
+    margin-top: -1px;
+}
+
+.coastal-pacific .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--cp-coral);
+    margin-top: -0.5px;
+}
+
+.coastal-pacific .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--cp-coral);
+    border-radius: 50%;
+    border: 1px solid var(--cp-secondary);
+    animation: cp-pulse 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.coastal-pacific table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 40, 80, 0.9);
+    border: 1px solid var(--cp-primary);
+    border-radius: var(--cp-radius);
+    table-layout: fixed;
+}
+
+.coastal-pacific th {
+    background-color: rgba(42, 157, 143, 0.2);
+    color: var(--cp-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--cp-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.coastal-pacific th .full-day {
+    display: inline;
+}
+
+.coastal-pacific th .short-day {
+    display: none;
+}
+
+.coastal-pacific td {
+    background-color: rgba(15, 30, 60, 0.9);
+    color: var(--cp-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--cp-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--cp-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.coastal-pacific td:hover {
+    background-color: var(--cp-hover);
+    box-shadow: inset 0 0 15px var(--cp-shadow);
+}
+
+.coastal-pacific .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--cp-text);
+}
+
+.coastal-pacific td.current-day {
+    background-color: var(--cp-current-day);
+    border: 2px solid var(--cp-secondary);
+    color: var(--cp-secondary) !important;
+    font-weight: 600;
+    animation: cp-pulse 3s infinite;
+}
+
+.coastal-pacific td.current-day .date-number {
+    color: var(--cp-secondary) !important;
+    font-weight: 700;
+}
+
+.coastal-pacific td.current-day::before {
+    content: "☀️";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--cp-sand);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: cp-wave 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.coastal-pacific .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cp-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--cp-shadow);
+    transition: all var(--cp-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: cp-wave 3s infinite;
+}
+
+.coastal-pacific .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--cp-secondary);
+    box-shadow: 0 0 15px var(--cp-primary);
+}
+
+.coastal-pacific .event-marker.holiday {
+    background-color: var(--cp-sand);
+    animation-delay: 0.5s;
+}
+
+.coastal-pacific .event-marker.historic {
+    background-color: var(--cp-wave-blue);
+    animation-delay: 1s;
+}
+
+.coastal-pacific .event-marker.patriotic {
+    background-color: var(--cp-deep-blue);
+    animation-delay: 1.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.coastal-pacific .modal-content {
+    position: relative;
+    background-color: rgba(20, 40, 80, 0.98);
+    border: 1px solid var(--cp-primary);
+    padding: 25px;
+    color: var(--cp-text);
+    box-shadow: 0 0 30px var(--cp-shadow);
+    border-radius: var(--cp-radius);
+    animation: cp-pulse 0.5s ease;
+}
+
+.coastal-pacific .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--cp-primary),
+            var(--cp-secondary),
+            var(--cp-coral));
+}
+
+.coastal-pacific .modal-content h2 {
+    color: var(--cp-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.coastal-pacific .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.coastal-pacific .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--cp-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.coastal-pacific .modal-content .event-description {
+    background-color: rgba(42, 157, 143, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--cp-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--cp-radius) var(--cp-radius) 0;
+}
+
+.coastal-pacific .modal-content button {
+    background-color: var(--cp-primary);
+    color: var(--cp-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--cp-transition);
+    border-radius: var(--cp-radius);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.coastal-pacific .modal-content button:hover {
+    background-color: var(--cp-secondary);
+    box-shadow: 0 4px 6px -1px var(--cp-shadow);
+}
+
+.coastal-pacific .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--cp-primary);
+    border: 1px solid var(--cp-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--cp-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.coastal-pacific .modal .close-button:hover {
+    background-color: var(--cp-primary);
+    color: var(--cp-bg);
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.coastal-pacific button {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, var(--cp-primary), var(--cp-secondary));
+    color: var(--cp-bg);
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--cp-transition);
+    border-radius: var(--cp-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--cp-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.coastal-pacific button:hover {
+    background: linear-gradient(135deg, var(--cp-secondary), var(--cp-primary));
+    box-shadow:
+        0 4px 12px var(--cp-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.coastal-pacific button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--cp-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.coastal-pacific button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.coastal-pacific button:hover::before {
+    transform: scale(1);
+}
+
+.coastal-pacific button.secondary {
+    background: linear-gradient(135deg, rgba(42, 157, 143, 0.1), rgba(138, 180, 248, 0.2));
+    color: var(--cp-secondary);
+    border: 1px solid var(--cp-primary);
+    box-shadow: none;
+}
+
+.coastal-pacific button.secondary:hover {
+    background: linear-gradient(135deg, rgba(42, 157, 143, 0.2), rgba(138, 180, 248, 0.3));
+    color: var(--cp-text);
+}
+
+.coastal-pacific button.danger {
+    background: linear-gradient(135deg, #f44336, #ff7961);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.coastal-pacific button.danger:hover {
+    background: linear-gradient(135deg, #ff7961, #f44336);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+}
+
+.coastal-pacific button.with-icon::after {
+    content: "~";
+    margin-left: 8px;
+    display: inline-block;
+    animation: cp-wave 2s infinite;
+}
+
+.coastal-pacific button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+.coastal-pacific .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.coastal-pacific .button-group button {
+    flex: 1;
+}
+
+.coastal-pacific .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--cp-shadow),
+        0 0 20px rgba(42, 157, 143, 0.3);
+    z-index: 100;
+}
+
+.coastal-pacific .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.coastal-pacific button.important {
+    animation: cp-pulse 2s infinite;
+}
+
+.coastal-pacific button:disabled {
+    background: rgba(42, 157, 143, 0.1);
+    color: rgba(232, 244, 248, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .coastal-pacific .container {
+        padding: 1.2rem;
+    }
+
+    .coastal-pacific #calendar-title {
+        font-size: 2rem;
+    }
+
+    .coastal-pacific #current-date {
+        font-size: 1.5rem;
+    }
+
+    .coastal-pacific #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .coastal-pacific th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .coastal-pacific .container {
+        padding: 1rem;
+    }
+
+    .coastal-pacific #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .coastal-pacific .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .coastal-pacific th .full-day {
+        display: none;
+    }
+
+    .coastal-pacific th .short-day {
+        display: inline;
+    }
+
+    .coastal-pacific th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .coastal-pacific td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .coastal-pacific .container {
+        padding: 0.8rem;
+    }
+
+    .coastal-pacific #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .coastal-pacific #current-date {
+        font-size: 1.1rem;
+    }
+
+    .coastal-pacific #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .coastal-pacific .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .coastal-pacific th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .coastal-pacific td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .coastal-pacific th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .coastal-pacific td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .coastal-pacific #calendar-title {
+        font-size: 1.2rem;
+    }
+}
