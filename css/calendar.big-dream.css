@@ -1,0 +1,713 @@
+/* ==========================================================================
+   Big Dream Theme - Celestial Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Ethereal pastel color scheme
+   - Cloud-like soft effects
+   - Mobile-responsive design
+   - Dreamy patterns
+   - Subtle floating animations
+   - Enhanced readability
+   - Soft textures
+   - Dreamy typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@300;500&display=swap');
+
+:root {
+    /* Dreamy Color Palette */
+    --bd-bg: #f0f5ff;
+    --bd-text: #4a4a7a;
+    --bd-primary: #a78bfa;
+    /* Soft purple */
+    --bd-secondary: #818cf8;
+    /* Lighter purple */
+
+    /* Accent Colors */
+    --bd-star-blue: #93c5fd;
+    --bd-star-white: #ffffff;
+    --bd-star-gold: #fcd34d;
+    --bd-nebula-purple: #c4b5fd;
+    --bd-comet-teal: #5eead4;
+
+    /* Gradient Colors */
+    --bd-gradient-start: #e0e7ff;
+    --bd-gradient-end: #c7d2fe;
+
+    /* Theme Variables */
+    --bd-shadow: rgba(167, 139, 250, 0.2);
+    --bd-radius: 12px;
+    --bd-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bd-hover: #e0e7ff;
+    --bd-current-day: #c7d2fe;
+    --bd-star-size: 1px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes bd-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bd-soft-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--bd-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--bd-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.big-dream {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--bd-text);
+    line-height: 1.6;
+    background: var(--bd-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(to bottom,
+            var(--bd-gradient-start),
+            var(--bd-gradient-end)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="1.5" fill="%23a78bfa" opacity="0.6"/><circle cx="50" cy="50" r="1.5" fill="%23a78bfa" opacity="0.4"/><circle cx="80" cy="30" r="1.5" fill="%23a78bfa" opacity="0.5"/><circle cx="30" cy="80" r="1.5" fill="%23a78bfa" opacity="0.3"/></svg>');
+}
+
+.big-dream .container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--bd-primary);
+    box-shadow: 0 0 30px var(--bd-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--bd-radius);
+    z-index: 1;
+}
+
+.big-dream .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bd-primary),
+            var(--bd-secondary),
+            transparent);
+    animation: bd-soft-pulse 3s infinite;
+}
+
+/* Cloud-like pattern */
+.big-dream .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 70% 30%,
+            rgba(167, 139, 250, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 30% 70%,
+            rgba(196, 181, 253, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.big-dream #calendar-title {
+    font-family: 'Comfortaa', cursive;
+    color: var(--bd-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: bd-float 4s ease-in-out infinite;
+}
+
+.big-dream #calendar-title::before,
+.big-dream #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bd-secondary);
+    font-size: 1.5rem;
+    animation: bd-float 3s infinite;
+}
+
+.big-dream #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.big-dream #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.big-dream #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(167, 139, 250, 0.1);
+    border: 1px solid var(--bd-primary);
+    border-radius: var(--bd-radius);
+    position: relative;
+}
+
+.big-dream #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bd-primary),
+            transparent);
+}
+
+.big-dream #current-date {
+    font-family: 'Comfortaa', cursive;
+    color: var(--bd-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.big-dream #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--bd-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.big-dream #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.big-dream .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--bd-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--bd-bg);
+    box-shadow:
+        0 0 15px var(--bd-shadow),
+        inset 0 0 10px rgba(167, 139, 250, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(167, 139, 250, 0.1) 100%);
+}
+
+/* Dreamy numerals for clock */
+.big-dream .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%23a78bfa">XII</text><text x="82" y="55" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%23a78bfa">III</text><text x="50" y="92" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%23a78bfa">VI</text><text x="18" y="55" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%23a78bfa">IX</text></svg>');
+}
+
+.big-dream .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.big-dream .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--bd-primary);
+    margin-top: -2px;
+    border-radius: 4px;
+}
+
+.big-dream .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--bd-secondary);
+    margin-top: -1.5px;
+    border-radius: 3px;
+}
+
+.big-dream .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--bd-star-gold);
+    margin-top: -1px;
+    border-radius: 2px;
+}
+
+/* Clock center - Dreamy accent */
+.big-dream .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bd-star-gold);
+    border-radius: 50%;
+    border: 1px solid var(--bd-secondary);
+    animation: bd-soft-pulse 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.big-dream table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--bd-primary);
+    border-radius: var(--bd-radius);
+    table-layout: fixed;
+}
+
+.big-dream th {
+    background-color: rgba(167, 139, 250, 0.1);
+    color: var(--bd-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bd-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.big-dream th .full-day {
+    display: inline;
+}
+
+.big-dream th .short-day {
+    display: none;
+}
+
+.big-dream td {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--bd-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bd-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--bd-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.big-dream td:hover {
+    background-color: var(--bd-hover);
+    box-shadow: inset 0 0 15px var(--bd-shadow);
+}
+
+.big-dream .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--bd-text);
+}
+
+.big-dream td.current-day {
+    background-color: var(--bd-current-day);
+    border: 2px solid var(--bd-secondary);
+    color: var(--bd-primary) !important;
+    font-weight: 500;
+    animation: bd-soft-pulse 3s infinite;
+}
+
+.big-dream td.current-day .date-number {
+    color: var(--bd-primary) !important;
+    font-weight: 700;
+}
+
+.big-dream td.current-day::before {
+    content: "✧";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--bd-star-gold);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: bd-float 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.big-dream .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bd-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--bd-shadow);
+    transition: all var(--bd-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: bd-float 3s infinite;
+}
+
+.big-dream .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--bd-secondary);
+    box-shadow: 0 0 15px var(--bd-primary);
+}
+
+/* Special event types */
+.big-dream .event-marker.holiday {
+    background-color: var(--bd-star-gold);
+    animation-delay: 0.5s;
+}
+
+.big-dream .event-marker.historic {
+    background-color: var(--bd-nebula-purple);
+    animation-delay: 1s;
+}
+
+.big-dream .event-marker.patriotic {
+    background-color: var(--bd-comet-teal);
+    animation-delay: 1.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.big-dream .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--bd-primary);
+    padding: 25px;
+    color: var(--bd-text);
+    box-shadow: 0 0 30px var(--bd-shadow);
+    border-radius: var(--bd-radius);
+    animation: bd-soft-pulse 0.5s ease;
+}
+
+.big-dream .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bd-primary),
+            var(--bd-secondary),
+            var(--bd-star-gold));
+}
+
+.big-dream .modal-content h2 {
+    color: var(--bd-primary);
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.big-dream .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.big-dream .modal-content .event-time {
+    display: block;
+    font-weight: 500;
+    color: var(--bd-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.big-dream .modal-content .event-description {
+    background-color: rgba(167, 139, 250, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--bd-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--bd-radius) var(--bd-radius) 0;
+}
+
+/* ==================== BUTTON STYLES ==================== */
+.big-dream button {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, var(--bd-primary), var(--bd-secondary));
+    color: white !important;
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--bd-transition);
+    border-radius: var(--bd-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 2px 8px var(--bd-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.big-dream button:hover {
+    background: linear-gradient(135deg, var(--bd-secondary), var(--bd-primary));
+    box-shadow:
+        0 4px 12px var(--bd-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    transform: translateY(-2px);
+}
+
+.big-dream button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 1px 4px var(--bd-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Dreamy effect on buttons */
+.big-dream button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.3) 0%,
+            transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.big-dream button:hover::before {
+    transform: scale(1);
+}
+
+/* Special button variants */
+.big-dream button.secondary {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(129, 140, 248, 0.2));
+    color: var(--bd-primary) !important;
+    border: 1px solid var(--bd-primary);
+    box-shadow: none;
+}
+
+.big-dream button.secondary:hover {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(129, 140, 248, 0.3));
+    color: var(--bd-text) !important;
+}
+
+.big-dream button.danger {
+    background: linear-gradient(135deg, #fca5a5, #f87171);
+    box-shadow: 0 2px 8px rgba(252, 165, 165, 0.3);
+}
+
+.big-dream button.danger:hover {
+    background: linear-gradient(135deg, #f87171, #fca5a5);
+    box-shadow: 0 4px 12px rgba(252, 165, 165, 0.4);
+}
+
+/* Button with dream icon */
+.big-dream button.with-icon::after {
+    content: "✧";
+    margin-left: 8px;
+    display: inline-block;
+    animation: bd-float 2s infinite;
+}
+
+/* Small buttons */
+.big-dream button.small {
+    padding: 6px 12px;
+    font-size: 0.8em;
+}
+
+/* Button group styling */
+.big-dream .button-group {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.big-dream .button-group button {
+    flex: 1;
+}
+
+/* Floating action button */
+.big-dream .fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    padding: 0;
+    box-shadow:
+        0 4px 12px var(--bd-shadow),
+        0 0 20px rgba(167, 139, 250, 0.3);
+    z-index: 100;
+}
+
+.big-dream .fab:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Pulsing effect for important buttons */
+.big-dream button.important {
+    animation: bd-soft-pulse 2s infinite;
+}
+
+/* Disabled button */
+.big-dream button:disabled {
+    background: rgba(167, 139, 250, 0.1);
+    color: rgba(74, 74, 122, 0.5);
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .big-dream .container {
+        padding: 1.2rem;
+    }
+
+    .big-dream #calendar-title {
+        font-size: 2rem;
+    }
+
+    .big-dream #current-date {
+        font-size: 1.5rem;
+    }
+
+    .big-dream #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .big-dream th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .big-dream .container {
+        padding: 1rem;
+    }
+
+    .big-dream #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .big-dream .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .big-dream th .full-day {
+        display: none;
+    }
+
+    .big-dream th .short-day {
+        display: inline;
+    }
+
+    .big-dream th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .big-dream td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .big-dream .container {
+        padding: 0.8rem;
+    }
+
+    .big-dream #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .big-dream #current-date {
+        font-size: 1.1rem;
+    }
+
+    .big-dream #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .big-dream .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .big-dream th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .big-dream td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .big-dream th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .big-dream td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .big-dream #calendar-title {
+        font-size: 1.2rem;
+    }
+}
