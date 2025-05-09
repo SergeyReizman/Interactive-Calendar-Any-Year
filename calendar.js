@@ -109,7 +109,8 @@ const applyTheme = (theme) => {
     'statue-of-liberty', 'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'strategic-planning',
     'success-key','success-motivation', 
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 'the-dead-sea',
-    'the-highest-level', 'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset', 
+    'the-highest-level', 'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset',
+    'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience'
 
