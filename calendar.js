@@ -59,7 +59,7 @@ const applyTheme = (theme) => {
     'big-fashion', 'black-fashion', 'black-bird', 'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-orange', 'black-style',
     'black-velvet', 'black-violet', 'blue-bird', 'blue-ice', 
-    'blue-planet', 'blue-stars', 'blue-whale', 'blue-white', 'breaking-point', 
+    'blue-planet', 'blue-stars', 'blue-whale', 'blue-white', 'breaking-point', 'breathtaking-view',
     'bright-line', 'bronze-horseman', 'cacao-plantation', 
     'cafe-de-colombia', 'camomile-flowers', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'clean-energy', 

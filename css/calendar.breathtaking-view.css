@@ -1,0 +1,606 @@
+/* ==========================================================================
+   Breathtaking View Theme - Nature Inspired with Earth Tones
+   Version: 2.2
+   Updated: 2025-05-11
+   Includes:
+   - Fixed weekday header overlapping issue
+   - Optimized table cell spacing
+   - Improved responsive day name handling
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --view-bg: #1A2E35;
+    --view-text: #E8F1F2;
+    --view-primary: #5D9C7D;
+    --view-secondary: #3D7A5D;
+
+    /* Earth Tone Gradient */
+    --view-earth1: #1A2E35;
+    --view-earth2: #2D4A43;
+    --view-earth3: #3D6D5D;
+    --view-earth4: #5D9C7D;
+    --view-earth5: #7FC0A9;
+
+    /* Sky Spectrum */
+    --view-sky1: #7FB3D5;
+    --view-sky2: #5D8CA7;
+    --view-sky3: #3D6D8F;
+    --view-sky4: #A8D8EA;
+    --view-sky5: #D4F1F9;
+
+    /* Special Effects */
+    --view-glow: #5D9C7D;
+    --view-accent: #7FC0A9;
+    --view-metal: #C0C0C0;
+
+    /* Theme Variables */
+    --view-shadow: rgba(93, 156, 125, 0.3);
+    --view-radius: 8px;
+    --view-transition: 0.3s ease;
+    --view-hover: #7FC0A9;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes view-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--view-sky1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--view-sky2);
+    }
+}
+
+@keyframes view-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes viewFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.breathtaking-view {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--view-text);
+    line-height: 1.6;
+    background-color: var(--view-bg);
+    min-height: 100vh;
+}
+
+.breathtaking-view .container {
+    background-color: var(--view-earth2);
+    padding: 2rem;
+    border: 1px solid var(--view-primary);
+    box-shadow: 0 0 30px var(--view-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--view-primary), transparent);
+    animation: view-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.breathtaking-view #calendar-title {
+    font-family: 'Montserrat', serif;
+    color: var(--view-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--view-shadow);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.breathtaking-view #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--view-earth3);
+    border: 1px solid var(--view-earth5);
+    position: relative;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--view-primary), transparent);
+}
+
+.breathtaking-view #current-date {
+    font-family: 'Montserrat', serif;
+    color: var(--view-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--view-shadow);
+}
+
+.breathtaking-view #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--view-sky4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.breathtaking-view #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.breathtaking-view .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--view-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--view-earth1);
+    box-shadow: 0 0 20px var(--view-shadow);
+}
+
+.breathtaking-view .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.breathtaking-view .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--view-primary);
+    margin-top: -4px;
+}
+
+.breathtaking-view .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--view-secondary);
+    margin-top: -3px;
+}
+
+.breathtaking-view .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--view-sky1);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.breathtaking-view table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    margin: 2rem auto;
+    background-color: var(--view-earth2);
+    border: 1px solid var(--view-primary);
+    table-layout: fixed;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view th {
+    background-color: var(--view-earth1);
+    color: var(--view-primary);
+    font-family: 'Montserrat', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--view-earth5);
+    border-bottom: 2px solid var(--view-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.breathtaking-view th span.full-day-name {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.breathtaking-view td {
+    background-color: var(--view-earth3);
+    color: var(--view-text);
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--view-earth5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--view-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.breathtaking-view td:hover {
+    background-color: var(--view-earth4);
+    box-shadow: inset 0 0 15px var(--view-shadow);
+}
+
+.breathtaking-view td.current-day {
+    background-color: var(--view-earth1);
+    border: 2px solid var(--view-primary);
+    color: var(--view-primary);
+    font-weight: 600;
+    animation: view-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.breathtaking-view .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--view-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--view-shadow);
+    transition: all var(--view-transition);
+}
+
+.breathtaking-view .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--view-sky1);
+    box-shadow: 0 0 15px var(--view-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.breathtaking-view .modal-content {
+    position: relative;
+    background-color: var(--view-earth2);
+    border: 2px solid var(--view-primary);
+    padding: 30px;
+    color: var(--view-text);
+    box-shadow: 0 0 40px var(--view-shadow);
+    animation: viewFadeIn 0.4s ease;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--view-primary);
+    animation: view-pulse 2s infinite;
+}
+
+.breathtaking-view .modal-content h2 {
+    color: var(--view-primary);
+    font-family: 'Montserrat', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.breathtaking-view .modal-content button {
+    background-color: transparent;
+    color: var(--view-primary);
+    border: 1px solid var(--view-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--view-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view .modal-content button:hover {
+    background-color: var(--view-primary);
+    color: var(--view-text);
+    box-shadow: 0 0 15px var(--view-shadow);
+}
+
+/* Close Button */
+.breathtaking-view .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--view-primary);
+    border: 1px solid var(--view-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--view-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.breathtaking-view .modal .close-button:hover {
+    background-color: var(--view-primary);
+    color: var(--view-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.breathtaking-view .button,
+.breathtaking-view .transparent-button {
+    border: 1px solid var(--view-primary);
+    color: var(--view-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Montserrat', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--view-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view .button::before,
+.breathtaking-view .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(93, 156, 125, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.breathtaking-view .button:hover,
+.breathtaking-view .transparent-button:hover {
+    background-color: var(--view-primary);
+    color: var(--view-text);
+    box-shadow: 0 0 20px var(--view-shadow);
+}
+
+.breathtaking-view .button:hover::before,
+.breathtaking-view .transparent-button:hover::before {
+    left: 100%;
+}
+
+.breathtaking-view .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.breathtaking-view #theme-switcher {
+    background-color: var(--view-earth3);
+    color: var(--view-text);
+    border: 1px solid var(--view-primary);
+    padding: 0.8rem;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--view-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.breathtaking-view #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--view-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--view-primary);
+    background-color: var(--view-earth3);
+    cursor: pointer;
+    transition: all var(--view-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--view-radius);
+}
+
+.breathtaking-view #backToTopBtn:hover {
+    background-color: var(--view-primary);
+    color: var(--view-text);
+    box-shadow: 0 0 20px var(--view-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.breathtaking-view footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--view-earth5);
+    color: var(--view-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .breathtaking-view .container {
+        padding: 1.5rem;
+    }
+
+    .breathtaking-view #calendar-title {
+        font-size: 2rem;
+    }
+
+    .breathtaking-view #current-date {
+        font-size: 1.5rem;
+    }
+
+    .breathtaking-view #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .breathtaking-view th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .breathtaking-view .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .breathtaking-view th {
+        padding: 0.6rem 0.2rem;
+        font-size: 0.8rem;
+        letter-spacing: normal;
+    }
+
+    .breathtaking-view td {
+        padding: 0.5rem 0.2rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .breathtaking-view th span.full-day-name {
+        display: none;
+    }
+
+    .breathtaking-view th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .breathtaking-view #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .breathtaking-view .container {
+        padding: 0.8rem;
+    }
+
+    .breathtaking-view #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .breathtaking-view #current-date {
+        font-size: 1.1rem;
+    }
+
+    .breathtaking-view #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .breathtaking-view .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .breathtaking-view th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .breathtaking-view td {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.1rem;
+        height: 60px;
+    }
+
+    /* Three-letter abbreviations for small screens */
+    .breathtaking-view th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .breathtaking-view th abbr {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .breathtaking-view #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .breathtaking-view th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .breathtaking-view td {
+        height: 50px;
+    }
+
+    /* Single character day names for tiny screens */
+    .breathtaking-view th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
