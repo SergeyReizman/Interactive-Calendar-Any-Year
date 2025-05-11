@@ -68,7 +68,7 @@ const applyTheme = (theme) => {
     'cracked-ice', 'crimson-sky', 'critical-thinking', 
     'crossroads-stone','crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-mode', 'dark-star', 'dartagnans-rapier', 'daruma-doll', 'deep-forest', 'deep-ocean', 
-    'desert-mirage', 'diamond-planet', 'digital-excellence', 'distant-skies', 
+    'desert-mirage', 'developers-zone', 'diamond-planet', 'digital-excellence', 'distant-skies', 
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 'doterra-new', 'doterra-power',
     'dragon-flame', 'dragonfly', 'dream-adventure', 'emerald-stream', 'emperor-penguin', 
     'divi-divi-trees', 'essential-oils', 'everest-view', 'excellent-performance', 'executive-management',
