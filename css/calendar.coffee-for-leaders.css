@@ -1,0 +1,635 @@
+/* ==========================================================================
+   Coffee for Leaders Theme - Rich, Professional Coffee House Style
+   Version: 2.2
+   Updated: 2025-05-11
+   Includes:
+   - Fixed weekday header overlapping issue
+   - Optimized table cell spacing
+   - Improved responsive day name handling
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Open+Sans:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --coffee-bg: #3A2C28;
+    --coffee-text: #E8E1D9;
+    --coffee-primary: #A67C52;
+    --coffee-secondary: #8C6A4D;
+
+    /* Coffee Gradient */
+    --coffee-dark1: #2A1E1B;
+    --coffee-dark2: #3A2C28;
+    --coffee-dark3: #4D3B34;
+    --coffee-dark4: #5E4A40;
+    --coffee-dark5: #7D6659;
+
+    /* Cream Spectrum */
+    --coffee-cream1: #F8F4EF;
+    --coffee-cream2: #E8E1D9;
+    --coffee-cream3: #D9CFC3;
+    --coffee-cream4: #C9BCAD;
+    --coffee-cream5: #B9A997;
+
+    /* Coffee Accents */
+    --coffee-accent1: #A67C52;
+    --coffee-accent2: #BF9B7A;
+    --coffee-accent3: #D9BFA2;
+    --coffee-accent4: #8C6A4D;
+    --coffee-accent5: #735C46;
+
+    /* Special Effects */
+    --coffee-glow: #A67C52;
+    --coffee-highlight: #D9BFA2;
+    --coffee-steam: #F8F4EF;
+
+    /* Theme Variables */
+    --coffee-shadow: rgba(166, 124, 82, 0.3);
+    --coffee-radius: 6px;
+    --coffee-transition: 0.3s ease;
+    --coffee-hover: #BF9B7A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes coffee-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--coffee-accent1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--coffee-accent4);
+    }
+}
+
+@keyframes coffee-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes coffeeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.coffee-for-leaders {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--coffee-text);
+    line-height: 1.6;
+    background-color: var(--coffee-bg);
+    min-height: 100vh;
+}
+
+.coffee-for-leaders .container {
+    background-color: var(--coffee-dark2);
+    padding: 2rem;
+    border: 1px solid var(--coffee-primary);
+    box-shadow: 0 0 30px var(--coffee-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--coffee-radius);
+}
+
+.coffee-for-leaders .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--coffee-primary), transparent);
+    animation: coffee-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.coffee-for-leaders #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--coffee-primary);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--coffee-shadow);
+    font-weight: 700;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.coffee-for-leaders #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--coffee-dark3);
+    border: 1px solid var(--coffee-dark5);
+    position: relative;
+    border-radius: var(--coffee-radius);
+}
+
+.coffee-for-leaders #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--coffee-primary), transparent);
+}
+
+.coffee-for-leaders #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--coffee-primary);
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--coffee-shadow);
+}
+
+.coffee-for-leaders #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--coffee-cream2);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.coffee-for-leaders #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.coffee-for-leaders .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--coffee-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--coffee-dark1);
+    box-shadow: 0 0 20px var(--coffee-shadow);
+}
+
+.coffee-for-leaders .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.coffee-for-leaders .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--coffee-primary);
+    margin-top: -4px;
+}
+
+.coffee-for-leaders .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--coffee-accent4);
+    margin-top: -3px;
+}
+
+.coffee-for-leaders .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--coffee-cream2);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.coffee-for-leaders table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    margin: 2rem auto;
+    background-color: var(--coffee-dark2);
+    border: 1px solid var(--coffee-primary);
+    table-layout: fixed;
+    border-radius: var(--coffee-radius);
+}
+
+.coffee-for-leaders th {
+    background-color: var(--coffee-dark1);
+    color: var(--coffee-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    padding: 1.2rem 0.6rem;
+    border: 1px solid var(--coffee-dark5);
+    border-bottom: 2px solid var(--coffee-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.coffee-for-leaders th span.full-day-name {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.coffee-for-leaders td {
+    background-color: var(--coffee-dark3);
+    color: var(--coffee-text);
+    padding: 1.2rem 0.6rem;
+    border: 1px solid var(--coffee-dark5);
+    height: 110px;
+    vertical-align: top;
+    transition: all var(--coffee-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.coffee-for-leaders td:hover {
+    background-color: var(--coffee-dark4);
+    box-shadow: inset 0 0 15px var(--coffee-shadow);
+}
+
+.coffee-for-leaders td.current-day {
+    background-color: var(--coffee-dark1);
+    border: 2px solid var(--coffee-primary);
+    color: var(--coffee-primary);
+    font-weight: 600;
+    animation: coffee-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.coffee-for-leaders .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--coffee-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--coffee-shadow);
+    transition: all var(--coffee-transition);
+}
+
+.coffee-for-leaders .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--coffee-cream2);
+    box-shadow: 0 0 15px var(--coffee-primary);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.coffee-for-leaders .modal-content {
+    position: relative;
+    background-color: var(--coffee-dark2);
+    border: 2px solid var(--coffee-primary);
+    padding: 30px;
+    color: var(--coffee-text);
+    box-shadow: 0 0 40px var(--coffee-shadow);
+    animation: coffeeFadeIn 0.4s ease;
+    border-radius: var(--coffee-radius);
+}
+
+.coffee-for-leaders .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--coffee-primary);
+    animation: coffee-pulse 2s infinite;
+}
+
+.coffee-for-leaders .modal-content h2 {
+    color: var(--coffee-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.coffee-for-leaders .modal-content button {
+    background-color: transparent;
+    color: var(--coffee-primary);
+    border: 1px solid var(--coffee-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--coffee-transition);
+    letter-spacing: 1px;
+    border-radius: var(--coffee-radius);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.coffee-for-leaders .modal-content button:hover {
+    background-color: var(--coffee-primary);
+    color: var(--coffee-text);
+    box-shadow: 0 0 15px var(--coffee-shadow);
+}
+
+/* Close Button */
+.coffee-for-leaders .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--coffee-primary);
+    border: 1px solid var(--coffee-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--coffee-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.coffee-for-leaders .modal .close-button:hover {
+    background-color: var(--coffee-primary);
+    color: var(--coffee-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.coffee-for-leaders .button,
+.coffee-for-leaders .transparent-button {
+    border: 1px solid var(--coffee-primary);
+    color: var(--coffee-primary);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--coffee-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--coffee-radius);
+}
+
+.coffee-for-leaders .button::before,
+.coffee-for-leaders .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(166, 124, 82, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.coffee-for-leaders .button:hover,
+.coffee-for-leaders .transparent-button:hover {
+    background-color: var(--coffee-primary);
+    color: var(--coffee-text);
+    box-shadow: 0 0 20px var(--coffee-shadow);
+}
+
+.coffee-for-leaders .button:hover::before,
+.coffee-for-leaders .transparent-button:hover::before {
+    left: 100%;
+}
+
+.coffee-for-leaders .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.coffee-for-leaders #theme-switcher {
+    background-color: var(--coffee-dark3);
+    color: var(--coffee-text);
+    border: 1px solid var(--coffee-primary);
+    padding: 0.8rem;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--coffee-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.coffee-for-leaders #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--coffee-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.1em;
+    color: var(--coffee-primary);
+    background-color: var(--coffee-dark3);
+    cursor: pointer;
+    transition: all var(--coffee-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--coffee-radius);
+}
+
+.coffee-for-leaders #backToTopBtn:hover {
+    background-color: var(--coffee-primary);
+    color: var(--coffee-text);
+    box-shadow: 0 0 20px var(--coffee-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.coffee-for-leaders footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--coffee-dark5);
+    color: var(--coffee-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .coffee-for-leaders .container {
+        padding: 1.5rem;
+    }
+
+    .coffee-for-leaders #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .coffee-for-leaders #current-date {
+        font-size: 1.7rem;
+    }
+
+    .coffee-for-leaders #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .coffee-for-leaders th {
+        padding: 1rem 0.4rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .coffee-for-leaders .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .coffee-for-leaders th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.85rem;
+    }
+
+    .coffee-for-leaders td {
+        padding: 0.7rem 0.3rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .coffee-for-leaders th span.full-day-name {
+        display: none;
+    }
+
+    .coffee-for-leaders th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .coffee-for-leaders #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .coffee-for-leaders .container {
+        padding: 0.8rem;
+    }
+
+    .coffee-for-leaders #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .coffee-for-leaders #current-date {
+        font-size: 1.3rem;
+    }
+
+    .coffee-for-leaders #today-weather {
+        font-size: 1rem;
+    }
+
+    .coffee-for-leaders .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .coffee-for-leaders th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .coffee-for-leaders td {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.2rem;
+        height: 70px;
+    }
+
+    /* Three-letter abbreviations for small screens */
+    .coffee-for-leaders th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .coffee-for-leaders th abbr {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .coffee-for-leaders #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .coffee-for-leaders th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .coffee-for-leaders td {
+        height: 60px;
+    }
+
+    /* Single character day names for tiny screens */
+    .coffee-for-leaders th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
+
+/* ==================== COFFEE-SPECIFIC STYLES ==================== */
+.coffee-for-leaders .coffee-stain {
+    position: absolute;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.coffee-for-leaders .event-marker.meeting {
+    background-color: var(--coffee-accent1);
+}
+
+.coffee-for-leaders .event-marker.break {
+    background-color: var(--coffee-accent3);
+}
+
+.coffee-for-leaders .event-marker.deadline {
+    background-color: var(--coffee-accent4);
+}
+
+.coffee-for-leaders .coffee-icon {
+    color: var(--coffee-primary);
+    margin-right: 0.5rem;
+    font-size: 1.2em;
+    vertical-align: middle;
+}

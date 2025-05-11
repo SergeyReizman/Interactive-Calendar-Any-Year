@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'bright-line', 'bronze-horseman', 'cacao-plantation', 
     'cafe-de-colombia', 'camomile-flowers', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'cherry-garden', 'cinnamon-street', 'clean-energy', 
-    'coastal-pacific', 'collaboration-idea', 'competitive-advantage',
+    'coastal-pacific', 'coffee-for-leaders', 'collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-reef', 'cosmic-nebula', 'cosmic-perspective',
     'cracked-ice', 'crimson-sky', 'critical-thinking', 
     'crossroads-stone','crystal-snowfall', 'crystal-stream',
