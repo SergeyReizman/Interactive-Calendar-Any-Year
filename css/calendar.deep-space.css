@@ -1,0 +1,737 @@
+/* ==========================================================================
+   Deep Space Calendar Theme - Galactic Exploration Edition
+   Version: 2.2
+   Updated: 2025-05-11
+   Includes:
+   - Fixed weekday header overlapping issue
+   - Optimized table cell spacing
+   - Improved responsive day name handling
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   - Deep space nebula patterns
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --deep-space-bg: #0A0E1F;
+    /* Slightly richer dark navy */
+    --deep-space-text: #E0ECFF;
+    /* Brighter, more readable on dark */
+    --deep-space-primary: #4B7CFA;
+    /* Deeper, bolder blue */
+    --deep-space-secondary: #6F99FF;
+    /* Smoother complementary blue */
+
+    /* Galactic Gradient */
+    --deep-space-space1: #050815;
+    /* Darker space black-blue */
+    --deep-space-space2: #0A0E1F;
+    --deep-space-space3: #162136;
+    /* Slightly deeper for better layering */
+    --deep-space-space4: #223052;
+    /* Richer mid-blue shade */
+    --deep-space-space5: #2E4070;
+    /* Cooler for better transition */
+
+    /* Stellar Spectrum */
+    --deep-space-star1: #4B7CFA;
+    --deep-space-star2: #6F99FF;
+    --deep-space-star3: #91B5FF;
+    --deep-space-star4: #B3D1FF;
+    --deep-space-star5: #D6E8FF;
+
+    /* Nebula Accents */
+    --deep-space-nebula1: #874DFF;
+    /* Stronger purple */
+    --deep-space-nebula2: #9B70FF;
+    /* Rich violet */
+    --deep-space-nebula3: #AF93FF;
+    /* Softer transition */
+    --deep-space-nebula4: #C3B6FF;
+    --deep-space-nebula5: #D7D9FF;
+    /* Very soft lavender-white */
+
+    /* Special Effects */
+    --deep-space-glow: #4B7CFA;
+    --deep-space-pulse: #6F99FF;
+    --deep-space-comet: linear-gradient(90deg, transparent, #6F99FF, transparent);
+
+    /* Theme Variables */
+    --deep-space-shadow: rgba(75, 124, 250, 0.35);
+    --deep-space-radius: 4px;
+    --deep-space-transition: 0.3s ease;
+    --deep-space-hover: #91B5FF;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes deep-space-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--deep-space-star1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--deep-space-star2);
+    }
+}
+
+@keyframes deep-space-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes deep-space-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--deep-space-star5);
+    }
+}
+
+@keyframes deep-spaceFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.deep-space {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--deep-space-text);
+    line-height: 1.6;
+    background-color: var(--deep-space-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(93, 138, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 75%, rgba(138, 93, 255, 0.05) 0%, transparent 25%);
+}
+
+.deep-space .container {
+    background-color: var(--deep-space-space2);
+    padding: 2rem;
+    border: 1px solid var(--deep-space-primary);
+    box-shadow: 0 0 30px var(--deep-space-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--deep-space-radius);
+}
+
+.deep-space .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--deep-space-comet);
+    animation: deep-space-pulse 4s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.deep-space #calendar-title {
+    font-family: 'Space Mono', monospace;
+    color: var(--deep-space-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--deep-space-shadow);
+    position: relative;
+}
+
+.deep-space #calendar-title::after {
+    content: "DS-1";
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6em;
+    color: var(--deep-space-star3);
+    font-style: italic;
+    animation: deep-space-twinkle 4s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.deep-space #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--deep-space-space3);
+    border: 1px solid var(--deep-space-space5);
+    position: relative;
+    border-radius: var(--deep-space-radius);
+}
+
+.deep-space #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--deep-space-comet);
+}
+
+.deep-space #current-date {
+    font-family: 'Space Mono', monospace;
+    color: var(--deep-space-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--deep-space-shadow);
+}
+
+.deep-space #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--deep-space-star4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.deep-space #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.deep-space .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--deep-space-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--deep-space-space1);
+    box-shadow: 0 0 20px var(--deep-space-shadow);
+}
+
+.deep-space .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--deep-space-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--deep-space-primary);
+}
+
+.deep-space .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.deep-space .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--deep-space-primary);
+    margin-top: -3px;
+}
+
+.deep-space .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--deep-space-pulse);
+    margin-top: -2px;
+}
+
+.deep-space .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--deep-space-star5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.deep-space table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    margin: 2rem auto;
+    background-color: var(--deep-space-space2);
+    border: 1px solid var(--deep-space-primary);
+    table-layout: fixed;
+    border-radius: var(--deep-space-radius);
+}
+
+.deep-space th {
+    background-color: var(--deep-space-space1);
+    color: var(--deep-space-primary);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--deep-space-space5);
+    border-bottom: 2px solid var(--deep-space-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.deep-space th::before {
+    content: "★";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--deep-space-star3);
+    font-size: 0.7em;
+    animation: deep-space-twinkle 4s infinite;
+}
+
+.deep-space th span.full-day-name {
+    display: inline-block;
+    width: calc(100% - 20px);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 15px;
+}
+
+.deep-space td {
+    background-color: var(--deep-space-space3);
+    color: var(--deep-space-text);
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--deep-space-space5);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--deep-space-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.deep-space td:hover {
+    background-color: var(--deep-space-space4);
+    box-shadow: inset 0 0 15px var(--deep-space-shadow);
+}
+
+.deep-space td.current-day {
+    background-color: var(--deep-space-space1);
+    border: 2px solid var(--deep-space-primary);
+    color: var(--deep-space-primary);
+    font-weight: 600;
+    animation: deep-space-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.deep-space .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--deep-space-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--deep-space-shadow);
+    transition: all var(--deep-space-transition);
+    position: relative;
+}
+
+.deep-space .event-marker::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px var(--deep-space-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.deep-space .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--deep-space-star5);
+    box-shadow: 0 0 15px var(--deep-space-primary);
+}
+
+.deep-space .event-marker:hover::after {
+    opacity: 1;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.deep-space .modal-content {
+    position: relative;
+    background-color: var(--deep-space-space2);
+    border: 2px solid var(--deep-space-primary);
+    padding: 30px;
+    color: var(--deep-space-text);
+    box-shadow: 0 0 40px var(--deep-space-shadow);
+    animation: deep-spaceFadeIn 0.4s ease;
+    border-radius: var(--deep-space-radius);
+}
+
+.deep-space .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--deep-space-comet);
+    animation: deep-space-pulse 2s infinite;
+}
+
+.deep-space .modal-content h2 {
+    color: var(--deep-space-primary);
+    font-family: 'Space Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.deep-space .modal-content button {
+    background-color: transparent;
+    color: var(--deep-space-primary);
+    border: 1px solid var(--deep-space-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--deep-space-transition);
+    letter-spacing: 1px;
+    border-radius: var(--deep-space-radius);
+    font-family: 'Space Mono', monospace;
+}
+
+.deep-space .modal-content button:hover {
+    background-color: var(--deep-space-primary);
+    color: var(--deep-space-text);
+    box-shadow: 0 0 15px var(--deep-space-shadow);
+}
+
+/* Close Button */
+.deep-space .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--deep-space-primary);
+    border: 1px solid var(--deep-space-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--deep-space-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Space Mono', monospace;
+}
+
+.deep-space .modal .close-button:hover {
+    background-color: var(--deep-space-primary);
+    color: var(--deep-space-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.deep-space .button,
+.deep-space .transparent-button {
+    border: 1px solid var(--deep-space-primary);
+    color: var(--deep-space-primary);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--deep-space-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--deep-space-radius);
+}
+
+.deep-space .button::before,
+.deep-space .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(93, 138, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.deep-space .button:hover,
+.deep-space .transparent-button:hover {
+    background-color: var(--deep-space-primary);
+    color: var(--deep-space-text);
+    box-shadow: 0 0 20px var(--deep-space-shadow);
+}
+
+.deep-space .button:hover::before,
+.deep-space .transparent-button:hover::before {
+    left: 100%;
+}
+
+.deep-space .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.deep-space #theme-switcher {
+    background-color: var(--deep-space-space3);
+    color: var(--deep-space-text);
+    border: 1px solid var(--deep-space-primary);
+    padding: 0.8rem;
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--deep-space-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.deep-space #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--deep-space-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--deep-space-primary);
+    background-color: var(--deep-space-space3);
+    cursor: pointer;
+    transition: all var(--deep-space-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--deep-space-radius);
+}
+
+.deep-space #backToTopBtn:hover {
+    background-color: var(--deep-space-primary);
+    color: var(--deep-space-text);
+    box-shadow: 0 0 20px var(--deep-space-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.deep-space footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--deep-space-space5);
+    color: var(--deep-space-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .deep-space .container {
+        padding: 1.5rem;
+    }
+
+    .deep-space #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .deep-space #calendar-title::after {
+        right: 5%;
+    }
+
+    .deep-space #current-date {
+        font-size: 1.7rem;
+    }
+
+    .deep-space #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .deep-space th {
+        padding: 1rem 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .deep-space .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .deep-space th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .deep-space td {
+        padding: 0.7rem 0.3rem;
+        height: 90px;
+        font-size: 0.8rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .deep-space th span.full-day-name {
+        display: none;
+    }
+
+    .deep-space th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .deep-space #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .deep-space .container {
+        padding: 0.8rem;
+    }
+
+    .deep-space #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .deep-space #calendar-title::after {
+        content: "DS";
+        right: 2%;
+    }
+
+    .deep-space #current-date {
+        font-size: 1.3rem;
+    }
+
+    .deep-space #today-weather {
+        font-size: 1rem;
+    }
+
+    .deep-space .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .deep-space th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .deep-space td {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.2rem;
+        height: 80px;
+    }
+
+    /* Three-letter abbreviations for small screens */
+    .deep-space th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .deep-space th abbr {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .deep-space th::before {
+        display: none;
+    }
+
+    .deep-space #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .deep-space th {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .deep-space td {
+        height: 70px;
+    }
+
+    /* Single character day names for tiny screens */
+    .deep-space th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
+
+/* ==================== DEEP SPACE-SPECIFIC STYLES ==================== */
+.deep-space .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--deep-space-star5);
+    border-radius: 50%;
+    animation: deep-space-twinkle 4s infinite;
+}
+
+.deep-space .event-marker.alpha {
+    background-color: var(--deep-space-star1);
+}
+
+.deep-space .event-marker.beta {
+    background-color: var(--deep-space-star3);
+}
+
+.deep-space .event-marker.gamma {
+    background-color: var(--deep-space-nebula1);
+}
+
+.deep-space .nebula-line {
+    position: absolute;
+    height: 1px;
+    background: var(--deep-space-comet);
+    transform-origin: left center;
+    z-index: 1;
+}
