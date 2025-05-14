@@ -79,7 +79,7 @@ const applyTheme = (theme) => {
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'formula-one',
     'free-flight', 'fresh-start', 'frozen-wilderness', 'full-pink-moon', 'galactic-glow', 
     'genghis-khan-arrow',
-    'giant-petrel', 'golden-century', 'golden-coast', 'golden-eagle',
+    'giant-petrel', 'glorious-day', 'golden-century', 'golden-coast', 'golden-eagle',
     'golden-gate', 'golden-horizon', 'golden-opportunity', 'grand-prix', 'great-idea',
     'great-lakes', 'great-wall', 'green-city', 'green-coffee',
     'greenland-icebergs', 'green-tea',
