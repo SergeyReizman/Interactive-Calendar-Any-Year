@@ -116,7 +116,8 @@ const applyTheme = (theme) => {
     'the-highest-level', 'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset',
     'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
-    'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience'
+    'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
+    'zodiac-constellations'
 
   );
 

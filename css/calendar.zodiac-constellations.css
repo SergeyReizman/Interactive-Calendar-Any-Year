@@ -1,0 +1,752 @@
+/* ==========================================================================
+   Zodiac Constellations Calendar Theme - Celestial Astrology Edition
+   Version: 2.2
+   Updated: 2025-05-11
+   Includes:
+   - Fixed weekday header overlapping issue
+   - Optimized table cell spacing
+   - Improved responsive day name handling
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   - Zodiac constellation patterns
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --zodiac-bg: #0A0E23;
+    /* Deep cosmic navy */
+    --zodiac-text: #E0ECFF;
+    /* Celestial glow */
+    --zodiac-primary: #4D79FF;
+    /* Starry blue */
+    --zodiac-secondary: #6F99FF;
+    /* Lighter cosmic blue */
+
+    /* Cosmic Gradient */
+    --zodiac-cosmos1: #050818;
+    /* Deepest space */
+    --zodiac-cosmos2: #0A0E23;
+    --zodiac-cosmos3: #16203A;
+    /* Cosmic mid-tone */
+    --zodiac-cosmos4: #223252;
+    /* Star cluster */
+    --zodiac-cosmos5: #2E456B;
+    /* Nebula edge */
+
+    /* Starlight Spectrum */
+    --zodiac-star1: #4D79FF;
+    --zodiac-star2: #6F99FF;
+    --zodiac-star3: #91B5FF;
+    --zodiac-star4: #B3D1FF;
+    --zodiac-star5: #D6E8FF;
+
+    /* Zodiac Accents */
+    --zodiac-aries: #FF4D4D;
+    /* Fiery red */
+    --zodiac-taurus: #4DFF4D;
+    /* Earthy green */
+    --zodiac-gemini: #FFFF4D;
+    /* Airy yellow */
+    --zodiac-cancer: #FF9D4D;
+    /* Watery orange */
+    --zodiac-leo: #FF4DFF;
+    /* Royal purple */
+    --zodiac-virgo: #4DFFFF;
+    /* Ethereal cyan */
+
+    /* Special Effects */
+    --zodiac-glow: #4D79FF;
+    --zodiac-pulse: #6F99FF;
+    --zodiac-comet: linear-gradient(90deg, transparent, #6F99FF, transparent);
+
+    /* Theme Variables */
+    --zodiac-shadow: rgba(77, 121, 255, 0.35);
+    --zodiac-radius: 4px;
+    --zodiac-transition: 0.3s ease;
+    --zodiac-hover: #91B5FF;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes zodiac-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--zodiac-star1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--zodiac-star2);
+    }
+}
+
+@keyframes zodiac-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes zodiac-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--zodiac-star5);
+    }
+}
+
+@keyframes zodiacFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.zodiac-constellations {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--zodiac-text);
+    line-height: 1.6;
+    background-color: var(--zodiac-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(77, 121, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 75%, rgba(255, 77, 255, 0.05) 0%, transparent 25%);
+}
+
+.zodiac-constellations .container {
+    background-color: var(--zodiac-cosmos2);
+    padding: 2rem;
+    border: 1px solid var(--zodiac-primary);
+    box-shadow: 0 0 30px var(--zodiac-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--zodiac-radius);
+}
+
+.zodiac-constellations .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--zodiac-comet);
+    animation: zodiac-pulse 4s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.zodiac-constellations #calendar-title {
+    font-family: 'Space Mono', monospace;
+    color: var(--zodiac-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--zodiac-shadow);
+    position: relative;
+}
+
+.zodiac-constellations #calendar-title::after {
+    content: "♈♉♊";
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6em;
+    color: var(--zodiac-star3);
+    font-style: italic;
+    animation: zodiac-twinkle 4s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.zodiac-constellations #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--zodiac-cosmos3);
+    border: 1px solid var(--zodiac-cosmos5);
+    position: relative;
+    border-radius: var(--zodiac-radius);
+}
+
+.zodiac-constellations #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--zodiac-comet);
+}
+
+.zodiac-constellations #current-date {
+    font-family: 'Space Mono', monospace;
+    color: var(--zodiac-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--zodiac-shadow);
+}
+
+.zodiac-constellations #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--zodiac-star4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.zodiac-constellations #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.zodiac-constellations .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--zodiac-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--zodiac-cosmos1);
+    box-shadow: 0 0 20px var(--zodiac-shadow);
+}
+
+.zodiac-constellations .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--zodiac-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--zodiac-primary);
+}
+
+.zodiac-constellations .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.zodiac-constellations .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--zodiac-primary);
+    margin-top: -3px;
+}
+
+.zodiac-constellations .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--zodiac-pulse);
+    margin-top: -2px;
+}
+
+.zodiac-constellations .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--zodiac-star5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.zodiac-constellations table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    margin: 2rem auto;
+    background-color: var(--zodiac-cosmos2);
+    border: 1px solid var(--zodiac-primary);
+    table-layout: fixed;
+    border-radius: var(--zodiac-radius);
+}
+
+.zodiac-constellations th {
+    background-color: var(--zodiac-cosmos1);
+    color: var(--zodiac-primary);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--zodiac-cosmos5);
+    border-bottom: 2px solid var(--zodiac-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.zodiac-constellations th::before {
+    content: "☆";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--zodiac-star3);
+    font-size: 0.7em;
+    animation: zodiac-twinkle 4s infinite;
+}
+
+.zodiac-constellations th span.full-day-name {
+    display: inline-block;
+    width: calc(100% - 20px);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 15px;
+}
+
+.zodiac-constellations td {
+    background-color: var(--zodiac-cosmos3);
+    color: var(--zodiac-text);
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--zodiac-cosmos5);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--zodiac-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.zodiac-constellations td:hover {
+    background-color: var(--zodiac-cosmos4);
+    box-shadow: inset 0 0 15px var(--zodiac-shadow);
+}
+
+.zodiac-constellations td.current-day {
+    background-color: var(--zodiac-cosmos1);
+    border: 2px solid var(--zodiac-primary);
+    color: var(--zodiac-primary);
+    font-weight: 600;
+    animation: zodiac-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.zodiac-constellations .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--zodiac-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--zodiac-shadow);
+    transition: all var(--zodiac-transition);
+    position: relative;
+}
+
+.zodiac-constellations .event-marker::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px var(--zodiac-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.zodiac-constellations .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--zodiac-star5);
+    box-shadow: 0 0 15px var(--zodiac-primary);
+}
+
+.zodiac-constellations .event-marker:hover::after {
+    opacity: 1;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.zodiac-constellations .modal-content {
+    position: relative;
+    background-color: var(--zodiac-cosmos2);
+    border: 2px solid var(--zodiac-primary);
+    padding: 30px;
+    color: var(--zodiac-text);
+    box-shadow: 0 0 40px var(--zodiac-shadow);
+    animation: zodiacFadeIn 0.4s ease;
+    border-radius: var(--zodiac-radius);
+}
+
+.zodiac-constellations .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--zodiac-comet);
+    animation: zodiac-pulse 2s infinite;
+}
+
+.zodiac-constellations .modal-content h2 {
+    color: var(--zodiac-primary);
+    font-family: 'Space Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.zodiac-constellations .modal-content button {
+    background-color: transparent;
+    color: var(--zodiac-primary);
+    border: 1px solid var(--zodiac-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--zodiac-transition);
+    letter-spacing: 1px;
+    border-radius: var(--zodiac-radius);
+    font-family: 'Space Mono', monospace;
+}
+
+.zodiac-constellations .modal-content button:hover {
+    background-color: var(--zodiac-primary);
+    color: var(--zodiac-text);
+    box-shadow: 0 0 15px var(--zodiac-shadow);
+}
+
+/* Close Button */
+.zodiac-constellations .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--zodiac-primary);
+    border: 1px solid var(--zodiac-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--zodiac-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Space Mono', monospace;
+}
+
+.zodiac-constellations .modal .close-button:hover {
+    background-color: var(--zodiac-primary);
+    color: var(--zodiac-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.zodiac-constellations .button,
+.zodiac-constellations .transparent-button {
+    border: 1px solid var(--zodiac-primary);
+    color: var(--zodiac-primary);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--zodiac-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--zodiac-radius);
+}
+
+.zodiac-constellations .button::before,
+.zodiac-constellations .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(77, 121, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.zodiac-constellations .button:hover,
+.zodiac-constellations .transparent-button:hover {
+    background-color: var(--zodiac-primary);
+    color: var(--zodiac-text);
+    box-shadow: 0 0 20px var(--zodiac-shadow);
+}
+
+.zodiac-constellations .button:hover::before,
+.zodiac-constellations .transparent-button:hover::before {
+    left: 100%;
+}
+
+.zodiac-constellations .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.zodiac-constellations #theme-switcher {
+    background-color: var(--zodiac-cosmos3);
+    color: var(--zodiac-text);
+    border: 1px solid var(--zodiac-primary);
+    padding: 0.8rem;
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--zodiac-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.zodiac-constellations #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--zodiac-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--zodiac-primary);
+    background-color: var(--zodiac-cosmos3);
+    cursor: pointer;
+    transition: all var(--zodiac-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--zodiac-radius);
+}
+
+.zodiac-constellations #backToTopBtn:hover {
+    background-color: var(--zodiac-primary);
+    color: var(--zodiac-text);
+    box-shadow: 0 0 20px var(--zodiac-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.zodiac-constellations footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--zodiac-cosmos5);
+    color: var(--zodiac-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .zodiac-constellations .container {
+        padding: 1.5rem;
+    }
+
+    .zodiac-constellations #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .zodiac-constellations #calendar-title::after {
+        right: 5%;
+    }
+
+    .zodiac-constellations #current-date {
+        font-size: 1.7rem;
+    }
+
+    .zodiac-constellations #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .zodiac-constellations th {
+        padding: 1rem 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .zodiac-constellations .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .zodiac-constellations th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .zodiac-constellations td {
+        padding: 0.7rem 0.3rem;
+        height: 90px;
+        font-size: 0.8rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .zodiac-constellations th span.full-day-name {
+        display: none;
+    }
+
+    .zodiac-constellations th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .zodiac-constellations #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .zodiac-constellations .container {
+        padding: 0.8rem;
+    }
+
+    .zodiac-constellations #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .zodiac-constellations #calendar-title::after {
+        content: "♈";
+        right: 2%;
+    }
+
+    .zodiac-constellations #current-date {
+        font-size: 1.3rem;
+    }
+
+    .zodiac-constellations #today-weather {
+        font-size: 1rem;
+    }
+
+    .zodiac-constellations .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .zodiac-constellations th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .zodiac-constellations td {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.2rem;
+        height: 80px;
+    }
+
+    /* Three-letter abbreviations for small screens */
+    .zodiac-constellations th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .zodiac-constellations th abbr {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .zodiac-constellations th::before {
+        display: none;
+    }
+
+    .zodiac-constellations #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .zodiac-constellations th {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .zodiac-constellations td {
+        height: 70px;
+    }
+
+    /* Single character day names for tiny screens */
+    .zodiac-constellations th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
+
+/* ==================== ZODIAC-SPECIFIC STYLES ==================== */
+.zodiac-constellations .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--zodiac-star5);
+    border-radius: 50%;
+    animation: zodiac-twinkle 4s infinite;
+}
+
+.zodiac-constellations .event-marker.aries {
+    background-color: var(--zodiac-aries);
+}
+
+.zodiac-constellations .event-marker.taurus {
+    background-color: var(--zodiac-taurus);
+}
+
+.zodiac-constellations .event-marker.gemini {
+    background-color: var(--zodiac-gemini);
+}
+
+.zodiac-constellations .event-marker.cancer {
+    background-color: var(--zodiac-cancer);
+}
+
+.zodiac-constellations .event-marker.leo {
+    background-color: var(--zodiac-leo);
+}
+
+.zodiac-constellations .event-marker.virgo {
+    background-color: var(--zodiac-virgo);
+}
+
+.zodiac-constellations .constellation-line {
+    position: absolute;
+    height: 1px;
+    background: var(--zodiac-comet);
+    transform-origin: left center;
+    z-index: 1;
+}
