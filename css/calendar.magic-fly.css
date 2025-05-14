@@ -1,0 +1,737 @@
+/* ==========================================================================
+   Magic Fly Calendar Theme - Enchanted Fantasy Edition
+   Version: 2.2
+   Updated: 2025-05-11
+   Includes:
+   - Fixed weekday header overlapping issue
+   - Optimized table cell spacing
+   - Improved responsive day name handling
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   - Magical fairy dust effects
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Exo+2:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --magic-fly-bg: #1A0A2E;
+    /* Deep enchanted purple */
+    --magic-fly-text: #F0E6FF;
+    /* Soft fairy glow */
+    --magic-fly-primary: #9D4DFF;
+    /* Magical purple */
+    --magic-fly-secondary: #B870FF;
+    /* Lighter magical accent */
+
+    /* Enchanted Gradient */
+    --magic-fly-magic1: #0F0521;
+    /* Darkest magic */
+    --magic-fly-magic2: #1A0A2E;
+    --magic-fly-magic3: #2E0F52;
+    /* Rich magical hue */
+    --magic-fly-magic4: #4A1B7A;
+    /* Vibrant spell color */
+    --magic-fly-magic5: #6A29A8;
+    /* Bright magical accent */
+
+    /* Fairy Spectrum */
+    --magic-fly-fairy1: #9D4DFF;
+    --magic-fly-fairy2: #B870FF;
+    --magic-fly-fairy3: #D393FF;
+    --magic-fly-fairy4: #E9B6FF;
+    --magic-fly-fairy5: #FFD9FF;
+
+    /* Pixie Dust Accents */
+    --magic-fly-pixie1: #FF4DFF;
+    /* Vibrant pink */
+    --magic-fly-pixie2: #FF70FF;
+    /* Bright fairy dust */
+    --magic-fly-pixie3: #FF93FF;
+    /* Soft glow */
+    --magic-fly-pixie4: #FFB6FF;
+    --magic-fly-pixie5: #FFD9FF;
+    /* Very soft fairy light */
+
+    /* Special Effects */
+    --magic-fly-glow: #9D4DFF;
+    --magic-fly-pulse: #B870FF;
+    --magic-fly-sparkle: linear-gradient(90deg, transparent, #B870FF, transparent);
+
+    /* Theme Variables */
+    --magic-fly-shadow: rgba(157, 77, 255, 0.35);
+    --magic-fly-radius: 4px;
+    --magic-fly-transition: 0.3s ease;
+    --magic-fly-hover: #D393FF;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes magic-fly-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--magic-fly-fairy1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--magic-fly-fairy2);
+    }
+}
+
+@keyframes magic-fly-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes magic-fly-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--magic-fly-fairy5);
+    }
+}
+
+@keyframes magic-flyFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.magic-fly {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--magic-fly-text);
+    line-height: 1.6;
+    background-color: var(--magic-fly-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(157, 77, 255, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 75%, rgba(255, 77, 255, 0.05) 0%, transparent 25%);
+}
+
+.magic-fly .container {
+    background-color: var(--magic-fly-magic2);
+    padding: 2rem;
+    border: 1px solid var(--magic-fly-primary);
+    box-shadow: 0 0 30px var(--magic-fly-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--magic-fly-radius);
+}
+
+.magic-fly .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--magic-fly-sparkle);
+    animation: magic-fly-pulse 4s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.magic-fly #calendar-title {
+    font-family: 'Space Mono', monospace;
+    color: var(--magic-fly-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--magic-fly-shadow);
+    position: relative;
+}
+
+.magic-fly #calendar-title::after {
+    content: "✨";
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6em;
+    color: var(--magic-fly-fairy3);
+    font-style: italic;
+    animation: magic-fly-twinkle 4s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.magic-fly #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--magic-fly-magic3);
+    border: 1px solid var(--magic-fly-magic5);
+    position: relative;
+    border-radius: var(--magic-fly-radius);
+}
+
+.magic-fly #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--magic-fly-sparkle);
+}
+
+.magic-fly #current-date {
+    font-family: 'Space Mono', monospace;
+    color: var(--magic-fly-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--magic-fly-shadow);
+}
+
+.magic-fly #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--magic-fly-fairy4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.magic-fly #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.magic-fly .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--magic-fly-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--magic-fly-magic1);
+    box-shadow: 0 0 20px var(--magic-fly-shadow);
+}
+
+.magic-fly .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--magic-fly-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--magic-fly-primary);
+}
+
+.magic-fly .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.magic-fly .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--magic-fly-primary);
+    margin-top: -3px;
+}
+
+.magic-fly .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--magic-fly-pulse);
+    margin-top: -2px;
+}
+
+.magic-fly .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--magic-fly-fairy5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.magic-fly table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    margin: 2rem auto;
+    background-color: var(--magic-fly-magic2);
+    border: 1px solid var(--magic-fly-primary);
+    table-layout: fixed;
+    border-radius: var(--magic-fly-radius);
+}
+
+.magic-fly th {
+    background-color: var(--magic-fly-magic1);
+    color: var(--magic-fly-primary);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--magic-fly-magic5);
+    border-bottom: 2px solid var(--magic-fly-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.magic-fly th::before {
+    content: "❀";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--magic-fly-fairy3);
+    font-size: 0.7em;
+    animation: magic-fly-twinkle 4s infinite;
+}
+
+.magic-fly th span.full-day-name {
+    display: inline-block;
+    width: calc(100% - 20px);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 15px;
+}
+
+.magic-fly td {
+    background-color: var(--magic-fly-magic3);
+    color: var(--magic-fly-text);
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--magic-fly-magic5);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--magic-fly-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.magic-fly td:hover {
+    background-color: var(--magic-fly-magic4);
+    box-shadow: inset 0 0 15px var(--magic-fly-shadow);
+}
+
+.magic-fly td.current-day {
+    background-color: var(--magic-fly-magic1);
+    border: 2px solid var(--magic-fly-primary);
+    color: var(--magic-fly-primary);
+    font-weight: 600;
+    animation: magic-fly-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.magic-fly .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--magic-fly-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--magic-fly-shadow);
+    transition: all var(--magic-fly-transition);
+    position: relative;
+}
+
+.magic-fly .event-marker::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px var(--magic-fly-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.magic-fly .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--magic-fly-fairy5);
+    box-shadow: 0 0 15px var(--magic-fly-primary);
+}
+
+.magic-fly .event-marker:hover::after {
+    opacity: 1;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.magic-fly .modal-content {
+    position: relative;
+    background-color: var(--magic-fly-magic2);
+    border: 2px solid var(--magic-fly-primary);
+    padding: 30px;
+    color: var(--magic-fly-text);
+    box-shadow: 0 0 40px var(--magic-fly-shadow);
+    animation: magic-flyFadeIn 0.4s ease;
+    border-radius: var(--magic-fly-radius);
+}
+
+.magic-fly .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--magic-fly-sparkle);
+    animation: magic-fly-pulse 2s infinite;
+}
+
+.magic-fly .modal-content h2 {
+    color: var(--magic-fly-primary);
+    font-family: 'Space Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.magic-fly .modal-content button {
+    background-color: transparent;
+    color: var(--magic-fly-primary);
+    border: 1px solid var(--magic-fly-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--magic-fly-transition);
+    letter-spacing: 1px;
+    border-radius: var(--magic-fly-radius);
+    font-family: 'Space Mono', monospace;
+}
+
+.magic-fly .modal-content button:hover {
+    background-color: var(--magic-fly-primary);
+    color: var(--magic-fly-text);
+    box-shadow: 0 0 15px var(--magic-fly-shadow);
+}
+
+/* Close Button */
+.magic-fly .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--magic-fly-primary);
+    border: 1px solid var(--magic-fly-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--magic-fly-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Space Mono', monospace;
+}
+
+.magic-fly .modal .close-button:hover {
+    background-color: var(--magic-fly-primary);
+    color: var(--magic-fly-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.magic-fly .button,
+.magic-fly .transparent-button {
+    border: 1px solid var(--magic-fly-primary);
+    color: var(--magic-fly-primary);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--magic-fly-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--magic-fly-radius);
+}
+
+.magic-fly .button::before,
+.magic-fly .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(157, 77, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.magic-fly .button:hover,
+.magic-fly .transparent-button:hover {
+    background-color: var(--magic-fly-primary);
+    color: var(--magic-fly-text);
+    box-shadow: 0 0 20px var(--magic-fly-shadow);
+}
+
+.magic-fly .button:hover::before,
+.magic-fly .transparent-button:hover::before {
+    left: 100%;
+}
+
+.magic-fly .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.magic-fly #theme-switcher {
+    background-color: var(--magic-fly-magic3);
+    color: var(--magic-fly-text);
+    border: 1px solid var(--magic-fly-primary);
+    padding: 0.8rem;
+    font-family: 'Exo 2', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--magic-fly-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.magic-fly #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--magic-fly-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--magic-fly-primary);
+    background-color: var(--magic-fly-magic3);
+    cursor: pointer;
+    transition: all var(--magic-fly-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--magic-fly-radius);
+}
+
+.magic-fly #backToTopBtn:hover {
+    background-color: var(--magic-fly-primary);
+    color: var(--magic-fly-text);
+    box-shadow: 0 0 20px var(--magic-fly-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.magic-fly footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--magic-fly-magic5);
+    color: var(--magic-fly-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .magic-fly .container {
+        padding: 1.5rem;
+    }
+
+    .magic-fly #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .magic-fly #calendar-title::after {
+        right: 5%;
+    }
+
+    .magic-fly #current-date {
+        font-size: 1.7rem;
+    }
+
+    .magic-fly #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .magic-fly th {
+        padding: 1rem 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .magic-fly .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .magic-fly th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .magic-fly td {
+        padding: 0.7rem 0.3rem;
+        height: 90px;
+        font-size: 0.8rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .magic-fly th span.full-day-name {
+        display: none;
+    }
+
+    .magic-fly th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .magic-fly #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .magic-fly .container {
+        padding: 0.8rem;
+    }
+
+    .magic-fly #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .magic-fly #calendar-title::after {
+        content: "❀";
+        right: 2%;
+    }
+
+    .magic-fly #current-date {
+        font-size: 1.3rem;
+    }
+
+    .magic-fly #today-weather {
+        font-size: 1rem;
+    }
+
+    .magic-fly .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .magic-fly th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .magic-fly td {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.2rem;
+        height: 80px;
+    }
+
+    /* Three-letter abbreviations for small screens */
+    .magic-fly th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .magic-fly th abbr {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .magic-fly th::before {
+        display: none;
+    }
+
+    .magic-fly #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .magic-fly th {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .magic-fly td {
+        height: 70px;
+    }
+
+    /* Single character day names for tiny screens */
+    .magic-fly th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
+
+/* ==================== MAGIC FLY-SPECIFIC STYLES ==================== */
+.magic-fly .fairy-dust {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--magic-fly-fairy5);
+    border-radius: 50%;
+    animation: magic-fly-twinkle 4s infinite;
+}
+
+.magic-fly .event-marker.spell {
+    background-color: var(--magic-fly-fairy1);
+}
+
+.magic-fly .event-marker.charm {
+    background-color: var(--magic-fly-fairy3);
+}
+
+.magic-fly .event-marker.curse {
+    background-color: var(--magic-fly-pixie1);
+}
+
+.magic-fly .magic-trail {
+    position: absolute;
+    height: 1px;
+    background: var(--magic-fly-sparkle);
+    transform-origin: left center;
+    z-index: 1;
+}
