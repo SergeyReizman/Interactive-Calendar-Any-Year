@@ -1,0 +1,736 @@
+/* ==========================================================================
+   Overnight Train Calendar Theme - Luxury Rail Journey Edition
+   Version: 2.2
+   Updated: 2025-05-11
+   Includes:
+   - Fixed weekday header overlapping issue
+   - Optimized table cell spacing
+   - Improved responsive day name handling
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
+   - Train compartment styling
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --train-bg: #1A0E0A;
+    /* Rich mahogany paneling */
+    --train-text: #F0E6D2;
+    /* Vintage parchment */
+    --train-primary: #C19A6B;
+    /* Polished brass */
+    --train-secondary: #8B6B3D;
+    /* Darker wood accents */
+
+    /* Compartment Gradient */
+    --train-compartment1: #0F0805;
+    /* Darkest paneling */
+    --train-compartment2: #1A0E0A;
+    --train-compartment3: #2E1A0F;
+    /* Medium wood tone */
+    --train-compartment4: #4A2E1B;
+    /* Lighter wood */
+    --train-compartment5: #6A4529;
+    /* Highlighted edges */
+
+    /* Metal Accents */
+    --train-metal1: #C19A6B;
+    --train-metal2: #D4B483;
+    --train-metal3: #E7CE9B;
+    --train-metal4: #FAE8B3;
+    --train-metal5: #FFF2CB;
+
+    /* Luxury Fabric Accents */
+    --train-fabric1: #6B3D2E;
+    /* Deep burgundy */
+    --train-fabric2: #8B5A4B;
+    /* Rich velvet */
+    --train-fabric3: #AB7768;
+    /* Soft upholstery */
+    --train-fabric4: #CB9485;
+    --train-fabric5: #EBB1A2;
+
+    /* Special Effects */
+    --train-glow: #C19A6B;
+    --train-pulse: #D4B483;
+    --train-streak: linear-gradient(90deg, transparent, #D4B483, transparent);
+
+    /* Theme Variables */
+    --train-shadow: rgba(193, 154, 107, 0.35);
+    --train-radius: 4px;
+    --train-transition: 0.3s ease;
+    --train-hover: #E7CE9B;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes train-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--train-metal1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--train-metal2);
+    }
+}
+
+@keyframes train-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes train-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--train-metal5);
+    }
+}
+
+@keyframes trainFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.overnight-train {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--train-text);
+    line-height: 1.6;
+    background-color: var(--train-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(rgba(193, 154, 107, 0.05) 0%, transparent 25%),
+        linear-gradient(rgba(139, 107, 61, 0.05) 0%, transparent 25%);
+}
+
+.overnight-train .container {
+    background-color: var(--train-compartment2);
+    padding: 2rem;
+    border: 1px solid var(--train-primary);
+    box-shadow: 0 0 30px var(--train-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--train-radius);
+}
+
+.overnight-train .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--train-streak);
+    animation: train-pulse 4s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.overnight-train #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--train-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px var(--train-shadow);
+    position: relative;
+}
+
+.overnight-train #calendar-title::after {
+    content: "🚂";
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6em;
+    color: var(--train-metal3);
+    font-style: italic;
+    animation: train-twinkle 4s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.overnight-train #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--train-compartment3);
+    border: 1px solid var(--train-compartment5);
+    position: relative;
+    border-radius: var(--train-radius);
+}
+
+.overnight-train #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--train-streak);
+}
+
+.overnight-train #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--train-primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--train-shadow);
+}
+
+.overnight-train #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--train-metal4);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.overnight-train #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.overnight-train .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--train-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--train-compartment1);
+    box-shadow: 0 0 20px var(--train-shadow);
+}
+
+.overnight-train .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--train-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--train-primary);
+}
+
+.overnight-train .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.overnight-train .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--train-primary);
+    margin-top: -3px;
+}
+
+.overnight-train .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--train-pulse);
+    margin-top: -2px;
+}
+
+.overnight-train .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--train-metal5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.overnight-train table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+    margin: 2rem auto;
+    background-color: var(--train-compartment2);
+    border: 1px solid var(--train-primary);
+    table-layout: fixed;
+    border-radius: var(--train-radius);
+}
+
+.overnight-train th {
+    background-color: var(--train-compartment1);
+    color: var(--train-primary);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--train-compartment5);
+    border-bottom: 2px solid var(--train-primary);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.overnight-train th::before {
+    content: "✧";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--train-metal3);
+    font-size: 0.7em;
+    animation: train-twinkle 4s infinite;
+}
+
+.overnight-train th span.full-day-name {
+    display: inline-block;
+    width: calc(100% - 20px);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 15px;
+}
+
+.overnight-train td {
+    background-color: var(--train-compartment3);
+    color: var(--train-text);
+    padding: 1.2rem 0.5rem;
+    border: 1px solid var(--train-compartment5);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--train-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.overnight-train td:hover {
+    background-color: var(--train-compartment4);
+    box-shadow: inset 0 0 15px var(--train-shadow);
+}
+
+.overnight-train td.current-day {
+    background-color: var(--train-compartment1);
+    border: 2px solid var(--train-primary);
+    color: var(--train-primary);
+    font-weight: 600;
+    animation: train-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.overnight-train .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--train-primary);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--train-shadow);
+    transition: all var(--train-transition);
+    position: relative;
+}
+
+.overnight-train .event-marker::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px var(--train-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overnight-train .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--train-metal5);
+    box-shadow: 0 0 15px var(--train-primary);
+}
+
+.overnight-train .event-marker:hover::after {
+    opacity: 1;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.overnight-train .modal-content {
+    position: relative;
+    background-color: var(--train-compartment2);
+    border: 2px solid var(--train-primary);
+    padding: 30px;
+    color: var(--train-text);
+    box-shadow: 0 0 40px var(--train-shadow);
+    animation: trainFadeIn 0.4s ease;
+    border-radius: var(--train-radius);
+}
+
+.overnight-train .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--train-streak);
+    animation: train-pulse 2s infinite;
+}
+
+.overnight-train .modal-content h2 {
+    color: var(--train-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.overnight-train .modal-content button {
+    background-color: transparent;
+    color: var(--train-primary);
+    border: 1px solid var(--train-primary);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--train-transition);
+    letter-spacing: 1px;
+    border-radius: var(--train-radius);
+    font-family: 'Playfair Display', serif;
+}
+
+.overnight-train .modal-content button:hover {
+    background-color: var(--train-primary);
+    color: var(--train-text);
+    box-shadow: 0 0 15px var(--train-shadow);
+}
+
+/* Close Button */
+.overnight-train .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--train-primary);
+    border: 1px solid var(--train-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--train-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: 'Playfair Display', serif;
+}
+
+.overnight-train .modal .close-button:hover {
+    background-color: var(--train-primary);
+    color: var(--train-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.overnight-train .button,
+.overnight-train .transparent-button {
+    border: 1px solid var(--train-primary);
+    color: var(--train-primary);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--train-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--train-radius);
+}
+
+.overnight-train .button::before,
+.overnight-train .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(193, 154, 107, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.overnight-train .button:hover,
+.overnight-train .transparent-button:hover {
+    background-color: var(--train-primary);
+    color: var(--train-text);
+    box-shadow: 0 0 20px var(--train-shadow);
+}
+
+.overnight-train .button:hover::before,
+.overnight-train .transparent-button:hover::before {
+    left: 100%;
+}
+
+.overnight-train .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+.overnight-train #theme-switcher {
+    background-color: var(--train-compartment3);
+    color: var(--train-text);
+    border: 1px solid var(--train-primary);
+    padding: 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 1rem;
+    border-radius: var(--train-radius);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.overnight-train #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--train-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.1em;
+    color: var(--train-primary);
+    background-color: var(--train-compartment3);
+    cursor: pointer;
+    transition: all var(--train-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--train-radius);
+}
+
+.overnight-train #backToTopBtn:hover {
+    background-color: var(--train-primary);
+    color: var(--train-text);
+    box-shadow: 0 0 20px var(--train-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.overnight-train footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--train-compartment5);
+    color: var(--train-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .overnight-train .container {
+        padding: 1.5rem;
+    }
+
+    .overnight-train #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .overnight-train #calendar-title::after {
+        right: 5%;
+    }
+
+    .overnight-train #current-date {
+        font-size: 1.7rem;
+    }
+
+    .overnight-train #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .overnight-train th {
+        padding: 1rem 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .overnight-train .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Improved table cell styling */
+    .overnight-train th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .overnight-train td {
+        padding: 0.7rem 0.3rem;
+        height: 90px;
+        font-size: 0.8rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .overnight-train th span.full-day-name {
+        display: none;
+    }
+
+    .overnight-train th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .overnight-train #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .overnight-train .container {
+        padding: 0.8rem;
+    }
+
+    .overnight-train #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .overnight-train #calendar-title::after {
+        content: "🚂";
+        right: 2%;
+    }
+
+    .overnight-train #current-date {
+        font-size: 1.3rem;
+    }
+
+    .overnight-train #today-weather {
+        font-size: 1rem;
+    }
+
+    .overnight-train .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Further mobile optimizations */
+    .overnight-train th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .overnight-train td {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.2rem;
+        height: 80px;
+    }
+
+    /* Three-letter abbreviations for small screens */
+    .overnight-train th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .overnight-train th abbr {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .overnight-train th::before {
+        display: none;
+    }
+
+    .overnight-train #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .overnight-train th {
+        font-size: 0.6rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .overnight-train td {
+        height: 70px;
+    }
+
+    /* Single character day names for tiny screens */
+    .overnight-train th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
+    }
+}
+
+/* ==================== TRAIN-SPECIFIC STYLES ==================== */
+.overnight-train .compartment-light {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--train-metal5);
+    border-radius: 50%;
+    animation: train-twinkle 4s infinite;
+}
+
+.overnight-train .event-marker.first-class {
+    background-color: var(--train-metal1);
+}
+
+.overnight-train .event-marker.sleeper {
+    background-color: var(--train-metal3);
+}
+
+.overnight-train .event-marker.dining {
+    background-color: var(--train-fabric1);
+}
+
+.overnight-train .window-streak {
+    position: absolute;
+    height: 1px;
+    background: var(--train-streak);
+    transform-origin: left center;
+    z-index: 1;
+}
