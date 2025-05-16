@@ -1,0 +1,672 @@
+/* ==========================================================================
+   Blue Frost Theme - Icy, Clean with Frosted Glass Effects
+   Version: 2.4
+   Updated: 2025-03-28
+   Changes:
+   - Fixed modal positioning to stay perfectly centered
+   - Ensured modal remains visible during scrolling
+   - Maintained all other original styling
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
+
+:root {
+    /* Core Color Palette */
+    --frost-bg: #0A1A2A;
+    --frost-text: #E6F7FF;
+    --frost-primary: #6BB9F0;
+    --frost-secondary: #3498DB;
+
+    /* Blue Gradient */
+    --frost-blue1: #001F3F;
+    --frost-blue2: #0A2A4A;
+    --frost-blue3: #1E3E5E;
+    --frost-blue4: #2A4A6A;
+    --frost-blue5: #3D5D8D;
+
+    /* Ice Spectrum */
+    --frost-ice1: #A7DBD8;
+    --frost-ice2: #86C1D8;
+    --frost-ice3: #66A6D8;
+    --frost-ice4: #B3E5FC;
+    --frost-ice5: #D4F1F9;
+
+    /* Special Effects */
+    --frost-glow: #6BB9F0;
+    --frost-accent: #A7DBD8;
+    --frost-metal: #C0E0F0;
+
+    /* Theme Variables */
+    --frost-shadow: rgba(107, 185, 240, 0.3);
+    --frost-radius: 4px;
+    --frost-transition: 0.3s ease;
+    --frost-hover: #A7DBD8;
+    --frost-blur: 5px;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes frost-sparkle {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        text-shadow: 0 0 5px var(--frost-ice4);
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 15px var(--frost-ice4);
+    }
+}
+
+@keyframes frost-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes frost-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.blue-frost {
+    font-family: 'Raleway', sans-serif;
+    color: var(--frost-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--frost-blue1), var(--frost-blue3));
+    min-height: 100vh;
+}
+
+.blue-frost .container {
+    background-color: rgba(10, 26, 42, 0.95);
+    padding: 2rem;
+    border: 2px solid var(--frost-primary);
+    box-shadow: 0 0 30px var(--frost-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--frost-radius);
+}
+
+.blue-frost .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--frost-primary), transparent);
+    animation: frost-sparkle 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.blue-frost #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--frost-ice1);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--frost-shadow);
+    animation: frost-sparkle 5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.blue-frost #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(107, 185, 240, 0.2);
+    border: 1px solid var(--frost-ice1);
+    border-radius: var(--frost-radius);
+    position: relative;
+    backdrop-filter: blur(var(--frost-blur));
+}
+
+.blue-frost #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--frost-primary), transparent);
+}
+
+.blue-frost #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--frost-ice1);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--frost-shadow);
+}
+
+.blue-frost #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--frost-ice1);
+    font-size: 1.4rem;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.blue-frost #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.blue-frost .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--frost-ice1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--frost-bg);
+    box-shadow: 0 0 20px var(--frost-shadow);
+}
+
+.blue-frost .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.blue-frost .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--frost-ice1);
+    margin-top: -4px;
+}
+
+.blue-frost .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--frost-ice1);
+    margin-top: -3px;
+}
+
+.blue-frost .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--frost-glow);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.blue-frost table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(10, 26, 42, 0.9);
+    border: 2px solid var(--frost-ice1);
+    border-radius: var(--frost-radius);
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.blue-frost th {
+    background-color: rgba(107, 185, 240, 0.2);
+    color: var(--frost-text) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--frost-ice1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(var(--frost-blur));
+}
+
+.blue-frost th span.full-day-name {
+    display: inline;
+}
+
+.blue-frost th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.blue-frost td {
+    background-color: rgba(107, 185, 240, 0.1);
+    color: var(--frost-text);
+    padding: 1.2rem;
+    border: 1px solid var(--frost-ice3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--frost-transition);
+    position: relative;
+}
+
+.blue-frost td:hover {
+    background-color: rgba(167, 219, 216, 0.2);
+    box-shadow: inset 0 0 15px var(--frost-shadow);
+}
+
+/* Current date highlight */
+.blue-frost td.current-day {
+    background-color: rgba(107, 185, 240, 0.4);
+    border: 2px solid var(--frost-text);
+    color: var(--frost-text) !important;
+    font-weight: 700;
+    animation: frost-sparkle 2s infinite;
+}
+
+.blue-frost td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--frost-text);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.blue-frost td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--frost-text) !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.blue-frost .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--frost-glow);
+    margin: 0 2px;
+    box-shadow: 0 0 5px var(--frost-shadow);
+    transition: all var(--frost-transition);
+}
+
+.blue-frost .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--frost-ice1);
+    box-shadow: 0 0 15px var(--frost-glow);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.blue-frost .modal-content {
+    position: relative;
+    background-color: rgba(10, 26, 42, 0.98);
+    border: 2px solid var(--frost-ice1);
+    padding: 30px;
+    color: var(--frost-text);
+    box-shadow: 0 0 40px var(--frost-shadow);
+    border-radius: var(--frost-radius);
+    animation: frost-fadeIn 0.4s ease;
+    backdrop-filter: blur(var(--frost-blur));
+}
+
+.blue-frost .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--frost-ice1);
+    animation: frost-float 2s infinite;
+}
+
+.blue-frost .modal-content h2 {
+    color: var(--frost-ice1);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.blue-frost .modal-content button {
+    background-color: transparent;
+    color: var(--frost-ice1);
+    border: 2px solid var(--frost-ice1);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--frost-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--frost-radius);
+}
+
+.blue-frost .modal-content button:hover {
+    background-color: var(--frost-ice1);
+    color: var(--frost-bg);
+    box-shadow: 0 0 15px var(--frost-shadow);
+}
+
+/* Close Button */
+.blue-frost .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--frost-ice1);
+    border: 2px solid var(--frost-ice1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--frost-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.blue-frost .modal .close-button:hover {
+    background-color: var(--frost-ice1);
+    color: var(--frost-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.blue-frost .button,
+.blue-frost .transparent-button {
+    border: 2px solid var(--frost-ice1);
+    color: var(--frost-ice1);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--frost-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--frost-radius);
+}
+
+.blue-frost .button::before,
+.blue-frost .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(167, 219, 216, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.blue-frost .button:hover,
+.blue-frost .transparent-button:hover {
+    background-color: var(--frost-ice1);
+    color: var(--frost-bg);
+    box-shadow: 0 0 20px var(--frost-shadow);
+}
+
+.blue-frost .button:hover::before,
+.blue-frost .transparent-button:hover::before {
+    left: 100%;
+}
+
+.blue-frost .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.blue-frost #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.blue-frost #theme-switcher {
+    background-color: rgba(107, 185, 240, 0.2);
+    color: var(--frost-text) !important;
+    border: 2px solid var(--frost-ice1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--frost-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E6F7FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--frost-transition);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(var(--frost-blur));
+}
+
+/* DROPDOWN OPTIONS */
+.blue-frost #theme-switcher option {
+    background-color: rgba(10, 26, 42, 0.98) !important;
+    color: var(--frost-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--frost-ice1) !important;
+}
+
+.blue-frost #theme-switcher option:hover {
+    background-color: var(--frost-ice1) !important;
+    color: var(--frost-bg) !important;
+}
+
+.blue-frost #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--frost-ice1), 0 0 15px var(--frost-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.blue-frost #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 2px solid var(--frost-ice1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--frost-ice1);
+    background-color: rgba(107, 185, 240, 0.2);
+    cursor: pointer;
+    transition: all var(--frost-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--frost-radius);
+    backdrop-filter: blur(var(--frost-blur));
+}
+
+.blue-frost #backToTopBtn:hover {
+    background-color: var(--frost-ice1);
+    color: var(--frost-bg);
+    box-shadow: 0 0 20px var(--frost-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.blue-frost footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--frost-ice1);
+    color: var(--frost-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .blue-frost .container {
+        padding: 1.5rem;
+    }
+
+    .blue-frost #calendar-title {
+        font-size: 2rem;
+    }
+
+    .blue-frost #current-date {
+        font-size: 1.5rem;
+    }
+
+    .blue-frost #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blue-frost .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .blue-frost th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .blue-frost th span.full-day-name {
+        display: none;
+    }
+
+    .blue-frost th abbr {
+        display: inline;
+    }
+
+    .blue-frost td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .blue-frost td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .blue-frost #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .blue-frost #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .blue-frost #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .blue-frost .container {
+        padding: 0.8rem;
+    }
+
+    .blue-frost #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .blue-frost #current-date {
+        font-size: 1.1rem;
+    }
+
+    .blue-frost #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .blue-frost .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .blue-frost th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .blue-frost td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .blue-frost td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .blue-frost #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .blue-frost th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .blue-frost td {
+        height: 50px;
+    }
+
+    .blue-frost #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
