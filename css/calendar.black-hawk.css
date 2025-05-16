@@ -1,131 +1,92 @@
-/* ==========================================================================  
-   Black Hawk Theme - Symbol of Strength & Resilience  
-   Version: 2.1  
-   Updated: 2025-03-28  
-   Enhancements:  
-   - Refined color scheme for deeper contrast and better readability  
-   - Sleek, modern design inspired by the iconic Black Hawk  
-   - Subtle metallic accents for a polished and tactical feel  
-   ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
 
 :root {
     /* Core Color Palette */
-    --hk-bg: #2c3e50;
-    /* Dark slate blue */
-    --hk-text: #f1f7ed;
-    /* Soft cloud white */
-    --hk-primary: #3498db;
-    /* Vibrant blue */
-    --hk-secondary: #9b59b6;
-    /* Royal purple */
+    --hawk-bg: #0D0D0D;
+    --hawk-text: #E0E0E0;
+    --hawk-primary: #2A3439;
+    --hawk-secondary: #3A4A53;
 
-    /* Gradient Colors */
-    --hk-gradient-start: #1a1a2e;
-    /* Deep navy */
-    --hk-gradient-end: #16213e;
-    /* Darker navy */
+    /* Military Colors */
+    --hawk-camo1: #1A1F16;
+    --hawk-camo2: #2E3328;
+    --hawk-camo3: #3D4437;
+    --hawk-camo4: #4E5546;
+    --hawk-camo5: #5D6554;
 
-    /* Accent Colors */
-    --hk-accent1: #e74c3c;
-    /* Alizarin red */
-    --hk-accent2: #2ecc71;
-    /* Emerald green */
-    --hk-accent3: #f1c40f;
-    /* Sunflower yellow */
-    --hk-accent4: #e67e22;
-    /* Carrot orange */
-    --hk-accent5: #1abc9c;
-    /* Turquoise */
+    /* Tactical Accents */
+    --hawk-accent1: #8B939A;
+    --hawk-accent2: #A6B0B8;
+    --hawk-accent3: #C0CBD4;
+    --hawk-accent4: #D9E5F2;
+    --hawk-accent5: #FF5E1A;
 
     /* Theme Variables */
-    --hk-shadow: rgba(44, 62, 80, 0.5);
-    /* Semi-transparent slate */
-    --hk-radius: 8px;
-    --hk-transition: 0.3s ease;
-    --hk-hover: #34495e;
-    /* Wet asphalt */
-    --hk-current-day: #7f8c8d;
-    /* Gray highlight */
+    --hawk-shadow: rgba(42, 52, 57, 0.7);
+    --hawk-radius: 0px;
+    --hawk-transition: 0.2s linear;
+    --hawk-hover: #FF5E1A;
+    --hawk-glow: 0 0 10px rgba(255, 94, 26, 0.7);
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes hk-glitch {
-
-    0%,
-    100% {
-        text-shadow: 0 0 5px var(--hk-accent1),
-            0 0 10px var(--hk-accent4),
-            0 0 15px var(--hk-accent5);
-    }
-
-    50% {
-        text-shadow: 0 0 8px var(--hk-accent3),
-            0 0 13px var(--hk-accent5),
-            0 0 18px var(--hk-accent1);
-    }
-}
-
-@keyframes hk-scanline {
+@keyframes hawk-scan {
     0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 0 100vh;
-    }
-}
-
-@keyframes hk-pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--hk-accent1);
+        box-shadow: inset 0 0 10px rgba(255, 94, 26, 0);
     }
 
     50% {
-        box-shadow: 0 0 15px var(--hk-accent3);
+        box-shadow: inset 0 0 10px rgba(255, 94, 26, 0.5);
+    }
+
+    100% {
+        box-shadow: inset 0 0 10px rgba(255, 94, 26, 0);
+    }
+}
+
+@keyframes hawk-pulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes hawk-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .black-hawk {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--hk-text);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--hawk-text);
     line-height: 1.5;
-    background: linear-gradient(135deg, var(--hk-gradient-start), var(--hk-gradient-end));
+    background: var(--hawk-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-}
-
-.black-hawk::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(236, 240, 241, 0.03) 1px,
-            transparent 1px);
-    background-size: 100% 3px;
-    animation: hk-scanline 10s linear infinite;
-    pointer-events: none;
-    z-index: 0;
 }
 
 .black-hawk .container {
-    background-color: rgba(20, 20, 20, 0.95);
+    background-color: rgba(13, 13, 13, 0.97);
     padding: 2rem;
-    border: 1px solid var(--hk-accent1);
-    box-shadow: 0 0 20px var(--hk-shadow);
+    border: 1px solid var(--hawk-accent1);
+    box-shadow: var(--hawk-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--hk-radius);
-    z-index: 1;
+    border-radius: var(--hawk-radius);
 }
 
 .black-hawk .container::before {
@@ -135,21 +96,20 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
-    animation: hk-pulse 4s infinite;
+    background: linear-gradient(90deg, transparent, var(--hawk-accent1), transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .black-hawk #calendar-title {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--hk-accent1);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--hawk-accent5);
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 5px var(--hk-shadow);
-    animation: hk-glitch 6s infinite;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 10px rgba(255, 94, 26, 0.5);
+    animation: hawk-pulse 2s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -157,9 +117,8 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: rgba(30, 30, 30, 0.4);
-    border: 1px solid var(--hk-accent1);
-    border-radius: var(--hk-radius);
+    background-color: rgba(42, 52, 57, 0.5);
+    border: 1px solid var(--hawk-accent1);
     position: relative;
 }
 
@@ -170,25 +129,24 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--hk-accent1), transparent);
+    background: linear-gradient(90deg, transparent, var(--hawk-accent1), transparent);
 }
 
 .black-hawk #current-date {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--hk-accent1);
-    font-size: 1.6rem;
-    font-weight: 400;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--hawk-accent3);
+    font-size: 1.8rem;
+    font-weight: 500;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 3px var(--hk-shadow);
+    letter-spacing: 0.2em;
 }
 
 .black-hawk #today-weather {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--hk-accent3);
-    font-size: 1.2rem;
-    font-style: normal;
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--hawk-accent3);
+    font-size: 1.4rem;
+    font-weight: 600;
     letter-spacing: 0.1em;
-    font-weight: 400;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -199,14 +157,13 @@
 }
 
 .black-hawk .clock-face {
-    width: 180px;
-    height: 180px;
-    border: 1px solid var(--hk-accent1);
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--hawk-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--hk-bg);
-    box-shadow: 0 0 15px var(--hk-shadow),
-        inset 0 0 8px var(--hk-shadow);
+    background-color: var(--hawk-bg);
+    box-shadow: var(--hawk-glow);
 }
 
 .black-hawk .hand {
@@ -221,25 +178,25 @@
 .black-hawk .hour-hand {
     width: 40%;
     left: 10%;
-    height: 3px;
-    background: var(--hk-accent1);
-    margin-top: -1.5px;
+    height: 6px;
+    background: var(--hawk-accent1);
+    margin-top: -3px;
 }
 
 .black-hawk .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--hk-accent3);
-    margin-top: -1px;
+    height: 4px;
+    background: var(--hawk-accent1);
+    margin-top: -2px;
 }
 
 .black-hawk .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--hk-accent4);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--hawk-accent5);
+    margin-top: -1px;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
@@ -247,29 +204,26 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(25, 25, 25, 0.9);
-    border: 1px solid var(--hk-accent1);
-    border-radius: var(--hk-radius);
+    background-color: rgba(13, 13, 13, 0.9);
+    border: 1px solid var(--hawk-accent1);
     table-layout: fixed;
 }
 
 /* DAY OF WEEK HEADERS */
 .black-hawk th {
-    background-color: rgba(40, 40, 40, 0.95);
-    color: var(--hk-accent1) !important;
-    font-family: 'Share Tech Mono', monospace;
-    font-weight: 400;
+    background-color: rgba(42, 52, 57, 0.8);
+    color: var(--hawk-text) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--hk-accent1);
+    border: 1px solid var(--hawk-accent1);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-    text-shadow: 0 0 3px var(--hk-shadow);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .black-hawk th span.full-day-name {
@@ -283,28 +237,28 @@
 }
 
 .black-hawk td {
-    background-color: rgba(40, 40, 40, 0.2);
-    color: var(--hk-text);
-    padding: 1rem;
-    border: 1px solid var(--hk-accent1);
-    height: 90px;
+    background-color: rgba(42, 52, 57, 0.3);
+    color: var(--hawk-text);
+    padding: 1.2rem;
+    border: 1px solid var(--hawk-accent1);
+    height: 100px;
     vertical-align: top;
-    transition: all var(--hk-transition);
+    transition: all var(--hawk-transition);
     position: relative;
 }
 
 .black-hawk td:hover {
-    background-color: rgba(70, 70, 70, 0.3);
-    box-shadow: inset 0 0 10px var(--hk-shadow);
+    background-color: rgba(255, 94, 26, 0.1);
+    box-shadow: inset 0 0 15px rgba(255, 94, 26, 0.3);
+    animation: hawk-scan 1.5s infinite;
 }
 
 /* Current date highlight */
 .black-hawk td.current-day {
-    background-color: rgba(120, 120, 120, 0.6);
-    border: 1px solid var(--hk-accent1);
-    color: #fff !important;
-    font-weight: 400;
-    animation: hk-pulse 3s infinite;
+    background-color: rgba(255, 94, 26, 0.2);
+    border: 1px solid var(--hawk-accent5);
+    color: var(--hawk-text) !important;
+    font-weight: 700;
 }
 
 .black-hawk td.current-day::before {
@@ -312,9 +266,9 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 20px;
-    height: 20px;
-    background-color: var(--hk-accent1);
+    width: 24px;
+    height: 24px;
+    background-color: var(--hawk-accent5);
     border-radius: 50%;
     z-index: 1;
     opacity: 0.7;
@@ -323,39 +277,37 @@
 .black-hawk td.current-day>.date-number {
     position: relative;
     z-index: 2;
-    color: #fff !important;
-    font-weight: normal;
-    text-shadow: 0 0 3px rgba(236, 240, 241, 0.5);
+    color: var(--hawk-text) !important;
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .black-hawk .event-marker {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: var(--hk-accent4);
+    background-color: var(--hawk-accent5);
     margin: 0 2px;
-    box-shadow: 0 0 3px var(--hk-shadow);
-    transition: all var(--hk-transition);
+    box-shadow: 0 0 5px rgba(255, 94, 26, 0.5);
+    transition: all var(--hawk-transition);
 }
 
 .black-hawk .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--hk-accent1);
-    box-shadow: 0 0 10px var(--hk-accent4);
+    transform: scale(2);
+    background-color: var(--hawk-accent5);
+    box-shadow: 0 0 15px rgba(255, 94, 26, 0.8);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .black-hawk .modal-content {
     position: relative;
-    background-color: rgba(30, 30, 30, 0.98);
-    border: 1px solid var(--hk-accent1);
-    padding: 25px;
-    color: var(--hk-text);
-    box-shadow: 0 0 30px var(--hk-shadow);
-    border-radius: var(--hk-radius);
-    animation: hk-pulse 0.5s ease;
+    background-color: rgba(13, 13, 13, 0.98);
+    border: 1px solid var(--hawk-accent1);
+    padding: 30px;
+    color: var(--hawk-text);
+    box-shadow: var(--hawk-glow);
+    animation: hawk-fadeIn 0.3s ease-out;
 }
 
 .black-hawk .modal-content::before {
@@ -365,79 +317,76 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--hk-accent1);
-    animation: hk-pulse 3s infinite;
+    background: var(--hawk-accent5);
 }
 
 .black-hawk .modal-content h2 {
-    color: var(--hk-accent1);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1.8em;
-    margin-bottom: 15px;
+    color: var(--hawk-accent5);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .black-hawk .modal-content button {
     background-color: transparent;
-    color: var(--hk-accent1);
-    border: 1px solid var(--hk-accent1);
-    padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 400;
+    color: var(--hawk-accent5);
+    border: 1px solid var(--hawk-accent5);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--hk-transition);
+    transition: all var(--hawk-transition);
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-radius: var(--hk-radius);
+    font-family: 'Orbitron', sans-serif;
 }
 
 .black-hawk .modal-content button:hover {
-    background-color: var(--hk-accent1);
-    color: var(--hk-bg);
-    box-shadow: 0 0 10px var(--hk-shadow);
+    background-color: var(--hawk-accent5);
+    color: var(--hawk-bg);
+    box-shadow: var(--hawk-glow);
 }
 
 /* Close Button */
 .black-hawk .modal .close-button {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 15px;
+    right: 15px;
     background-color: transparent;
-    color: var(--hk-accent1);
-    border: 1px solid var(--hk-accent1);
-    width: 28px;
-    height: 28px;
+    color: var(--hawk-accent5);
+    border: 1px solid var(--hawk-accent5);
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    transition: all var(--hk-transition);
+    transition: all var(--hawk-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
 }
 
 .black-hawk .modal .close-button:hover {
-    background-color: var(--hk-accent1);
-    color: var(--hk-bg);
+    background-color: var(--hawk-accent5);
+    color: var(--hawk-bg);
     transform: rotate(90deg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .black-hawk .button,
 .black-hawk .transparent-button {
-    border: 1px solid var(--hk-accent1);
-    color: var(--hk-accent1);
+    border: 1px solid var(--hawk-accent1);
+    color: var(--hawk-accent3);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Share Tech Mono', monospace;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--hk-transition);
+    transition: all var(--hawk-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--hk-radius);
 }
 
 .black-hawk .button::before,
@@ -448,15 +397,16 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(236, 240, 241, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 94, 26, 0.2), transparent);
     transition: 0.5s;
 }
 
 .black-hawk .button:hover,
 .black-hawk .transparent-button:hover {
-    background-color: var(--hk-accent1);
-    color: var(--hk-bg);
-    box-shadow: 0 0 15px var(--hk-shadow);
+    background-color: rgba(255, 94, 26, 0.1);
+    color: var(--hawk-accent5);
+    border-color: var(--hawk-accent5);
+    box-shadow: var(--hawk-glow);
 }
 
 .black-hawk .button:hover::before,
@@ -476,77 +426,75 @@
 .black-hawk #theme-switcher-container {
     position: relative;
     margin: 0 1rem;
-    min-width: 200px;
+    min-width: 220px;
     z-index: 1000;
 }
 
 .black-hawk #theme-switcher {
-    background-color: rgba(40, 40, 40, 0.9);
-    color: var(--hk-accent1) !important;
-    border: 1px solid var(--hk-accent1);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.9rem;
-    font-weight: 400;
+    background-color: rgba(42, 52, 57, 0.8);
+    color: var(--hawk-text) !important;
+    border: 1px solid var(--hawk-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
     width: 100%;
-    border-radius: var(--hk-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e74c3c'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0E0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--hk-transition);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    text-shadow: 0 0 3px var(--hk-shadow);
+    transition: all var(--hawk-transition);
 }
 
 .black-hawk #theme-switcher option {
-    background-color: rgba(40, 40, 40, 0.98) !important;
-    color: var(--hk-accent1) !important;
-    font-size: 0.9rem;
-    font-weight: 400;
-    padding: 10px 12px !important;
-    border-bottom: 1px solid var(--hk-accent1) !important;
+    background-color: rgba(13, 13, 13, 0.98) !important;
+    color: var(--hawk-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--hawk-accent1) !important;
 }
 
 .black-hawk #theme-switcher option:hover {
-    background-color: var(--hk-accent1) !important;
-    color: var(--hk-bg) !important;
+    background-color: var(--hawk-accent5) !important;
+    color: var(--hawk-bg) !important;
 }
 
 .black-hawk #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--hk-accent1), 0 0 10px var(--hk-shadow);
+    border-color: var(--hawk-accent5);
+    box-shadow: var(--hawk-glow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .black-hawk #backToTopBtn {
     position: fixed;
-    right: 25px;
-    bottom: 25px;
+    right: 30px;
+    bottom: 30px;
     z-index: 9999;
-    border: 1px solid var(--hk-accent1);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Share Tech Mono', monospace;
+    border: 1px solid var(--hawk-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--hk-accent1);
-    background-color: rgba(40, 40, 40, 0.3);
+    color: var(--hawk-accent3);
+    background-color: rgba(42, 52, 57, 0.8);
     cursor: pointer;
-    transition: all var(--hk-transition);
+    transition: all var(--hawk-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--hk-radius);
 }
 
 .black-hawk #backToTopBtn:hover {
-    background-color: var(--hk-accent1);
-    color: var(--hk-bg);
-    box-shadow: 0 0 15px var(--hk-shadow);
+    background-color: rgba(255, 94, 26, 0.2);
+    color: var(--hawk-accent5);
+    border-color: var(--hawk-accent5);
+    box-shadow: var(--hawk-glow);
     opacity: 1;
 }
 
@@ -554,40 +502,42 @@
 .black-hawk footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--hk-accent1);
-    color: var(--hk-text);
-    font-size: 0.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hawk-accent1);
+    color: var(--hawk-text);
+    font-size: 0.9rem;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .black-hawk .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .black-hawk #calendar-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        letter-spacing: 0.2em;
     }
 
     .black-hawk #current-date {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .black-hawk #today-weather {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
     .black-hawk .clock-face {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
     }
 
     .black-hawk th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
     }
 
     .black-hawk th span.full-day-name {
@@ -599,94 +549,95 @@
     }
 
     .black-hawk td {
-        padding: 0.5rem;
-        height: 65px;
-        font-size: 0.75rem;
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
     .black-hawk td.current-day::before {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         top: 3px;
         right: 3px;
     }
 
     .black-hawk #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     .black-hawk #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
     }
 
     .black-hawk #theme-switcher option {
-        font-size: 0.8rem;
-        padding: 8px !important;
+        font-size: 0.9rem;
+        padding: 10px !important;
     }
 }
 
 @media (max-width: 576px) {
     .black-hawk .container {
-        padding: 0.6rem;
+        padding: 0.8rem;
     }
 
     .black-hawk #calendar-title {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         letter-spacing: 0.1em;
     }
 
     .black-hawk #current-date {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .black-hawk #today-weather {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .black-hawk .clock-face {
-        width: 110px;
-        height: 110px;
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
     }
 
     .black-hawk th {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
     }
 
     .black-hawk td {
-        padding: 0.2rem;
-        height: 55px;
-        font-size: 0.65rem;
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
     }
 
     .black-hawk td.current-day::before {
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
     }
 
     .black-hawk #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
+        min-width: 160px;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 400px) {
     .black-hawk th {
-        font-size: 0.6rem;
-        padding: 0.3rem 0.1rem;
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
     }
 
     .black-hawk td {
-        height: 45px;
+        height: 50px;
     }
 
     .black-hawk #theme-switcher {
-        min-width: 130px;
-        font-size: 0.7rem;
+        min-width: 140px;
+        font-size: 0.8rem;
     }
 }
