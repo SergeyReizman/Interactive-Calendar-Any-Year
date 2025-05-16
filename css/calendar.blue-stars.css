@@ -1,55 +1,91 @@
 /* ==========================================================================
-   The Highest Level Theme - Celestial Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Deep celestial color scheme
-   - Premium design elements
-   - Mobile-responsive layout
-   - Elegant patterns
-   - Subtle animations
-   - Enhanced readability
-   - Luxurious textures
-   - Sophisticated typography
+   Blue Stars Theme - Celestial, Elegant with Starry Accents
+   Version: 2.1
+   Updated: 2025-03-26
+   Includes:
+   - Fixed date/weather visibility
+   - Proper right-aligned back-to-top button
+   - Themed analog clock
+   - Mobile responsiveness
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
 
 :root {
-    /* Premium Color Palette */
-    --thl-bg: #121212;
-    --thl-text: #f0f0f0;
-    --thl-primary: #2b2d8b;
-    /* Rich bronze */
-    --thl-secondary: #e34d20;
-    /* Lighter bronze */
+    /* Core Color Palette */
+    --stars-bg: #0A0A20;
+    --stars-text: #E0E0FF;
+    --stars-primary: #4A89DC;
+    --stars-secondary: #3B7DD8;
 
-    /* Accent Colors */
-    --thl-accent-gold: #d4af37;
-    --thl-accent-silver: #c0c0c0;
-    --thl-accent-platinum: #e5e4e2;
-    --thl-accent-burgundy: #800020;
-    --thl-accent-emerald: #50c878;
+    /* Blue Gradient */
+    --stars-blue1: #000033;
+    --stars-blue2: #0A0A3A;
+    --stars-blue3: #1E1E4E;
+    --stars-blue4: #2A2A6A;
+    --stars-blue5: #3D3D8D;
 
-    /* Gradient Colors */
-    --thl-gradient-start: #1a1a1a;
-    --thl-gradient-end: #2a2a2a;
+    /* Blue Spectrum */
+    --stars-lightblue1: #00AAFF;
+    --stars-lightblue2: #0088CC;
+    --stars-lightblue3: #006699;
+    --stars-lightblue4: #33BBFF;
+    --stars-lightblue5: #66CCFF;
+
+    /* Special Effects */
+    --stars-glow: #4A89DC;
+    --stars-accent: #00AAFF;
+    --stars-metal: #A0C0FF;
 
     /* Theme Variables */
-    --thl-shadow: rgba(139, 90, 43, 0.3);
-    --thl-radius: 8px;
-    --thl-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --thl-hover: #2a2a2a;
-    --thl-current-day: #3a2a1a;
-    --thl-detail-size: 1px;
+    --stars-shadow: rgba(74, 137, 220, 0.3);
+    --stars-radius: 0;
+    --stars-transition: 0.3s ease;
+    --stars-hover: #00AAFF;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes thl-glow {
+@keyframes stars-glow {
 
     0%,
     100% {
-        opacity: 0.7;
+        box-shadow: 0 0 10px var(--stars-lightblue1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--stars-lightblue2);
+    }
+}
+
+@keyframes stars-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes starsFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.5;
     }
 
     50% {
@@ -57,755 +93,524 @@
     }
 }
 
-@keyframes thl-float {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes thl-pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--thl-primary);
-    }
-
-    50% {
-        box-shadow: 0 0 15px var(--thl-primary);
-    }
-}
-
 /* ==================== BASE STYLES ==================== */
-.the-highest-level {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--thl-text);
+.blue-stars {
+    font-family: 'Raleway', sans-serif;
+    color: var(--stars-text);
     line-height: 1.6;
-    background: var(--thl-bg);
+    background-color: var(--stars-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        linear-gradient(to bottom,
-            var(--thl-gradient-start),
-            var(--thl-gradient-end)),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><rect x="20" y="20" width="2" height="2" fill="white" opacity="0.8"/><rect x="50" y="50" width="2" height="2" fill="white" opacity="0.6"/><rect x="80" y="30" width="2" height="2" fill="white" opacity="0.7"/><rect x="30" y="80" width="2" height="2" fill="white" opacity="0.5"/></svg>');
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
 }
 
-/* Floating element */
-.the-highest-level::before {
-    content: "";
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, rgba(139, 90, 43, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: thl-float 8s ease-in-out infinite;
-    opacity: 0.5;
-}
-
-.the-highest-level .container {
-    background-color: rgba(18, 18, 18, 0.95);
-    padding: 2.5rem;
-    border: 1px solid var(--thl-primary);
-    box-shadow: 0 0 30px var(--thl-shadow);
+.blue-stars .container {
+    background-color: var(--stars-blue2);
+    padding: 2rem;
+    border: 1px solid var(--stars-primary);
+    box-shadow: 0 0 30px var(--stars-shadow);
     position: relative;
     overflow: hidden;
-    max-width: 1800px;
+    max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--thl-radius);
-    z-index: 1;
 }
 
-.the-highest-level .container::before {
+.blue-stars .container::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--thl-primary),
-            var(--thl-secondary),
-            transparent);
-    animation: thl-pulse 3s infinite;
-}
-
-/* Elegant pattern */
-.the-highest-level .container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        linear-gradient(135deg,
-            rgba(139, 90, 43, 0.03) 0%,
-            transparent 20%),
-        linear-gradient(-135deg,
-            rgba(193, 154, 107, 0.03) 0%,
-            transparent 20%);
-    pointer-events: none;
-    z-index: -1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--stars-primary), transparent);
+    animation: stars-pulse 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
-.the-highest-level #calendar-title {
+.blue-stars #calendar-title {
     font-family: 'Playfair Display', serif;
-    color: var(--thl-primary);
+    color: var(--stars-primary);
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    position: relative;
-    text-shadow: 0 0 10px var(--thl-shadow);
-}
-
-.the-highest-level #calendar-title::before,
-.the-highest-level #calendar-title::after {
-    content: "❖";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--thl-secondary);
-    font-size: 2rem;
-    animation: thl-glow 2s infinite;
-}
-
-.the-highest-level #calendar-title::before {
-    left: 1.5rem;
-    animation-delay: 0.5s;
-}
-
-.the-highest-level #calendar-title::after {
-    right: 1.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 15px var(--stars-shadow);
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
-.the-highest-level #date-weather-container {
+.blue-stars #date-weather-container {
     text-align: center;
-    margin: 2.5rem 0;
-    padding: 1.5rem;
-    background-color: rgba(139, 90, 43, 0.1);
-    border: 1px solid var(--thl-primary);
-    border-radius: var(--thl-radius);
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--stars-blue3);
+    border: 1px solid var(--stars-blue5);
     position: relative;
 }
 
-.the-highest-level #date-weather-container::after {
+.blue-stars #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--thl-primary),
-            transparent);
+    background: linear-gradient(90deg, transparent, var(--stars-primary), transparent);
 }
 
-.the-highest-level #current-date {
+.blue-stars #current-date {
     font-family: 'Playfair Display', serif;
-    color: var(--thl-primary);
-    font-size: 2.2rem;
+    color: var(--stars-primary);
+    font-size: 1.8rem;
     font-weight: 500;
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--stars-shadow);
 }
 
-.the-highest-level #today-weather {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--thl-secondary);
+.blue-stars #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--stars-lightblue4);
     font-size: 1.4rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.1em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
-.the-highest-level #analog-watch {
+.blue-stars #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2.5rem 0;
+    margin: 2rem 0;
 }
 
-.the-highest-level .clock-face {
-    width: 220px;
-    height: 220px;
-    border: 1px solid var(--thl-primary);
+.blue-stars .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 12px solid var(--stars-primary);
     border-radius: 50%;
     position: relative;
-    background-color: var(--thl-bg);
-    box-shadow:
-        0 0 20px var(--thl-shadow),
-        inset 0 0 15px rgba(139, 90, 43, 0.1);
+    background-color: var(--stars-blue1);
+    box-shadow: 0 0 20px var(--stars-shadow);
     background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(139, 90, 43, 0.1) 100%);
+        radial-gradient(circle at center, var(--stars-lightblue5) 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
-/* Roman numerals for clock */
-.the-highest-level .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="14" fill="%238b5a2b">XII</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="14" fill="%238b5a2b">III</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="14" fill="%238b5a2b">VI</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="14" fill="%238b5a2b">IX</text></svg>');
-}
-
-.the-highest-level .hand {
+.blue-stars .hand {
     position: absolute;
     top: 50%;
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
-.the-highest-level .hour-hand {
+.blue-stars .hour-hand {
     width: 40%;
     left: 10%;
-    height: 5px;
-    background: var(--thl-primary);
-    margin-top: -2.5px;
+    height: 8px;
+    background: var(--stars-primary);
+    margin-top: -4px;
 }
 
-.the-highest-level .minute-hand {
+.blue-stars .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--stars-lightblue2);
+    margin-top: -3px;
+}
+
+.blue-stars .second-hand {
     width: 48%;
     left: 2%;
     height: 3px;
-    background: var(--thl-secondary);
+    background: var(--stars-lightblue1);
     margin-top: -1.5px;
 }
 
-.the-highest-level .second-hand {
-    width: 48%;
-    left: 2%;
-    height: 2px;
-    background: var(--thl-accent-gold);
-    margin-top: -1px;
-}
-
-/* Clock center - Gold accent */
-.the-highest-level .clock-face::after {
+/* Clock center dot */
+.blue-stars .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
-    background-color: var(--thl-accent-gold);
+    background: var(--stars-lightblue1);
     border-radius: 50%;
-    border: 1px solid var(--thl-secondary);
-    animation: thl-pulse 1s infinite;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--stars-lightblue1);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
-.the-highest-level table {
+.blue-stars table {
     width: 100%;
     border-collapse: collapse;
-    margin: 2.5rem auto;
-    background-color: rgba(30, 30, 30, 0.95);
-    border: 1px solid var(--thl-primary);
-    border-radius: var(--thl-radius);
+    margin: 2rem auto;
+    background-color: var(--stars-blue2);
+    border: 1px solid var(--stars-primary);
     table-layout: fixed;
 }
 
-.the-highest-level th {
-    background-color: rgba(139, 90, 43, 0.2);
-    color: var(--thl-primary) !important;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--thl-primary);
-    position: relative;
-    font-size: 0.9rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.the-highest-level th .full-day {
-    display: inline;
-}
-
-.the-highest-level th .short-day {
-    display: none;
-}
-
-.the-highest-level td {
-    background-color: rgba(25, 25, 25, 0.95);
-    color: var(--thl-text);
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--thl-primary);
-    height: 110px;
-    vertical-align: top;
-    transition: all var(--thl-transition);
-    position: relative;
-    font-size: 0.9rem;
-}
-
-.the-highest-level td:hover {
-    background-color: var(--thl-hover);
-    box-shadow: inset 0 0 20px var(--thl-shadow);
-}
-
-.the-highest-level .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--thl-text);
-}
-
-.the-highest-level td.current-day {
-    background-color: var(--thl-current-day);
-    border: 2px solid var(--thl-secondary);
-    color: var(--thl-secondary) !important;
-    font-weight: 600;
-    animation: thl-pulse 3s infinite;
-}
-
-.the-highest-level td.current-day .date-number {
-    color: var(--thl-secondary) !important;
+.blue-stars th {
+    background-color: var(--stars-blue1);
+    color: var(--stars-primary);
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    border: 1px solid var(--stars-blue5);
+    border-bottom: 2px solid var(--stars-primary);
 }
 
-.the-highest-level td.current-day::before {
-    content: "✧";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: var(--thl-accent-gold);
-    z-index: 1;
-    opacity: 0.8;
-    font-size: 1rem;
-    animation: thl-glow 2s infinite;
+.blue-stars td {
+    background-color: var(--stars-blue3);
+    color: var(--stars-text);
+    padding: 1.2rem;
+    border: 1px solid var(--stars-blue5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--stars-transition);
+    position: relative;
+}
+
+.blue-stars td:hover {
+    background-color: var(--stars-blue4);
+    box-shadow: inset 0 0 15px var(--stars-shadow);
+}
+
+.blue-stars td.current-day {
+    background-color: var(--stars-blue1);
+    border: 2px solid var(--stars-primary);
+    color: var(--stars-primary);
+    font-weight: 600;
+    animation: stars-glow 2s infinite;
 }
 
 /* ==================== EVENT MARKERS ==================== */
-.the-highest-level .event-marker {
+.blue-stars .event-marker {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: var(--thl-primary);
+    background-color: var(--stars-primary);
     margin: 0 2px;
-    box-shadow: 0 0 8px var(--thl-shadow);
-    transition: all var(--thl-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    animation: thl-glow 3s infinite;
+    box-shadow: 0 0 5px var(--stars-shadow);
+    transition: all var(--stars-transition);
+    animation: twinkle 2s infinite;
 }
 
-.the-highest-level .event-marker:hover {
+.blue-stars .event-marker:hover {
     transform: scale(2);
-    background-color: var(--thl-secondary);
-    box-shadow: 0 0 20px var(--thl-primary);
-}
-
-/* Special event types */
-.the-highest-level .event-marker.holiday {
-    background-color: var(--thl-accent-gold);
-    animation-delay: 0.5s;
-}
-
-.the-highest-level .event-marker.historic {
-    background-color: var(--thl-accent-burgundy);
-    animation-delay: 1s;
-}
-
-.the-highest-level .event-marker.patriotic {
-    background-color: var(--thl-accent-emerald);
-    animation-delay: 1.5s;
+    background-color: var(--stars-lightblue1);
+    box-shadow: 0 0 15px var(--stars-primary);
 }
 
 /* ==================== MODAL STYLES ==================== */
-.the-highest-level .modal-content {
+.blue-stars .modal-content {
     position: relative;
-    background-color: rgba(30, 30, 30, 0.98);
-    border: 1px solid var(--thl-primary);
+    background-color: var(--stars-blue2);
+    border: 2px solid var(--stars-primary);
     padding: 30px;
-    color: var(--thl-text);
-    box-shadow: 0 0 40px var(--thl-shadow);
-    border-radius: var(--thl-radius);
-    animation: thl-pulse 0.5s ease;
+    color: var(--stars-text);
+    box-shadow: 0 0 40px var(--stars-shadow);
+    animation: starsFadeIn 0.4s ease;
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--stars-lightblue5) 1px, transparent 1px),
+        radial-gradient(circle at 80% 70%, var(--stars-lightblue5) 1px, transparent 1px);
+    background-size: 50px 50px;
 }
 
-.the-highest-level .modal-content::before {
+.blue-stars .modal-content::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
-    background: linear-gradient(90deg,
-            var(--thl-primary),
-            var(--thl-secondary),
-            var(--thl-accent-gold));
+    height: 2px;
+    background: var(--stars-primary);
+    animation: stars-pulse 2s infinite;
 }
 
-.the-highest-level .modal-content h2 {
-    color: var(--thl-primary);
+.blue-stars .modal-content h2 {
+    color: var(--stars-primary);
     font-family: 'Playfair Display', serif;
     font-size: 2em;
     margin-bottom: 20px;
-    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
-.the-highest-level .modal-content p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
-}
-
-.the-highest-level .modal-content .event-time {
-    display: block;
-    font-weight: 600;
-    color: var(--thl-secondary);
-    margin-bottom: 15px;
-    font-size: 1.2em;
-}
-
-.the-highest-level .modal-content .event-description {
-    background-color: rgba(139, 90, 43, 0.2);
-    padding: 20px;
-    border-left: 4px solid var(--thl-primary);
-    margin: 20px 0;
-    border-radius: 0 var(--thl-radius) var(--thl-radius) 0;
-}
-
-.the-highest-level .modal-content button {
-    background-color: var(--thl-primary);
-    color: var(--thl-bg);
-    border: none;
-    padding: 12px 25px;
+.blue-stars .modal-content button {
+    background-color: transparent;
+    color: var(--stars-primary);
+    border: 1px solid var(--stars-primary);
+    padding: 12px 24px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--thl-transition);
-    border-radius: var(--thl-radius);
-    font-family: 'Montserrat', sans-serif;
+    transition: all var(--stars-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.the-highest-level .modal-content button:hover {
-    background-color: var(--thl-secondary);
-    box-shadow: 0 5px 8px -1px var(--thl-shadow);
+.blue-stars .modal-content button:hover {
+    background-color: var(--stars-primary);
+    color: var(--stars-text);
+    box-shadow: 0 0 15px var(--stars-shadow);
 }
 
-.the-highest-level .modal .close-button {
+/* Close Button */
+.blue-stars .modal .close-button {
     position: absolute;
     top: 15px;
     right: 15px;
     background-color: transparent;
-    color: var(--thl-primary);
-    border: 1px solid var(--thl-primary);
-    width: 32px;
-    height: 32px;
+    color: var(--stars-primary);
+    border: 1px solid var(--stars-primary);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--thl-transition);
+    transition: all var(--stars-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
 }
 
-.the-highest-level .modal .close-button:hover {
-    background-color: var(--thl-primary);
-    color: var(--thl-bg);
+.blue-stars .modal .close-button:hover {
+    background-color: var(--stars-primary);
+    color: var(--stars-text);
+    transform: rotate(90deg);
 }
 
-/* ==================== BUTTON STYLES ==================== */
-.the-highest-level button {
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, var(--thl-primary), var(--thl-secondary));
-    color: var(--thl-bg);
-    border: none;
-    padding: 12px 28px;
-    font-size: 1em;
-    font-weight: 600;
+/* ==================== BUTTONS & CONTROLS ==================== */
+.blue-stars .button,
+.blue-stars .transparent-button {
+    border: 1px solid var(--stars-primary);
+    color: var(--stars-primary);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--thl-transition);
-    border-radius: var(--thl-radius);
+    transition: all var(--stars-transition);
     position: relative;
     overflow: hidden;
-    box-shadow:
-        0 3px 10px var(--thl-shadow),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    margin: 0.5rem;
 }
 
-.the-highest-level button:hover {
-    background: linear-gradient(135deg, var(--thl-secondary), var(--thl-primary));
-    box-shadow:
-        0 5px 15px var(--thl-shadow),
-        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-    transform: translateY(-3px);
-}
-
-.the-highest-level button:active {
-    transform: translateY(0);
-    box-shadow:
-        0 2px 5px var(--thl-shadow),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-}
-
-/* Luxurious effect on buttons */
-.the-highest-level button::before {
+.blue-stars .button::before,
+.blue-stars .transparent-button::before {
     content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center,
-            rgba(255, 255, 255, 0.4) 0%,
-            transparent 70%);
-    transform: scale(0);
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 137, 220, 0.2), transparent);
+    transition: 0.5s;
 }
 
-.the-highest-level button:hover::before {
-    transform: scale(1);
+.blue-stars .button:hover,
+.blue-stars .transparent-button:hover {
+    background-color: var(--stars-primary);
+    color: var(--stars-text);
+    box-shadow: 0 0 20px var(--stars-shadow);
 }
 
-/* Special button variants */
-.the-highest-level button.secondary {
-    background: linear-gradient(135deg, rgba(139, 90, 43, 0.1), rgba(193, 154, 107, 0.2));
-    color: var(--thl-secondary);
-    border: 1px solid var(--thl-primary);
-    box-shadow: none;
+.blue-stars .button:hover::before,
+.blue-stars .transparent-button:hover::before {
+    left: 100%;
 }
 
-.the-highest-level button.secondary:hover {
-    background: linear-gradient(135deg, rgba(139, 90, 43, 0.2), rgba(193, 154, 107, 0.3));
-    color: var(--thl-text);
-}
-
-.the-highest-level button.danger {
-    background: linear-gradient(135deg, #a52a2a, #cd5c5c);
-    box-shadow: 0 3px 10px rgba(165, 42, 42, 0.3);
-}
-
-.the-highest-level button.danger:hover {
-    background: linear-gradient(135deg, #cd5c5c, #a52a2a);
-    box-shadow: 0 5px 15px rgba(165, 42, 42, 0.4);
-}
-
-/* Button with elegant icon */
-.the-highest-level button.with-icon::after {
-    content: "❖";
-    margin-left: 10px;
-    display: inline-block;
-    animation: thl-glow 2s infinite;
-}
-
-/* Small buttons */
-.the-highest-level button.small {
-    padding: 8px 16px;
-    font-size: 0.85em;
-}
-
-/* Button group styling */
-.the-highest-level .button-group {
+.blue-stars .controls {
     display: flex;
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.the-highest-level .button-group button {
-    flex: 1;
-}
-
-/* Floating action button */
-.the-highest-level .fab {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 1.8em;
-    padding: 0;
-    box-shadow:
-        0 5px 15px var(--thl-shadow),
-        0 0 25px rgba(139, 90, 43, 0.3);
-    z-index: 100;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
 }
 
-.the-highest-level .fab:hover {
-    transform: translateY(-3px) scale(1.05);
+.blue-stars #theme-switcher {
+    background-color: var(--stars-blue3);
+    color: var(--stars-text);
+    border: 1px solid var(--stars-primary);
+    padding: 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    margin-left: 1rem;
 }
 
-/* Pulsing effect for important buttons */
-.the-highest-level button.important {
-    animation: thl-pulse 2s infinite;
+/* ==================== BACK TO TOP BUTTON ==================== */
+.blue-stars #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--stars-primary);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--stars-primary);
+    background-color: var(--stars-blue3);
+    cursor: pointer;
+    transition: all var(--stars-transition);
+    opacity: 0.9;
+    display: none;
 }
 
-/* Disabled button */
-.the-highest-level button:disabled {
-    background: rgba(139, 90, 43, 0.1);
-    color: rgba(240, 240, 240, 0.5);
-    cursor: not-allowed;
-    transform: none !important;
-    box-shadow: none !important;
+.blue-stars #backToTopBtn:hover {
+    background-color: var(--stars-primary);
+    color: var(--stars-text);
+    box-shadow: 0 0 20px var(--stars-shadow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.blue-stars footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--stars-blue5);
+    color: var(--stars-text);
+    font-size: 0.9rem;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
-@media (max-width: 1200px) {
-    .the-highest-level .container {
-        padding: 2rem;
-    }
-
-    .the-highest-level #calendar-title {
-        font-size: 2.5rem;
-    }
-
-    .the-highest-level #current-date {
-        font-size: 1.8rem;
-    }
-
-    .the-highest-level #today-weather {
-        font-size: 1.2rem;
-    }
-
-    .the-highest-level th {
-        font-size: 0.85rem;
-        padding: 0.9rem 0.4rem;
-    }
-}
-
 @media (max-width: 992px) {
-    .the-highest-level .container {
+    .blue-stars .container {
         padding: 1.5rem;
     }
 
-    .the-highest-level #calendar-title {
-        font-size: 2.2rem;
+    .blue-stars #calendar-title {
+        font-size: 2rem;
     }
 
-    .the-highest-level .clock-face {
-        width: 180px;
-        height: 180px;
+    .blue-stars #current-date {
+        font-size: 1.5rem;
     }
 
-    .the-highest-level th .full-day {
-        display: none;
-    }
-
-    .the-highest-level th .short-day {
-        display: inline;
-    }
-
-    .the-highest-level th {
-        font-size: 0.8rem;
-        padding: 0.8rem 0.3rem;
-    }
-
-    .the-highest-level td {
-        padding: 0.8rem 0.3rem;
-        height: 90px;
-        font-size: 0.85rem;
+    .blue-stars #today-weather {
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
-    .the-highest-level .container {
-        padding: 1.2rem;
+    .blue-stars .clock-face {
+        width: 160px;
+        height: 160px;
     }
 
-    .the-highest-level #calendar-title {
-        font-size: 1.8rem;
-    }
-
-    .the-highest-level #current-date {
-        font-size: 1.4rem;
-    }
-
-    .the-highest-level #today-weather {
-        font-size: 1rem;
-    }
-
-    .the-highest-level .clock-face {
-        width: 150px;
-        height: 150px;
-    }
-
-    .the-highest-level th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
-    }
-
-    .the-highest-level td {
-        padding: 0.6rem 0.2rem;
-        height: 80px;
+    /* Improved table cell styling */
+    .blue-stars th {
+        padding: 0.5rem;
         font-size: 0.8rem;
+        letter-spacing: normal;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .blue-stars td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    /* Show abbreviations on medium screens */
+    .blue-stars th abbr {
+        display: inline;
+        text-decoration: none;
+    }
+
+    .blue-stars th span.full-day-name {
+        display: none;
+    }
+
+    .blue-stars #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 576px) {
-    .the-highest-level .container {
-        padding: 1rem;
+    .blue-stars .container {
+        padding: 0.8rem;
     }
 
-    .the-highest-level #calendar-title {
-        font-size: 1.5rem;
+    .blue-stars #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
     }
 
-    .the-highest-level #current-date {
+    .blue-stars #current-date {
         font-size: 1.1rem;
     }
 
-    .the-highest-level #today-weather {
+    .blue-stars #today-weather {
         font-size: 0.9rem;
     }
 
-    .the-highest-level .clock-face {
+    .blue-stars .clock-face {
         width: 120px;
         height: 120px;
     }
 
-    .the-highest-level th {
+    /* Further mobile optimizations */
+    .blue-stars th {
         font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        padding: 0.3rem;
     }
 
-    .the-highest-level td {
-        height: 70px;
-        font-size: 0.75rem;
+    .blue-stars td {
+        font-size: 0.7rem;
+        padding: 0.3rem;
+        height: 60px;
+    }
+
+    /* Force single line for day names */
+    .blue-stars th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .blue-stars #backToTopBtn {
+        right: 10px;
+        bottom: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
     }
 }
 
+/* Extra small devices (phones, 400px and down) */
 @media (max-width: 400px) {
-    .the-highest-level th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
+    .blue-stars th {
+        font-size: 0.6rem;
+        padding: 0.2rem;
     }
 
-    .the-highest-level td {
-        height: 60px;
-        font-size: 0.7rem;
+    .blue-stars td {
+        height: 50px;
     }
 
-    .the-highest-level #calendar-title {
-        font-size: 1.3rem;
+    /* Single character day names for tiny screens */
+    .blue-stars th abbr::after {
+        content: attr(title);
+        display: none;
+    }
+
+    .blue-stars th abbr {
+        display: inline-block;
+        width: 1.2em;
+        text-align: center;
     }
 }
