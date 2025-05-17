@@ -1,0 +1,671 @@
+/* ==========================================================================
+   Blue Ocean Theme - Calm, Ocean-Inspired Interface
+   Version: 1.0
+   Updated: 2025-05-18
+   Changes:
+   - Created serene blue ocean color palette
+   - Added water-like animations
+   - Designed smooth wave-like elements
+   - Maintained all structural elements from Black Hawk
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
+
+:root {
+    /* Ocean Color Palette */
+    --ocean-bg: #001F3F;
+    --ocean-text: #E0F2FE;
+    --ocean-primary: #003366;
+    --ocean-secondary: #005588;
+
+    /* Depth Colors */
+    --ocean-deep1: #002244;
+    --ocean-deep2: #003355;
+    --ocean-deep3: #004466;
+    --ocean-deep4: #005577;
+    --ocean-deep5: #006688;
+
+    /* Accent Colors */
+    --ocean-accent1: #4DA8DA;
+    --ocean-accent2: #66B3E6;
+    --ocean-accent3: #80BEF2;
+    --ocean-accent4: #99C9FF;
+    --ocean-accent5: #00B4D8;
+
+    /* Theme Variables */
+    --ocean-shadow: rgba(0, 63, 127, 0.7);
+    --ocean-radius: 4px;
+    --ocean-transition: 0.3s ease;
+    --ocean-hover: #00B4D8;
+    --ocean-glow: 0 0 15px rgba(0, 180, 216, 0.5);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ocean-wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes ocean-pulse {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes ocean-ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 0 20px rgba(0, 180, 216, 0);
+    }
+}
+
+@keyframes ocean-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.blue-ocean {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--ocean-text);
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--ocean-bg), var(--ocean-deep1));
+    min-height: 100vh;
+}
+
+.blue-ocean .container {
+    background-color: rgba(0, 31, 63, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--ocean-accent1);
+    box-shadow: var(--ocean-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ocean-accent1), transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.blue-ocean #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ocean-accent5);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+    animation: ocean-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.blue-ocean #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 51, 102, 0.5);
+    border: 1px solid var(--ocean-accent1);
+    position: relative;
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ocean-accent1), transparent);
+}
+
+.blue-ocean #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--ocean-accent3);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.2em;
+}
+
+.blue-ocean #today-weather {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--ocean-accent3);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.blue-ocean #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.blue-ocean .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--ocean-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ocean-bg);
+    box-shadow: var(--ocean-glow);
+}
+
+.blue-ocean .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.blue-ocean .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--ocean-accent1);
+    margin-top: -3px;
+}
+
+.blue-ocean .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--ocean-accent1);
+    margin-top: -2px;
+}
+
+.blue-ocean .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ocean-accent5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.blue-ocean table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(0, 31, 63, 0.9);
+    border: 1px solid var(--ocean-accent1);
+    table-layout: fixed;
+    border-radius: var(--ocean-radius);
+}
+
+/* DAY OF WEEK HEADERS */
+.blue-ocean th {
+    background-color: rgba(0, 51, 102, 0.8);
+    color: var(--ocean-text) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--ocean-accent1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.blue-ocean th span.full-day-name {
+    display: inline;
+}
+
+.blue-ocean th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.blue-ocean td {
+    background-color: rgba(0, 51, 102, 0.3);
+    color: var(--ocean-text);
+    padding: 1.2rem;
+    border: 1px solid var(--ocean-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ocean-transition);
+    position: relative;
+}
+
+.blue-ocean td:hover {
+    background-color: rgba(0, 180, 216, 0.1);
+    box-shadow: inset 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+/* Current date highlight */
+.blue-ocean td.current-day {
+    background-color: rgba(0, 180, 216, 0.2);
+    border: 1px solid var(--ocean-accent5);
+    color: var(--ocean-text) !important;
+    font-weight: 700;
+    animation: ocean-wave 2s infinite;
+}
+
+.blue-ocean td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--ocean-accent5);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.blue-ocean td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--ocean-text) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.blue-ocean .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ocean-accent5);
+    margin: 0 2px;
+    box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+    transition: all var(--ocean-transition);
+}
+
+.blue-ocean .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--ocean-accent5);
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.8);
+    animation: ocean-ripple 1s infinite;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.blue-ocean .modal-content {
+    position: relative;
+    background-color: rgba(0, 31, 63, 0.98);
+    border: 1px solid var(--ocean-accent1);
+    padding: 30px;
+    color: var(--ocean-text);
+    box-shadow: var(--ocean-glow);
+    animation: ocean-fadeIn 0.3s ease-out;
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--ocean-accent5);
+}
+
+.blue-ocean .modal-content h2 {
+    color: var(--ocean-accent5);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.blue-ocean .modal-content button {
+    background-color: transparent;
+    color: var(--ocean-accent5);
+    border: 1px solid var(--ocean-accent5);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean .modal-content button:hover {
+    background-color: var(--ocean-accent5);
+    color: var(--ocean-bg);
+    box-shadow: var(--ocean-glow);
+}
+
+/* Close Button */
+.blue-ocean .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--ocean-accent5);
+    border: 1px solid var(--ocean-accent5);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.blue-ocean .modal .close-button:hover {
+    background-color: var(--ocean-accent5);
+    color: var(--ocean-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.blue-ocean .button,
+.blue-ocean .transparent-button {
+    border: 1px solid var(--ocean-accent1);
+    color: var(--ocean-accent3);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean .button::before,
+.blue-ocean .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.blue-ocean .button:hover,
+.blue-ocean .transparent-button:hover {
+    background-color: rgba(0, 180, 216, 0.1);
+    color: var(--ocean-accent5);
+    border-color: var(--ocean-accent5);
+    box-shadow: var(--ocean-glow);
+}
+
+.blue-ocean .button:hover::before,
+.blue-ocean .transparent-button:hover::before {
+    left: 100%;
+}
+
+.blue-ocean .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.blue-ocean #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.blue-ocean #theme-switcher {
+    background-color: rgba(0, 51, 102, 0.8);
+    color: var(--ocean-text) !important;
+    border: 1px solid var(--ocean-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F2FE'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean #theme-switcher option {
+    background-color: rgba(0, 31, 63, 0.98) !important;
+    color: var(--ocean-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--ocean-accent1) !important;
+}
+
+.blue-ocean #theme-switcher option:hover {
+    background-color: var(--ocean-accent5) !important;
+    color: var(--ocean-bg) !important;
+}
+
+.blue-ocean #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ocean-accent5);
+    box-shadow: var(--ocean-glow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.blue-ocean #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--ocean-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ocean-accent3);
+    background-color: rgba(0, 51, 102, 0.8);
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ocean-radius);
+}
+
+.blue-ocean #backToTopBtn:hover {
+    background-color: rgba(0, 180, 216, 0.2);
+    color: var(--ocean-accent5);
+    border-color: var(--ocean-accent5);
+    box-shadow: var(--ocean-glow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.blue-ocean footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ocean-accent1);
+    color: var(--ocean-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .blue-ocean .container {
+        padding: 1.5rem;
+    }
+
+    .blue-ocean #calendar-title {
+        font-size: 2rem;
+        letter-spacing: 0.2em;
+    }
+
+    .blue-ocean #current-date {
+        font-size: 1.5rem;
+    }
+
+    .blue-ocean #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blue-ocean .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .blue-ocean th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .blue-ocean th span.full-day-name {
+        display: none;
+    }
+
+    .blue-ocean th abbr {
+        display: inline;
+    }
+
+    .blue-ocean td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .blue-ocean td.current-day::before {
+        width: 18px;
+        height: 18px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .blue-ocean #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .blue-ocean #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .blue-ocean #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .blue-ocean .container {
+        padding: 0.8rem;
+    }
+
+    .blue-ocean #calendar-title {
+        font-size: 1.6rem;
+        letter-spacing: 0.1em;
+    }
+
+    .blue-ocean #current-date {
+        font-size: 1.1rem;
+    }
+
+    .blue-ocean #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .blue-ocean .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .blue-ocean th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .blue-ocean td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .blue-ocean td.current-day::before {
+        width: 16px;
+        height: 16px;
+    }
+
+    .blue-ocean #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .blue-ocean th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .blue-ocean td {
+        height: 50px;
+    }
+
+    .blue-ocean #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
