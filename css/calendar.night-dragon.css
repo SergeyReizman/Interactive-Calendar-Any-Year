@@ -1,105 +1,120 @@
 /* ==========================================================================
-   Night Dragon Theme - Dark Fantasy Dragon-Inspired
-   Version: 2.4
-   Updated: 2025-03-28
-   Fixes:
-   - Theme switcher now properly visible
-   - Current date highlighting improved
-   - Day-of-week header overlap fixed
-   - Mobile table layout optimized
+   Night Dragon Theme - Mystical, Fantasy-Inspired Interface
+   Version: 1.0
+   Updated: 2025-05-18
+   Changes:
+   - Created dark fantasy color palette with dragon scales
+   - Added fiery glow effects and mystical animations
+   - Designed scale-like patterns and dragon wing elements
+   - Maintained all structural elements from Black Hawk
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cinzel:wght@400;700&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --nd-bg: #0a0a0c;
-    --nd-text: #d8d8d8;
-    --nd-primary: #c41e3a;
-    --nd-secondary: #5c2d91;
+    /* Dragon Color Palette */
+    --dragon-bg: #0A0A12;
+    --dragon-text: #E8E6E3;
+    --dragon-primary: #1E1A2B;
+    --dragon-secondary: #2A2438;
 
-    /* Gradient Colors */
-    --nd-gradient-start: #0a0a0c;
-    --nd-gradient-end: #1a1a24;
+    /* Scale Colors */
+    --dragon-scale1: #1A1423;
+    --dragon-scale2: #251E30;
+    --dragon-scale3: #30283D;
+    --dragon-scale4: #3B324A;
+    --dragon-scale5: #463C57;
 
-    /* Accent Colors */
-    --nd-accent1: #b8860b;
-    --nd-accent2: #8b4513;
-    --nd-accent3: #4b0082;
-    --nd-accent4: #2f4f4f;
-    --nd-accent5: #800000;
+    /* Fiery Accents */
+    --dragon-accent1: #6D4D5E;
+    --dragon-accent2: #8C5D6E;
+    --dragon-accent3: #AB6D7E;
+    --dragon-accent4: #CA7D8E;
+    --dragon-accent5: #E94560;
 
     /* Theme Variables */
-    --nd-shadow: rgba(196, 30, 58, 0.3);
-    --nd-radius: 8px;
-    --nd-transition: 0.3s ease-in-out;
-    --nd-hover: #e63946;
-    --nd-current-day: #5c2d91;
+    --dragon-shadow: rgba(46, 16, 55, 0.7);
+    --dragon-radius: 0px;
+    --dragon-transition: 0.2s linear;
+    --dragon-hover: #E94560;
+    --dragon-glow: 0 0 15px rgba(233, 69, 96, 0.7);
+    --dragon-scale-pattern: linear-gradient(135deg,
+            var(--dragon-scale1) 25%,
+            var(--dragon-scale2) 25%,
+            var(--dragon-scale2) 50%,
+            var(--dragon-scale3) 50%,
+            var(--dragon-scale3) 75%,
+            var(--dragon-scale4) 75%);
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes nd-dragon-fire {
+@keyframes dragon-pulse {
 
     0%,
     100% {
-        text-shadow: 0 0 5px var(--nd-primary);
+        box-shadow: 0 0 5px rgba(233, 69, 96, 0.3);
     }
 
     50% {
-        text-shadow: 0 0 15px var(--nd-primary), 0 0 30px var(--nd-accent1);
+        box-shadow: var(--dragon-glow);
     }
 }
 
-@keyframes nd-scale-pulse {
+@keyframes dragon-breathe {
 
     0%,
     100% {
+        opacity: 0.8;
         transform: scale(1);
     }
 
     50% {
-        transform: scale(1.03);
+        opacity: 1;
+        transform: scale(1.02);
     }
 }
 
-@keyframes nd-smoke {
-    0% {
+@keyframes dragon-fadeIn {
+    from {
         opacity: 0;
-        transform: translateY(0) scale(0.5);
+        transform: translateY(-10px);
     }
 
-    50% {
-        opacity: 0.3;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dragon-scale {
+    0% {
+        background-position: 0 0;
     }
 
     100% {
-        opacity: 0;
-        transform: translateY(-20px) scale(1);
+        background-position: 30px 30px;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .night-dragon {
-    font-family: 'EB Garamond', serif;
-    color: var(--nd-text);
-    line-height: 1.6;
-    background: linear-gradient(135deg, var(--nd-gradient-start), var(--nd-gradient-end));
+    font-family: 'Cinzel', serif;
+    color: var(--dragon-text);
+    line-height: 1.5;
+    background: var(--dragon-bg);
     min-height: 100vh;
-    background-image:
-        radial-gradient(circle at 10% 20%, rgba(196, 30, 58, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(92, 45, 145, 0.05) 0%, transparent 20%);
 }
 
 .night-dragon .container {
-    background-color: rgba(10, 10, 12, 0.9);
+    background-color: rgba(10, 10, 18, 0.97);
     padding: 2rem;
-    border: 1px solid var(--nd-accent1);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--dragon-accent1);
+    box-shadow: var(--dragon-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--nd-radius);
+    border-radius: var(--dragon-radius);
 }
 
 .night-dragon .container::before {
@@ -108,78 +123,71 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--nd-primary), transparent);
-}
-
-.night-dragon .container::after {
-    content: "🐉";
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
-    font-size: 5rem;
-    opacity: 0.05;
-    z-index: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dragon-accent5), transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .night-dragon #calendar-title {
-    font-family: 'Cinzel', serif;
-    color: var(--nd-primary);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--dragon-accent5);
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    letter-spacing: 0.2em;
     text-transform: uppercase;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+    animation: dragon-breathe 3s infinite;
     position: relative;
-    animation: nd-dragon-fire 3s infinite;
 }
 
 .night-dragon #calendar-title::after {
     content: "";
-    display: block;
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--nd-primary), var(--nd-accent1));
-    margin: 0.5rem auto;
+    position: absolute;
+    bottom: -10px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dragon-accent5), transparent);
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .night-dragon #date-weather-container {
     text-align: center;
     margin: 2rem 0;
-    padding: 1.5rem;
-    background-color: rgba(92, 45, 145, 0.1);
-    border: 1px solid var(--nd-accent3);
-    border-radius: var(--nd-radius);
+    padding: 1rem;
+    background: var(--dragon-scale-pattern);
+    background-size: 30px 30px;
+    border: 1px solid var(--dragon-accent1);
     position: relative;
-    overflow: hidden;
+    animation: dragon-scale 4s linear infinite;
 }
 
-.night-dragon #date-weather-container::before {
+.night-dragon #date-weather-container::after {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--nd-accent1), transparent);
+    background: linear-gradient(90deg, transparent, var(--dragon-accent5), transparent);
 }
 
 .night-dragon #current-date {
-    font-family: 'Cinzel', serif;
-    color: var(--nd-accent1);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--dragon-accent3);
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
 }
 
 .night-dragon #today-weather {
-    font-family: 'EB Garamond', serif;
-    color: var(--nd-text);
+    font-family: 'Cinzel', serif;
+    color: var(--dragon-accent3);
     font-size: 1.4rem;
-    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.1em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -192,27 +200,14 @@
 .night-dragon .clock-face {
     width: 200px;
     height: 200px;
-    border: 8px solid var(--nd-accent1);
+    border: 8px solid var(--dragon-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--nd-bg);
-    box-shadow:
-        0 0 10px rgba(0, 0, 0, 0.8),
-        inset 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-.night-dragon .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background-color: var(--nd-primary);
-    border-radius: 50%;
-    z-index: 10;
-    box-shadow: 0 0 5px var(--nd-primary);
+    background-color: var(--dragon-bg);
+    box-shadow: var(--dragon-glow);
+    background-image: radial-gradient(circle at center,
+            transparent 60%,
+            rgba(233, 69, 96, 0.1) 100%);
 }
 
 .night-dragon .hand {
@@ -225,32 +220,28 @@
 }
 
 .night-dragon .hour-hand {
-    width: 35%;
-    left: 15%;
-    height: 8px;
-    background: var(--nd-accent1);
-    margin-top: -4px;
-    border-radius: 4px;
-    box-shadow: 0 0 5px var(--nd-accent1);
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--dragon-accent1);
+    margin-top: -3px;
 }
 
 .night-dragon .minute-hand {
-    width: 45%;
-    left: 5%;
-    height: 6px;
-    background: var(--nd-text);
-    margin-top: -3px;
-    border-radius: 3px;
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--dragon-accent1);
+    margin-top: -2px;
 }
 
 .night-dragon .second-hand {
     width: 48%;
     left: 2%;
     height: 2px;
-    background: var(--nd-primary);
+    background: var(--dragon-accent5);
     margin-top: -1px;
-    border-radius: 1px;
-    box-shadow: 0 0 5px var(--nd-primary);
+    box-shadow: 0 0 5px rgba(233, 69, 96, 0.7);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
@@ -258,80 +249,80 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(10, 10, 12, 0.8);
-    border: 1px solid var(--nd-accent1);
-    border-radius: var(--nd-radius);
+    background-color: rgba(10, 10, 18, 0.9);
+    border: 1px solid var(--dragon-accent1);
     table-layout: fixed;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
+/* DAY OF WEEK HEADERS */
 .night-dragon th {
-    background-color: var(--nd-accent3);
-    color: var(--nd-accent1);
-    font-family: 'Cinzel', serif;
+    background: var(--dragon-scale-pattern);
+    background-size: 30px 30px;
+    color: var(--dragon-text) !important;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    padding: 1rem;
-    border: 1px solid var(--nd-accent1);
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--dragon-accent1);
     position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    animation: dragon-scale 4s linear infinite;
 }
 
-.night-dragon th::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 25%;
-    right: 25%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--nd-primary), transparent);
+.night-dragon th span.full-day-name {
+    display: inline;
+}
+
+.night-dragon th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .night-dragon td {
-    background-color: rgba(139, 69, 19, 0.05);
-    color: var(--nd-text);
+    background-color: rgba(30, 26, 43, 0.3);
+    color: var(--dragon-text);
     padding: 1.2rem;
-    border: 1px solid rgba(139, 69, 19, 0.3);
+    border: 1px solid var(--dragon-accent1);
     height: 100px;
     vertical-align: top;
-    transition: all var(--nd-transition);
+    transition: all var(--dragon-transition);
     position: relative;
 }
 
 .night-dragon td:hover {
-    background-color: rgba(196, 30, 58, 0.1);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(233, 69, 96, 0.1);
+    box-shadow: inset 0 0 15px rgba(233, 69, 96, 0.3);
 }
 
 /* Current date highlight */
 .night-dragon td.current-day {
-    background-color: rgba(92, 45, 145, 0.3);
-    border: 2px solid var(--nd-primary);
-    color: var(--nd-text);
-    font-weight: 600;
-    animation: nd-scale-pulse 3s infinite;
+    background-color: rgba(233, 69, 96, 0.2);
+    border: 1px solid var(--dragon-accent5);
+    color: var(--dragon-text) !important;
+    font-weight: 700;
+    animation: dragon-pulse 2s infinite;
 }
 
-/* Current date number indicator */
 .night-dragon td.current-day::before {
     content: "⚔";
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
     font-size: 1.2rem;
-    color: var(--nd-primary);
+    color: var(--dragon-accent5);
+    z-index: 1;
+    opacity: 0.7;
 }
 
 .night-dragon td.current-day>.date-number {
     position: relative;
     z-index: 2;
-    color: var(--nd-text);
+    color: var(--dragon-text) !important;
     font-weight: bold;
 }
 
@@ -341,29 +332,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--nd-primary);
+    background-color: var(--dragon-accent5);
     margin: 0 2px;
-    box-shadow: 0 0 5px var(--nd-primary);
-    transition: all var(--nd-transition);
+    box-shadow: 0 0 5px rgba(233, 69, 96, 0.5);
+    transition: all var(--dragon-transition);
 }
 
 .night-dragon .event-marker:hover {
     transform: scale(2);
-    background-color: var(--nd-accent1);
-    box-shadow: 0 0 10px var(--nd-accent1);
+    background-color: var(--dragon-accent5);
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.8);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .night-dragon .modal-content {
     position: relative;
-    background-color: rgba(10, 10, 12, 0.95);
-    border: 1px solid var(--nd-accent1);
+    background-color: rgba(10, 10, 18, 0.98);
+    border: 1px solid var(--dragon-accent1);
     padding: 30px;
-    color: var(--nd-text);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-    border-radius: var(--nd-radius);
-    animation: nd-scale-pulse 0.4s ease;
-    overflow: hidden;
+    color: var(--dragon-text);
+    box-shadow: var(--dragon-glow);
+    animation: dragon-fadeIn 0.3s ease-out;
 }
 
 .night-dragon .modal-content::before {
@@ -372,51 +361,37 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--nd-primary), transparent);
-}
-
-.night-dragon .modal-content::after {
-    content: "🐉";
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    font-size: 8rem;
-    opacity: 0.05;
-    z-index: 0;
+    height: 1px;
+    background: var(--dragon-accent5);
 }
 
 .night-dragon .modal-content h2 {
-    color: var(--nd-primary);
-    font-family: 'Cinzel', serif;
+    color: var(--dragon-accent5);
+    font-family: 'Orbitron', sans-serif;
     font-size: 2em;
     margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    position: relative;
-    z-index: 1;
+    letter-spacing: 3px;
 }
 
 .night-dragon .modal-content button {
     background-color: transparent;
-    color: var(--nd-primary);
-    border: 1px solid var(--nd-primary);
+    color: var(--dragon-accent5);
+    border: 1px solid var(--dragon-accent5);
     padding: 12px 24px;
     font-size: 1em;
-    font-family: 'Cinzel', serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--nd-transition);
+    transition: all var(--dragon-transition);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-radius: var(--nd-radius);
-    position: relative;
-    z-index: 1;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .night-dragon .modal-content button:hover {
-    background-color: var(--nd-primary);
-    color: var(--nd-text);
-    box-shadow: 0 0 15px var(--nd-shadow);
+    background-color: var(--dragon-accent5);
+    color: var(--dragon-bg);
+    box-shadow: var(--dragon-glow);
 }
 
 /* Close Button */
@@ -425,52 +400,38 @@
     top: 15px;
     right: 15px;
     background-color: transparent;
-    color: var(--nd-primary);
-    border: 1px solid var(--nd-primary);
+    color: var(--dragon-accent5);
+    border: 1px solid var(--dragon-accent5);
     width: 32px;
     height: 32px;
     cursor: pointer;
-    transition: all var(--nd-transition);
+    transition: all var(--dragon-transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    z-index: 2;
 }
 
 .night-dragon .modal .close-button:hover {
-    background-color: var(--nd-primary);
-    color: var(--nd-text);
+    background-color: var(--dragon-accent5);
+    color: var(--dragon-bg);
     transform: rotate(90deg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .night-dragon .button,
 .night-dragon .transparent-button {
-    border: 1px solid var(--nd-primary);
-    color: var(--nd-primary);
+    border: 1px solid var(--dragon-accent1);
+    color: var(--dragon-accent3);
     background-color: transparent;
     padding: 0.8rem 1.6rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--nd-transition);
+    transition: all var(--dragon-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--nd-radius);
-}
-
-.night-dragon .button {
-    background-color: rgba(196, 30, 58, 0.2);
-}
-
-.night-dragon .button:hover,
-.night-dragon .transparent-button:hover {
-    background-color: var(--nd-primary);
-    color: var(--nd-text);
-    box-shadow: 0 0 15px var(--nd-shadow);
 }
 
 .night-dragon .button::before,
@@ -481,8 +442,16 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(233, 69, 96, 0.2), transparent);
     transition: 0.5s;
+}
+
+.night-dragon .button:hover,
+.night-dragon .transparent-button:hover {
+    background-color: rgba(233, 69, 96, 0.1);
+    color: var(--dragon-accent5);
+    border-color: var(--dragon-accent5);
+    box-shadow: var(--dragon-glow);
 }
 
 .night-dragon .button:hover::before,
@@ -498,40 +467,52 @@
     margin: 1.5rem 0;
 }
 
-/* ==================== THEME SWITCHER FIX ==================== */
+/* ==================== THEME SWITCHER ==================== */
+.night-dragon #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
 .night-dragon #theme-switcher {
-    background-color: rgba(10, 10, 12, 0.8);
-    color: var(--nd-text);
-    border: 1px solid var(--nd-accent1);
+    background-color: rgba(30, 26, 43, 0.8);
+    color: var(--dragon-text) !important;
+    border: 1px solid var(--dragon-accent1);
     padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'EB Garamond', serif;
-    margin-left: 1rem;
-    border-radius: var(--nd-radius);
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c41e3a'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8E6E3'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
     cursor: pointer;
-    transition: all var(--nd-transition);
+    transition: all var(--dragon-transition);
 }
 
-.night-dragon #theme-switcher:hover {
-    border-color: var(--nd-primary);
-    box-shadow: 0 0 10px var(--nd-shadow);
+.night-dragon #theme-switcher option {
+    background-color: rgba(10, 10, 18, 0.98) !important;
+    color: var(--dragon-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--dragon-accent1) !important;
+}
+
+.night-dragon #theme-switcher option:hover {
+    background-color: var(--dragon-accent5) !important;
+    color: var(--dragon-bg) !important;
 }
 
 .night-dragon #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--nd-primary);
-}
-
-.night-dragon #theme-switcher option {
-    background-color: var(--nd-accent3);
-    color: var(--nd-text);
-    padding: 0.5rem;
+    border-color: var(--dragon-accent5);
+    box-shadow: var(--dragon-glow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -540,25 +521,25 @@
     right: 30px;
     bottom: 30px;
     z-index: 9999;
-    border: 1px solid var(--nd-primary);
+    border: 1px solid var(--dragon-accent1);
     padding: 1rem 1.8rem;
     font-size: 1rem;
-    font-family: 'Cinzel', serif;
+    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--nd-primary);
-    background-color: rgba(10, 10, 12, 0.8);
+    color: var(--dragon-accent3);
+    background-color: rgba(30, 26, 43, 0.8);
     cursor: pointer;
-    transition: all var(--nd-transition);
+    transition: all var(--dragon-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--nd-radius);
 }
 
 .night-dragon #backToTopBtn:hover {
-    background-color: var(--nd-primary);
-    color: var(--nd-text);
-    box-shadow: 0 0 15px var(--nd-shadow);
+    background-color: rgba(233, 69, 96, 0.2);
+    color: var(--dragon-accent5);
+    border-color: var(--dragon-accent5);
+    box-shadow: var(--dragon-glow);
     opacity: 1;
 }
 
@@ -567,20 +548,9 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--nd-accent1);
-    color: var(--nd-text);
+    border-top: 1px solid var(--dragon-accent1);
+    color: var(--dragon-text);
     font-size: 0.9rem;
-    position: relative;
-}
-
-.night-dragon footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 25%;
-    right: 25%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--nd-primary), transparent);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -590,11 +560,12 @@
     }
 
     .night-dragon #calendar-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        letter-spacing: 0.2em;
     }
 
     .night-dragon #current-date {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .night-dragon #today-weather {
@@ -606,26 +577,20 @@
     .night-dragon .clock-face {
         width: 160px;
         height: 160px;
+        border-width: 6px;
     }
 
-    /* Improved day headers for mobile */
     .night-dragon th {
+        font-size: 0.85rem;
         padding: 0.8rem 0.3rem;
-        font-size: 0.8rem;
-        letter-spacing: normal;
-        white-space: normal;
-        word-break: break-word;
-        line-height: 1.2;
-    }
-
-    /* 3-letter abbreviations for small screens */
-    .night-dragon th abbr {
-        display: inline;
-        text-decoration: none;
     }
 
     .night-dragon th span.full-day-name {
         display: none;
+    }
+
+    .night-dragon th abbr {
+        display: inline;
     }
 
     .night-dragon td {
@@ -634,13 +599,10 @@
         font-size: 0.8rem;
     }
 
-    /* Adjust current date marker for mobile */
     .night-dragon td.current-day::before {
-        width: 18px;
-        height: 18px;
+        font-size: 1rem;
         top: 3px;
         right: 3px;
-        font-size: 0.9rem;
     }
 
     .night-dragon #backToTopBtn {
@@ -650,66 +612,75 @@
         font-size: 0.9rem;
     }
 
-    /* Theme switcher mobile adjustments */
     .night-dragon #theme-switcher {
-        padding: 0.6rem 2rem 0.6rem 0.8rem;
-        background-position: right 0.5rem center;
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
         font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .night-dragon #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
     }
 }
 
 @media (max-width: 576px) {
     .night-dragon .container {
-        padding: 1rem;
+        padding: 0.8rem;
     }
 
     .night-dragon #calendar-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
         letter-spacing: 0.1em;
     }
 
     .night-dragon #current-date {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     .night-dragon #today-weather {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .night-dragon .clock-face {
         width: 120px;
         height: 120px;
-        border-width: 6px;
+        border-width: 4px;
     }
 
-    /* Further day header adjustments */
     .night-dragon th {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         padding: 0.5rem 0.2rem;
     }
 
     .night-dragon td {
-        padding: 0.4rem;
+        padding: 0.3rem;
         height: 60px;
         font-size: 0.7rem;
     }
 
-    /* Current date marker for very small screens */
     .night-dragon td.current-day::before {
-        width: 16px;
-        height: 16px;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
+    }
+
+    .night-dragon #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
     }
 }
 
-/* Extra small devices (phones, 400px and down) */
 @media (max-width: 400px) {
     .night-dragon th {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         padding: 0.4rem 0.1rem;
     }
 
     .night-dragon td {
         height: 50px;
+    }
+
+    .night-dragon #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
     }
 }
