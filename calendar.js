@@ -117,7 +117,7 @@ const applyTheme = (theme) => {
     'the-great-silk-road',
     'the-highest-level', 'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset',
     'urban-fashion', 
-    'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
+    'velvety-dark', 'viking-helmet','viktoria-falls', 'wasted-love', 'weekend-downtime', 'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'zodiac-constellations'
 
