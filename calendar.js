@@ -101,7 +101,7 @@ const applyTheme = (theme) => {
     'mountain-peak', 'new-ai', 'new-black', 'new-style', 'next-step', 'neon-nights',
     'niagara-falls', 'night-dragon', 'night-sky','north-pole', 'northern-nights',
     'ocean-surf', 'ocean-view', 'ocean-vortex',
-    'okinawa-breeze', 'one-step-ahead', 'on-the-island', 'orange-country', 
+    'okinawa-breeze', 'one-step-ahead', 'one-way-ticket', 'on-the-island', 'orange-country', 
     'orion-constellation', 'overnight-train','pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'practical-experience', 'precious-question',
     'progressive-decision', 'pure-light', 
