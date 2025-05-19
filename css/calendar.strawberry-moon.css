@@ -1,0 +1,666 @@
+/* ==========================================================================
+   Strawberry Moon Theme - Enchanted Twilight Interface
+   Version: 1.0
+   Updated: 2025-05-18
+   Changes:
+   - Created magical twilight color palette
+   - Added lunar phases and berry accents
+   - Designed with celestial typography
+   - Maintained all structural elements from Black Hawk
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Quicksand:wght@400;600&display=swap');
+
+:root {
+    /* Celestial Color Palette */
+    --moon-bg: #1A0A1A;
+    --moon-text: #F8EFF8;
+    --moon-primary: #2A142A;
+    --moon-secondary: #3A1E3A;
+
+    /* Twilight Colors */
+    --moon-twilight1: #241224;
+    --moon-twilight2: #2E1A2E;
+    --moon-twilight3: #382238;
+    --moon-twilight4: #422A42;
+    --moon-twilight5: #4C324C;
+
+    /* Berry Accents */
+    --moon-accent1: #C97B9D;
+    --moon-accent2: #D68FAD;
+    --moon-accent3: #E3A3BD;
+    --moon-accent4: #F0B7CD;
+    --moon-accent5: #FF6B97;
+
+    /* Theme Variables */
+    --moon-shadow: rgba(255, 107, 151, 0.2);
+    --moon-radius: 8px;
+    --moon-transition: 0.3s ease;
+    --moon-hover: #FF6B97;
+    --moon-glow: 0 0 15px rgba(255, 107, 151, 0.4);
+    --moon-stars: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="20" cy="15" r="0.7" fill="%23F0B7CD" opacity="0.7"/><circle cx="50" cy="25" r="0.5" fill="%23F0B7CD" opacity="0.5"/><circle cx="80" cy="10" r="1" fill="%23F0B7CD" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="%23F0B7CD" opacity="0.6"/><circle cx="65" cy="85" r="0.6" fill="%23F0B7CD" opacity="0.4"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes moon-pulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes moon-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes moon-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.strawberry-moon {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--moon-text);
+    line-height: 1.6;
+    background-color: var(--moon-bg);
+    background-image: var(--moon-stars);
+    min-height: 100vh;
+}
+
+.strawberry-moon .container {
+    background-color: rgba(26, 10, 26, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--moon-accent1);
+    box-shadow: var(--moon-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--moon-accent5), transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.strawberry-moon #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--moon-accent5);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    animation: moon-pulse 3s infinite;
+    position: relative;
+}
+
+.strawberry-moon #calendar-title::after {
+    content: "☽";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--moon-accent3);
+    font-size: 1.8rem;
+    opacity: 0.7;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.strawberry-moon #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(42, 20, 42, 0.7);
+    border: 1px solid var(--moon-accent1);
+    position: relative;
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--moon-accent5), transparent);
+}
+
+.strawberry-moon #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--moon-accent4);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.strawberry-moon #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--moon-accent3);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.strawberry-moon #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.strawberry-moon .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--moon-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--moon-bg);
+    box-shadow: var(--moon-glow);
+    background-image: radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 107, 151, 0.1) 100%);
+}
+
+.strawberry-moon .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.strawberry-moon .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--moon-accent1);
+    margin-top: -3px;
+}
+
+.strawberry-moon .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--moon-accent1);
+    margin-top: -2px;
+}
+
+.strawberry-moon .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--moon-accent5);
+    margin-top: -1px;
+    box-shadow: 0 0 5px rgba(255, 107, 151, 0.7);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.strawberry-moon table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(26, 10, 26, 0.9);
+    border: 1px solid var(--moon-accent1);
+    table-layout: fixed;
+    border-radius: var(--moon-radius);
+}
+
+/* DAY OF WEEK HEADERS */
+.strawberry-moon th {
+    background-color: rgba(42, 20, 42, 0.8);
+    color: var(--moon-text) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--moon-accent1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.strawberry-moon th span.full-day-name {
+    display: inline;
+}
+
+.strawberry-moon th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.strawberry-moon td {
+    background-color: rgba(42, 20, 42, 0.3);
+    color: var(--moon-text);
+    padding: 1.2rem;
+    border: 1px solid var(--moon-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--moon-transition);
+    position: relative;
+}
+
+.strawberry-moon td:hover {
+    background-color: rgba(255, 107, 151, 0.1);
+    box-shadow: inset 0 0 15px rgba(255, 107, 151, 0.2);
+}
+
+/* Current date highlight */
+.strawberry-moon td.current-day {
+    background-color: rgba(255, 107, 151, 0.2);
+    border: 1px solid var(--moon-accent5);
+    color: var(--moon-text) !important;
+    font-weight: 700;
+}
+
+.strawberry-moon td.current-day::before {
+    content: "🍓";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+    z-index: 1;
+    animation: moon-twinkle 2s infinite;
+}
+
+.strawberry-moon td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--moon-text) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.strawberry-moon .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--moon-accent5);
+    margin: 0 2px;
+    box-shadow: 0 0 5px rgba(255, 107, 151, 0.5);
+    transition: all var(--moon-transition);
+}
+
+.strawberry-moon .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--moon-accent5);
+    box-shadow: 0 0 15px rgba(255, 107, 151, 0.8);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.strawberry-moon .modal-content {
+    position: relative;
+    background-color: rgba(26, 10, 26, 0.98);
+    border: 1px solid var(--moon-accent1);
+    padding: 30px;
+    color: var(--moon-text);
+    box-shadow: var(--moon-glow);
+    animation: moon-fadeIn 0.3s ease-out;
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--moon-accent5);
+}
+
+.strawberry-moon .modal-content h2 {
+    color: var(--moon-accent5);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.strawberry-moon .modal-content button {
+    background-color: transparent;
+    color: var(--moon-accent5);
+    border: 1px solid var(--moon-accent5);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--moon-transition);
+    letter-spacing: 1px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon .modal-content button:hover {
+    background-color: var(--moon-accent5);
+    color: var(--moon-bg);
+    box-shadow: var(--moon-glow);
+}
+
+/* Close Button */
+.strawberry-moon .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--moon-accent5);
+    border: 1px solid var(--moon-accent5);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--moon-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.strawberry-moon .modal .close-button:hover {
+    background-color: var(--moon-accent5);
+    color: var(--moon-bg);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.strawberry-moon .button,
+.strawberry-moon .transparent-button {
+    border: 1px solid var(--moon-accent1);
+    color: var(--moon-accent3);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--moon-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon .button::before,
+.strawberry-moon .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 151, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.strawberry-moon .button:hover,
+.strawberry-moon .transparent-button:hover {
+    background-color: rgba(255, 107, 151, 0.1);
+    color: var(--moon-accent5);
+    border-color: var(--moon-accent5);
+    box-shadow: var(--moon-glow);
+}
+
+.strawberry-moon .button:hover::before,
+.strawberry-moon .transparent-button:hover::before {
+    left: 100%;
+}
+
+.strawberry-moon .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.strawberry-moon #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.strawberry-moon #theme-switcher {
+    background-color: rgba(42, 20, 42, 0.8);
+    color: var(--moon-text) !important;
+    border: 1px solid var(--moon-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F8EFF8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--moon-transition);
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon #theme-switcher option {
+    background-color: rgba(26, 10, 26, 0.98) !important;
+    color: var(--moon-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--moon-accent1) !important;
+}
+
+.strawberry-moon #theme-switcher option:hover {
+    background-color: var(--moon-accent5) !important;
+    color: var(--moon-bg) !important;
+}
+
+.strawberry-moon #theme-switcher:focus {
+    outline: none;
+    border-color: var(--moon-accent5);
+    box-shadow: var(--moon-glow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.strawberry-moon #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--moon-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--moon-accent3);
+    background-color: rgba(42, 20, 42, 0.8);
+    cursor: pointer;
+    transition: all var(--moon-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--moon-radius);
+}
+
+.strawberry-moon #backToTopBtn:hover {
+    background-color: rgba(255, 107, 151, 0.2);
+    color: var(--moon-accent5);
+    border-color: var(--moon-accent5);
+    box-shadow: var(--moon-glow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.strawberry-moon footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--moon-accent1);
+    color: var(--moon-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .strawberry-moon .container {
+        padding: 1.5rem;
+    }
+
+    .strawberry-moon #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .strawberry-moon #current-date {
+        font-size: 1.7rem;
+    }
+
+    .strawberry-moon #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .strawberry-moon .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .strawberry-moon th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .strawberry-moon th span.full-day-name {
+        display: none;
+    }
+
+    .strawberry-moon th abbr {
+        display: inline;
+    }
+
+    .strawberry-moon td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .strawberry-moon td.current-day::before {
+        font-size: 1rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .strawberry-moon #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .strawberry-moon #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .strawberry-moon #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .strawberry-moon .container {
+        padding: 0.8rem;
+    }
+
+    .strawberry-moon #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .strawberry-moon #current-date {
+        font-size: 1.3rem;
+    }
+
+    .strawberry-moon #today-weather {
+        font-size: 1rem;
+    }
+
+    .strawberry-moon .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .strawberry-moon th {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .strawberry-moon td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .strawberry-moon td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .strawberry-moon #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .strawberry-moon th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .strawberry-moon td {
+        height: 50px;
+    }
+
+    .strawberry-moon #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}

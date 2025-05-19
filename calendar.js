@@ -113,7 +113,7 @@ const applyTheme = (theme) => {
     'shaolin-monastery',
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'skylight-window', 'solar-flare', 'spring-meadow', 
     'statue-of-liberty', 'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'strategic-planning',
-    'success-key','success-motivation', 
+    'strawberry-moon','success-key','success-motivation', 
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 'the-dead-sea',
     'the-great-silk-road',
     'the-highest-level', 'the-last-mohican', 'time-complexity', 'time-machine', 'tropical-sunset',
