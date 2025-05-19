@@ -1,0 +1,706 @@
+/* ==========================================================================
+   The Perfect Blend Theme - Coffeehouse-Inspired Interface
+   Version: 1.0
+   Updated: 2025-05-18
+   Changes:
+   - Created warm coffeehouse color palette
+   - Added coffee stain textures and steam elements
+   - Designed with artisanal typography
+   - Maintained all structural elements from Black Hawk
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    /* Coffee Color Palette */
+    --blend-bg: #F5F0EB;
+    --blend-text: #3A2C21;
+    --blend-primary: #E8D9C5;
+    --blend-secondary: #D4C3AE;
+
+    /* Brew Shades */
+    --blend-light: #F9F5F0;
+    --blend-medium: #E0D5C8;
+    --blend-dark: #C7B9A8;
+    --blend-darker: #AE9D88;
+    --blend-darkest: #958168;
+
+    /* Accent Colors */
+    --blend-accent1: #A38F78;
+    --blend-accent2: #8B765D;
+    --blend-accent3: #735D42;
+    --blend-accent4: #5B4427;
+    --blend-accent5: #C45F1A;
+
+    /* Theme Variables */
+    --blend-shadow: rgba(92, 68, 39, 0.2);
+    --blend-radius: 4px;
+    --blend-transition: 0.3s ease;
+    --blend-hover: #C45F1A;
+    --blend-glow: 0 0 10px rgba(196, 95, 26, 0.3);
+    --blend-stain: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M30,70 Q40,75 50,70 Q60,65 70,70 Q75,60 70,50 Q65,40 70,30 Q60,25 50,30 Q40,35 30,30 Q25,40 30,50 Q25,60 30,70 Z" fill="%23C7B9A8" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes blend-steam {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px) scale(1.2);
+    }
+}
+
+@keyframes blend-pulse {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes blend-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-perfect-blend {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--blend-text);
+    line-height: 1.6;
+    background-color: var(--blend-bg);
+    min-height: 100vh;
+    background-image: var(--blend-stain);
+}
+
+.the-perfect-blend .container {
+    background-color: var(--blend-primary);
+    padding: 2rem;
+    border: 1px solid var(--blend-accent1);
+    box-shadow: var(--blend-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blend-accent5), transparent);
+}
+
+/* Steam Elements */
+.the-perfect-blend .container::after {
+    content: "☕";
+    position: absolute;
+    top: -15px;
+    right: 30px;
+    font-size: 2rem;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-perfect-blend #calendar-title {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--blend-accent5);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: blend-pulse 3s infinite;
+}
+
+.the-perfect-blend #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 30%;
+    right: 30%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blend-accent5), transparent);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-perfect-blend #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--blend-medium);
+    border: 1px solid var(--blend-accent1);
+    position: relative;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend #date-weather-container::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px dashed var(--blend-accent1);
+    border-radius: var(--blend-radius);
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.the-perfect-blend #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blend-accent5), transparent);
+}
+
+.the-perfect-blend #current-date {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--blend-accent4);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.the-perfect-blend #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--blend-accent3);
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-perfect-blend #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.the-perfect-blend #analog-watch::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 50px;
+    height: 20px;
+    background-color: var(--blend-dark);
+    border-radius: 50% 50% 0 0;
+    z-index: -1;
+}
+
+.the-perfect-blend .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--blend-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--blend-light);
+    box-shadow: var(--blend-glow);
+}
+
+.the-perfect-blend .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.the-perfect-blend .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--blend-accent1);
+    margin-top: -3px;
+}
+
+.the-perfect-blend .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--blend-accent1);
+    margin-top: -2px;
+}
+
+.the-perfect-blend .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--blend-accent5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.the-perfect-blend table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.the-perfect-blend th {
+    background-color: var(--blend-medium);
+    color: var(--blend-text) !important;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--blend-accent1);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend th span.full-day-name {
+    display: inline;
+}
+
+.the-perfect-blend th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.the-perfect-blend td {
+    background-color: var(--blend-light);
+    color: var(--blend-text);
+    padding: 1.2rem;
+    border: 1px solid var(--blend-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--blend-transition);
+    position: relative;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend td:hover {
+    background-color: var(--blend-medium);
+    box-shadow: 0 2px 8px var(--blend-shadow);
+}
+
+/* Current date highlight */
+.the-perfect-blend td.current-day {
+    background-color: var(--blend-dark);
+    border: 1px solid var(--blend-accent5);
+    color: var(--blend-text) !important;
+    font-weight: 700;
+}
+
+.the-perfect-blend td.current-day::before {
+    content: "☕";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: var(--blend-accent5);
+    z-index: 1;
+    font-size: 1.2rem;
+}
+
+.the-perfect-blend td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--blend-text) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-perfect-blend .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--blend-accent5);
+    margin: 0 2px;
+    box-shadow: 0 0 5px rgba(196, 95, 26, 0.3);
+    transition: all var(--blend-transition);
+}
+
+.the-perfect-blend .event-marker:hover {
+    transform: scale(2);
+    background-color: var(--blend-accent5);
+    box-shadow: 0 0 15px rgba(196, 95, 26, 0.5);
+}
+
+/* Steam animation on event hover */
+.the-perfect-blend .event-marker:hover::after {
+    content: "~";
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    color: var(--blend-accent1);
+    animation: blend-steam 1.5s ease-out infinite;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-perfect-blend .modal-content {
+    position: relative;
+    background-color: var(--blend-primary);
+    border: 1px solid var(--blend-accent1);
+    padding: 30px;
+    color: var(--blend-text);
+    box-shadow: var(--blend-glow);
+    animation: blend-fadeIn 0.3s ease-out;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--blend-accent5);
+}
+
+.the-perfect-blend .modal-content h2 {
+    color: var(--blend-accent5);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.the-perfect-blend .modal-content button {
+    background-color: transparent;
+    color: var(--blend-accent5);
+    border: 1px solid var(--blend-accent5);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--blend-transition);
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend .modal-content button:hover {
+    background-color: var(--blend-accent5);
+    color: var(--blend-light);
+    box-shadow: var(--blend-glow);
+}
+
+/* Close Button */
+.the-perfect-blend .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--blend-accent5);
+    border: 1px solid var(--blend-accent5);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--blend-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.the-perfect-blend .modal .close-button:hover {
+    background-color: var(--blend-accent5);
+    color: var(--blend-light);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-perfect-blend .button,
+.the-perfect-blend .transparent-button {
+    border: 1px solid var(--blend-accent1);
+    color: var(--blend-accent3);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--blend-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend .button::before,
+.the-perfect-blend .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(196, 95, 26, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.the-perfect-blend .button:hover,
+.the-perfect-blend .transparent-button:hover {
+    background-color: rgba(196, 95, 26, 0.1);
+    color: var(--blend-accent5);
+    border-color: var(--blend-accent5);
+    box-shadow: var(--blend-glow);
+}
+
+.the-perfect-blend .button:hover::before,
+.the-perfect-blend .transparent-button:hover::before {
+    left: 100%;
+}
+
+.the-perfect-blend .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-perfect-blend #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.the-perfect-blend #theme-switcher {
+    background-color: var(--blend-medium);
+    color: var(--blend-text) !important;
+    border: 1px solid var(--blend-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A2C21'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--blend-transition);
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend #theme-switcher option {
+    background-color: var(--blend-light) !important;
+    color: var(--blend-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--blend-accent1) !important;
+}
+
+.the-perfect-blend #theme-switcher option:hover {
+    background-color: var(--blend-accent5) !important;
+    color: var(--blend-light) !important;
+}
+
+.the-perfect-blend #theme-switcher:focus {
+    outline: none;
+    border-color: var(--blend-accent5);
+    box-shadow: var(--blend-glow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-perfect-blend #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: 1px solid var(--blend-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--blend-accent3);
+    background-color: var(--blend-medium);
+    cursor: pointer;
+    transition: all var(--blend-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--blend-radius);
+}
+
+.the-perfect-blend #backToTopBtn:hover {
+    background-color: rgba(196, 95, 26, 0.1);
+    color: var(--blend-accent5);
+    border-color: var(--blend-accent5);
+    box-shadow: var(--blend-glow);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.the-perfect-blend footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--blend-accent1);
+    color: var(--blend-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-perfect-blend .container {
+        padding: 1.5rem;
+    }
+
+    .the-perfect-blend #calendar-title {
+        font-size: 2rem;
+    }
+
+    .the-perfect-blend #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-perfect-blend #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-perfect-blend .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .the-perfect-blend th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .the-perfect-blend th span.full-day-name {
+        display: none;
+    }
+
+    .the-perfect-blend th abbr {
+        display: inline;
+    }
+
+    .the-perfect-blend td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .the-perfect-blend td.current-day::before {
+        font-size: 1rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .the-perfect-blend #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .the-perfect-blend #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .the-perfect-blend #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-perfect-blend .container {
+        padding: 0.8rem;
+    }
+
+    .the-perfect-blend #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .the-perfect-blend #current-date {
+        font-size: 1.1rem;
+    }
+
+    .the-perfect-blend #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .the-perfect-blend .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .the-perfect-blend th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .the-perfect-blend td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .the-perfect-blend td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .the-perfect-blend #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-perfect-blend th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .the-perfect-blend td {
+        height: 50px;
+    }
+
+    .the-perfect-blend #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
