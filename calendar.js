@@ -65,7 +65,7 @@ const applyTheme = (theme) => {
     'bright-line', 'bronze-horseman', 'cacao-plantation', 
     'cafe-de-colombia', 'camomile-flowers', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'centaurus-constellation',
-    'cherry-garden', 'cinnamon-street', 'clean-energy', 
+    'cherry-garden', 'cinnamon-street', 'city-of-night', 'clean-energy', 
     'coastal-pacific', 'coffee-for-leaders', 'collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-reef', 'cosmic-nebula', 'cosmic-perspective',
     'cracked-ice', 'crimson-sky', 'critical-thinking', 
