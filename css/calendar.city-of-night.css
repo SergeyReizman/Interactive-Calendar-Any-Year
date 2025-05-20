@@ -1,52 +1,56 @@
 /* ==========================================================================
-   City of Night Theme - Noir Urban Interface
+   City of Night Theme - Cyberpunk-Inspired Urban Interface
    Version: 1.0
-   Updated: 2025-05-18
+   Updated: 2025-05-20
    Changes:
-   - Created dark urban color palette
-   - Added film noir elements and rain effects
-   - Designed with cinematic typography
-   - Maintained all structural elements from Black Hawk
+   - Created neon cyberpunk color palette
+   - Added urban tech elements and digital details
+   - Designed with futuristic typography and glowing accents
+   - Maintained all structural elements from Black Fashion
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
 
 :root {
-    /* Noir Color Palette */
-    --noir-bg: #0A0A0A;
-    --noir-text: #E0E0E0;
-    --noir-primary: #1A1A1A;
-    --noir-secondary: #2A2A2A;
+    /* Cyberpunk Color Palette */
+    --night-bg: #0A0A12;
+    --night-text: #E0E0FF;
+    --night-primary: #12121A;
+    --night-secondary: #1A1A22;
 
-    /* Cityscape Colors */
-    --noir-shadow1: #121212;
-    --noir-shadow2: #1E1E1E;
-    --noir-shadow3: #252525;
-    --noir-shadow4: #2E2E2E;
-    --noir-shadow5: #363636;
+    /* Texture Colors */
+    --night-texture1: #0E0E16;
+    --night-texture2: #14141C;
+    --night-texture3: #1C1C24;
+    --night-texture4: #24242C;
+    --night-texture5: #2C2C34;
 
-    /* Accent Colors */
-    --noir-accent1: #8B939A;
-    --noir-accent2: #A6B0B8;
-    --noir-accent3: #C0CBD4;
-    --noir-accent4: #D9E5F2;
-    --noir-accent5: #FF5E1A;
+    /* Neon Accent Colors */
+    --night-accent1: #FF00AA;
+    --night-accent2: #00FFFF;
+    --night-accent3: #AA00FF;
+    --night-accent4: #FFFF00;
+    --night-accent5: #00FFAA;
 
     /* Theme Variables */
-    --noir-shadow: rgba(42, 52, 57, 0.7);
-    --noir-radius: 0px;
-    --noir-transition: 0.3s ease;
-    --noir-hover: #FF5E1A;
-    --noir-glow: 0 0 10px rgba(255, 94, 26, 0.5);
-    --noir-rain: url('data:image/svg+xml;utf8,<svg width="10" height="20" viewBox="0 0 10 20" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="0" x2="3" y2="20" stroke="%23A6B0B8" stroke-width="0.5" stroke-opacity="0.3"/></svg>');
+    --night-shadow: rgba(0, 255, 255, 0.2);
+    --night-radius: 4px;
+    --night-transition: 0.3s ease;
+    --night-hover: #FFFFFF;
+    --night-glow: 0 0 15px rgba(0, 255, 255, 0.5);
+    --night-stripe: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 5px,
+            rgba(0, 255, 255, 0.05) 5px,
+            rgba(0, 255, 255, 0.05) 10px);
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes noir-flicker {
+@keyframes night-fade {
 
     0%,
     100% {
-        opacity: 0.8;
+        opacity: 0.9;
     }
 
     50% {
@@ -54,49 +58,64 @@
     }
 }
 
-@keyframes noir-rain {
+@keyframes night-slide {
     from {
-        background-position: 0 0;
+        transform: translateX(-10px);
+        opacity: 0;
     }
 
     to {
-        background-position: 0 20px;
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
-@keyframes noir-fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+@keyframes night-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--night-shadow);
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    50% {
+        box-shadow: var(--night-glow);
+    }
+}
+
+@keyframes neon-glow {
+    0% {
+        text-shadow: 0 0 5px var(--night-accent2);
+    }
+
+    50% {
+        text-shadow: 0 0 20px var(--night-accent2);
+    }
+
+    100% {
+        text-shadow: 0 0 5px var(--night-accent2);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .city-of-night {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: var(--noir-text);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--night-text);
     line-height: 1.6;
-    background-color: var(--noir-bg);
+    background-color: var(--night-bg);
     min-height: 100vh;
-    background-image: var(--noir-rain);
-    animation: noir-rain 0.5s linear infinite;
 }
 
 .city-of-night .container {
-    background-color: rgba(10, 10, 10, 0.97);
+    background-color: var(--night-primary);
     padding: 2rem;
-    border: 1px solid var(--noir-accent1);
-    box-shadow: var(--noir-glow);
+    border: 1px solid var(--night-accent2);
+    box-shadow: var(--night-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--noir-radius);
+    border-radius: var(--night-radius);
+    background-image: var(--night-stripe);
 }
 
 .city-of-night .container::before {
@@ -106,30 +125,31 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--noir-accent5), transparent);
+    background: linear-gradient(90deg, transparent, var(--night-accent2), transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .city-of-night #calendar-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--noir-accent5);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--night-accent2);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 10px rgba(255, 94, 26, 0.3);
-    animation: noir-flicker 3s infinite;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     position: relative;
+    animation: neon-glow 2s infinite;
 }
 
 .city-of-night #calendar-title::after {
-    content: "";
+    content: "◊";
     position: absolute;
-    bottom: -10px;
-    left: 30%;
-    right: 30%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--noir-accent5), transparent);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--night-accent2);
+    font-size: 1.5rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -137,22 +157,21 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1.5rem;
-    background-color: rgba(26, 26, 26, 0.7);
-    border: 1px solid var(--noir-accent1);
+    background-color: var(--night-texture3);
+    border: 1px solid var(--night-accent2);
     position: relative;
 }
 
 .city-of-night #date-weather-container::before {
-    content: "FILM NOIR";
+    content: "SYSTEM UPDATE";
     position: absolute;
     top: -10px;
     right: 20px;
-    background-color: var(--noir-primary);
+    background-color: var(--night-primary);
     padding: 0 10px;
     font-size: 0.8rem;
     letter-spacing: 0.2em;
-    color: var(--noir-accent5);
-    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--night-accent2);
 }
 
 .city-of-night #date-weather-container::after {
@@ -162,25 +181,25 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--noir-accent5), transparent);
+    background: linear-gradient(90deg, transparent, var(--night-accent2), transparent);
 }
 
 .city-of-night #current-date {
-    font-family: 'Playfair Display', serif;
-    color: var(--noir-accent4);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--night-accent2);
     font-size: 1.8rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
 }
 
 .city-of-night #today-weather {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: var(--noir-accent3);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--night-accent5);
     font-size: 1.4rem;
     font-weight: 300;
     letter-spacing: 0.1em;
-    font-style: italic;
+    text-transform: uppercase;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -193,11 +212,11 @@
 .city-of-night .clock-face {
     width: 200px;
     height: 200px;
-    border: 8px solid var(--noir-accent1);
+    border: 8px solid var(--night-accent2);
     border-radius: 50%;
     position: relative;
-    background-color: var(--noir-bg);
-    box-shadow: var(--noir-glow);
+    background-color: var(--night-primary);
+    box-shadow: var(--night-glow);
 }
 
 .city-of-night .hand {
@@ -212,25 +231,26 @@
 .city-of-night .hour-hand {
     width: 40%;
     left: 10%;
-    height: 6px;
-    background: var(--noir-accent1);
-    margin-top: -3px;
+    height: 4px;
+    background: var(--night-accent1);
+    margin-top: -2px;
 }
 
 .city-of-night .minute-hand {
     width: 48%;
     left: 2%;
-    height: 4px;
-    background: var(--noir-accent1);
-    margin-top: -2px;
+    height: 3px;
+    background: var(--night-accent3);
+    margin-top: -1.5px;
 }
 
 .city-of-night .second-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--noir-accent5);
-    margin-top: -1px;
+    height: 1px;
+    background: var(--night-accent2);
+    margin-top: -0.5px;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
@@ -238,20 +258,21 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(10, 10, 10, 0.9);
-    border: 1px solid var(--noir-accent1);
+    background-color: var(--night-primary);
+    border: 1px solid var(--night-accent2);
     table-layout: fixed;
 }
 
 /* DAY OF WEEK HEADERS */
 .city-of-night th {
-    background-color: rgba(26, 26, 26, 0.8);
-    color: var(--noir-text) !important;
-    font-family: 'Playfair Display', serif;
+    background-color: var(--night-texture2);
+    color: var(--night-text) !important;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 400;
+    text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--noir-accent1);
+    border: 1px solid var(--night-accent2);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -270,35 +291,36 @@
 }
 
 .city-of-night td {
-    background-color: rgba(26, 26, 26, 0.3);
-    color: var(--noir-text);
+    background-color: var(--night-texture3);
+    color: var(--night-text);
     padding: 1.2rem;
-    border: 1px solid var(--noir-accent1);
+    border: 1px solid var(--night-accent2);
     height: 100px;
     vertical-align: top;
-    transition: all var(--noir-transition);
+    transition: all var(--night-transition);
     position: relative;
 }
 
 .city-of-night td:hover {
-    background-color: rgba(255, 94, 26, 0.1);
-    box-shadow: inset 0 0 15px rgba(255, 94, 26, 0.2);
+    background-color: var(--night-texture4);
+    box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.1);
 }
 
 /* Current date highlight */
 .city-of-night td.current-day {
-    background-color: rgba(255, 94, 26, 0.2);
-    border: 1px solid var(--noir-accent5);
-    color: var(--noir-text) !important;
-    font-weight: 700;
+    background-color: var(--night-texture5);
+    border: 1px solid var(--night-accent2);
+    color: var(--night-text) !important;
+    font-weight: 500;
+    animation: night-pulse 2s infinite;
 }
 
 .city-of-night td.current-day::before {
-    content: "♠";
+    content: "◆";
     position: absolute;
     top: 5px;
     right: 5px;
-    color: var(--noir-accent5);
+    color: var(--night-accent2);
     z-index: 1;
     font-size: 1.2rem;
 }
@@ -306,7 +328,7 @@
 .city-of-night td.current-day>.date-number {
     position: relative;
     z-index: 2;
-    color: var(--noir-text) !important;
+    color: var(--night-text) !important;
     font-weight: bold;
 }
 
@@ -316,27 +338,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--noir-accent5);
+    background-color: var(--night-accent1);
     margin: 0 2px;
-    box-shadow: 0 0 5px rgba(255, 94, 26, 0.5);
-    transition: all var(--noir-transition);
+    box-shadow: 0 0 5px rgba(255, 0, 170, 0.5);
+    transition: all var(--night-transition);
 }
 
 .city-of-night .event-marker:hover {
     transform: scale(2);
-    background-color: var(--noir-accent5);
-    box-shadow: 0 0 15px rgba(255, 94, 26, 0.8);
+    background-color: var(--night-accent1);
+    box-shadow: 0 0 15px rgba(255, 0, 170, 0.8);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .city-of-night .modal-content {
     position: relative;
-    background-color: rgba(10, 10, 10, 0.98);
-    border: 1px solid var(--noir-accent1);
+    background-color: var(--night-primary);
+    border: 1px solid var(--night-accent2);
     padding: 30px;
-    color: var(--noir-text);
-    box-shadow: var(--noir-glow);
-    animation: noir-fadeIn 0.3s ease-out;
+    color: var(--night-text);
+    box-shadow: var(--night-glow);
+    animation: night-slide 0.3s ease-out;
 }
 
 .city-of-night .modal-content::before {
@@ -346,34 +368,35 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--noir-accent5);
+    background: var(--night-accent2);
 }
 
 .city-of-night .modal-content h2 {
-    color: var(--noir-accent5);
-    font-family: 'Playfair Display', serif;
+    color: var(--night-accent2);
+    font-family: 'Orbitron', sans-serif;
     font-size: 2em;
     margin-bottom: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
 }
 
 .city-of-night .modal-content button {
     background-color: transparent;
-    color: var(--noir-accent5);
-    border: 1px solid var(--noir-accent5);
+    color: var(--night-accent2);
+    border: 1px solid var(--night-accent2);
     padding: 12px 24px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--noir-transition);
+    transition: all var(--night-transition);
     letter-spacing: 1px;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
 }
 
 .city-of-night .modal-content button:hover {
-    background-color: var(--noir-accent5);
-    color: var(--noir-bg);
-    box-shadow: var(--noir-glow);
+    background-color: var(--night-accent2);
+    color: var(--night-primary);
+    box-shadow: var(--night-glow);
 }
 
 /* Close Button */
@@ -382,34 +405,35 @@
     top: 15px;
     right: 15px;
     background-color: transparent;
-    color: var(--noir-accent5);
-    border: 1px solid var(--noir-accent5);
+    color: var(--night-accent2);
+    border: 1px solid var(--night-accent2);
     width: 32px;
     height: 32px;
     cursor: pointer;
-    transition: all var(--noir-transition);
+    transition: all var(--night-transition);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .city-of-night .modal .close-button:hover {
-    background-color: var(--noir-accent5);
-    color: var(--noir-bg);
+    background-color: var(--night-accent2);
+    color: var(--night-primary);
     transform: rotate(90deg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .city-of-night .button,
 .city-of-night .transparent-button {
-    border: 1px solid var(--noir-accent1);
-    color: var(--noir-accent3);
+    border: 1px solid var(--night-accent2);
+    color: var(--night-accent5);
     background-color: transparent;
     padding: 0.8rem 1.6rem;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--noir-transition);
+    transition: all var(--night-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
@@ -423,16 +447,16 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 94, 26, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
     transition: 0.5s;
 }
 
 .city-of-night .button:hover,
 .city-of-night .transparent-button:hover {
-    background-color: rgba(255, 94, 26, 0.1);
-    color: var(--noir-accent5);
-    border-color: var(--noir-accent5);
-    box-shadow: var(--noir-glow);
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--night-accent2);
+    border-color: var(--night-accent2);
+    box-shadow: var(--night-glow);
 }
 
 .city-of-night .button:hover::before,
@@ -457,43 +481,43 @@
 }
 
 .city-of-night #theme-switcher {
-    background-color: rgba(26, 26, 26, 0.8);
-    color: var(--noir-text) !important;
-    border: 1px solid var(--noir-accent1);
+    background-color: var(--night-texture2);
+    color: var(--night-text) !important;
+    border: 1px solid var(--night-accent2);
     padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0E0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300FFFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
     cursor: pointer;
-    transition: all var(--noir-transition);
+    transition: all var(--night-transition);
 }
 
 .city-of-night #theme-switcher option {
-    background-color: rgba(10, 10, 10, 0.98) !important;
-    color: var(--noir-text) !important;
+    background-color: var(--night-primary) !important;
+    color: var(--night-text) !important;
     font-size: 1rem;
     font-weight: 500;
     padding: 12px 15px !important;
-    border-bottom: 1px solid var(--noir-accent1) !important;
+    border-bottom: 1px solid var(--night-accent2) !important;
 }
 
 .city-of-night #theme-switcher option:hover {
-    background-color: var(--noir-accent5) !important;
-    color: var(--noir-bg) !important;
+    background-color: var(--night-accent2) !important;
+    color: var(--night-primary) !important;
 }
 
 .city-of-night #theme-switcher:focus {
     outline: none;
-    border-color: var(--noir-accent5);
-    box-shadow: var(--noir-glow);
+    border-color: var(--night-accent2);
+    box-shadow: var(--night-glow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -502,24 +526,25 @@
     right: 30px;
     bottom: 30px;
     z-index: 9999;
-    border: 1px solid var(--noir-accent1);
+    border: 1px solid var(--night-accent2);
     padding: 1rem 1.8rem;
     font-size: 1rem;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--noir-accent3);
-    background-color: rgba(26, 26, 26, 0.8);
+    color: var(--night-accent5);
+    background-color: var(--night-texture2);
     cursor: pointer;
-    transition: all var(--noir-transition);
+    transition: all var(--night-transition);
     opacity: 0.9;
     display: none;
 }
 
 .city-of-night #backToTopBtn:hover {
-    background-color: rgba(255, 94, 26, 0.2);
-    color: var(--noir-accent5);
-    border-color: var(--noir-accent5);
-    box-shadow: var(--noir-glow);
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--night-accent2);
+    border-color: var(--night-accent2);
+    box-shadow: var(--night-glow);
     opacity: 1;
 }
 
@@ -528,8 +553,8 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--noir-accent1);
-    color: var(--noir-text);
+    border-top: 1px solid var(--night-accent2);
+    color: var(--night-text);
     font-size: 0.9rem;
 }
 
@@ -541,6 +566,7 @@
 
     .city-of-night #calendar-title {
         font-size: 2rem;
+        letter-spacing: 0.1em;
     }
 
     .city-of-night #current-date {
