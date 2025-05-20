@@ -52,7 +52,7 @@ const generateStars = () => {
 const applyTheme = (theme) => {
   body.classList.remove(
     'abandoned-castle', 'a-brilliant-mind',
-    'action-time', 'adelaide-skyline', 'adriatic-sea', 'aloe-vera', 
+    'action-time', 'adelaide-skyline', 'adriatic-sea', 'aloe-vera', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazon-dolphin',
     'amazon-river', 'andromeda-galaxy', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 
     'art-studio', 'a-thing-of-beauty', 'autumn-harvest', 'away-from-home','bamboo-flute',
