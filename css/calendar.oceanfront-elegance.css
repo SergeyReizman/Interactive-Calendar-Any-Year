@@ -1,0 +1,706 @@
+/* ==========================================================================
+   Oceanfront Elegance Theme - Coastal Luxury Interface
+   Version: 1.0
+   Updated: 2025-05-20
+   Changes:
+   - Created coastal luxury color palette
+   - Added nautical decorative elements and wave patterns
+   - Designed with refined typography and aquatic accents
+   - Maintained all structural elements from Success Story
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Coastal Color Palette */
+    --ocean-bg: #F5F9FC;
+    --ocean-text: #2D3747;
+    --ocean-primary: #FFFFFF;
+    --ocean-secondary: #E8F0F5;
+
+    /* Texture Colors */
+    --ocean-texture1: #E0EAF2;
+    --ocean-texture2: #D1E0EB;
+    --ocean-texture3: #C2D6E3;
+    --ocean-texture4: #B3CCDC;
+    --ocean-texture5: #A4C2D4;
+
+    /* Accent Colors */
+    --ocean-accent1: #006994;
+    /* Deep Navy */
+    --ocean-accent2: #4D8CAC;
+    /* Ocean Blue */
+    --ocean-accent3: #7FB3C8;
+    /* Sky Blue */
+    --ocean-accent4: #B8D8E0;
+    /* Sea Foam */
+    --ocean-accent5: #E1F0F5;
+    /* Mist */
+
+    /* Theme Variables */
+    --ocean-shadow: rgba(0, 105, 148, 0.15);
+    --ocean-radius: 6px;
+    --ocean-transition: 0.3s ease;
+    --ocean-hover: #006994;
+    --ocean-glow: 0 0 15px rgba(0, 105, 148, 0.1);
+    --ocean-wave: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23006994"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23006994"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23006994"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ocean-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes ocean-slide {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ocean-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ocean-shadow);
+    }
+
+    50% {
+        box-shadow: var(--ocean-glow);
+    }
+}
+
+@keyframes wave-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.oceanfront-elegance {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ocean-text);
+    line-height: 1.6;
+    background-color: var(--ocean-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 Q25,40 50,50 T100,50" fill="none" stroke="%234D8CAC" stroke-width="0.3" opacity="0.1"/></svg>');
+}
+
+.oceanfront-elegance .container {
+    background-color: var(--ocean-primary);
+    padding: 2rem;
+    border: 1px solid var(--ocean-accent4);
+    box-shadow: var(--ocean-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ocean-radius);
+}
+
+.oceanfront-elegance .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ocean-accent1) 0%,
+            var(--ocean-accent2) 50%,
+            var(--ocean-accent1) 100%);
+}
+
+.oceanfront-elegance .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--ocean-wave);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.oceanfront-elegance #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ocean-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 600;
+    animation: wave-float 4s ease-in-out infinite;
+}
+
+.oceanfront-elegance #calendar-title::after {
+    content: "⛵";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.oceanfront-elegance #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--ocean-primary);
+    border: 1px solid var(--ocean-accent4);
+    border-radius: var(--ocean-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.oceanfront-elegance #date-weather-container::before {
+    content: "TIDE CHART";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--ocean-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--ocean-accent1);
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.oceanfront-elegance #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ocean-accent2), transparent);
+}
+
+.oceanfront-elegance #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ocean-accent1);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.oceanfront-elegance #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ocean-accent2);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.oceanfront-elegance #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.oceanfront-elegance .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--ocean-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ocean-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234D8CAC" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.oceanfront-elegance .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.oceanfront-elegance .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--ocean-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.oceanfront-elegance .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--ocean-accent2);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.oceanfront-elegance .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ocean-accent3);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.oceanfront-elegance table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.oceanfront-elegance th {
+    background-color: var(--ocean-accent1);
+    color: white !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-radius: var(--ocean-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.oceanfront-elegance th span.full-day-name {
+    display: inline;
+}
+
+.oceanfront-elegance th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.oceanfront-elegance td {
+    background-color: var(--ocean-primary);
+    color: var(--ocean-text);
+    padding: 1.2rem;
+    border: 1px solid var(--ocean-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ocean-transition);
+    position: relative;
+    border-radius: var(--ocean-radius);
+}
+
+.oceanfront-elegance td:hover {
+    background-color: var(--ocean-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Current date highlight */
+.oceanfront-elegance td.current-day {
+    background-color: var(--ocean-accent5);
+    border: 1px solid var(--ocean-accent2);
+    color: var(--ocean-text) !important;
+    font-weight: 500;
+    animation: ocean-pulse 3s infinite;
+}
+
+.oceanfront-elegance td.current-day::before {
+    content: "🌊";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+}
+
+.oceanfront-elegance td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--ocean-accent1) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.oceanfront-elegance .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ocean-accent2);
+    margin: 0 2px;
+    transition: all var(--ocean-transition);
+}
+
+.oceanfront-elegance .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--ocean-accent2);
+    box-shadow: 0 0 5px rgba(77, 140, 172, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.oceanfront-elegance .modal-content {
+    position: relative;
+    background-color: var(--ocean-primary);
+    border: 1px solid var(--ocean-accent4);
+    padding: 30px;
+    color: var(--ocean-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: var(--ocean-radius);
+    animation: ocean-slide 0.3s ease-out;
+}
+
+.oceanfront-elegance .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ocean-accent1) 0%,
+            var(--ocean-accent2) 50%,
+            var(--ocean-accent1) 100%);
+}
+
+.oceanfront-elegance .modal-content h2 {
+    color: var(--ocean-accent1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.oceanfront-elegance .modal-content button {
+    background-color: var(--ocean-accent1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--ocean-radius);
+}
+
+.oceanfront-elegance .modal-content button:hover {
+    background-color: var(--ocean-accent2);
+    box-shadow: 0 5px 15px rgba(77, 140, 172, 0.3);
+}
+
+/* Close Button */
+.oceanfront-elegance .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--ocean-text);
+    border: 1px solid var(--ocean-texture4);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.oceanfront-elegance .modal .close-button:hover {
+    background-color: var(--ocean-accent1);
+    color: white;
+    border-color: var(--ocean-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.oceanfront-elegance .button,
+.oceanfront-elegance .transparent-button {
+    border: 1px solid var(--ocean-accent1);
+    color: var(--ocean-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ocean-radius);
+}
+
+.oceanfront-elegance .button::before,
+.oceanfront-elegance .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 105, 148, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.oceanfront-elegance .button:hover,
+.oceanfront-elegance .transparent-button:hover {
+    background-color: var(--ocean-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 105, 148, 0.2);
+}
+
+.oceanfront-elegance .button:hover::before,
+.oceanfront-elegance .transparent-button:hover::before {
+    left: 100%;
+}
+
+.oceanfront-elegance .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.oceanfront-elegance #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.oceanfront-elegance #theme-switcher {
+    background-color: var(--ocean-primary);
+    color: var(--ocean-text) !important;
+    border: 1px solid var(--ocean-accent4);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23006994'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    border-radius: var(--ocean-radius);
+}
+
+.oceanfront-elegance #theme-switcher option {
+    background-color: var(--ocean-primary) !important;
+    color: var(--ocean-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.oceanfront-elegance #theme-switcher option:hover {
+    background-color: var(--ocean-accent1) !important;
+    color: white !important;
+}
+
+.oceanfront-elegance #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ocean-accent1);
+    box-shadow: 0 0 0 3px rgba(0, 105, 148, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.oceanfront-elegance #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--ocean-accent1);
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ocean-radius);
+    box-shadow: 0 3px 10px rgba(0, 105, 148, 0.3);
+}
+
+.oceanfront-elegance #backToTopBtn:hover {
+    background-color: var(--ocean-accent2);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(77, 140, 172, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.oceanfront-elegance footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ocean-accent4);
+    color: var(--ocean-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .oceanfront-elegance .container {
+        padding: 1.5rem;
+    }
+
+    .oceanfront-elegance #calendar-title {
+        font-size: 2rem;
+    }
+
+    .oceanfront-elegance #current-date {
+        font-size: 1.5rem;
+    }
+
+    .oceanfront-elegance #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .oceanfront-elegance .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .oceanfront-elegance th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .oceanfront-elegance th span.full-day-name {
+        display: none;
+    }
+
+    .oceanfront-elegance th abbr {
+        display: inline;
+    }
+
+    .oceanfront-elegance td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .oceanfront-elegance td.current-day::before {
+        font-size: 1rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .oceanfront-elegance #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .oceanfront-elegance #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .oceanfront-elegance #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .oceanfront-elegance .container {
+        padding: 0.8rem;
+    }
+
+    .oceanfront-elegance #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .oceanfront-elegance #current-date {
+        font-size: 1.1rem;
+    }
+
+    .oceanfront-elegance #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .oceanfront-elegance .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .oceanfront-elegance th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .oceanfront-elegance td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .oceanfront-elegance td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .oceanfront-elegance #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .oceanfront-elegance th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .oceanfront-elegance td {
+        height: 50px;
+    }
+
+    .oceanfront-elegance #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
