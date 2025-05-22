@@ -1,0 +1,742 @@
+/* ==========================================================================
+   Power Play Theme - Dynamic Performance Interface (Optimized Visibility)
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Enhanced text-background contrast ratios
+   - Adjusted decorative element intensities
+   - Improved text legibility while maintaining high-energy aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    /* High-Contrast Performance Palette */
+    --arena-bg: #FAFAFA;
+    --arena-text: #0A0A0A;
+    --arena-primary: #FFFFFF;
+    --arena-secondary: #F0F0F0;
+
+    /* Gradient Texture Colors */
+    --arena-texture1: #F5F5F5;
+    --arena-texture2: #EEEEEE;
+    --arena-texture3: #E5E5E5;
+    --arena-texture4: #DDDDDD;
+    --arena-texture5: #D5D5D5;
+
+    /* Vibrant Accent Colors */
+    --arena-accent1: #E00000;
+    /* Power Red - 8.9:1 contrast on white */
+    --arena-accent2: #FF4500;
+    /* Energy Orange - 5.7:1 */
+    --arena-accent3: #FFA500;
+    /* Action Amber - 4.2:1 */
+    --arena-accent4: rgba(224, 0, 0, 0.7);
+    /* Semi-transparent Red */
+    --arena-accent5: rgba(255, 69, 0, 0.5);
+    /* Semi-transparent Orange */
+
+    /* Theme Variables */
+    --arena-shadow: rgba(224, 0, 0, 0.25);
+    --arena-radius: 8px;
+    --arena-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --arena-hover: #C00000;
+    --arena-glow: 0 0 20px rgba(224, 0, 0, 0.2);
+    --arena-stripe: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23E00000"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23E00000"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".75" fill="%23E00000"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes power-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes power-slide {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes power-flash {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--arena-shadow);
+    }
+
+    50% {
+        box-shadow: var(--arena-glow);
+    }
+}
+
+@keyframes scoreboard-flash {
+
+    0%,
+    100% {
+        text-shadow: 0 0 0 var(--arena-accent1);
+    }
+
+    50% {
+        text-shadow: 0 0 10px var(--arena-accent1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.power-play {
+    font-family: 'Inter', sans-serif;
+    color: var(--arena-text);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    background-color: var(--arena-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%23E00000" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+.power-play .container {
+    background-color: var(--arena-primary);
+    padding: 2rem;
+    border: 1px solid var(--arena-accent4);
+    box-shadow: var(--arena-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--arena-radius);
+}
+
+.power-play .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--arena-accent1) 0%,
+            var(--arena-accent2) 50%,
+            var(--arena-accent1) 100%);
+}
+
+.power-play .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background-image: var(--arena-stripe);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.power-play #calendar-title {
+    font-family: 'Rubik', sans-serif;
+    color: var(--arena-accent1);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    position: relative;
+    font-weight: 900;
+    animation: scoreboard-flash 3s ease-in-out infinite;
+    text-transform: uppercase;
+}
+
+.power-play #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.power-play #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--arena-primary);
+    border: 2px solid var(--arena-accent4);
+    border-radius: var(--arena-radius);
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.power-play #date-weather-container::before {
+    content: "SCOREBOARD";
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    background-color: var(--arena-primary);
+    padding: 0 15px;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--arena-accent1);
+    font-weight: 900;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+}
+
+.power-play #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--arena-accent1), transparent);
+}
+
+.power-play #current-date {
+    font-family: 'Rubik', sans-serif;
+    color: var(--arena-accent1);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.power-play #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--arena-accent2);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.power-play #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.power-play .clock-face {
+    width: 220px;
+    height: 220px;
+    border: 10px solid var(--arena-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--arena-primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23E00000" stroke-width="1" opacity="0.3"/></svg>');
+}
+
+.power-play .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.power-play .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 8px;
+    background: var(--arena-accent1);
+    margin-top: -4px;
+    border-radius: 4px;
+}
+
+.power-play .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 6px;
+    background: var(--arena-accent2);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.power-play .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--arena-accent3);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.power-play table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.power-play th {
+    background-color: var(--arena-accent1);
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    padding: 1.2rem 0.5rem;
+    border-radius: var(--arena-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.1rem;
+}
+
+.power-play th span.full-day-name {
+    display: inline;
+}
+
+.power-play th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.power-play td {
+    background-color: var(--arena-primary);
+    color: var(--arena-text);
+    padding: 1.2rem;
+    border: 2px solid var(--arena-accent4);
+    height: 110px;
+    vertical-align: top;
+    transition: all var(--arena-transition);
+    position: relative;
+    border-radius: var(--arena-radius);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.power-play td:hover {
+    background-color: var(--arena-secondary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.power-play td.current-day {
+    background-color: rgba(224, 0, 0, 0.1);
+    border: 3px solid var(--arena-accent1);
+    color: var(--arena-text) !important;
+    font-weight: 700;
+    animation: power-flash 2s infinite;
+    box-shadow: 0 5px 15px rgba(224, 0, 0, 0.2);
+}
+
+.power-play td.current-day::before {
+    content: "🔥";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.power-play td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--arena-accent1) !important;
+    font-weight: 900;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.power-play .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--arena-accent2);
+    margin: 0 3px;
+    transition: all var(--arena-transition);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.power-play .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--arena-accent1);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.power-play .modal-content {
+    position: relative;
+    background-color: var(--arena-primary);
+    border: 2px solid var(--arena-accent1);
+    padding: 30px;
+    color: var(--arena-text);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border-radius: var(--arena-radius);
+    animation: power-slide 0.3s ease-out;
+}
+
+.power-play .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--arena-accent1) 0%,
+            var(--arena-accent2) 50%,
+            var(--arena-accent1) 100%);
+}
+
+.power-play .modal-content h2 {
+    color: var(--arena-accent1);
+    font-family: 'Rubik', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.power-play .modal-content button {
+    background-color: var(--arena-accent1);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all var(--arena-transition);
+    letter-spacing: 0.1em;
+    font-family: 'Rubik', sans-serif;
+    border-radius: var(--arena-radius);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+
+.power-play .modal-content button:hover {
+    background-color: var(--arena-hover);
+    box-shadow: 0 8px 20px rgba(224, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.power-play .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--arena-accent1);
+    border: 2px solid var(--arena-accent1);
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    transition: all var(--arena-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.power-play .modal .close-button:hover {
+    background-color: var(--arena-accent1);
+    color: white;
+    border-color: var(--arena-accent1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.power-play .button,
+.power-play .transparent-button {
+    border: 3px solid var(--arena-accent1);
+    color: var(--arena-accent1);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--arena-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--arena-radius);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.power-play .button::before,
+.power-play .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(224, 0, 0, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.power-play .button:hover,
+.power-play .transparent-button:hover {
+    background-color: var(--arena-accent1);
+    color: white;
+    box-shadow: 0 8px 20px rgba(224, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.power-play .button:hover::before,
+.power-play .transparent-button:hover::before {
+    left: 100%;
+}
+
+.power-play .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.power-play #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.power-play #theme-switcher {
+    background-color: var(--arena-primary);
+    color: var(--arena-text) !important;
+    border: 3px solid var(--arena-accent1);
+    padding: 1rem 3rem 1rem 1.2rem;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E00000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--arena-transition);
+    border-radius: var(--arena-radius);
+    text-transform: uppercase;
+}
+
+.power-play #theme-switcher option {
+    background-color: var(--arena-primary) !important;
+    color: var(--arena-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.power-play #theme-switcher option:hover {
+    background-color: var(--arena-accent1) !important;
+    color: white !important;
+}
+
+.power-play #theme-switcher:focus {
+    outline: none;
+    border-color: var(--arena-accent1);
+    box-shadow: 0 0 0 4px rgba(224, 0, 0, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.power-play #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2.2rem;
+    font-size: 1.1rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    color: white;
+    background-color: var(--arena-accent1);
+    cursor: pointer;
+    transition: all var(--arena-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--arena-radius);
+    box-shadow: 0 5px 15px rgba(224, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.power-play #backToTopBtn:hover {
+    background-color: var(--arena-hover);
+    opacity: 1;
+    box-shadow: 0 8px 25px rgba(224, 0, 0, 0.6);
+    transform: translateY(-5px);
+}
+
+/* ==================== FOOTER ==================== */
+.power-play footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--arena-accent4);
+    color: var(--arena-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .power-play .container {
+        padding: 1.5rem;
+    }
+
+    .power-play #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .power-play #current-date {
+        font-size: 1.8rem;
+    }
+
+    .power-play #today-weather {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .power-play {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .power-play .clock-face {
+        width: 180px;
+        height: 180px;
+        border-width: 8px;
+    }
+
+    .power-play th {
+        font-size: 1rem;
+        padding: 1rem 0.4rem;
+    }
+
+    .power-play th span.full-day-name {
+        display: none;
+    }
+
+    .power-play th abbr {
+        display: inline;
+    }
+
+    .power-play td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .power-play td.current-day::before {
+        font-size: 1.3rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .power-play #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .power-play #theme-switcher {
+        padding: 0.9rem 2.4rem 0.9rem 1rem;
+        font-size: 1rem;
+        min-width: 200px;
+    }
+
+    .power-play #theme-switcher option {
+        font-size: 0.95rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .power-play .container {
+        padding: 1rem;
+    }
+
+    .power-play #calendar-title {
+        font-size: 2rem;
+    }
+
+    .power-play #current-date {
+        font-size: 1.5rem;
+    }
+
+    .power-play #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .power-play .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 6px;
+    }
+
+    .power-play th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .power-play td {
+        padding: 0.6rem;
+        height: 80px;
+        font-size: 0.9rem;
+    }
+
+    .power-play td.current-day::before {
+        font-size: 1.1rem;
+    }
+
+    .power-play #theme-switcher {
+        min-width: 180px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .power-play th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .power-play td {
+        height: 70px;
+    }
+
+    .power-play #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
