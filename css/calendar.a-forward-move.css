@@ -1,0 +1,727 @@
+/* ==========================================================================
+   A Forward Move Theme - Futuristic Motion Interface (Optimized Visibility)
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Enhanced digital readability with high contrast
+   - Adjusted motion elements for smooth transitions
+   - Improved interface flow while maintaining futuristic aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Exo+2:wght@300;400;600&display=swap');
+
+:root {
+    /* Futuristic Color Palette */
+    --matrix-bg: #0A0A12;
+    --matrix-text: #E0E0E0;
+    --matrix-primary: #1A1A24;
+    --matrix-secondary: #2A2A34;
+
+    /* HUD Texture Colors */
+    --matrix-texture1: #252530;
+    --matrix-texture2: #303040;
+    --matrix-texture3: #3A3A4A;
+    --matrix-texture4: #454555;
+    --matrix-texture5: #505060;
+
+    /* Neon Accent Colors */
+    --matrix-accent1: #00F0FF;
+    /* Cyber Cyan - 8.1:1 contrast on dark */
+    --matrix-accent2: #00C0FF;
+    /* Electric Blue - 6.7:1 */
+    --matrix-accent3: #A060FF;
+    /* Quantum Purple - 5.2:1 */
+    --matrix-accent4: rgba(0, 240, 255, 0.5);
+    /* Semi-transparent Cyan */
+    --matrix-accent5: rgba(0, 192, 255, 0.3);
+    /* Semi-transparent Blue */
+
+    /* Theme Variables */
+    --matrix-shadow: rgba(0, 240, 255, 0.15);
+    --matrix-radius: 4px;
+    --matrix-transition: 0.25s cubic-bezier(0.65, 0, 0.35, 1);
+    --matrix-hover: #00D0FF;
+    --matrix-glow: 0 0 15px rgba(0, 240, 255, 0.3);
+    --matrix-grid: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%2300F0FF" stroke-width="0.3" opacity="0.1"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%2300F0FF" stroke-width="0.1" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes matrix-fade {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes matrix-slide {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes matrix-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--matrix-shadow);
+    }
+
+    50% {
+        box-shadow: var(--matrix-glow);
+    }
+}
+
+@keyframes digital-flicker {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--matrix-accent1);
+    }
+
+    50% {
+        text-shadow: 0 0 10px var(--matrix-accent1), 0 0 20px var(--matrix-accent4);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-forward-move {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--matrix-text);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    background-color: var(--matrix-bg);
+    min-height: 100vh;
+    background-image: var(--matrix-grid);
+}
+
+.a-forward-move .container {
+    background-color: var(--matrix-primary);
+    padding: 2rem;
+    border: 1px solid var(--matrix-accent4);
+    box-shadow: var(--matrix-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--matrix-radius);
+}
+
+.a-forward-move .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--matrix-accent1) 50%,
+            transparent 100%);
+}
+
+.a-forward-move .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            var(--matrix-accent1) 0%,
+            var(--matrix-accent3) 50%,
+            var(--matrix-accent1) 100%);
+    opacity: 0.5;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-forward-move #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--matrix-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    animation: digital-flicker 3s ease-in-out infinite;
+}
+
+.a-forward-move #calendar-title::after {
+    content: "⟁";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 5px var(--matrix-accent1));
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-forward-move #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--matrix-primary);
+    border: 1px solid var(--matrix-accent4);
+    border-radius: var(--matrix-radius);
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.a-forward-move #date-weather-container::before {
+    content: "SYSTEM STATUS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--matrix-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--matrix-accent1);
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.a-forward-move #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--matrix-accent1), transparent);
+}
+
+.a-forward-move #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--matrix-accent1);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.a-forward-move #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--matrix-accent2);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== DIGITAL CLOCK ==================== */
+.a-forward-move #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.a-forward-move .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 2px solid var(--matrix-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--matrix-primary);
+    box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.a-forward-move .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.a-forward-move .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--matrix-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--matrix-accent1);
+}
+
+.a-forward-move .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--matrix-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 5px var(--matrix-accent2);
+}
+
+.a-forward-move .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--matrix-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 5px var(--matrix-accent3);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-forward-move table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.a-forward-move th {
+    background-color: var(--matrix-primary);
+    color: var(--matrix-accent1) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-radius: var(--matrix-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--matrix-accent4);
+}
+
+.a-forward-move th span.full-day-name {
+    display: inline;
+}
+
+.a-forward-move th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.a-forward-move td {
+    background-color: var(--matrix-primary);
+    color: var(--matrix-text);
+    padding: 1.2rem;
+    border: 1px solid var(--matrix-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--matrix-transition);
+    position: relative;
+    border-radius: var(--matrix-radius);
+}
+
+.a-forward-move td:hover {
+    background-color: var(--matrix-secondary);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+/* Current date highlight */
+.a-forward-move td.current-day {
+    background-color: rgba(0, 240, 255, 0.05);
+    border: 1px solid var(--matrix-accent1);
+    color: var(--matrix-text) !important;
+    font-weight: 600;
+    animation: matrix-pulse 3s infinite;
+    box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.a-forward-move td.current-day::before {
+    content: "⌗";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    color: var(--matrix-accent1);
+    filter: drop-shadow(0 0 5px var(--matrix-accent1));
+}
+
+.a-forward-move td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--matrix-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-forward-move .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--matrix-accent2);
+    margin: 0 2px;
+    transition: all var(--matrix-transition);
+    box-shadow: 0 0 5px var(--matrix-accent2);
+}
+
+.a-forward-move .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--matrix-accent1);
+    box-shadow: 0 0 10px var(--matrix-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-forward-move .modal-content {
+    position: relative;
+    background-color: var(--matrix-primary);
+    border: 1px solid var(--matrix-accent1);
+    padding: 30px;
+    color: var(--matrix-text);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    border-radius: var(--matrix-radius);
+    animation: matrix-slide 0.3s ease-out;
+}
+
+.a-forward-move .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--matrix-accent1) 50%,
+            transparent 100%);
+}
+
+.a-forward-move .modal-content h2 {
+    color: var(--matrix-accent1);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.a-forward-move .modal-content button {
+    background-color: var(--matrix-accent1);
+    color: var(--matrix-bg);
+    border: none;
+    padding: 13px 26px;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--matrix-transition);
+    letter-spacing: 0.1em;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: var(--matrix-radius);
+    box-shadow: 0 0 10px var(--matrix-accent1);
+}
+
+.a-forward-move .modal-content button:hover {
+    background-color: var(--matrix-hover);
+    box-shadow: 0 0 20px var(--matrix-accent1);
+}
+
+/* Close Button */
+.a-forward-move .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--matrix-accent1);
+    border: 1px solid var(--matrix-accent1);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: all var(--matrix-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.a-forward-move .modal .close-button:hover {
+    background-color: var(--matrix-accent1);
+    color: var(--matrix-bg);
+    border-color: var(--matrix-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.a-forward-move .button,
+.a-forward-move .transparent-button {
+    border: 1px solid var(--matrix-accent1);
+    color: var(--matrix-accent1);
+    background-color: transparent;
+    padding: 0.9rem 1.7rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--matrix-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--matrix-radius);
+    letter-spacing: 0.1em;
+}
+
+.a-forward-move .button::before,
+.a-forward-move .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.a-forward-move .button:hover,
+.a-forward-move .transparent-button:hover {
+    background-color: var(--matrix-accent1);
+    color: var(--matrix-bg);
+    box-shadow: 0 0 15px var(--matrix-accent1);
+}
+
+.a-forward-move .button:hover::before,
+.a-forward-move .transparent-button:hover::before {
+    left: 100%;
+}
+
+.a-forward-move .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.a-forward-move #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.a-forward-move #theme-switcher {
+    background-color: var(--matrix-primary);
+    color: var(--matrix-text) !important;
+    border: 1px solid var(--matrix-accent1);
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--matrix-transition);
+    border-radius: var(--matrix-radius);
+}
+
+.a-forward-move #theme-switcher option {
+    background-color: var(--matrix-primary) !important;
+    color: var(--matrix-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.a-forward-move #theme-switcher option:hover {
+    background-color: var(--matrix-accent1) !important;
+    color: var(--matrix-bg) !important;
+}
+
+.a-forward-move #theme-switcher:focus {
+    outline: none;
+    border-color: var(--matrix-accent1);
+    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.a-forward-move #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1.05rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--matrix-bg);
+    background-color: var(--matrix-accent1);
+    cursor: pointer;
+    transition: all var(--matrix-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--matrix-radius);
+    box-shadow: 0 0 15px var(--matrix-accent1);
+    letter-spacing: 0.1em;
+}
+
+.a-forward-move #backToTopBtn:hover {
+    background-color: var(--matrix-hover);
+    opacity: 1;
+    box-shadow: 0 0 25px var(--matrix-accent1);
+}
+
+/* ==================== FOOTER ==================== */
+.a-forward-move footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--matrix-accent4);
+    color: var(--matrix-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .a-forward-move .container {
+        padding: 1.5rem;
+    }
+
+    .a-forward-move #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .a-forward-move #current-date {
+        font-size: 1.6rem;
+    }
+
+    .a-forward-move #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-forward-move {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .a-forward-move .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .a-forward-move th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .a-forward-move th span.full-day-name {
+        display: none;
+    }
+
+    .a-forward-move th abbr {
+        display: inline;
+    }
+
+    .a-forward-move td {
+        padding: 0.8rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .a-forward-move td.current-day::before {
+        font-size: 1.1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .a-forward-move #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.6rem;
+        font-size: 0.95rem;
+    }
+
+    .a-forward-move #theme-switcher {
+        padding: 0.8rem 2.1rem 0.8rem 0.9rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+
+    .a-forward-move #theme-switcher option {
+        font-size: 0.95rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-forward-move .container {
+        padding: 1rem;
+    }
+
+    .a-forward-move #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .a-forward-move #current-date {
+        font-size: 1.4rem;
+    }
+
+    .a-forward-move #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .a-forward-move .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .a-forward-move th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .a-forward-move td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.9rem;
+    }
+
+    .a-forward-move td.current-day::before {
+        font-size: 1rem;
+    }
+
+    .a-forward-move #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-forward-move th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .a-forward-move td {
+        height: 65px;
+    }
+
+    .a-forward-move #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}
