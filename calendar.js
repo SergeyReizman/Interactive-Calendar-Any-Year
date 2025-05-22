@@ -85,7 +85,7 @@ const applyTheme = (theme) => {
     'golden-gate', 'golden-horizon', 'golden-opportunity', 'grand-prix', 'great-idea',
     'great-lakes', 'green-city', 'green-coffee',
     'greenland-icebergs', 'green-tea',
-    'greyscale', 'guangzhou-lights', 'heavy-rain', 'hidden-trail', 
+    'greyscale', 'guangzhou-lights', 'heavy-rain', 'hidden-trail', 'hidden-paradise',
     'high-intelligence','high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
     'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
