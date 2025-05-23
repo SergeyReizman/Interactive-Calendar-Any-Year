@@ -1,0 +1,679 @@
+/* ==========================================================================
+   A Good Idea Theme - Thoughtful Productivity Interface (Optimized Clarity)
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Enhanced focus on content hierarchy
+   - Optimized spacing for readability
+   - Subtle interactions that support workflow
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&family=Source+Serif+Pro:wght@400;600&display=swap');
+
+:root {
+    /* Thoughtful Color Palette */
+    --paper-bg: #F9F9F7;
+    --paper-text: #333333;
+    --paper-primary: #FFFFFF;
+    --paper-secondary: #F0F0EC;
+
+    /* Subtle Texture Colors */
+    --paper-texture1: #F5F5F3;
+    --paper-texture2: #EEEEEA;
+    --paper-texture3: #E5E5E1;
+    --paper-texture4: #DDDDD9;
+    --paper-texture5: #D5D5D1;
+
+    /* Purposeful Accent Colors */
+    --paper-accent1: #2B5876;
+    /* Deep Navy - 7.1:1 contrast on white */
+    --paper-accent2: #4E7B9D;
+    /* Thoughtful Blue - 5.3:1 */
+    --paper-accent3: #7FA6C2;
+    /* Airy Blue - 3.9:1 */
+    --paper-accent4: rgba(129, 166, 194, 0.3);
+    /* Subtle Highlight */
+    --paper-accent5: rgba(210, 225, 236, 0.5);
+    /* Gentle Fill */
+
+    /* Theme Variables */
+    --paper-shadow: rgba(43, 88, 118, 0.1);
+    --paper-radius: 4px;
+    --paper-transition: 0.2s ease-out;
+    --paper-hover: #1E4A6B;
+    --paper-glow: 0 2px 8px rgba(43, 88, 118, 0.1);
+    --paper-rule: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="4" viewBox="0 0 100 4"><path d="M0,2 L100,2" stroke="%232B5876" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes idea-fade {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+}
+
+@keyframes idea-float {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes idea-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 1px 3px var(--paper-shadow);
+    }
+
+    50% {
+        box-shadow: var(--paper-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-good-idea {
+    font-family: 'Libre Franklin', sans-serif;
+    color: var(--paper-text);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    background-color: var(--paper-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="none" stroke="%234E7B9D" stroke-width="0.3" opacity="0.05"/></svg>');
+}
+
+.a-good-idea .container {
+    background-color: var(--paper-primary);
+    padding: 2.5rem;
+    border: none;
+    box-shadow: var(--paper-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: var(--paper-radius);
+}
+
+.a-good-idea .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--paper-accent1) 0%,
+            var(--paper-accent2) 50%,
+            var(--paper-accent1) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-good-idea #calendar-title {
+    font-family: 'Source Serif Pro', serif;
+    color: var(--paper-accent1);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.8rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.a-good-idea #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: var(--paper-accent2);
+    opacity: 0.5;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-good-idea #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 1.8rem;
+    background-color: var(--paper-primary);
+    border: none;
+    border-radius: var(--paper-radius);
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.a-good-idea #date-weather-container::before {
+    content: "CURRENT";
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: var(--paper-primary);
+    padding: 0 10px;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--paper-accent2);
+    font-weight: 600;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+.a-good-idea #current-date {
+    font-family: 'Source Serif Pro', serif;
+    color: var(--paper-accent1);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.a-good-idea #today-weather {
+    font-family: 'Libre Franklin', sans-serif;
+    color: var(--paper-accent2);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.a-good-idea #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.a-good-idea .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--paper-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--paper-primary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.a-good-idea .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.a-good-idea .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 5px;
+    background: var(--paper-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.a-good-idea .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 4px;
+    background: var(--paper-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.a-good-idea .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--paper-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-good-idea table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.a-good-idea th {
+    background-color: var(--paper-accent1);
+    color: white !important;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-radius: var(--paper-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.02em;
+}
+
+.a-good-idea th span.full-day-name {
+    display: inline;
+}
+
+.a-good-idea th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.a-good-idea td {
+    background-color: var(--paper-primary);
+    color: var(--paper-text);
+    padding: 1.2rem;
+    border: 1px solid var(--paper-accent5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--paper-transition);
+    position: relative;
+    border-radius: var(--paper-radius);
+}
+
+.a-good-idea td:hover {
+    background-color: var(--paper-secondary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Current date highlight */
+.a-good-idea td.current-day {
+    background-color: var(--paper-primary);
+    border: 2px solid var(--paper-accent2);
+    color: var(--paper-text) !important;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(78, 123, 157, 0.1);
+}
+
+.a-good-idea td.current-day::before {
+    content: "•";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.5rem;
+    color: var(--paper-accent2);
+    line-height: 0;
+}
+
+.a-good-idea td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--paper-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-good-idea .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--paper-accent2);
+    margin: 0 2px;
+    transition: all var(--paper-transition);
+}
+
+.a-good-idea .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--paper-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-good-idea .modal-content {
+    position: relative;
+    background-color: var(--paper-primary);
+    border: none;
+    padding: 30px;
+    color: var(--paper-text);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--paper-radius);
+    animation: idea-float 0.3s ease-out;
+}
+
+.a-good-idea .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--paper-accent1) 0%,
+            var(--paper-accent2) 50%,
+            var(--paper-accent1) 100%);
+}
+
+.a-good-idea .modal-content h2 {
+    color: var(--paper-accent1);
+    font-family: 'Source Serif Pro', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.a-good-idea .modal-content button {
+    background-color: var(--paper-accent1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--paper-transition);
+    font-family: 'Libre Franklin', sans-serif;
+    border-radius: var(--paper-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.a-good-idea .modal-content button:hover {
+    background-color: var(--paper-hover);
+    box-shadow: 0 3px 8px rgba(43, 88, 118, 0.2);
+}
+
+/* Close Button */
+.a-good-idea .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--paper-accent1);
+    border: 1px solid var(--paper-accent1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--paper-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.a-good-idea .modal .close-button:hover {
+    background-color: var(--paper-accent1);
+    color: white;
+    border-color: var(--paper-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.a-good-idea .button,
+.a-good-idea .transparent-button {
+    border: 1px solid var(--paper-accent1);
+    color: var(--paper-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--paper-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--paper-radius);
+}
+
+.a-good-idea .button::before,
+.a-good-idea .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(43, 88, 118, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.a-good-idea .button:hover,
+.a-good-idea .transparent-button:hover {
+    background-color: var(--paper-accent1);
+    color: white;
+    box-shadow: 0 3px 10px rgba(43, 88, 118, 0.2);
+}
+
+.a-good-idea .button:hover::before,
+.a-good-idea .transparent-button:hover::before {
+    left: 100%;
+}
+
+.a-good-idea .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.a-good-idea #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.a-good-idea #theme-switcher {
+    background-color: var(--paper-primary);
+    color: var(--paper-text) !important;
+    border: 1px solid var(--paper-accent1);
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B5876'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--paper-transition);
+    border-radius: var(--paper-radius);
+}
+
+.a-good-idea #theme-switcher option {
+    background-color: var(--paper-primary) !important;
+    color: var(--paper-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.a-good-idea #theme-switcher option:hover {
+    background-color: var(--paper-accent1) !important;
+    color: white !important;
+}
+
+.a-good-idea #theme-switcher:focus {
+    outline: none;
+    border-color: var(--paper-accent1);
+    box-shadow: 0 0 0 3px rgba(43, 88, 118, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.a-good-idea #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1.05rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--paper-accent1);
+    cursor: pointer;
+    transition: all var(--paper-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--paper-radius);
+    box-shadow: 0 2px 8px rgba(43, 88, 118, 0.3);
+}
+
+.a-good-idea #backToTopBtn:hover {
+    background-color: var(--paper-hover);
+    opacity: 1;
+    box-shadow: 0 3px 12px rgba(43, 88, 118, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.a-good-idea footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--paper-accent5);
+    color: var(--paper-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .a-good-idea .container {
+        padding: 2rem;
+    }
+
+    .a-good-idea #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .a-good-idea #current-date {
+        font-size: 1.6rem;
+    }
+
+    .a-good-idea #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-good-idea {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .a-good-idea .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 5px;
+    }
+
+    .a-good-idea th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .a-good-idea th span.full-day-name {
+        display: none;
+    }
+
+    .a-good-idea th abbr {
+        display: inline;
+    }
+
+    .a-good-idea td {
+        padding: 0.8rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .a-good-idea td.current-day::before {
+        font-size: 1.3rem;
+        top: 7px;
+        right: 7px;
+    }
+
+    .a-good-idea #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.6rem;
+        font-size: 0.95rem;
+    }
+
+    .a-good-idea #theme-switcher {
+        padding: 0.8rem 2.1rem 0.8rem 0.9rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+
+    .a-good-idea #theme-switcher option {
+        font-size: 0.95rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-good-idea .container {
+        padding: 1.5rem;
+    }
+
+    .a-good-idea #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .a-good-idea #current-date {
+        font-size: 1.4rem;
+    }
+
+    .a-good-idea #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .a-good-idea .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+
+    .a-good-idea th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .a-good-idea td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.9rem;
+    }
+
+    .a-good-idea td.current-day::before {
+        font-size: 1.1rem;
+    }
+
+    .a-good-idea #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-good-idea th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .a-good-idea td {
+        height: 65px;
+    }
+
+    .a-good-idea #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}
