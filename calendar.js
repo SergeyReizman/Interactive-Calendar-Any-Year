@@ -51,7 +51,7 @@ const generateStars = () => {
 // Theme Management
 const applyTheme = (theme) => {
   body.classList.remove(
-    'abandoned-castle', 'a-brilliant-mind',
+    'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
     'action-time', 'adelaide-skyline', 'adriatic-sea', 'a-forward-move',
     'a-good-idea', 'aloe-vera', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazon-dolphin',
