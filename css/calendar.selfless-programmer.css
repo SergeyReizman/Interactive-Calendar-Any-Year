@@ -1,6 +1,6 @@
 /* ==========================================================================
   Selfless Programmer Theme - Clean Code Calendar
-  Version: 1.0
+  Version: 1.1
   Updated: 2024-12-01
   Features:
   - Minimalist design
@@ -8,6 +8,7 @@
   - Subtle color palette
   - Responsive for all devices
   - Clear date/event displays
+  - Fixed weekday overlapping on mobile
   ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
@@ -162,6 +163,21 @@
   border: 1px solid var(--sp-primary);
   position: relative;
   text-shadow: 0 0 5px var(--sp-shadow);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selfless-programmer th span {
+  display: inline-block;
+}
+
+.selfless-programmer th .long-name {
+  display: inline;
+}
+
+.selfless-programmer th .short-name {
+  display: none;
 }
 
 .selfless-programmer th::after {
@@ -656,7 +672,17 @@
   }
 
   .selfless-programmer th {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.1rem;
+    letter-spacing: 0;
+  }
+
+  .selfless-programmer th .long-name {
+    display: none;
+  }
+
+  .selfless-programmer th .short-name {
+    display: inline;
   }
 
   .selfless-programmer td {
@@ -671,13 +697,28 @@
   }
 }
 
+@media (min-width: 577px) {
+  .selfless-programmer th .long-name {
+    display: inline;
+  }
+
+  .selfless-programmer th .short-name {
+    display: none;
+  }
+}
+
 @media (max-width: 400px) {
+  .selfless-programmer table {
+    table-layout: auto;
+  }
+
   .selfless-programmer #calendar-title {
     font-size: 1.4rem;
   }
 
   .selfless-programmer th {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+    padding: 0.2rem 0;
   }
 
   .selfless-programmer td {
@@ -698,12 +739,6 @@
 
   .selfless-programmer table {
     margin: 1rem auto;
-  }
-
-  .selfless-programmer th,
-  .selfless-programmer td {
-    padding: 0.5rem;
-    font-size: 0.85rem;
   }
 
   .selfless-programmer td {
@@ -736,6 +771,14 @@
 
   .selfless-programmer footer {
     font-size: 0.8rem;
+  }
+}
+
+/* For landscape orientation on very small devices */
+@media (max-width: 576px) and (orientation: landscape) {
+  .selfless-programmer th {
+    font-size: 0.6rem;
+    padding: 0.2rem 0;
   }
 }
 
@@ -798,12 +841,6 @@
 @media (max-width: 360px) {
   .selfless-programmer #calendar-title {
     font-size: 1.4rem;
-  }
-
-  .selfless-programmer th,
-  .selfless-programmer td {
-    font-size: 0.8rem;
-    padding: 0.3rem;
   }
 
   .selfless-programmer td {
