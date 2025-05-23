@@ -103,7 +103,7 @@ const applyTheme = (theme) => {
     'niagara-falls', 'night-dragon', 'night-sky','north-pole', 'northern-nights',
     'oceanfront-elegance','ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'one-way-ticket', 'on-the-island', 'orange-country', 
-    'orion-constellation', 'overnight-train','pink-lake', 'pirate-ship', 
+    'orion-constellation', 'overnight-train', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'precious-question','progressive-decision', 'pure-light', 
     'purple-fog', 'quantum-programmer', 'queen-of-ambience', 'quiet-evening',
@@ -118,7 +118,7 @@ const applyTheme = (theme) => {
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 'the-dead-sea',
     'the-great-silk-road', 'the-great-wall','the-highest-level', 'the-last-mohican', 'the-perfect-blend', 
     'time-complexity', 'time-machine', 'tokyo-at-night','tropical-sunset','urban-fashion', 
-    'velvety-dark', 'viking-helmet','viktoria-falls', 'wasted-love', 'weekend-downtime', 'white-shark', 
+    'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'zodiac-constellations'
 
