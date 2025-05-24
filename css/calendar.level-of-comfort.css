@@ -1,0 +1,689 @@
+/* ==========================================================================
+   Level of Comfort Theme - Cozy Living Interface (Optimized Relaxation)
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Warm, comforting color palette
+   - Soft, rounded design elements
+   - Gentle transitions and organic shapes
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Comfort Color Palette */
+    --comfort-bg: #FFF9F5;
+    --comfort-text: #4A3F35;
+    --comfort-primary: #FFFFFF;
+    --comfort-secondary: #F5EDE6;
+
+    /* Soft Texture Colors */
+    --comfort-texture1: #FFF9F5;
+    --comfort-texture2: #F5EDE6;
+    --comfort-texture3: #E8DED5;
+    --comfort-texture4: #D9CDC3;
+    --comfort-texture5: #C8B8AA;
+
+    /* Comforting Accent Colors */
+    --comfort-accent1: #C17C74;
+    /* Warm Terracotta - 5.1:1 contrast */
+    --comfort-accent2: #A7BEA9;
+    /* Soft Sage - 4.8:1 */
+    --comfort-accent3: #E8B796;
+    /* Peach - 4.3:1 */
+    --comfort-accent4: rgba(167, 190, 169, 0.3);
+    /* Semi-transparent Sage */
+    --comfort-accent5: rgba(232, 183, 150, 0.3);
+    /* Semi-transparent Peach */
+
+    /* Theme Variables */
+    --comfort-shadow: rgba(193, 124, 116, 0.1);
+    --comfort-radius: 12px;
+    --comfort-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --comfort-hover: #A8655E;
+    --comfort-glow: 0 4px 16px rgba(193, 124, 116, 0.15);
+    --comfort-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="%23C17C74" opacity="0.1"/><circle cx="50" cy="50" r="3" fill="%23C17C74" opacity="0.1"/><circle cx="80" cy="80" r="3" fill="%23C17C74" opacity="0.1"/><circle cx="20" cy="80" r="3" fill="%23C17C74" opacity="0.1"/><circle cx="80" cy="20" r="3" fill="%23C17C74" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes comfort-fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes comfort-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes comfort-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.level-of-comfort {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--comfort-text);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    background-color: var(--comfort-bg);
+    min-height: 100vh;
+    background-image: var(--comfort-pattern);
+    background-size: 200px;
+    background-position: center -50px;
+    background-repeat: no-repeat;
+}
+
+.level-of-comfort .container {
+    background-color: var(--comfort-primary);
+    padding: 2.5rem;
+    border: none;
+    box-shadow: var(--comfort-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: var(--comfort-radius);
+}
+
+.level-of-comfort .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--comfort-accent1) 0%,
+            var(--comfort-accent2) 50%,
+            var(--comfort-accent3) 100%);
+    border-radius: var(--comfort-radius) var(--comfort-radius) 0 0;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.level-of-comfort #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--comfort-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    position: relative;
+    animation: comfort-fadein 0.8s ease-out;
+}
+
+.level-of-comfort #calendar-title::after {
+    content: "☕";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: comfort-float 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.level-of-comfort #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background-color: var(--comfort-primary);
+    border: 1px solid var(--comfort-secondary);
+    border-radius: var(--comfort-radius);
+    position: relative;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.level-of-comfort #date-weather-container::before {
+    content: "TODAY";
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: var(--comfort-primary);
+    padding: 0 15px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--comfort-accent1);
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+}
+
+.level-of-comfort #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--comfort-accent2), transparent);
+    opacity: 0.5;
+}
+
+.level-of-comfort #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--comfort-accent1);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.level-of-comfort #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--comfort-accent2);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.level-of-comfort #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.level-of-comfort .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--comfort-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--comfort-primary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    animation: comfort-pulse 6s infinite;
+}
+
+.level-of-comfort .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.1s;
+    transition-timing-function: cubic-bezier(0.4, 2, 0.2, 1);
+}
+
+.level-of-comfort .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--comfort-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.level-of-comfort .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--comfort-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.level-of-comfort .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--comfort-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.level-of-comfort table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    margin: 2.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.level-of-comfort th {
+    background-color: var(--comfort-accent1);
+    color: white !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 1.2rem 0.5rem;
+    border-radius: var(--comfort-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.level-of-comfort th span.full-day-name {
+    display: inline;
+}
+
+.level-of-comfort th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.level-of-comfort td {
+    background-color: var(--comfort-primary);
+    color: var(--comfort-text);
+    padding: 1.2rem;
+    border: 1px solid var(--comfort-secondary);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--comfort-transition);
+    position: relative;
+    border-radius: var(--comfort-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.level-of-comfort td:hover {
+    background-color: var(--comfort-secondary);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.level-of-comfort td.current-day {
+    background-color: rgba(167, 190, 169, 0.2);
+    border: 2px solid var(--comfort-accent2);
+    color: var(--comfort-text) !important;
+    font-weight: 600;
+}
+
+.level-of-comfort td.current-day::before {
+    content: "🌸";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    animation: comfort-float 4s ease-in-out infinite;
+}
+
+.level-of-comfort td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--comfort-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.level-of-comfort .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--comfort-accent2);
+    margin: 0 2px;
+    transition: all var(--comfort-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.level-of-comfort .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--comfort-accent1);
+    box-shadow: 0 0 10px rgba(193, 124, 116, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.level-of-comfort .modal-content {
+    position: relative;
+    background-color: var(--comfort-primary);
+    border: none;
+    padding: 30px;
+    color: var(--comfort-text);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--comfort-radius);
+    animation: comfort-fadein 0.5s ease-out;
+}
+
+.level-of-comfort .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--comfort-accent1) 0%,
+            var(--comfort-accent2) 50%,
+            var(--comfort-accent3) 100%);
+    border-radius: var(--comfort-radius) var(--comfort-radius) 0 0;
+}
+
+.level-of-comfort .modal-content h2 {
+    color: var(--comfort-accent1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4em;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.level-of-comfort .modal-content button {
+    background-color: var(--comfort-accent1);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--comfort-transition);
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--comfort-radius);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.level-of-comfort .modal-content button:hover {
+    background-color: var(--comfort-hover);
+    box-shadow: 0 6px 18px rgba(193, 124, 116, 0.25);
+    transform: translateY(-3px);
+}
+
+/* Close Button */
+.level-of-comfort .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--comfort-accent1);
+    border: 2px solid var(--comfort-accent1);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--comfort-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.level-of-comfort .modal .close-button:hover {
+    background-color: var(--comfort-accent1);
+    color: white;
+    border-color: var(--comfort-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.level-of-comfort .button,
+.level-of-comfort .transparent-button {
+    border: 2px solid var(--comfort-accent1);
+    color: var(--comfort-accent1);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--comfort-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--comfort-radius);
+}
+
+.level-of-comfort .button::before,
+.level-of-comfort .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(193, 124, 116, 0.1), transparent);
+    transition: 0.6s;
+}
+
+.level-of-comfort .button:hover,
+.level-of-comfort .transparent-button:hover {
+    background-color: var(--comfort-accent1);
+    color: white;
+    box-shadow: 0 6px 18px rgba(193, 124, 116, 0.2);
+    transform: translateY(-3px);
+}
+
+.level-of-comfort .button:hover::before,
+.level-of-comfort .transparent-button:hover::before {
+    left: 100%;
+}
+
+.level-of-comfort .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.level-of-comfort #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.level-of-comfort #theme-switcher {
+    background-color: var(--comfort-primary);
+    color: var(--comfort-text) !important;
+    border: 2px solid var(--comfort-accent1);
+    padding: 1rem 3rem 1rem 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C17C74'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--comfort-transition);
+    border-radius: var(--comfort-radius);
+}
+
+.level-of-comfort #theme-switcher option {
+    background-color: var(--comfort-primary) !important;
+    color: var(--comfort-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.level-of-comfort #theme-switcher option:hover {
+    background-color: var(--comfort-accent1) !important;
+    color: white !important;
+}
+
+.level-of-comfort #theme-switcher:focus {
+    outline: none;
+    border-color: var(--comfort-accent1);
+    box-shadow: 0 0 0 4px rgba(193, 124, 116, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.level-of-comfort #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2.2rem;
+    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: var(--comfort-accent1);
+    cursor: pointer;
+    transition: all var(--comfort-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--comfort-radius);
+    box-shadow: 0 4px 12px rgba(193, 124, 116, 0.4);
+}
+
+.level-of-comfort #backToTopBtn:hover {
+    background-color: var(--comfort-hover);
+    opacity: 1;
+    box-shadow: 0 6px 20px rgba(193, 124, 116, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.level-of-comfort footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--comfort-secondary);
+    color: var(--comfort-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .level-of-comfort .container {
+        padding: 2rem;
+    }
+
+    .level-of-comfort #calendar-title {
+        font-size: 2.3rem;
+    }
+
+    .level-of-comfort #current-date {
+        font-size: 1.8rem;
+    }
+
+    .level-of-comfort #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .level-of-comfort {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .level-of-comfort .clock-face {
+        width: 180px;
+        height: 180px;
+        border-width: 7px;
+    }
+
+    .level-of-comfort th {
+        font-size: 0.95rem;
+        padding: 1rem 0.4rem;
+    }
+
+    .level-of-comfort th span.full-day-name {
+        display: none;
+    }
+
+    .level-of-comfort th abbr {
+        display: inline;
+    }
+
+    .level-of-comfort td {
+        padding: 1rem;
+        height: 110px;
+        font-size: 0.95rem;
+    }
+
+    .level-of-comfort td.current-day::before {
+        font-size: 1.2rem;
+    }
+
+    .level-of-comfort #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .level-of-comfort #theme-switcher {
+        padding: 0.9rem 2.4rem 0.9rem 1rem;
+        font-size: 1rem;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .level-of-comfort .container {
+        padding: 1.5rem;
+    }
+
+    .level-of-comfort #calendar-title {
+        font-size: 2rem;
+    }
+
+    .level-of-comfort #current-date {
+        font-size: 1.5rem;
+    }
+
+    .level-of-comfort #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .level-of-comfort .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .level-of-comfort th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .level-of-comfort td {
+        padding: 0.8rem;
+        height: 95px;
+    }
+
+    .level-of-comfort #theme-switcher {
+        min-width: 180px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .level-of-comfort th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .level-of-comfort td {
+        height: 85px;
+    }
+
+    .level-of-comfort #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
