@@ -1,0 +1,690 @@
+/* ==========================================================================
+   The Modern Developer Theme - Clean Tech Interface (Optimized Productivity)
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Professional color palette for developer focus
+   - Minimalist design with tech-inspired elements
+   - Enhanced readability with high-contrast typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Professional Color Palette */
+    --dev-bg: #FAFAFA;
+    --dev-text: #1A1A1A;
+    --dev-primary: #FFFFFF;
+    --dev-secondary: #F0F0F0;
+
+    /* Code Editor Inspired Colors */
+    --dev-texture1: #F5F5F5;
+    --dev-texture2: #EEEEEE;
+    --dev-texture3: #E0E0E0;
+    --dev-texture4: #BDBDBD;
+    --dev-texture5: #9E9E9E;
+
+    /* Tech Accent Colors */
+    --dev-accent1: #1976D2;
+    /* Primary Blue - 6.1:1 contrast on white */
+    --dev-accent2: #388E3C;
+    /* Success Green - 5.3:1 */
+    --dev-accent3: #FBC02D;
+    /* Warning Yellow - 4.1:1 */
+    --dev-accent4: rgba(56, 142, 60, 0.3);
+    /* Semi-transparent Green */
+    --dev-accent5: rgba(251, 192, 45, 0.3);
+    /* Semi-transparent Yellow */
+
+    /* Theme Variables */
+    --dev-shadow: rgba(25, 118, 210, 0.15);
+    --dev-radius: 6px;
+    --dev-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --dev-hover: #1565C0;
+    --dev-glow: 0 4px 12px rgba(25, 118, 210, 0.15);
+    --dev-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="10" height="10" x="0" y="0" fill="%231976D2" opacity="0.05"/><rect width="10" height="10" x="20" y="20" fill="%231976D2" opacity="0.05"/><rect width="10" height="10" x="40" y="40" fill="%231976D2" opacity="0.05"/><rect width="10" height="10" x="60" y="60" fill="%231976D2" opacity="0.05"/><rect width="10" height="10" x="80" y="80" fill="%231976D2" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dev-fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dev-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 2px 6px var(--dev-shadow);
+    }
+
+    50% {
+        box-shadow: var(--dev-glow);
+    }
+}
+
+@keyframes terminal-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-modern-developer {
+    font-family: 'Inter', sans-serif;
+    color: var(--dev-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--dev-bg);
+    min-height: 100vh;
+    background-image: var(--dev-pattern);
+    background-size: 100px;
+    background-position: center -30px;
+    background-repeat: repeat;
+}
+
+.the-modern-developer .container {
+    background-color: var(--dev-primary);
+    padding: 2rem;
+    border: none;
+    box-shadow: var(--dev-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: var(--dev-radius);
+}
+
+.the-modern-developer .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--dev-accent1) 0%,
+            var(--dev-accent2) 50%,
+            var(--dev-accent3) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-modern-developer #calendar-title {
+    font-family: 'Fira Code', monospace;
+    color: var(--dev-accent1);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    animation: dev-fadein 0.6s ease-out;
+}
+
+.the-modern-developer #calendar-title::after {
+    content: ">";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--dev-accent1);
+    animation: terminal-blink 1s step-end infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-modern-developer #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--dev-primary);
+    border: 1px solid var(--dev-secondary);
+    border-radius: var(--dev-radius);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.the-modern-developer #date-weather-container::before {
+    content: "STATUS";
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: var(--dev-primary);
+    padding: 0 15px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--dev-accent1);
+    font-weight: 700;
+    font-family: 'Fira Code', monospace;
+    text-transform: uppercase;
+}
+
+.the-modern-developer #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dev-accent1), transparent);
+    opacity: 0.3;
+}
+
+.the-modern-developer #current-date {
+    font-family: 'Fira Code', monospace;
+    color: var(--dev-accent1);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+}
+
+.the-modern-developer #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--dev-accent2);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-modern-developer #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.the-modern-developer .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--dev-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dev-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.the-modern-developer .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.the-modern-developer .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--dev-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.the-modern-developer .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--dev-accent2);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.the-modern-developer .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--dev-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.the-modern-developer table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.the-modern-developer th {
+    background-color: var(--dev-accent1);
+    color: white !important;
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+    padding: 1rem 0.5rem;
+    border-radius: var(--dev-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+}
+
+.the-modern-developer th span.full-day-name {
+    display: inline;
+}
+
+.the-modern-developer th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.the-modern-developer td {
+    background-color: var(--dev-primary);
+    color: var(--dev-text);
+    padding: 1rem;
+    border: 1px solid var(--dev-secondary);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--dev-transition);
+    position: relative;
+    border-radius: var(--dev-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.the-modern-developer td:hover {
+    background-color: var(--dev-secondary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.the-modern-developer td.current-day {
+    background-color: rgba(56, 142, 60, 0.1);
+    border: 2px solid var(--dev-accent2);
+    color: var(--dev-text) !important;
+    font-weight: 600;
+    animation: dev-pulse 3s infinite;
+}
+
+.the-modern-developer td.current-day::before {
+    content: "//";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1rem;
+    font-family: 'Fira Code', monospace;
+    color: var(--dev-accent1);
+}
+
+.the-modern-developer td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--dev-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-modern-developer .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dev-accent2);
+    margin: 0 2px;
+    transition: all var(--dev-transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.the-modern-developer .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--dev-accent1);
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-modern-developer .modal-content {
+    position: relative;
+    background-color: var(--dev-primary);
+    border: none;
+    padding: 25px;
+    color: var(--dev-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: var(--dev-radius);
+    animation: dev-fadein 0.4s ease-out;
+}
+
+.the-modern-developer .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--dev-accent1) 0%,
+            var(--dev-accent2) 50%,
+            var(--dev-accent3) 100%);
+}
+
+.the-modern-developer .modal-content h2 {
+    color: var(--dev-accent1);
+    font-family: 'Fira Code', monospace;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.the-modern-developer .modal-content button {
+    background-color: var(--dev-accent1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dev-transition);
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--dev-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.the-modern-developer .modal-content button:hover {
+    background-color: var(--dev-hover);
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.the-modern-developer .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--dev-accent1);
+    border: 2px solid var(--dev-accent1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--dev-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.the-modern-developer .modal .close-button:hover {
+    background-color: var(--dev-accent1);
+    color: white;
+    border-color: var(--dev-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-modern-developer .button,
+.the-modern-developer .transparent-button {
+    border: 2px solid var(--dev-accent1);
+    color: var(--dev-accent1);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dev-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--dev-radius);
+}
+
+.the-modern-developer .button::before,
+.the-modern-developer .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(25, 118, 210, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.the-modern-developer .button:hover,
+.the-modern-developer .transparent-button:hover {
+    background-color: var(--dev-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(25, 118, 210, 0.25);
+    transform: translateY(-2px);
+}
+
+.the-modern-developer .button:hover::before,
+.the-modern-developer .transparent-button:hover::before {
+    left: 100%;
+}
+
+.the-modern-developer .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-modern-developer #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.the-modern-developer #theme-switcher {
+    background-color: var(--dev-primary);
+    color: var(--dev-text) !important;
+    border: 2px solid var(--dev-accent1);
+    padding: 0.9rem 2.8rem 0.9rem 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231976D2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--dev-transition);
+    border-radius: var(--dev-radius);
+}
+
+.the-modern-developer #theme-switcher option {
+    background-color: var(--dev-primary) !important;
+    color: var(--dev-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.the-modern-developer #theme-switcher option:hover {
+    background-color: var(--dev-accent1) !important;
+    color: white !important;
+}
+
+.the-modern-developer #theme-switcher:focus {
+    outline: none;
+    border-color: var(--dev-accent1);
+    box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-modern-developer #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--dev-accent1);
+    cursor: pointer;
+    transition: all var(--dev-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--dev-radius);
+    box-shadow: 0 3px 10px rgba(25, 118, 210, 0.4);
+}
+
+.the-modern-developer #backToTopBtn:hover {
+    background-color: var(--dev-hover);
+    opacity: 1;
+    box-shadow: 0 5px 20px rgba(25, 118, 210, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.the-modern-developer footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--dev-secondary);
+    color: var(--dev-text);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-modern-developer .container {
+        padding: 1.8rem;
+    }
+
+    .the-modern-developer #calendar-title {
+        font-size: 2.1rem;
+    }
+
+    .the-modern-developer #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-modern-developer #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-modern-developer {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .the-modern-developer .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 5px;
+    }
+
+    .the-modern-developer th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.3rem;
+    }
+
+    .the-modern-developer th span.full-day-name {
+        display: none;
+    }
+
+    .the-modern-developer th abbr {
+        display: inline;
+    }
+
+    .the-modern-developer td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .the-modern-developer td.current-day::before {
+        font-size: 0.9rem;
+    }
+
+    .the-modern-developer #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.9rem 1.6rem;
+        font-size: 0.95rem;
+    }
+
+    .the-modern-developer #theme-switcher {
+        padding: 0.8rem 2.2rem 0.8rem 0.9rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-modern-developer .container {
+        padding: 1.5rem;
+    }
+
+    .the-modern-developer #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .the-modern-developer #current-date {
+        font-size: 1.3rem;
+    }
+
+    .the-modern-developer #today-weather {
+        font-size: 1rem;
+    }
+
+    .the-modern-developer .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+
+    .the-modern-developer th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .the-modern-developer td {
+        padding: 0.6rem;
+        height: 80px;
+    }
+
+    .the-modern-developer #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-modern-developer th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .the-modern-developer td {
+        height: 70px;
+    }
+
+    .the-modern-developer #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}
