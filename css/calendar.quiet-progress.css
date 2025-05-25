@@ -1,0 +1,682 @@
+/* ==========================================================================
+   Quiet Progress Theme - Focused Productivity Interface (Optimized Clarity)
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Minimalist color palette for reduced distraction
+   - Clean typography hierarchy for readability
+   - Subtle progress indicators and focus elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap');
+
+:root {
+    /* Monochrome Color Palette */
+    --quiet-bg: #F8F9FA;
+    --quiet-text: #2D3748;
+    --quiet-primary: #FFFFFF;
+    --quiet-secondary: #EDF2F7;
+
+    /* Grayscale Texture Colors */
+    --quiet-texture1: #F8F9FA;
+    --quiet-texture2: #EDF2F7;
+    --quiet-texture3: #E2E8F0;
+    --quiet-texture4: #CBD5E0;
+    --quiet-texture5: #A0AEC0;
+
+    /* Focus Accent Colors */
+    --quiet-accent1: #4A5568;
+    /* Dark Gray - 7.3:1 contrast */
+    --quiet-accent2: #718096;
+    /* Medium Gray - 5.1:1 */
+    --quiet-accent3: #A0AEC0;
+    /* Light Gray - 3.5:1 */
+    --quiet-accent4: rgba(113, 128, 150, 0.2);
+    /* Semi-transparent Gray */
+    --quiet-accent5: rgba(160, 174, 192, 0.2);
+    /* Semi-transparent Light Gray */
+
+    /* Theme Variables */
+    --quiet-shadow: rgba(74, 85, 104, 0.08);
+    --quiet-radius: 6px;
+    --quiet-transition: 0.2s ease-in-out;
+    --quiet-hover: #2D3748;
+    --quiet-glow: 0 2px 8px rgba(74, 85, 104, 0.1);
+    --quiet-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><line x1="0" y1="0" x2="100" y2="100" stroke="%234A5568" stroke-width="0.5" opacity="0.05"/><line x1="100" y1="0" x2="0" y2="100" stroke="%234A5568" stroke-width="0.5" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes quiet-fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes quiet-progress {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes quiet-pulse {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.quiet-progress {
+    font-family: 'Inter', sans-serif;
+    color: var(--quiet-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--quiet-bg);
+    min-height: 100vh;
+    background-image: var(--quiet-pattern);
+    background-size: 200px;
+    background-position: center -50px;
+    background-repeat: no-repeat;
+}
+
+.quiet-progress .container {
+    background-color: var(--quiet-primary);
+    padding: 2rem;
+    border: none;
+    box-shadow: var(--quiet-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: var(--quiet-radius);
+}
+
+.quiet-progress .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--quiet-accent1);
+    animation: quiet-progress 1.5s ease-out forwards;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.quiet-progress #calendar-title {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--quiet-accent1);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    animation: quiet-fadein 0.6s ease-out;
+}
+
+.quiet-progress #calendar-title::after {
+    content: "→";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--quiet-accent2);
+    animation: quiet-pulse 2s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.quiet-progress #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--quiet-primary);
+    border: 1px solid var(--quiet-secondary);
+    border-radius: var(--quiet-radius);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.quiet-progress #date-weather-container::before {
+    content: "UPDATE";
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: var(--quiet-primary);
+    padding: 0 15px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--quiet-accent1);
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+}
+
+.quiet-progress #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--quiet-accent2), transparent);
+    opacity: 0.3;
+}
+
+.quiet-progress #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--quiet-accent1);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+}
+
+.quiet-progress #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--quiet-accent2);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.quiet-progress #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.quiet-progress .clock-face {
+    width: 160px;
+    height: 160px;
+    border: 4px solid var(--quiet-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--quiet-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.quiet-progress .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 2, 0.2, 1);
+}
+
+.quiet-progress .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--quiet-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.quiet-progress .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--quiet-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.quiet-progress .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--quiet-accent3);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.quiet-progress table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.quiet-progress th {
+    background-color: var(--quiet-accent1);
+    color: white !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    padding: 1rem 0.5rem;
+    border-radius: var(--quiet-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+.quiet-progress th span.full-day-name {
+    display: inline;
+}
+
+.quiet-progress th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.quiet-progress td {
+    background-color: var(--quiet-primary);
+    color: var(--quiet-text);
+    padding: 1rem;
+    border: 1px solid var(--quiet-secondary);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--quiet-transition);
+    position: relative;
+    border-radius: var(--quiet-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.quiet-progress td:hover {
+    background-color: var(--quiet-secondary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.quiet-progress td.current-day {
+    background-color: rgba(113, 128, 150, 0.1);
+    border: 1px solid var(--quiet-accent2);
+    color: var(--quiet-text) !important;
+    font-weight: 500;
+}
+
+.quiet-progress td.current-day::before {
+    content: "•";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+    color: var(--quiet-accent1);
+    animation: quiet-pulse 2s infinite;
+}
+
+.quiet-progress td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--quiet-accent1) !important;
+    font-weight: 600;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.quiet-progress .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--quiet-accent2);
+    margin: 0 2px;
+    transition: all var(--quiet-transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.quiet-progress .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--quiet-accent1);
+    box-shadow: 0 0 6px rgba(74, 85, 104, 0.3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.quiet-progress .modal-content {
+    position: relative;
+    background-color: var(--quiet-primary);
+    border: none;
+    padding: 25px;
+    color: var(--quiet-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--quiet-radius);
+    animation: quiet-fadein 0.4s ease-out;
+}
+
+.quiet-progress .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--quiet-accent1);
+}
+
+.quiet-progress .modal-content h2 {
+    color: var(--quiet-accent1);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.quiet-progress .modal-content button {
+    background-color: var(--quiet-accent1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--quiet-transition);
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--quiet-radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quiet-progress .modal-content button:hover {
+    background-color: var(--quiet-hover);
+    box-shadow: 0 4px 12px rgba(74, 85, 104, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.quiet-progress .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--quiet-accent1);
+    border: 1px solid var(--quiet-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--quiet-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.quiet-progress .modal .close-button:hover {
+    background-color: var(--quiet-accent1);
+    color: white;
+    border-color: var(--quiet-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.quiet-progress .button,
+.quiet-progress .transparent-button {
+    border: 1px solid var(--quiet-accent1);
+    color: var(--quiet-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--quiet-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--quiet-radius);
+}
+
+.quiet-progress .button::before,
+.quiet-progress .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 85, 104, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.quiet-progress .button:hover,
+.quiet-progress .transparent-button:hover {
+    background-color: var(--quiet-accent1);
+    color: white;
+    box-shadow: 0 4px 12px rgba(74, 85, 104, 0.15);
+    transform: translateY(-2px);
+}
+
+.quiet-progress .button:hover::before,
+.quiet-progress .transparent-button:hover::before {
+    left: 100%;
+}
+
+.quiet-progress .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.quiet-progress #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.quiet-progress #theme-switcher {
+    background-color: var(--quiet-primary);
+    color: var(--quiet-text) !important;
+    border: 1px solid var(--quiet-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A5568'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--quiet-transition);
+    border-radius: var(--quiet-radius);
+}
+
+.quiet-progress #theme-switcher option {
+    background-color: var(--quiet-primary) !important;
+    color: var(--quiet-text) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 10px !important;
+}
+
+.quiet-progress #theme-switcher option:hover {
+    background-color: var(--quiet-accent1) !important;
+    color: white !important;
+}
+
+.quiet-progress #theme-switcher:focus {
+    outline: none;
+    border-color: var(--quiet-accent1);
+    box-shadow: 0 0 0 4px rgba(74, 85, 104, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.quiet-progress #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: white;
+    background-color: var(--quiet-accent1);
+    cursor: pointer;
+    transition: all var(--quiet-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--quiet-radius);
+    box-shadow: 0 3px 10px rgba(74, 85, 104, 0.3);
+}
+
+.quiet-progress #backToTopBtn:hover {
+    background-color: var(--quiet-hover);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(74, 85, 104, 0.4);
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.quiet-progress footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--quiet-secondary);
+    color: var(--quiet-text);
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .quiet-progress .container {
+        padding: 1.8rem;
+    }
+
+    .quiet-progress #calendar-title {
+        font-size: 2rem;
+    }
+
+    .quiet-progress #current-date {
+        font-size: 1.4rem;
+    }
+
+    .quiet-progress #today-weather {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .quiet-progress {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .quiet-progress .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 3px;
+    }
+
+    .quiet-progress th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .quiet-progress th span.full-day-name {
+        display: none;
+    }
+
+    .quiet-progress th abbr {
+        display: inline;
+    }
+
+    .quiet-progress td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .quiet-progress td.current-day::before {
+        font-size: 1rem;
+    }
+
+    .quiet-progress #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .quiet-progress #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.9rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .quiet-progress .container {
+        padding: 1.5rem;
+    }
+
+    .quiet-progress #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .quiet-progress #current-date {
+        font-size: 1.2rem;
+    }
+
+    .quiet-progress #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .quiet-progress .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 2px;
+    }
+
+    .quiet-progress th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .quiet-progress td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .quiet-progress #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .quiet-progress th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .quiet-progress td {
+        height: 70px;
+    }
+
+    .quiet-progress #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
