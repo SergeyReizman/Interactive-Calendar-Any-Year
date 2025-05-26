@@ -1,0 +1,789 @@
+/* ==========================================================================
+   Mountain of Dreams Theme - Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Alpine-inspired color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Nature-inspired UI elements
+   - Subtle snow animation effects
+   - Enhanced accessibility
+   - Textured mountain backgrounds
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@300;500&display=swap');
+
+:root {
+    /* Alpine Color Palette */
+    --mountain-bg: #0a1a2a;
+    --mountain-text: #e0f0ff;
+    --mountain-primary: #5d8aff;
+    /* Alpine blue */
+    --mountain-secondary: #a2d9ff;
+    /* Glacier blue */
+
+    /* Gradient Colors */
+    --mountain-gradient-start: #00172a;
+    --mountain-gradient-end: #002a1a;
+
+    /* Accent Colors */
+    --mountain-red: #ff6b6b;
+    /* Sunset */
+    --mountain-yellow: #ffd166;
+    /* Sunrise */
+    --mountain-green: #06d6a0;
+    /* Alpine meadow */
+    --mountain-purple: #9d65c9;
+    /* Twilight */
+    --mountain-white: #ffffff;
+    /* Snow */
+
+    /* Theme Variables */
+    --mountain-shadow: rgba(93, 138, 255, 0.2);
+    --mountain-radius: 6px;
+    /* Natural edges */
+    --mountain-transition: 0.3s ease-out;
+    --mountain-hover: #1a2a3a;
+    --mountain-current-day: #1a3a4a;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mountain-glow {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes snow-fall {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 500px 1000px, 300px 800px;
+    }
+}
+
+@keyframes cloud-float {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.mountain-of-dreams {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--mountain-text);
+    line-height: 1.6;
+    background: var(--mountain-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M30,100 L50,60 L70,100 Z" fill="%235d8aff"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.02"><circle cx="10" cy="10" r="1" fill="white"/><circle cx="30" cy="30" r="1" fill="white"/><circle cx="70" cy="20" r="1.5" fill="white"/><circle cx="90" cy="40" r="1" fill="white"/></svg>');
+    background-size: 300px 300px, 100px 100px;
+    animation: snow-fall 30s linear infinite;
+}
+
+.mountain-of-dreams::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            var(--mountain-gradient-start) 0%,
+            var(--mountain-gradient-end) 100%);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.mountain-of-dreams .container {
+    background-color: rgba(10, 25, 40, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--mountain-primary);
+    box-shadow: 0 0 30px var(--mountain-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mountain-radius);
+    z-index: 1;
+}
+
+.mountain-of-dreams .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mountain-primary),
+            var(--mountain-secondary),
+            transparent);
+    animation: mountain-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.mountain-of-dreams #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--mountain-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 10px rgba(93, 138, 255, 0.3);
+}
+
+.mountain-of-dreams #calendar-title::before,
+.mountain-of-dreams #calendar-title::after {
+    content: "⛰";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--mountain-secondary);
+    font-size: 1.5rem;
+    animation: cloud-float 4s infinite;
+}
+
+.mountain-of-dreams #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.mountain-of-dreams #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.mountain-of-dreams #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(93, 138, 255, 0.1);
+    border: 1px solid var(--mountain-primary);
+    border-radius: var(--mountain-radius);
+    position: relative;
+}
+
+.mountain-of-dreams #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mountain-primary),
+            transparent);
+}
+
+.mountain-of-dreams #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--mountain-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.mountain-of-dreams #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--mountain-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.mountain-of-dreams #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.mountain-of-dreams .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--mountain-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mountain-bg);
+    box-shadow:
+        0 0 15px var(--mountain-shadow),
+        inset 0 0 10px rgba(93, 138, 255, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(93, 138, 255, 0.1) 100%);
+}
+
+/* Mountain numerals for clock */
+.mountain-of-dreams .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%235d8aff">12</text><text x="82" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%235d8aff">3</text><text x="50" y="92" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%235d8aff">6</text><text x="18" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%235d8aff">9</text></svg>');
+}
+
+.mountain-of-dreams .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mountain-of-dreams .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--mountain-primary);
+    margin-top: -2px;
+}
+
+.mountain-of-dreams .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--mountain-secondary);
+    margin-top: -1px;
+}
+
+.mountain-of-dreams .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--mountain-white);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Compass rose */
+.mountain-of-dreams .clock-face::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--mountain-secondary);
+    font-size: 1.2rem;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.mountain-of-dreams table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(15, 30, 45, 0.9);
+    border: 1px solid var(--mountain-primary);
+    border-radius: var(--mountain-radius);
+    table-layout: fixed;
+}
+
+.mountain-of-dreams th {
+    background-color: rgba(93, 138, 255, 0.15);
+    color: var(--mountain-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--mountain-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.mountain-of-dreams th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.mountain-of-dreams th .short-day {
+    display: none;
+}
+
+.mountain-of-dreams td {
+    background-color: rgba(20, 35, 50, 0.9);
+    color: var(--mountain-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--mountain-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--mountain-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.mountain-of-dreams td:hover {
+    background-color: var(--mountain-hover);
+    box-shadow: inset 0 0 15px var(--mountain-shadow);
+}
+
+.mountain-of-dreams .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--mountain-text);
+}
+
+.mountain-of-dreams td.current-day {
+    background-color: var(--mountain-current-day);
+    border: 2px solid var(--mountain-secondary);
+    color: var(--mountain-secondary) !important;
+    font-weight: 600;
+}
+
+.mountain-of-dreams td.current-day .date-number {
+    color: var(--mountain-secondary) !important;
+    font-weight: 700;
+}
+
+.mountain-of-dreams td.current-day::before {
+    content: "❄";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--mountain-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: mountain-glow 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.mountain-of-dreams .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--mountain-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--mountain-shadow);
+    transition: all var(--mountain-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mountain-of-dreams .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--mountain-secondary);
+    box-shadow: 0 0 15px var(--mountain-primary);
+}
+
+/* Special event types */
+.mountain-of-dreams .event-marker.holiday {
+    background-color: var(--mountain-yellow);
+}
+
+.mountain-of-dreams .event-marker.historic {
+    background-color: var(--mountain-purple);
+}
+
+.mountain-of-dreams .event-marker.patriotic {
+    background-color: var(--mountain-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.mountain-of-dreams .modal-content {
+    position: relative;
+    background-color: rgba(15, 30, 45, 0.98);
+    border: 1px solid var(--mountain-primary);
+    padding: 25px;
+    color: var(--mountain-text);
+    box-shadow: 0 0 30px var(--mountain-shadow);
+    border-radius: var(--mountain-radius);
+}
+
+.mountain-of-dreams .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--mountain-primary),
+            var(--mountain-secondary),
+            var(--mountain-white));
+}
+
+.mountain-of-dreams .modal-content h2 {
+    color: var(--mountain-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.mountain-of-dreams .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.mountain-of-dreams .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--mountain-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.mountain-of-dreams .modal-content .event-description {
+    background-color: rgba(93, 138, 255, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--mountain-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--mountain-radius) var(--mountain-radius) 0;
+}
+
+.mountain-of-dreams .modal-content button {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    border-radius: var(--mountain-radius);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mountain-of-dreams .modal-content button:hover {
+    background-color: var(--mountain-secondary);
+    box-shadow: 0 4px 6px -1px var(--mountain-shadow);
+}
+
+.mountain-of-dreams .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--mountain-primary);
+    border: 1px solid var(--mountain-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.mountain-of-dreams .modal .close-button:hover {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.mountain-of-dreams .button,
+.mountain-of-dreams .transparent-button {
+    border: 1px solid var(--mountain-primary);
+    color: var(--mountain-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--mountain-radius);
+    letter-spacing: 0.05em;
+}
+
+.mountain-of-dreams .button::before,
+.mountain-of-dreams .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(93, 138, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.mountain-of-dreams .button:hover,
+.mountain-of-dreams .transparent-button:hover {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-bg);
+    box-shadow: 0 4px 6px -1px var(--mountain-shadow);
+}
+
+.mountain-of-dreams .button:hover::before,
+.mountain-of-dreams .transparent-button:hover::before {
+    left: 100%;
+}
+
+.mountain-of-dreams .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.mountain-of-dreams #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.mountain-of-dreams #theme-switcher {
+    background-color: var(--mountain-bg);
+    color: var(--mountain-primary) !important;
+    border: 1px solid var(--mountain-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--mountain-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235d8aff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    box-shadow: 0 1px 3px 0 var(--mountain-shadow);
+}
+
+.mountain-of-dreams #theme-switcher option {
+    background-color: var(--mountain-bg) !important;
+    color: var(--mountain-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.mountain-of-dreams #theme-switcher option:hover {
+    background-color: var(--mountain-primary) !important;
+    color: var(--mountain-bg) !important;
+}
+
+.mountain-of-dreams #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(93, 138, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.mountain-of-dreams #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--mountain-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--mountain-primary);
+    background-color: var(--mountain-bg);
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--mountain-radius);
+    box-shadow: 0 4px 6px -1px var(--mountain-shadow);
+}
+
+.mountain-of-dreams #backToTopBtn:hover {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.mountain-of-dreams footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--mountain-primary);
+    color: var(--mountain-text);
+    font-size: 0.8rem;
+}
+
+.mountain-of-dreams footer::before {
+    content: "🏔 ";
+    color: var(--mountain-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .mountain-of-dreams .container {
+        padding: 1.2rem;
+    }
+
+    .mountain-of-dreams #calendar-title {
+        font-size: 2rem;
+    }
+
+    .mountain-of-dreams #current-date {
+        font-size: 1.5rem;
+    }
+
+    .mountain-of-dreams #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .mountain-of-dreams th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mountain-of-dreams .container {
+        padding: 1rem;
+    }
+
+    .mountain-of-dreams #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .mountain-of-dreams .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .mountain-of-dreams th .full-day {
+        display: none;
+    }
+
+    .mountain-of-dreams th .short-day {
+        display: inline;
+    }
+
+    .mountain-of-dreams th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .mountain-of-dreams td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .mountain-of-dreams #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .mountain-of-dreams #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .mountain-of-dreams .modal-content {
+        padding: 15px;
+    }
+
+    .mountain-of-dreams .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .mountain-of-dreams .container {
+        padding: 0.8rem;
+    }
+
+    .mountain-of-dreams #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .mountain-of-dreams #current-date {
+        font-size: 1.1rem;
+    }
+
+    .mountain-of-dreams #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .mountain-of-dreams .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .mountain-of-dreams th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .mountain-of-dreams td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .mountain-of-dreams td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .mountain-of-dreams #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .mountain-of-dreams th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .mountain-of-dreams td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .mountain-of-dreams #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .mountain-of-dreams #calendar-title {
+        font-size: 1.2rem;
+    }
+}
