@@ -1,0 +1,790 @@
+/* ==========================================================================
+   Golden Light Theme - Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Warm golden color palette
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Sun-inspired UI elements
+   - Animated light effects
+   - Enhanced accessibility
+   - Luxe textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Roboto:wght@300;500&display=swap');
+
+:root {
+    /* Golden Color Palette */
+    --golden-bg: #1a120a;
+    --golden-text: #fff8e0;
+    --golden-primary: #ffc107;
+    /* Sun gold */
+    --golden-secondary: #ff9800;
+    /* Amber */
+
+    /* Gradient Colors */
+    --golden-gradient-start: #2a1a00;
+    --golden-gradient-end: #1a0a00;
+
+    /* Accent Colors */
+    --golden-red: #ff5722;
+    /* Sunset */
+    --golden-white: #ffffff;
+    /* Pure light */
+    --golden-brown: #8d6e63;
+    /* Earth */
+    --golden-blue: #2196f3;
+    /* Sky */
+    --golden-cream: #ffecb3;
+    /* Soft light */
+
+    /* Theme Variables */
+    --golden-shadow: rgba(255, 193, 7, 0.3);
+    --golden-radius: 6px;
+    /* Gentle edges */
+    --golden-transition: 0.3s ease-out;
+    --golden-hover: #2a1a0a;
+    --golden-current-day: #3a2a0a;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sun-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--golden-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--golden-secondary);
+    }
+}
+
+@keyframes ray-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes light-flicker {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.golden-lights {
+    font-family: 'Roboto', sans-serif;
+    color: var(--golden-text);
+    line-height: 1.6;
+    background: var(--golden-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><circle cx="50" cy="50" r="40" stroke="%23ffc107" stroke-width="1" fill="none"/><line x1="50" y1="10" x2="50" y2="30" stroke="%23ffc107" stroke-width="1"/><line x1="10" y1="50" x2="30" y2="50" stroke="%23ffc107" stroke-width="1"/><line x1="90" y1="50" x2="70" y2="50" stroke="%23ffc107" stroke-width="1"/><line x1="50" y1="90" x2="50" y2="70" stroke="%23ffc107" stroke-width="1"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><circle cx="20" cy="20" r="1" fill="%23ff9800"/><circle cx="50" cy="30" r="2" fill="%23ff9800"/><circle cx="80" cy="20" r="1.5" fill="%23ff9800"/></svg>');
+    background-size: 100px 100px, 200px 200px;
+}
+
+.golden-lights::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            var(--golden-gradient-start) 0%,
+            var(--golden-gradient-end) 100%);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.golden-lights .container {
+    background-color: rgba(26, 18, 10, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--golden-primary);
+    box-shadow: 0 0 30px var(--golden-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--golden-radius);
+    z-index: 1;
+}
+
+.golden-lights .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--golden-primary),
+            var(--golden-secondary),
+            transparent);
+    animation: sun-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.golden-lights #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--golden-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+.golden-lights #calendar-title::before,
+.golden-lights #calendar-title::after {
+    content: "☀";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--golden-secondary);
+    font-size: 1.5rem;
+    animation: light-flicker 2s infinite;
+}
+
+.golden-lights #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.golden-lights #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.golden-lights #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 193, 7, 0.1);
+    border: 1px solid var(--golden-primary);
+    border-radius: var(--golden-radius);
+    position: relative;
+}
+
+.golden-lights #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--golden-primary),
+            transparent);
+}
+
+.golden-lights #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--golden-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.golden-lights #today-weather {
+    font-family: 'Roboto', sans-serif;
+    color: var(--golden-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.golden-lights #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.golden-lights .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--golden-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--golden-bg);
+    box-shadow:
+        0 0 15px var(--golden-shadow),
+        inset 0 0 10px rgba(255, 193, 7, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 193, 7, 0.1) 100%);
+}
+
+/* Sun numerals for clock */
+.golden-lights .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23ffc107">12</text><text x="82" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23ffc107">3</text><text x="50" y="92" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23ffc107">6</text><text x="18" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23ffc107">9</text></svg>');
+}
+
+.golden-lights .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.golden-lights .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--golden-primary);
+    margin-top: -2px;
+}
+
+.golden-lights .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--golden-secondary);
+    margin-top: -1px;
+}
+
+.golden-lights .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--golden-white);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Sun */
+.golden-lights .clock-face::after {
+    content: "☀";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--golden-secondary);
+    font-size: 1.2rem;
+    animation: light-flicker 1s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.golden-lights table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(40, 30, 15, 0.9);
+    border: 1px solid var(--golden-primary);
+    border-radius: var(--golden-radius);
+    table-layout: fixed;
+}
+
+.golden-lights th {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: var(--golden-primary) !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--golden-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.golden-lights th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.golden-lights th .short-day {
+    display: none;
+}
+
+.golden-lights td {
+    background-color: rgba(50, 40, 25, 0.9);
+    color: var(--golden-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--golden-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--golden-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.golden-lights td:hover {
+    background-color: var(--golden-hover);
+    box-shadow: inset 0 0 15px var(--golden-shadow);
+}
+
+.golden-lights .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--golden-text);
+}
+
+.golden-lights td.current-day {
+    background-color: var(--golden-current-day);
+    border: 2px solid var(--golden-secondary);
+    color: var(--golden-primary) !important;
+    font-weight: 600;
+    animation: sun-glow 3s infinite;
+}
+
+.golden-lights td.current-day .date-number {
+    color: var(--golden-primary) !important;
+    font-weight: 700;
+}
+
+.golden-lights td.current-day::before {
+    content: "🌟";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--golden-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: light-flicker 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.golden-lights .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--golden-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--golden-shadow);
+    transition: all var(--golden-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.golden-lights .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--golden-secondary);
+    box-shadow: 0 0 15px var(--golden-primary);
+}
+
+/* Special event types */
+.golden-lights .event-marker.holiday {
+    background-color: var(--golden-red);
+}
+
+.golden-lights .event-marker.historic {
+    background-color: var(--golden-blue);
+}
+
+.golden-lights .event-marker.patriotic {
+    background-color: var(--golden-cream);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.golden-lights .modal-content {
+    position: relative;
+    background-color: rgba(40, 30, 15, 0.98);
+    border: 1px solid var(--golden-primary);
+    padding: 25px;
+    color: var(--golden-text);
+    box-shadow: 0 0 30px var(--golden-shadow);
+    border-radius: var(--golden-radius);
+}
+
+.golden-lights .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--golden-primary),
+            var(--golden-secondary),
+            var(--golden-white));
+}
+
+.golden-lights .modal-content h2 {
+    color: var(--golden-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.golden-lights .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.golden-lights .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--golden-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.golden-lights .modal-content .event-description {
+    background-color: rgba(255, 193, 7, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--golden-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--golden-radius) var(--golden-radius) 0;
+}
+
+.golden-lights .modal-content button {
+    background-color: var(--golden-primary);
+    color: var(--golden-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--golden-transition);
+    border-radius: var(--golden-radius);
+    font-family: 'Roboto', sans-serif;
+}
+
+.golden-lights .modal-content button:hover {
+    background-color: var(--golden-secondary);
+    box-shadow: 0 4px 6px -1px var(--golden-shadow);
+}
+
+.golden-lights .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--golden-primary);
+    border: 1px solid var(--golden-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--golden-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.golden-lights .modal .close-button:hover {
+    background-color: var(--golden-primary);
+    color: var(--golden-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.golden-lights .button,
+.golden-lights .transparent-button {
+    border: 1px solid var(--golden-primary);
+    color: var(--golden-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--golden-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--golden-radius);
+    letter-spacing: 0.05em;
+}
+
+.golden-lights .button::before,
+.golden-lights .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.golden-lights .button:hover,
+.golden-lights .transparent-button:hover {
+    background-color: var(--golden-primary);
+    color: var(--golden-bg);
+    box-shadow: 0 4px 6px -1px var(--golden-shadow);
+}
+
+.golden-lights .button:hover::before,
+.golden-lights .transparent-button:hover::before {
+    left: 100%;
+}
+
+.golden-lights .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.golden-lights #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.golden-lights #theme-switcher {
+    background-color: var(--golden-bg);
+    color: var(--golden-primary) !important;
+    border: 1px solid var(--golden-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--golden-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffc107'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--golden-transition);
+    box-shadow: 0 1px 3px 0 var(--golden-shadow);
+}
+
+.golden-lights #theme-switcher option {
+    background-color: var(--golden-bg) !important;
+    color: var(--golden-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.golden-lights #theme-switcher option:hover {
+    background-color: var(--golden-primary) !important;
+    color: var(--golden-bg) !important;
+}
+
+.golden-lights #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.golden-lights #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--golden-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    color: var(--golden-primary);
+    background-color: var(--golden-bg);
+    cursor: pointer;
+    transition: all var(--golden-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--golden-radius);
+    box-shadow: 0 4px 6px -1px var(--golden-shadow);
+}
+
+.golden-lights #backToTopBtn:hover {
+    background-color: var(--golden-primary);
+    color: var(--golden-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.golden-lights footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--golden-primary);
+    color: var(--golden-text);
+    font-size: 0.8rem;
+}
+
+.golden-lights footer::before {
+    content: "☀ ";
+    color: var(--golden-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .golden-lights .container {
+        padding: 1.2rem;
+    }
+
+    .golden-lights #calendar-title {
+        font-size: 2rem;
+    }
+
+    .golden-lights #current-date {
+        font-size: 1.5rem;
+    }
+
+    .golden-lights #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .golden-lights th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .golden-lights .container {
+        padding: 1rem;
+    }
+
+    .golden-lights #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .golden-lights .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .golden-lights th .full-day {
+        display: none;
+    }
+
+    .golden-lights th .short-day {
+        display: inline;
+    }
+
+    .golden-lights th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .golden-lights td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .golden-lights #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .golden-lights #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .golden-lights .modal-content {
+        padding: 15px;
+    }
+
+    .golden-lights .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .golden-lights .container {
+        padding: 0.8rem;
+    }
+
+    .golden-lights #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .golden-lights #current-date {
+        font-size: 1.1rem;
+    }
+
+    .golden-lights #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .golden-lights .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .golden-lights th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .golden-lights td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .golden-lights td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .golden-lights #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .golden-lights th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .golden-lights td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .golden-lights #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .golden-lights #calendar-title {
+        font-size: 1.2rem;
+    }
+}
