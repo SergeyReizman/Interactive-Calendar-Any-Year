@@ -1,0 +1,798 @@
+/* ==========================================================================
+   Sweet Misty Morning Theme - Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Soft pastel color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Nature-inspired UI elements
+   - Gentle animation effects
+   - Enhanced accessibility
+   - Subtle watercolor textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap');
+
+:root {
+    /* Pastel Color Palette */
+    --misty-bg: #f8f5f2;
+    --misty-text: #5a5a72;
+    --misty-primary: #b8a9c9;
+    /* Lavender */
+    --misty-secondary: #d4e2d4;
+    /* Mint */
+
+    /* Gradient Colors */
+    --misty-gradient-start: #f0e6f6;
+    --misty-gradient-end: #e6f6f0;
+
+    /* Accent Colors */
+    --misty-pink: #f2c2c2;
+    /* Blush */
+    --misty-yellow: #f5e6c8;
+    /* Buttercream */
+    --misty-green: #c8e3d4;
+    /* Sage */
+    --misty-blue: #c2d4f2;
+    /* Sky */
+    --misty-peach: #f2d4c2;
+    /* Peach */
+
+    /* Theme Variables */
+    --misty-shadow: rgba(184, 169, 201, 0.2);
+    --misty-radius: 8px;
+    /* Soft edges */
+    --misty-transition: 0.3s ease-in-out;
+    --misty-hover: #f0eaea;
+    --misty-current-day: #e6e0f0;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes misty-fade {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes watercolor-flow {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes misty-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.sweet-misty-morning {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--misty-text);
+    line-height: 1.6;
+    background: var(--misty-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 10% 20%,
+            rgba(184, 169, 201, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 90% 80%,
+            rgba(212, 226, 212, 0.05) 0%,
+            transparent 20%);
+    background-size: 100px 100px;
+    animation: watercolor-flow 30s linear infinite;
+}
+
+.sweet-misty-morning::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            var(--misty-gradient-start) 0%,
+            var(--misty-gradient-end) 100%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sweet-misty-morning .container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border: 1px solid var(--misty-primary);
+    box-shadow: 0 5px 15px var(--misty-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--misty-radius);
+    z-index: 1;
+}
+
+.sweet-misty-morning .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--misty-primary),
+            var(--misty-secondary),
+            transparent);
+    opacity: 0.7;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.sweet-misty-morning #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--misty-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: misty-fade 5s infinite;
+}
+
+.sweet-misty-morning #calendar-title::before,
+.sweet-misty-morning #calendar-title::after {
+    content: "🌸";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--misty-secondary);
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.sweet-misty-morning #calendar-title::before {
+    left: 1rem;
+}
+
+.sweet-misty-morning #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.sweet-misty-morning #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(184, 169, 201, 0.1);
+    border: 1px solid var(--misty-primary);
+    border-radius: var(--misty-radius);
+    position: relative;
+}
+
+.sweet-misty-morning #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--misty-primary),
+            transparent);
+    opacity: 0.5;
+}
+
+.sweet-misty-morning #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--misty-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.sweet-misty-morning #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--misty-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.sweet-misty-morning #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.sweet-misty-morning .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--misty-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--misty-bg);
+    box-shadow:
+        0 0 15px var(--misty-shadow),
+        inset 0 0 10px rgba(184, 169, 201, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(184, 169, 201, 0.1) 100%);
+}
+
+/* Floral numerals for clock */
+.sweet-misty-morning .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">9</text></svg>');
+}
+
+.sweet-misty-morning .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sweet-misty-morning .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--misty-primary);
+    margin-top: -2px;
+}
+
+.sweet-misty-morning .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--misty-secondary);
+    margin-top: -1px;
+}
+
+.sweet-misty-morning .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--misty-pink);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Floral center */
+.sweet-misty-morning .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--misty-peach);
+    border-radius: 50%;
+    border: 1px solid var(--misty-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.sweet-misty-morning table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--misty-primary);
+    border-radius: var(--misty-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.sweet-misty-morning th {
+    background-color: rgba(184, 169, 201, 0.15);
+    color: var(--misty-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--misty-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.sweet-misty-morning th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.sweet-misty-morning th .short-day {
+    display: none;
+}
+
+.sweet-misty-morning td {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--misty-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--misty-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--misty-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.sweet-misty-morning td:hover {
+    background-color: var(--misty-hover);
+    box-shadow: inset 0 0 15px var(--misty-shadow);
+}
+
+.sweet-misty-morning .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--misty-text);
+}
+
+.sweet-misty-morning td.current-day {
+    background-color: var(--misty-current-day);
+    border: 2px solid var(--misty-secondary);
+    color: var(--misty-primary) !important;
+    font-weight: 600;
+}
+
+.sweet-misty-morning td.current-day .date-number {
+    color: var(--misty-primary) !important;
+    font-weight: 700;
+}
+
+.sweet-misty-morning td.current-day::before {
+    content: "🌿";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--misty-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: misty-float 3s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.sweet-misty-morning .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--misty-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--misty-shadow);
+    transition: all var(--misty-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.sweet-misty-morning .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--misty-secondary);
+    box-shadow: 0 0 15px var(--misty-primary);
+}
+
+/* Special event types */
+.sweet-misty-morning .event-marker.holiday {
+    background-color: var(--misty-yellow);
+}
+
+.sweet-misty-morning .event-marker.historic {
+    background-color: var(--misty-blue);
+}
+
+.sweet-misty-morning .event-marker.patriotic {
+    background-color: var(--misty-pink);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.sweet-misty-morning .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--misty-primary);
+    padding: 25px;
+    color: var(--misty-text);
+    box-shadow: 0 5px 20px var(--misty-shadow);
+    border-radius: var(--misty-radius);
+}
+
+.sweet-misty-morning .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--misty-primary),
+            var(--misty-secondary),
+            var(--misty-pink));
+    opacity: 0.7;
+}
+
+.sweet-misty-morning .modal-content h2 {
+    color: var(--misty-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.sweet-misty-morning .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.sweet-misty-morning .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--misty-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.sweet-misty-morning .modal-content .event-description {
+    background-color: rgba(184, 169, 201, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--misty-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--misty-radius) var(--misty-radius) 0;
+}
+
+.sweet-misty-morning .modal-content button {
+    background-color: var(--misty-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--misty-transition);
+    border-radius: var(--misty-radius);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.sweet-misty-morning .modal-content button:hover {
+    background-color: var(--misty-secondary);
+    box-shadow: 0 4px 6px -1px var(--misty-shadow);
+}
+
+.sweet-misty-morning .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--misty-primary);
+    border: 1px solid var(--misty-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--misty-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.sweet-misty-morning .modal .close-button:hover {
+    background-color: var(--misty-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.sweet-misty-morning .button,
+.sweet-misty-morning .transparent-button {
+    border: 1px solid var(--misty-primary);
+    color: var(--misty-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--misty-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--misty-radius);
+    letter-spacing: 0.05em;
+}
+
+.sweet-misty-morning .button::before,
+.sweet-misty-morning .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184, 169, 201, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.sweet-misty-morning .button:hover,
+.sweet-misty-morning .transparent-button:hover {
+    background-color: var(--misty-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--misty-shadow);
+}
+
+.sweet-misty-morning .button:hover::before,
+.sweet-misty-morning .transparent-button:hover::before {
+    left: 100%;
+}
+
+.sweet-misty-morning .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.sweet-misty-morning #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.sweet-misty-morning #theme-switcher {
+    background-color: var(--misty-bg);
+    color: var(--misty-primary) !important;
+    border: 1px solid var(--misty-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--misty-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b8a9c9'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--misty-transition);
+    box-shadow: 0 1px 3px 0 var(--misty-shadow);
+}
+
+.sweet-misty-morning #theme-switcher option {
+    background-color: var(--misty-bg) !important;
+    color: var(--misty-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.sweet-misty-morning #theme-switcher option:hover {
+    background-color: var(--misty-primary) !important;
+    color: white !important;
+}
+
+.sweet-misty-morning #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(184, 169, 201, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.sweet-misty-morning #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--misty-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    color: var(--misty-primary);
+    background-color: var(--misty-bg);
+    cursor: pointer;
+    transition: all var(--misty-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--misty-radius);
+    box-shadow: 0 4px 6px -1px var(--misty-shadow);
+}
+
+.sweet-misty-morning #backToTopBtn:hover {
+    background-color: var(--misty-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.sweet-misty-morning footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--misty-primary);
+    color: var(--misty-text);
+    font-size: 0.8rem;
+}
+
+.sweet-misty-morning footer::before {
+    content: "🌼 ";
+    color: var(--misty-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .sweet-misty-morning .container {
+        padding: 1.2rem;
+    }
+
+    .sweet-misty-morning #calendar-title {
+        font-size: 2rem;
+    }
+
+    .sweet-misty-morning #current-date {
+        font-size: 1.5rem;
+    }
+
+    .sweet-misty-morning #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .sweet-misty-morning th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sweet-misty-morning .container {
+        padding: 1rem;
+    }
+
+    .sweet-misty-morning #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .sweet-misty-morning .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .sweet-misty-morning th .full-day {
+        display: none;
+    }
+
+    .sweet-misty-morning th .short-day {
+        display: inline;
+    }
+
+    .sweet-misty-morning th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .sweet-misty-morning td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .sweet-misty-morning #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .sweet-misty-morning #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .sweet-misty-morning .modal-content {
+        padding: 15px;
+    }
+
+    .sweet-misty-morning .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .sweet-misty-morning .container {
+        padding: 0.8rem;
+    }
+
+    .sweet-misty-morning #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .sweet-misty-morning #current-date {
+        font-size: 1.1rem;
+    }
+
+    .sweet-misty-morning #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .sweet-misty-morning .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .sweet-misty-morning th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .sweet-misty-morning td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .sweet-misty-morning td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .sweet-misty-morning #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .sweet-misty-morning th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .sweet-misty-morning td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .sweet-misty-morning #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .sweet-misty-morning #calendar-title {
+        font-size: 1.2rem;
+    }
+}
