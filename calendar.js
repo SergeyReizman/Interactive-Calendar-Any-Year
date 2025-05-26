@@ -121,7 +121,8 @@ const applyTheme = (theme) => {
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 'the-dead-sea',
     'the-great-silk-road', 'the-great-wall','the-highest-level', 'the-last-mohican',
     'the-modern-developer','the-perfect-blend', 
-    'time-complexity', 'time-machine', 'tokyo-at-night','tropical-sunset','urban-fashion', 
+    'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-nature',
+    'tropical-sunset','urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'zodiac-constellations'

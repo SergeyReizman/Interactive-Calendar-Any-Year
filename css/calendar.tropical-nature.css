@@ -1,0 +1,790 @@
+/* ==========================================================================
+   Tropical Nature Theme - Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Tropical color palette
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Nature-inspired UI elements
+   - Animated leaf effects
+   - Enhanced accessibility
+   - Organic textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;500&display=swap');
+
+:root {
+    /* Tropical Color Palette */
+    --tropical-bg: #0a2a1a;
+    --tropical-text: #e0ffe0;
+    --tropical-primary: #4caf50;
+    /* Jungle green */
+    --tropical-secondary: #8bc34a;
+    /* Lime green */
+
+    /* Gradient Colors */
+    --tropical-gradient-start: #002a1a;
+    --tropical-gradient-end: #1a2a00;
+
+    /* Accent Colors */
+    --tropical-red: #ff5252;
+    /* Hibiscus */
+    --tropical-yellow: #ffeb3b;
+    /* Banana */
+    --tropical-blue: #40c4ff;
+    /* Ocean */
+    --tropical-orange: #ff9800;
+    /* Sunset */
+    --tropical-white: #ffffff;
+    /* Coconut */
+
+    /* Theme Variables */
+    --tropical-shadow: rgba(76, 175, 80, 0.3);
+    --tropical-radius: 8px;
+    /* Organic edges */
+    --tropical-transition: 0.3s ease-in-out;
+    --tropical-hover: #1a3a2a;
+    --tropical-current-day: #2a4a3a;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes leaf-float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+    }
+}
+
+@keyframes water-ripple {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes tropical-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--tropical-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--tropical-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.tropical-nature {
+    font-family: 'Poppins', sans-serif;
+    color: var(--tropical-text);
+    line-height: 1.6;
+    background: var(--tropical-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M30,10 Q50,30 70,10 Q90,40 70,70 Q50,90 30,70 Q10,40 30,10 Z" fill="%234caf50"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><circle cx="20" cy="20" r="3" fill="%238bc34a"/><circle cx="50" cy="30" r="2" fill="%238bc34a"/><circle cx="80" cy="20" r="4" fill="%238bc34a"/></svg>');
+    background-size: 200px 200px, 100px 100px;
+    animation: water-ripple 20s linear infinite;
+}
+
+.tropical-nature::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            var(--tropical-gradient-start) 0%,
+            var(--tropical-gradient-end) 100%);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.tropical-nature .container {
+    background-color: rgba(10, 40, 25, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--tropical-primary);
+    box-shadow: 0 0 30px var(--tropical-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--tropical-radius);
+    z-index: 1;
+}
+
+.tropical-nature .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--tropical-primary),
+            var(--tropical-secondary),
+            transparent);
+    animation: tropical-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.tropical-nature #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--tropical-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.tropical-nature #calendar-title::before,
+.tropical-nature #calendar-title::after {
+    content: "🌴";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--tropical-secondary);
+    font-size: 1.5rem;
+    animation: leaf-float 4s infinite;
+}
+
+.tropical-nature #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.tropical-nature #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.tropical-nature #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--tropical-primary);
+    border-radius: var(--tropical-radius);
+    position: relative;
+}
+
+.tropical-nature #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--tropical-primary),
+            transparent);
+}
+
+.tropical-nature #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--tropical-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.tropical-nature #today-weather {
+    font-family: 'Poppins', sans-serif;
+    color: var(--tropical-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.tropical-nature #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.tropical-nature .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--tropical-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--tropical-bg);
+    box-shadow:
+        0 0 15px var(--tropical-shadow),
+        inset 0 0 10px rgba(76, 175, 80, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(76, 175, 80, 0.1) 100%);
+}
+
+/* Tropical numerals for clock */
+.tropical-nature .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234caf50">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234caf50">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234caf50">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%234caf50">9</text></svg>');
+}
+
+.tropical-nature .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tropical-nature .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--tropical-primary);
+    margin-top: -2px;
+}
+
+.tropical-nature .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--tropical-secondary);
+    margin-top: -1px;
+}
+
+.tropical-nature .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--tropical-white);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Flower */
+.tropical-nature .clock-face::after {
+    content: "❀";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--tropical-secondary);
+    font-size: 1.2rem;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.tropical-nature table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(15, 45, 30, 0.9);
+    border: 1px solid var(--tropical-primary);
+    border-radius: var(--tropical-radius);
+    table-layout: fixed;
+}
+
+.tropical-nature th {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: var(--tropical-primary) !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--tropical-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.tropical-nature th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.tropical-nature th .short-day {
+    display: none;
+}
+
+.tropical-nature td {
+    background-color: rgba(20, 50, 35, 0.9);
+    color: var(--tropical-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--tropical-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--tropical-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.tropical-nature td:hover {
+    background-color: var(--tropical-hover);
+    box-shadow: inset 0 0 15px var(--tropical-shadow);
+}
+
+.tropical-nature .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--tropical-text);
+}
+
+.tropical-nature td.current-day {
+    background-color: var(--tropical-current-day);
+    border: 2px solid var(--tropical-secondary);
+    color: var(--tropical-secondary) !important;
+    font-weight: 600;
+    animation: tropical-glow 3s infinite;
+}
+
+.tropical-nature td.current-day .date-number {
+    color: var(--tropical-secondary) !important;
+    font-weight: 700;
+}
+
+.tropical-nature td.current-day::before {
+    content: "🌺";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--tropical-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: leaf-float 3s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.tropical-nature .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--tropical-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--tropical-shadow);
+    transition: all var(--tropical-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tropical-nature .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--tropical-secondary);
+    box-shadow: 0 0 15px var(--tropical-primary);
+}
+
+/* Special event types */
+.tropical-nature .event-marker.holiday {
+    background-color: var(--tropical-yellow);
+}
+
+.tropical-nature .event-marker.historic {
+    background-color: var(--tropical-blue);
+}
+
+.tropical-nature .event-marker.patriotic {
+    background-color: var(--tropical-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.tropical-nature .modal-content {
+    position: relative;
+    background-color: rgba(15, 45, 30, 0.98);
+    border: 1px solid var(--tropical-primary);
+    padding: 25px;
+    color: var(--tropical-text);
+    box-shadow: 0 0 30px var(--tropical-shadow);
+    border-radius: var(--tropical-radius);
+}
+
+.tropical-nature .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--tropical-primary),
+            var(--tropical-secondary),
+            var(--tropical-yellow));
+}
+
+.tropical-nature .modal-content h2 {
+    color: var(--tropical-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.tropical-nature .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.tropical-nature .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--tropical-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.tropical-nature .modal-content .event-description {
+    background-color: rgba(76, 175, 80, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--tropical-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--tropical-radius) var(--tropical-radius) 0;
+}
+
+.tropical-nature .modal-content button {
+    background-color: var(--tropical-primary);
+    color: var(--tropical-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--tropical-transition);
+    border-radius: var(--tropical-radius);
+    font-family: 'Poppins', sans-serif;
+}
+
+.tropical-nature .modal-content button:hover {
+    background-color: var(--tropical-secondary);
+    box-shadow: 0 4px 6px -1px var(--tropical-shadow);
+}
+
+.tropical-nature .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--tropical-primary);
+    border: 1px solid var(--tropical-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--tropical-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.tropical-nature .modal .close-button:hover {
+    background-color: var(--tropical-primary);
+    color: var(--tropical-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.tropical-nature .button,
+.tropical-nature .transparent-button {
+    border: 1px solid var(--tropical-primary);
+    color: var(--tropical-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tropical-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--tropical-radius);
+    letter-spacing: 0.05em;
+}
+
+.tropical-nature .button::before,
+.tropical-nature .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.tropical-nature .button:hover,
+.tropical-nature .transparent-button:hover {
+    background-color: var(--tropical-primary);
+    color: var(--tropical-bg);
+    box-shadow: 0 4px 6px -1px var(--tropical-shadow);
+}
+
+.tropical-nature .button:hover::before,
+.tropical-nature .transparent-button:hover::before {
+    left: 100%;
+}
+
+.tropical-nature .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.tropical-nature #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.tropical-nature #theme-switcher {
+    background-color: var(--tropical-bg);
+    color: var(--tropical-primary) !important;
+    border: 1px solid var(--tropical-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--tropical-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234caf50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--tropical-transition);
+    box-shadow: 0 1px 3px 0 var(--tropical-shadow);
+}
+
+.tropical-nature #theme-switcher option {
+    background-color: var(--tropical-bg) !important;
+    color: var(--tropical-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.tropical-nature #theme-switcher option:hover {
+    background-color: var(--tropical-primary) !important;
+    color: var(--tropical-bg) !important;
+}
+
+.tropical-nature #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.tropical-nature #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--tropical-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--tropical-primary);
+    background-color: var(--tropical-bg);
+    cursor: pointer;
+    transition: all var(--tropical-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--tropical-radius);
+    box-shadow: 0 4px 6px -1px var(--tropical-shadow);
+}
+
+.tropical-nature #backToTopBtn:hover {
+    background-color: var(--tropical-primary);
+    color: var(--tropical-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.tropical-nature footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--tropical-primary);
+    color: var(--tropical-text);
+    font-size: 0.8rem;
+}
+
+.tropical-nature footer::before {
+    content: "🌿 ";
+    color: var(--tropical-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .tropical-nature .container {
+        padding: 1.2rem;
+    }
+
+    .tropical-nature #calendar-title {
+        font-size: 2rem;
+    }
+
+    .tropical-nature #current-date {
+        font-size: 1.5rem;
+    }
+
+    .tropical-nature #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .tropical-nature th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tropical-nature .container {
+        padding: 1rem;
+    }
+
+    .tropical-nature #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .tropical-nature .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .tropical-nature th .full-day {
+        display: none;
+    }
+
+    .tropical-nature th .short-day {
+        display: inline;
+    }
+
+    .tropical-nature th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .tropical-nature td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .tropical-nature #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .tropical-nature #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .tropical-nature .modal-content {
+        padding: 15px;
+    }
+
+    .tropical-nature .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .tropical-nature .container {
+        padding: 0.8rem;
+    }
+
+    .tropical-nature #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .tropical-nature #current-date {
+        font-size: 1.1rem;
+    }
+
+    .tropical-nature #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .tropical-nature .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .tropical-nature th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .tropical-nature td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .tropical-nature td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .tropical-nature #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .tropical-nature th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .tropical-nature td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .tropical-nature #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .tropical-nature #calendar-title {
+        font-size: 1.2rem;
+    }
+}
