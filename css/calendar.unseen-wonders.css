@@ -1,0 +1,793 @@
+/* ==========================================================================
+   Unseen Wonders Theme - Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Cosmic color palette
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Celestial UI elements
+   - Animated cosmic effects
+   - Enhanced accessibility
+   - Ethereal textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Karla:wght@300;500&display=swap');
+
+:root {
+    /* Cosmic Color Palette */
+    --cosmic-bg: #0a0a1a;
+    --cosmic-text: #e0e0ff;
+    --cosmic-primary: #9c27b0;
+    /* Nebula purple */
+    --cosmic-secondary: #00bcd4;
+    /* Celestial teal */
+
+    /* Gradient Colors */
+    --cosmic-gradient-start: #1a0a2a;
+    --cosmic-gradient-end: #0a1a2a;
+
+    /* Accent Colors */
+    --cosmic-gold: #ffc107;
+    /* Starlight */
+    --cosmic-pink: #e91e63;
+    /* Galactic core */
+    --cosmic-blue: #2196f3;
+    /* Quasar */
+    --cosmic-white: #ffffff;
+    /* Pure energy */
+    --cosmic-silver: #c0c0c0;
+    /* Meteor dust */
+
+    /* Theme Variables */
+    --cosmic-shadow: rgba(156, 39, 176, 0.3);
+    --cosmic-radius: 8px;
+    /* Soft cosmic edges */
+    --cosmic-transition: 0.3s ease-out;
+    --cosmic-hover: #1a1a3a;
+    --cosmic-current-day: #2a2a4a;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes cosmic-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--cosmic-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--cosmic-secondary);
+    }
+}
+
+@keyframes star-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes nebula-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 200px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.unseen-wonders {
+    font-family: 'Karla', sans-serif;
+    color: var(--cosmic-text);
+    line-height: 1.6;
+    background: var(--cosmic-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><circle cx="20" cy="20" r="1" fill="white"/><circle cx="50" cy="30" r="0.7" fill="white"/><circle cx="80" cy="20" r="1.2" fill="white"/><circle cx="30" cy="70" r="0.8" fill="white"/><circle cx="70" cy="80" r="1" fill="white"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" opacity="0.03"><circle cx="100" cy="100" r="80" stroke="%239c27b0" stroke-width="1" fill="none" stroke-dasharray="5,5"/></svg>');
+    background-size: 200px 200px, 400px 400px;
+    animation: nebula-drift 60s linear infinite;
+}
+
+.unseen-wonders::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%,
+            rgba(156, 39, 176, 0.1) 0%,
+            transparent 25%),
+        radial-gradient(circle at 80% 70%,
+            rgba(0, 188, 212, 0.1) 0%,
+            transparent 25%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.unseen-wonders .container {
+    background-color: rgba(15, 15, 30, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--cosmic-primary);
+    box-shadow: 0 0 30px var(--cosmic-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--cosmic-radius);
+    z-index: 1;
+}
+
+.unseen-wonders .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--cosmic-primary),
+            var(--cosmic-secondary),
+            transparent);
+    animation: cosmic-pulse 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.unseen-wonders #calendar-title {
+    font-family: 'Alegreya', serif;
+    color: var(--cosmic-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 0 0 10px rgba(156, 39, 176, 0.3);
+}
+
+.unseen-wonders #calendar-title::before,
+.unseen-wonders #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cosmic-secondary);
+    font-size: 1.5rem;
+    animation: star-twinkle 2s infinite;
+}
+
+.unseen-wonders #calendar-title::before {
+    left: 1rem;
+    animation-delay: 0.5s;
+}
+
+.unseen-wonders #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.unseen-wonders #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(156, 39, 176, 0.1);
+    border: 1px solid var(--cosmic-primary);
+    border-radius: var(--cosmic-radius);
+    position: relative;
+}
+
+.unseen-wonders #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--cosmic-primary),
+            transparent);
+}
+
+.unseen-wonders #current-date {
+    font-family: 'Alegreya', serif;
+    color: var(--cosmic-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.unseen-wonders #today-weather {
+    font-family: 'Karla', sans-serif;
+    color: var(--cosmic-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.unseen-wonders #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.unseen-wonders .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--cosmic-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--cosmic-bg);
+    box-shadow:
+        0 0 15px var(--cosmic-shadow),
+        inset 0 0 10px rgba(156, 39, 176, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(156, 39, 176, 0.1) 100%);
+}
+
+/* Celestial numerals for clock */
+.unseen-wonders .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Alegreya" font-size="12" fill="%239c27b0">12</text><text x="82" y="55" text-anchor="middle" font-family="Alegreya" font-size="12" fill="%239c27b0">3</text><text x="50" y="92" text-anchor="middle" font-family="Alegreya" font-size="12" fill="%239c27b0">6</text><text x="18" y="55" text-anchor="middle" font-family="Alegreya" font-size="12" fill="%239c27b0">9</text></svg>');
+}
+
+.unseen-wonders .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unseen-wonders .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--cosmic-primary);
+    margin-top: -2px;
+}
+
+.unseen-wonders .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--cosmic-secondary);
+    margin-top: -1px;
+}
+
+.unseen-wonders .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--cosmic-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Celestial body */
+.unseen-wonders .clock-face::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--cosmic-secondary);
+    font-size: 1.2rem;
+    animation: star-twinkle 1.5s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.unseen-wonders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(25, 25, 50, 0.9);
+    border: 1px solid var(--cosmic-primary);
+    border-radius: var(--cosmic-radius);
+    table-layout: fixed;
+}
+
+.unseen-wonders th {
+    background-color: rgba(156, 39, 176, 0.15);
+    color: var(--cosmic-primary) !important;
+    font-family: 'Karla', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--cosmic-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.unseen-wonders th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.unseen-wonders th .short-day {
+    display: none;
+}
+
+.unseen-wonders td {
+    background-color: rgba(30, 30, 60, 0.9);
+    color: var(--cosmic-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--cosmic-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--cosmic-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.unseen-wonders td:hover {
+    background-color: var(--cosmic-hover);
+    box-shadow: inset 0 0 15px var(--cosmic-shadow);
+}
+
+.unseen-wonders .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--cosmic-text);
+}
+
+.unseen-wonders td.current-day {
+    background-color: var(--cosmic-current-day);
+    border: 2px solid var(--cosmic-secondary);
+    color: var(--cosmic-gold) !important;
+    font-weight: 600;
+    animation: cosmic-pulse 3s infinite;
+}
+
+.unseen-wonders td.current-day .date-number {
+    color: var(--cosmic-gold) !important;
+    font-weight: 700;
+}
+
+.unseen-wonders td.current-day::before {
+    content: "☄";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--cosmic-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: star-twinkle 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.unseen-wonders .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cosmic-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--cosmic-shadow);
+    transition: all var(--cosmic-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.unseen-wonders .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--cosmic-secondary);
+    box-shadow: 0 0 15px var(--cosmic-primary);
+}
+
+/* Special event types */
+.unseen-wonders .event-marker.holiday {
+    background-color: var(--cosmic-gold);
+}
+
+.unseen-wonders .event-marker.historic {
+    background-color: var(--cosmic-blue);
+}
+
+.unseen-wonders .event-marker.patriotic {
+    background-color: var(--cosmic-pink);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.unseen-wonders .modal-content {
+    position: relative;
+    background-color: rgba(25, 25, 50, 0.98);
+    border: 1px solid var(--cosmic-primary);
+    padding: 25px;
+    color: var(--cosmic-text);
+    box-shadow: 0 0 30px var(--cosmic-shadow);
+    border-radius: var(--cosmic-radius);
+}
+
+.unseen-wonders .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--cosmic-primary),
+            var(--cosmic-secondary),
+            var(--cosmic-gold));
+}
+
+.unseen-wonders .modal-content h2 {
+    color: var(--cosmic-primary);
+    font-family: 'Alegreya', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.unseen-wonders .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.unseen-wonders .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--cosmic-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.unseen-wonders .modal-content .event-description {
+    background-color: rgba(156, 39, 176, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--cosmic-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--cosmic-radius) var(--cosmic-radius) 0;
+}
+
+.unseen-wonders .modal-content button {
+    background-color: var(--cosmic-primary);
+    color: var(--cosmic-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--cosmic-transition);
+    border-radius: var(--cosmic-radius);
+    font-family: 'Karla', sans-serif;
+}
+
+.unseen-wonders .modal-content button:hover {
+    background-color: var(--cosmic-secondary);
+    box-shadow: 0 4px 6px -1px var(--cosmic-shadow);
+}
+
+.unseen-wonders .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--cosmic-primary);
+    border: 1px solid var(--cosmic-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--cosmic-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.unseen-wonders .modal .close-button:hover {
+    background-color: var(--cosmic-primary);
+    color: var(--cosmic-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.unseen-wonders .button,
+.unseen-wonders .transparent-button {
+    border: 1px solid var(--cosmic-primary);
+    color: var(--cosmic-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Alegreya', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--cosmic-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--cosmic-radius);
+    letter-spacing: 0.05em;
+}
+
+.unseen-wonders .button::before,
+.unseen-wonders .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(156, 39, 176, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.unseen-wonders .button:hover,
+.unseen-wonders .transparent-button:hover {
+    background-color: var(--cosmic-primary);
+    color: var(--cosmic-bg);
+    box-shadow: 0 4px 6px -1px var(--cosmic-shadow);
+}
+
+.unseen-wonders .button:hover::before,
+.unseen-wonders .transparent-button:hover::before {
+    left: 100%;
+}
+
+.unseen-wonders .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.unseen-wonders #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.unseen-wonders #theme-switcher {
+    background-color: var(--cosmic-bg);
+    color: var(--cosmic-primary) !important;
+    border: 1px solid var(--cosmic-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--cosmic-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239c27b0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--cosmic-transition);
+    box-shadow: 0 1px 3px 0 var(--cosmic-shadow);
+}
+
+.unseen-wonders #theme-switcher option {
+    background-color: var(--cosmic-bg) !important;
+    color: var(--cosmic-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.unseen-wonders #theme-switcher option:hover {
+    background-color: var(--cosmic-primary) !important;
+    color: var(--cosmic-bg) !important;
+}
+
+.unseen-wonders #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.unseen-wonders #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--cosmic-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Alegreya', serif;
+    font-weight: 700;
+    color: var(--cosmic-primary);
+    background-color: var(--cosmic-bg);
+    cursor: pointer;
+    transition: all var(--cosmic-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--cosmic-radius);
+    box-shadow: 0 4px 6px -1px var(--cosmic-shadow);
+}
+
+.unseen-wonders #backToTopBtn:hover {
+    background-color: var(--cosmic-primary);
+    color: var(--cosmic-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.unseen-wonders footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--cosmic-primary);
+    color: var(--cosmic-text);
+    font-size: 0.8rem;
+}
+
+.unseen-wonders footer::before {
+    content: "🌌 ";
+    color: var(--cosmic-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .unseen-wonders .container {
+        padding: 1.2rem;
+    }
+
+    .unseen-wonders #calendar-title {
+        font-size: 2rem;
+    }
+
+    .unseen-wonders #current-date {
+        font-size: 1.5rem;
+    }
+
+    .unseen-wonders #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .unseen-wonders th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .unseen-wonders .container {
+        padding: 1rem;
+    }
+
+    .unseen-wonders #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .unseen-wonders .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .unseen-wonders th .full-day {
+        display: none;
+    }
+
+    .unseen-wonders th .short-day {
+        display: inline;
+    }
+
+    .unseen-wonders th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .unseen-wonders td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .unseen-wonders #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .unseen-wonders #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .unseen-wonders .modal-content {
+        padding: 15px;
+    }
+
+    .unseen-wonders .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .unseen-wonders .container {
+        padding: 0.8rem;
+    }
+
+    .unseen-wonders #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .unseen-wonders #current-date {
+        font-size: 1.1rem;
+    }
+
+    .unseen-wonders #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .unseen-wonders .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .unseen-wonders th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .unseen-wonders td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .unseen-wonders td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .unseen-wonders #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .unseen-wonders th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .unseen-wonders td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .unseen-wonders #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .unseen-wonders #calendar-title {
+        font-size: 1.2rem;
+    }
+}
