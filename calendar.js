@@ -125,7 +125,8 @@ const applyTheme = (theme) => {
     'the-modern-developer','the-perfect-blend', 
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-nature',
     'tropical-sunset', 'unseen-wonders', 'urban-fashion', 
-    'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'white-shark', 
+    'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
+    'white-shark', 
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'zodiac-constellations'
 
