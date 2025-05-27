@@ -1,109 +1,107 @@
 /* ==========================================================================
-   Weekend Mindset Theme - Weekend Calendar UI
+   Weekend Mindset Theme - Relaxing Calendar UI
    Version: 4.1
    Updated: 2025-06-25
    Features:
-   - Blue weekend color scheme
-   - Optimized weekday headers
+   - Soft pastel color scheme
+   - Optimized weekend highlighting
    - Mobile-responsive design
-   - Weekend-inspired UI elements
-   - Animated speed effects
-   - Enhanced accessibility
-   - Carbon fiber textures
+   - Relaxation-inspired UI elements
+   - Smooth transition effects
+   - Enhanced readability
+   - Subtle texture patterns
    - Fluid typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600&display=swap');
 
 :root {
-    /* Blue Racing Color Palette */
-    --f1-bg: #4eefc7;
-    --f1-text: #F0F0FF;
-    --f1-primary: #ff4e4e;
-    /* Renault/McLaren blue */
-    --f1-secondary: #f3da5b;
-    /* Cyan accent */
+    /* Pastel Color Palette */
+    --wm-bg: #f8f5f2;
+    --wm-text: #4a4a4a;
+    --wm-primary: #8bbabb;
+    /* Soft teal */
+    --wm-secondary: #f7c5a8;
+    /* Peach accent */
 
     /* Gradient Colors */
-    --f1-gradient-start: #000A1A;
-    --f1-gradient-end: #001A0A;
+    --wm-gradient-start: #f8f5f2;
+    --wm-gradient-end: #e6e9f0;
 
     /* Accent Colors */
-    --f1-red: #23ff01;
-    /* Ferrari red */
-    --f1-yellow: #FFD700;
-    /* Safety car */
-    --f1-green: #a69500;
-    /* Racing green */
-    --f1-orange: #ff08f3;
-    /* McLaren orange */
-    --f1-silver: #C0C0C0;
-    /* Metallic */
+    --wm-weekend: #d3a5ca;
+    /* Lavender */
+    --wm-highlight: #f9e090;
+    /* Soft yellow */
+    --wm-nature: #a7c4bc;
+    /* Mint green */
+    --wm-cozy: #e2b4bd;
+    /* Dusty pink */
+    --wm-neutral: #d8d8d8;
+    /* Light gray */
 
     /* Theme Variables */
-    --f1-shadow: rgba(0, 90, 255, 0.3);
-    --f1-radius: 3px;
-    /* Sharp edges */
-    --f1-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --f1-hover: #1E1E2E;
-    --f1-current-day: #1A1A3A;
+    --wm-shadow: rgba(139, 186, 187, 0.2);
+    --wm-radius: 8px;
+    /* Rounded edges */
+    --wm-transition: 0.3s ease-in-out;
+    --wm-hover: #f0ece8;
+    --wm-current-day: #e8f1f1;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes f1-pulse {
+@keyframes wm-fade {
 
     0%,
     100% {
-        text-shadow: 0 0 5px var(--f1-primary),
-            0 0 10px rgba(0, 240, 255, 0.5);
+        opacity: 1;
     }
 
     50% {
-        text-shadow: 0 0 15px var(--f1-primary),
-            0 0 25px rgba(0, 240, 255, 0.7);
+        opacity: 0.8;
     }
 }
 
-@keyframes speed-line {
+@keyframes soft-pulse {
     0% {
-        background-position: 0 0;
+        box-shadow: 0 0 0 0 rgba(139, 186, 187, 0.2);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(139, 186, 187, 0);
     }
 
     100% {
-        background-position: 40px 40px;
+        box-shadow: 0 0 0 0 rgba(139, 186, 187, 0);
     }
 }
 
-@keyframes f1-glow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--f1-primary);
+@keyframes wm-float {
+    0% {
+        transform: translateY(0px);
     }
 
     50% {
-        box-shadow: 0 0 20px var(--f1-secondary);
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .weekend-mindset {
-    font-family: 'Exo 2', sans-serif;
-    color: var(--f1-text);
+    font-family: 'Nunito', sans-serif;
+    color: var(--wm-text);
     line-height: 1.6;
-    background: var(--f1-bg);
+    background: var(--wm-bg);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
     background-image:
-        linear-gradient(135deg,
-            rgba(0, 90, 255, 0.05) 1px,
-            transparent 1px),
-        linear-gradient(-135deg,
-            rgba(0, 90, 255, 0.05) 1px,
-            transparent 1px);
-    background-size: 40px 40px;
-    animation: speed-line 2s linear infinite;
+        linear-gradient(var(--wm-gradient-start),
+            var(--wm-gradient-end));
 }
 
 .weekend-mindset::before {
@@ -115,16 +113,16 @@
     bottom: 0;
     background:
         radial-gradient(circle at 90% 10%,
-            rgba(0, 90, 255, 0.05) 0%,
+            rgba(139, 186, 187, 0.05) 0%,
             transparent 20%),
         radial-gradient(circle at 10% 90%,
-            rgba(0, 240, 255, 0.05) 0%,
+            rgba(247, 197, 168, 0.05) 0%,
             transparent 20%);
     pointer-events: none;
     z-index: 0;
 }
 
-/* Speed line pattern */
+/* Subtle dot pattern */
 .weekend-mindset::after {
     content: "";
     position: absolute;
@@ -132,21 +130,21 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><line x1="0" y1="0" x2="40" y2="40" stroke="%23005AFF" stroke-width="1"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" opacity="0.03"><circle cx="10" cy="10" r="1" fill="%238bbabb"/></svg>');
     pointer-events: none;
     z-index: 0;
 }
 
 .weekend-mindset .container {
-    background-color: rgba(10, 10, 20, 0.95);
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 2rem;
-    border: 1px solid var(--f1-primary);
-    box-shadow: 0 0 30px var(--f1-shadow);
+    border: 1px solid var(--wm-primary);
+    box-shadow: 0 0 20px var(--wm-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--f1-radius);
+    border-radius: var(--wm-radius);
     z-index: 1;
 }
 
@@ -159,44 +157,43 @@
     height: 3px;
     background: linear-gradient(90deg,
             transparent,
-            var(--f1-primary),
-            var(--f1-secondary),
+            var(--wm-primary),
+            var(--wm-secondary),
             transparent);
-    animation: f1-glow 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .weekend-mindset #calendar-title {
-    font-family: 'Russo One', sans-serif;
-    color: var(--f1-primary);
+    font-family: 'Comfortaa', cursive;
+    color: var(--wm-primary);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     font-weight: 400;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     position: relative;
-    animation: f1-pulse 3s infinite;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .weekend-mindset #calendar-title::before,
 .weekend-mindset #calendar-title::after {
-    content: "⚡";
+    content: "☁️";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--f1-secondary);
+    color: var(--wm-secondary);
     font-size: 1.5rem;
+    opacity: 0.7;
 }
 
 .weekend-mindset #calendar-title::before {
     left: 1rem;
-    animation: f1-pulse 2.5s infinite 0.5s;
+    animation: wm-float 3s infinite 0.5s;
 }
 
 .weekend-mindset #calendar-title::after {
     right: 1rem;
-    animation: f1-pulse 2.5s infinite;
+    animation: wm-float 3s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -204,9 +201,9 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: rgba(0, 90, 255, 0.1);
-    border: 1px solid var(--f1-primary);
-    border-radius: var(--f1-radius);
+    background-color: rgba(139, 186, 187, 0.1);
+    border: 1px solid var(--wm-primary);
+    border-radius: var(--wm-radius);
     position: relative;
 }
 
@@ -219,24 +216,24 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--f1-primary),
+            var(--wm-primary),
             transparent);
 }
 
 .weekend-mindset #current-date {
-    font-family: 'Russo One', sans-serif;
-    color: var(--f1-primary);
+    font-family: 'Comfortaa', cursive;
+    color: var(--wm-primary);
     font-size: 1.8rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
 }
 
 .weekend-mindset #today-weather {
-    font-family: 'Exo 2', sans-serif;
-    color: var(--f1-secondary);
+    font-family: 'Nunito', sans-serif;
+    color: var(--wm-secondary);
     font-size: 1.2rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     font-weight: 600;
 }
 
@@ -250,20 +247,20 @@
 .weekend-mindset .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--f1-primary);
+    border: 1px solid var(--wm-primary);
     border-radius: 50%;
     position: relative;
-    background-color: var(--f1-bg);
+    background-color: white;
     box-shadow:
-        0 0 15px var(--f1-shadow),
-        inset 0 0 10px rgba(0, 90, 255, 0.1);
+        0 0 10px var(--wm-shadow),
+        inset 0 0 10px rgba(139, 186, 187, 0.1);
     background-image:
         radial-gradient(circle at center,
             transparent 65%,
-            rgba(0, 90, 255, 0.1) 100%);
+            rgba(139, 186, 187, 0.1) 100%);
 }
 
-/* Racing numerals for clock */
+/* Relaxing numerals for clock */
 .weekend-mindset .clock-face::before {
     content: "";
     position: absolute;
@@ -271,7 +268,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">12</text><text x="82" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">3</text><text x="50" y="92" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">6</text><text x="18" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23005AFF">9</text></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%238bbabb">12</text><text x="82" y="55" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%238bbabb">3</text><text x="50" y="92" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%238bbabb">6</text><text x="18" y="55" text-anchor="middle" font-family="Comfortaa" font-size="12" fill="%238bbabb">9</text></svg>');
 }
 
 .weekend-mindset .hand {
@@ -287,27 +284,29 @@
     width: 40%;
     left: 10%;
     height: 4px;
-    background: var(--f1-primary);
+    background: var(--wm-primary);
     margin-top: -2px;
+    border-radius: 2px;
 }
 
 .weekend-mindset .minute-hand {
     width: 48%;
     left: 2%;
     height: 2px;
-    background: var(--f1-secondary);
+    background: var(--wm-secondary);
     margin-top: -1px;
+    border-radius: 1px;
 }
 
 .weekend-mindset .second-hand {
     width: 48%;
     left: 2%;
     height: 1px;
-    background: var(--f1-yellow);
+    background: var(--wm-weekend);
     margin-top: -0.5px;
 }
 
-/* Clock center - Wheel nut */
+/* Clock center - Relaxing dot */
 .weekend-mindset .clock-face::after {
     content: "";
     position: absolute;
@@ -316,9 +315,8 @@
     transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
-    background-color: var(--f1-silver);
+    background-color: var(--wm-secondary);
     border-radius: 50%;
-    border: 1px solid var(--f1-secondary);
 }
 
 /* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
@@ -326,25 +324,31 @@
     width: 100%;
     border-collapse: collapse;
     margin: 2rem auto;
-    background-color: rgba(20, 20, 40, 0.9);
-    border: 1px solid var(--f1-primary);
-    border-radius: var(--f1-radius);
+    background-color: white;
+    border: 1px solid var(--wm-primary);
+    border-radius: var(--wm-radius);
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+/* Weekday headers */
 .weekend-mindset th {
-    background-color: rgba(0, 90, 255, 0.15);
-    color: var(--f1-primary) !important;
-    font-family: 'Exo 2', sans-serif;
+    background-color: rgba(139, 186, 187, 0.15);
+    color: var(--wm-primary) !important;
+    font-family: 'Nunito', sans-serif;
     font-weight: 600;
     padding: 0.8rem 0.3rem;
-    border: 1px solid var(--f1-primary);
+    border: 1px solid var(--wm-primary);
     position: relative;
     font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* Weekend headers */
+.weekend-mindset th.weekend {
+    background-color: rgba(211, 165, 202, 0.2);
+    color: var(--wm-weekend) !important;
 }
 
 /* Full names for desktop */
@@ -358,48 +362,57 @@
 }
 
 .weekend-mindset td {
-    background-color: rgba(15, 15, 30, 0.9);
-    color: var(--f1-text);
+    background-color: white;
+    color: var(--wm-text);
     padding: 0.8rem 0.3rem;
-    border: 1px solid var(--f1-primary);
+    border: 1px solid var(--wm-primary);
     height: 90px;
     vertical-align: top;
-    transition: all var(--f1-transition);
+    transition: all var(--wm-transition);
     position: relative;
     font-size: 0.85rem;
 }
 
+/* Weekend cells */
+.weekend-mindset td.weekend {
+    background-color: rgba(211, 165, 202, 0.05);
+    color: var(--wm-weekend);
+}
+
 .weekend-mindset td:hover {
-    background-color: var(--f1-hover);
-    box-shadow: inset 0 0 15px var(--f1-shadow);
+    background-color: var(--wm-hover);
+    box-shadow: inset 0 0 10px var(--wm-shadow);
 }
 
 .weekend-mindset .date-number {
     display: block;
     font-weight: 600;
     margin-bottom: 3px;
-    color: var(--f1-text);
+    color: var(--wm-text);
+}
+
+.weekend-mindset td.weekend .date-number {
+    color: var(--wm-weekend);
 }
 
 .weekend-mindset td.current-day {
-    background-color: var(--f1-current-day);
-    border: 2px solid var(--f1-secondary);
-    color: var(--f1-secondary) !important;
+    background-color: var(--wm-current-day);
+    border: 2px solid var(--wm-primary);
+    color: var(--wm-primary) !important;
     font-weight: 700;
-    animation: f1-glow 3s infinite;
 }
 
 .weekend-mindset td.current-day .date-number {
-    color: var(--f1-secondary) !important;
+    color: var(--wm-primary) !important;
     font-weight: 800;
 }
 
 .weekend-mindset td.current-day::before {
-    content: "🏁";
+    content: "🌿";
     position: absolute;
     top: 3px;
     left: 3px;
-    color: var(--f1-secondary);
+    color: var(--wm-primary);
     z-index: 1;
     opacity: 0.8;
     font-size: 0.9rem;
@@ -411,42 +424,43 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--f1-primary);
+    background-color: var(--wm-primary);
     margin: 0 1px;
-    box-shadow: 0 0 5px var(--f1-shadow);
-    transition: all var(--f1-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 3px var(--wm-shadow);
+    transition: all var(--wm-transition);
 }
 
 .weekend-mindset .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--f1-secondary);
-    box-shadow: 0 0 15px var(--f1-primary);
+    transform: scale(1.5);
+    background-color: var(--wm-secondary);
 }
 
 /* Special event types */
-.weekend-mindset .event-marker.holiday {
-    background-color: var(--f1-yellow);
+.weekend-mindset .event-marker.weekend {
+    background-color: var(--wm-weekend);
 }
 
-.weekend-mindset .event-marker.historic {
-    background-color: var(--f1-silver);
+.weekend-mindset .event-marker.leisure {
+    background-color: var(--wm-highlight);
 }
 
-.weekend-mindset .event-marker.patriotic {
-    background-color: var(--f1-red);
+.weekend-mindset .event-marker.nature {
+    background-color: var(--wm-nature);
+}
+
+.weekend-mindset .event-marker.cozy {
+    background-color: var(--wm-cozy);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .weekend-mindset .modal-content {
     position: relative;
-    background-color: rgba(20, 20, 20, 0.98);
-    border: 1px solid var(--f1-primary);
+    background-color: white;
+    border: 1px solid var(--wm-primary);
     padding: 25px;
-    color: var(--f1-text);
-    box-shadow: 0 0 30px var(--f1-shadow);
-    border-radius: var(--f1-radius);
-    animation: f1-glow 0.5s ease;
+    color: var(--wm-text);
+    box-shadow: 0 0 20px var(--wm-shadow);
+    border-radius: var(--wm-radius);
 }
 
 .weekend-mindset .modal-content::before {
@@ -457,18 +471,17 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--f1-primary),
-            var(--f1-secondary),
-            var(--f1-yellow));
+            var(--wm-primary),
+            var(--wm-secondary),
+            var(--wm-weekend));
 }
 
 .weekend-mindset .modal-content h2 {
-    color: var(--f1-primary);
-    font-family: 'Russo One', sans-serif;
+    color: var(--wm-primary);
+    font-family: 'Comfortaa', cursive;
     font-size: 1.8em;
     margin-bottom: 15px;
     font-weight: 400;
-    text-transform: uppercase;
 }
 
 .weekend-mindset .modal-content p {
@@ -479,36 +492,35 @@
 .weekend-mindset .modal-content .event-time {
     display: block;
     font-weight: 600;
-    color: var(--f1-secondary);
+    color: var(--wm-secondary);
     margin-bottom: 10px;
     font-size: 1.1em;
 }
 
 .weekend-mindset .modal-content .event-description {
-    background-color: rgba(0, 90, 255, 0.15);
+    background-color: rgba(139, 186, 187, 0.1);
     padding: 15px;
-    border-left: 3px solid var(--f1-primary);
+    border-left: 3px solid var(--wm-primary);
     margin: 15px 0;
-    border-radius: 0 var(--f1-radius) var(--f1-radius) 0;
+    border-radius: 0 var(--wm-radius) var(--wm-radius) 0;
 }
 
 .weekend-mindset .modal-content button {
-    background-color: var(--f1-primary);
-    color: var(--f1-bg);
+    background-color: var(--wm-primary);
+    color: white;
     border: none;
     padding: 10px 20px;
     font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--f1-transition);
-    border-radius: var(--f1-radius);
-    font-family: 'Exo 2', sans-serif;
-    text-transform: uppercase;
+    transition: all var(--wm-transition);
+    border-radius: var(--wm-radius);
+    font-family: 'Nunito', sans-serif;
 }
 
 .weekend-mindset .modal-content button:hover {
-    background-color: var(--f1-secondary);
-    box-shadow: 0 4px 6px -1px var(--f1-shadow);
+    background-color: var(--wm-secondary);
+    box-shadow: 0 4px 6px -1px var(--wm-shadow);
 }
 
 .weekend-mindset .modal .close-button {
@@ -516,12 +528,12 @@
     top: 12px;
     right: 12px;
     background-color: transparent;
-    color: var(--f1-primary);
-    border: 1px solid var(--f1-primary);
+    color: var(--wm-primary);
+    border: 1px solid var(--wm-primary);
     width: 28px;
     height: 28px;
     cursor: pointer;
-    transition: all var(--f1-transition);
+    transition: all var(--wm-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -529,26 +541,25 @@
 }
 
 .weekend-mindset .modal .close-button:hover {
-    background-color: var(--f1-primary);
-    color: var(--f1-bg);
+    background-color: var(--wm-primary);
+    color: white;
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .weekend-mindset .button,
 .weekend-mindset .transparent-button {
-    border: 1px solid var(--f1-primary);
-    color: var(--f1-primary);
+    border: 1px solid var(--wm-primary);
+    color: var(--wm-primary);
     background-color: transparent;
     padding: 0.7rem 1.4rem;
-    font-family: 'Russo One', sans-serif;
+    font-family: 'Comfortaa', cursive;
     font-weight: 400;
     cursor: pointer;
-    transition: all var(--f1-transition);
+    transition: all var(--wm-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--f1-radius);
-    text-transform: uppercase;
+    border-radius: var(--wm-radius);
     letter-spacing: 0.05em;
 }
 
@@ -560,15 +571,15 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 90, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(139, 186, 187, 0.1), transparent);
     transition: 0.5s;
 }
 
 .weekend-mindset .button:hover,
 .weekend-mindset .transparent-button:hover {
-    background-color: var(--f1-primary);
-    color: var(--f1-bg);
-    box-shadow: 0 4px 6px -1px var(--f1-shadow);
+    background-color: var(--wm-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--wm-shadow);
 }
 
 .weekend-mindset .button:hover::before,
@@ -593,43 +604,43 @@
 }
 
 .weekend-mindset #theme-switcher {
-    background-color: var(--f1-bg);
-    color: var(--f1-primary) !important;
-    border: 1px solid var(--f1-primary);
+    background-color: white;
+    color: var(--wm-primary) !important;
+    border: 1px solid var(--wm-primary);
     padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
     width: 100%;
-    border-radius: var(--f1-radius);
+    border-radius: var(--wm-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23005AFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238bbabb'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.6rem center;
     background-size: 0.9rem;
     cursor: pointer;
-    transition: all var(--f1-transition);
-    box-shadow: 0 1px 3px 0 var(--f1-shadow);
+    transition: all var(--wm-transition);
+    box-shadow: 0 1px 3px 0 var(--wm-shadow);
 }
 
 .weekend-mindset #theme-switcher option {
-    background-color: var(--f1-bg) !important;
-    color: var(--f1-primary) !important;
+    background-color: white !important;
+    color: var(--wm-primary) !important;
     font-size: 0.9rem;
     font-weight: 600;
     padding: 10px 12px !important;
 }
 
 .weekend-mindset #theme-switcher option:hover {
-    background-color: var(--f1-primary) !important;
-    color: var(--f1-bg) !important;
+    background-color: var(--wm-primary) !important;
+    color: white !important;
 }
 
 .weekend-mindset #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 90, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(139, 186, 187, 0.3);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -638,25 +649,24 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--f1-primary);
+    border: 1px solid var(--wm-primary);
     padding: 0.9rem 1.6rem;
     font-size: 0.9rem;
-    font-family: 'Russo One', sans-serif;
+    font-family: 'Comfortaa', cursive;
     font-weight: 400;
-    color: var(--f1-primary);
-    background-color: var(--f1-bg);
+    color: var(--wm-primary);
+    background-color: white;
     cursor: pointer;
-    transition: all var(--f1-transition);
+    transition: all var(--wm-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--f1-radius);
-    box-shadow: 0 4px 6px -1px var(--f1-shadow);
-    text-transform: uppercase;
+    border-radius: var(--wm-radius);
+    box-shadow: 0 4px 6px -1px var(--wm-shadow);
 }
 
 .weekend-mindset #backToTopBtn:hover {
-    background-color: var(--f1-primary);
-    color: var(--f1-bg);
+    background-color: var(--wm-primary);
+    color: white;
     opacity: 1;
 }
 
@@ -665,14 +675,14 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--f1-primary);
-    color: var(--f1-text);
+    border-top: 1px solid var(--wm-primary);
+    color: var(--wm-text);
     font-size: 0.8rem;
 }
 
 .weekend-mindset footer::before {
-    content: "🏎 ";
-    color: var(--f1-primary);
+    content: "🌱 ";
+    color: var(--wm-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
