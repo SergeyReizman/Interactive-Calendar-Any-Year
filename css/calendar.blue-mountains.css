@@ -1,139 +1,147 @@
 /* ==========================================================================
-   Blue Mountains Calendar Theme - Alpine Serenity Edition
-   Version: 2.2
-   Updated: 2025-05-11
-   Includes:
-   - Fixed weekday header overlapping issue
-   - Optimized table cell spacing
-   - Improved responsive day name handling
-   - Fixed date/weather visibility
-   - Proper right-aligned back-to-top button
-   - Themed analog clock
-   - Mobile responsiveness
-   - Mountain landscape styling
+   Blue Mountains Theme - Nature Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Cool mountain color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Nature-inspired UI elements
+   - Gentle transition effects
+   - Enhanced readability
+   - Subtle topographic patterns
+   - Fluid typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --mountain-bg: #E6F0F5;
-    /* Misty morning sky */
-    --mountain-text: #2D3748;
-    /* Deep forest text */
-    --mountain-primary: #2B6CB0;
-    /* Alpine lake blue */
-    --mountain-secondary: #4299E1;
-    /* Sky blue */
+    /* Mountain Color Palette */
+    --bm-bg: #f0f5f9;
+    --bm-text: #1e2d3b;
+    --bm-primary: #3a7ca5;
+    /* Deep lake blue */
+    --bm-secondary: #2f6690;
+    /* Mountain shadow blue */
 
-    /* Mountain Gradient */
-    --mountain-peak1: #2C5282;
-    /* Distant peaks */
-    --mountain-peak2: #3182CE;
-    /* Mid-range */
-    --mountain-peak3: #63B3ED;
-    /* Closer slopes */
-    --mountain-peak4: #90CDF4;
-    /* Snow caps */
-    --mountain-peak5: #BEE3F8;
-    /* Glacial highlights */
+    /* Gradient Colors */
+    --bm-gradient-start: #f0f5f9;
+    --bm-gradient-end: #d9e4ec;
 
-    /* Nature Accents */
-    --mountain-forest: #38A169;
-    /* Evergreen */
-    --mountain-meadow: #48BB78;
-    /* Alpine meadow */
-    --mountain-stone: #4A5568;
-    /* Mountain rock */
-    --mountain-cloud: #EDF2F7;
-    /* Fluffy clouds */
-    --mountain-sun: #F6AD55;
-    /* Morning sun */
-
-    /* Special Effects */
-    --mountain-glow: #4299E1;
-    --mountain-pulse: #63B3ED;
-    --mountain-light: linear-gradient(90deg, transparent, #90CDF4, transparent);
+    /* Accent Colors */
+    --bm-peak: #5c9ead;
+    /* Mountain peak */
+    --bm-forest: #417b5a;
+    /* Pine forest */
+    --bm-sky: #91bbd9;
+    /* Morning sky */
+    --bm-stone: #7a8c9c;
+    /* Mountain stone */
+    --bm-mist: #c5d5e0;
+    /* Morning mist */
 
     /* Theme Variables */
-    --mountain-shadow: rgba(66, 153, 225, 0.35);
-    --mountain-radius: 6px;
-    --mountain-transition: 0.3s ease;
-    --mountain-hover: #90CDF4;
+    --bm-shadow: rgba(58, 124, 165, 0.2);
+    --bm-radius: 6px;
+    /* Natural edges */
+    --bm-transition: 0.25s ease-out;
+    --bm-hover: #e1ebf2;
+    --bm-current-day: #d4e3ed;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes mountain-glow {
+@keyframes bm-cloud-float {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--mountain-primary);
+        transform: translateX(0);
     }
 
     50% {
-        box-shadow: 0 0 25px var(--mountain-secondary);
+        transform: translateX(5px);
     }
 }
 
-@keyframes mountain-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
+@keyframes bm-water-ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(91, 157, 173, 0.4);
     }
 
-    50% {
-        transform: scale(1.03);
+    100% {
+        box-shadow: 0 0 0 15px rgba(91, 157, 173, 0);
     }
 }
 
-@keyframes mountain-twinkle {
-
-    0%,
-    100% {
-        opacity: 0.7;
+@keyframes bm-sun-glow {
+    0% {
+        opacity: 0.9;
     }
 
     50% {
         opacity: 1;
-        text-shadow: 0 0 8px var(--mountain-peak5);
-    }
-}
-
-@keyframes mountainFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    100% {
+        opacity: 0.9;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .blue-mountains {
     font-family: 'Open Sans', sans-serif;
-    color: var(--mountain-text);
+    color: var(--bm-text);
     line-height: 1.6;
-    background-color: var(--mountain-bg);
+    background: var(--bm-bg);
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
     background-image:
-        linear-gradient(to bottom, var(--mountain-bg), var(--mountain-peak5)),
-        radial-gradient(circle at 20% 30%, rgba(66, 153, 225, 0.1) 0%, transparent 30%);
+        linear-gradient(var(--bm-gradient-start),
+            var(--bm-gradient-end));
+}
+
+.blue-mountains::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(58, 124, 165, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(47, 102, 144, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Topographic line pattern */
+.blue-mountains::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M0,50 Q25,30 50,50 T100,50" fill="none" stroke="%233a7ca5" stroke-width="0.5"/></svg>');
+    pointer-events: none;
+    z-index: 0;
 }
 
 .blue-mountains .container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.97);
     padding: 2rem;
-    border: 1px solid var(--mountain-primary);
-    box-shadow: 0 0 30px var(--mountain-shadow);
+    border: 1px solid var(--bm-primary);
+    box-shadow: 0 0 20px var(--bm-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--mountain-radius);
+    border-radius: var(--bm-radius);
+    z-index: 1;
 }
 
 .blue-mountains .container::before {
@@ -142,33 +150,44 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: var(--mountain-light);
-    animation: mountain-pulse 4s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bm-primary),
+            var(--bm-peak),
+            transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .blue-mountains #calendar-title {
     font-family: 'Montserrat', sans-serif;
-    color: var(--mountain-primary);
+    color: var(--bm-primary);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 15px var(--mountain-shadow);
+    font-weight: 400;
+    letter-spacing: 0.05em;
     position: relative;
 }
 
+.blue-mountains #calendar-title::before,
 .blue-mountains #calendar-title::after {
-    content: "⛰️";
+    content: "⛰";
     position: absolute;
-    right: 10%;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.6em;
-    color: var(--mountain-peak3);
-    font-style: italic;
-    animation: mountain-twinkle 4s infinite;
+    color: var(--bm-peak);
+    font-size: 1.5rem;
+}
+
+.blue-mountains #calendar-title::before {
+    left: 1rem;
+    animation: bm-cloud-float 4s infinite 0.5s;
+}
+
+.blue-mountains #calendar-title::after {
+    right: 1rem;
+    animation: bm-cloud-float 4s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -176,10 +195,10 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: var(--mountain-cloud);
-    border: 1px solid var(--mountain-peak4);
+    background-color: rgba(58, 124, 165, 0.1);
+    border: 1px solid var(--bm-primary);
+    border-radius: var(--bm-radius);
     position: relative;
-    border-radius: var(--mountain-radius);
 }
 
 .blue-mountains #date-weather-container::after {
@@ -189,24 +208,27 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--mountain-light);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bm-primary),
+            transparent);
 }
 
 .blue-mountains #current-date {
     font-family: 'Montserrat', sans-serif;
-    color: var(--mountain-primary);
+    color: var(--bm-primary);
     font-size: 1.8rem;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--mountain-shadow);
+    letter-spacing: 0.05em;
 }
 
 .blue-mountains #today-weather {
     font-family: 'Open Sans', sans-serif;
-    color: var(--mountain-peak3);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    color: var(--bm-peak);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -214,30 +236,33 @@
     display: flex;
     justify-content: center;
     margin: 2rem 0;
-    position: relative;
 }
 
 .blue-mountains .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 10px solid var(--mountain-primary);
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--bm-primary);
     border-radius: 50%;
     position: relative;
     background-color: white;
-    box-shadow: 0 0 20px var(--mountain-shadow);
+    box-shadow:
+        0 0 10px var(--bm-shadow),
+        inset 0 0 10px rgba(58, 124, 165, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(58, 124, 165, 0.1) 100%);
 }
 
+/* Mountain numerals for clock */
 .blue-mountains .clock-face::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background-color: var(--mountain-primary);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--mountain-primary);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%233a7ca5">12</text><text x="82" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%233a7ca5">3</text><text x="50" y="92" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%233a7ca5">6</text><text x="18" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%233a7ca5">9</text></svg>');
 }
 
 .blue-mountains .hand {
@@ -246,104 +271,131 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .blue-mountains .hour-hand {
     width: 40%;
     left: 10%;
-    height: 6px;
-    background: var(--mountain-primary);
-    margin-top: -3px;
+    height: 4px;
+    background: var(--bm-primary);
+    margin-top: -2px;
+    border-radius: 2px;
 }
 
 .blue-mountains .minute-hand {
     width: 48%;
     left: 2%;
-    height: 4px;
-    background: var(--mountain-pulse);
-    margin-top: -2px;
+    height: 2px;
+    background: var(--bm-peak);
+    margin-top: -1px;
+    border-radius: 1px;
 }
 
 .blue-mountains .second-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--mountain-peak5);
-    margin-top: -1px;
+    height: 1px;
+    background: var(--bm-forest);
+    margin-top: -0.5px;
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+/* Clock center - Mountain lake */
+.blue-mountains .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bm-peak);
+    border-radius: 50%;
+    animation: bm-water-ripple 2s infinite;
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
 .blue-mountains table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 3px;
+    border-collapse: collapse;
     margin: 2rem auto;
     background-color: white;
-    border: 1px solid var(--mountain-primary);
+    border: 1px solid var(--bm-primary);
+    border-radius: var(--bm-radius);
     table-layout: fixed;
-    border-radius: var(--mountain-radius);
 }
 
+/* Weekday headers */
 .blue-mountains th {
-    background-color: var(--mountain-peak1);
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    padding: 1.2rem 0.5rem;
-    border: 1px solid var(--mountain-peak3);
-    border-bottom: 2px solid var(--mountain-primary);
+    background-color: rgba(58, 124, 165, 0.15);
+    color: var(--bm-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bm-primary);
     position: relative;
+    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 0;
-    letter-spacing: 0.05em;
 }
 
-.blue-mountains th::before {
-    content: "❄️";
-    position: absolute;
-    left: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 0.7em;
-    animation: mountain-twinkle 4s infinite;
+/* Full names for desktop */
+.blue-mountains th .full-day {
+    display: inline;
 }
 
-.blue-mountains th span.full-day-name {
-    display: inline-block;
-    width: calc(100% - 20px);
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-left: 15px;
+/* Short names for mobile */
+.blue-mountains th .short-day {
+    display: none;
 }
 
 .blue-mountains td {
-    background-color: var(--mountain-cloud);
-    color: var(--mountain-text);
-    padding: 1.2rem 0.5rem;
-    border: 1px solid var(--mountain-peak4);
-    height: 120px;
+    background-color: white;
+    color: var(--bm-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bm-primary);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--mountain-transition);
+    transition: all var(--bm-transition);
     position: relative;
-    overflow: hidden;
+    font-size: 0.85rem;
 }
 
 .blue-mountains td:hover {
-    background-color: var(--mountain-peak5);
-    box-shadow: inset 0 0 15px var(--mountain-shadow);
+    background-color: var(--bm-hover);
+    box-shadow: inset 0 0 10px var(--bm-shadow);
+}
+
+.blue-mountains .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--bm-text);
 }
 
 .blue-mountains td.current-day {
-    background-color: var(--mountain-peak1);
-    border: 2px solid var(--mountain-primary);
-    color: white;
-    font-weight: 600;
-    animation: mountain-glow 2s infinite;
+    background-color: var(--bm-current-day);
+    border: 2px solid var(--bm-peak);
+    color: var(--bm-primary) !important;
+    font-weight: 700;
+}
+
+.blue-mountains td.current-day .date-number {
+    color: var(--bm-primary) !important;
+    font-weight: 800;
+}
+
+.blue-mountains td.current-day::before {
+    content: "🌄";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--bm-peak);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    animation: bm-sun-glow 3s infinite;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -352,46 +404,43 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--mountain-primary);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--mountain-shadow);
-    transition: all var(--mountain-transition);
-    position: relative;
-}
-
-.blue-mountains .event-marker::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-    box-shadow: 0 0 5px 2px var(--mountain-primary);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    background-color: var(--bm-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 3px var(--bm-shadow);
+    transition: all var(--bm-transition);
 }
 
 .blue-mountains .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--mountain-peak5);
-    box-shadow: 0 0 15px var(--mountain-primary);
+    transform: scale(1.5);
+    background-color: var(--bm-peak);
 }
 
-.blue-mountains .event-marker:hover::after {
-    opacity: 1;
+/* Special event types */
+.blue-mountains .event-marker.outdoor {
+    background-color: var(--bm-forest);
+}
+
+.blue-mountains .event-marker.water {
+    background-color: var(--bm-sky);
+}
+
+.blue-mountains .event-marker.adventure {
+    background-color: var(--bm-stone);
+}
+
+.blue-mountains .event-marker.relax {
+    background-color: var(--bm-mist);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .blue-mountains .modal-content {
     position: relative;
     background-color: white;
-    border: 2px solid var(--mountain-primary);
-    padding: 30px;
-    color: var(--mountain-text);
-    box-shadow: 0 0 40px var(--mountain-shadow);
-    animation: mountainFadeIn 0.4s ease;
-    border-radius: var(--mountain-radius);
+    border: 1px solid var(--bm-primary);
+    padding: 25px;
+    color: var(--bm-text);
+    box-shadow: 0 0 20px var(--bm-shadow);
+    border-radius: var(--bm-radius);
 }
 
 .blue-mountains .modal-content::before {
@@ -400,79 +449,98 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--mountain-light);
-    animation: mountain-pulse 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bm-primary),
+            var(--bm-peak),
+            var(--bm-forest));
 }
 
 .blue-mountains .modal-content h2 {
-    color: var(--mountain-primary);
+    color: var(--bm-primary);
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
-    margin-bottom: 20px;
-    letter-spacing: 3px;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.blue-mountains .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.blue-mountains .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--bm-peak);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.blue-mountains .modal-content .event-description {
+    background-color: rgba(58, 124, 165, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--bm-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--bm-radius) var(--bm-radius) 0;
 }
 
 .blue-mountains .modal-content button {
-    background-color: transparent;
-    color: var(--mountain-primary);
-    border: 1px solid var(--mountain-primary);
-    padding: 12px 24px;
-    font-size: 1em;
+    background-color: var(--bm-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--mountain-transition);
-    letter-spacing: 1px;
-    border-radius: var(--mountain-radius);
-    font-family: 'Montserrat', sans-serif;
+    transition: all var(--bm-transition);
+    border-radius: var(--bm-radius);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .blue-mountains .modal-content button:hover {
-    background-color: var(--mountain-primary);
-    color: white;
-    box-shadow: 0 0 15px var(--mountain-shadow);
+    background-color: var(--bm-peak);
+    box-shadow: 0 4px 6px -1px var(--bm-shadow);
 }
 
-/* Close Button */
 .blue-mountains .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
-    color: var(--mountain-primary);
-    border: 1px solid var(--mountain-primary);
-    width: 30px;
-    height: 30px;
+    color: var(--bm-primary);
+    border: 1px solid var(--bm-primary);
+    width: 28px;
+    height: 28px;
     cursor: pointer;
-    transition: all var(--mountain-transition);
+    transition: all var(--bm-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .blue-mountains .modal .close-button:hover {
-    background-color: var(--mountain-primary);
+    background-color: var(--bm-primary);
     color: white;
-    transform: rotate(90deg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .blue-mountains .button,
 .blue-mountains .transparent-button {
-    border: 1px solid var(--mountain-primary);
-    color: var(--mountain-primary);
+    border: 1px solid var(--bm-primary);
+    color: var(--bm-primary);
     background-color: transparent;
-    padding: 0.9rem 1.8rem;
+    padding: 0.7rem 1.4rem;
     font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.1em;
+    font-weight: 400;
     cursor: pointer;
-    transition: all var(--mountain-transition);
+    transition: all var(--bm-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--mountain-radius);
+    border-radius: var(--bm-radius);
+    letter-spacing: 0.05em;
 }
 
 .blue-mountains .button::before,
@@ -483,15 +551,15 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(66, 153, 225, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(58, 124, 165, 0.1), transparent);
     transition: 0.5s;
 }
 
 .blue-mountains .button:hover,
 .blue-mountains .transparent-button:hover {
-    background-color: var(--mountain-primary);
+    background-color: var(--bm-primary);
     color: white;
-    box-shadow: 0 0 20px var(--mountain-shadow);
+    box-shadow: 0 4px 6px -1px var(--bm-shadow);
 }
 
 .blue-mountains .button:hover::before,
@@ -507,40 +575,78 @@
     margin: 1.5rem 0;
 }
 
+/* ==================== THEME SWITCHER ==================== */
+.blue-mountains #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
 .blue-mountains #theme-switcher {
-    background-color: var(--mountain-cloud);
-    color: var(--mountain-text);
-    border: 1px solid var(--mountain-primary);
-    padding: 0.8rem;
+    background-color: white;
+    color: var(--bm-primary) !important;
+    border: 1px solid var(--bm-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
     font-family: 'Open Sans', sans-serif;
-    margin-left: 1rem;
-    border-radius: var(--mountain-radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--bm-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233a7ca5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--bm-transition);
+    box-shadow: 0 1px 3px 0 var(--bm-shadow);
+}
+
+.blue-mountains #theme-switcher option {
+    background-color: white !important;
+    color: var(--bm-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.blue-mountains #theme-switcher option:hover {
+    background-color: var(--bm-primary) !important;
+    color: white !important;
+}
+
+.blue-mountains #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 124, 165, 0.3);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .blue-mountains #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--mountain-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
+    border: 1px solid var(--bm-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
     font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.1em;
-    color: var(--mountain-primary);
-    background-color: var(--mountain-cloud);
+    font-weight: 400;
+    color: var(--bm-primary);
+    background-color: white;
     cursor: pointer;
-    transition: all var(--mountain-transition);
+    transition: all var(--bm-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--mountain-radius);
+    border-radius: var(--bm-radius);
+    box-shadow: 0 4px 6px -1px var(--bm-shadow);
 }
 
 .blue-mountains #backToTopBtn:hover {
-    background-color: var(--mountain-primary);
+    background-color: var(--bm-primary);
     color: white;
-    box-shadow: 0 0 20px var(--mountain-shadow);
     opacity: 1;
 }
 
@@ -548,73 +654,94 @@
 .blue-mountains footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--mountain-peak4);
-    color: var(--mountain-text);
-    font-size: 0.9rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--bm-primary);
+    color: var(--bm-text);
+    font-size: 0.8rem;
+}
+
+.blue-mountains footer::before {
+    content: "🏔 ";
+    color: var(--bm-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .blue-mountains .container {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .blue-mountains #calendar-title {
-        font-size: 2.2rem;
-    }
-
-    .blue-mountains #calendar-title::after {
-        right: 5%;
+        font-size: 2rem;
     }
 
     .blue-mountains #current-date {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
 
     .blue-mountains #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .blue-mountains th {
-        padding: 1rem 0.4rem;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
     }
 }
 
 @media (max-width: 768px) {
+    .blue-mountains .container {
+        padding: 1rem;
+    }
+
+    .blue-mountains #calendar-title {
+        font-size: 1.7rem;
+    }
+
     .blue-mountains .clock-face {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
     }
 
-    /* Improved table cell styling */
-    .blue-mountains th {
-        padding: 0.8rem 0.3rem;
-        font-size: 0.8rem;
-    }
-
-    .blue-mountains td {
-        padding: 0.7rem 0.3rem;
-        height: 90px;
-        font-size: 0.8rem;
-    }
-
-    /* Show abbreviations on medium screens */
-    .blue-mountains th span.full-day-name {
+    /* Switch to short day names */
+    .blue-mountains th .full-day {
         display: none;
     }
 
-    .blue-mountains th abbr {
+    .blue-mountains th .short-day {
         display: inline;
-        text-decoration: none;
+    }
+
+    .blue-mountains th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .blue-mountains td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
     .blue-mountains #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .blue-mountains #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .blue-mountains .modal-content {
+        padding: 15px;
+    }
+
+    .blue-mountains .modal-content h2 {
+        font-size: 1.5em;
     }
 }
 
@@ -624,109 +751,60 @@
     }
 
     .blue-mountains #calendar-title {
-        font-size: 1.8rem;
-    }
-
-    .blue-mountains #calendar-title::after {
-        content: "⛰️";
-        right: 2%;
+        font-size: 1.4rem;
     }
 
     .blue-mountains #current-date {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     .blue-mountains #today-weather {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .blue-mountains .clock-face {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
 
-    /* Further mobile optimizations */
     .blue-mountains th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.2rem;
-    }
-
-    .blue-mountains td {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.2rem;
-        height: 80px;
-    }
-
-    /* Three-letter abbreviations for small screens */
-    .blue-mountains th abbr::after {
-        content: attr(title);
-        display: none;
-    }
-
-    .blue-mountains th abbr {
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-        margin-left: 0;
-    }
-
-    .blue-mountains th::before {
-        display: none;
-    }
-
-    .blue-mountains #backToTopBtn {
-        right: 10px;
-        bottom: 10px;
-        padding: 0.7rem 1.2rem;
-        font-size: 0.8rem;
-    }
-}
-
-/* Extra small devices (phones, 400px and down) */
-@media (max-width: 400px) {
-    .blue-mountains th {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         padding: 0.5rem 0.1rem;
     }
 
     .blue-mountains td {
-        height: 70px;
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
     }
 
-    /* Single character day names for tiny screens */
-    .blue-mountains th abbr {
-        display: inline-block;
-        width: 1.2em;
-        text-align: center;
+    .blue-mountains td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .blue-mountains #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
     }
 }
 
-/* ==================== MOUNTAIN-SPECIFIC STYLES ==================== */
-.blue-mountains .snowflake {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    animation: mountain-twinkle 4s infinite;
-}
+@media (max-width: 400px) {
+    .blue-mountains th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
 
-.blue-mountains .event-marker.hiking {
-    background-color: var(--mountain-forest);
-}
+    .blue-mountains td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
 
-.blue-mountains .event-marker.climbing {
-    background-color: var(--mountain-peak1);
-}
+    .blue-mountains #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
 
-.blue-mountains .event-marker.camping {
-    background-color: var(--mountain-sun);
-}
-
-.blue-mountains .mountain-ridge {
-    position: absolute;
-    height: 1px;
-    background: var(--mountain-light);
-    transform-origin: left center;
-    z-index: 1;
+    .blue-mountains #calendar-title {
+        font-size: 1.2rem;
+    }
 }
