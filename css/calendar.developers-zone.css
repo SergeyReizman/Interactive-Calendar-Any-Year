@@ -1,110 +1,144 @@
 /* ==========================================================================
-   Developers Zone Theme - Dark Theme with Coding Aesthetics
-   Version: 2.2
-   Updated: 2025-05-11
-   Includes:
-   - Fixed weekday header overlapping issue
-   - Optimized table cell spacing
-   - Improved responsive day name handling
-   - Fixed date/weather visibility
-   - Proper right-aligned back-to-top button
-   - Themed analog clock
-   - Mobile responsiveness
+   Developer's Zone Theme - Coding Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Dark IDE color scheme
+   - Monospace typography
+   - Mobile-responsive design
+   - Code-inspired UI elements
+   - Syntax highlighting effects
+   - Enhanced accessibility
+   - Pixel-perfect design
+   - Fluid typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Fira+Code:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --dev-bg: #1E1E1E;
-    --dev-text: #D4D4D4;
-    --dev-primary: #569CD6;
-    --dev-secondary: #4EC9B0;
+    /* Developer Color Palette */
+    --dz-bg: #1e1e1e;
+    --dz-text: #e0e0e0;
+    --dz-primary: #569CD6;
+    /* Blue like TypeScript */
+    --dz-secondary: #9CDCFE;
+    /* Light blue like JS docs */
 
-    /* Code Editor Gradient */
-    --dev-dark1: #1E1E1E;
-    --dev-dark2: #252526;
-    --dev-dark3: #2D2D2D;
-    --dev-dark4: #3E3E42;
-    --dev-dark5: #515156;
+    /* Gradient Colors */
+    --dz-gradient-start: #1e1e1e;
+    --dz-gradient-end: #252526;
 
-    /* Syntax Highlight Spectrum */
-    --dev-blue1: #569CD6;
-    --dev-blue2: #4B8BD6;
-    --dev-blue3: #3B78D6;
-    --dev-green1: #4EC9B0;
-    --dev-green2: #3BB8A3;
-    --dev-purple1: #C586C0;
-    --dev-orange1: #CE9178;
-
-    /* Special Effects */
-    --dev-glow: #569CD6;
-    --dev-accent: #4EC9B0;
-    --dev-console: #0D0D0D;
+    /* Syntax Highlight Colors */
+    --dz-red: #F44747;
+    /* Errors */
+    --dz-yellow: #FFCC66;
+    /* Warnings */
+    --dz-green: #4EC9B0;
+    /* Success */
+    --dz-orange: #CE9178;
+    /* Strings */
+    --dz-purple: #C586C0;
+    /* Keywords */
 
     /* Theme Variables */
-    --dev-shadow: rgba(86, 156, 214, 0.3);
-    --dev-radius: 4px;
-    --dev-transition: 0.3s ease;
-    --dev-hover: #4EC9B0;
+    --dz-shadow: rgba(86, 156, 214, 0.3);
+    --dz-radius: 0px;
+    /* Sharp edges like IDE */
+    --dz-transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --dz-hover: #2d2d2d;
+    --dz-current-day: #264F78;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes dev-glow {
+@keyframes dz-blink {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--dev-blue1);
+        opacity: 1;
     }
 
     50% {
-        box-shadow: 0 0 25px var(--dev-blue2);
+        opacity: 0.5;
     }
 }
 
-@keyframes dev-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.03);
-    }
-}
-
-@keyframes devFadeIn {
+@keyframes dz-typing {
     from {
-        opacity: 0;
-        transform: translateY(10px);
+        width: 0;
     }
 
     to {
-        opacity: 1;
-        transform: translateY(0);
+        width: 100%;
+    }
+}
+
+@keyframes dz-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--dz-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--dz-secondary);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .developers-zone {
-    font-family: 'Fira Code', monospace;
-    color: var(--dev-text);
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--dz-text);
     line-height: 1.6;
-    background-color: var(--dev-bg);
+    background: var(--dz-bg);
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(90deg,
+            rgba(86, 156, 214, 0.05) 1px,
+            transparent 1px);
+    background-size: 20px 20px;
+}
+
+.developers-zone::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(to bottom,
+            transparent 95%,
+            rgba(86, 156, 214, 0.1) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* IDE-like ruler */
+.developers-zone::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 80px;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(86, 156, 214, 0.1);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .developers-zone .container {
-    background-color: var(--dev-dark2);
+    background-color: rgba(30, 30, 30, 0.95);
     padding: 2rem;
-    border: 1px solid var(--dev-primary);
-    box-shadow: 0 0 30px var(--dev-shadow);
+    border: 1px solid var(--dz-primary);
+    box-shadow: 0 0 30px var(--dz-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--dev-radius);
+    border-radius: var(--dz-radius);
+    z-index: 1;
 }
 
 .developers-zone .container::before {
@@ -113,21 +147,45 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--dev-primary), transparent);
-    animation: dev-pulse 3s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dz-primary),
+            var(--dz-secondary),
+            transparent);
+    animation: dz-glow 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .developers-zone #calendar-title {
-    font-family: 'Source Code Pro', monospace;
-    color: var(--dev-primary);
+    font-family: 'Fira Code', monospace;
+    color: var(--dz-primary);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 15px var(--dev-shadow);
+    font-weight: 400;
+    letter-spacing: 0;
+    position: relative;
+    text-transform: none;
+}
+
+.developers-zone #calendar-title::before,
+.developers-zone #calendar-title::after {
+    content: "//";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dz-secondary);
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.developers-zone #calendar-title::before {
+    left: 1rem;
+}
+
+.developers-zone #calendar-title::after {
+    right: 1rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -135,10 +193,10 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: var(--dev-dark3);
-    border: 1px solid var(--dev-dark5);
+    background-color: rgba(86, 156, 214, 0.1);
+    border: 1px solid var(--dz-primary);
+    border-radius: var(--dz-radius);
     position: relative;
-    border-radius: var(--dev-radius);
 }
 
 .developers-zone #date-weather-container::after {
@@ -148,24 +206,27 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--dev-primary), transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dz-primary),
+            transparent);
 }
 
 .developers-zone #current-date {
-    font-family: 'Source Code Pro', monospace;
-    color: var(--dev-primary);
+    font-family: 'Fira Code', monospace;
+    color: var(--dz-primary);
     font-size: 1.8rem;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--dev-shadow);
+    letter-spacing: 0;
 }
 
 .developers-zone #today-weather {
-    font-family: 'Fira Code', monospace;
-    color: var(--dev-green1);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--dz-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0;
+    font-weight: 600;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -176,13 +237,26 @@
 }
 
 .developers-zone .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 12px solid var(--dev-primary);
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--dz-primary);
     border-radius: 50%;
     position: relative;
-    background-color: var(--dev-dark1);
-    box-shadow: 0 0 20px var(--dev-shadow);
+    background-color: var(--dz-bg);
+    box-shadow:
+        0 0 15px var(--dz-shadow),
+        inset 0 0 10px rgba(86, 156, 214, 0.1);
+}
+
+/* Code numerals for clock */
+.developers-zone .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Fira Code" font-size="12" fill="%23569CD6">0xC</text><text x="82" y="55" text-anchor="middle" font-family="Fira Code" font-size="12" fill="%23569CD6">0x3</text><text x="50" y="92" text-anchor="middle" font-family="Fira Code" font-size="12" fill="%23569CD6">0x6</text><text x="18" y="55" text-anchor="middle" font-family="Fira Code" font-size="12" fill="%23569CD6">0x9</text></svg>');
 }
 
 .developers-zone .hand {
@@ -191,93 +265,128 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .developers-zone .hour-hand {
     width: 40%;
     left: 10%;
-    height: 8px;
-    background: var(--dev-primary);
-    margin-top: -4px;
+    height: 4px;
+    background: var(--dz-primary);
+    margin-top: -2px;
 }
 
 .developers-zone .minute-hand {
     width: 48%;
     left: 2%;
-    height: 6px;
-    background: var(--dev-blue2);
-    margin-top: -3px;
+    height: 2px;
+    background: var(--dz-secondary);
+    margin-top: -1px;
 }
 
 .developers-zone .second-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--dev-green1);
-    margin-top: -1.5px;
+    height: 1px;
+    background: var(--dz-yellow);
+    margin-top: -0.5px;
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+/* Clock center - Debug point */
+.developers-zone .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--dz-purple);
+    border-radius: 50%;
+    border: 1px solid var(--dz-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
 .developers-zone table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 2px;
+    border-collapse: collapse;
     margin: 2rem auto;
-    background-color: var(--dev-dark2);
-    border: 1px solid var(--dev-primary);
+    background-color: rgba(40, 40, 40, 0.9);
+    border: 1px solid var(--dz-primary);
+    border-radius: var(--dz-radius);
     table-layout: fixed;
-    border-radius: var(--dev-radius);
 }
 
+/* Weekday headers - responsive solution */
 .developers-zone th {
-    background-color: var(--dev-dark1);
-    color: var(--dev-primary);
-    font-family: 'Source Code Pro', monospace;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--dev-dark5);
-    border-bottom: 2px solid var(--dev-primary);
+    background-color: rgba(86, 156, 214, 0.15);
+    color: var(--dz-primary) !important;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--dz-primary);
     position: relative;
+    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-width: 0;
 }
 
-.developers-zone th span.full-day-name {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* Full names for desktop */
+.developers-zone th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.developers-zone th .short-day {
+    display: none;
 }
 
 .developers-zone td {
-    background-color: var(--dev-dark3);
-    color: var(--dev-text);
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--dev-dark5);
-    height: 100px;
+    background-color: rgba(35, 35, 35, 0.9);
+    color: var(--dz-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--dz-primary);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--dev-transition);
+    transition: all var(--dz-transition);
     position: relative;
-    overflow: hidden;
+    font-size: 0.85rem;
 }
 
 .developers-zone td:hover {
-    background-color: var(--dev-dark4);
-    box-shadow: inset 0 0 15px var(--dev-shadow);
+    background-color: var(--dz-hover);
+    box-shadow: inset 0 0 15px var(--dz-shadow);
+}
+
+.developers-zone .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--dz-text);
 }
 
 .developers-zone td.current-day {
-    background-color: var(--dev-dark1);
-    border: 2px solid var(--dev-primary);
-    color: var(--dev-primary);
-    font-weight: 600;
-    animation: dev-glow 2s infinite;
+    background-color: var(--dz-current-day);
+    border: 2px solid var(--dz-secondary);
+    color: var(--dz-secondary) !important;
+    font-weight: 700;
+}
+
+.developers-zone td.current-day .date-number {
+    color: var(--dz-secondary) !important;
+    font-weight: 800;
+}
+
+.developers-zone td.current-day::before {
+    content: "⚙️";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--dz-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -286,28 +395,41 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--dev-primary);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--dev-shadow);
-    transition: all var(--dev-transition);
+    background-color: var(--dz-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--dz-shadow);
+    transition: all var(--dz-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .developers-zone .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--dev-green1);
-    box-shadow: 0 0 15px var(--dev-primary);
+    transform: scale(1.8);
+    background-color: var(--dz-secondary);
+    box-shadow: 0 0 15px var(--dz-primary);
+}
+
+/* Special event types */
+.developers-zone .event-marker.holiday {
+    background-color: var(--dz-yellow);
+}
+
+.developers-zone .event-marker.historic {
+    background-color: var(--dz-purple);
+}
+
+.developers-zone .event-marker.patriotic {
+    background-color: var(--dz-red);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .developers-zone .modal-content {
     position: relative;
-    background-color: var(--dev-dark2);
-    border: 2px solid var(--dev-primary);
-    padding: 30px;
-    color: var(--dev-text);
-    box-shadow: 0 0 40px var(--dev-shadow);
-    animation: devFadeIn 0.4s ease;
-    border-radius: var(--dev-radius);
+    background-color: rgba(30, 30, 30, 0.98);
+    border: 1px solid var(--dz-primary);
+    padding: 25px;
+    color: var(--dz-text);
+    box-shadow: 0 0 30px var(--dz-shadow);
+    border-radius: var(--dz-radius);
 }
 
 .developers-zone .modal-content::before {
@@ -316,82 +438,97 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--dev-primary);
-    animation: dev-pulse 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--dz-primary),
+            var(--dz-secondary),
+            var(--dz-yellow));
 }
 
 .developers-zone .modal-content h2 {
-    color: var(--dev-primary);
-    font-family: 'Source Code Pro', monospace;
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    color: var(--dz-primary);
+    font-family: 'Fira Code', monospace;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.developers-zone .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.developers-zone .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--dz-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.developers-zone .modal-content .event-description {
+    background-color: rgba(86, 156, 214, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--dz-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--dz-radius) var(--dz-radius) 0;
 }
 
 .developers-zone .modal-content button {
-    background-color: transparent;
-    color: var(--dev-primary);
-    border: 1px solid var(--dev-primary);
-    padding: 12px 24px;
-    font-size: 1em;
+    background-color: var(--dz-primary);
+    color: var(--dz-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--dev-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: var(--dev-radius);
-    font-family: 'Source Code Pro', monospace;
+    transition: all var(--dz-transition);
+    border-radius: var(--dz-radius);
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .developers-zone .modal-content button:hover {
-    background-color: var(--dev-primary);
-    color: var(--dev-text);
-    box-shadow: 0 0 15px var(--dev-shadow);
+    background-color: var(--dz-secondary);
+    box-shadow: 0 4px 6px -1px var(--dz-shadow);
 }
 
-/* Close Button */
 .developers-zone .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
-    color: var(--dev-primary);
-    border: 1px solid var(--dev-primary);
-    width: 30px;
-    height: 30px;
+    color: var(--dz-primary);
+    border: 1px solid var(--dz-primary);
+    width: 28px;
+    height: 28px;
     cursor: pointer;
-    transition: all var(--dev-transition);
+    transition: all var(--dz-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-family: 'Source Code Pro', monospace;
 }
 
 .developers-zone .modal .close-button:hover {
-    background-color: var(--dev-primary);
-    color: var(--dev-text);
-    transform: rotate(90deg);
+    background-color: var(--dz-primary);
+    color: var(--dz-bg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .developers-zone .button,
 .developers-zone .transparent-button {
-    border: 1px solid var(--dev-primary);
-    color: var(--dev-primary);
+    border: 1px solid var(--dz-primary);
+    color: var(--dz-primary);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Source Code Pro', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 400;
     cursor: pointer;
-    transition: all var(--dev-transition);
+    transition: all var(--dz-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--dev-radius);
+    border-radius: var(--dz-radius);
 }
 
 .developers-zone .button::before,
@@ -402,15 +539,15 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(86, 156, 214, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(86, 156, 214, 0.1), transparent);
     transition: 0.5s;
 }
 
 .developers-zone .button:hover,
 .developers-zone .transparent-button:hover {
-    background-color: var(--dev-primary);
-    color: var(--dev-text);
-    box-shadow: 0 0 20px var(--dev-shadow);
+    background-color: var(--dz-primary);
+    color: var(--dz-bg);
+    box-shadow: 0 4px 6px -1px var(--dz-shadow);
 }
 
 .developers-zone .button:hover::before,
@@ -426,41 +563,78 @@
     margin: 1.5rem 0;
 }
 
+/* ==================== THEME SWITCHER ==================== */
+.developers-zone #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
 .developers-zone #theme-switcher {
-    background-color: var(--dev-dark3);
-    color: var(--dev-text);
-    border: 1px solid var(--dev-primary);
-    padding: 0.8rem;
-    font-family: 'Fira Code', monospace;
-    margin-left: 1rem;
-    border-radius: var(--dev-radius);
+    background-color: var(--dz-bg);
+    color: var(--dz-primary) !important;
+    border: 1px solid var(--dz-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--dz-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23569CD6'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--dz-transition);
+    box-shadow: 0 1px 3px 0 var(--dz-shadow);
+}
+
+.developers-zone #theme-switcher option {
+    background-color: var(--dz-bg) !important;
+    color: var(--dz-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.developers-zone #theme-switcher option:hover {
+    background-color: var(--dz-primary) !important;
+    color: var(--dz-bg) !important;
+}
+
+.developers-zone #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(86, 156, 214, 0.3);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .developers-zone #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--dev-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Source Code Pro', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--dev-primary);
-    background-color: var(--dev-dark3);
+    border: 1px solid var(--dz-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 400;
+    color: var(--dz-primary);
+    background-color: var(--dz-bg);
     cursor: pointer;
-    transition: all var(--dev-transition);
+    transition: all var(--dz-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--dev-radius);
+    border-radius: var(--dz-radius);
+    box-shadow: 0 4px 6px -1px var(--dz-shadow);
 }
 
 .developers-zone #backToTopBtn:hover {
-    background-color: var(--dev-primary);
-    color: var(--dev-text);
-    box-shadow: 0 0 20px var(--dev-shadow);
+    background-color: var(--dz-primary);
+    color: var(--dz-bg);
     opacity: 1;
 }
 
@@ -468,16 +642,21 @@
 .developers-zone footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--dev-dark5);
-    color: var(--dev-text);
-    font-size: 0.9rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--dz-primary);
+    color: var(--dz-text);
+    font-size: 0.8rem;
+}
+
+.developers-zone footer::before {
+    content: "// ";
+    color: var(--dz-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .developers-zone .container {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .developers-zone #calendar-title {
@@ -489,49 +668,68 @@
     }
 
     .developers-zone #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .developers-zone th {
-        padding: 0.8rem 0.3rem;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
     }
 }
 
 @media (max-width: 768px) {
-    .developers-zone .clock-face {
-        width: 160px;
-        height: 160px;
+    .developers-zone .container {
+        padding: 1rem;
     }
 
-    /* Improved table cell styling */
+    .developers-zone #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .developers-zone .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .developers-zone th .full-day {
+        display: none;
+    }
+
+    .developers-zone th .short-day {
+        display: inline;
+    }
+
     .developers-zone th {
-        padding: 0.6rem 0.2rem;
-        font-size: 0.8rem;
-        letter-spacing: normal;
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
     }
 
     .developers-zone td {
-        padding: 0.5rem 0.2rem;
+        padding: 0.6rem 0.15rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    /* Show abbreviations on medium screens */
-    .developers-zone th span.full-day-name {
-        display: none;
-    }
-
-    .developers-zone th abbr {
-        display: inline;
-        text-decoration: none;
-    }
-
     .developers-zone #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .developers-zone #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .developers-zone .modal-content {
+        padding: 15px;
+    }
+
+    .developers-zone .modal-content h2 {
+        font-size: 1.5em;
     }
 }
 
@@ -541,8 +739,7 @@
     }
 
     .developers-zone #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
+        font-size: 1.4rem;
     }
 
     .developers-zone #current-date {
@@ -554,43 +751,31 @@
     }
 
     .developers-zone .clock-face {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
     }
 
-    /* Further mobile optimizations */
     .developers-zone th {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         padding: 0.5rem 0.1rem;
     }
 
     .developers-zone td {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.1rem;
+        padding: 0.4rem 0.1rem;
         height: 60px;
+        font-size: 0.75rem;
     }
 
-    /* Three-letter abbreviations for small screens */
-    .developers-zone th abbr::after {
-        content: attr(title);
-        display: none;
+    .developers-zone td.current-day::before {
+        font-size: 0.7rem;
     }
 
-    .developers-zone th abbr {
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-    }
-
-    .developers-zone #backToTopBtn {
-        right: 10px;
-        bottom: 10px;
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
+    .developers-zone #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
     }
 }
 
-/* Extra small devices (phones, 400px and down) */
 @media (max-width: 400px) {
     .developers-zone th {
         font-size: 0.6rem;
@@ -599,34 +784,15 @@
 
     .developers-zone td {
         height: 50px;
+        font-size: 0.7rem;
     }
 
-    /* Single character day names for tiny screens */
-    .developers-zone th abbr {
-        display: inline-block;
-        width: 1.2em;
-        text-align: center;
+    .developers-zone #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
     }
-}
 
-/* ==================== DEVELOPER-SPECIFIC STYLES ==================== */
-.developers-zone .code-snippet {
-    background-color: var(--dev-console);
-    border-left: 3px solid var(--dev-primary);
-    padding: 1rem;
-    margin: 1rem 0;
-    font-family: 'Fira Code', monospace;
-    overflow-x: auto;
-}
-
-.developers-zone .event-marker.bug {
-    background-color: var(--dev-orange1);
-}
-
-.developers-zone .event-marker.feature {
-    background-color: var(--dev-green1);
-}
-
-.developers-zone .event-marker.meeting {
-    background-color: var(--dev-purple1);
+    .developers-zone #calendar-title {
+        font-size: 1.2rem;
+    }
 }
