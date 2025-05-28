@@ -1,52 +1,64 @@
 /* ==========================================================================
-   Black Fashion Theme - Luxury Fashion-Inspired Interface
+   Black Fashion Theme - Elegant Dark Interface
    Version: 1.0
-   Updated: 2025-05-18
+   Updated: 2025-05-29
    Changes:
-   - Created high-fashion monochrome color palette
-   - Added runway-inspired elements and couture details
-   - Designed with minimalist typography and luxury accents
-   - Maintained all structural elements from Black Hawk
+   - Created sophisticated black fashion color palette
+   - Added metallic accents and fabric textures
+   - Designed with haute couture typography
+   - Maintained all structural elements from The Perfect Blend
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap');
 
 :root {
     /* Fashion Color Palette */
-    --fashion-bg: #0A0A0A;
-    --fashion-text: #F0F0F0;
-    --fashion-primary: #1A1A1A;
+    --fashion-bg: #121212;
+    --fashion-text: #E0E0E0;
+    --fashion-primary: #1E1E1E;
     --fashion-secondary: #2A2A2A;
 
-    /* Texture Colors */
-    --fashion-texture1: #121212;
-    --fashion-texture2: #1E1E1E;
-    --fashion-texture3: #252525;
-    --fashion-texture4: #2E2E2E;
-    --fashion-texture5: #363636;
+    /* Fabric Shades */
+    --fashion-light: #2D2D2D;
+    --fashion-medium: #252525;
+    --fashion-dark: #1C1C1C;
+    --fashion-darker: #141414;
+    --fashion-darkest: #0A0A0A;
 
     /* Accent Colors */
-    --fashion-accent1: #555555;
-    --fashion-accent2: #777777;
-    --fashion-accent3: #999999;
-    --fashion-accent4: #BBBBBB;
-    --fashion-accent5: #FFFFFF;
+    --fashion-accent1: #4A4A4A;
+    --fashion-accent2: #5E5E5E;
+    --fashion-accent3: #727272;
+    --fashion-accent4: #868686;
+    --fashion-accent5: #C0A062;
 
     /* Theme Variables */
-    --fashion-shadow: rgba(255, 255, 255, 0.1);
-    --fashion-radius: 0px;
+    --fashion-shadow: rgba(192, 160, 98, 0.2);
+    --fashion-radius: 4px;
     --fashion-transition: 0.3s ease;
-    --fashion-hover: #FFFFFF;
-    --fashion-glow: 0 0 15px rgba(255, 255, 255, 0.2);
-    --fashion-stripe: repeating-linear-gradient(45deg,
-            transparent,
-            transparent 5px,
-            rgba(255, 255, 255, 0.05) 5px,
-            rgba(255, 255, 255, 0.05) 10px);
+    --fashion-hover: #C0A062;
+    --fashion-glow: 0 0 10px rgba(192, 160, 98, 0.3);
+    --fashion-texture: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%234A4A4A" stroke-width="1" stroke-dasharray="2,2"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes fashion-fade {
+@keyframes fashion-sparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes fashion-pulse {
 
     0%,
     100% {
@@ -58,27 +70,15 @@
     }
 }
 
-@keyframes fashion-slide {
+@keyframes fashion-fadeIn {
     from {
-        transform: translateX(-10px);
         opacity: 0;
+        transform: translateY(-10px);
     }
 
     to {
-        transform: translateX(0);
         opacity: 1;
-    }
-}
-
-@keyframes fashion-pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-    }
-
-    50% {
-        box-shadow: var(--fashion-glow);
+        transform: translateY(0);
     }
 }
 
@@ -89,6 +89,7 @@
     line-height: 1.6;
     background-color: var(--fashion-bg);
     min-height: 100vh;
+    background-image: var(--fashion-texture);
 }
 
 .black-fashion .container {
@@ -101,7 +102,6 @@
     max-width: 1600px;
     margin: 0 auto;
     border-radius: var(--fashion-radius);
-    background-image: var(--fashion-stripe);
 }
 
 .black-fashion .container::before {
@@ -114,6 +114,16 @@
     background: linear-gradient(90deg, transparent, var(--fashion-accent5), transparent);
 }
 
+/* Accent Elements */
+.black-fashion .container::after {
+    content: "✧";
+    position: absolute;
+    top: -15px;
+    right: 30px;
+    font-size: 2rem;
+    opacity: 0.1;
+}
+
 /* ==================== HEADER & TITLE ==================== */
 .black-fashion #calendar-title {
     font-family: 'Playfair Display', serif;
@@ -121,21 +131,19 @@
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    letter-spacing: 0.05em;
     position: relative;
-    animation: fashion-fade 3s infinite;
+    animation: fashion-pulse 3s infinite;
 }
 
 .black-fashion #calendar-title::after {
-    content: "✦";
+    content: "";
     position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--fashion-accent5);
-    font-size: 1.5rem;
-    opacity: 0.5;
+    bottom: -10px;
+    left: 30%;
+    right: 30%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--fashion-accent5), transparent);
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -143,21 +151,23 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1.5rem;
-    background-color: var(--fashion-texture3);
+    background-color: var(--fashion-medium);
     border: 1px solid var(--fashion-accent1);
     position: relative;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion #date-weather-container::before {
-    content: "NEW COLLECTION";
+    content: "";
     position: absolute;
-    top: -10px;
-    right: 20px;
-    background-color: var(--fashion-primary);
-    padding: 0 10px;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    color: var(--fashion-accent5);
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px dashed var(--fashion-accent1);
+    border-radius: var(--fashion-radius);
+    pointer-events: none;
+    opacity: 0.3;
 }
 
 .black-fashion #date-weather-container::after {
@@ -172,20 +182,18 @@
 
 .black-fashion #current-date {
     font-family: 'Playfair Display', serif;
-    color: var(--fashion-accent5);
+    color: var(--fashion-accent4);
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 700;
     margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
 }
 
 .black-fashion #today-weather {
     font-family: 'Montserrat', sans-serif;
     color: var(--fashion-accent3);
     font-size: 1.4rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-style: italic;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -193,6 +201,18 @@
     display: flex;
     justify-content: center;
     margin: 2rem 0;
+    position: relative;
+}
+
+.black-fashion #analog-watch::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 50px;
+    height: 20px;
+    background-color: var(--fashion-dark);
+    border-radius: 50% 50% 0 0;
+    z-index: -1;
 }
 
 .black-fashion .clock-face {
@@ -201,7 +221,7 @@
     border: 8px solid var(--fashion-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--fashion-primary);
+    background-color: var(--fashion-light);
     box-shadow: var(--fashion-glow);
 }
 
@@ -217,46 +237,43 @@
 .black-fashion .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--fashion-accent3);
-    margin-top: -2px;
+    height: 6px;
+    background: var(--fashion-accent1);
+    margin-top: -3px;
 }
 
 .black-fashion .minute-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--fashion-accent3);
-    margin-top: -1.5px;
+    height: 4px;
+    background: var(--fashion-accent1);
+    margin-top: -2px;
 }
 
 .black-fashion .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
+    height: 2px;
     background: var(--fashion-accent5);
-    margin-top: -0.5px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    margin-top: -1px;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .black-fashion table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 5px;
     margin: 2rem auto;
-    background-color: var(--fashion-primary);
-    border: 1px solid var(--fashion-accent1);
+    background-color: transparent;
     table-layout: fixed;
 }
 
 /* DAY OF WEEK HEADERS */
 .black-fashion th {
-    background-color: var(--fashion-texture2);
+    background-color: var(--fashion-medium);
     color: var(--fashion-text) !important;
     font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 700;
     padding: 1rem 0.5rem;
     border: 1px solid var(--fashion-accent1);
     position: relative;
@@ -264,6 +281,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion th span.full-day-name {
@@ -277,7 +295,7 @@
 }
 
 .black-fashion td {
-    background-color: var(--fashion-texture3);
+    background-color: var(--fashion-light);
     color: var(--fashion-text);
     padding: 1.2rem;
     border: 1px solid var(--fashion-accent1);
@@ -285,20 +303,20 @@
     vertical-align: top;
     transition: all var(--fashion-transition);
     position: relative;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion td:hover {
-    background-color: var(--fashion-texture4);
-    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+    background-color: var(--fashion-medium);
+    box-shadow: 0 2px 8px var(--fashion-shadow);
 }
 
 /* Current date highlight */
 .black-fashion td.current-day {
-    background-color: var(--fashion-texture5);
+    background-color: var(--fashion-dark);
     border: 1px solid var(--fashion-accent5);
     color: var(--fashion-text) !important;
-    font-weight: 500;
-    animation: fashion-pulse 2s infinite;
+    font-weight: 700;
 }
 
 .black-fashion td.current-day::before {
@@ -326,14 +344,24 @@
     border-radius: 50%;
     background-color: var(--fashion-accent5);
     margin: 0 2px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px rgba(192, 160, 98, 0.3);
     transition: all var(--fashion-transition);
 }
 
 .black-fashion .event-marker:hover {
     transform: scale(2);
     background-color: var(--fashion-accent5);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(192, 160, 98, 0.5);
+}
+
+/* Sparkle animation on event hover */
+.black-fashion .event-marker:hover::after {
+    content: "✦";
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    color: var(--fashion-accent1);
+    animation: fashion-sparkle 1.5s ease-out infinite;
 }
 
 /* ==================== MODAL STYLES ==================== */
@@ -344,7 +372,8 @@
     padding: 30px;
     color: var(--fashion-text);
     box-shadow: var(--fashion-glow);
-    animation: fashion-slide 0.3s ease-out;
+    animation: fashion-fadeIn 0.3s ease-out;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion .modal-content::before {
@@ -362,7 +391,7 @@
     font-family: 'Playfair Display', serif;
     font-size: 2em;
     margin-bottom: 20px;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
 }
 
 .black-fashion .modal-content button {
@@ -376,12 +405,12 @@
     transition: all var(--fashion-transition);
     letter-spacing: 1px;
     font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion .modal-content button:hover {
     background-color: var(--fashion-accent5);
-    color: var(--fashion-primary);
+    color: var(--fashion-light);
     box-shadow: var(--fashion-glow);
 }
 
@@ -400,11 +429,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
 }
 
 .black-fashion .modal .close-button:hover {
     background-color: var(--fashion-accent5);
-    color: var(--fashion-primary);
+    color: var(--fashion-light);
     transform: rotate(90deg);
 }
 
@@ -416,13 +446,13 @@
     background-color: transparent;
     padding: 0.8rem 1.6rem;
     font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
     transition: all var(--fashion-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion .button::before,
@@ -433,13 +463,13 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(192, 160, 98, 0.1), transparent);
     transition: 0.5s;
 }
 
 .black-fashion .button:hover,
 .black-fashion .transparent-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(192, 160, 98, 0.1);
     color: var(--fashion-accent5);
     border-color: var(--fashion-accent5);
     box-shadow: var(--fashion-glow);
@@ -467,7 +497,7 @@
 }
 
 .black-fashion #theme-switcher {
-    background-color: var(--fashion-texture2);
+    background-color: var(--fashion-medium);
     color: var(--fashion-text) !important;
     border: 1px solid var(--fashion-accent1);
     padding: 0.8rem 2.5rem 0.8rem 1rem;
@@ -478,16 +508,17 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0F0F0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0E0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
     cursor: pointer;
     transition: all var(--fashion-transition);
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion #theme-switcher option {
-    background-color: var(--fashion-primary) !important;
+    background-color: var(--fashion-light) !important;
     color: var(--fashion-text) !important;
     font-size: 1rem;
     font-weight: 500;
@@ -497,7 +528,7 @@
 
 .black-fashion #theme-switcher option:hover {
     background-color: var(--fashion-accent5) !important;
-    color: var(--fashion-primary) !important;
+    color: var(--fashion-light) !important;
 }
 
 .black-fashion #theme-switcher:focus {
@@ -516,18 +547,18 @@
     padding: 1rem 1.8rem;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--fashion-accent3);
-    background-color: var(--fashion-texture2);
+    background-color: var(--fashion-medium);
     cursor: pointer;
     transition: all var(--fashion-transition);
     opacity: 0.9;
     display: none;
+    border-radius: var(--fashion-radius);
 }
 
 .black-fashion #backToTopBtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(192, 160, 98, 0.1);
     color: var(--fashion-accent5);
     border-color: var(--fashion-accent5);
     box-shadow: var(--fashion-glow);
@@ -552,7 +583,6 @@
 
     .black-fashion #calendar-title {
         font-size: 2rem;
-        letter-spacing: 0.1em;
     }
 
     .black-fashion #current-date {
