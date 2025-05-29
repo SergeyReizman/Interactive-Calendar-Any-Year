@@ -1,128 +1,100 @@
 /* ==========================================================================
-   Precious Question Theme - Celestial Calendar UI
-   Version: 4.0
-   Updated: 2025-06-15
-   Features:
-   - Mystical knowledge-inspired design system
-   - Ancient manuscript UI elements with glowing runes
-   - Parchment texture effects
-   - Enhanced accessibility with WCAG 2.1 AA compliance
-   - Subtle magical glow effects
-   - Smart responsive scaling with fluid typography
-   - Interactive question mark hover states
-   - Energy-efficient sepia mode by default
+   Precious Question Theme - Elegant Inquiry Interface
+   Version: 1.0
+   Updated: 2025-05-29
+   Changes:
+   - Created sophisticated question-inspired color palette
+   - Added subtle interrogative elements and thought bubbles
+   - Designed with refined typography
+   - Maintained all structural elements from Black Hawk
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --manuscript-bg: #F5EDE0;
-    --manuscript-text: #3A2C21;
-    --manuscript-primary: #8B5A2B;
-    --manuscript-secondary: #6B4423;
+    /* Question Color Palette */
+    --question-bg: #F9F7F5;
+    --question-text: #3A3632;
+    --question-primary: #FFFFFF;
+    --question-secondary: #F0EDEA;
 
-    /* Gradient Colors */
-    --manuscript-gradient-start: #E8D9C5;
-    --manuscript-gradient-end: #D4C4A8;
+    /* Inquiry Shades */
+    --question-light: #FDFCFB;
+    --question-medium: #E8E5E2;
+    --question-dark: #D3CEC9;
+    --question-darker: #BEB7B0;
+    --question-darkest: #A9A097;
 
     /* Accent Colors */
-    --manuscript-accent1: #A67C52;
-    --manuscript-accent2: #8C6E5D;
-    --manuscript-accent3: #BF9B7A;
-    --manuscript-accent4: #D4A76A;
-    --manuscript-accent5: #7D5D3B;
+    --question-accent1: #A89F94;
+    --question-accent2: #978D81;
+    --question-accent3: #867B6E;
+    --question-accent4: #75695B;
+    --question-accent5: #8C7853;
 
     /* Theme Variables */
-    --manuscript-shadow: rgba(139, 90, 43, 0.3);
-    --manuscript-radius: 4px;
-    --manuscript-transition: 0.3s ease-in-out;
-    --manuscript-hover: #E0D5C2;
-    --manuscript-current-day: #D4B483;
+    --question-shadow: rgba(140, 120, 83, 0.15);
+    --question-radius: 4px;
+    --question-transition: 0.3s ease;
+    --question-hover: #8C7853;
+    --question-glow: 0 0 10px rgba(140, 120, 83, 0.2);
+    --question-thought: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="5" fill="none" stroke="%23A89F94" stroke-width="0.5" opacity="0.1"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes manuscript-glow {
-
-    0%,
-    100% {
-        text-shadow: 0 0 5px var(--manuscript-accent1),
-            0 0 10px var(--manuscript-accent5),
-            0 0 15px var(--manuscript-accent2);
-        opacity: 0.8;
-    }
-
-    50% {
-        text-shadow: 0 0 8px var(--manuscript-accent3),
-            0 0 13px var(--manuscript-accent1),
-            0 0 18px var(--manuscript-accent5);
-        opacity: 1;
-    }
-}
-
-@keyframes manuscript-fade {
+@keyframes question-ponder {
     0% {
-        background-position: 0 0;
+        transform: translateY(0);
     }
-
+    50% {
+        transform: translateY(-3px);
+    }
     100% {
-        background-position: 0 100vh;
+        transform: translateY(0);
     }
 }
 
-@keyframes manuscript-pulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--manuscript-accent1);
+@keyframes question-pulse {
+    0%, 100% {
+        opacity: 0.9;
     }
-
     50% {
-        box-shadow: 0 0 15px var(--manuscript-accent5);
+        opacity: 1;
+        text-shadow: 0 0 5px var(--question-accent5);
+    }
+}
+
+@keyframes question-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .precious-question {
-    font-family: 'EB Garamond', serif;
-    color: var(--manuscript-text);
-    line-height: 1.4;
-    background: var(--manuscript-bg);
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--question-text);
+    line-height: 1.6;
+    background-color: var(--question-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23A67C52" stroke-width="0.5" opacity="0.1"/></svg>');
-}
-
-.precious-question::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 30%,
-            rgba(139, 90, 43, 0.05) 0%,
-            transparent 20%),
-        radial-gradient(circle at 80% 70%,
-            rgba(107, 68, 35, 0.05) 0%,
-            transparent 20%);
-    pointer-events: none;
-    z-index: 0;
-    animation: manuscript-fade 15s linear infinite;
+    background-image: var(--question-thought);
 }
 
 .precious-question .container {
-    background-color: rgba(245, 237, 224, 0.9);
+    background-color: var(--question-primary);
     padding: 2rem;
-    border: 1px solid var(--manuscript-accent1);
-    box-shadow: 0 0 20px var(--manuscript-shadow);
+    border: 1px solid var(--question-accent1);
+    box-shadow: var(--question-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--manuscript-radius);
-    z-index: 1;
+    border-radius: var(--question-radius);
 }
 
 .precious-question .container::before {
@@ -132,32 +104,67 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--manuscript-accent5), transparent);
-    animation: manuscript-pulse 3s infinite;
+    background: linear-gradient(90deg, transparent, var(--question-accent5), transparent);
+}
+
+/* Thought Bubble Element */
+.precious-question .container::after {
+    content: "?";
+    position: absolute;
+    top: -15px;
+    right: 30px;
+    font-size: 2rem;
+    color: var(--question-accent1);
+    opacity: 0.1;
+    z-index: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .precious-question #calendar-title {
-    font-family: 'Cinzel Decorative', serif;
-    color: var(--manuscript-accent5);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--question-accent5);
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 10px var(--manuscript-shadow);
-    animation: manuscript-glow 5s infinite;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: question-pulse 3s infinite;
+}
+
+.precious-question #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 30%;
+    right: 30%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--question-accent5), transparent);
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .precious-question #date-weather-container {
     text-align: center;
     margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(212, 180, 131, 0.3);
-    border: 1px solid var(--manuscript-accent2);
-    border-radius: var(--manuscript-radius);
+    padding: 1.5rem;
+    background-color: var(--question-medium);
+    border: 1px solid var(--question-accent1);
     position: relative;
+    border-radius: var(--question-radius);
+}
+
+.precious-question #date-weather-container::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 1px dashed var(--question-accent1);
+    border-radius: var(--question-radius);
+    pointer-events: none;
+    opacity: 0.3;
 }
 
 .precious-question #date-weather-container::after {
@@ -167,25 +174,23 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--manuscript-accent2), transparent);
+    background: linear-gradient(90deg, transparent, var(--question-accent5), transparent);
 }
 
 .precious-question #current-date {
-    font-family: 'Cinzel Decorative', serif;
-    color: var(--manuscript-accent5);
-    font-size: 1.6rem;
-    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--question-accent4);
+    font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 5px var(--manuscript-shadow);
 }
 
 .precious-question #today-weather {
-    font-family: 'EB Garamond', serif;
-    color: var(--manuscript-accent2);
-    font-size: 1.2rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--question-accent3);
+    font-size: 1.4rem;
+    font-weight: 600;
     font-style: italic;
-    letter-spacing: 0.1em;
-    font-weight: 500;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -193,21 +198,28 @@
     display: flex;
     justify-content: center;
     margin: 2rem 0;
+    position: relative;
+}
+
+.precious-question #analog-watch::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 50px;
+    height: 20px;
+    background-color: var(--question-dark);
+    border-radius: 50% 50% 0 0;
+    z-index: -1;
 }
 
 .precious-question .clock-face {
-    width: 180px;
-    height: 180px;
-    border: 1px solid var(--manuscript-accent1);
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--question-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--manuscript-bg);
-    box-shadow: 0 0 15px var(--manuscript-shadow),
-        inset 0 0 10px rgba(165, 143, 109, 0.2);
-    background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(139, 90, 43, 0.1) 100%);
+    background-color: var(--question-light);
+    box-shadow: var(--question-glow);
 }
 
 .precious-question .hand {
@@ -222,53 +234,51 @@
 .precious-question .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--manuscript-accent1);
-    margin-top: -2px;
+    height: 6px;
+    background: var(--question-accent1);
+    margin-top: -3px;
 }
 
 .precious-question .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--manuscript-accent5);
-    margin-top: -1px;
+    height: 4px;
+    background: var(--question-accent1);
+    margin-top: -2px;
 }
 
 .precious-question .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--manuscript-accent2);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--question-accent5);
+    margin-top: -1px;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .precious-question table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 5px;
     margin: 2rem auto;
-    background-color: rgb(248, 242, 234);
-    border: 1px solid var(--manuscript-accent2);
-    border-radius: var(--manuscript-radius);
+    background-color: transparent;
     table-layout: fixed;
 }
 
+/* DAY OF WEEK HEADERS */
 .precious-question th {
-    background-color: rgba(139, 90, 43, 0.4);
-    color: var(--manuscript-accent5) !important;
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    background-color: var(--question-medium);
+    color: var(--question-text) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--manuscript-accent2);
+    border: 1px solid var(--question-accent1);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-    text-shadow: 0 0 3px var(--manuscript-shadow);
+    border-radius: var(--question-radius);
 }
 
 .precious-question th span.full-day-name {
@@ -282,47 +292,48 @@
 }
 
 .precious-question td {
-    background-color: rgba(165, 143, 109, 0.1);
-    color: var(--manuscript-text);
-    padding: 1rem;
-    border: 1px solid var(--manuscript-accent2);
-    height: 90px;
+    background-color: var(--question-light);
+    color: var(--question-text);
+    padding: 1.2rem;
+    border: 1px solid var(--question-accent1);
+    height: 100px;
     vertical-align: top;
-    transition: all var(--manuscript-transition);
+    transition: all var(--question-transition);
     position: relative;
+    border-radius: var(--question-radius);
 }
 
 .precious-question td:hover {
-    background-color: rgba(139, 90, 43, 0.3);
-    box-shadow: inset 0 0 10px var(--manuscript-shadow);
+    background-color: var(--question-medium);
+    box-shadow: 0 2px 8px var(--question-shadow);
+    animation: question-ponder 0.5s ease;
 }
 
+/* Current date highlight */
 .precious-question td.current-day {
-    background-color: var(--manuscript-current-day);
-    border: 1px solid var(--manuscript-accent2);
-    color: #3A2C21 !important;
-    font-weight: 500;
-    animation: manuscript-pulse 3s infinite;
+    background-color: var(--question-dark);
+    border: 1px solid var(--question-accent5);
+    color: var(--question-text) !important;
+    font-weight: 700;
 }
 
 .precious-question td.current-day::before {
     content: "?";
     position: absolute;
     top: 5px;
-    left: 5px;
-    color: var(--manuscript-accent2);
+    right: 5px;
+    color: var(--question-accent5);
     z-index: 1;
-    opacity: 0.7;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.2em;
+    font-size: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
 }
 
 .precious-question td.current-day>.date-number {
     position: relative;
     z-index: 2;
-    color: #3A2C21 !important;
+    color: var(--question-text) !important;
     font-weight: bold;
-    text-shadow: 0 0 5px var(--manuscript-shadow);
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -331,28 +342,43 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--manuscript-accent1);
+    background-color: var(--question-accent5);
     margin: 0 2px;
-    box-shadow: 0 0 5px var(--manuscript-shadow);
-    transition: all var(--manuscript-transition);
+    box-shadow: 0 0 5px rgba(140, 120, 83, 0.3);
+    transition: all var(--question-transition);
 }
 
 .precious-question .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--manuscript-accent5);
-    box-shadow: 0 0 15px var(--manuscript-accent1);
+    transform: scale(2);
+    background-color: var(--question-accent5);
+    box-shadow: 0 0 15px rgba(140, 120, 83, 0.5);
+}
+
+/* Thought bubble effect on event hover */
+.precious-question .event-marker:hover::after {
+    content: "?";
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    transform: translateX(-50%);
+    color: var(--question-accent1);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: question-fadeIn 0.3s ease-out forwards;
 }
 
 /* ==================== MODAL STYLES ==================== */
 .precious-question .modal-content {
     position: relative;
-    background-color: rgba(248, 242, 234, 0.95);
-    border: 1px solid var(--manuscript-accent2);
-    padding: 25px;
-    color: var(--manuscript-text);
-    box-shadow: 0 0 30px var(--manuscript-shadow);
-    border-radius: var(--manuscript-radius);
-    animation: manuscript-pulse 0.5s ease;
+    background-color: var(--question-primary);
+    border: 1px solid var(--question-accent1);
+    padding: 30px;
+    color: var(--question-text);
+    box-shadow: var(--question-glow);
+    animation: question-fadeIn 0.3s ease-out;
+    border-radius: var(--question-radius);
 }
 
 .precious-question .modal-content::before {
@@ -362,50 +388,49 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--manuscript-accent2);
-    animation: manuscript-pulse 3s infinite;
+    background: var(--question-accent5);
 }
 
 .precious-question .modal-content h2 {
-    color: var(--manuscript-accent5);
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    color: var(--question-accent5);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
 }
 
 .precious-question .modal-content button {
     background-color: transparent;
-    color: var(--manuscript-accent5);
-    border: 1px solid var(--manuscript-accent5);
-    padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 500;
+    color: var(--question-accent5);
+    border: 1px solid var(--question-accent5);
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--manuscript-transition);
-    text-transform: uppercase;
+    transition: all var(--question-transition);
     letter-spacing: 1px;
-    border-radius: var(--manuscript-radius);
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: var(--question-radius);
 }
 
 .precious-question .modal-content button:hover {
-    background-color: var(--manuscript-accent5);
-    color: var(--manuscript-bg);
-    box-shadow: 0 0 15px var(--manuscript-shadow);
+    background-color: var(--question-accent5);
+    color: var(--question-light);
+    box-shadow: var(--question-glow);
 }
 
+/* Close Button */
 .precious-question .modal .close-button {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 15px;
+    right: 15px;
     background-color: transparent;
-    color: var(--manuscript-accent1);
-    border: 1px solid var(--manuscript-accent1);
-    width: 28px;
-    height: 28px;
+    color: var(--question-accent5);
+    border: 1px solid var(--question-accent5);
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    transition: all var(--manuscript-transition);
+    transition: all var(--question-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -413,27 +438,26 @@
 }
 
 .precious-question .modal .close-button:hover {
-    background-color: var(--manuscript-accent1);
-    color: var(--manuscript-bg);
+    background-color: var(--question-accent5);
+    color: var(--question-light);
     transform: rotate(90deg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .precious-question .button,
 .precious-question .transparent-button {
-    border: 1px solid var(--manuscript-accent5);
-    color: var(--manuscript-accent5);
+    border: 1px solid var(--question-accent1);
+    color: var(--question-accent3);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Cinzel Decorative', serif;
-    text-transform: uppercase;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Source Sans Pro', sans-serif;
     letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all var(--manuscript-transition);
+    transition: all var(--question-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--manuscript-radius);
+    border-radius: var(--question-radius);
 }
 
 .precious-question .button::before,
@@ -444,15 +468,16 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(245, 237, 224, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(140, 120, 83, 0.1), transparent);
     transition: 0.5s;
 }
 
 .precious-question .button:hover,
 .precious-question .transparent-button:hover {
-    background-color: var(--manuscript-accent5);
-    color: var(--manuscript-bg);
-    box-shadow: 0 0 20px var(--manuscript-shadow);
+    background-color: rgba(140, 120, 83, 0.1);
+    color: var(--question-accent5);
+    border-color: var(--question-accent5);
+    box-shadow: var(--question-glow);
 }
 
 .precious-question .button:hover::before,
@@ -472,77 +497,76 @@
 .precious-question #theme-switcher-container {
     position: relative;
     margin: 0 1rem;
-    min-width: 200px;
+    min-width: 220px;
     z-index: 1000;
 }
 
 .precious-question #theme-switcher {
-    background-color: rgba(186, 35, 143, 0.4);
-    color: var(--manuscript-accent5) !important;
-    border: 1px solid var(--manuscript-accent5);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 0.9rem;
-    font-weight: 400;
+    background-color: var(--question-medium);
+    color: var(--question-text) !important;
+    border: 1px solid var(--question-accent1);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
     width: 100%;
-    border-radius: var(--manuscript-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237D5D3B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A3632'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--manuscript-transition);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    text-shadow: 0 0 3px var(--manuscript-shadow);
+    transition: all var(--question-transition);
+    border-radius: var(--question-radius);
 }
 
 .precious-question #theme-switcher option {
-    background-color: rgba(64, 201, 22, 0.95) !important;
-    color: var(--manuscript-accent5) !important;
-    font-size: 0.9rem;
-    font-weight: 400;
-    padding: 10px 12px !important;
-    border-bottom: 1px solid var(--manuscript-accent5) !important;
+    background-color: var(--question-light) !important;
+    color: var(--question-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid var(--question-accent1) !important;
 }
 
 .precious-question #theme-switcher option:hover {
-    background-color: var(--manuscript-accent5) !important;
-    color: var(--manuscript-bg) !important;
+    background-color: var(--question-accent5) !important;
+    color: var(--question-light) !important;
 }
 
 .precious-question #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--manuscript-accent5), 0 0 15px var(--manuscript-shadow);
+    border-color: var(--question-accent5);
+    box-shadow: var(--question-glow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .precious-question #backToTopBtn {
     position: fixed;
-    right: 25px;
-    bottom: 25px;
+    right: 30px;
+    bottom: 30px;
     z-index: 9999;
-    border: 1px solid var(--manuscript-accent5);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Cinzel Decorative', serif;
-    text-transform: uppercase;
+    border: 1px solid var(--question-accent1);
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
     letter-spacing: 0.1em;
-    color: var(--manuscript-accent5);
-    background-color: rgba(139, 90, 43, 0.3);
+    color: var(--question-accent3);
+    background-color: var(--question-medium);
     cursor: pointer;
-    transition: all var(--manuscript-transition);
+    transition: all var(--question-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--manuscript-radius);
+    border-radius: var(--question-radius);
 }
 
 .precious-question #backToTopBtn:hover {
-    background-color: var(--manuscript-accent5);
-    color: var(--manuscript-bg);
-    box-shadow: 0 0 20px var(--manuscript-shadow);
+    background-color: rgba(140, 120, 83, 0.1);
+    color: var(--question-accent5);
+    border-color: var(--question-accent5);
+    box-shadow: var(--question-glow);
     opacity: 1;
 }
 
@@ -550,40 +574,41 @@
 .precious-question footer {
     text-align: center;
     margin-top: 2rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--manuscript-accent2);
-    color: var(--manuscript-text);
-    font-size: 0.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--question-accent1);
+    color: var(--question-text);
+    font-size: 0.9rem;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .precious-question .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .precious-question #calendar-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .precious-question #current-date {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .precious-question #today-weather {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
     .precious-question .clock-face {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
     }
 
     .precious-question th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.2rem;
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
     }
 
     .precious-question th span.full-day-name {
@@ -595,92 +620,92 @@
     }
 
     .precious-question td {
-        padding: 0.5rem;
-        height: 65px;
-        font-size: 0.75rem;
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
     .precious-question td.current-day::before {
-        font-size: 0.8rem;
+        font-size: 1rem;
         top: 3px;
-        left: 3px;
+        right: 3px;
     }
 
     .precious-question #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     .precious-question #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
     }
 
     .precious-question #theme-switcher option {
-        font-size: 0.8rem;
-        padding: 8px !important;
+        font-size: 0.9rem;
+        padding: 10px !important;
     }
 }
 
 @media (max-width: 576px) {
     .precious-question .container {
-        padding: 0.6rem;
+        padding: 0.8rem;
     }
 
     .precious-question #calendar-title {
-        font-size: 1.4rem;
-        letter-spacing: 0.1em;
+        font-size: 1.6rem;
     }
 
     .precious-question #current-date {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .precious-question #today-weather {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .precious-question .clock-face {
-        width: 110px;
-        height: 110px;
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
     }
 
     .precious-question th {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
     }
 
     .precious-question td {
-        padding: 0.2rem;
-        height: 55px;
-        font-size: 0.65rem;
-    }
-
-    .precious-question td.current-day::before {
+        padding: 0.3rem;
+        height: 60px;
         font-size: 0.7rem;
     }
 
+    .precious-question td.current-day::before {
+        font-size: 0.8rem;
+    }
+
     .precious-question #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
+        min-width: 160px;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 400px) {
     .precious-question th {
-        font-size: 0.6rem;
-        padding: 0.3rem 0.1rem;
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
     }
 
     .precious-question td {
-        height: 45px;
+        height: 50px;
     }
 
     .precious-question #theme-switcher {
-        min-width: 130px;
-        font-size: 0.7rem;
+        min-width: 140px;
+        font-size: 0.8rem;
     }
 }
