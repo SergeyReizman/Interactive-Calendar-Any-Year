@@ -1,167 +1,818 @@
 /* ==========================================================================
-   Fast-Track Calendar UI
-   Version: 1.0
+   Fast Track Theme - Racing Calendar UI
+   Version: 4.1
    Updated: 2025-06-25
    Features:
-   - Optimized for performance
-   - Minimal essential styling
-   - Mobile-first approach
-   - Fast rendering
-   - Reduced animations
-   - Clean typography
+   - Red racing color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Racing-inspired UI elements
+   - Animated speed effects
+   - Enhanced accessibility
+   - Carbon fiber textures
+   - Fluid typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@400;600&display=swap');
 
 :root {
-    /* Fast-Track Color Palette */
-    --ft-bg: #ffffff;
-    --ft-text: #333333;
-    --ft-primary: #2c7e2c;
-    --ft-secondary: #e6a919;
+    /* Red Racing Color Palette */
+    --ft-bg: #0a0a12;
+    --ft-text: #F0F0FF;
+    --ft-primary: #FF1801;
+    /* Ferrari red */
+    --ft-secondary: #FFD700;
+    /* Gold accent */
+
+    /* Gradient Colors */
+    --ft-gradient-start: #1A0000;
+    --ft-gradient-end: #0A0000;
+
+    /* Accent Colors */
+    --ft-blue: #005AFF;
+    /* Renault/McLaren blue */
+    --ft-green: #00A651;
+    /* Racing green */
+    --ft-orange: #FF7B08;
+    /* McLaren orange */
+    --ft-silver: #C0C0C0;
+    /* Metallic */
 
     /* Theme Variables */
-    --ft-shadow: rgba(44, 126, 44, 0.1);
-    --ft-radius: 6px;
-    --ft-transition: 0.15s ease;
-    --ft-hover: #f0f8f0;
-    --ft-current-day: #d4edda;
+    --ft-shadow: rgba(255, 24, 1, 0.3);
+    --ft-radius: 3px;
+    /* Sharp edges */
+    --ft-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --ft-hover: #2E1E1E;
+    --ft-current-day: #3A1A1A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ft-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--ft-primary),
+            0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--ft-primary),
+            0 0 25px rgba(255, 215, 0, 0.7);
+    }
+}
+
+@keyframes speed-line {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes ft-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ft-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--ft-secondary);
+    }
 }
 
 /* ==================== BASE STYLES ==================== */
 .fast-track {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     color: var(--ft-text);
-    line-height: 1.5;
+    line-height: 1.6;
     background: var(--ft-bg);
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(255, 24, 1, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(255, 24, 1, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: speed-line 2s linear infinite;
+}
+
+.fast-track::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(255, 24, 1, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(255, 215, 0, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Speed line pattern */
+.fast-track::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><line x1="0" y1="0" x2="40" y2="40" stroke="%23FF1801" stroke-width="1"/></svg>');
+    pointer-events: none;
+    z-index: 0;
 }
 
 .fast-track .container {
-    background-color: white;
-    padding: 1.5rem;
-    max-width: 1400px;
+    background-color: rgba(20, 10, 10, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--ft-primary);
+    box-shadow: 0 0 30px var(--ft-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
     margin: 0 auto;
+    border-radius: var(--ft-radius);
+    z-index: 1;
+}
+
+.fast-track .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ft-primary),
+            var(--ft-secondary),
+            transparent);
+    animation: ft-glow 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .fast-track #calendar-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Russo One', sans-serif;
     color: var(--ft-primary);
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: ft-pulse 3s infinite;
+    text-transform: uppercase;
 }
 
-/* ==================== DATE DISPLAY ==================== */
-.fast-track #current-date {
-    font-family: 'Poppins', sans-serif;
-    color: var(--ft-primary);
+.fast-track #calendar-title::before,
+.fast-track #calendar-title::after {
+    content: "🏁";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ft-secondary);
     font-size: 1.5rem;
-    font-weight: 600;
-    text-align: center;
-    margin: 1rem 0;
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+.fast-track #calendar-title::before {
+    left: 1rem;
+    animation: ft-pulse 2.5s infinite 0.5s;
+}
+
+.fast-track #calendar-title::after {
+    right: 1rem;
+    animation: ft-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.fast-track #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 24, 1, 0.1);
+    border: 1px solid var(--ft-primary);
+    border-radius: var(--ft-radius);
+    position: relative;
+}
+
+.fast-track #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ft-primary),
+            transparent);
+}
+
+.fast-track #current-date {
+    font-family: 'Russo One', sans-serif;
+    color: var(--ft-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.fast-track #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--ft-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.fast-track #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.fast-track .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--ft-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ft-bg);
+    box-shadow:
+        0 0 15px var(--ft-shadow),
+        inset 0 0 10px rgba(255, 24, 1, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 24, 1, 0.1) 100%);
+}
+
+/* Racing numerals for clock */
+.fast-track .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FF1801">12</text><text x="82" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FF1801">3</text><text x="50" y="92" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FF1801">6</text><text x="18" y="55" text-anchor="middle" font-family="Russo One" font-size="12" fill="%23FF1801">9</text></svg>');
+}
+
+.fast-track .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fast-track .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ft-primary);
+    margin-top: -2px;
+}
+
+.fast-track .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ft-secondary);
+    margin-top: -1px;
+}
+
+.fast-track .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ft-blue);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Wheel nut */
+.fast-track .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--ft-silver);
+    border-radius: 50%;
+    border: 1px solid var(--ft-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
 .fast-track table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem auto;
+    margin: 2rem auto;
+    background-color: rgba(40, 20, 20, 0.9);
+    border: 1px solid var(--ft-primary);
+    border-radius: var(--ft-radius);
     table-layout: fixed;
 }
 
+/* Weekday headers - responsive solution */
 .fast-track th {
-    background-color: rgba(44, 126, 44, 0.1);
-    color: var(--ft-primary);
-    font-family: 'Poppins', sans-serif;
+    background-color: rgba(255, 24, 1, 0.15);
+    color: var(--ft-primary) !important;
+    font-family: 'Exo 2', sans-serif;
     font-weight: 600;
-    padding: 0.7rem 0.3rem;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ft-primary);
+    position: relative;
     font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.fast-track th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.fast-track th .short-day {
+    display: none;
 }
 
 .fast-track td {
-    padding: 0.7rem 0.3rem;
-    border: 1px solid rgba(44, 126, 44, 0.1);
-    height: 80px;
+    background-color: rgba(30, 15, 15, 0.9);
+    color: var(--ft-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ft-primary);
+    height: 90px;
     vertical-align: top;
-    font-size: 0.8rem;
+    transition: all var(--ft-transition);
+    position: relative;
+    font-size: 0.85rem;
 }
 
 .fast-track td:hover {
     background-color: var(--ft-hover);
+    box-shadow: inset 0 0 15px var(--ft-shadow);
 }
 
 .fast-track .date-number {
     display: block;
     font-weight: 600;
     margin-bottom: 3px;
+    color: var(--ft-text);
 }
 
 .fast-track td.current-day {
     background-color: var(--ft-current-day);
-    border: 2px solid var(--ft-primary);
-    font-weight: 600;
+    border: 2px solid var(--ft-secondary);
+    color: var(--ft-secondary) !important;
+    font-weight: 700;
+    animation: ft-glow 3s infinite;
+}
+
+.fast-track td.current-day .date-number {
+    color: var(--ft-secondary) !important;
+    font-weight: 800;
+}
+
+.fast-track td.current-day::before {
+    content: "🏎";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ft-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .fast-track .event-marker {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background-color: var(--ft-primary);
     margin: 0 1px;
+    box-shadow: 0 0 5px var(--ft-shadow);
+    transition: all var(--ft-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.fast-track .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ft-secondary);
+    box-shadow: 0 0 15px var(--ft-primary);
+}
+
+/* Special event types */
+.fast-track .event-marker.holiday {
+    background-color: var(--ft-green);
+}
+
+.fast-track .event-marker.historic {
+    background-color: var(--ft-silver);
+}
+
+.fast-track .event-marker.patriotic {
+    background-color: var(--ft-blue);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.fast-track .modal-content {
+    position: relative;
+    background-color: rgba(20, 10, 10, 0.98);
+    border: 1px solid var(--ft-primary);
+    padding: 25px;
+    color: var(--ft-text);
+    box-shadow: 0 0 30px var(--ft-shadow);
+    border-radius: var(--ft-radius);
+    animation: ft-glow 0.5s ease;
+}
+
+.fast-track .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ft-primary),
+            var(--ft-secondary),
+            var(--ft-blue));
+}
+
+.fast-track .modal-content h2 {
+    color: var(--ft-primary);
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.fast-track .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.fast-track .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--ft-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.fast-track .modal-content .event-description {
+    background-color: rgba(255, 24, 1, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--ft-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ft-radius) var(--ft-radius) 0;
+}
+
+.fast-track .modal-content button {
+    background-color: var(--ft-primary);
+    color: var(--ft-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ft-transition);
+    border-radius: var(--ft-radius);
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
+}
+
+.fast-track .modal-content button:hover {
+    background-color: var(--ft-secondary);
+    box-shadow: 0 4px 6px -1px var(--ft-shadow);
+}
+
+.fast-track .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ft-primary);
+    border: 1px solid var(--ft-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ft-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.fast-track .modal .close-button:hover {
+    background-color: var(--ft-primary);
+    color: var(--ft-bg);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
-.fast-track .button {
-    background-color: var(--ft-primary);
-    color: white;
-    border: none;
-    padding: 0.7rem 1.2rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+.fast-track .button,
+.fast-track .transparent-button {
+    border: 1px solid var(--ft-primary);
+    color: var(--ft-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
     cursor: pointer;
+    transition: all var(--ft-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
     border-radius: var(--ft-radius);
-    margin: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.fast-track .button::before,
+.fast-track .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 24, 1, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.fast-track .button:hover,
+.fast-track .transparent-button:hover {
+    background-color: var(--ft-primary);
+    color: var(--ft-bg);
+    box-shadow: 0 4px 6px -1px var(--ft-shadow);
+}
+
+.fast-track .button:hover::before,
+.fast-track .transparent-button:hover::before {
+    left: 100%;
 }
 
 .fast-track .controls {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.fast-track #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.fast-track #theme-switcher {
+    background-color: var(--ft-bg);
+    color: var(--ft-primary) !important;
+    border: 1px solid var(--ft-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ft-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF1801'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ft-transition);
+    box-shadow: 0 1px 3px 0 var(--ft-shadow);
+}
+
+.fast-track #theme-switcher option {
+    background-color: var(--ft-bg) !important;
+    color: var(--ft-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.fast-track #theme-switcher option:hover {
+    background-color: var(--ft-primary) !important;
+    color: var(--ft-bg) !important;
+}
+
+.fast-track #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 24, 1, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.fast-track #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ft-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    color: var(--ft-primary);
+    background-color: var(--ft-bg);
+    cursor: pointer;
+    transition: all var(--ft-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ft-radius);
+    box-shadow: 0 4px 6px -1px var(--ft-shadow);
+    text-transform: uppercase;
+}
+
+.fast-track #backToTopBtn:hover {
+    background-color: var(--ft-primary);
+    color: var(--ft-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.fast-track footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ft-primary);
+    color: var(--ft-text);
+    font-size: 0.8rem;
+}
+
+.fast-track footer::before {
+    content: "🏁 ";
+    color: var(--ft-primary);
 }
 
 /* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .fast-track .container {
+        padding: 1.2rem;
+    }
+
+    .fast-track #calendar-title {
+        font-size: 2rem;
+    }
+
+    .fast-track #current-date {
+        font-size: 1.5rem;
+    }
+
+    .fast-track #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .fast-track th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .fast-track .container {
+        padding: 1rem;
+    }
+
     .fast-track #calendar-title {
         font-size: 1.7rem;
     }
-    
-    .fast-track #current-date {
-        font-size: 1.3rem;
+
+    .fast-track .clock-face {
+        width: 140px;
+        height: 140px;
     }
-    
+
+    /* Switch to short day names */
+    .fast-track th .full-day {
+        display: none;
+    }
+
+    .fast-track th .short-day {
+        display: inline;
+    }
+
+    .fast-track th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
     .fast-track td {
+        padding: 0.6rem 0.15rem;
         height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .fast-track #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .fast-track #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .fast-track .modal-content {
+        padding: 15px;
+    }
+
+    .fast-track .modal-content h2 {
+        font-size: 1.5em;
     }
 }
 
 @media (max-width: 576px) {
+    .fast-track .container {
+        padding: 0.8rem;
+    }
+
     .fast-track #calendar-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
-    
-    .fast-track th, 
-    .fast-track td {
-        font-size: 0.7rem;
-        padding: 0.5rem 0.2rem;
+
+    .fast-track #current-date {
+        font-size: 1.1rem;
     }
-    
+
+    .fast-track #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .fast-track .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .fast-track th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
     .fast-track td {
+        padding: 0.4rem 0.1rem;
         height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .fast-track td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .fast-track #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .fast-track th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .fast-track td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .fast-track #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .fast-track #calendar-title {
+        font-size: 1.2rem;
     }
 }
