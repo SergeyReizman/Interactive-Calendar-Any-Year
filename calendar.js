@@ -127,7 +127,7 @@ const applyTheme = (theme) => {
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
     'tropical-sunset', 'unseen-wonders', 'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
-    'white-shark', 
+    'white-shark', 'wild-flower',
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'zodiac-constellations'
 
