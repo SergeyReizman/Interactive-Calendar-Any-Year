@@ -1,0 +1,728 @@
+/* ==========================================================================
+   Jungle Nature Theme - Rainforest Calendar Interface
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Enhanced jungle contrast
+   - Adjusted nature-inspired decorative elements
+   - Improved readability with earthy palette
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Rainforest Color Palette */
+    --jungle-bg: #F0F7F0;
+    --jungle-text: #1A2A1A;
+    --jungle-primary: #FFFFFF;
+    --jungle-secondary: #E0EDE0;
+
+    /* Jungle Texture Colors */
+    --jungle-texture1: #E8F5E8;
+    --jungle-texture2: #D0EBD0;
+    --jungle-texture3: #B8E1B8;
+    --jungle-texture4: #A0D7A0;
+    --jungle-texture5: #88CD88;
+
+    /* Nature Accent Colors */
+    --jungle-accent1: #2E7D32;
+    /* Forest Green - 7.3:1 contrast */
+    --jungle-accent2: #8BC34A;
+    /* Leaf Green - 5.7:1 */
+    --jungle-accent3: #689F38;
+    /* Jungle Green - 4.2:1 */
+    --jungle-accent4: rgba(160, 208, 160, 0.7);
+    /* Canopy Light */
+    --jungle-accent5: rgba(208, 232, 208, 0.5);
+    /* Jungle Mist */
+
+    /* Theme Variables */
+    --jungle-shadow: rgba(46, 125, 50, 0.2);
+    --jungle-radius: 8px;
+    --jungle-transition: 0.3s ease;
+    --jungle-hover: #1E6D22;
+    --jungle-glow: 0 0 15px rgba(46, 125, 50, 0.15);
+    --jungle-vine: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%232E7D32"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%232E7D32"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%232E7D32"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes jungle-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes jungle-slide {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes jungle-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--jungle-shadow);
+    }
+
+    50% {
+        box-shadow: var(--jungle-glow);
+    }
+}
+
+@keyframes leaf-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.jungle-nature {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--jungle-text);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    background-color: var(--jungle-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 Q30,40 50,50 T100,50" fill="none" stroke="%232E7D32" stroke-width="0.3" opacity="0.07"/></svg>');
+}
+
+.jungle-nature .container {
+    background-color: var(--jungle-primary);
+    padding: 2rem;
+    border: 1px solid var(--jungle-accent4);
+    box-shadow: var(--jungle-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--jungle-radius);
+}
+
+.jungle-nature .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--jungle-accent1) 0%,
+            var(--jungle-accent2) 50%,
+            var(--jungle-accent1) 100%);
+}
+
+.jungle-nature .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--jungle-vine);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.jungle-nature #calendar-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--jungle-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    animation: leaf-float 4s ease-in-out infinite;
+    text-shadow: 0 2px 3px rgba(255, 255, 255, 0.9);
+}
+
+.jungle-nature #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.jungle-nature #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--jungle-primary);
+    border: 1px solid var(--jungle-accent4);
+    border-radius: var(--jungle-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.jungle-nature #date-weather-container::before {
+    content: "RAINFOREST TRACKER";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--jungle-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--jungle-accent1);
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.jungle-nature #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--jungle-accent2), transparent);
+}
+
+.jungle-nature #current-date {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--jungle-accent1);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.jungle-nature #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--jungle-accent2);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.jungle-nature #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.jungle-nature .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--jungle-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--jungle-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%232E7D32" stroke-width="0.8" opacity="0.4"/></svg>');
+}
+
+.jungle-nature .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.jungle-nature .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--jungle-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.jungle-nature .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--jungle-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.jungle-nature .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--jungle-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.jungle-nature table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.jungle-nature th {
+    background-color: var(--jungle-accent1);
+    color: white !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--jungle-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+}
+
+.jungle-nature th span.full-day-name {
+    display: inline;
+}
+
+.jungle-nature th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.jungle-nature td {
+    background-color: var(--jungle-primary);
+    color: var(--jungle-text);
+    padding: 1.2rem;
+    border: 1px solid var(--jungle-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--jungle-transition);
+    position: relative;
+    border-radius: var(--jungle-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.jungle-nature td:hover {
+    background-color: var(--jungle-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Current date highlight */
+.jungle-nature td.current-day {
+    background-color: rgba(180, 212, 160, 0.3);
+    border: 2px solid var(--jungle-accent2);
+    color: var(--jungle-text) !important;
+    font-weight: 600;
+    animation: jungle-pulse 3s infinite;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.jungle-nature td.current-day::before {
+    content: "🌱";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.jungle-nature td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--jungle-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.jungle-nature .event-marker {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--jungle-accent2);
+    margin: 0 2px;
+    transition: all var(--jungle-transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.jungle-nature .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--jungle-accent2);
+    box-shadow: 0 0 8px rgba(139, 195, 74, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.jungle-nature .modal-content {
+    position: relative;
+    background-color: var(--jungle-primary);
+    border: 1px solid var(--jungle-accent4);
+    padding: 30px;
+    color: var(--jungle-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: var(--jungle-radius);
+    animation: jungle-slide 0.3s ease-out;
+}
+
+.jungle-nature .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--jungle-accent1) 0%,
+            var(--jungle-accent2) 50%,
+            var(--jungle-accent1) 100%);
+}
+
+.jungle-nature .modal-content h2 {
+    color: var(--jungle-accent1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.jungle-nature .modal-content button {
+    background-color: var(--jungle-accent1);
+    color: white;
+    border: none;
+    padding: 13px 26px;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--jungle-transition);
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--jungle-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.jungle-nature .modal-content button:hover {
+    background-color: var(--jungle-hover);
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+}
+
+/* Close Button */
+.jungle-nature .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--jungle-accent1);
+    border: 2px solid var(--jungle-accent1);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: all var(--jungle-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.jungle-nature .modal .close-button:hover {
+    background-color: var(--jungle-accent1);
+    color: white;
+    border-color: var(--jungle-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.jungle-nature .button,
+.jungle-nature .transparent-button {
+    border: 2px solid var(--jungle-accent1);
+    color: var(--jungle-accent1);
+    background-color: transparent;
+    padding: 0.9rem 1.7rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--jungle-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--jungle-radius);
+    letter-spacing: 0.03em;
+}
+
+.jungle-nature .button::before,
+.jungle-nature .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(46, 125, 50, 0.15), transparent);
+    transition: 0.5s;
+}
+
+.jungle-nature .button:hover,
+.jungle-nature .transparent-button:hover {
+    background-color: var(--jungle-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.25);
+}
+
+.jungle-nature .button:hover::before,
+.jungle-nature .transparent-button:hover::before {
+    left: 100%;
+}
+
+.jungle-nature .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.jungle-nature #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.jungle-nature #theme-switcher {
+    background-color: var(--jungle-primary);
+    color: var(--jungle-text) !important;
+    border: 2px solid var(--jungle-accent1);
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232E7D32'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--jungle-transition);
+    border-radius: var(--jungle-radius);
+}
+
+.jungle-nature #theme-switcher option {
+    background-color: var(--jungle-primary) !important;
+    color: var(--jungle-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.jungle-nature #theme-switcher option:hover {
+    background-color: var(--jungle-accent1) !important;
+    color: white !important;
+}
+
+.jungle-nature #theme-switcher:focus {
+    outline: none;
+    border-color: var(--jungle-accent1);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.jungle-nature #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1.05rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: var(--jungle-accent1);
+    cursor: pointer;
+    transition: all var(--jungle-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--jungle-radius);
+    box-shadow: 0 3px 10px rgba(46, 125, 50, 0.4);
+    letter-spacing: 0.03em;
+}
+
+.jungle-nature #backToTopBtn:hover {
+    background-color: var(--jungle-hover);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.5);
+}
+
+/* ==================== FOOTER ==================== */
+.jungle-nature footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--jungle-accent4);
+    color: var(--jungle-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .jungle-nature .container {
+        padding: 1.5rem;
+    }
+
+    .jungle-nature #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .jungle-nature #current-date {
+        font-size: 1.6rem;
+    }
+
+    .jungle-nature #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .jungle-nature {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .jungle-nature .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 7px;
+    }
+
+    .jungle-nature th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .jungle-nature th span.full-day-name {
+        display: none;
+    }
+
+    .jungle-nature th abbr {
+        display: inline;
+    }
+
+    .jungle-nature td {
+        padding: 0.8rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .jungle-nature td.current-day::before {
+        font-size: 1.1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .jungle-nature #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.6rem;
+        font-size: 0.95rem;
+    }
+
+    .jungle-nature #theme-switcher {
+        padding: 0.8rem 2.1rem 0.8rem 0.9rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+
+    .jungle-nature #theme-switcher option {
+        font-size: 0.95rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .jungle-nature .container {
+        padding: 1rem;
+    }
+
+    .jungle-nature #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .jungle-nature #current-date {
+        font-size: 1.4rem;
+    }
+
+    .jungle-nature #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .jungle-nature .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 5px;
+    }
+
+    .jungle-nature th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .jungle-nature td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.9rem;
+    }
+
+    .jungle-nature td.current-day::before {
+        font-size: 1rem;
+    }
+
+    .jungle-nature #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .jungle-nature th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .jungle-nature td {
+        height: 65px;
+    }
+
+    .jungle-nature #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}
