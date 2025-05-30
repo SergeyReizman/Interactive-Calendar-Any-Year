@@ -54,7 +54,7 @@ const applyTheme = (theme) => {
     'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
     'action-time', 'adelaide-skyline', 'adriatic-sea', 'a-forward-move',
     'a-good-idea', 'aloe-vera', 'a-lovely-day',
-    'alpha-centauri', 'alpine-landscape', 'amazon-dolphin',
+    'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',
     'amazon-river', 'andromeda-galaxy', 'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 
     'art-studio', 'a-thing-of-beauty', 'autumn-harvest', 'away-from-home','bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 'big-dream',
