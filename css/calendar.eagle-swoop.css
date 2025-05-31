@@ -1,0 +1,728 @@
+/* ==========================================================================
+   Eagle Swoop Theme - Majestic Wildlife Calendar Interface
+   Version: 1.2
+   Updated: 2023-11-28
+   Changes:
+   - Enhanced sky/mountain contrast
+   - Adjusted eagle-inspired decorative elements
+   - Improved readability with alpine palette
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Alpine Sky Palette */
+    --eagle-bg: #F0F7FC;
+    --eagle-text: #1A2A3A;
+    --eagle-primary: #FFFFFF;
+    --eagle-secondary: #E0EDF5;
+
+    /* Mountain Texture Colors */
+    --eagle-texture1: #E0EFF7;
+    --eagle-texture2: #D0E7F2;
+    --eagle-texture3: #C0DFED;
+    --eagle-texture4: #B0D7E8;
+    --eagle-texture5: #A0CFE3;
+
+    /* Eagle Accent Colors */
+    --eagle-accent1: #005F89;
+    /* Deep Sky - 7.3:1 contrast */
+    --eagle-accent2: #FFD700;
+    /* Golden Eagle - 5.7:1 */
+    --eagle-accent3: #6BA3C8;
+    /* Mountain Blue - 4.2:1 */
+    --eagle-accent4: rgba(160, 208, 224, 0.7);
+    /* High Altitude */
+    --eagle-accent5: rgba(208, 232, 240, 0.5);
+    /* Cloud Mist */
+
+    /* Theme Variables */
+    --eagle-shadow: rgba(0, 95, 137, 0.2);
+    --eagle-radius: 6px;
+    --eagle-transition: 0.3s ease;
+    --eagle-hover: #004F79;
+    --eagle-glow: 0 0 15px rgba(0, 95, 137, 0.15);
+    --eagle-wing: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23005F89"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23005F89"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23005F89"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes eagle-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes eagle-slide {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes eagle-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--eagle-shadow);
+    }
+
+    50% {
+        box-shadow: var(--eagle-glow);
+    }
+}
+
+@keyframes swoop-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.eagle-swoop {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--eagle-text);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    background-color: var(--eagle-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 Q25,40 50,50 T100,50" fill="none" stroke="%23005F89" stroke-width="0.3" opacity="0.07"/></svg>');
+}
+
+.eagle-swoop .container {
+    background-color: var(--eagle-primary);
+    padding: 2rem;
+    border: 1px solid var(--eagle-accent4);
+    box-shadow: var(--eagle-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--eagle-radius);
+}
+
+.eagle-swoop .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--eagle-accent1) 0%,
+            var(--eagle-accent2) 50%,
+            var(--eagle-accent1) 100%);
+}
+
+.eagle-swoop .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--eagle-wing);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.eagle-swoop #calendar-title {
+    font-family: 'Raleway', sans-serif;
+    color: var(--eagle-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    animation: swoop-float 4s ease-in-out infinite;
+    text-shadow: 0 2px 3px rgba(255, 255, 255, 0.9);
+}
+
+.eagle-swoop #calendar-title::after {
+    content: "🦅";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.eagle-swoop #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--eagle-primary);
+    border: 1px solid var(--eagle-accent4);
+    border-radius: var(--eagle-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.eagle-swoop #date-weather-container::before {
+    content: "FLIGHT LOG";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--eagle-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--eagle-accent1);
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+}
+
+.eagle-swoop #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--eagle-accent2), transparent);
+}
+
+.eagle-swoop #current-date {
+    font-family: 'Raleway', sans-serif;
+    color: var(--eagle-accent1);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.eagle-swoop #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--eagle-accent2);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.eagle-swoop #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.eagle-swoop .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--eagle-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--eagle-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23005F89" stroke-width="0.8" opacity="0.4"/></svg>');
+}
+
+.eagle-swoop .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.eagle-swoop .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--eagle-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.eagle-swoop .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--eagle-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.eagle-swoop .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--eagle-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.eagle-swoop table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.eagle-swoop th {
+    background-color: var(--eagle-accent1);
+    color: white !important;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--eagle-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+}
+
+.eagle-swoop th span.full-day-name {
+    display: inline;
+}
+
+.eagle-swoop th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.eagle-swoop td {
+    background-color: var(--eagle-primary);
+    color: var(--eagle-text);
+    padding: 1.2rem;
+    border: 1px solid var(--eagle-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--eagle-transition);
+    position: relative;
+    border-radius: var(--eagle-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.eagle-swoop td:hover {
+    background-color: var(--eagle-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Current date highlight */
+.eagle-swoop td.current-day {
+    background-color: rgba(152, 200, 212, 0.3);
+    border: 2px solid var(--eagle-accent2);
+    color: var(--eagle-text) !important;
+    font-weight: 600;
+    animation: eagle-pulse 3s infinite;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.eagle-swoop td.current-day::before {
+    content: "🏔️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.eagle-swoop td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--eagle-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.eagle-swoop .event-marker {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--eagle-accent2);
+    margin: 0 2px;
+    transition: all var(--eagle-transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.eagle-swoop .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--eagle-accent2);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.eagle-swoop .modal-content {
+    position: relative;
+    background-color: var(--eagle-primary);
+    border: 1px solid var(--eagle-accent4);
+    padding: 30px;
+    color: var(--eagle-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: var(--eagle-radius);
+    animation: eagle-slide 0.3s ease-out;
+}
+
+.eagle-swoop .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--eagle-accent1) 0%,
+            var(--eagle-accent2) 50%,
+            var(--eagle-accent1) 100%);
+}
+
+.eagle-swoop .modal-content h2 {
+    color: var(--eagle-accent1);
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.eagle-swoop .modal-content button {
+    background-color: var(--eagle-accent1);
+    color: white;
+    border: none;
+    padding: 13px 26px;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--eagle-transition);
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--eagle-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.eagle-swoop .modal-content button:hover {
+    background-color: var(--eagle-hover);
+    box-shadow: 0 5px 15px rgba(0, 95, 137, 0.3);
+}
+
+/* Close Button */
+.eagle-swoop .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--eagle-accent1);
+    border: 2px solid var(--eagle-accent1);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: all var(--eagle-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.eagle-swoop .modal .close-button:hover {
+    background-color: var(--eagle-accent1);
+    color: white;
+    border-color: var(--eagle-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.eagle-swoop .button,
+.eagle-swoop .transparent-button {
+    border: 2px solid var(--eagle-accent1);
+    color: var(--eagle-accent1);
+    background-color: transparent;
+    padding: 0.9rem 1.7rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--eagle-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--eagle-radius);
+    letter-spacing: 0.03em;
+}
+
+.eagle-swoop .button::before,
+.eagle-swoop .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 95, 137, 0.15), transparent);
+    transition: 0.5s;
+}
+
+.eagle-swoop .button:hover,
+.eagle-swoop .transparent-button:hover {
+    background-color: var(--eagle-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 95, 137, 0.25);
+}
+
+.eagle-swoop .button:hover::before,
+.eagle-swoop .transparent-button:hover::before {
+    left: 100%;
+}
+
+.eagle-swoop .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.eagle-swoop #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.eagle-swoop #theme-switcher {
+    background-color: var(--eagle-primary);
+    color: var(--eagle-text) !important;
+    border: 2px solid var(--eagle-accent1);
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23005F89'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--eagle-transition);
+    border-radius: var(--eagle-radius);
+}
+
+.eagle-swoop #theme-switcher option {
+    background-color: var(--eagle-primary) !important;
+    color: var(--eagle-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.eagle-swoop #theme-switcher option:hover {
+    background-color: var(--eagle-accent1) !important;
+    color: white !important;
+}
+
+.eagle-swoop #theme-switcher:focus {
+    outline: none;
+    border-color: var(--eagle-accent1);
+    box-shadow: 0 0 0 3px rgba(0, 95, 137, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.eagle-swoop #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1.05rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: var(--eagle-accent1);
+    cursor: pointer;
+    transition: all var(--eagle-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--eagle-radius);
+    box-shadow: 0 3px 10px rgba(0, 95, 137, 0.4);
+    letter-spacing: 0.03em;
+}
+
+.eagle-swoop #backToTopBtn:hover {
+    background-color: var(--eagle-hover);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(0, 95, 137, 0.5);
+}
+
+/* ==================== FOOTER ==================== */
+.eagle-swoop footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--eagle-accent4);
+    color: var(--eagle-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .eagle-swoop .container {
+        padding: 1.5rem;
+    }
+
+    .eagle-swoop #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .eagle-swoop #current-date {
+        font-size: 1.6rem;
+    }
+
+    .eagle-swoop #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .eagle-swoop {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .eagle-swoop .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 7px;
+    }
+
+    .eagle-swoop th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .eagle-swoop th span.full-day-name {
+        display: none;
+    }
+
+    .eagle-swoop th abbr {
+        display: inline;
+    }
+
+    .eagle-swoop td {
+        padding: 0.8rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .eagle-swoop td.current-day::before {
+        font-size: 1.1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .eagle-swoop #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.6rem;
+        font-size: 0.95rem;
+    }
+
+    .eagle-swoop #theme-switcher {
+        padding: 0.8rem 2.1rem 0.8rem 0.9rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+
+    .eagle-swoop #theme-switcher option {
+        font-size: 0.95rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .eagle-swoop .container {
+        padding: 1rem;
+    }
+
+    .eagle-swoop #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .eagle-swoop #current-date {
+        font-size: 1.4rem;
+    }
+
+    .eagle-swoop #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .eagle-swoop .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 5px;
+    }
+
+    .eagle-swoop th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .eagle-swoop td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.9rem;
+    }
+
+    .eagle-swoop td.current-day::before {
+        font-size: 1rem;
+    }
+
+    .eagle-swoop #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .eagle-swoop th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .eagle-swoop td {
+        height: 65px;
+    }
+
+    .eagle-swoop #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}
