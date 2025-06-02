@@ -96,7 +96,7 @@ const applyTheme = (theme) => {
     'high-intelligence','high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
     'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
-    'iceland-volcanoes' , 'imaginary-world', 'in-my-style', 'into-the-jungle',
+    'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
     'invincible-zone', 'japan-emperor', 'kilimanjaro-outskirts', 
     'lavender-bliss', 'lemongrass-sky', 'level-of-comfort',
