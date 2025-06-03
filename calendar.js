@@ -117,7 +117,7 @@ const applyTheme = (theme) => {
     'practical-experience', 'precious-question','progressive-decision', 'pure-light', 
     'purple-fog', 'quantum-programmer', 'queen-of-ambience', 'quiet-evening', 'quiet-progress',
     'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'random-coincidence',
-    'red-lake', 'red-squirrel', 'remote-island','rising-sun',
+    'real-results', 'red-lake', 'red-squirrel', 'remote-island','rising-sun',
     'robin-good', 'royal-caribbean', 'samurai-path', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery',
