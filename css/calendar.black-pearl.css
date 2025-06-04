@@ -1,0 +1,768 @@
+/* ==========================================================================
+   Black Pearl Theme - Luxurious Dark Calendar Interface
+   Version: 1.1
+   Updated: 2024-06-01
+   Changes:
+   - Deep oceanic color scheme with pearlescent accents
+   - Premium dark design elements
+   - Sophisticated nautical aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;600&display=swap');
+
+:root {
+    /* Pearl Ocean Palette */
+    --pearl-bg: #0A0A0A;
+    --pearl-text: #E6E6E6;
+    --pearl-primary: #1A1A1A;
+    --pearl-secondary: #2A2A2A;
+
+    /* Iridescent Texture Colors */
+    --pearl-texture1: #242424;
+    --pearl-texture2: #2E2E2E;
+    --pearl-texture3: #383838;
+    --pearl-texture4: #424242;
+    --pearl-texture5: #4C4C4C;
+
+    /* Pearl Accent Colors */
+    --pearl-accent1: #50C8FF;
+    /* Pearl Blue - 6.7:1 contrast on dark */
+    --pearl-accent2: #78D6FF;
+    /* Light Blue - 5.9:1 */
+    --pearl-accent3: #A0E4FF;
+    /* Pale Blue - 4.8:1 */
+    --pearl-accent4: rgba(80, 200, 255, 0.7);
+    /* Semi-transparent Blue */
+    --pearl-accent5: rgba(168, 232, 255, 0.5);
+    /* Iridescent Blue */
+
+    /* Theme Variables */
+    --pearl-shadow: rgba(80, 200, 255, 0.15);
+    --pearl-radius: 8px;
+    --pearl-transition: 0.3s ease;
+    --pearl-hover: #3AB4EB;
+    --pearl-glow: 0 0 15px rgba(80, 200, 255, 0.3);
+    --pearl-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%2350C8FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%2350C8FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%2350C8FF"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes pearl-fade {
+
+    0%,
+    100% {
+        opacity: 0.98;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes pearl-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pearl-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--pearl-shadow);
+    }
+
+    50% {
+        box-shadow: var(--pearl-glow);
+    }
+}
+
+@keyframes pearl-shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.black-pearl {
+    font-family: 'Raleway', sans-serif;
+    color: var(--pearl-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--pearl-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%2350C8FF" opacity="0.1"/></svg>'),
+        linear-gradient(135deg, var(--pearl-bg) 0%, #121212 100%);
+}
+
+.black-pearl .container {
+    background-color: var(--pearl-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--pearl-accent4);
+    box-shadow: var(--pearl-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--pearl-radius);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%2350C8FF" stroke-width="0.3" opacity="0.05"/></svg>');
+}
+
+.black-pearl .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--pearl-accent1) 20%,
+            var(--pearl-accent2) 50%,
+            var(--pearl-accent1) 80%,
+            transparent 100%);
+}
+
+.black-pearl .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--pearl-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.black-pearl #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--pearl-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.black-pearl #calendar-title::after {
+    content: "⚪";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.7;
+    text-shadow: 0 0 10px var(--pearl-accent1);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.black-pearl #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--pearl-primary);
+    border: 1px solid var(--pearl-accent4);
+    border-radius: var(--pearl-radius);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.black-pearl #date-weather-container::before {
+    content: "NAUTICAL CHRONICLE";
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: var(--pearl-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--pearl-accent1);
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+}
+
+.black-pearl #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--pearl-accent2), transparent);
+    opacity: 0.5;
+}
+
+.black-pearl #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--pearl-accent1);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+}
+
+.black-pearl #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--pearl-accent2);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.black-pearl #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.black-pearl .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--pearl-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--pearl-primary);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(80, 200, 255, 0.1);
+}
+
+.black-pearl .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--pearl-accent1);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.black-pearl .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.black-pearl .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 6px;
+    background: var(--pearl-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px var(--pearl-accent1);
+}
+
+.black-pearl .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 4px;
+    background: var(--pearl-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--pearl-accent2);
+}
+
+.black-pearl .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--pearl-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 5px var(--pearl-accent3);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.black-pearl table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.black-pearl th {
+    background: linear-gradient(160deg, var(--pearl-accent1), var(--pearl-accent2));
+    color: var(--pearl-primary) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--pearl-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.black-pearl th span.full-day-name {
+    display: inline;
+}
+
+.black-pearl th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.black-pearl td {
+    background-color: var(--pearl-primary);
+    color: var(--pearl-text);
+    padding: 1.2rem;
+    border: 1px solid var(--pearl-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--pearl-transition);
+    position: relative;
+    border-radius: var(--pearl-radius);
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.2),
+        0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.black-pearl td:hover {
+    background-color: var(--pearl-secondary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.black-pearl td.current-day {
+    background-color: rgba(80, 200, 255, 0.1);
+    border: 2px solid var(--pearl-accent2);
+    color: var(--pearl-text) !important;
+    font-weight: 600;
+    animation: pearl-pulse 3s infinite;
+    box-shadow:
+        inset 0 0 15px rgba(80, 200, 255, 0.2),
+        0 4px 15px rgba(80, 200, 255, 0.2);
+}
+
+.black-pearl td.current-day::before {
+    content: "🔘";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+    color: var(--pearl-accent1);
+    font-weight: bold;
+    filter: drop-shadow(0 0 3px var(--pearl-accent1));
+}
+
+.black-pearl td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--pearl-accent1) !important;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(80, 200, 255, 0.3);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.black-pearl .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pearl-accent2);
+    margin: 0 2px;
+    transition: all var(--pearl-transition);
+    box-shadow: 0 0 3px var(--pearl-accent2);
+}
+
+.black-pearl .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--pearl-accent2);
+    box-shadow: 0 0 8px var(--pearl-accent2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.black-pearl .modal-content {
+    position: relative;
+    background-color: var(--pearl-primary);
+    border: 1px solid var(--pearl-accent4);
+    padding: 30px;
+    color: var(--pearl-text);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.4),
+        var(--pearl-glow);
+    border-radius: var(--pearl-radius);
+    animation: pearl-slide 0.3s ease-out;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%2350C8FF" stroke-width="0.5" opacity="0.05"/></svg>');
+}
+
+.black-pearl .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--pearl-accent1) 20%,
+            var(--pearl-accent2) 50%,
+            var(--pearl-accent1) 80%,
+            transparent 100%);
+}
+
+.black-pearl .modal-content h2 {
+    color: var(--pearl-accent1);
+    font-family: 'Cinzel', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.black-pearl .modal-content button {
+    background: linear-gradient(160deg, var(--pearl-accent1), var(--pearl-accent2));
+    color: var(--pearl-primary);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--pearl-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: var(--pearl-radius);
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.black-pearl .modal-content button:hover {
+    background: linear-gradient(160deg, var(--pearl-hover), var(--pearl-accent2));
+    box-shadow: 0 4px 10px rgba(80, 200, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.black-pearl .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--pearl-primary);
+    color: var(--pearl-accent1);
+    border: 1px solid var(--pearl-accent1);
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all var(--pearl-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.black-pearl .modal .close-button:hover {
+    background-color: var(--pearl-accent1);
+    color: var(--pearl-primary);
+    border-color: var(--pearl-accent1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.black-pearl .button,
+.black-pearl .transparent-button {
+    border: 1px solid var(--pearl-accent1);
+    color: var(--pearl-accent1);
+    background-color: transparent;
+    padding: 1rem 1.8rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--pearl-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--pearl-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.black-pearl .button:hover,
+.black-pearl .transparent-button:hover {
+    background-color: var(--pearl-accent1);
+    color: var(--pearl-primary);
+    box-shadow: 0 4px 10px rgba(80, 200, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.black-pearl .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.black-pearl #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.black-pearl #theme-switcher {
+    background-color: var(--pearl-primary);
+    color: var(--pearl-text) !important;
+    border: 1px solid var(--pearl-accent1);
+    padding: 1rem 2.5rem 1rem 1.2rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2350C8FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--pearl-transition);
+    border-radius: var(--pearl-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+
+.black-pearl #theme-switcher option {
+    background-color: var(--pearl-primary) !important;
+    color: var(--pearl-text) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.black-pearl #theme-switcher:focus {
+    outline: none;
+    border-color: var(--pearl-accent1);
+    box-shadow: 0 0 0 3px rgba(80, 200, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.black-pearl #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: var(--pearl-primary);
+    background: linear-gradient(160deg, var(--pearl-accent1), var(--pearl-accent2));
+    cursor: pointer;
+    transition: all var(--pearl-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--pearl-radius);
+    box-shadow: 0 4px 15px rgba(80, 200, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.black-pearl #backToTopBtn:hover {
+    background: linear-gradient(160deg, var(--pearl-hover), var(--pearl-accent2));
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(80, 200, 255, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.black-pearl footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--pearl-accent4);
+    color: var(--pearl-text);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+.black-pearl footer::before {
+    content: "⚪ ⚪ ⚪";
+    letter-spacing: 0.5em;
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--pearl-accent1);
+    opacity: 0.5;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .black-pearl .container {
+        padding: 2rem;
+        margin: 1.5rem auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .black-pearl .container {
+        padding: 1.8rem;
+    }
+
+    .black-pearl #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .black-pearl #current-date {
+        font-size: 1.8rem;
+    }
+
+    .black-pearl #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .black-pearl .clock-face {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .black-pearl {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .black-pearl .container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    .black-pearl .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .black-pearl th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .black-pearl th span.full-day-name {
+        display: none;
+    }
+
+    .black-pearl th abbr {
+        display: inline;
+    }
+
+    .black-pearl td {
+        padding: 1rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .black-pearl td.current-day::before {
+        font-size: 1.1rem;
+    }
+
+    .black-pearl #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    .black-pearl #theme-switcher {
+        padding: 0.9rem 2.2rem 0.9rem 1rem;
+        font-size: 0.9rem;
+        min-width: 190px;
+    }
+}
+
+@media (max-width: 576px) {
+    .black-pearl .container {
+        padding: 1.2rem;
+    }
+
+    .black-pearl #calendar-title {
+        font-size: 2rem;
+    }
+
+    .black-pearl #current-date {
+        font-size: 1.5rem;
+    }
+
+    .black-pearl #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .black-pearl .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 5px;
+    }
+
+    .black-pearl th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .black-pearl td {
+        padding: 0.8rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+
+    .black-pearl #theme-switcher {
+        min-width: 170px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .black-pearl th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .black-pearl td {
+        height: 70px;
+    }
+
+    .black-pearl #theme-switcher {
+        min-width: 150px;
+        font-size: 0.8rem;
+    }
+}
