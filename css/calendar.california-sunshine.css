@@ -1,0 +1,696 @@
+/* ==========================================================================
+   California Sunshine Theme - Bright Summer Interface
+   Version: 1.0
+   Updated: 2025-05-20
+   Changes:
+   - Created vibrant summer color palette
+   - Added beach decorative elements and sun details
+   - Designed with warm typography and sunny accents
+   - Maintained all structural elements from Success Story Theme
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;500;700&display=swap');
+
+:root {
+    /* Sunshine Color Palette */
+    --sunshine-bg: #FFF8E1;
+    --sunshine-text: #5D4037;
+    --sunshine-primary: #FFFFFF;
+    --sunshine-secondary: #FFECB3;
+
+    /* Texture Colors */
+    --sunshine-texture1: #FFE082;
+    --sunshine-texture2: #FFD54F;
+    --sunshine-texture3: #FFC107;
+    --sunshine-texture4: #FFB300;
+    --sunshine-texture5: #FFA000;
+
+    /* Accent Colors */
+    --sunshine-accent1: #FF7043;
+    /* Sunset Orange */
+    --sunshine-accent2: #FFD740;
+    /* Sunshine Yellow */
+    --sunshine-accent3: #4DB6AC;
+    /* Ocean Teal */
+    --sunshine-accent4: #42A5F5;
+    /* Sky Blue */
+    --sunshine-accent5: #AB47BC;
+    /* Twilight Purple */
+
+    /* Theme Variables */
+    --sunshine-shadow: rgba(255, 112, 67, 0.2);
+    --sunshine-radius: 8px;
+    --sunshine-transition: 0.3s ease;
+    --sunshine-hover: #FF7043;
+    --sunshine-glow: 0 0 15px rgba(255, 215, 64, 0.2);
+    --sunshine-stripe: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 5px,
+            rgba(255, 112, 67, 0.05) 5px,
+            rgba(255, 112, 67, 0.05) 10px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sunshine-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes sunshine-slide {
+    from {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sunshine-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--sunshine-shadow);
+    }
+
+    50% {
+        box-shadow: var(--sunshine-glow);
+    }
+}
+
+@keyframes sun-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.california-sunshine {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sunshine-text);
+    line-height: 1.6;
+    background-color: var(--sunshine-bg);
+    min-height: 100vh;
+}
+
+.california-sunshine .container {
+    background-color: var(--sunshine-primary);
+    padding: 2rem;
+    border: 1px solid var(--sunshine-texture3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--sunshine-radius);
+    background-image: var(--sunshine-stripe);
+}
+
+.california-sunshine .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--sunshine-accent1) 0%,
+            var(--sunshine-accent2) 25%,
+            var(--sunshine-accent3) 50%,
+            var(--sunshine-accent4) 75%,
+            var(--sunshine-accent1) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.california-sunshine #calendar-title {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--sunshine-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+}
+
+.california-sunshine #calendar-title::after {
+    content: "☀️";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: sun-spin 8s linear infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.california-sunshine #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--sunshine-primary);
+    border: 1px solid var(--sunshine-texture3);
+    border-radius: var(--sunshine-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.california-sunshine #date-weather-container::before {
+    content: "BEACH DAYS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--sunshine-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--sunshine-accent1);
+    font-weight: 700;
+}
+
+.california-sunshine #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sunshine-accent1), transparent);
+}
+
+.california-sunshine #current-date {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--sunshine-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.california-sunshine #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sunshine-accent4);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.california-sunshine #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.california-sunshine .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--sunshine-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--sunshine-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.california-sunshine .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.california-sunshine .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--sunshine-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.california-sunshine .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--sunshine-accent4);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.california-sunshine .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--sunshine-accent5);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.california-sunshine table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.california-sunshine th {
+    background-color: var(--sunshine-accent1);
+    color: white !important;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--sunshine-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.california-sunshine th span.full-day-name {
+    display: inline;
+}
+
+.california-sunshine th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.california-sunshine td {
+    background-color: var(--sunshine-primary);
+    color: var(--sunshine-text);
+    padding: 1.2rem;
+    border: 1px solid var(--sunshine-texture3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--sunshine-transition);
+    position: relative;
+    border-radius: var(--sunshine-radius);
+}
+
+.california-sunshine td:hover {
+    background-color: var(--sunshine-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.california-sunshine td.current-day {
+    background-color: var(--sunshine-texture1);
+    border: 1px solid var(--sunshine-accent1);
+    color: var(--sunshine-text) !important;
+    font-weight: 500;
+    animation: sunshine-pulse 2s infinite;
+}
+
+.california-sunshine td.current-day::before {
+    content: "☀️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+}
+
+.california-sunshine td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--sunshine-accent1) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.california-sunshine .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--sunshine-accent1);
+    margin: 0 2px;
+    transition: all var(--sunshine-transition);
+}
+
+.california-sunshine .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--sunshine-accent1);
+    box-shadow: 0 0 5px rgba(255, 112, 67, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.california-sunshine .modal-content {
+    position: relative;
+    background-color: var(--sunshine-primary);
+    border: 1px solid var(--sunshine-texture3);
+    padding: 30px;
+    color: var(--sunshine-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: var(--sunshine-radius);
+    animation: sunshine-slide 0.3s ease-out;
+}
+
+.california-sunshine .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--sunshine-accent1) 0%,
+            var(--sunshine-accent2) 50%,
+            var(--sunshine-accent1) 100%);
+}
+
+.california-sunshine .modal-content h2 {
+    color: var(--sunshine-text);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.california-sunshine .modal-content button {
+    background-color: var(--sunshine-accent1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sunshine-transition);
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--sunshine-radius);
+}
+
+.california-sunshine .modal-content button:hover {
+    background-color: var(--sunshine-accent3);
+    box-shadow: 0 5px 15px rgba(77, 182, 172, 0.3);
+}
+
+/* Close Button */
+.california-sunshine .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--sunshine-text);
+    border: 1px solid var(--sunshine-texture4);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--sunshine-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.california-sunshine .modal .close-button:hover {
+    background-color: var(--sunshine-accent5);
+    color: white;
+    border-color: var(--sunshine-accent5);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.california-sunshine .button,
+.california-sunshine .transparent-button {
+    border: 1px solid var(--sunshine-accent1);
+    color: var(--sunshine-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sunshine-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--sunshine-radius);
+}
+
+.california-sunshine .button::before,
+.california-sunshine .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 112, 67, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.california-sunshine .button:hover,
+.california-sunshine .transparent-button:hover {
+    background-color: var(--sunshine-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 112, 67, 0.2);
+}
+
+.california-sunshine .button:hover::before,
+.california-sunshine .transparent-button:hover::before {
+    left: 100%;
+}
+
+.california-sunshine .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.california-sunshine #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.california-sunshine #theme-switcher {
+    background-color: var(--sunshine-primary);
+    color: var(--sunshine-text) !important;
+    border: 1px solid var(--sunshine-texture4);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF7043'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--sunshine-transition);
+    border-radius: var(--sunshine-radius);
+}
+
+.california-sunshine #theme-switcher option {
+    background-color: var(--sunshine-primary) !important;
+    color: var(--sunshine-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.california-sunshine #theme-switcher option:hover {
+    background-color: var(--sunshine-accent1) !important;
+    color: white !important;
+}
+
+.california-sunshine #theme-switcher:focus {
+    outline: none;
+    border-color: var(--sunshine-accent1);
+    box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.california-sunshine #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--sunshine-accent1);
+    cursor: pointer;
+    transition: all var(--sunshine-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--sunshine-radius);
+    box-shadow: 0 3px 10px rgba(255, 112, 67, 0.3);
+}
+
+.california-sunshine #backToTopBtn:hover {
+    background-color: var(--sunshine-accent3);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(77, 182, 172, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.california-sunshine footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sunshine-texture3);
+    color: var(--sunshine-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .california-sunshine .container {
+        padding: 1.5rem;
+    }
+
+    .california-sunshine #calendar-title {
+        font-size: 2rem;
+    }
+
+    .california-sunshine #current-date {
+        font-size: 1.5rem;
+    }
+
+    .california-sunshine #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .california-sunshine .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .california-sunshine th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .california-sunshine th span.full-day-name {
+        display: none;
+    }
+
+    .california-sunshine th abbr {
+        display: inline;
+    }
+
+    .california-sunshine td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .california-sunshine td.current-day::before {
+        font-size: 1rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .california-sunshine #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .california-sunshine #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .california-sunshine #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .california-sunshine .container {
+        padding: 0.8rem;
+    }
+
+    .california-sunshine #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .california-sunshine #current-date {
+        font-size: 1.1rem;
+    }
+
+    .california-sunshine #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .california-sunshine .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .california-sunshine th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .california-sunshine td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .california-sunshine td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .california-sunshine #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .california-sunshine th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .california-sunshine td {
+        height: 50px;
+    }
+
+    .california-sunshine #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
