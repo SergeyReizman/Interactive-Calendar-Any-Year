@@ -1,0 +1,730 @@
+/* ==========================================================================
+   Black Mountain Theme - Alpine Summit Interface
+   Version: 1.0
+   Updated: 2025-05-20
+   Changes:
+   - Created alpine mountain color palette
+   - Added rugged textures and elevation effects
+   - Designed with bold typography and stone accents
+   - Maintained all structural elements from Success Story Theme
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+:root {
+    /* Mountain Color Palette */
+    --mountain-bg: #0D0D0D;
+    --mountain-text: #E0E0E0;
+    --mountain-primary: #1A1A1A;
+    --mountain-secondary: #2D2D2D;
+
+    /* Elevation Colors */
+    --mountain-base: #333333;
+    --mountain-mid: #4D4D4D;
+    --mountain-high: #666666;
+    --mountain-peak: #808080;
+    --mountain-snow: #B3B3B3;
+
+    /* Accent Colors */
+    --mountain-accent1: #4ECDC4;
+    /* Alpine Teal */
+    --mountain-accent2: #FF6B6B;
+    /* Sunset Red */
+    --mountain-accent3: #45B7D1;
+    /* Glacier Blue */
+    --mountain-accent4: #FFD166;
+    /* Sunrise Yellow */
+    --mountain-accent5: #A37AFC;
+    /* Twilight Purple */
+
+    /* Theme Variables */
+    --mountain-shadow: rgba(78, 205, 196, 0.3);
+    --mountain-radius: 6px;
+    --mountain-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --mountain-hover: #4ECDC4;
+    --mountain-glow: 0 0 20px rgba(78, 205, 196, 0.2);
+    --mountain-crack: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 2px,
+            rgba(78, 205, 196, 0.1) 2px,
+            rgba(78, 205, 196, 0.1) 4px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mountain-fade {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes mountain-slide {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes mountain-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--mountain-shadow);
+    }
+
+    50% {
+        box-shadow: var(--mountain-glow);
+    }
+}
+
+@keyframes summit-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--mountain-accent1);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--mountain-accent1);
+    }
+}
+
+@keyframes snow-fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.black-mountain {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--mountain-text);
+    line-height: 1.6;
+    background-color: var(--mountain-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(78, 205, 196, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.05) 0%, transparent 20%);
+}
+
+.black-mountain .container {
+    background-color: var(--mountain-primary);
+    padding: 2rem;
+    border: 1px solid var(--mountain-high);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mountain-radius);
+    background-image: var(--mountain-crack);
+}
+
+.black-mountain .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--mountain-accent1) 0%,
+            var(--mountain-accent2) 50%,
+            var(--mountain-accent1) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.black-mountain #calendar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--mountain-text);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: summit-glow 3s ease-in-out infinite;
+}
+
+.black-mountain #calendar-title::after {
+    content: "⛰️";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    opacity: 0.9;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.black-mountain #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 1.8rem;
+    background-color: var(--mountain-primary);
+    border: 1px solid var(--mountain-high);
+    border-radius: var(--mountain-radius);
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.black-mountain #date-weather-container::before {
+    content: "SUMMIT LOGS";
+    position: absolute;
+    top: -14px;
+    right: 25px;
+    background-color: var(--mountain-primary);
+    padding: 0 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--mountain-accent1);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.black-mountain #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--mountain-accent1), transparent);
+}
+
+.black-mountain #current-date {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--mountain-text);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+.black-mountain #today-weather {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--mountain-accent1);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.black-mountain #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.black-mountain .clock-face {
+    width: 220px;
+    height: 220px;
+    border: 10px solid var(--mountain-peak);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mountain-primary);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(179, 179, 179, 0.1);
+}
+
+.black-mountain .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.black-mountain .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 7px;
+    background: var(--mountain-accent1);
+    margin-top: -3.5px;
+    border-radius: 4px;
+}
+
+.black-mountain .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 5px;
+    background: var(--mountain-accent3);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.black-mountain .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--mountain-accent2);
+    margin-top: -1.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.black-mountain table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.black-mountain th {
+    background: linear-gradient(to right, var(--mountain-accent1), var(--mountain-accent3));
+    color: var(--mountain-primary) !important;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 700;
+    padding: 1.2rem 0.6rem;
+    border-radius: var(--mountain-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 5px 20px rgba(78, 205, 196, 0.2);
+}
+
+.black-mountain th span.full-day-name {
+    display: inline;
+}
+
+.black-mountain th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.black-mountain td {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-text);
+    padding: 1.4rem;
+    border: 1px solid var(--mountain-high);
+    height: 110px;
+    vertical-align: top;
+    transition: all var(--mountain-transition);
+    position: relative;
+    border-radius: var(--mountain-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.black-mountain td:hover {
+    background-color: var(--mountain-secondary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.black-mountain td.current-day {
+    background-color: var(--mountain-base);
+    border: 2px solid var(--mountain-accent1);
+    color: var(--mountain-text) !important;
+    font-weight: 600;
+    animation: mountain-pulse 3s infinite;
+}
+
+.black-mountain td.current-day::before {
+    content: "❄️";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.5rem;
+    animation: mountain-fade 2s ease-in-out infinite;
+}
+
+.black-mountain td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--mountain-accent1) !important;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.black-mountain .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(to right, var(--mountain-accent1), var(--mountain-accent3));
+    margin: 0 3px;
+    transition: all var(--mountain-transition);
+    box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+}
+
+.black-mountain .event-marker:hover {
+    transform: scale(1.8);
+    box-shadow: 0 0 15px rgba(78, 205, 196, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.black-mountain .modal-content {
+    position: relative;
+    background-color: var(--mountain-primary);
+    border: 1px solid var(--mountain-high);
+    padding: 35px;
+    color: var(--mountain-text);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-radius: var(--mountain-radius);
+    animation: mountain-slide 0.4s ease-out;
+    background-image: var(--mountain-crack);
+}
+
+.black-mountain .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--mountain-accent1) 0%,
+            var(--mountain-accent2) 50%,
+            var(--mountain-accent1) 100%);
+}
+
+.black-mountain .modal-content h2 {
+    color: var(--mountain-text);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.black-mountain .modal-content button {
+    background: linear-gradient(to right, var(--mountain-accent1), var(--mountain-accent3));
+    color: var(--mountain-primary);
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    letter-spacing: 1px;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: var(--mountain-radius);
+    box-shadow: 0 5px 20px rgba(78, 205, 196, 0.3);
+    text-transform: uppercase;
+}
+
+.black-mountain .modal-content button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+    background: linear-gradient(to right, var(--mountain-accent3), var(--mountain-accent1));
+}
+
+/* Close Button */
+.black-mountain .modal .close-button {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background-color: transparent;
+    color: var(--mountain-text);
+    border: 1px solid var(--mountain-peak);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.black-mountain .modal .close-button:hover {
+    background-color: var(--mountain-accent2);
+    color: var(--mountain-primary);
+    border-color: var(--mountain-accent2);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.black-mountain .button,
+.black-mountain .transparent-button {
+    border: 2px solid var(--mountain-accent1);
+    color: var(--mountain-accent1);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.6rem;
+    border-radius: var(--mountain-radius);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.black-mountain .button::before,
+.black-mountain .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.1), transparent);
+    transition: 0.6s;
+}
+
+.black-mountain .button:hover,
+.black-mountain .transparent-button:hover {
+    background-color: var(--mountain-accent1);
+    color: var(--mountain-primary);
+    box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+    transform: translateY(-3px);
+}
+
+.black-mountain .button:hover::before,
+.black-mountain .transparent-button:hover::before {
+    left: 100%;
+}
+
+.black-mountain .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.black-mountain #theme-switcher-container {
+    position: relative;
+    margin: 0 1.2rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.black-mountain #theme-switcher {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-text) !important;
+    border: 2px solid var(--mountain-peak);
+    padding: 1rem 3rem 1rem 1.2rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234ECDC4'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    border-radius: var(--mountain-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.black-mountain #theme-switcher option {
+    background-color: var(--mountain-primary) !important;
+    color: var(--mountain-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.black-mountain #theme-switcher option:hover {
+    background-color: var(--mountain-accent1) !important;
+    color: var(--mountain-primary) !important;
+}
+
+.black-mountain #theme-switcher:focus {
+    outline: none;
+    border-color: var(--mountain-accent1);
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.black-mountain #backToTopBtn {
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 1.1rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    color: var(--mountain-primary);
+    background: linear-gradient(to right, var(--mountain-accent1), var(--mountain-accent3));
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--mountain-radius);
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.black-mountain #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(78, 205, 196, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.black-mountain footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--mountain-high);
+    color: var(--mountain-text);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .black-mountain .container {
+        padding: 1.8rem;
+    }
+
+    .black-mountain #calendar-title {
+        font-size: 2.6rem;
+    }
+
+    .black-mountain #current-date {
+        font-size: 2rem;
+    }
+
+    .black-mountain #today-weather {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .black-mountain .clock-face {
+        width: 190px;
+        height: 190px;
+        border-width: 8px;
+    }
+
+    .black-mountain th {
+        font-size: 0.95rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .black-mountain th span.full-day-name {
+        display: none;
+    }
+
+    .black-mountain th abbr {
+        display: inline;
+    }
+
+    .black-mountain td {
+        padding: 1rem;
+        height: 100px;
+        font-size: 0.9rem;
+    }
+
+    .black-mountain td.current-day::before {
+        font-size: 1.3rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .black-mountain #backToTopBtn {
+        right: 25px;
+        bottom: 25px;
+        padding: 1rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .black-mountain #theme-switcher {
+        padding: 0.9rem 2.5rem 0.9rem 1rem;
+        font-size: 1rem;
+        min-width: 210px;
+    }
+}
+
+@media (max-width: 576px) {
+    .black-mountain .container {
+        padding: 1.2rem;
+    }
+
+    .black-mountain #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .black-mountain #current-date {
+        font-size: 1.7rem;
+    }
+
+    .black-mountain #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .black-mountain .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .black-mountain th {
+        font-size: 0.85rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .black-mountain td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.85rem;
+    }
+
+    .black-mountain td.current-day::before {
+        font-size: 1.1rem;
+    }
+
+    .black-mountain #theme-switcher {
+        min-width: 190px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .black-mountain th {
+        font-size: 0.75rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .black-mountain td {
+        height: 80px;
+    }
+
+    .black-mountain #theme-switcher {
+        min-width: 170px;
+        font-size: 0.9rem;
+    }
+}
