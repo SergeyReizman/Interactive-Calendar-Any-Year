@@ -76,7 +76,7 @@ const applyTheme = (theme) => {
     'crossroads-stone','crystal-snowfall', 'crystal-stream',
     'cyber-pulse', 'dark-code',
     'dark-mode', 'dark-star', 'dartagnans-rapier', 'daruma-doll', 
-    'deep-forest', 'deep-ocean','deep-space', 
+    'deep-forest', 'deep-ocean','deep-space', 'desert-miracle', 
     'desert-mirage', 'desert-water',
     'developers-zone', 'diamond-planet', 'digital-excellence', 'distant-skies',
     'divi-divi-trees',
