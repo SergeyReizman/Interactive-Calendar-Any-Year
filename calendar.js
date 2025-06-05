@@ -114,7 +114,7 @@ const applyTheme = (theme) => {
     'oceanfront-elegance','ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'one-way-ticket', 'on-the-island', 'orange-country', 
     'orion-constellation', 'overnight-train', 'over-the-seven-seas', 
-    'pink-lady', 'pink-lake', 'pirate-ship', 
+    'pacific-ocean', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'precious-question','progressive-decision', 'pure-light', 
     'purple-fog', 'quantum-programmer', 'queen-of-ambience', 'quiet-evening', 'quiet-progress',
