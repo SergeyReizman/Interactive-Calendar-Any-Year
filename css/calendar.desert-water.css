@@ -1,0 +1,707 @@
+/* ==========================================================================
+   Desert Water Theme - Arid Oasis Interface
+   Version: 1.0
+   Updated: 2025-05-20
+   Changes:
+   - Created desert oasis color palette
+   - Added sandy textures and water ripple effects
+   - Designed with earthy typography and natural accents
+   - Maintained all structural elements from Success Story Theme
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;500;700&display=swap');
+
+:root {
+    /* Desert Color Palette */
+    --desert-bg: #F5F1E6;
+    --desert-text: #5C4D3C;
+    --desert-primary: #FFFFFF;
+    --desert-secondary: #EAE3D6;
+
+    /* Texture Colors */
+    --desert-texture1: #E3D9C6;
+    --desert-texture2: #D8C9A8;
+    --desert-texture3: #CBB88A;
+    --desert-texture4: #BAA46F;
+    --desert-texture5: #A58A5A;
+
+    /* Accent Colors */
+    --desert-accent1: #4A8FE7;
+    /* Oasis Blue */
+    --desert-accent2: #E9C46A;
+    /* Sun Gold */
+    --desert-accent3: #2A9D8F;
+    /* Cactus Green */
+    --desert-accent4: #E76F51;
+    /* Sunset Orange */
+    --desert-accent5: #9B5DE5;
+    /* Twilight Purple */
+
+    /* Theme Variables */
+    --desert-shadow: rgba(74, 143, 231, 0.2);
+    --desert-radius: 8px;
+    --desert-transition: 0.3s ease;
+    --desert-hover: #4A8FE7;
+    --desert-glow: 0 0 15px rgba(74, 143, 231, 0.1);
+    --desert-stripe: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 5px,
+            rgba(74, 143, 231, 0.05) 5px,
+            rgba(74, 143, 231, 0.05) 10px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes desert-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes desert-slide {
+    from {
+        transform: translateX(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes desert-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--desert-shadow);
+    }
+
+    50% {
+        box-shadow: var(--desert-glow);
+    }
+}
+
+@keyframes water-ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.desert-water {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--desert-text);
+    line-height: 1.6;
+    background-color: var(--desert-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(233, 196, 106, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(74, 143, 231, 0.1) 0%, transparent 25%);
+}
+
+.desert-water .container {
+    background-color: var(--desert-primary);
+    padding: 2rem;
+    border: 1px solid var(--desert-texture3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--desert-radius);
+    background-image: var(--desert-stripe);
+}
+
+.desert-water .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--desert-accent1) 0%,
+            var(--desert-accent2) 25%,
+            var(--desert-accent3) 50%,
+            var(--desert-accent4) 75%,
+            var(--desert-accent1) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.desert-water #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--desert-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+}
+
+.desert-water #calendar-title::after {
+    content: "💧";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: water-ripple 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.desert-water #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--desert-primary);
+    border: 1px solid var(--desert-texture3);
+    border-radius: var(--desert-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.desert-water #date-weather-container::before {
+    content: "OASIS DAYS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--desert-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--desert-accent1);
+    font-weight: 700;
+}
+
+.desert-water #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--desert-accent1), transparent);
+}
+
+.desert-water #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--desert-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.desert-water #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--desert-accent1);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.desert-water #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.desert-water .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--desert-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--desert-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.desert-water .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.desert-water .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--desert-accent3);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.desert-water .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--desert-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.desert-water .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--desert-accent4);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.desert-water table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.desert-water th {
+    background-color: var(--desert-accent1);
+    color: white !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--desert-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.desert-water th span.full-day-name {
+    display: inline;
+}
+
+.desert-water th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.desert-water td {
+    background-color: var(--desert-primary);
+    color: var(--desert-text);
+    padding: 1.2rem;
+    border: 1px solid var(--desert-texture3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--desert-transition);
+    position: relative;
+    border-radius: var(--desert-radius);
+}
+
+.desert-water td:hover {
+    background-color: var(--desert-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Current date highlight */
+.desert-water td.current-day {
+    background-color: var(--desert-texture1);
+    border: 1px solid var(--desert-accent1);
+    color: var(--desert-text) !important;
+    font-weight: 500;
+    animation: desert-pulse 2s infinite;
+}
+
+.desert-water td.current-day::before {
+    content: "🌵";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: var(--desert-accent3);
+    z-index: 1;
+    font-size: 1.2rem;
+}
+
+.desert-water td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--desert-accent1) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.desert-water .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--desert-accent1);
+    margin: 0 2px;
+    transition: all var(--desert-transition);
+}
+
+.desert-water .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--desert-accent1);
+    box-shadow: 0 0 5px rgba(74, 143, 231, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.desert-water .modal-content {
+    position: relative;
+    background-color: var(--desert-primary);
+    border: 1px solid var(--desert-texture3);
+    padding: 30px;
+    color: var(--desert-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: var(--desert-radius);
+    animation: desert-slide 0.3s ease-out;
+}
+
+.desert-water .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--desert-accent1) 0%,
+            var(--desert-accent2) 50%,
+            var(--desert-accent1) 100%);
+}
+
+.desert-water .modal-content h2 {
+    color: var(--desert-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.desert-water .modal-content button {
+    background-color: var(--desert-accent1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--desert-radius);
+}
+
+.desert-water .modal-content button:hover {
+    background-color: var(--desert-accent3);
+    box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
+}
+
+/* Close Button */
+.desert-water .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--desert-text);
+    border: 1px solid var(--desert-texture4);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.desert-water .modal .close-button:hover {
+    background-color: var(--desert-accent4);
+    color: white;
+    border-color: var(--desert-accent4);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.desert-water .button,
+.desert-water .transparent-button {
+    border: 1px solid var(--desert-accent1);
+    color: var(--desert-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--desert-radius);
+}
+
+.desert-water .button::before,
+.desert-water .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 143, 231, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.desert-water .button:hover,
+.desert-water .transparent-button:hover {
+    background-color: var(--desert-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(74, 143, 231, 0.2);
+}
+
+.desert-water .button:hover::before,
+.desert-water .transparent-button:hover::before {
+    left: 100%;
+}
+
+.desert-water .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.desert-water #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.desert-water #theme-switcher {
+    background-color: var(--desert-primary);
+    color: var(--desert-text) !important;
+    border: 1px solid var(--desert-texture4);
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A8FE7'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    border-radius: var(--desert-radius);
+}
+
+.desert-water #theme-switcher option {
+    background-color: var(--desert-primary) !important;
+    color: var(--desert-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.desert-water #theme-switcher option:hover {
+    background-color: var(--desert-accent1) !important;
+    color: white !important;
+}
+
+.desert-water #theme-switcher:focus {
+    outline: none;
+    border-color: var(--desert-accent1);
+    box-shadow: 0 0 0 3px rgba(74, 143, 231, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.desert-water #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--desert-accent1);
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--desert-radius);
+    box-shadow: 0 3px 10px rgba(74, 143, 231, 0.3);
+}
+
+.desert-water #backToTopBtn:hover {
+    background-color: var(--desert-accent3);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.desert-water footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--desert-texture3);
+    color: var(--desert-text);
+    font-size: 0.9rem;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .desert-water .container {
+        padding: 1.5rem;
+    }
+
+    .desert-water #calendar-title {
+        font-size: 2rem;
+    }
+
+    .desert-water #current-date {
+        font-size: 1.5rem;
+    }
+
+    .desert-water #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .desert-water .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .desert-water th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .desert-water th span.full-day-name {
+        display: none;
+    }
+
+    .desert-water th abbr {
+        display: inline;
+    }
+
+    .desert-water td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .desert-water td.current-day::before {
+        font-size: 1rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .desert-water #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .desert-water #theme-switcher {
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .desert-water #theme-switcher option {
+        font-size: 0.9rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .desert-water .container {
+        padding: 0.8rem;
+    }
+
+    .desert-water #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .desert-water #current-date {
+        font-size: 1.1rem;
+    }
+
+    .desert-water #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .desert-water .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 4px;
+    }
+
+    .desert-water th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .desert-water td {
+        padding: 0.3rem;
+        height: 60px;
+        font-size: 0.7rem;
+    }
+
+    .desert-water td.current-day::before {
+        font-size: 0.8rem;
+    }
+
+    .desert-water #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .desert-water th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .desert-water td {
+        height: 50px;
+    }
+
+    .desert-water #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
