@@ -132,7 +132,7 @@ const applyTheme = (theme) => {
     'the-best-of-fashion', 'the-dead-sea',
     'the-great-silk-road', 'the-great-wall','the-highest-level', 
     'the-last-day-of-spring', 'the-last-mohican',
-    'the-modern-developer','the-perfect-blend', 
+    'the-modern-developer','the-perfect-blend', 'the-west-coast',
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
     'tropical-sunset', 'unseen-wonders', 'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
