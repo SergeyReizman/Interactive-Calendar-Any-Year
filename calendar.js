@@ -112,7 +112,7 @@ const applyTheme = (theme) => {
     'mountain-of-dreams', 
     'mountain-peak', 'new-ai', 'new-black', 'new-style', 'next-step', 'neon-nights',
     'niagara-falls', 'night-dragon', 'night-sky','north-pole', 'northern-nights',
-    'oceanfront-elegance','ocean-surf', 'ocean-view', 'ocean-vortex',
+    'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'one-way-ticket', 'on-the-island', 'orange-country', 
     'orion-constellation', 'overnight-train', 'over-the-seven-seas', 
     'pacific-ocean', 'pink-lady', 'pink-lake', 'pirate-ship', 

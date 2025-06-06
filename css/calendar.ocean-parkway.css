@@ -1,0 +1,733 @@
+/* ==========================================================================
+   Ocean Parkway Theme - Coastal Metropolitan Interface
+   Version: 1.0
+   Updated: 2025-06-20
+   Changes:
+   - Created coastal-urban hybrid color palette
+   - Added boardwalk-inspired design elements
+   - Designed with clean typography and nautical accents
+   - Maintained all structural elements from base template
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Lora:wght@400;500;700&display=swap');
+
+:root {
+    /* Coastal-Urban Color Palette */
+    --parkway-bg: #F5F9FC;
+    --parkway-text: #2D3748;
+    --parkway-primary: #FFFFFF;
+    --parkway-secondary: #E8F0F8;
+
+    /* Material Textures */
+    --parkway-concrete: #E2E8F0;
+    --parkway-driftwood: #CBD5E0;
+    --parkway-boardwalk: #A0AEC0;
+    --parkway-ironwork: #718096;
+    --parkway-awning: #4A5568;
+
+    /* Nautical Accents */
+    --parkway-ocean: #3182CE;
+    --parkway-sky: #63B3ED;
+    --parkway-sand: #F6AD55;
+    --parkway-sunset: #E53E3E;
+    --parkway-marina: #805AD5;
+
+    /* Theme Variables */
+    --parkway-shadow: 0 4px 20px rgba(49, 130, 206, 0.12);
+    --parkway-radius: 8px;
+    --parkway-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --parkway-hover: #4299E1;
+    --parkway-glow: 0 0 15px rgba(99, 179, 237, 0.2);
+    --parkway-stripe: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 5px,
+            rgba(99, 179, 237, 0.05) 5px,
+            rgba(99, 179, 237, 0.05) 10px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes parkway-fade {
+
+    0%,
+    100% {
+        opacity: 0.96;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes parkway-slide {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes buoy-float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+@keyframes light-flicker {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.ocean-parkway {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--parkway-text);
+    line-height: 1.6;
+    background-color: var(--parkway-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(to bottom, transparent 95%, rgba(99, 179, 237, 0.05) 100%),
+        radial-gradient(circle at 20% 30%, rgba(246, 173, 85, 0.05) 0%, transparent 25%);
+}
+
+.ocean-parkway .container {
+    background-color: var(--parkway-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--parkway-driftwood);
+    box-shadow: var(--parkway-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--parkway-radius);
+    background-image: var(--parkway-stripe);
+}
+
+.ocean-parkway .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--parkway-ocean) 0%,
+            var(--parkway-sky) 25%,
+            var(--parkway-sand) 50%,
+            var(--parkway-sunset) 75%,
+            var(--parkway-ocean) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.ocean-parkway #calendar-title {
+    font-family: 'Lora', serif;
+    color: var(--parkway-text);
+    text-align: center;
+    font-size: 2.75rem;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+}
+
+.ocean-parkway #calendar-title::after {
+    content: "⛵";
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    opacity: 0.9;
+    animation: buoy-float 4s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.ocean-parkway #date-weather-container {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: var(--parkway-primary);
+    border: 1px solid var(--parkway-concrete);
+    border-radius: var(--parkway-radius);
+    position: relative;
+    box-shadow: var(--parkway-shadow);
+}
+
+.ocean-parkway #date-weather-container::before {
+    content: "TIDE CHART";
+    position: absolute;
+    top: -14px;
+    right: 25px;
+    background-color: var(--parkway-primary);
+    padding: 0 12px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--parkway-ocean);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.ocean-parkway #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--parkway-ocean), transparent);
+}
+
+.ocean-parkway #current-date {
+    font-family: 'Lora', serif;
+    color: var(--parkway-text);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.ocean-parkway #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--parkway-ocean);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.ocean-parkway #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.ocean-parkway .clock-face {
+    width: 220px;
+    height: 220px;
+    border: 8px solid var(--parkway-boardwalk);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--parkway-primary);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        inset 0 0 15px rgba(160, 174, 192, 0.1);
+}
+
+.ocean-parkway .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.ocean-parkway .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 6px;
+    background: var(--parkway-ocean);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.ocean-parkway .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 4px;
+    background: var(--parkway-sky);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.ocean-parkway .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--parkway-sunset);
+    margin-top: -1px;
+}
+
+/* Clock center */
+.ocean-parkway .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--parkway-boardwalk);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.ocean-parkway table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 3rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.ocean-parkway th {
+    background: linear-gradient(to right, var(--parkway-ocean), var(--parkway-sky));
+    color: white !important;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    padding: 1.25rem 0.75rem;
+    border-radius: var(--parkway-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(49, 130, 206, 0.2);
+}
+
+.ocean-parkway th span.full-day-name {
+    display: inline;
+}
+
+.ocean-parkway th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* TABLE CELLS */
+.ocean-parkway td {
+    background-color: var(--parkway-primary);
+    color: var(--parkway-text);
+    padding: 1.5rem;
+    border: 1px solid var(--parkway-concrete);
+    height: 120px;
+    vertical-align: top;
+    transition: var(--parkway-transition);
+    position: relative;
+    border-radius: var(--parkway-radius);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ocean-parkway td:hover {
+    background-color: var(--parkway-secondary);
+    box-shadow: 0 6px 20px rgba(49, 130, 206, 0.15);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.ocean-parkway td.current-day {
+    background-color: var(--parkway-secondary);
+    border: 1px solid var(--parkway-ocean);
+    color: var(--parkway-text) !important;
+    font-weight: 600;
+    animation: light-flicker 2s infinite;
+}
+
+.ocean-parkway td.current-day::before {
+    content: "🌅";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.4rem;
+}
+
+.ocean-parkway td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--parkway-ocean) !important;
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.ocean-parkway .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(to right, var(--parkway-ocean), var(--parkway-sky));
+    margin: 0 3px;
+    transition: var(--parkway-transition);
+    box-shadow: 0 2px 5px rgba(49, 130, 206, 0.3);
+}
+
+.ocean-parkway .event-marker:hover {
+    transform: scale(1.8);
+    box-shadow: 0 0 10px rgba(49, 130, 206, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.ocean-parkway .modal-content {
+    position: relative;
+    background-color: var(--parkway-primary);
+    border: 1px solid var(--parkway-concrete);
+    padding: 35px;
+    color: var(--parkway-text);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: var(--parkway-radius);
+    animation: parkway-slide 0.4s ease-out;
+}
+
+.ocean-parkway .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--parkway-ocean) 0%,
+            var(--parkway-sky) 50%,
+            var(--parkway-ocean) 100%);
+}
+
+.ocean-parkway .modal-content h2 {
+    color: var(--parkway-text);
+    font-family: 'Lora', serif;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.ocean-parkway .modal-content button {
+    background: linear-gradient(to right, var(--parkway-ocean), var(--parkway-sky));
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--parkway-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--parkway-radius);
+    box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+}
+
+.ocean-parkway .modal-content button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(49, 130, 206, 0.4);
+}
+
+/* Close Button */
+.ocean-parkway .modal .close-button {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background-color: transparent;
+    color: var(--parkway-text);
+    border: 1px solid var(--parkway-boardwalk);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: var(--parkway-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.ocean-parkway .modal .close-button:hover {
+    background-color: var(--parkway-sunset);
+    color: white;
+    border-color: var(--parkway-sunset);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.ocean-parkway .button,
+.ocean-parkway .transparent-button {
+    border: 2px solid var(--parkway-ocean);
+    color: var(--parkway-ocean);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--parkway-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.75rem;
+    border-radius: var(--parkway-radius);
+    letter-spacing: 0.05em;
+}
+
+.ocean-parkway .button::before,
+.ocean-parkway .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(49, 130, 206, 0.1), transparent);
+    transition: 0.75s;
+}
+
+.ocean-parkway .button:hover,
+.ocean-parkway .transparent-button:hover {
+    background-color: var(--parkway-ocean);
+    color: white;
+    box-shadow: 0 8px 25px rgba(49, 130, 206, 0.3);
+    transform: translateY(-3px);
+}
+
+.ocean-parkway .button:hover::before,
+.ocean-parkway .transparent-button:hover::before {
+    left: 100%;
+}
+
+.ocean-parkway .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.ocean-parkway #theme-switcher-container {
+    position: relative;
+    margin: 0 1.5rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.ocean-parkway #theme-switcher {
+    background-color: var(--parkway-primary);
+    color: var(--parkway-text) !important;
+    border: 2px solid var(--parkway-boardwalk);
+    padding: 1rem 3rem 1rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233182CE'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--parkway-transition);
+    border-radius: var(--parkway-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.ocean-parkway #theme-switcher:hover {
+    border-color: var(--parkway-ocean);
+}
+
+.ocean-parkway #theme-switcher option {
+    background-color: var(--parkway-primary) !important;
+    color: var(--parkway-text) !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.ocean-parkway #theme-switcher option:hover {
+    background-color: var(--parkway-ocean) !important;
+    color: white !important;
+}
+
+.ocean-parkway #theme-switcher:focus {
+    outline: none;
+    border-color: var(--parkway-ocean);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.ocean-parkway #backToTopBtn {
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2.2rem;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(to right, var(--parkway-ocean), var(--parkway-sky));
+    cursor: pointer;
+    transition: var(--parkway-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--parkway-radius);
+    box-shadow: 0 6px 25px rgba(49, 130, 206, 0.3);
+    letter-spacing: 0.05em;
+}
+
+.ocean-parkway #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(49, 130, 206, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.ocean-parkway footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--parkway-concrete);
+    color: var(--parkway-text);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .ocean-parkway .container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .ocean-parkway .container {
+        padding: 1.8rem;
+        margin: 1.5rem auto;
+    }
+
+    .ocean-parkway #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .ocean-parkway #current-date {
+        font-size: 1.8rem;
+    }
+
+    .ocean-parkway #today-weather {
+        font-size: 1.3rem;
+    }
+
+    .ocean-parkway td {
+        height: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ocean-parkway .clock-face {
+        width: 190px;
+        height: 190px;
+        border-width: 8px;
+    }
+
+    .ocean-parkway th {
+        font-size: 0.9rem;
+        padding: 1.1rem 0.5rem;
+    }
+
+    .ocean-parkway th span.full-day-name {
+        display: none;
+    }
+
+    .ocean-parkway th abbr {
+        display: inline;
+    }
+
+    .ocean-parkway td {
+        padding: 1.2rem;
+        height: 90px;
+        font-size: 0.85rem;
+    }
+
+    .ocean-parkway td.current-day::before {
+        font-size: 1.2rem;
+    }
+
+    .ocean-parkway #backToTopBtn {
+        right: 25px;
+        bottom: 25px;
+        padding: 1rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .ocean-parkway #theme-switcher {
+        padding: 0.9rem 2.5rem 0.9rem 1.2rem;
+        font-size: 1rem;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .ocean-parkway .container {
+        padding: 1.2rem;
+        margin: 1rem auto;
+    }
+
+    .ocean-parkway #calendar-title {
+        font-size: 2rem;
+    }
+
+    .ocean-parkway #calendar-title::after {
+        font-size: 1.5rem;
+        bottom: -24px;
+    }
+
+    .ocean-parkway #current-date {
+        font-size: 1.5rem;
+    }
+
+    .ocean-parkway #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .ocean-parkway .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .ocean-parkway th {
+        font-size: 0.8rem;
+        padding: 1rem 0.4rem;
+    }
+
+    .ocean-parkway td {
+        padding: 0.8rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+
+    .ocean-parkway #theme-switcher {
+        min-width: 180px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .ocean-parkway th {
+        font-size: 0.75rem;
+        padding: 0.9rem 0.3rem;
+    }
+
+    .ocean-parkway td {
+        height: 70px;
+        padding: 0.6rem;
+    }
+
+    .ocean-parkway #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
