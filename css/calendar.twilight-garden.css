@@ -1,0 +1,821 @@
+/* ==========================================================================
+   Twilight Garden Theme - Enchanted Evening Garden Example
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Mystical twilight color palette
+   - Elegant botanical typography
+   - Enchanted garden design elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Twilight Garden Palette */
+    --twilight-bg: #1A1A2E;
+    --twilight-text: #E8E8E8;
+    --twilight-primary: #252545;
+    --twilight-secondary: #30305A;
+    --twilight-date-number: #E8E8E8;
+
+    /* Garden Texture Colors */
+    --twilight-texture1: #2A2A4A;
+    --twilight-texture2: #35355A;
+    --twilight-texture3: #40406A;
+    --twilight-texture4: #4B4B7A;
+    --twilight-texture5: #56568A;
+
+    /* Enchanted Accent Colors */
+    --twilight-accent1: #A78BFA;
+    --twilight-accent2: #C084FC;
+    --twilight-accent3: #D946EF;
+    --twilight-accent4: rgba(216, 70, 239, 0.7);
+    --twilight-accent5: rgba(167, 139, 250, 0.5);
+
+    /* Theme Variables */
+    --twilight-shadow: rgba(167, 139, 250, 0.15);
+    --twilight-radius: 8px;
+    --twilight-transition: 0.3s ease-out;
+    --twilight-hover: #8B5CF6;
+    --twilight-glow: 0 0 12px rgba(167, 139, 250, 0.25);
+    --twilight-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23A78BFA"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23A78BFA"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23A78BFA"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes twilight-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes twilight-float {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes twilight-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--twilight-shadow);
+    }
+
+    50% {
+        box-shadow: var(--twilight-glow);
+    }
+}
+
+@keyframes firefly {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.8;
+    }
+
+    25% {
+        transform: translate(2px, -2px);
+    }
+
+    50% {
+        transform: translate(-2px, 2px);
+        opacity: 1;
+    }
+
+    75% {
+        transform: translate(2px, 2px);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.twilight-garden {
+    font-family: 'EB Garamond', serif;
+    color: var(--twilight-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--twilight-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="15" cy="15" r="1" fill="%23A78BFA" opacity="0.1"/><circle cx="85" cy="25" r="1" fill="%23C084FC" opacity="0.1"/><circle cx="25" cy="85" r="1" fill="%23D946EF" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23A78BFA" opacity="0.1"/></svg>');
+}
+
+.twilight-garden .container {
+    background-color: var(--twilight-primary);
+    padding: 2rem;
+    border: 1px solid var(--twilight-accent4);
+    box-shadow: var(--twilight-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--twilight-radius);
+}
+
+.twilight-garden .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--twilight-accent1) 0%,
+            var(--twilight-accent2) 50%,
+            var(--twilight-accent1) 100%);
+}
+
+.twilight-garden .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--twilight-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.twilight-garden #calendar-title {
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--twilight-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 8px var(--twilight-accent1);
+}
+
+.twilight-garden #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+    animation: firefly 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.twilight-garden #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--twilight-primary);
+    border: 1px solid var(--twilight-accent4);
+    border-radius: var(--twilight-radius);
+    position: relative;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.twilight-garden #date-weather-container::before {
+    content: "ENCHANTED GARDEN";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--twilight-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--twilight-text);
+    font-weight: 700;
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.twilight-garden #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--twilight-accent2), transparent);
+}
+
+.twilight-garden #current-date {
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--twilight-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 5px var(--twilight-accent1);
+}
+
+.twilight-garden #today-weather {
+    font-family: 'EB Garamond', serif;
+    color: var(--twilight-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.twilight-garden #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.twilight-garden .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--twilight-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--twilight-primary);
+    box-shadow: 0 0 15px var(--twilight-accent4);
+}
+
+.twilight-garden .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.twilight-garden .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--twilight-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--twilight-accent1);
+}
+
+.twilight-garden .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--twilight-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 5px var(--twilight-accent2);
+}
+
+.twilight-garden .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--twilight-accent3);
+    margin-top: -0.5px;
+    box-shadow: 0 0 5px var(--twilight-accent3);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.twilight-garden table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.twilight-garden th {
+    background-color: var(--twilight-accent1);
+    color: var(--twilight-text) !important;
+    font-family: 'Cinzel Decorative', cursive;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--twilight-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.twilight-garden th span.full-day-name {
+    display: inline;
+}
+
+.twilight-garden th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.twilight-garden td {
+    background-color: var(--twilight-primary);
+    color: var(--twilight-text);
+    padding: 1rem;
+    border: 1px solid var(--twilight-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--twilight-transition);
+    position: relative;
+    border-radius: var(--twilight-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.twilight-garden td .date-number {
+    color: var(--twilight-text) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 0 3px var(--twilight-accent1);
+    font-family: 'Cinzel Decorative', cursive;
+}
+
+.twilight-garden td:hover {
+    background-color: var(--twilight-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.twilight-garden td.current-day {
+    background-color: rgba(167, 139, 250, 0.15);
+    border: 2px solid var(--twilight-accent2);
+    animation: twilight-pulse 3s infinite;
+}
+
+.twilight-garden td.current-day .date-number {
+    color: var(--twilight-text) !important;
+    font-weight: 700;
+}
+
+.twilight-garden td.current-day::before {
+    content: "✨";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--twilight-accent1);
+    font-weight: bold;
+    animation: firefly 3s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.twilight-garden .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--twilight-accent2);
+    margin: 0 1px;
+    transition: all var(--twilight-transition);
+    box-shadow: 0 0 3px var(--twilight-accent2);
+}
+
+.twilight-garden .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--twilight-accent2);
+    box-shadow: 0 0 6px var(--twilight-accent2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.twilight-garden .modal-content {
+    position: relative;
+    background-color: var(--twilight-primary);
+    border: 1px solid var(--twilight-accent4);
+    padding: 25px;
+    color: var(--twilight-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--twilight-radius);
+    animation: twilight-float 0.3s ease-out;
+}
+
+.twilight-garden .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--twilight-accent1) 0%,
+            var(--twilight-accent2) 50%,
+            var(--twilight-accent1) 100%);
+}
+
+.twilight-garden .modal-content h2 {
+    color: var(--twilight-text);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 5px var(--twilight-accent1);
+}
+
+/* Modal date display */
+.twilight-garden .modal-date {
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--twilight-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--twilight-accent4);
+}
+
+/* Event list */
+.twilight-garden .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.twilight-garden .event-item {
+    background-color: var(--twilight-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--twilight-accent1);
+    border-radius: var(--twilight-radius);
+    transition: all var(--twilight-transition);
+}
+
+.twilight-garden .event-item:hover {
+    background-color: var(--twilight-texture3);
+    transform: translateX(3px);
+}
+
+.twilight-garden .event-time {
+    font-family: 'Cinzel Decorative', cursive;
+    color: var(--twilight-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.twilight-garden .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--twilight-text);
+}
+
+.twilight-garden .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--twilight-text);
+    opacity: 0.9;
+}
+
+.twilight-garden .modal-content button {
+    background-color: var(--twilight-accent1);
+    color: var(--twilight-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--twilight-transition);
+    letter-spacing: 0.5px;
+    font-family: 'EB Garamond', serif;
+    border-radius: var(--twilight-radius);
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.twilight-garden .modal-content button:hover {
+    background-color: var(--twilight-hover);
+    box-shadow: 0 3px 10px rgba(167, 139, 250, 0.2);
+}
+
+/* Close Button */
+.twilight-garden .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--twilight-primary);
+    color: var(--twilight-text);
+    border: 1px solid var(--twilight-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--twilight-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.twilight-garden .modal .close-button:hover {
+    background-color: var(--twilight-text);
+    color: var(--twilight-accent1);
+    border-color: var(--twilight-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.twilight-garden .button,
+.twilight-garden .transparent-button {
+    border: 1px solid var(--twilight-accent1);
+    color: var(--twilight-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--twilight-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--twilight-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.twilight-garden .button:hover,
+.twilight-garden .transparent-button:hover {
+    background-color: var(--twilight-accent1);
+    color: var(--twilight-text);
+    box-shadow: 0 3px 10px rgba(167, 139, 250, 0.15);
+}
+
+.twilight-garden .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.twilight-garden #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.twilight-garden #theme-switcher {
+    background-color: var(--twilight-primary);
+    color: var(--twilight-text) !important;
+    border: 1px solid var(--twilight-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8E8E8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--twilight-transition);
+    border-radius: var(--twilight-radius);
+}
+
+.twilight-garden #theme-switcher option {
+    background-color: var(--twilight-primary) !important;
+    color: var(--twilight-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.twilight-garden #theme-switcher:focus {
+    outline: none;
+    border-color: var(--twilight-accent1);
+    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.twilight-garden #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    color: var(--twilight-text);
+    background-color: var(--twilight-accent1);
+    cursor: pointer;
+    transition: all var(--twilight-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--twilight-radius);
+    box-shadow: 0 2px 8px rgba(167, 139, 250, 0.3);
+}
+
+.twilight-garden #backToTopBtn:hover {
+    background-color: var(--twilight-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.twilight-garden footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--twilight-accent4);
+    color: var(--twilight-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .twilight-garden .container {
+        padding: 1.5rem;
+    }
+
+    .twilight-garden #calendar-title {
+        font-size: 2rem;
+    }
+
+    .twilight-garden #current-date {
+        font-size: 1.5rem;
+    }
+
+    .twilight-garden #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .twilight-garden .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .twilight-garden .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .twilight-garden {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .twilight-garden .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .twilight-garden th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .twilight-garden th span.full-day-name {
+        display: none;
+    }
+
+    .twilight-garden th abbr {
+        display: inline;
+    }
+
+    .twilight-garden td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .twilight-garden td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .twilight-garden td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .twilight-garden #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .twilight-garden #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .twilight-garden .modal-content {
+        padding: 20px;
+    }
+
+    .twilight-garden .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .twilight-garden .container {
+        padding: 1rem;
+    }
+
+    .twilight-garden #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .twilight-garden #current-date {
+        font-size: 1.3rem;
+    }
+
+    .twilight-garden #today-weather {
+        font-size: 1rem;
+    }
+
+    .twilight-garden .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .twilight-garden th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .twilight-garden td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .twilight-garden td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .twilight-garden #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .twilight-garden .modal-content {
+        padding: 15px;
+    }
+
+    .twilight-garden .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .twilight-garden .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .twilight-garden th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .twilight-garden td {
+        height: 60px;
+    }
+
+    .twilight-garden td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .twilight-garden #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
