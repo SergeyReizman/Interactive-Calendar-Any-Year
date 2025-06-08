@@ -70,7 +70,7 @@ const applyTheme = (theme) => {
     'cafe-de-colombia', 'california-sunshine',
     'camomile-flowers', 'canary-islands', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
-    'cherry-garden', 'cinnamon-street', 'city-of-night', 'clean-energy', 
+    'cherry-garden', 'cinnamon-street', 'city-of-dreams', 'city-of-night', 'clean-energy', 
     'coastal-pacific', 'coffee-for-leaders', 'collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-reef', 'cosmic-nebula', 'cosmic-perspective',
     'cracked-ice', 'creative-content', 'crimson-sky', 'critical-thinking', 
