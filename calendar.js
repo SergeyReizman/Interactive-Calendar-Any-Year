@@ -61,7 +61,7 @@ const applyTheme = (theme) => {
     'back-on-track', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 'big-dream',
     'big-fashion', 'black-fashion', 'black-bird', 'black-coffee', 'black-hacker',
-    'black-hawk', 'black-hole', 'black-mountain',
+    'black-hawk', 'black-hole', 'black-magic', 'black-mountain',
     'black-orange', 'black-pear', 'black-pearl', 'black-style',
     'black-velvet', 'black-violet', 'blue-bird', 'blue-frost', 'blue-gold',
     'blue-ice', 'blue-mountains','blue-ocean',
