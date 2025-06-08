@@ -137,7 +137,7 @@ const applyTheme = (theme) => {
     'the-last-day-of-spring', 'the-last-mohican',
     'the-modern-developer','the-perfect-blend', 'the-west-coast',
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
-    'tropical-sunset', 'unseen-wonders', 'urban-fashion', 
+    'tropical-sunset', 'unforgettable-moments', 'unseen-wonders', 'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'white-shark', 'wild-flower',
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
