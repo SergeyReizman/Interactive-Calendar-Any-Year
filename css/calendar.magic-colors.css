@@ -1,0 +1,722 @@
+/* ==========================================================================
+   Magic Colors Theme - Enchanted Calendar Interface
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Vibrant magical color palette
+   - Color-shifting animations
+   - Mystical design elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Josefin+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Magic Color Palette */
+    --magic-bg: #0f0c29;
+    --magic-text: #f8f8ff;
+    --magic-primary: #1a1a3a;
+    --magic-secondary: #24244e;
+
+    /* Color-Shifting Textures */
+    --magic-texture1: #302b63;
+    --magic-texture2: #3a356b;
+    --magic-texture3: #443f73;
+    --magic-texture4: #4e497b;
+    --magic-texture5: #585383;
+
+    /* Enchanted Accent Colors */
+    --magic-accent1: #ff00cc;
+    /* Magenta */
+    --magic-accent2: #00ffcc;
+    /* Cyan */
+    --magic-accent3: #cc00ff;
+    /* Purple */
+    --magic-accent4: rgba(204, 0, 255, 0.7);
+    /* Semi-transparent Purple */
+    --magic-accent5: rgba(255, 204, 0, 0.5);
+    /* Semi-transparent Gold */
+
+    /* Theme Variables */
+    --magic-shadow: rgba(255, 0, 204, 0.15);
+    --magic-radius: 8px;
+    --magic-transition: 0.3s ease;
+    --magic-hover: #e600b3;
+    --magic-glow: 0 0 12px rgba(255, 0, 204, 0.25);
+    --magic-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23ff00cc"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23ff00cc"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23ff00cc"/></svg>');
+}
+
+/* ==================== MAGIC ANIMATIONS ==================== */
+@keyframes magic-color-shift {
+    0% {
+        color: var(--magic-accent1);
+    }
+
+    33% {
+        color: var(--magic-accent2);
+    }
+
+    66% {
+        color: var(--magic-accent3);
+    }
+
+    100% {
+        color: var(--magic-accent1);
+    }
+}
+
+@keyframes magic-bg-shift {
+    0% {
+        background-color: var(--magic-texture1);
+    }
+
+    50% {
+        background-color: var(--magic-texture3);
+    }
+
+    100% {
+        background-color: var(--magic-texture1);
+    }
+}
+
+@keyframes magic-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--magic-shadow);
+    }
+
+    50% {
+        box-shadow: var(--magic-glow), 0 0 20px var(--magic-accent2);
+    }
+}
+
+@keyframes magic-sparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.magic-colors {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--magic-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--magic-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23ff00cc" opacity="0.1"/><circle cx="20" cy="20" r="0.7" fill="%2300ffcc" opacity="0.1"/><circle cx="80" cy="80" r="0.7" fill="%23cc00ff" opacity="0.1"/></svg>');
+}
+
+.magic-colors .container {
+    background-color: var(--magic-primary);
+    padding: 2rem;
+    border: 1px solid var(--magic-accent4);
+    box-shadow: var(--magic-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--magic-radius);
+    animation: magic-bg-shift 15s infinite;
+}
+
+.magic-colors .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--magic-accent1) 0%,
+            var(--magic-accent2) 33%,
+            var(--magic-accent3) 66%,
+            var(--magic-accent1) 100%);
+}
+
+.magic-colors .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--magic-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.magic-colors #calendar-title {
+    font-family: 'Amatic SC', cursive;
+    color: var(--magic-accent1);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: magic-color-shift 8s infinite;
+}
+
+.magic-colors #calendar-title::after {
+    content: "🔮";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.magic-colors #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--magic-primary);
+    border: 1px solid var(--magic-accent4);
+    border-radius: var(--magic-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.magic-colors #date-weather-container::before {
+    content: "MAGIC TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--magic-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--magic-accent1);
+    font-weight: 700;
+    font-family: 'Josefin Sans', sans-serif;
+    animation: magic-color-shift 6s infinite;
+}
+
+.magic-colors #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--magic-accent2), transparent);
+}
+
+.magic-colors #current-date {
+    font-family: 'Amatic SC', cursive;
+    color: var(--magic-accent1);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    animation: magic-color-shift 10s infinite;
+}
+
+.magic-colors #today-weather {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--magic-accent2);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.magic-colors #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.magic-colors .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--magic-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--magic-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3), 0 0 20px var(--magic-accent1);
+}
+
+.magic-colors .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.magic-colors .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--magic-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.magic-colors .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--magic-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.magic-colors .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--magic-accent3);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.magic-colors table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.magic-colors th {
+    background: linear-gradient(90deg,
+            var(--magic-accent1) 0%,
+            var(--magic-accent2) 50%,
+            var(--magic-accent1) 100%);
+    color: var(--magic-primary) !important;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--magic-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+}
+
+.magic-colors th span.full-day-name {
+    display: inline;
+}
+
+.magic-colors th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.magic-colors td {
+    background-color: var(--magic-primary);
+    color: var(--magic-text);
+    padding: 1rem;
+    border: 1px solid var(--magic-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--magic-transition);
+    position: relative;
+    border-radius: var(--magic-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.magic-colors td:hover {
+    background-color: var(--magic-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 15px var(--magic-accent3);
+}
+
+/* Current date highlight */
+.magic-colors td.current-day {
+    background-color: rgba(255, 0, 204, 0.1);
+    border: 2px solid var(--magic-accent2);
+    color: var(--magic-text) !important;
+    font-weight: 600;
+    animation: magic-pulse 3s infinite;
+}
+
+.magic-colors td.current-day::before {
+    content: "✨";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--magic-accent1);
+    font-weight: bold;
+    animation: magic-sparkle 2s infinite;
+}
+
+.magic-colors td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--magic-accent1) !important;
+    font-weight: 700;
+    animation: magic-color-shift 5s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.magic-colors .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--magic-accent2);
+    margin: 0 1px;
+    transition: all var(--magic-transition);
+    animation: magic-color-shift 4s infinite;
+}
+
+.magic-colors .event-marker:hover {
+    transform: scale(1.4);
+    box-shadow: 0 0 6px var(--magic-accent3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.magic-colors .modal-content {
+    position: relative;
+    background-color: var(--magic-primary);
+    border: 1px solid var(--magic-accent4);
+    padding: 25px;
+    color: var(--magic-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 30px var(--magic-accent1);
+    border-radius: var(--magic-radius);
+}
+
+.magic-colors .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--magic-accent1) 0%,
+            var(--magic-accent2) 50%,
+            var(--magic-accent3) 100%);
+}
+
+.magic-colors .modal-content h2 {
+    color: var(--magic-accent1);
+    font-family: 'Amatic SC', cursive;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    animation: magic-color-shift 7s infinite;
+}
+
+.magic-colors .modal-content button {
+    background: linear-gradient(90deg,
+            var(--magic-accent1) 0%,
+            var(--magic-accent2) 100%);
+    color: var(--magic-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--magic-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: var(--magic-radius);
+}
+
+.magic-colors .modal-content button:hover {
+    background: linear-gradient(90deg,
+            var(--magic-accent2) 0%,
+            var(--magic-accent3) 100%);
+    box-shadow: 0 3px 10px rgba(255, 0, 204, 0.2);
+    transform: scale(1.05);
+}
+
+/* Close Button */
+.magic-colors .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--magic-primary);
+    color: var(--magic-accent1);
+    border: 1px solid var(--magic-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--magic-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.magic-colors .modal .close-button:hover {
+    background-color: var(--magic-accent1);
+    color: var(--magic-primary);
+    border-color: var(--magic-accent1);
+    animation: magic-color-shift 1s infinite;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.magic-colors .button,
+.magic-colors .transparent-button {
+    border: 1px solid var(--magic-accent1);
+    color: var(--magic-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--magic-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--magic-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.magic-colors .button:hover,
+.magic-colors .transparent-button:hover {
+    background: linear-gradient(90deg,
+            var(--magic-accent1) 0%,
+            var(--magic-accent2) 100%);
+    color: var(--magic-primary);
+    box-shadow: 0 3px 10px rgba(255, 0, 204, 0.15);
+}
+
+.magic-colors .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.magic-colors #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.magic-colors #theme-switcher {
+    background-color: var(--magic-primary);
+    color: var(--magic-text) !important;
+    border: 1px solid var(--magic-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff00cc'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--magic-transition);
+    border-radius: var(--magic-radius);
+}
+
+.magic-colors #theme-switcher option {
+    background-color: var(--magic-primary) !important;
+    color: var(--magic-text) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.magic-colors #theme-switcher:focus {
+    outline: none;
+    border-color: var(--magic-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 0, 204, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.magic-colors #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    color: var(--magic-primary);
+    background: linear-gradient(90deg,
+            var(--magic-accent1) 0%,
+            var(--magic-accent2) 100%);
+    cursor: pointer;
+    transition: all var(--magic-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--magic-radius);
+    box-shadow: 0 2px 8px rgba(255, 0, 204, 0.3);
+}
+
+.magic-colors #backToTopBtn:hover {
+    background: linear-gradient(90deg,
+            var(--magic-accent2) 0%,
+            var(--magic-accent3) 100%);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.magic-colors footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--magic-accent4);
+    color: var(--magic-text);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .magic-colors .container {
+        padding: 1.5rem;
+    }
+
+    .magic-colors #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .magic-colors #current-date {
+        font-size: 2rem;
+    }
+
+    .magic-colors #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .magic-colors {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .magic-colors .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .magic-colors th {
+        font-size: 1rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .magic-colors th span.full-day-name {
+        display: none;
+    }
+
+    .magic-colors th abbr {
+        display: inline;
+    }
+
+    .magic-colors td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .magic-colors td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .magic-colors #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .magic-colors #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+}
+
+@media (max-width: 576px) {
+    .magic-colors .container {
+        padding: 1rem;
+    }
+
+    .magic-colors #calendar-title {
+        font-size: 2rem;
+    }
+
+    .magic-colors #current-date {
+        font-size: 1.7rem;
+    }
+
+    .magic-colors #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .magic-colors .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .magic-colors th {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .magic-colors td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .magic-colors #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .magic-colors th {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .magic-colors td {
+        height: 60px;
+    }
+
+    .magic-colors #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}

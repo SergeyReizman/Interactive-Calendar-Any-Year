@@ -107,7 +107,7 @@ const applyTheme = (theme) => {
     'life-quality', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence',
     'love-station', 'lucid-dream', 'lunar-eclipse', 'luxury-design', 'macaroni-penguin',
-    'magellanic-penguin', 'magic-fly',
+    'magellanic-penguin', 'magic-colors', 'magic-fly',
     'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'midnight-alchemy', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'modern-technology',
