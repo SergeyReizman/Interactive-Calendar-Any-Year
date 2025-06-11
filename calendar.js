@@ -115,7 +115,7 @@ const applyTheme = (theme) => {
     'migratory-birds', 'modern-technology',
     'monochrome-ink','moonlit-path', 'morning-forest', 'mount-fuji', 'mountain-lake',
     'mountain-of-dreams', 
-    'mountain-peak', 'new-ai', 'new-black', 'new-style', 'next-step', 'neon-nights',
+    'mountain-peak', 'new-ai', 'new-black', 'new-millenium', 'new-style', 'next-step', 'neon-nights',
     'niagara-falls', 'night-dragon', 'night-sky','north-pole', 'northern-nights',
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'one-way-ticket', 'on-the-island', 'orange-country', 
