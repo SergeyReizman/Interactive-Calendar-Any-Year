@@ -103,7 +103,7 @@ const applyTheme = (theme) => {
     'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
-    'invincible-zone', 'japan-emperor', 'keep-on-smiling', 'kilimanjaro-outskirts', 
+    'island-breeze', 'invincible-zone', 'japan-emperor', 'keep-on-smiling', 'kilimanjaro-outskirts', 
     'lavender-bliss', 'lemongrass-sky', 'level-of-comfort',
     'life-quality', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence',
