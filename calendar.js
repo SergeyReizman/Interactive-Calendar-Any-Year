@@ -134,7 +134,7 @@ const applyTheme = (theme) => {
     'strawberry-moon', 'strength-of-spirit',
     'success-key','success-motivation', 'success-story', 'sweet-misty-morning',
     'sword-of-fate','tactical-advantage', 'tactical-command', 'technological-might', 
-    'the-best-of-fashion', 'the-dead-sea',
+    'the-best-of-fashion', 'the-black-spruce', 'the-dead-sea',
     'the-great-silk-road', 'the-great-wall','the-highest-level', 
     'the-last-day-of-spring', 'the-last-mohican',
     'the-modern-developer','the-perfect-blend', 'the-spirit-of-innovation', 
