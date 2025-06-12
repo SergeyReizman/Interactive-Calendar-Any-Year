@@ -139,7 +139,7 @@ const applyTheme = (theme) => {
     'the-best-of-fashion', 'the-black-spruce', 'the-dead-sea',
     'the-great-silk-road', 'the-great-wall','the-highest-level', 
     'the-last-day-of-spring', 'the-last-mohican',
-    'the-modern-developer','the-perfect-blend', 'the-spirit-of-innovation', 
+    'the-modern-developer','the-perfect-blend', 'the-silver-sword', 'the-spirit-of-innovation', 
     'the-unstoppable-mindset', 'the-west-coast',
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
     'tropical-sunset', 'twilight-garden',
