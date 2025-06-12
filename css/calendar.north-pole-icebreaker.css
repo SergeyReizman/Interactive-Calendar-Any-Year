@@ -1,0 +1,804 @@
+/* ==========================================================================
+   North Pole Icebreaker - Cool Arctic Theme with Ice Blue Accents
+   Version: 1.4
+   Updated: 2024-06-10
+   Changes:
+   - Arctic-inspired color scheme
+   - Enhanced readability with high contrast
+   - Maintained all structure and functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Arctic Color Palette */
+    --ice-bg: #F8FAFF;
+    --ice-text: #0A2E52;
+    /* Deep navy blue text */
+    --ice-primary: #E6F0FF;
+    /* Light ice blue container */
+    --ice-secondary: #D0E0FF;
+    /* Slightly darker hover */
+    --ice-date-number: #0A2E52;
+    /* Navy blue for dates/numbers */
+
+    /* Texture Colors */
+    --ice-texture1: #F0F7FF;
+    --ice-texture2: #E8F2FF;
+    --ice-texture3: #DDEBFF;
+    --ice-texture4: #D2E3FF;
+    --ice-texture5: #C5DAFF;
+
+    /* Cool Accent Colors */
+    --ice-accent1: #0066CC;
+    /* Deep ice blue */
+    --ice-accent2: #00A8E8;
+    /* Bright arctic blue */
+    --ice-accent3: #7FC7FF;
+    /* Light powder blue */
+    --ice-accent4: rgba(0, 102, 204, 0.6);
+    /* Blue with transparency */
+    --ice-accent5: rgba(0, 168, 232, 0.4);
+    /* Light blue with transparency */
+
+    /* Theme Variables */
+    --ice-shadow: rgba(0, 102, 204, 0.2);
+    --ice-radius: 6px;
+    --ice-transition: 0.25s ease-out;
+    --ice-hover: #0052A3;
+    /* Darker blue */
+    --ice-glow: 0 0 12px rgba(0, 102, 204, 0.25);
+    --ice-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%230066CC"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%230066CC"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%230066CC"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ice-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes ice-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ice-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--ice-shadow);
+    }
+
+    50% {
+        box-shadow: var(--ice-glow);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.north-pole-icebreaker {
+    font-family: 'Inter', sans-serif;
+    color: var(--ice-text) !important;
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--ice-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%230066CC" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%230066CC" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%230066CC" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%230066CC" opacity="0.1"/></svg>');
+}
+
+.north-pole-icebreaker .container {
+    background-color: var(--ice-primary);
+    padding: 2rem;
+    border: 1px solid var(--ice-accent4);
+    box-shadow: var(--ice-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ice-radius);
+}
+
+.north-pole-icebreaker .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--ice-accent1) 0%,
+            var(--ice-accent2) 50%,
+            var(--ice-accent1) 100%);
+}
+
+.north-pole-icebreaker .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--ice-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.north-pole-icebreaker #calendar-title {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--ice-text) !important;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+.north-pole-icebreaker #calendar-title::after {
+    content: "❄️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+    color: var(--ice-text);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.north-pole-icebreaker #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--ice-primary);
+    border: 1px solid var(--ice-accent4);
+    border-radius: var(--ice-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.north-pole-icebreaker #date-weather-container::before {
+    content: "ARCTIC TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--ice-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ice-text) !important;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid var(--ice-accent4);
+}
+
+.north-pole-icebreaker #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ice-accent1), transparent);
+}
+
+.north-pole-icebreaker #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--ice-text) !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: none;
+}
+
+.north-pole-icebreaker #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--ice-text) !important;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.north-pole-icebreaker #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.north-pole-icebreaker .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--ice-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ice-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.north-pole-icebreaker .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.north-pole-icebreaker .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--ice-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.north-pole-icebreaker .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--ice-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.north-pole-icebreaker .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ice-accent2);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.north-pole-icebreaker table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.north-pole-icebreaker th {
+    background-color: var(--ice-accent1);
+    color: var(--ice-text) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--ice-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.north-pole-icebreaker th span.full-day-name {
+    display: inline;
+}
+
+.north-pole-icebreaker th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.north-pole-icebreaker td {
+    background-color: var(--ice-primary);
+    color: var(--ice-text) !important;
+    padding: 1rem;
+    border: 1px solid var(--ice-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ice-transition);
+    position: relative;
+    border-radius: var(--ice-radius);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.north-pole-icebreaker td .date-number {
+    color: var(--ice-text) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: none;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.north-pole-icebreaker td:hover {
+    background-color: var(--ice-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.north-pole-icebreaker td.current-day {
+    background-color: rgba(0, 102, 204, 0.1);
+    border: 2px solid var(--ice-accent1);
+    animation: ice-pulse 3s infinite;
+}
+
+.north-pole-icebreaker td.current-day .date-number {
+    color: var(--ice-text) !important;
+    font-weight: 700;
+}
+
+.north-pole-icebreaker td.current-day::before {
+    content: "❄️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--ice-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.north-pole-icebreaker .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ice-accent2);
+    margin: 0 1px;
+    transition: all var(--ice-transition);
+}
+
+.north-pole-icebreaker .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--ice-accent2);
+    box-shadow: 0 0 6px rgba(0, 168, 232, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.north-pole-icebreaker .modal-content {
+    position: relative;
+    background-color: var(--ice-primary);
+    border: 1px solid var(--ice-accent4);
+    padding: 25px;
+    color: var(--ice-text) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--ice-radius);
+    animation: ice-slide 0.2s ease-out;
+}
+
+.north-pole-icebreaker .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ice-accent1) 0%,
+            var(--ice-accent2) 50%,
+            var(--ice-accent1) 100%);
+}
+
+.north-pole-icebreaker .modal-content h2 {
+    color: var(--ice-text) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: none;
+}
+
+/* Modal date display */
+.north-pole-icebreaker .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--ice-text) !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ice-accent4);
+}
+
+/* Event list */
+.north-pole-icebreaker .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.north-pole-icebreaker .event-item {
+    background-color: var(--ice-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--ice-accent1);
+    border-radius: var(--ice-radius);
+    transition: all var(--ice-transition);
+}
+
+.north-pole-icebreaker .event-item:hover {
+    background-color: var(--ice-texture3);
+    transform: translateX(3px);
+}
+
+.north-pole-icebreaker .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--ice-text) !important;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.north-pole-icebreaker .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ice-text) !important;
+}
+
+.north-pole-icebreaker .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ice-text) !important;
+    opacity: 0.9;
+}
+
+.north-pole-icebreaker .modal-content button {
+    background-color: var(--ice-accent1);
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--ice-radius);
+}
+
+.north-pole-icebreaker .modal-content button:hover {
+    background-color: var(--ice-hover);
+    color: white !important;
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.2);
+}
+
+/* Close Button */
+.north-pole-icebreaker .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--ice-primary);
+    color: var(--ice-text) !important;
+    border: 1px solid var(--ice-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.north-pole-icebreaker .modal .close-button:hover {
+    background-color: var(--ice-text);
+    color: var(--ice-accent1) !important;
+    border-color: var(--ice-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.north-pole-icebreaker .button,
+.north-pole-icebreaker .transparent-button {
+    border: 1px solid var(--ice-accent1);
+    color: var(--ice-text) !important;
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--ice-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.north-pole-icebreaker .button:hover,
+.north-pole-icebreaker .transparent-button:hover {
+    background-color: var(--ice-accent1);
+    color: white !important;
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.15);
+}
+
+.north-pole-icebreaker .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.north-pole-icebreaker #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.north-pole-icebreaker #theme-switcher {
+    background-color: var(--ice-primary);
+    color: var(--ice-text) !important;
+    border: 1px solid var(--ice-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230A2E52'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    border-radius: var(--ice-radius);
+}
+
+.north-pole-icebreaker #theme-switcher option {
+    background-color: var(--ice-primary) !important;
+    color: var(--ice-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.north-pole-icebreaker #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ice-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.north-pole-icebreaker #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: white !important;
+    background-color: var(--ice-accent1);
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ice-radius);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+}
+
+.north-pole-icebreaker #backToTopBtn:hover {
+    background-color: var(--ice-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.north-pole-icebreaker footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ice-accent4);
+    color: var(--ice-text) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .north-pole-icebreaker .container {
+        padding: 1.5rem;
+    }
+
+    .north-pole-icebreaker #calendar-title {
+        font-size: 2rem;
+    }
+
+    .north-pole-icebreaker #current-date {
+        font-size: 1.5rem;
+    }
+
+    .north-pole-icebreaker #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .north-pole-icebreaker .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .north-pole-icebreaker .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .north-pole-icebreaker {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .north-pole-icebreaker .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .north-pole-icebreaker th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .north-pole-icebreaker th span.full-day-name {
+        display: none;
+    }
+
+    .north-pole-icebreaker th abbr {
+        display: inline;
+    }
+
+    .north-pole-icebreaker td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .north-pole-icebreaker td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .north-pole-icebreaker td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .north-pole-icebreaker #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .north-pole-icebreaker #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .north-pole-icebreaker .modal-content {
+        padding: 20px;
+    }
+
+    .north-pole-icebreaker .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .north-pole-icebreaker .container {
+        padding: 1rem;
+    }
+
+    .north-pole-icebreaker #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .north-pole-icebreaker #current-date {
+        font-size: 1.3rem;
+    }
+
+    .north-pole-icebreaker #today-weather {
+        font-size: 1rem;
+    }
+
+    .north-pole-icebreaker .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .north-pole-icebreaker th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .north-pole-icebreaker td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .north-pole-icebreaker td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .north-pole-icebreaker #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .north-pole-icebreaker .modal-content {
+        padding: 15px;
+    }
+
+    .north-pole-icebreaker .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .north-pole-icebreaker .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .north-pole-icebreaker th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .north-pole-icebreaker td {
+        height: 60px;
+    }
+
+    .north-pole-icebreaker td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .north-pole-icebreaker #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
