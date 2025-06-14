@@ -130,7 +130,7 @@ const applyTheme = (theme) => {
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery',
     'shift-in-perception', 'silicon-valley', 'sky-eagle', 'skylight-window', 
-    'small-happiness', 'solar-flare', 'something-special', 'spring-meadow', 
+    'small-happiness', 'solar-flare', 'something-special', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'steel-shadows', 'stockholm-roofs', 'strategic-advantage', 'strategic-planning',
     'strawberry-moon', 'strength-of-spirit',
     'success-key','success-motivation', 'success-story', 'sweet-misty-morning',
