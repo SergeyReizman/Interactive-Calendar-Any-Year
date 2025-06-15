@@ -110,7 +110,7 @@ const applyTheme = (theme) => {
     'love-station', 'lucid-dream', 'lunar-eclipse', 'luxury-design', 'macaroni-penguin',
     'magellanic-penguin', 'magic-colors', 'magic-fly',
     'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
-    'mediterranean-dreams', 'melting-glaciers', 'midnight-alchemy', 
+    'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment', 'midnight-alchemy', 
     'midnight-black', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'modern-technology',
     'monochrome-ink','moonlit-path', 'morning-forest', 'mount-fuji', 'mountain-lake',
