@@ -141,7 +141,7 @@ const applyTheme = (theme) => {
     'the-great-silk-road', 'the-great-wall','the-highest-level', 
     'the-last-day-of-spring', 'the-last-mohican', 'the-last-paradise',
     'the-modern-developer','the-perfect-blend', 'the-silver-sword', 'the-spirit-of-innovation', 
-    'the-unstoppable-mindset', 'the-west-coast',
+    'the-unstoppable-mindset', 'the-west-coast', 'tide-of-dreams',
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
     'tropical-sunset', 'twilight-garden',
     'unforgettable-moments', 'unseen-wonders', 'urban-fashion', 

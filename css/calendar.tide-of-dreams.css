@@ -1,0 +1,791 @@
+/* ==========================================================================
+   Tide of Dreams Theme - Ethereal Oceanic Color Palette
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Soft oceanic color palette inspired by dreams and tides
+   - Maintained all design elements with new color scheme
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Ocean Dream Palette */
+    --dream-bg: #0A1A2A;
+    --dream-text: #E0F2FE;
+    --dream-primary: #112B42;
+    --dream-secondary: #1A3A5A;
+    --dream-date-number: #B8E1FF;
+
+    /* Wave Texture Colors */
+    --dream-texture1: #1A2E45;
+    --dream-texture2: #203A58;
+    --dream-texture3: #25476B;
+    --dream-texture4: #2A5580;
+    --dream-texture5: #306295;
+
+    /* Ethereal Accent Colors */
+    --dream-accent1: #6DD5FA;
+    --dream-accent2: #84E0FF;
+    --dream-accent3: #9CEBFF;
+    --dream-accent4: rgba(156, 235, 255, 0.7);
+    --dream-accent5: rgba(180, 245, 255, 0.5);
+
+    /* Theme Variables */
+    --dream-shadow: rgba(109, 213, 250, 0.15);
+    --dream-radius: 6px;
+    --dream-transition: 0.25s ease-out;
+    --dream-hover: #4EC0E9;
+    --dream-glow: 0 0 12px rgba(109, 213, 250, 0.25);
+    --dream-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%236DD5FA"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%236DD5FA"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%236DD5FA"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dream-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes dream-float {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dream-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--dream-shadow);
+    }
+
+    50% {
+        box-shadow: var(--dream-glow);
+    }
+}
+
+@keyframes wave-motion {
+    0% {
+        background-position-x: 0;
+    }
+
+    100% {
+        background-position-x: 1200px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.tide-of-dreams {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dream-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--dream-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%236DD5FA" opacity="0.1"/><circle cx="70" cy="30" r="1" fill="%236DD5FA" opacity="0.1"/><circle cx="40" cy="70" r="1" fill="%236DD5FA" opacity="0.1"/><circle cx="90" cy="80" r="1" fill="%236DD5FA" opacity="0.1"/></svg>');
+}
+
+.tide-of-dreams .container {
+    background-color: var(--dream-primary);
+    padding: 2rem;
+    border: 1px solid var(--dream-accent4);
+    box-shadow: var(--dream-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--dream-radius);
+}
+
+.tide-of-dreams .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--dream-accent1) 0%,
+            var(--dream-accent2) 50%,
+            var(--dream-accent1) 100%);
+}
+
+.tide-of-dreams .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--dream-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+    animation: wave-motion 60s linear infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.tide-of-dreams #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--dream-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tide-of-dreams #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.tide-of-dreams #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--dream-primary);
+    border: 1px solid var(--dream-accent4);
+    border-radius: var(--dream-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tide-of-dreams #date-weather-container::before {
+    content: "OCEAN TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--dream-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--dream-text);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tide-of-dreams #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dream-accent2), transparent);
+}
+
+.tide-of-dreams #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--dream-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tide-of-dreams #today-weather {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dream-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.tide-of-dreams #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.tide-of-dreams .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--dream-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dream-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tide-of-dreams .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.tide-of-dreams .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--dream-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.tide-of-dreams .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--dream-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.tide-of-dreams .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--dream-accent3);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.tide-of-dreams table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.tide-of-dreams th {
+    background-color: var(--dream-accent1);
+    color: var(--dream-primary) !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--dream-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.tide-of-dreams th span.full-day-name {
+    display: inline;
+}
+
+.tide-of-dreams th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.tide-of-dreams td {
+    background-color: var(--dream-primary);
+    color: var(--dream-text);
+    padding: 1rem;
+    border: 1px solid var(--dream-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--dream-transition);
+    position: relative;
+    border-radius: var(--dream-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.tide-of-dreams td .date-number {
+    color: var(--dream-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+}
+
+.tide-of-dreams td:hover {
+    background-color: var(--dream-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.tide-of-dreams td.current-day {
+    background-color: rgba(109, 213, 250, 0.15);
+    border: 2px solid var(--dream-accent2);
+    animation: dream-pulse 3s infinite;
+}
+
+.tide-of-dreams td.current-day .date-number {
+    color: var(--dream-text) !important;
+    font-weight: 700;
+}
+
+.tide-of-dreams td.current-day::before {
+    content: "🌙";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--dream-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.tide-of-dreams .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dream-accent2);
+    margin: 0 1px;
+    transition: all var(--dream-transition);
+}
+
+.tide-of-dreams .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--dream-accent2);
+    box-shadow: 0 0 6px rgba(109, 213, 250, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.tide-of-dreams .modal-content {
+    position: relative;
+    background-color: var(--dream-primary);
+    border: 1px solid var(--dream-accent4);
+    padding: 25px;
+    color: var(--dream-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--dream-radius);
+    animation: dream-float 0.2s ease-out;
+}
+
+.tide-of-dreams .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--dream-accent1) 0%,
+            var(--dream-accent2) 50%,
+            var(--dream-accent1) 100%);
+}
+
+.tide-of-dreams .modal-content h2 {
+    color: var(--dream-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.tide-of-dreams .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--dream-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--dream-accent4);
+}
+
+/* Event list */
+.tide-of-dreams .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tide-of-dreams .event-item {
+    background-color: var(--dream-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--dream-accent1);
+    border-radius: var(--dream-radius);
+    transition: all var(--dream-transition);
+}
+
+.tide-of-dreams .event-item:hover {
+    background-color: var(--dream-texture3);
+    transform: translateX(3px);
+}
+
+.tide-of-dreams .event-time {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dream-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.tide-of-dreams .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--dream-text);
+}
+
+.tide-of-dreams .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--dream-text);
+    opacity: 0.9;
+}
+
+.tide-of-dreams .modal-content button {
+    background-color: var(--dream-accent1);
+    color: var(--dream-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: var(--dream-radius);
+}
+
+.tide-of-dreams .modal-content button:hover {
+    background-color: var(--dream-hover);
+    box-shadow: 0 3px 10px rgba(109, 213, 250, 0.2);
+}
+
+/* Close Button */
+.tide-of-dreams .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--dream-primary);
+    color: var(--dream-text);
+    border: 1px solid var(--dream-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.tide-of-dreams .modal .close-button:hover {
+    background-color: var(--dream-text);
+    color: var(--dream-accent1);
+    border-color: var(--dream-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.tide-of-dreams .button,
+.tide-of-dreams .transparent-button {
+    border: 1px solid var(--dream-accent1);
+    color: var(--dream-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--dream-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.tide-of-dreams .button:hover,
+.tide-of-dreams .transparent-button:hover {
+    background-color: var(--dream-accent1);
+    color: var(--dream-primary);
+    box-shadow: 0 3px 10px rgba(109, 213, 250, 0.15);
+}
+
+.tide-of-dreams .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.tide-of-dreams #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.tide-of-dreams #theme-switcher {
+    background-color: var(--dream-primary);
+    color: var(--dream-text) !important;
+    border: 1px solid var(--dream-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F2FE'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    border-radius: var(--dream-radius);
+}
+
+.tide-of-dreams #theme-switcher option {
+    background-color: var(--dream-primary) !important;
+    color: var(--dream-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.tide-of-dreams #theme-switcher:focus {
+    outline: none;
+    border-color: var(--dream-accent1);
+    box-shadow: 0 0 0 2px rgba(109, 213, 250, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.tide-of-dreams #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--dream-primary);
+    background-color: var(--dream-accent1);
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--dream-radius);
+    box-shadow: 0 2px 8px rgba(109, 213, 250, 0.3);
+}
+
+.tide-of-dreams #backToTopBtn:hover {
+    background-color: var(--dream-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.tide-of-dreams footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--dream-accent4);
+    color: var(--dream-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .tide-of-dreams .container {
+        padding: 1.5rem;
+    }
+
+    .tide-of-dreams #calendar-title {
+        font-size: 2rem;
+    }
+
+    .tide-of-dreams #current-date {
+        font-size: 1.5rem;
+    }
+
+    .tide-of-dreams #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .tide-of-dreams .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .tide-of-dreams .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tide-of-dreams {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .tide-of-dreams .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .tide-of-dreams th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .tide-of-dreams th span.full-day-name {
+        display: none;
+    }
+
+    .tide-of-dreams th abbr {
+        display: inline;
+    }
+
+    .tide-of-dreams td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .tide-of-dreams td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .tide-of-dreams td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .tide-of-dreams #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .tide-of-dreams #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .tide-of-dreams .modal-content {
+        padding: 20px;
+    }
+
+    .tide-of-dreams .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tide-of-dreams .container {
+        padding: 1rem;
+    }
+
+    .tide-of-dreams #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .tide-of-dreams #current-date {
+        font-size: 1.3rem;
+    }
+
+    .tide-of-dreams #today-weather {
+        font-size: 1rem;
+    }
+
+    .tide-of-dreams .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .tide-of-dreams th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .tide-of-dreams td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .tide-of-dreams td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .tide-of-dreams #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .tide-of-dreams .modal-content {
+        padding: 15px;
+    }
+
+    .tide-of-dreams .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .tide-of-dreams .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .tide-of-dreams th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .tide-of-dreams td {
+        height: 60px;
+    }
+
+    .tide-of-dreams td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .tide-of-dreams #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
