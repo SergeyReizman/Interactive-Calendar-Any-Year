@@ -1,26 +1,43 @@
 /* ==========================================================================
-   Straight-to-the-Point Calendar Theme
-   Version: 1.0
+   Straight-to-the-Point Calendar Theme - High Contrast Black Text
+   Version: 1.2
    Updated: 2024-06-08
    Changes:
-   - Simplified color scheme and effects
-   - Maintained all functional elements
+   - All text changed to black for maximum visibility
+   - Maintained all beautiful design elements
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-    /* Basic Color Palette */
-    --stp-bg: #ffffff;
-    --stp-text: #000000;
-    --stp-primary: #f5f5f5;
-    --stp-secondary: #e0e0e0;
-    --stp-accent: #0066cc;
-    --stp-border: #cccccc;
+    /* Tech Blue Palette */
+    --stp-bg: #0A0A12;
+    --stp-text: #17f114;
+    --stp-primary: #0909f0;
+    --stp-secondary: #dadae6;
+    --stp-date-number: #eb7272;
+
+    /* Digital Texture Colors */
+    --stp-texture1: #1A1A26;
+    --stp-texture2: #202030;
+    --stp-texture3: #252538;
+    --stp-texture4: #2A2A40;
+    --stp-texture5: #303048;
+
+    /* Futuristic Accent Colors */
+    --stp-accent1: #00B4FF;
+    --stp-accent2: #00C8FF;
+    --stp-accent3: #00DCFF;
+    --stp-accent4: rgba(0, 220, 255, 0.7);
+    --stp-accent5: rgba(100, 240, 255, 0.5);
 
     /* Theme Variables */
+    --stp-shadow: rgba(0, 180, 255, 0.15);
     --stp-radius: 4px;
-    --stp-transition: 0.2s ease;
+    --stp-transition: 0.2s ease-out;
+    --stp-hover: #0095DD;
+    --stp-glow: 0 0 12px rgba(0, 180, 255, 0.25);
+    --stp-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%2300B4FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%2300B4FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%2300B4FF"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
@@ -48,32 +65,97 @@
     }
 }
 
+@keyframes stp-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--stp-shadow);
+    }
+
+    50% {
+        box-shadow: var(--stp-glow);
+    }
+}
+
+@keyframes stp-progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
 /* ==================== BASE STYLES ==================== */
 .straight-to-the-point {
     font-family: 'Inter', sans-serif;
     color: var(--stp-text);
+    line-height: 1.6;
+    font-size: 1rem;
     background-color: var(--stp-bg);
     min-height: 100vh;
-    line-height: 1.6;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%2300B4FF" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%2300B4FF" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%2300B4FF" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%2300B4FF" opacity="0.1"/></svg>');
 }
 
 .straight-to-the-point .container {
     background-color: var(--stp-primary);
     padding: 2rem;
-    border: 1px solid var(--stp-border);
+    border: 1px solid var(--stp-accent4);
+    box-shadow: var(--stp-glow);
+    position: relative;
+    overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
     border-radius: var(--stp-radius);
 }
 
+.straight-to-the-point .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--stp-accent1) 0%,
+            var(--stp-accent2) 50%,
+            var(--stp-accent1) 100%);
+}
+
+.straight-to-the-point .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--stp-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
 /* ==================== HEADER & TITLE ==================== */
 .straight-to-the-point #calendar-title {
     font-family: 'Roboto Mono', monospace;
-    color: var(--stp-text);
+    color: #e82323;
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
     font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.straight-to-the-point #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -82,23 +164,52 @@
     margin: 1.8rem 0;
     padding: 1.2rem;
     background-color: var(--stp-primary);
-    border: 1px solid var(--stp-border);
+    border: 1px solid var(--stp-accent4);
     border-radius: var(--stp-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.straight-to-the-point #date-weather-container::before {
+    content: "DIGITAL TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--stp-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: #000000;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.straight-to-the-point #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--stp-accent2), transparent);
 }
 
 .straight-to-the-point #current-date {
     font-family: 'Roboto Mono', monospace;
-    color: var(--stp-text);
+    color: #000000;
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .straight-to-the-point #today-weather {
     font-family: 'Inter', sans-serif;
-    color: var(--stp-text);
+    color: #000000;
     font-size: 1.2rem;
     font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -111,10 +222,11 @@
 .straight-to-the-point .clock-face {
     width: 180px;
     height: 180px;
-    border: 6px solid var(--stp-accent);
+    border: 6px solid var(--stp-accent2);
     border-radius: 50%;
     position: relative;
     background-color: var(--stp-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
 }
 
 .straight-to-the-point .hand {
@@ -122,30 +234,33 @@
     top: 50%;
     transform-origin: 100%;
     transform: rotate(90deg);
-    transition: all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .straight-to-the-point .hour-hand {
     width: 40%;
     left: 10%;
     height: 5px;
-    background: var(--stp-accent);
+    background: var(--stp-accent1);
     margin-top: -2.5px;
+    border-radius: 2px;
 }
 
 .straight-to-the-point .minute-hand {
     width: 48%;
     left: 2%;
     height: 3px;
-    background: var(--stp-accent);
+    background: var(--stp-accent2);
     margin-top: -1.5px;
+    border-radius: 1.5px;
 }
 
 .straight-to-the-point .second-hand {
     width: 48%;
     left: 2%;
     height: 1px;
-    background: var(--stp-accent);
+    background: var(--stp-accent3);
     margin-top: -0.5px;
 }
 
@@ -155,47 +270,88 @@
     border-collapse: separate;
     border-spacing: 0 6px;
     margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
+/* DAY OF WEEK HEADERS */
 .straight-to-the-point th {
-    background-color: var(--stp-accent);
-    color: white !important;
+    background-color: var(--stp-accent1);
+    color: #000000 !important;
     font-family: 'Roboto Mono', monospace;
     font-weight: 700;
     padding: 0.8rem 0.4rem;
     border-radius: var(--stp-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
     font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
+.straight-to-the-point th span.full-day-name {
+    display: inline;
+}
+
+.straight-to-the-point th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
 .straight-to-the-point td {
     background-color: var(--stp-primary);
-    color: var(--stp-text);
+    color: #000000;
     padding: 1rem;
-    border: 1px solid var(--stp-border);
+    border: 1px solid var(--stp-accent4);
     height: 90px;
     vertical-align: top;
     transition: all var(--stp-transition);
+    position: relative;
     border-radius: var(--stp-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .straight-to-the-point td .date-number {
-    color: var(--stp-text) !important;
+    color: #000000 !important;
     font-weight: 700;
     font-size: 1.2rem;
     position: absolute;
     top: 8px;
     left: 8px;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
     font-family: 'Roboto Mono', monospace;
 }
 
 .straight-to-the-point td:hover {
     background-color: var(--stp-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Current date highlight */
 .straight-to-the-point td.current-day {
-    background-color: rgba(0, 102, 204, 0.1);
-    border: 2px solid var(--stp-accent);
+    background-color: rgba(0, 180, 255, 0.15);
+    border: 2px solid var(--stp-accent2);
+    animation: stp-pulse 3s infinite;
+}
+
+.straight-to-the-point td.current-day .date-number {
+    color: #000000 !important;
+    font-weight: 700;
+}
+
+.straight-to-the-point td.current-day::before {
+    content: "🔵";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--stp-accent1);
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -204,88 +360,175 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--stp-accent);
+    background-color: var(--stp-accent2);
     margin: 0 1px;
+    transition: all var(--stp-transition);
+}
+
+.straight-to-the-point .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--stp-accent2);
+    box-shadow: 0 0 6px rgba(0, 180, 255, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .straight-to-the-point .modal-content {
     position: relative;
     background-color: var(--stp-primary);
-    border: 1px solid var(--stp-border);
+    border: 1px solid var(--stp-accent4);
     padding: 25px;
-    color: var(--stp-text);
+    color: #000000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-radius: var(--stp-radius);
     animation: stp-slide 0.2s ease-out;
 }
 
+.straight-to-the-point .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--stp-accent1) 0%,
+            var(--stp-accent2) 50%,
+            var(--stp-accent1) 100%);
+}
+
 .straight-to-the-point .modal-content h2 {
-    color: var(--stp-text);
+    color: #000000;
     font-family: 'Roboto Mono', monospace;
     font-size: 2em;
     margin-bottom: 15px;
     font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
+/* Modal date display */
 .straight-to-the-point .modal-date {
     font-family: 'Roboto Mono', monospace;
-    color: var(--stp-text);
+    color: #000000;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--stp-border);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--stp-accent4);
+}
+
+/* Event list */
+.straight-to-the-point .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
 }
 
 .straight-to-the-point .event-item {
     background-color: var(--stp-secondary);
     padding: 1rem;
     margin-bottom: 1rem;
-    border-left: 3px solid var(--stp-accent);
+    border-left: 3px solid var(--stp-accent1);
     border-radius: var(--stp-radius);
+    transition: all var(--stp-transition);
+}
+
+.straight-to-the-point .event-item:hover {
+    background-color: var(--stp-texture3);
+    transform: translateX(3px);
 }
 
 .straight-to-the-point .event-time {
     font-family: 'Roboto Mono', monospace;
-    color: var(--stp-text);
+    color: #000000;
     font-weight: 600;
+    font-size: 1rem;
     margin-bottom: 0.3rem;
+    display: block;
 }
 
 .straight-to-the-point .event-title {
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    color: var(--stp-text);
+    color: #000000;
+}
+
+.straight-to-the-point .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #000000;
+    opacity: 0.9;
 }
 
 .straight-to-the-point .modal-content button {
-    background-color: var(--stp-accent);
-    color: white;
+    background-color: var(--stp-accent1);
+    color: #000000;
     border: none;
     padding: 10px 20px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
+    transition: all var(--stp-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
     border-radius: var(--stp-radius);
 }
 
+.straight-to-the-point .modal-content button:hover {
+    background-color: var(--stp-hover);
+    box-shadow: 0 3px 10px rgba(0, 180, 255, 0.2);
+}
+
+/* Close Button */
+.straight-to-the-point .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--stp-primary);
+    color: #000000;
+    border: 1px solid #000000;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--stp-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.straight-to-the-point .modal .close-button:hover {
+    background-color: #000000;
+    color: var(--stp-accent1);
+    border-color: #000000;
+}
+
 /* ==================== BUTTONS & CONTROLS ==================== */
-.straight-to-the-point .button {
-    border: 1px solid var(--stp-accent);
-    color: var(--stp-accent);
+.straight-to-the-point .button,
+.straight-to-the-point .transparent-button {
+    border: 1px solid var(--stp-accent1);
+    color: #000000;
     background-color: transparent;
     padding: 0.8rem 1.5rem;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     cursor: pointer;
+    transition: all var(--stp-transition);
+    position: relative;
+    overflow: hidden;
     margin: 0.4rem;
     border-radius: var(--stp-radius);
-    transition: all var(--stp-transition);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
-.straight-to-the-point .button:hover {
-    background-color: var(--stp-accent);
-    color: white;
+.straight-to-the-point .button:hover,
+.straight-to-the-point .transparent-button:hover {
+    background-color: var(--stp-accent1);
+    color: #000000;
+    box-shadow: 0 3px 10px rgba(0, 180, 255, 0.15);
 }
 
 .straight-to-the-point .controls {
@@ -294,6 +537,86 @@
     align-items: center;
     flex-wrap: wrap;
     margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.straight-to-the-point #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.straight-to-the-point #theme-switcher {
+    background-color: var(--stp-primary);
+    color: #000000 !important;
+    border: 1px solid var(--stp-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--stp-transition);
+    border-radius: var(--stp-radius);
+}
+
+.straight-to-the-point #theme-switcher option {
+    background-color: var(--stp-primary) !important;
+    color: #000000 !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.straight-to-the-point #theme-switcher:focus {
+    outline: none;
+    border-color: var(--stp-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 180, 255, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.straight-to-the-point #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #000000;
+    background-color: var(--stp-accent1);
+    cursor: pointer;
+    transition: all var(--stp-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--stp-radius);
+    box-shadow: 0 2px 8px rgba(0, 180, 255, 0.3);
+}
+
+.straight-to-the-point #backToTopBtn:hover {
+    background-color: var(--stp-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.straight-to-the-point footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--stp-accent4);
+    color: #000000;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -313,21 +636,78 @@
     .straight-to-the-point #today-weather {
         font-size: 1.1rem;
     }
+
+    .straight-to-the-point .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .straight-to-the-point .event-title {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
     .straight-to-the-point {
         font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .straight-to-the-point .clock-face {
         width: 150px;
         height: 150px;
+        border-width: 5px;
+    }
+
+    .straight-to-the-point th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .straight-to-the-point th span.full-day-name {
+        display: none;
+    }
+
+    .straight-to-the-point th abbr {
+        display: inline;
     }
 
     .straight-to-the-point td {
-        height: 80px;
         padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .straight-to-the-point td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .straight-to-the-point td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .straight-to-the-point #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .straight-to-the-point #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .straight-to-the-point .modal-content {
+        padding: 20px;
+    }
+
+    .straight-to-the-point .event-item {
+        padding: 0.8rem;
     }
 }
 
@@ -340,9 +720,52 @@
         font-size: 1.7rem;
     }
 
+    .straight-to-the-point #current-date {
+        font-size: 1.3rem;
+    }
+
+    .straight-to-the-point #today-weather {
+        font-size: 1rem;
+    }
+
+    .straight-to-the-point .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .straight-to-the-point th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
     .straight-to-the-point td {
-        height: 70px;
         padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .straight-to-the-point td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .straight-to-the-point #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .straight-to-the-point .modal-content {
+        padding: 15px;
+    }
+
+    .straight-to-the-point .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .straight-to-the-point .event-time {
+        font-size: 0.9rem;
     }
 }
 
@@ -354,5 +777,14 @@
 
     .straight-to-the-point td {
         height: 60px;
+    }
+
+    .straight-to-the-point td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .straight-to-the-point #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
