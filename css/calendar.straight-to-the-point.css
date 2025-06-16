@@ -1,0 +1,358 @@
+/* ==========================================================================
+   Straight-to-the-Point Calendar Theme
+   Version: 1.0
+   Updated: 2024-06-08
+   Changes:
+   - Simplified color scheme and effects
+   - Maintained all functional elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+    /* Basic Color Palette */
+    --stp-bg: #ffffff;
+    --stp-text: #000000;
+    --stp-primary: #f5f5f5;
+    --stp-secondary: #e0e0e0;
+    --stp-accent: #0066cc;
+    --stp-border: #cccccc;
+
+    /* Theme Variables */
+    --stp-radius: 4px;
+    --stp-transition: 0.2s ease;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes stp-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes stp-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.straight-to-the-point {
+    font-family: 'Inter', sans-serif;
+    color: var(--stp-text);
+    background-color: var(--stp-bg);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.straight-to-the-point .container {
+    background-color: var(--stp-primary);
+    padding: 2rem;
+    border: 1px solid var(--stp-border);
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--stp-radius);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.straight-to-the-point #calendar-title {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--stp-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.straight-to-the-point #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--stp-primary);
+    border: 1px solid var(--stp-border);
+    border-radius: var(--stp-radius);
+}
+
+.straight-to-the-point #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--stp-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.straight-to-the-point #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--stp-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.straight-to-the-point #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.straight-to-the-point .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--stp-accent);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--stp-primary);
+}
+
+.straight-to-the-point .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.straight-to-the-point .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--stp-accent);
+    margin-top: -2.5px;
+}
+
+.straight-to-the-point .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--stp-accent);
+    margin-top: -1.5px;
+}
+
+.straight-to-the-point .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--stp-accent);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.straight-to-the-point table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    table-layout: fixed;
+}
+
+.straight-to-the-point th {
+    background-color: var(--stp-accent);
+    color: white !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--stp-radius);
+    font-size: 0.9rem;
+}
+
+.straight-to-the-point td {
+    background-color: var(--stp-primary);
+    color: var(--stp-text);
+    padding: 1rem;
+    border: 1px solid var(--stp-border);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--stp-transition);
+    border-radius: var(--stp-radius);
+}
+
+.straight-to-the-point td .date-number {
+    color: var(--stp-text) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.straight-to-the-point td:hover {
+    background-color: var(--stp-secondary);
+}
+
+.straight-to-the-point td.current-day {
+    background-color: rgba(0, 102, 204, 0.1);
+    border: 2px solid var(--stp-accent);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.straight-to-the-point .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--stp-accent);
+    margin: 0 1px;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.straight-to-the-point .modal-content {
+    position: relative;
+    background-color: var(--stp-primary);
+    border: 1px solid var(--stp-border);
+    padding: 25px;
+    color: var(--stp-text);
+    border-radius: var(--stp-radius);
+    animation: stp-slide 0.2s ease-out;
+}
+
+.straight-to-the-point .modal-content h2 {
+    color: var(--stp-text);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.straight-to-the-point .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--stp-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--stp-border);
+}
+
+.straight-to-the-point .event-item {
+    background-color: var(--stp-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--stp-accent);
+    border-radius: var(--stp-radius);
+}
+
+.straight-to-the-point .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--stp-text);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.straight-to-the-point .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--stp-text);
+}
+
+.straight-to-the-point .modal-content button {
+    background-color: var(--stp-accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: var(--stp-radius);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.straight-to-the-point .button {
+    border: 1px solid var(--stp-accent);
+    color: var(--stp-accent);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0.4rem;
+    border-radius: var(--stp-radius);
+    transition: all var(--stp-transition);
+}
+
+.straight-to-the-point .button:hover {
+    background-color: var(--stp-accent);
+    color: white;
+}
+
+.straight-to-the-point .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .straight-to-the-point .container {
+        padding: 1.5rem;
+    }
+
+    .straight-to-the-point #calendar-title {
+        font-size: 2rem;
+    }
+
+    .straight-to-the-point #current-date {
+        font-size: 1.5rem;
+    }
+
+    .straight-to-the-point #today-weather {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .straight-to-the-point {
+        font-size: 0.95rem;
+    }
+
+    .straight-to-the-point .clock-face {
+        width: 150px;
+        height: 150px;
+    }
+
+    .straight-to-the-point td {
+        height: 80px;
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .straight-to-the-point .container {
+        padding: 1rem;
+    }
+
+    .straight-to-the-point #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .straight-to-the-point td {
+        height: 70px;
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .straight-to-the-point th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .straight-to-the-point td {
+        height: 60px;
+    }
+}
