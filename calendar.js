@@ -66,7 +66,7 @@ const applyTheme = (theme) => {
     'black-velvet', 'black-violet', 'blue-bird', 'blue-frost', 'blue-gold',
     'blue-ice', 'blue-mountains','blue-ocean',
     'blue-planet', 'blue-stars', 'blue-whale', 'blue-white', 'blue-window','breaking-point', 
-    'breathtaking-view','bright-line', 'bronze-horseman', 'cacao-plantation', 
+    'breathtaking-view','bright-line', 'brilliant-white', 'bronze-horseman', 'cacao-plantation', 
     'cafe-de-colombia', 'california-sunshine',
     'camomile-flowers', 'canary-islands', 'can-do-attitude', 'candy-world',
     'cardinals-guards', 'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
