@@ -146,7 +146,7 @@ const applyTheme = (theme) => {
     'the-modern-developer','the-perfect-blend', 'the-silver-sword', 'the-spirit-of-innovation', 
     'the-unstoppable-mindset', 'the-west-coast', 'tide-of-dreams',
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
-    'tropical-sunset', 'twilight-garden',
+    'tropical-sunset', 'turquoise-frontier', 'twilight-garden',
     'unforgettable-moments', 'unseen-wonders', 'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'white-shark', 'wild-flower',

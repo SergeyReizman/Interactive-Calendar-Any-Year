@@ -1,0 +1,788 @@
+/* ==========================================================================
+   Turquoise Frontier Theme - Adventure Inspired Design
+   Version: 1.2
+   Updated: 2024-06-18
+   Changes:
+   - Turquoise and earth tone color palette
+   - Rustic yet modern frontier aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Frontier Color Palette */
+    --frontier-bg: #0C1A1A;
+    --frontier-text: #E8F1F1;
+    --frontier-primary: #152929;
+    --frontier-secondary: #1D3838;
+    --frontier-date-number: #E8F1F1;
+
+    /* Turquoise Accent Colors */
+    --frontier-accent1: #2DD4D4;
+    --frontier-accent2: #3AE0E0;
+    --frontier-accent3: #4CEDED;
+    --frontier-accent4: rgba(76, 237, 237, 0.7);
+    --frontier-accent5: rgba(128, 245, 245, 0.5);
+
+    /* Earth Tone Colors */
+    --frontier-earth1: #5C4D3D;
+    --frontier-earth2: #6B5C4C;
+    --frontier-earth3: #7A6B5B;
+
+    /* Theme Variables */
+    --frontier-shadow: rgba(45, 212, 212, 0.15);
+    --frontier-radius: 5px;
+    --frontier-transition: 0.2s ease-out;
+    --frontier-hover: #1FC7C7;
+    --frontier-glow: 0 0 12px rgba(45, 212, 212, 0.25);
+    --frontier-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%232DD4D4"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%232DD4D4"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%232DD4D4"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes frontier-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes frontier-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes frontier-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--frontier-shadow);
+    }
+
+    50% {
+        box-shadow: var(--frontier-glow);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.turquoise-frontier {
+    font-family: 'Inter', sans-serif;
+    color: var(--frontier-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--frontier-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%232DD4D4" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%232DD4D4" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%232DD4D4" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%232DD4D4" opacity="0.1"/></svg>');
+}
+
+.turquoise-frontier .container {
+    background-color: var(--frontier-primary);
+    padding: 2rem;
+    border: 1px solid var(--frontier-earth2);
+    box-shadow: var(--frontier-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--frontier-radius);
+}
+
+.turquoise-frontier .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--frontier-accent1) 0%,
+            var(--frontier-accent2) 50%,
+            var(--frontier-accent1) 100%);
+}
+
+.turquoise-frontier .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--frontier-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.turquoise-frontier #calendar-title {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--frontier-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.turquoise-frontier #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.turquoise-frontier #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--frontier-primary);
+    border: 1px solid var(--frontier-earth2);
+    border-radius: var(--frontier-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.turquoise-frontier #date-weather-container::before {
+    content: "FRONTIER TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--frontier-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--frontier-accent1);
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.turquoise-frontier #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--frontier-accent2), transparent);
+}
+
+.turquoise-frontier #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--frontier-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.turquoise-frontier #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--frontier-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.turquoise-frontier #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.turquoise-frontier .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--frontier-earth2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--frontier-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.turquoise-frontier .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.turquoise-frontier .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--frontier-earth1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.turquoise-frontier .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--frontier-earth2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.turquoise-frontier .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--frontier-accent1);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.turquoise-frontier table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.turquoise-frontier th {
+    background-color: var(--frontier-earth1);
+    color: var(--frontier-text) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--frontier-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.turquoise-frontier th span.full-day-name {
+    display: inline;
+}
+
+.turquoise-frontier th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.turquoise-frontier td {
+    background-color: var(--frontier-primary);
+    color: var(--frontier-text);
+    padding: 1rem;
+    border: 1px solid var(--frontier-earth2);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--frontier-transition);
+    position: relative;
+    border-radius: var(--frontier-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.turquoise-frontier td .date-number {
+    color: var(--frontier-text) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.turquoise-frontier td:hover {
+    background-color: var(--frontier-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.turquoise-frontier td.current-day {
+    background-color: rgba(45, 212, 212, 0.15);
+    border: 2px solid var(--frontier-accent2);
+    animation: frontier-pulse 3s infinite;
+}
+
+.turquoise-frontier td.current-day .date-number {
+    color: var(--frontier-text) !important;
+    font-weight: 700;
+}
+
+.turquoise-frontier td.current-day::before {
+    content: "✦";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--frontier-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.turquoise-frontier .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--frontier-accent2);
+    margin: 0 1px;
+    transition: all var(--frontier-transition);
+}
+
+.turquoise-frontier .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--frontier-accent2);
+    box-shadow: 0 0 6px rgba(45, 212, 212, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.turquoise-frontier .modal-content {
+    position: relative;
+    background-color: var(--frontier-primary);
+    border: 1px solid var(--frontier-earth2);
+    padding: 25px;
+    color: var(--frontier-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--frontier-radius);
+    animation: frontier-slide 0.2s ease-out;
+}
+
+.turquoise-frontier .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--frontier-accent1) 0%,
+            var(--frontier-accent2) 50%,
+            var(--frontier-accent1) 100%);
+}
+
+.turquoise-frontier .modal-content h2 {
+    color: var(--frontier-text);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.turquoise-frontier .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--frontier-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--frontier-earth2);
+}
+
+/* Event list */
+.turquoise-frontier .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.turquoise-frontier .event-item {
+    background-color: var(--frontier-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--frontier-accent1);
+    border-radius: var(--frontier-radius);
+    transition: all var(--frontier-transition);
+}
+
+.turquoise-frontier .event-item:hover {
+    background-color: var(--frontier-earth3);
+    transform: translateX(3px);
+}
+
+.turquoise-frontier .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--frontier-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.turquoise-frontier .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--frontier-text);
+}
+
+.turquoise-frontier .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--frontier-text);
+    opacity: 0.9;
+}
+
+.turquoise-frontier .modal-content button {
+    background-color: var(--frontier-accent1);
+    color: var(--frontier-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--frontier-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--frontier-radius);
+}
+
+.turquoise-frontier .modal-content button:hover {
+    background-color: var(--frontier-hover);
+    box-shadow: 0 3px 10px rgba(45, 212, 212, 0.2);
+}
+
+/* Close Button */
+.turquoise-frontier .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--frontier-primary);
+    color: var(--frontier-text);
+    border: 1px solid var(--frontier-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--frontier-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.turquoise-frontier .modal .close-button:hover {
+    background-color: var(--frontier-text);
+    color: var(--frontier-accent1);
+    border-color: var(--frontier-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.turquoise-frontier .button,
+.turquoise-frontier .transparent-button {
+    border: 1px solid var(--frontier-accent1);
+    color: var(--frontier-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--frontier-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--frontier-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.turquoise-frontier .button:hover,
+.turquoise-frontier .transparent-button:hover {
+    background-color: var(--frontier-accent1);
+    color: var(--frontier-primary);
+    box-shadow: 0 3px 10px rgba(45, 212, 212, 0.15);
+}
+
+.turquoise-frontier .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.turquoise-frontier #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.turquoise-frontier #theme-switcher {
+    background-color: var(--frontier-primary);
+    color: var(--frontier-text) !important;
+    border: 1px solid var(--frontier-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8F1F1'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--frontier-transition);
+    border-radius: var(--frontier-radius);
+}
+
+.turquoise-frontier #theme-switcher option {
+    background-color: var(--frontier-primary) !important;
+    color: var(--frontier-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.turquoise-frontier #theme-switcher:focus {
+    outline: none;
+    border-color: var(--frontier-accent1);
+    box-shadow: 0 0 0 2px rgba(45, 212, 212, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.turquoise-frontier #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--frontier-primary);
+    background-color: var(--frontier-accent1);
+    cursor: pointer;
+    transition: all var(--frontier-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--frontier-radius);
+    box-shadow: 0 2px 8px rgba(45, 212, 212, 0.3);
+}
+
+.turquoise-frontier #backToTopBtn:hover {
+    background-color: var(--frontier-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.turquoise-frontier footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--frontier-earth2);
+    color: var(--frontier-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .turquoise-frontier .container {
+        padding: 1.5rem;
+    }
+
+    .turquoise-frontier #calendar-title {
+        font-size: 2rem;
+    }
+
+    .turquoise-frontier #current-date {
+        font-size: 1.5rem;
+    }
+
+    .turquoise-frontier #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .turquoise-frontier .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .turquoise-frontier .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .turquoise-frontier {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .turquoise-frontier .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .turquoise-frontier th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .turquoise-frontier th span.full-day-name {
+        display: none;
+    }
+
+    .turquoise-frontier th abbr {
+        display: inline;
+    }
+
+    .turquoise-frontier td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .turquoise-frontier td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .turquoise-frontier td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .turquoise-frontier #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .turquoise-frontier #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .turquoise-frontier .modal-content {
+        padding: 20px;
+    }
+
+    .turquoise-frontier .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .turquoise-frontier .container {
+        padding: 1rem;
+    }
+
+    .turquoise-frontier #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .turquoise-frontier #current-date {
+        font-size: 1.3rem;
+    }
+
+    .turquoise-frontier #today-weather {
+        font-size: 1rem;
+    }
+
+    .turquoise-frontier .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .turquoise-frontier th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .turquoise-frontier td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .turquoise-frontier td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .turquoise-frontier #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .turquoise-frontier .modal-content {
+        padding: 15px;
+    }
+
+    .turquoise-frontier .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .turquoise-frontier .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .turquoise-frontier th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .turquoise-frontier td {
+        height: 60px;
+    }
+
+    .turquoise-frontier td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .turquoise-frontier #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
