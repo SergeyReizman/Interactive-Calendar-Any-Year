@@ -132,7 +132,7 @@ const applyTheme = (theme) => {
     'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery',
-    'shift-in-perception', 'silicon-valley', 'sky-eagle', 'skylight-window', 
+    'shift-in-perception', 'silicon-valley', 'sky-eagle', 'sky-hawk', 'skylight-window', 
     'small-happiness', 'solar-flare', 'something-special', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'stay-cool', 'steel-shadows', 'stockholm-roofs', 'straight-to-the-point',
     'strategic-advantage', 'strategic-planning',
