@@ -151,7 +151,7 @@ const applyTheme = (theme) => {
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'white-shark', 'wild-flower',
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
-    'zodiac-constellations'
+    'world-champion','zodiac-constellations'
 
   );
 
