@@ -55,7 +55,7 @@ const applyTheme = (theme) => {
     'action-time', 'adelaide-skyline', 'a-desert-island', 'adriatic-sea', 'a-forward-move',
     'a-good-idea', 'aloe-vera', 'alone-in-paradise', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',
-    'amazon-river', 'andromeda-galaxy', 'antarctic-ice',
+    'amazon-river', 'american-dream', 'andromeda-galaxy', 'antarctic-ice',
     'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 
     'art-studio', 'a-thing-of-beauty', 'autumn-harvest', 'away-from-home',
     'back-on-track', 'bamboo-flute',
