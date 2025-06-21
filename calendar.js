@@ -73,7 +73,7 @@ const applyTheme = (theme) => {
     'cardinals-guards', 'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
     'cherry-garden', 'cinnamon-street', 'city-of-dreams', 'city-of-night', 
     'clean-code', 'clean-energy', 
-    'coastal-pacific', 'coffee-for-leaders', 'color-symphony',
+    'coastal-pacific', 'coconut-islands', 'coffee-for-leaders', 'color-symphony',
     'collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-reef', 'cosmic-nebula', 'cosmic-perspective',
     'cracked-ice', 'creative-content', 'crimson-sky', 'critical-thinking', 

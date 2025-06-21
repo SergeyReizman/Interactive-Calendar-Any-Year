@@ -1,0 +1,789 @@
+/* ==========================================================================
+   Coconut Islands Theme - Tropical Paradise Style
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Tropical beach color palette
+   - Palm tree and wave decorative elements
+   - Light, breezy aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Island Color Palette */
+    --island-bg: #F5F9FC;
+    --island-text: #2A4E68;
+    --island-primary: #FFFFFF;
+    --island-secondary: #F0F7FF;
+    --island-date-number: #3A7CA5;
+
+    /* Beach Texture Colors */
+    --island-texture1: #E8F2F9;
+    --island-texture2: #E0EDF7;
+    --island-texture3: #D8E8F5;
+    --island-texture4: #D0E3F3;
+    --island-texture5: #C8DEF1;
+
+    /* Tropical Accent Colors */
+    --island-accent1: #3A7CA5;
+    /* Ocean blue */
+    --island-accent2: #5FAFCF;
+    /* Sky blue */
+    --island-accent3: #F4A261;
+    /* Sunset orange */
+    --island-accent4: rgba(58, 124, 165, 0.7);
+    --island-accent5: rgba(95, 175, 207, 0.5);
+
+    /* Theme Variables */
+    --island-shadow: rgba(58, 124, 165, 0.15);
+    --island-radius: 8px;
+    --island-transition: 0.25s ease-out;
+    --island-hover: #2D6B8F;
+    --island-glow: 0 0 10px rgba(95, 175, 207, 0.2);
+    --island-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%233A7CA5"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%233A7CA5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%233A7CA5"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes island-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes island-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes island-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--island-shadow);
+    }
+
+    50% {
+        box-shadow: var(--island-glow);
+    }
+}
+
+@keyframes island-wave {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-25%);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.coconut-islands {
+    font-family: 'Inter', sans-serif;
+    color: var(--island-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--island-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="15" cy="15" r="1" fill="%233A7CA5" opacity="0.1"/><circle cx="85" cy="15" r="1" fill="%23F4A261" opacity="0.1"/><circle cx="50" cy="50" r="1" fill="%235FAFCF" opacity="0.1"/><circle cx="20" cy="80" r="1" fill="%233A7CA5" opacity="0.1"/><circle cx="75" cy="90" r="1" fill="%23F4A261" opacity="0.1"/></svg>');
+}
+
+.coconut-islands .container {
+    background-color: var(--island-primary);
+    padding: 2rem;
+    border: 1px solid var(--island-accent4);
+    box-shadow: var(--island-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--island-radius);
+}
+
+.coconut-islands .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--island-accent1) 0%,
+            var(--island-accent3) 50%,
+            var(--island-accent1) 100%);
+}
+
+.coconut-islands .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--island-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.coconut-islands #calendar-title {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--island-accent1);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 500;
+}
+
+.coconut-islands #calendar-title::after {
+    content: "🌴";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.coconut-islands #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--island-primary);
+    border: 1px solid var(--island-accent4);
+    border-radius: var(--island-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.coconut-islands #date-weather-container::before {
+    content: "ISLAND TIME";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--island-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--island-accent1);
+    font-weight: 500;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.coconut-islands #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--island-accent2), transparent);
+}
+
+.coconut-islands #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--island-accent1);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.coconut-islands #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--island-accent3);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.coconut-islands #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.coconut-islands .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--island-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--island-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.coconut-islands .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.coconut-islands .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--island-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.coconut-islands .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--island-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.coconut-islands .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--island-accent3);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.coconut-islands table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.coconut-islands th {
+    background-color: var(--island-accent2);
+    color: var(--island-primary) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--island-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.coconut-islands th span.full-day-name {
+    display: inline;
+}
+
+.coconut-islands th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.coconut-islands td {
+    background-color: var(--island-primary);
+    color: var(--island-text);
+    padding: 1rem;
+    border: 1px solid var(--island-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--island-transition);
+    position: relative;
+    border-radius: var(--island-radius);
+    box-shadow: inset 0 0 0 1px rgba(58, 124, 165, 0.1);
+}
+
+.coconut-islands td .date-number {
+    color: var(--island-date-number) !important;
+    font-weight: 500;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.coconut-islands td:hover {
+    background-color: var(--island-secondary);
+    box-shadow: 0 5px 15px rgba(95, 175, 207, 0.1);
+}
+
+/* Current date highlight */
+.coconut-islands td.current-day {
+    background-color: rgba(95, 175, 207, 0.15);
+    border: 2px solid var(--island-accent2);
+    animation: island-pulse 3s infinite;
+}
+
+.coconut-islands td.current-day .date-number {
+    color: var(--island-accent3) !important;
+    font-weight: 500;
+}
+
+.coconut-islands td.current-day::before {
+    content: "🌊";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--island-accent1);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.coconut-islands .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--island-accent3);
+    margin: 0 1px;
+    transition: all var(--island-transition);
+}
+
+.coconut-islands .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--island-accent1);
+    box-shadow: 0 0 6px rgba(58, 124, 165, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.coconut-islands .modal-content {
+    position: relative;
+    background-color: var(--island-primary);
+    border: 1px solid var(--island-accent4);
+    padding: 25px;
+    color: var(--island-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--island-radius);
+    animation: island-slide 0.3s ease-out;
+}
+
+.coconut-islands .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--island-accent1) 0%,
+            var(--island-accent3) 50%,
+            var(--island-accent1) 100%);
+}
+
+.coconut-islands .modal-content h2 {
+    color: var(--island-accent1);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* Modal date display */
+.coconut-islands .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--island-accent1);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--island-accent4);
+}
+
+/* Event list */
+.coconut-islands .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.coconut-islands .event-item {
+    background-color: var(--island-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--island-accent1);
+    border-radius: var(--island-radius);
+    transition: all var(--island-transition);
+}
+
+.coconut-islands .event-item:hover {
+    background-color: var(--island-texture3);
+    transform: translateX(3px);
+}
+
+.coconut-islands .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--island-accent1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.coconut-islands .event-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--island-text);
+}
+
+.coconut-islands .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--island-text);
+    opacity: 0.9;
+}
+
+.coconut-islands .modal-content button {
+    background-color: var(--island-accent1);
+    color: var(--island-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--island-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--island-radius);
+}
+
+.coconut-islands .modal-content button:hover {
+    background-color: var(--island-hover);
+    box-shadow: 0 3px 10px rgba(58, 124, 165, 0.2);
+}
+
+/* Close Button */
+.coconut-islands .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--island-primary);
+    color: var(--island-accent1);
+    border: 1px solid var(--island-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--island-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.coconut-islands .modal .close-button:hover {
+    background-color: var(--island-accent1);
+    color: var(--island-primary);
+    border-color: var(--island-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.coconut-islands .button,
+.coconut-islands .transparent-button {
+    border: 1px solid var(--island-accent1);
+    color: var(--island-accent1);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--island-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--island-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.coconut-islands .button:hover,
+.coconut-islands .transparent-button:hover {
+    background-color: var(--island-accent1);
+    color: var(--island-primary);
+    box-shadow: 0 3px 10px rgba(58, 124, 165, 0.15);
+}
+
+.coconut-islands .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.coconut-islands #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.coconut-islands #theme-switcher {
+    background-color: var(--island-primary);
+    color: var(--island-accent1) !important;
+    border: 1px solid var(--island-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A7CA5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--island-transition);
+    border-radius: var(--island-radius);
+}
+
+.coconut-islands #theme-switcher option {
+    background-color: var(--island-primary) !important;
+    color: var(--island-accent1) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.coconut-islands #theme-switcher:focus {
+    outline: none;
+    border-color: var(--island-accent1);
+    box-shadow: 0 0 0 2px rgba(58, 124, 165, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.coconut-islands #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--island-primary);
+    background-color: var(--island-accent1);
+    cursor: pointer;
+    transition: all var(--island-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--island-radius);
+    box-shadow: 0 2px 8px rgba(58, 124, 165, 0.3);
+}
+
+.coconut-islands #backToTopBtn:hover {
+    background-color: var(--island-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.coconut-islands footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--island-accent4);
+    color: var(--island-accent1);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .coconut-islands .container {
+        padding: 1.5rem;
+    }
+
+    .coconut-islands #calendar-title {
+        font-size: 2rem;
+    }
+
+    .coconut-islands #current-date {
+        font-size: 1.5rem;
+    }
+
+    .coconut-islands #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .coconut-islands .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .coconut-islands .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .coconut-islands {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .coconut-islands .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .coconut-islands th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .coconut-islands th span.full-day-name {
+        display: none;
+    }
+
+    .coconut-islands th abbr {
+        display: inline;
+    }
+
+    .coconut-islands td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .coconut-islands td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .coconut-islands td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .coconut-islands #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .coconut-islands #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .coconut-islands .modal-content {
+        padding: 20px;
+    }
+
+    .coconut-islands .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .coconut-islands .container {
+        padding: 1rem;
+    }
+
+    .coconut-islands #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .coconut-islands #current-date {
+        font-size: 1.3rem;
+    }
+
+    .coconut-islands #today-weather {
+        font-size: 1rem;
+    }
+
+    .coconut-islands .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .coconut-islands th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .coconut-islands td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .coconut-islands td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .coconut-islands #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .coconut-islands .modal-content {
+        padding: 15px;
+    }
+
+    .coconut-islands .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .coconut-islands .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .coconut-islands th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .coconut-islands td {
+        height: 60px;
+    }
+
+    .coconut-islands td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .coconut-islands #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
