@@ -87,7 +87,7 @@ const applyTheme = (theme) => {
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 
     'doterra-magic', 'doterra-new', 'doterra-power',
     'dragon-flame', 'dragonfly', 'dream-adventure', 'eagle-swoop',
-    'emerald-stream', 'emperor-penguin', 
+    'emerald-stream', 'emerald-water', 'emperor-penguin', 
     'essential-oils', 'everest-view', 'excellent-performance', 'executive-management',
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
     'extraordinary-achievement', 'fast-track', 'fiji-islands',
