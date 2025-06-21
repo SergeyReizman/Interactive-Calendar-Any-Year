@@ -147,7 +147,7 @@ const applyTheme = (theme) => {
     'the-unstoppable-mindset', 'the-west-coast', 'tide-of-dreams',
     'time-complexity', 'time-machine', 'tokyo-at-night', 'tropical-islands', 'tropical-nature',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden',
-    'unforgettable-moments', 'unseen-wonders', 'urban-fashion', 
+    'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'white-shark', 'wild-flower',
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
