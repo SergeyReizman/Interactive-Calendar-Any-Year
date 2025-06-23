@@ -1,0 +1,809 @@
+/* ==========================================================================
+   A Good Chapter Theme - High Contrast Readability
+   Version: 1.3
+   Updated: 2024-06-08
+   Changes:
+   - Optimized for maximum readability and contrast
+   - Classic book/chapter aesthetic with clear visibility
+   - Maintained all functional elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+    /* Classic Book Color Palette */
+    --book-bg: #1E1E1E;
+    --book-text: #FFFFFF;
+    --book-primary: #2A2A2A;
+    --book-secondary: #363636;
+    --book-date-number: #FFFFFF;
+
+    /* Page Texture Colors */
+    --book-texture1: #2E2E2E;
+    --book-texture2: #3A3A3A;
+    --book-texture3: #464646;
+    --book-texture4: #525252;
+    --book-texture5: #5E5E5E;
+
+    /* Warm Accent Colors */
+    --book-accent1: #D4A76A;
+    --book-accent2: #E0B376;
+    --book-accent3: #ECBF82;
+    --book-accent4: rgba(236, 191, 130, 0.7);
+    --book-accent5: rgba(242, 207, 160, 0.5);
+
+    /* Theme Variables */
+    --book-shadow: rgba(212, 167, 106, 0.25);
+    --book-radius: 4px;
+    --book-transition: 0.2s ease-out;
+    --book-hover: #C8975E;
+    --book-glow: 0 0 12px rgba(212, 167, 106, 0.35);
+    --book-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23D4A76A"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".4" fill="%23D4A76A"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".5" fill="%23D4A76A"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes book-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes book-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes book-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--book-shadow);
+    }
+
+    50% {
+        box-shadow: var(--book-glow);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-good-chapter {
+    font-family: 'Crimson Pro', serif;
+    color: var(--book-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--book-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%23D4A76A" opacity="0.15"/><rect width="1" height="1" x="30" y="70" fill="%23D4A76A" opacity="0.15"/><rect width="1" height="1" x="70" y="30" fill="%23D4A76A" opacity="0.15"/><rect width="1" height="1" x="90" y="90" fill="%23D4A76A" opacity="0.15"/></svg>');
+}
+
+.a-good-chapter .container {
+    background-color: var(--book-primary);
+    padding: 2rem;
+    border: 1px solid var(--book-accent4);
+    box-shadow: var(--book-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--book-radius);
+}
+
+.a-good-chapter .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--book-accent1) 0%,
+            var(--book-accent2) 50%,
+            var(--book-accent1) 100%);
+}
+
+.a-good-chapter .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--book-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-good-chapter #calendar-title {
+    font-family: 'Crimson Pro', serif;
+    color: var(--book-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.a-good-chapter #calendar-title::after {
+    content: "📖";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-good-chapter #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--book-primary);
+    border: 1px solid var(--book-accent4);
+    border-radius: var(--book-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.a-good-chapter #date-weather-container::before {
+    content: "CHAPTER TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--book-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--book-text);
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid var(--book-accent4);
+}
+
+.a-good-chapter #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--book-accent2), transparent);
+}
+
+.a-good-chapter #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--book-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.a-good-chapter #today-weather {
+    font-family: 'Crimson Pro', serif;
+    color: var(--book-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.a-good-chapter #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.a-good-chapter .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--book-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--book-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+}
+
+.a-good-chapter .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.a-good-chapter .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--book-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.a-good-chapter .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--book-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.a-good-chapter .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--book-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-good-chapter table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.a-good-chapter th {
+    background-color: var(--book-accent1);
+    color: var(--book-primary) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--book-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.a-good-chapter th span.full-day-name {
+    display: inline;
+}
+
+.a-good-chapter th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.a-good-chapter td {
+    background-color: var(--book-primary);
+    color: var(--book-text);
+    padding: 1rem;
+    border: 1px solid var(--book-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--book-transition);
+    position: relative;
+    border-radius: var(--book-radius);
+    box-shadow: inset 0 0 0 1px rgba(212, 167, 106, 0.1);
+}
+
+.a-good-chapter td .date-number {
+    color: var(--book-text) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.a-good-chapter td:hover {
+    background-color: var(--book-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.a-good-chapter td.current-day {
+    background-color: rgba(212, 167, 106, 0.25);
+    border: 2px solid var(--book-accent2);
+    animation: book-pulse 3s infinite;
+}
+
+.a-good-chapter td.current-day .date-number {
+    color: var(--book-text) !important;
+    font-weight: 700;
+}
+
+.a-good-chapter td.current-day::before {
+    content: "🔖";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--book-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-good-chapter .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--book-accent2);
+    margin: 0 1px;
+    transition: all var(--book-transition);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.a-good-chapter .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--book-accent2);
+    box-shadow: 0 0 8px rgba(212, 167, 106, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-good-chapter .modal-content {
+    position: relative;
+    background-color: var(--book-primary);
+    border: 1px solid var(--book-accent4);
+    padding: 25px;
+    color: var(--book-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-radius: var(--book-radius);
+    animation: book-slide 0.2s ease-out;
+}
+
+.a-good-chapter .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--book-accent1) 0%,
+            var(--book-accent2) 50%,
+            var(--book-accent1) 100%);
+}
+
+.a-good-chapter .modal-content h2 {
+    color: var(--book-text);
+    font-family: 'Crimson Pro', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal date display */
+.a-good-chapter .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--book-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--book-accent4);
+}
+
+/* Event list */
+.a-good-chapter .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.a-good-chapter .event-item {
+    background-color: var(--book-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--book-accent1);
+    border-radius: var(--book-radius);
+    transition: all var(--book-transition);
+}
+
+.a-good-chapter .event-item:hover {
+    background-color: var(--book-texture3);
+    transform: translateX(3px);
+}
+
+.a-good-chapter .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--book-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.a-good-chapter .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--book-text);
+}
+
+.a-good-chapter .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--book-text);
+    opacity: 0.9;
+}
+
+.a-good-chapter .modal-content button {
+    background-color: var(--book-accent1);
+    color: var(--book-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--book-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Crimson Pro', serif;
+    border-radius: var(--book-radius);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.a-good-chapter .modal-content button:hover {
+    background-color: var(--book-hover);
+    box-shadow: 0 3px 12px rgba(212, 167, 106, 0.3);
+}
+
+/* Close Button */
+.a-good-chapter .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--book-accent1);
+    color: var(--book-primary);
+    border: 1px solid var(--book-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--book-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.a-good-chapter .modal .close-button:hover {
+    background-color: var(--book-primary);
+    color: var(--book-accent1);
+    border-color: var(--book-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.a-good-chapter .button,
+.a-good-chapter .transparent-button {
+    border: 2px solid var(--book-accent1);
+    color: var(--book-primary);
+    background-color: var(--book-accent1);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--book-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--book-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.a-good-chapter .transparent-button {
+    background-color: transparent;
+    color: var(--book-text);
+    border-color: var(--book-text);
+}
+
+.a-good-chapter .button:hover,
+.a-good-chapter .transparent-button:hover {
+    background-color: var(--book-hover);
+    color: var(--book-primary);
+    box-shadow: 0 3px 12px rgba(212, 167, 106, 0.25);
+    border-color: var(--book-hover);
+}
+
+.a-good-chapter .transparent-button:hover {
+    color: var(--book-text);
+    background-color: rgba(212, 167, 106, 0.2);
+}
+
+.a-good-chapter .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.a-good-chapter #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.a-good-chapter #theme-switcher {
+    background-color: var(--book-primary);
+    color: var(--book-text) !important;
+    border: 2px solid var(--book-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--book-transition);
+    border-radius: var(--book-radius);
+}
+
+.a-good-chapter #theme-switcher option {
+    background-color: var(--book-primary) !important;
+    color: var(--book-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.a-good-chapter #theme-switcher:focus {
+    outline: none;
+    border-color: var(--book-accent1);
+    box-shadow: 0 0 0 3px rgba(212, 167, 106, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.a-good-chapter #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 700;
+    color: var(--book-primary);
+    background-color: var(--book-accent1);
+    cursor: pointer;
+    transition: all var(--book-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--book-radius);
+    box-shadow: 0 3px 12px rgba(212, 167, 106, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.a-good-chapter #backToTopBtn:hover {
+    background-color: var(--book-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.a-good-chapter footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--book-accent4);
+    color: var(--book-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .a-good-chapter .container {
+        padding: 1.5rem;
+    }
+
+    .a-good-chapter #calendar-title {
+        font-size: 2rem;
+    }
+
+    .a-good-chapter #current-date {
+        font-size: 1.5rem;
+    }
+
+    .a-good-chapter #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .a-good-chapter .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .a-good-chapter .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-good-chapter {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .a-good-chapter .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .a-good-chapter th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .a-good-chapter th span.full-day-name {
+        display: none;
+    }
+
+    .a-good-chapter th abbr {
+        display: inline;
+    }
+
+    .a-good-chapter td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .a-good-chapter td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .a-good-chapter td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .a-good-chapter #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .a-good-chapter #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .a-good-chapter .modal-content {
+        padding: 20px;
+    }
+
+    .a-good-chapter .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-good-chapter .container {
+        padding: 1rem;
+    }
+
+    .a-good-chapter #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .a-good-chapter #current-date {
+        font-size: 1.3rem;
+    }
+
+    .a-good-chapter #today-weather {
+        font-size: 1rem;
+    }
+
+    .a-good-chapter .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .a-good-chapter th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .a-good-chapter td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .a-good-chapter td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .a-good-chapter #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .a-good-chapter .modal-content {
+        padding: 15px;
+    }
+
+    .a-good-chapter .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .a-good-chapter .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-good-chapter th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .a-good-chapter td {
+        height: 60px;
+    }
+
+    .a-good-chapter td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .a-good-chapter #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
