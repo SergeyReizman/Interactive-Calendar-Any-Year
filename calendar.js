@@ -138,7 +138,7 @@ const applyTheme = (theme) => {
     'statue-of-liberty', 'stay-cool', 'steel-shadows', 'stockholm-roofs', 'straight-to-the-point',
     'strategic-advantage', 'strategic-planning',
     'strawberry-moon', 'strength-of-spirit',
-    'success-key','success-motivation', 'success-story', 'sweet-misty-morning',
+    'success-key','success-motivation', 'success-story', 'sunset-magic', 'sweet-misty-morning',
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
     'the-best-of-fashion', 'the-black-spruce', 'the-dead-sea', 'the-element-of-surprise',
