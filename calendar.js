@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'big-fashion', 'black-fashion', 'black-bird', 'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-magic', 'black-mountain',
     'black-orange', 'black-pear', 'black-pearl', 'black-style',
-    'black-velvet', 'black-violet', 'blue-bird', 'blue-frost', 'blue-gold',
+    'black-velvet', 'black-violet', 'blue-banana', 'blue-bird', 'blue-frost', 'blue-gold',
     'blue-ice', 'blue-mountains','blue-ocean',
     'blue-planet', 'blue-stars', 'blue-whale', 'blue-white', 'blue-window',
     'bold-vision', 'breaking-point', 
