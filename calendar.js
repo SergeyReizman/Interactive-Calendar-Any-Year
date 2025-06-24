@@ -106,7 +106,7 @@ const applyTheme = (theme) => {
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
     'island-breeze', 'invincible-zone', 'japan-emperor', 'keep-on-smiling', 'kilimanjaro-outskirts', 
-    'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
+    'lady-blue', 'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
     'life-quality', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence',
     'love-station', 'lucid-dream', 'lunar-eclipse', 'luxury-design', 'macaroni-penguin',
