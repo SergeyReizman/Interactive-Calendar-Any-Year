@@ -1,810 +1,368 @@
 /* ==========================================================================
-   Fresh Start Theme - Renewal Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Clean, airy color scheme
-   - Optimized weekday headers
-   - Mobile-responsive design
-   - Nature-inspired UI elements
-   - Animated growth effects
-   - Enhanced clarity
-   - Organic textures
-   - Balanced typography
-   ========================================================================== */
+  Fresh Start - Soaring, Aerial, and Limitless! (Aviation Edition)
+  Purpose: Styles specific to the Free Flight theme for the calendar, with aviation-inspired colors.
+  ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Work+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap');
 
 :root {
-    /* Fresh Start Color Palette */
-    --fs-bg: #F8FBF8;
-    --fs-text: #334433;
-    --fs-primary: #4CAF50;
-    /* Growth green */
-    --fs-secondary: #8BC34A;
-    /* Fresh lime */
+    /* Aviation Color Palette */
+    --freeflight-bg: #E6F2FF;
+    /* Sky blue background */
+    --freeflight-text: #1A2E40;
+    /* Deep navy for text */
+    --freeflight-primary: #27d11b;
+    /* Bright aviation blue */
+    --freeflight-secondary: #29bf3d;
+    /* Deep aviation blue */
 
-    /* Nature Colors */
-    --fs-sky: #03A9F4;
-    --fs-sun: #FFC107;
-    --fs-earth: #795548;
-    --fs-water: #00BCD4;
-    --fs-blossom: #E91E63;
+    /* Sky Gradient Colors */
+    --freeflight-sky1: #3fee99;
+    /* Light sky blue */
+    --freeflight-sky2: #2ec138;
+    /* Medium sky blue */
+    --freeflight-sky3: #7ddb61;
+    /* Classic aviation blue */
+    --freeflight-sky4: #81dc45;
+    /* Deep aviation blue */
+    --freeflight-sky5: #279b01;
+    /* Dark aviation blue */
 
-    /* Gradient Colors */
-    --fs-gradient-start: #F1F8E9;
-    --fs-gradient-end: #E8F5E9;
+    /* Cloud/Silver Colors */
+    --freeflight-cloud1: #FFFFFF;
+    /* Pure white */
+    --freeflight-cloud2: #F5F5F5;
+    /* Off-white */
+    --freeflight-cloud3: #E0E0E0;
+    /* Light gray */
+    --freeflight-cloud4: #BDBDBD;
+    /* Medium gray */
+
+    /* Sunset Accents */
+    --freeflight-sunset1: #FF8F00;
+    /* Bright orange */
+    --freeflight-sunset2: #FF6D00;
+    /* Deep orange */
+    --freeflight-sunset3: #FFAB40;
+    /* Light orange */
+    --freeflight-sunset4: #FF9100;
+    /* Gold orange */
 
     /* Theme Variables */
-    --fs-shadow: rgba(76, 175, 80, 0.2);
-    --fs-radius: 8px;
-    --fs-transition: 0.3s ease-in-out;
-    --fs-hover: #E8F5E9;
-    --fs-current-day: #C8E6C9;
+    --freeflight-shadow: rgba(26, 46, 64, 0.2);
+    --freeflight-radius: 12px;
+    --freeflight-transition: 0.2s ease-in-out;
+    --freeflight-hover: #64B5F6;
 }
 
-/* ==================== ANIMATIONS ==================== */
-@keyframes fs-breathe {
+/* Animations */
+@keyframes cloudFloat {
 
     0%,
     100% {
-        transform: scale(1);
-        opacity: 0.8;
+        transform: translateY(0);
     }
 
     50% {
-        transform: scale(1.02);
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes radarPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(30, 136, 229, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(30, 136, 229, 0);
+    }
+}
+
+@keyframes takeoff {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
-@keyframes leaf-fall {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 40px 40px;
-    }
-}
-
-@keyframes fs-glow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--fs-shadow);
-    }
-
-    50% {
-        box-shadow: 0 0 15px var(--fs-shadow);
-    }
-}
-
-/* ==================== BASE STYLES ==================== */
+/* Base Styles */
 .fresh-start {
-    font-family: 'Work Sans', sans-serif;
-    color: var(--fs-text);
-    line-height: 1.6;
-    background: var(--fs-bg);
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    background-image:
-        linear-gradient(135deg,
-            rgba(76, 175, 80, 0.03) 1px,
-            transparent 1px),
-        linear-gradient(-135deg,
-            rgba(76, 175, 80, 0.03) 1px,
-            transparent 1px);
-    background-size: 40px 40px;
-    animation: leaf-fall 6s linear infinite;
-}
-
-.fresh-start::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 90% 10%,
-            rgba(139, 195, 74, 0.03) 0%,
-            transparent 20%),
-        radial-gradient(circle at 10% 90%,
-            rgba(0, 188, 212, 0.03) 0%,
-            transparent 20%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Leaf pattern */
-.fresh-start::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><path d="M20,5 Q30,10 20,20 Q10,30 20,35" stroke="%234CAF50" fill="none" stroke-width="0.5"/></svg>');
-    pointer-events: none;
-    z-index: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--freeflight-text);
+    line-height: 1.5;
+    background-color: var(--freeflight-bg);
 }
 
 .fresh-start .container {
-    background-color: rgba(248, 251, 248, 0.95);
-    padding: 2rem;
-    border: 1px solid var(--fs-primary);
-    box-shadow: 0 0 20px var(--fs-shadow);
-    position: relative;
-    overflow: hidden;
-    max-width: 1600px;
-    margin: 2rem auto;
-    border-radius: var(--fs-radius);
-    z-index: 1;
+    background: linear-gradient(135deg, var(--freeflight-sky1), var(--freeflight-sky3));
+    padding: 25px;
+    border-radius: var(--freeflight-radius);
+    box-shadow: 5px 5px 15px var(--freeflight-shadow);
+    border: 2px solid var(--freeflight-primary);
+    animation: takeoff 0.5s ease-out;
 }
 
-.fresh-start .container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--fs-primary),
-            var(--fs-secondary),
-            transparent);
-    animation: fs-glow 3s infinite;
+.fresh-start .calendar-container {
+    padding: 20px;
+    background: linear-gradient(145deg, var(--freeflight-cloud2), var(--freeflight-cloud1));
+    border-radius: var(--freeflight-radius);
+    border: 1px solid var(--freeflight-cloud3);
 }
 
-/* ==================== HEADER & TITLE ==================== */
-.fresh-start #calendar-title {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--fs-primary);
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    position: relative;
-    animation: fs-breathe 4s infinite;
-}
-
-.fresh-start #calendar-title::before,
-.fresh-start #calendar-title::after {
-    content: "🌱";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--fs-secondary);
-    font-size: 1.5rem;
-    animation: fs-breathe 3s infinite;
-}
-
-.fresh-start #calendar-title::before {
-    left: 1rem;
-}
-
-.fresh-start #calendar-title::after {
-    right: 1rem;
-    animation-delay: 0.5s;
-}
-
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.fresh-start #date-weather-container {
-    text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(76, 175, 80, 0.05);
-    border: 1px solid var(--fs-primary);
-    border-radius: var(--fs-radius);
-    position: relative;
-}
-
-.fresh-start #date-weather-container::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--fs-primary),
-            transparent);
-}
-
-.fresh-start #current-date {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--fs-primary);
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
-}
-
-.fresh-start #today-weather {
-    font-family: 'Work Sans', sans-serif;
-    color: var(--fs-secondary);
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-}
-
-/* ==================== ANALOG CLOCK ==================== */
-.fresh-start #analog-watch {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-}
-
-.fresh-start .clock-face {
-    width: 180px;
-    height: 180px;
-    border: 1px solid var(--fs-primary);
-    border-radius: 50%;
-    position: relative;
-    background-color: var(--fs-bg);
-    box-shadow:
-        0 0 10px var(--fs-shadow),
-        inset 0 0 5px rgba(76, 175, 80, 0.1);
-    background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(76, 175, 80, 0.05) 100%);
-}
-
-/* Nature-inspired numerals for clock */
-.fresh-start .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><text x="50" y="18" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">12</text><text x="82" y="55" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">3</text><text x="50" y="92" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">6</text><text x="18" y="55" text-anchor="middle" font-family="Quicksand" font-size="12" fill="%234CAF50">9</text></svg>');
-}
-
-.fresh-start .hand {
-    position: absolute;
-    top: 50%;
-    transform-origin: 100%;
-    transform: rotate(90deg);
-    transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fresh-start .hour-hand {
-    width: 40%;
-    left: 10%;
-    height: 4px;
-    background: var(--fs-primary);
-    margin-top: -2px;
-    border-radius: 2px;
-}
-
-.fresh-start .minute-hand {
-    width: 48%;
-    left: 2%;
-    height: 2px;
-    background: var(--fs-secondary);
-    margin-top: -1px;
-    border-radius: 1px;
-}
-
-.fresh-start .second-hand {
-    width: 48%;
-    left: 2%;
-    height: 1px;
-    background: var(--fs-blossom);
-    margin-top: -0.5px;
-}
-
-/* Clock center - Seed */
-.fresh-start .clock-face::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background-color: var(--fs-primary);
-    border-radius: 50%;
-    border: 1px solid var(--fs-secondary);
-}
-
-/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+/* Table Styles */
 .fresh-start table {
     width: 100%;
+    margin: 20px auto;
     border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--fs-primary);
-    border-radius: var(--fs-radius);
+    border-radius: var(--freeflight-radius);
+    box-shadow: 3px 3px 10px var(--freeflight-shadow);
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid var(--freeflight-primary);
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+.fresh-start th,
+.fresh-start td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--freeflight-cloud3);
+    transition: all var(--freeflight-transition);
+    word-wrap: break-word;
+}
+
 .fresh-start th {
-    background-color: rgba(76, 175, 80, 0.1);
-    color: var(--fs-primary) !important;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 600;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid rgba(76, 175, 80, 0.3);
-    position: relative;
-    font-size: 0.8rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/* Full names for desktop */
-.fresh-start th .full-day {
-    display: inline;
-}
-
-/* Short names for mobile */
-.fresh-start th .short-day {
-    display: none;
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
 }
 
 .fresh-start td {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: var(--fs-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid rgba(76, 175, 80, 0.2);
-    height: 90px;
-    vertical-align: top;
-    transition: all var(--fs-transition);
-    position: relative;
-    font-size: 0.85rem;
+    background-color: var(--freeflight-cloud1);
+    color: var(--freeflight-text);
 }
 
 .fresh-start td:hover {
-    background-color: var(--fs-hover);
-    box-shadow: inset 0 0 10px var(--fs-shadow);
-}
-
-.fresh-start .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: var(--fs-text);
+    background: linear-gradient(to bottom, var(--freeflight-sky1), var(--freeflight-sky2));
+    transform: scale(1.03);
+    box-shadow: 0 3px 8px var(--freeflight-shadow);
+    border-color: var(--freeflight-primary);
 }
 
 .fresh-start td.current-day {
-    background-color: var(--fs-current-day);
-    border: 2px solid var(--fs-secondary);
-    color: var(--fs-primary) !important;
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    border: 2px solid var(--freeflight-sunset1);
     font-weight: 700;
+    color: white;
+    animation: radarPulse 2s infinite;
 }
 
-.fresh-start td.current-day .date-number {
-    color: var(--fs-primary) !important;
-    font-weight: 800;
-}
-
-.fresh-start td.current-day::before {
-    content: "✨";
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--fs-secondary);
-    z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
-}
-
-/* ==================== EVENT MARKERS ==================== */
+/* Event Marker */
 .fresh-start .event-marker {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
+    background-color: var(--freeflight-sunset1);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: var(--fs-primary);
-    margin: 0 1px;
-    box-shadow: 0 0 5px var(--fs-shadow);
-    transition: all var(--fs-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform var(--freeflight-transition);
+    box-shadow: 0 0 3px var(--freeflight-shadow);
 }
 
 .fresh-start .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--fs-secondary);
-    box-shadow: 0 0 15px var(--fs-shadow);
+    background-color: var(--freeflight-sunset2);
+    transform: scale(1.5);
+    box-shadow: 0 0 10px var(--freeflight-sunset1);
 }
 
-/* Special event types */
-.fresh-start .event-marker.holiday {
-    background-color: var(--fs-sun);
-}
-
-.fresh-start .event-marker.historic {
-    background-color: var(--fs-earth);
-}
-
-.fresh-start .event-marker.patriotic {
-    background-color: var(--fs-sky);
-}
-
-/* ==================== MODAL STYLES ==================== */
+/* Modal */
 .fresh-start .modal-content {
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.98);
-    border: 1px solid var(--fs-primary);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 242, 255, 0.98));
+    border: 2px solid var(--freeflight-primary);
+    border-radius: var(--freeflight-radius);
+    box-shadow: 0 10px 20px var(--freeflight-shadow);
     padding: 25px;
-    color: var(--fs-text);
-    box-shadow: 0 0 30px var(--fs-shadow);
-    border-radius: var(--fs-radius);
-    animation: fs-glow 0.5s ease;
-}
-
-.fresh-start .modal-content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg,
-            var(--fs-primary),
-            var(--fs-secondary),
-            var(--fs-blossom));
+    color: var(--freeflight-text);
+    animation: takeoff 0.4s ease-out;
 }
 
 .fresh-start .modal-content h2 {
-    color: var(--fs-primary);
-    font-family: 'Quicksand', sans-serif;
+    color: var(--freeflight-sky5);
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.8em;
     margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.fresh-start .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
-}
-
-.fresh-start .modal-content .event-time {
-    display: block;
-    font-weight: 600;
-    color: var(--fs-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
-}
-
-.fresh-start .modal-content .event-description {
-    background-color: rgba(76, 175, 80, 0.1);
-    padding: 15px;
-    border-left: 3px solid var(--fs-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--fs-radius) var(--fs-radius) 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .fresh-start .modal-content button {
-    background-color: var(--fs-primary);
+    background: linear-gradient(to bottom, var(--freeflight-sky2), var(--freeflight-sky3));
     color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 600;
+    border-radius: var(--freeflight-radius);
     cursor: pointer;
-    transition: all var(--fs-transition);
-    border-radius: var(--fs-radius);
-    font-family: 'Work Sans', sans-serif;
+    transition: all var(--freeflight-transition);
+    box-shadow: 0 3px 6px var(--freeflight-shadow);
+    font-weight: 600;
 }
 
 .fresh-start .modal-content button:hover {
-    background-color: var(--fs-secondary);
-    box-shadow: 0 4px 6px -1px var(--fs-shadow);
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px var(--freeflight-shadow);
 }
 
 .fresh-start .modal .close-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background-color: transparent;
-    color: var(--fs-primary);
-    border: 1px solid var(--fs-primary);
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-    transition: all var(--fs-transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: var(--freeflight-sky5);
+    color: white;
+    border: none;
     border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--freeflight-transition);
 }
 
 .fresh-start .modal .close-button:hover {
-    background-color: var(--fs-primary);
+    background-color: var(--freeflight-sunset1);
+    transform: rotate(90deg);
+}
+
+/* Event List */
+.fresh-start .event-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--freeflight-cloud3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fresh-start .event-list li:last-child {
+    border-bottom: none;
+}
+
+.fresh-start .event-list button {
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
     color: white;
-}
-
-/* ==================== BUTTONS & CONTROLS ==================== */
-.fresh-start .button,
-.fresh-start .transparent-button {
-    border: 1px solid var(--fs-primary);
-    color: var(--fs-primary);
-    background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--freeflight-radius);
     cursor: pointer;
-    transition: all var(--fs-transition);
-    position: relative;
-    overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--fs-radius);
-    letter-spacing: 0.05em;
+    transition: all var(--freeflight-transition);
+    box-shadow: 0 2px 4px var(--freeflight-shadow);
 }
 
-.fresh-start .button::before,
-.fresh-start .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
-    transition: 0.5s;
+.fresh-start .event-list button:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    transform: scale(1.05);
+}
+
+/* Buttons & Navigation */
+.fresh-start .button,
+.fresh-start .transparent-button,
+.fresh-start #backToTopBtn {
+    border-radius: var(--freeflight-radius);
+    padding: 12px 20px;
+    font-size: 1.1em;
+    transition: all var(--freeflight-transition);
+    cursor: pointer;
+    border: 2px solid var(--freeflight-primary);
+    color: white;
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    box-shadow: 3px 3px 10px var(--freeflight-shadow);
+    font-family: 'Orbitron', sans-serif;
 }
 
 .fresh-start .button:hover,
-.fresh-start .transparent-button:hover {
-    background-color: var(--fs-primary);
-    color: white;
-    box-shadow: 0 4px 6px -1px var(--fs-shadow);
-}
-
-.fresh-start .button:hover::before,
-.fresh-start .transparent-button:hover::before {
-    left: 100%;
-}
-
-.fresh-start .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 1.5rem 0;
-}
-
-/* ==================== THEME SWITCHER ==================== */
-.fresh-start #theme-switcher-container {
-    position: relative;
-    margin: 0 1rem;
-    min-width: 200px;
-    z-index: 1000;
-}
-
-.fresh-start #theme-switcher {
-    background-color: var(--fs-bg);
-    color: var(--fs-primary) !important;
-    border: 1px solid var(--fs-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    width: 100%;
-    border-radius: var(--fs-radius);
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
-    cursor: pointer;
-    transition: all var(--fs-transition);
-    box-shadow: 0 1px 3px 0 var(--fs-shadow);
-}
-
-.fresh-start #theme-switcher option {
-    background-color: var(--fs-bg) !important;
-    color: var(--fs-primary) !important;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 10px 12px !important;
-}
-
-.fresh-start #theme-switcher option:hover {
-    background-color: var(--fs-primary) !important;
-    color: white !important;
-}
-
-.fresh-start #theme-switcher:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
-}
-
-/* ==================== BACK TO TOP BUTTON ==================== */
-.fresh-start #backToTopBtn {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    z-index: 9999;
-    border: 1px solid var(--fs-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    color: var(--fs-primary);
-    background-color: var(--fs-bg);
-    cursor: pointer;
-    transition: all var(--fs-transition);
-    opacity: 0.9;
-    display: none;
-    border-radius: var(--fs-radius);
-    box-shadow: 0 4px 6px -1px var(--fs-shadow);
-}
-
+.fresh-start .transparent-button:hover,
 .fresh-start #backToTopBtn:hover {
-    background-color: var(--fs-primary);
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    transform: scale(1.05);
+}
+
+.fresh-start .calendar-navigation button {
+    background: linear-gradient(to bottom, var(--freeflight-sky3), var(--freeflight-sky4));
+    border: none;
+    font-size: 1.1em;
+    padding: 6px 12px;
+    cursor: pointer;
     color: white;
-    opacity: 1;
+    transition: all var(--freeflight-transition);
+    font-family: 'Orbitron', sans-serif;
 }
 
-/* ==================== FOOTER ==================== */
-.fresh-start footer {
+.fresh-start .calendar-navigation button:hover {
+    background: linear-gradient(to bottom, var(--freeflight-sky4), var(--freeflight-sky5));
+    transform: scale(1.1);
+}
+
+/* Calendar Header & Title */
+.fresh-start .calendar-header {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--fs-primary);
-    color: var(--fs-text);
-    font-size: 0.8rem;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--freeflight-sky5);
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 1px 1px 3px var(--freeflight-shadow);
 }
 
-.fresh-start footer::before {
-    content: "🌿 ";
-    color: var(--fs-primary);
+.fresh-start .calendar-title {
+    font-size: 1.3em;
+    font-style: italic;
 }
 
-/* ==================== MEDIA QUERIES ==================== */
-@media (max-width: 992px) {
-    .fresh-start .container {
-        padding: 1.2rem;
-    }
-
-    .fresh-start #calendar-title {
-        font-size: 2rem;
-    }
-
-    .fresh-start #current-date {
-        font-size: 1.5rem;
-    }
-
-    .fresh-start #today-weather {
-        font-size: 1.1rem;
-    }
-
-    .fresh-start th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
-    }
+/* Week Number & No Events */
+.fresh-start .week-number {
+    color: var(--freeflight-cloud4);
+    font-size: 0.8em;
+    padding: 2px 5px;
+    background-color: var(--freeflight-cloud2);
+    border-radius: 3px;
+    margin: 2px;
 }
 
-@media (max-width: 768px) {
-    .fresh-start .container {
-        padding: 1rem;
+.fresh-start .no-events {
+    font-style: italic;
+    color: var(--freeflight-cloud4);
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 575.98px) {
+    .fresh-start table {
+        font-size: 0.8em;
     }
 
-    .fresh-start #calendar-title {
-        font-size: 1.7rem;
-    }
-
-    .fresh-start .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Switch to short day names */
-    .fresh-start th .full-day {
-        display: none;
-    }
-
-    .fresh-start th .short-day {
-        display: inline;
-    }
-
-    .fresh-start th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
-    }
-
+    .fresh-start th,
     .fresh-start td {
-        padding: 0.6rem 0.15rem;
-        height: 70px;
-        font-size: 0.8rem;
+        padding: 6px;
     }
 
+    .fresh-start .event-marker {
+        width: 8px;
+        height: 8px;
+    }
+
+    .fresh-start .calendar-container {
+        padding: 10px;
+    }
+
+    .fresh-start .button,
+    .fresh-start .transparent-button,
     .fresh-start #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
-    }
-
-    .fresh-start #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
-    }
-
-    .fresh-start .modal-content {
-        padding: 15px;
-    }
-
-    .fresh-start .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .fresh-start .container {
-        padding: 0.8rem;
-    }
-
-    .fresh-start #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .fresh-start #current-date {
-        font-size: 1.1rem;
-    }
-
-    .fresh-start #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .fresh-start .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .fresh-start th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .fresh-start td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .fresh-start td.current-day::before {
-        font-size: 0.7rem;
-    }
-
-    .fresh-start #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .fresh-start th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
-    }
-
-    .fresh-start td {
-        height: 50px;
-        font-size: 0.7rem;
-    }
-
-    .fresh-start #theme-switcher {
-        min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .fresh-start #calendar-title {
-        font-size: 1.2rem;
+        padding: 10px 16px;
+        font-size: 1em;
     }
 }
