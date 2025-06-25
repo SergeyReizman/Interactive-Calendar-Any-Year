@@ -1,0 +1,805 @@
+/* ==========================================================================
+   Sea Breeze Theme - Oceanic Serenity
+   Version: 1.3
+   Updated: 2024-06-08
+   Features:
+   - Coastal color scheme (customizable)
+   - Calm, refreshing design elements
+   - Nautical visual language
+   - Excellent readability with soft contrasts
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+    /* Coastal Color Palette - Default to blue/teal/sand */
+    --sea-bg: #0A2E38;
+    --sea-text: #E0F7FA;
+    --sea-primary: #1A3E48;
+    --sea-secondary: #2A4E58;
+    --sea-date-number: #4DB6AC;
+
+    /* Ocean Texture Colors */
+    --sea-texture1: #244D58;
+    --sea-texture2: #2E5D68;
+    --sea-texture3: #386D78;
+    --sea-texture4: #427D88;
+    --sea-texture5: #4C8D98;
+
+    /* Coastal Accent Colors */
+    --sea-teal: #4DB6AC;
+    --sea-blue: #64B5F6;
+    --sea-sand: #F5F5DC;
+    --sea-accent1: #80DEEA;
+    --sea-accent2: #00838F;
+    --sea-accent3: #FFB74D;
+    --sea-accent4: rgba(77, 182, 172, 0.7);
+    --sea-accent5: rgba(100, 181, 246, 0.5);
+
+    /* Theme Variables */
+    --sea-shadow: rgba(77, 182, 172, 0.25);
+    --sea-radius: 8px;
+    --sea-transition: 0.2s ease-out;
+    --sea-hover: #26A69A;
+    --sea-glow: 0 0 15px rgba(77, 182, 172, 0.4);
+    --sea-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2364B5F6"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".4" fill="%2364B5F6"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".5" fill="%2364B5F6"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sea-wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes sea-fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes sea-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--sea-shadow);
+    }
+
+    50% {
+        box-shadow: var(--sea-glow);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.sea-breeze {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--sea-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--sea-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%2364B5F6" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%234DB6AC" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%2364B5F6" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%234DB6AC" opacity="0.1"/></svg>');
+}
+
+.sea-breeze .container {
+    background-color: var(--sea-primary);
+    padding: 2rem;
+    border: 1px solid var(--sea-blue);
+    box-shadow: var(--sea-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--sea-radius);
+}
+
+.sea-breeze .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--sea-teal) 0%,
+            var(--sea-sand) 50%,
+            var(--sea-blue) 100%);
+}
+
+.sea-breeze .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--sea-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.sea-breeze #calendar-title {
+    font-family: 'Patua One', cursive;
+    color: var(--sea-teal);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
+    text-shadow: 2px 2px 0 var(--sea-blue);
+}
+
+.sea-breeze #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.sea-breeze #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--sea-primary);
+    border: 1px solid var(--sea-blue);
+    border-radius: var(--sea-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sea-breeze #date-weather-container::before {
+    content: "OCEAN VIEW";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--sea-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--sea-sand);
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid var(--sea-blue);
+}
+
+.sea-breeze #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sea-blue), transparent);
+}
+
+.sea-breeze #current-date {
+    font-family: 'Patua One', cursive;
+    color: var(--sea-sand);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+}
+
+.sea-breeze #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--sea-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.sea-breeze #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.sea-breeze .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--sea-teal);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--sea-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+}
+
+.sea-breeze .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.sea-breeze .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--sea-blue);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.sea-breeze .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--sea-sand);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.sea-breeze .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--sea-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.sea-breeze table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.sea-breeze th {
+    background-color: var(--sea-blue);
+    color: var(--sea-sand) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--sea-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.sea-breeze th span.full-day-name {
+    display: inline;
+}
+
+.sea-breeze th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.sea-breeze td {
+    background-color: var(--sea-primary);
+    color: var(--sea-text);
+    padding: 1rem;
+    border: 1px solid var(--sea-blue);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--sea-transition);
+    position: relative;
+    border-radius: var(--sea-radius);
+    box-shadow: inset 0 0 0 1px rgba(100, 181, 246, 0.1);
+}
+
+.sea-breeze td .date-number {
+    color: var(--sea-teal) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.sea-breeze td:hover {
+    background-color: var(--sea-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: sea-wave 2s infinite;
+}
+
+/* Current date highlight */
+.sea-breeze td.current-day {
+    background-color: rgba(77, 182, 172, 0.15);
+    border: 2px solid var(--sea-sand);
+    animation: sea-pulse 3s infinite;
+}
+
+.sea-breeze td.current-day .date-number {
+    color: var(--sea-sand) !important;
+    font-weight: 700;
+}
+
+.sea-breeze td.current-day::before {
+    content: "🐚";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--sea-sand);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.sea-breeze .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--sea-sand);
+    margin: 0 1px;
+    transition: all var(--sea-transition);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.sea-breeze .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--sea-sand);
+    box-shadow: 0 0 8px rgba(245, 245, 220, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.sea-breeze .modal-content {
+    position: relative;
+    background-color: var(--sea-primary);
+    border: 1px solid var(--sea-blue);
+    padding: 25px;
+    color: var(--sea-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-radius: var(--sea-radius);
+    animation: sea-fade 0.3s ease-out;
+}
+
+.sea-breeze .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--sea-teal) 0%,
+            var(--sea-sand) 50%,
+            var(--sea-blue) 100%);
+}
+
+.sea-breeze .modal-content h2 {
+    color: var(--sea-teal);
+    font-family: 'Patua One', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Modal date display */
+.sea-breeze .modal-date {
+    font-family: 'Patua One', cursive;
+    color: var(--sea-sand);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--sea-blue);
+}
+
+/* Event list */
+.sea-breeze .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sea-breeze .event-item {
+    background-color: var(--sea-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--sea-sand);
+    border-radius: var(--sea-radius);
+    transition: all var(--sea-transition);
+}
+
+.sea-breeze .event-item:hover {
+    background-color: var(--sea-texture3);
+    transform: translateX(3px);
+}
+
+.sea-breeze .event-time {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--sea-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.sea-breeze .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--sea-sand);
+}
+
+.sea-breeze .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--sea-text);
+    opacity: 0.9;
+}
+
+.sea-breeze .modal-content button {
+    background-color: var(--sea-blue);
+    color: var(--sea-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--sea-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--sea-radius);
+}
+
+.sea-breeze .modal-content button:hover {
+    background-color: var(--sea-accent2);
+    box-shadow: 0 3px 12px rgba(0, 131, 143, 0.3);
+}
+
+/* Close Button */
+.sea-breeze .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--sea-sand);
+    color: var(--sea-primary);
+    border: 1px solid var(--sea-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--sea-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.sea-breeze .modal .close-button:hover {
+    background-color: var(--sea-primary);
+    color: var(--sea-sand);
+    border-color: var(--sea-sand);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.sea-breeze .button,
+.sea-breeze .transparent-button {
+    border: 2px solid var(--sea-blue);
+    color: var(--sea-primary);
+    background-color: var(--sea-blue);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--sea-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--sea-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.sea-breeze .transparent-button {
+    background-color: transparent;
+    color: var(--sea-text);
+    border-color: var(--sea-sand);
+}
+
+.sea-breeze .button:hover,
+.sea-breeze .transparent-button:hover {
+    background-color: var(--sea-accent2);
+    color: var(--sea-primary);
+    box-shadow: 0 3px 12px rgba(0, 131, 143, 0.25);
+    border-color: var(--sea-accent2);
+}
+
+.sea-breeze .transparent-button:hover {
+    color: var(--sea-text);
+    background-color: rgba(100, 181, 246, 0.2);
+}
+
+.sea-breeze .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.sea-breeze #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.sea-breeze #theme-switcher {
+    background-color: var(--sea-primary);
+    color: var(--sea-text) !important;
+    border: 2px solid var(--sea-blue);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F7FA'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--sea-transition);
+    border-radius: var(--sea-radius);
+}
+
+.sea-breeze #theme-switcher option {
+    background-color: var(--sea-primary) !important;
+    color: var(--sea-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.sea-breeze #theme-switcher:focus {
+    outline: none;
+    border-color: var(--sea-blue);
+    box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.sea-breeze #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: var(--sea-primary);
+    background-color: var(--sea-blue);
+    cursor: pointer;
+    transition: all var(--sea-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--sea-radius);
+    box-shadow: 0 3px 12px rgba(100, 181, 246, 0.4);
+}
+
+.sea-breeze #backToTopBtn:hover {
+    background-color: var(--sea-accent2);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.sea-breeze footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--sea-blue);
+    color: var(--sea-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .sea-breeze .container {
+        padding: 1.5rem;
+    }
+
+    .sea-breeze #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .sea-breeze #current-date {
+        font-size: 1.5rem;
+    }
+
+    .sea-breeze #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .sea-breeze .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .sea-breeze .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sea-breeze {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .sea-breeze .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .sea-breeze th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .sea-breeze th span.full-day-name {
+        display: none;
+    }
+
+    .sea-breeze th abbr {
+        display: inline;
+    }
+
+    .sea-breeze td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .sea-breeze td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .sea-breeze td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .sea-breeze #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .sea-breeze #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .sea-breeze .modal-content {
+        padding: 20px;
+    }
+
+    .sea-breeze .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .sea-breeze .container {
+        padding: 1rem;
+    }
+
+    .sea-breeze #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .sea-breeze #current-date {
+        font-size: 1.3rem;
+    }
+
+    .sea-breeze #today-weather {
+        font-size: 1rem;
+    }
+
+    .sea-breeze .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .sea-breeze th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .sea-breeze td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .sea-breeze td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .sea-breeze #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .sea-breeze .modal-content {
+        padding: 15px;
+    }
+
+    .sea-breeze .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .sea-breeze .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .sea-breeze th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .sea-breeze td {
+        height: 60px;
+    }
+
+    .sea-breeze td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .sea-breeze #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
