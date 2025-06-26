@@ -154,7 +154,7 @@ const applyTheme = (theme) => {
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden',
     'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 'urban-fashion', 
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
-    'white-shark', 'wild-flower',
+    'white-shark', 'white-sun-of-the-desert', 'wild-flower',
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'world-champion', 'work-of-art', 'zodiac-constellations'
 
