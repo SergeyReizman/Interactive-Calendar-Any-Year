@@ -57,7 +57,7 @@ const applyTheme = (theme) => {
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',
     'amazon-river', 'american-dream', 'andromeda-galaxy', 'a-new-chapter', 'antarctic-ice',
     'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 
-    'art-studio', 'a-thing-of-beauty', 'autumn-harvest', 'away-from-home',
+    'art-studio', 'a-simple-task', 'a-thing-of-beauty', 'autumn-harvest', 'away-from-home',
     'back-on-track', 'back-to-paradise', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 'big-dream',
     'big-fashion', 'black-fashion', 'black-bird', 'black-coffee', 'black-hacker',
