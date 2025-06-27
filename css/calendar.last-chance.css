@@ -1,0 +1,855 @@
+/* ==========================================================================
+   Last Chance Theme - Urgent Countdown
+   Version: 1.3
+   Updated: 2024-06-08
+   Features:
+   - High-contrast deadline-focused design
+   - Urgent visual language
+   - Countdown-style elements
+   - Excellent readability for quick scanning
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Urgent Color Palette */
+    --last-bg: #0A0A0A;
+    --last-text: #FFFFFF;
+    --last-primary: #1A1A1A;
+    --last-secondary: #2A2A2A;
+    --last-date-number: #FF3E3E;
+
+    /* Alert Texture Colors */
+    --last-texture1: #2A2A2A;
+    --last-texture2: #3A3A3A;
+    --last-texture3: #4A4A4A;
+    --last-texture4: #5A5A5A;
+    --last-texture5: #6A6A6A;
+
+    /* Warning Colors */
+    --last-alert: #FF3E3E;
+    --last-warning: #FF8C00;
+    --last-caution: #FFD700;
+    --last-accent1: #FF6B6B;
+    --last-accent2: #D10000;
+    --last-accent3: #FFA500;
+    --last-accent4: rgba(255, 62, 62, 0.5);
+    --last-accent5: rgba(255, 140, 0, 0.3);
+
+    /* Theme Variables */
+    --last-shadow: rgba(255, 62, 62, 0.3);
+    --last-radius: 4px;
+    --last-transition: 0.15s ease-out;
+    --last-hover: #FF1E1E;
+    --last-glow: 0 0 15px rgba(255, 62, 62, 0.5);
+    --last-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23FF3E3E"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".4" fill="%23FF3E3E"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".5" fill="%23FF3E3E"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes last-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes last-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes last-countdown {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.last-chance {
+    font-family: 'Rubik', sans-serif;
+    color: var(--last-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--last-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%23FF3E3E" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%23FF8C00" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%23FF3E3E" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%23FF8C00" opacity="0.1"/></svg>');
+}
+
+.last-chance .container {
+    background-color: var(--last-primary);
+    padding: 2rem;
+    border: 1px solid var(--last-alert);
+    box-shadow: var(--last-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--last-radius);
+}
+
+.last-chance .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--last-alert) 0%,
+            var(--last-warning) 50%,
+            var(--last-caution) 100%);
+}
+
+.last-chance .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--last-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.last-chance #calendar-title {
+    font-family: 'Rubik', sans-serif;
+    color: var(--last-alert);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: last-blink 2s infinite;
+}
+
+.last-chance #calendar-title::after {
+    content: "⚠️";
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.last-chance #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--last-primary);
+    border: 1px solid var(--last-alert);
+    border-radius: var(--last-radius);
+    position: relative;
+    box-shadow: 0 3px 10px var(--last-shadow);
+}
+
+.last-chance #date-weather-container::before {
+    content: "DEADLINE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--last-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--last-alert);
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid var(--last-alert);
+}
+
+.last-chance #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--last-alert), transparent);
+}
+
+.last-chance #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--last-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.last-chance #today-weather {
+    font-family: 'Rubik', sans-serif;
+    color: var(--last-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* Countdown progress bar */
+.last-chance .countdown-bar {
+    height: 3px;
+    background-color: var(--last-alert);
+    margin-top: 0.8rem;
+    animation: last-countdown 86400s linear forwards;
+    /* 24 hours */
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.last-chance #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.last-chance .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--last-alert);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--last-primary);
+    box-shadow: 0 3px 15px var(--last-shadow);
+}
+
+.last-chance .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.last-chance .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--last-warning);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.last-chance .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--last-text);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.last-chance .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--last-alert);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.last-chance table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.last-chance th {
+    background-color: var(--last-alert);
+    color: var(--last-text) !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--last-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.last-chance th span.full-day-name {
+    display: inline;
+}
+
+.last-chance th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.last-chance td {
+    background-color: var(--last-primary);
+    color: var(--last-text);
+    padding: 1rem;
+    border: 1px solid var(--last-texture3);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--last-transition);
+    position: relative;
+    border-radius: var(--last-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 62, 62, 0.1);
+}
+
+.last-chance td .date-number {
+    color: var(--last-alert) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.last-chance td:hover {
+    background-color: var(--last-secondary);
+    box-shadow: 0 2px 8px var(--last-shadow);
+    animation: last-pulse 1s infinite;
+}
+
+/* Current date highlight */
+.last-chance td.current-day {
+    background-color: rgba(255, 62, 62, 0.15);
+    border: 2px solid var(--last-alert);
+    animation: last-blink 2s infinite;
+}
+
+.last-chance td.current-day .date-number {
+    color: var(--last-text) !important;
+    font-weight: 700;
+}
+
+.last-chance td.current-day::before {
+    content: "⏱️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--last-alert);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.last-chance .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--last-alert);
+    margin: 0 1px;
+    transition: all var(--last-transition);
+    box-shadow: 0 0 2px var(--last-shadow);
+}
+
+.last-chance .event-marker.urgent {
+    background-color: var(--last-alert);
+}
+
+.last-chance .event-marker.warning {
+    background-color: var(--last-warning);
+}
+
+.last-chance .event-marker.caution {
+    background-color: var(--last-caution);
+}
+
+.last-chance .event-marker:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 8px var(--last-shadow);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.last-chance .modal-content {
+    position: relative;
+    background-color: var(--last-primary);
+    border: 1px solid var(--last-alert);
+    padding: 25px;
+    color: var(--last-text);
+    box-shadow: 0 8px 20px var(--last-shadow);
+    border-radius: var(--last-radius);
+    animation: last-pulse 0.5s ease-out;
+}
+
+.last-chance .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--last-alert) 0%,
+            var(--last-warning) 50%,
+            var(--last-caution) 100%);
+}
+
+.last-chance .modal-content h2 {
+    color: var(--last-alert);
+    font-family: 'Rubik', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* Modal date display */
+.last-chance .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--last-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--last-alert);
+}
+
+/* Event list */
+.last-chance .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.last-chance .event-item {
+    background-color: var(--last-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--last-alert);
+    border-radius: var(--last-radius);
+    transition: all var(--last-transition);
+    position: relative;
+}
+
+.last-chance .event-item.urgent {
+    border-left-color: var(--last-alert);
+}
+
+.last-chance .event-item.warning {
+    border-left-color: var(--last-warning);
+}
+
+.last-chance .event-item.caution {
+    border-left-color: var(--last-caution);
+}
+
+.last-chance .event-item:hover {
+    background-color: var(--last-texture3);
+    transform: translateX(5px);
+}
+
+.last-chance .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--last-text);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.last-chance .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--last-text);
+}
+
+.last-chance .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--last-text);
+    opacity: 0.9;
+}
+
+/* Priority label */
+.last-chance .priority-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--last-alert);
+    color: var(--last-text);
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: var(--last-radius);
+    text-transform: uppercase;
+}
+
+.last-chance .priority-label.warning {
+    background-color: var(--last-warning);
+}
+
+.last-chance .priority-label.caution {
+    background-color: var(--last-caution);
+}
+
+.last-chance .modal-content button {
+    background-color: var(--last-alert);
+    color: var(--last-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--last-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Rubik', sans-serif;
+    border-radius: var(--last-radius);
+    text-transform: uppercase;
+}
+
+.last-chance .modal-content button:hover {
+    background-color: var(--last-accent2);
+    box-shadow: 0 3px 12px var(--last-shadow);
+}
+
+/* Close Button */
+.last-chance .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--last-alert);
+    color: var(--last-text);
+    border: 1px solid var(--last-primary);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--last-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.last-chance .modal .close-button:hover {
+    background-color: var(--last-primary);
+    color: var(--last-alert);
+    border-color: var(--last-alert);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.last-chance .button,
+.last-chance .transparent-button {
+    border: 2px solid var(--last-alert);
+    color: var(--last-text);
+    background-color: var(--last-alert);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--last-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--last-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.last-chance .transparent-button {
+    background-color: transparent;
+    color: var(--last-text);
+    border-color: var(--last-text);
+}
+
+.last-chance .button:hover,
+.last-chance .transparent-button:hover {
+    background-color: var(--last-accent2);
+    color: var(--last-text);
+    box-shadow: 0 3px 12px var(--last-shadow);
+    border-color: var(--last-accent2);
+}
+
+.last-chance .transparent-button:hover {
+    color: var(--last-alert);
+    background-color: rgba(255, 62, 62, 0.2);
+    border-color: var(--last-alert);
+}
+
+.last-chance .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.last-chance #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.last-chance #theme-switcher {
+    background-color: var(--last-primary);
+    color: var(--last-text) !important;
+    border: 2px solid var(--last-alert);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--last-transition);
+    border-radius: var(--last-radius);
+}
+
+.last-chance #theme-switcher option {
+    background-color: var(--last-primary) !important;
+    color: var(--last-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.last-chance #theme-switcher:focus {
+    outline: none;
+    border-color: var(--last-alert);
+    box-shadow: 0 0 0 3px rgba(255, 62, 62, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.last-chance #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    color: var(--last-text);
+    background-color: var(--last-alert);
+    cursor: pointer;
+    transition: all var(--last-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--last-radius);
+    box-shadow: 0 3px 12px var(--last-shadow);
+    text-transform: uppercase;
+}
+
+.last-chance #backToTopBtn:hover {
+    background-color: var(--last-accent2);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.last-chance footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--last-alert);
+    color: var(--last-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .last-chance .container {
+        padding: 1.5rem;
+    }
+
+    .last-chance #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .last-chance #current-date {
+        font-size: 1.5rem;
+    }
+
+    .last-chance #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .last-chance .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .last-chance .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .last-chance {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .last-chance .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .last-chance th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .last-chance th span.full-day-name {
+        display: none;
+    }
+
+    .last-chance th abbr {
+        display: inline;
+    }
+
+    .last-chance td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .last-chance td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .last-chance td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .last-chance #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .last-chance #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .last-chance .modal-content {
+        padding: 20px;
+    }
+
+    .last-chance .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .last-chance .container {
+        padding: 1rem;
+    }
+
+    .last-chance #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .last-chance #current-date {
+        font-size: 1.3rem;
+    }
+
+    .last-chance #today-weather {
+        font-size: 1rem;
+    }
+
+    .last-chance .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .last-chance th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .last-chance td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .last-chance td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .last-chance #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .last-chance .modal-content {
+        padding: 15px;
+    }
+
+    .last-chance .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .last-chance .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .last-chance th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .last-chance td {
+        height: 60px;
+    }
+
+    .last-chance td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .last-chance #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
