@@ -1,0 +1,833 @@
+/* ==========================================================================
+   The Final Step Theme - Completion Countdown
+   Version: 1.4
+   Updated: 2024-06-10
+   Features:
+   - Achievement-focused color scheme
+   - Elegant countdown typography
+   - Clean visual hierarchy
+   - Goal completion focus
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto+Mono&family=Montserrat:wght@300;600&display=swap');
+
+:root {
+    /* Achievement Color Palette */
+    --final-bg: #121212;
+    --final-text: #E0E0E0;
+    --final-primary: #1E1E1E;
+    --final-secondary: #2A2A2A;
+    --final-date-number: #4CAF50;
+
+    /* Progress Status Colors */
+    --final-alert: #4CAF50;
+    --final-warning: #FFC107;
+    --final-caution: #F44336;
+    --final-accent1: #4CAF50;
+    --final-accent2: #388E3C;
+    --final-accent3: #8BC34A;
+    --final-accent4: rgba(76, 175, 80, 0.7);
+    --final-accent5: rgba(139, 195, 74, 0.4);
+
+    /* Refined Theme Variables */
+    --final-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    --final-radius: 4px;
+    --final-transition: 0.2s ease;
+    --final-hover: #66BB6A;
+    --final-glow: 0 0 20px rgba(76, 175, 80, 0.4);
+    --final-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%234CAF50"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%234CAF50"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".65" fill="%234CAF50"/></svg>');
+}
+
+/* ==================== ELEGANT ANIMATIONS ==================== */
+@keyframes final-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes final-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes final-countdown {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+@keyframes final-alert {
+    0% {
+        background-color: var(--final-alert);
+    }
+
+    50% {
+        background-color: var(--final-accent2);
+    }
+
+    100% {
+        background-color: var(--final-alert);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-final-step {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--final-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--final-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%234CAF50" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%234CAF50" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%234CAF50" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%234CAF50" opacity="0.1"/></svg>');
+    letter-spacing: 0.03em;
+}
+
+.the-final-step .container {
+    background-color: var(--final-primary);
+    padding: 1.5rem;
+    border: 1px solid var(--final-alert);
+    box-shadow: var(--final-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--final-radius);
+}
+
+.the-final-step .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--final-alert) 0%,
+            var(--final-warning) 50%,
+            var(--final-caution) 100%);
+    animation: final-alert 2s infinite;
+}
+
+.the-final-step .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--final-pattern);
+    background-size: 1200px 100%;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-final-step #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--final-alert);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 5px var(--final-alert);
+}
+
+.the-final-step #calendar-title::after {
+    content: "✓ FINAL MILESTONES ✓";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--final-alert);
+    white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-final-step #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--final-primary);
+    border: 1px solid var(--final-alert);
+    border-radius: var(--final-radius);
+    position: relative;
+    box-shadow: var(--final-shadow);
+}
+
+.the-final-step #date-weather-container::before {
+    content: "GOAL PROGRESS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--final-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--final-alert);
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid var(--final-alert);
+}
+
+.the-final-step #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--final-alert), transparent);
+}
+
+.the-final-step #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--final-text);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.the-final-step #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--final-text);
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* Countdown progress bar */
+.the-final-step .countdown-bar {
+    height: 4px;
+    background-color: var(--final-alert);
+    margin-top: 1rem;
+    animation: final-countdown 86400s linear forwards;
+    /* 24 hours */
+    box-shadow: 0 0 5px var(--final-alert);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-final-step #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.the-final-step .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 6px solid var(--final-alert);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--final-primary);
+    box-shadow: 0 0 15px var(--final-shadow);
+}
+
+.the-final-step .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.the-final-step .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 5px;
+    background: var(--final-warning);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.the-final-step .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: var(--final-text);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.the-final-step .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--final-alert);
+    margin-top: -1px;
+    box-shadow: 0 0 3px var(--final-alert);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.the-final-step table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.the-final-step th {
+    background-color: var(--final-alert);
+    color: white !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--final-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.the-final-step th span.full-day-name {
+    display: inline;
+}
+
+.the-final-step th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.the-final-step td {
+    background-color: var(--final-primary);
+    color: var(--final-text);
+    padding: 1rem;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--final-transition);
+    position: relative;
+    border-radius: var(--final-radius);
+}
+
+.the-final-step td .date-number {
+    color: var(--final-alert) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.the-final-step td:hover {
+    background-color: var(--final-secondary);
+    box-shadow: 0 0 10px var(--final-shadow);
+}
+
+/* Current date highlight */
+.the-final-step td.current-day {
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--final-alert);
+    box-shadow: 0 0 15px var(--final-shadow);
+}
+
+.the-final-step td.current-day .date-number {
+    color: var(--final-text) !important;
+    font-weight: 700;
+}
+
+.the-final-step td.current-day::before {
+    content: "✓";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    color: var(--final-alert);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-final-step .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--final-alert);
+    margin: 0 2px;
+    transition: all var(--final-transition);
+}
+
+.the-final-step .event-marker.urgent {
+    background-color: var(--final-alert);
+}
+
+.the-final-step .event-marker.warning {
+    background-color: var(--final-warning);
+}
+
+.the-final-step .event-marker.caution {
+    background-color: var(--final-caution);
+}
+
+.the-final-step .event-marker:hover {
+    transform: scale(1.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-final-step .modal-content {
+    position: relative;
+    background-color: var(--final-primary);
+    border: 1px solid var(--final-alert);
+    padding: 2rem;
+    color: var(--final-text);
+    box-shadow: 0 0 20px var(--final-shadow);
+    border-radius: var(--final-radius);
+}
+
+.the-final-step .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--final-alert) 0%,
+            var(--final-warning) 50%,
+            var(--final-caution) 100%);
+    animation: final-alert 2s infinite;
+}
+
+.the-final-step .modal-content h2 {
+    color: var(--final-alert);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.the-final-step .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--final-text);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--final-alert);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.the-final-step .event-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.the-final-step .event-item {
+    background-color: var(--final-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--final-alert);
+    border-radius: var(--final-radius);
+    transition: all var(--final-transition);
+}
+
+.the-final-step .event-item.urgent {
+    border-left-color: var(--final-alert);
+}
+
+.the-final-step .event-item.warning {
+    border-left-color: var(--final-warning);
+}
+
+.the-final-step .event-item.caution {
+    border-left-color: var(--final-caution);
+}
+
+.the-final-step .event-item:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+    transform: translateX(3px);
+}
+
+.the-final-step .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--final-text);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.the-final-step .event-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--final-text);
+    letter-spacing: 0.05em;
+}
+
+.the-final-step .event-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--final-text);
+    opacity: 0.9;
+}
+
+/* Priority label */
+.the-final-step .priority-label {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--final-alert);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: var(--final-radius);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.the-final-step .priority-label.warning {
+    background-color: var(--final-warning);
+    color: black;
+}
+
+.the-final-step .priority-label.caution {
+    background-color: var(--final-caution);
+    color: white;
+}
+
+.the-final-step .modal-content button {
+    background-color: var(--final-alert);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--final-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--final-radius);
+}
+
+.the-final-step .modal-content button:hover {
+    background-color: var(--final-accent2);
+}
+
+/* Close Button */
+.the-final-step .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--final-alert);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--final-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.the-final-step .modal .close-button:hover {
+    background-color: var(--final-accent2);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-final-step .button,
+.the-final-step .transparent-button {
+    border: 1px solid var(--final-alert);
+    color: white;
+    background-color: var(--final-alert);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--final-transition);
+    margin: 0.5rem;
+    border-radius: var(--final-radius);
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+}
+
+.the-final-step .transparent-button {
+    background-color: transparent;
+    color: var(--final-text);
+    border-color: var(--final-text);
+}
+
+.the-final-step .button:hover,
+.the-final-step .transparent-button:hover {
+    background-color: var(--final-accent2);
+    color: white;
+    border-color: var(--final-accent2);
+}
+
+.the-final-step .transparent-button:hover {
+    color: var(--final-alert);
+    border-color: var(--final-alert);
+}
+
+.the-final-step .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-final-step #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.the-final-step #theme-switcher {
+    background-color: var(--final-primary);
+    color: var(--final-text) !important;
+    border: 1px solid var(--final-alert);
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--final-transition);
+    border-radius: var(--final-radius);
+    letter-spacing: 0.05em;
+}
+
+.the-final-step #theme-switcher option {
+    background-color: var(--final-primary) !important;
+    color: var(--final-text) !important;
+    font-size: 1rem;
+    padding: 10px 12px !important;
+}
+
+.the-final-step #theme-switcher:focus {
+    outline: none;
+    border-color: var(--final-alert);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-final-step #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--final-alert);
+    cursor: pointer;
+    transition: all var(--final-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--final-radius);
+}
+
+.the-final-step #backToTopBtn:hover {
+    background-color: var(--final-accent2);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.the-final-step footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--final-alert);
+    color: var(--final-text);
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-final-step .container {
+        padding: 1.2rem;
+    }
+
+    .the-final-step #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .the-final-step #current-date {
+        font-size: 1.8rem;
+    }
+
+    .the-final-step #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .the-final-step .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .the-final-step .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-final-step {
+        font-size: 0.95rem;
+    }
+
+    .the-final-step .clock-face {
+        width: 180px;
+        height: 180px;
+    }
+
+    .the-final-step th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .the-final-step th span.full-day-name {
+        display: none;
+    }
+
+    .the-final-step th abbr {
+        display: inline;
+    }
+
+    .the-final-step td {
+        padding: 0.8rem;
+        height: 90px;
+    }
+
+    .the-final-step td .date-number {
+        font-size: 1.2rem;
+    }
+
+    .the-final-step #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .the-final-step #theme-switcher {
+        min-width: 180px;
+    }
+
+    .the-final-step .modal-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-final-step .container {
+        padding: 1rem;
+    }
+
+    .the-final-step #calendar-title {
+        font-size: 2rem;
+    }
+
+    .the-final-step #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-final-step #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .the-final-step .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .the-final-step th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .the-final-step td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .the-final-step #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+
+    .the-final-step .modal-date {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-final-step #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .the-final-step #calendar-title::after {
+        font-size: 0.7rem;
+        bottom: -20px;
+    }
+
+    .the-final-step th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .the-final-step td {
+        height: 70px;
+    }
+
+    .the-final-step #theme-switcher {
+        min-width: 140px;
+    }
+}
