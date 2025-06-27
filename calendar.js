@@ -146,6 +146,7 @@ const applyTheme = (theme) => {
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
     'the-best-of-fashion', 'the-black-spruce', 'the-dead-sea', 'the-element-of-surprise',
+    'the-final-step',
     'the-great-silk-road', 'the-great-wall', 'the-hidden-jem', 'the-highest-level', 
     'the-last-day-of-spring', 'the-last-mohican', 'the-last-paradise',
     'the-modern-developer','the-perfect-blend', 'the-silver-sword', 'the-spirit-of-innovation', 
