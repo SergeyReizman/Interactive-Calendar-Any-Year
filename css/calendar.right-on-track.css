@@ -1,0 +1,820 @@
+/* ==========================================================================
+   Right On Track Theme - Productivity Calendar
+   Version: 1.4
+   Updated: 2024-06-10
+   Features:
+   - Focus-enhancing color scheme
+   - Clean, professional typography
+   - Clear visual hierarchy
+   - Goal-oriented design
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root {
+    /* Productivity Color Palette */
+    --track-bg: #F8FAFC;
+    --track-text: #1E293B;
+    --track-primary: #FFFFFF;
+    --track-secondary: #F1F5F9;
+    --track-date-number: #3B82F6;
+
+    /* Status Colors */
+    --track-alert: #3B82F6;
+    --track-warning: #F59E0B;
+    --track-caution: #EF4444;
+    --track-accent1: #3B82F6;
+    --track-accent2: #2563EB;
+    --track-accent3: #60A5FA;
+    --track-accent4: rgba(59, 130, 246, 0.7);
+    --track-accent5: rgba(96, 165, 250, 0.4);
+
+    /* Productive Theme Variables */
+    --track-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --track-radius: 6px;
+    --track-transition: 0.15s ease-out;
+    --track-hover: #60A5FA;
+    --track-glow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    --track-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%233B82F6"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%233B82F6"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".65" fill="%233B82F6"/></svg>');
+}
+
+/* ==================== FOCUSED ANIMATIONS ==================== */
+@keyframes track-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+}
+
+@keyframes track-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.01);
+    }
+}
+
+@keyframes track-countdown {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+@keyframes track-alert {
+    0% {
+        background-color: var(--track-alert);
+    }
+
+    50% {
+        background-color: var(--track-accent2);
+    }
+
+    100% {
+        background-color: var(--track-alert);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.right-on-track {
+    font-family: 'Inter', sans-serif;
+    color: var(--track-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--track-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%233B82F6" opacity="0.1"/><rect width="1" height="1" x="30" y="70" fill="%233B82F6" opacity="0.1"/><rect width="1" height="1" x="70" y="30" fill="%233B82F6" opacity="0.1"/><rect width="1" height="1" x="90" y="90" fill="%233B82F6" opacity="0.1"/></svg>');
+}
+
+.right-on-track .container {
+    background-color: var(--track-primary);
+    padding: 1.5rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: var(--track-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--track-radius);
+}
+
+.right-on-track .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--track-alert) 0%,
+            var(--track-warning) 50%,
+            var(--track-caution) 100%);
+    animation: track-alert 3s infinite;
+}
+
+.right-on-track .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--track-pattern);
+    background-size: 1200px 100%;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.right-on-track #calendar-title {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--track-alert);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.right-on-track #calendar-title::after {
+    content: "✓ RIGHT ON TRACK ✓";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--track-alert);
+    white-space: nowrap;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.right-on-track #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--track-primary);
+    border: 1px solid #E2E8F0;
+    border-radius: var(--track-radius);
+    position: relative;
+    box-shadow: var(--track-shadow);
+}
+
+.right-on-track #date-weather-container::before {
+    content: "PRODUCTIVITY TRACKER";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--track-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--track-alert);
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    border: 1px solid #E2E8F0;
+}
+
+.right-on-track #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--track-alert), transparent);
+}
+
+.right-on-track #current-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--track-text);
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.right-on-track #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--track-text);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+/* Countdown progress bar */
+.right-on-track .countdown-bar {
+    height: 4px;
+    background-color: var(--track-alert);
+    margin-top: 1rem;
+    animation: track-countdown 86400s linear forwards;
+    /* 24 hours */
+    border-radius: 2px;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.right-on-track #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.right-on-track .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 6px solid var(--track-alert);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--track-primary);
+    box-shadow: var(--track-shadow);
+}
+
+.right-on-track .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.right-on-track .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 5px;
+    background: var(--track-warning);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.right-on-track .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: var(--track-text);
+    margin-top: -1.5px;
+    border-radius: 3px;
+}
+
+.right-on-track .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--track-alert);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.right-on-track table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.right-on-track th {
+    background-color: var(--track-alert);
+    color: white !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    padding: 1rem 0.5rem;
+    border-radius: var(--track-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+}
+
+.right-on-track th span.full-day-name {
+    display: inline;
+}
+
+.right-on-track th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.right-on-track td {
+    background-color: var(--track-primary);
+    color: var(--track-text);
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--track-transition);
+    position: relative;
+    border-radius: var(--track-radius);
+}
+
+.right-on-track td .date-number {
+    color: var(--track-alert) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.right-on-track td:hover {
+    background-color: var(--track-secondary);
+    box-shadow: var(--track-shadow);
+}
+
+/* Current date highlight */
+.right-on-track td.current-day {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--track-alert);
+    box-shadow: 0 0 0 1px var(--track-alert);
+}
+
+.right-on-track td.current-day .date-number {
+    color: var(--track-text) !important;
+    font-weight: 700;
+}
+
+.right-on-track td.current-day::before {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    color: var(--track-alert);
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.right-on-track .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--track-alert);
+    margin: 0 2px;
+    transition: all var(--track-transition);
+}
+
+.right-on-track .event-marker.urgent {
+    background-color: var(--track-alert);
+}
+
+.right-on-track .event-marker.warning {
+    background-color: var(--track-warning);
+}
+
+.right-on-track .event-marker.caution {
+    background-color: var(--track-caution);
+}
+
+.right-on-track .event-marker:hover {
+    transform: scale(1.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.right-on-track .modal-content {
+    position: relative;
+    background-color: var(--track-primary);
+    border: 1px solid #E2E8F0;
+    padding: 2rem;
+    color: var(--track-text);
+    box-shadow: var(--track-shadow);
+    border-radius: var(--track-radius);
+}
+
+.right-on-track .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--track-alert) 0%,
+            var(--track-warning) 50%,
+            var(--track-caution) 100%);
+    animation: track-alert 3s infinite;
+}
+
+.right-on-track .modal-content h2 {
+    color: var(--track-alert);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+/* Modal date display */
+.right-on-track .modal-date {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--track-text);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+/* Event list */
+.right-on-track .event-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.right-on-track .event-item {
+    background-color: var(--track-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--track-alert);
+    border-radius: var(--track-radius);
+    transition: all var(--track-transition);
+}
+
+.right-on-track .event-item.urgent {
+    border-left-color: var(--track-alert);
+}
+
+.right-on-track .event-item.warning {
+    border-left-color: var(--track-warning);
+}
+
+.right-on-track .event-item.caution {
+    border-left-color: var(--track-caution);
+}
+
+.right-on-track .event-item:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    transform: translateX(3px);
+}
+
+.right-on-track .event-time {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--track-text);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.right-on-track .event-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--track-text);
+}
+
+.right-on-track .event-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--track-text);
+    opacity: 0.9;
+}
+
+/* Priority label */
+.right-on-track .priority-label {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--track-alert);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: var(--track-radius);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.right-on-track .priority-label.warning {
+    background-color: var(--track-warning);
+    color: white;
+}
+
+.right-on-track .priority-label.caution {
+    background-color: var(--track-caution);
+    color: white;
+}
+
+.right-on-track .modal-content button {
+    background-color: var(--track-alert);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--track-transition);
+    font-family: 'Space Grotesk', sans-serif;
+    border-radius: var(--track-radius);
+}
+
+.right-on-track .modal-content button:hover {
+    background-color: var(--track-accent2);
+    box-shadow: var(--track-glow);
+}
+
+/* Close Button */
+.right-on-track .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--track-alert);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--track-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.right-on-track .modal .close-button:hover {
+    background-color: var(--track-accent2);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.right-on-track .button,
+.right-on-track .transparent-button {
+    border: 1px solid var(--track-alert);
+    color: white;
+    background-color: var(--track-alert);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--track-transition);
+    margin: 0.5rem;
+    border-radius: var(--track-radius);
+    font-size: 1rem;
+}
+
+.right-on-track .transparent-button {
+    background-color: transparent;
+    color: var(--track-text);
+    border-color: var(--track-text);
+}
+
+.right-on-track .button:hover,
+.right-on-track .transparent-button:hover {
+    background-color: var(--track-accent2);
+    color: white;
+    border-color: var(--track-accent2);
+    box-shadow: var(--track-glow);
+}
+
+.right-on-track .transparent-button:hover {
+    color: var(--track-alert);
+    border-color: var(--track-alert);
+}
+
+.right-on-track .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.right-on-track #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.right-on-track #theme-switcher {
+    background-color: var(--track-primary);
+    color: var(--track-text) !important;
+    border: 1px solid #E2E8F0;
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--track-transition);
+    border-radius: var(--track-radius);
+}
+
+.right-on-track #theme-switcher option {
+    background-color: var(--track-primary) !important;
+    color: var(--track-text) !important;
+    font-size: 1rem;
+    padding: 10px 12px !important;
+}
+
+.right-on-track #theme-switcher:focus {
+    outline: none;
+    border-color: var(--track-alert);
+    box-shadow: var(--track-glow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.right-on-track #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--track-alert);
+    cursor: pointer;
+    transition: all var(--track-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--track-radius);
+}
+
+.right-on-track #backToTopBtn:hover {
+    background-color: var(--track-accent2);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.right-on-track footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #E2E8F0;
+    color: var(--track-text);
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .right-on-track .container {
+        padding: 1.2rem;
+    }
+
+    .right-on-track #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .right-on-track #current-date {
+        font-size: 1.8rem;
+    }
+
+    .right-on-track #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .right-on-track .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .right-on-track .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .right-on-track {
+        font-size: 0.95rem;
+    }
+
+    .right-on-track .clock-face {
+        width: 180px;
+        height: 180px;
+    }
+
+    .right-on-track th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .right-on-track th span.full-day-name {
+        display: none;
+    }
+
+    .right-on-track th abbr {
+        display: inline;
+    }
+
+    .right-on-track td {
+        padding: 0.8rem;
+        height: 90px;
+    }
+
+    .right-on-track td .date-number {
+        font-size: 1.2rem;
+    }
+
+    .right-on-track #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .right-on-track #theme-switcher {
+        min-width: 180px;
+    }
+
+    .right-on-track .modal-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .right-on-track .container {
+        padding: 1rem;
+    }
+
+    .right-on-track #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .right-on-track #current-date {
+        font-size: 1.5rem;
+    }
+
+    .right-on-track #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .right-on-track .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .right-on-track th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .right-on-track td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .right-on-track #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+
+    .right-on-track .modal-date {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .right-on-track #calendar-title {
+        font-size: 2rem;
+    }
+
+    .right-on-track #calendar-title::after {
+        font-size: 0.8rem;
+        bottom: -20px;
+    }
+
+    .right-on-track th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .right-on-track td {
+        height: 70px;
+    }
+
+    .right-on-track #theme-switcher {
+        min-width: 140px;
+    }
+}
