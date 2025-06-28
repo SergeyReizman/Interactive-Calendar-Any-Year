@@ -111,7 +111,7 @@ const applyTheme = (theme) => {
     'lady-blue', 'last-chance',
     'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
     'life-quality', 'like-a-bird',
-    'limited-edition', 'lions-mane', 'logical-intelligence',
+    'limited-edition', 'lions-mane', 'logical-intelligence', 'love-and-passion',
     'love-station', 'lucid-dream', 'lunar-eclipse', 'luxury-design', 'luxury-life', 'macaroni-penguin',
     'magellanic-penguin', 'magic-colors', 'magic-fly',
     'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
