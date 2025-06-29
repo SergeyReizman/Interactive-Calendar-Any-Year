@@ -1,0 +1,710 @@
+/* ==========================================================================
+   Your Wildest Dreams Theme - Ethereal Timekeeping Interface
+   Version: 1.0
+   Updated: 2024-05-31
+   Changes:
+   - Pastel dreamscape color palette
+   - Cloud and star decorative elements
+   - Soft, magical aesthetic with glowing effects
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@300;500;700&display=swap');
+
+:root {
+    /* Dreamscape Color Palette */
+    --dream-bg: #FDF7FF;
+    --dream-text: #3A2E4A;
+    --dream-primary: #FFFFFF;
+    --dream-secondary: #F9F3FF;
+
+    /* Cloud Texture Colors */
+    --dream-texture1: #F7F0FA;
+    --dream-texture2: #F2E9F7;
+    --dream-texture3: #EDE2F4;
+    --dream-texture4: #E8DBF1;
+    --dream-texture5: #E3D4EE;
+
+    /* Magical Accent Colors */
+    --dream-accent1: #B399D4;
+    /* Lavender */
+    --dream-accent2: #C9A8E9;
+    /* Light Purple */
+    --dream-accent3: #DFC2F4;
+    /* Pale Lilac */
+    --dream-accent4: rgba(179, 153, 212, 0.6);
+    /* Transparent Lavender */
+    --dream-accent5: rgba(201, 168, 233, 0.4);
+    /* Sheer Purple */
+
+    /* Theme Variables */
+    --dream-shadow: rgba(179, 153, 212, 0.15);
+    --dream-radius: 12px;
+    --dream-transition: 0.4s ease;
+    --dream-hover: #A288C9;
+    --dream-glow: 0 0 15px rgba(201, 168, 233, 0.2);
+    --dream-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23C9A8E9"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%23C9A8E9"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%23C9A8E9"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dream-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes float-up {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes gentle-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--dream-shadow);
+    }
+
+    50% {
+        box-shadow: var(--dream-glow);
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.your-wildest-dreams {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--dream-text);
+    line-height: 1.8;
+    font-size: 1.1rem;
+    background-color: var(--dream-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(201, 168, 233, 0.1) 0%, transparent 25%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="15" cy="25" r="1.2" fill="%23C9A8E9" opacity="0.6"/><circle cx="85" cy="35" r="0.8" fill="%23C9A8E9" opacity="0.6"/><circle cx="45" cy="75" r="1" fill="%23C9A8E9" opacity="0.6"/><circle cx="70" cy="15" r="0.6" fill="%23C9A8E9" opacity="0.6"/><circle cx="25" cy="60" r="0.9" fill="%23C9A8E9" opacity="0.6"/></svg>');
+}
+
+.your-wildest-dreams .container {
+    background-color: var(--dream-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--dream-accent4);
+    box-shadow: var(--dream-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--dream-radius);
+}
+
+.your-wildest-dreams .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--dream-accent1) 0%,
+            var(--dream-accent2) 50%,
+            var(--dream-accent1) 100%);
+    border-radius: var(--dream-radius) var(--dream-radius) 0 0;
+}
+
+.your-wildest-dreams .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background-image: var(--dream-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.your-wildest-dreams #calendar-title {
+    font-family: 'Parisienne', cursive;
+    color: var(--dream-accent1);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.your-wildest-dreams #calendar-title::after {
+    content: "🌙";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.your-wildest-dreams #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background-color: var(--dream-primary);
+    border: 1px solid var(--dream-accent4);
+    border-radius: var(--dream-radius);
+    position: relative;
+    box-shadow: 0 5px 20px rgba(179, 153, 212, 0.1);
+}
+
+.your-wildest-dreams #date-weather-container::before {
+    content: "DREAM DIARY";
+    position: absolute;
+    top: -15px;
+    right: 25px;
+    background-color: var(--dream-primary);
+    padding: 0 15px;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--dream-accent1);
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.your-wildest-dreams #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dream-accent2), transparent);
+}
+
+.your-wildest-dreams #current-date {
+    font-family: 'Parisienne', cursive;
+    color: var(--dream-accent1);
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.your-wildest-dreams #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--dream-accent2);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.your-wildest-dreams #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.your-wildest-dreams .clock-face {
+    width: 220px;
+    height: 220px;
+    border: 10px solid var(--dream-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dream-primary);
+    box-shadow: 0 8px 25px rgba(179, 153, 212, 0.2);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23C9A8E9" stroke-width="1" opacity="0.3"/></svg>');
+}
+
+.your-wildest-dreams .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.your-wildest-dreams .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 7px;
+    background: var(--dream-accent1);
+    margin-top: -3.5px;
+    border-radius: 4px;
+}
+
+.your-wildest-dreams .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 5px;
+    background: var(--dream-accent2);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.your-wildest-dreams .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--dream-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.your-wildest-dreams table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.your-wildest-dreams th {
+    background-color: var(--dream-accent1);
+    color: white !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    padding: 1.2rem 0.6rem;
+    border-radius: var(--dream-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+    box-shadow: 0 3px 10px rgba(179, 153, 212, 0.2);
+}
+
+.your-wildest-dreams th span.full-day-name {
+    display: inline;
+}
+
+.your-wildest-dreams th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.your-wildest-dreams td {
+    background-color: var(--dream-primary);
+    color: var(--dream-text);
+    padding: 1.5rem;
+    border: 1px solid var(--dream-accent4);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--dream-transition);
+    position: relative;
+    border-radius: var(--dream-radius);
+    box-shadow: inset 0 0 0 1px rgba(201, 168, 233, 0.3);
+}
+
+.your-wildest-dreams td:hover {
+    background-color: var(--dream-secondary);
+    box-shadow: 0 5px 20px rgba(179, 153, 212, 0.15);
+}
+
+/* Current date highlight */
+.your-wildest-dreams td.current-day {
+    background-color: rgba(201, 168, 233, 0.15);
+    border: 2px solid var(--dream-accent2);
+    color: var(--dream-text) !important;
+    font-weight: 500;
+    animation: gentle-pulse 4s infinite;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.your-wildest-dreams td.current-day::before {
+    content: "🌟";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.5rem;
+    animation: sparkle 2s infinite;
+}
+
+.your-wildest-dreams td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--dream-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.your-wildest-dreams .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--dream-accent2);
+    margin: 0 3px;
+    transition: all var(--dream-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.your-wildest-dreams .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--dream-accent2);
+    box-shadow: 0 0 10px rgba(201, 168, 233, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.your-wildest-dreams .modal-content {
+    position: relative;
+    background-color: var(--dream-primary);
+    border: 1px solid var(--dream-accent4);
+    padding: 35px;
+    color: var(--dream-text);
+    box-shadow: 0 15px 35px rgba(179, 153, 212, 0.2);
+    border-radius: var(--dream-radius);
+    animation: float-up 0.4s ease-out;
+}
+
+.your-wildest-dreams .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--dream-accent1) 0%,
+            var(--dream-accent2) 50%,
+            var(--dream-accent1) 100%);
+    border-radius: var(--dream-radius) var(--dream-radius) 0 0;
+}
+
+.your-wildest-dreams .modal-content h2 {
+    color: var(--dream-accent1);
+    font-family: 'Parisienne', cursive;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+.your-wildest-dreams .modal-content button {
+    background-color: var(--dream-accent1);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    letter-spacing: 1px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--dream-radius);
+    box-shadow: 0 3px 10px rgba(179, 153, 212, 0.3);
+}
+
+.your-wildest-dreams .modal-content button:hover {
+    background-color: var(--dream-hover);
+    box-shadow: 0 5px 20px rgba(179, 153, 212, 0.4);
+}
+
+/* Close Button */
+.your-wildest-dreams .modal .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    color: var(--dream-accent1);
+    border: 2px solid var(--dream-accent1);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.your-wildest-dreams .modal .close-button:hover {
+    background-color: var(--dream-accent1);
+    color: white;
+    border-color: var(--dream-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.your-wildest-dreams .button,
+.your-wildest-dreams .transparent-button {
+    border: 2px solid var(--dream-accent1);
+    color: var(--dream-accent1);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.6rem;
+    border-radius: var(--dream-radius);
+    letter-spacing: 0.03em;
+    box-shadow: 0 3px 10px rgba(179, 153, 212, 0.1);
+}
+
+.your-wildest-dreams .button::before,
+.your-wildest-dreams .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(179, 153, 212, 0.15), transparent);
+    transition: 0.6s;
+}
+
+.your-wildest-dreams .button:hover,
+.your-wildest-dreams .transparent-button:hover {
+    background-color: var(--dream-accent1);
+    color: white;
+    box-shadow: 0 5px 20px rgba(179, 153, 212, 0.3);
+}
+
+.your-wildest-dreams .button:hover::before,
+.your-wildest-dreams .transparent-button:hover::before {
+    left: 100%;
+}
+
+.your-wildest-dreams .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.your-wildest-dreams #theme-switcher-container {
+    position: relative;
+    margin: 0 1.2rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.your-wildest-dreams #theme-switcher {
+    background-color: var(--dream-primary);
+    color: var(--dream-text) !important;
+    border: 2px solid var(--dream-accent1);
+    padding: 1rem 3rem 1rem 1.3rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B399D4'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    border-radius: var(--dream-radius);
+    box-shadow: 0 3px 10px rgba(179, 153, 212, 0.1);
+}
+
+.your-wildest-dreams #theme-switcher option {
+    background-color: var(--dream-primary) !important;
+    color: var(--dream-text) !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 14px 18px !important;
+}
+
+.your-wildest-dreams #theme-switcher option:hover {
+    background-color: var(--dream-accent1) !important;
+    color: white !important;
+}
+
+.your-wildest-dreams #theme-switcher:focus {
+    outline: none;
+    border-color: var(--dream-accent1);
+    box-shadow: 0 0 0 3px rgba(179, 153, 212, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.your-wildest-dreams #backToTopBtn {
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2.1rem;
+    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: var(--dream-accent1);
+    cursor: pointer;
+    transition: all var(--dream-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--dream-radius);
+    box-shadow: 0 5px 15px rgba(179, 153, 212, 0.4);
+    letter-spacing: 0.03em;
+}
+
+.your-wildest-dreams #backToTopBtn:hover {
+    background-color: var(--dream-hover);
+    opacity: 1;
+    box-shadow: 0 8px 25px rgba(179, 153, 212, 0.6);
+}
+
+/* ==================== FOOTER ==================== */
+.your-wildest-dreams footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--dream-accent4);
+    color: var(--dream-text);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .your-wildest-dreams .container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .your-wildest-dreams #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .your-wildest-dreams #current-date {
+        font-size: 2rem;
+    }
+
+    .your-wildest-dreams #today-weather {
+        font-size: 1.3rem;
+    }
+
+    .your-wildest-dreams .clock-face {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .your-wildest-dreams {
+        font-size: 1rem;
+    }
+
+    .your-wildest-dreams .container {
+        padding: 1.5rem;
+    }
+
+    .your-wildest-dreams #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .your-wildest-dreams th {
+        font-size: 0.95rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .your-wildest-dreams th span.full-day-name {
+        display: none;
+    }
+
+    .your-wildest-dreams th abbr {
+        display: inline;
+    }
+
+    .your-wildest-dreams td {
+        padding: 1.2rem;
+        height: 100px;
+    }
+
+    .your-wildest-dreams #backToTopBtn {
+        right: 25px;
+        bottom: 25px;
+        padding: 1rem 1.8rem;
+    }
+
+    .your-wildest-dreams #theme-switcher {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .your-wildest-dreams .container {
+        padding: 1.2rem;
+    }
+
+    .your-wildest-dreams #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .your-wildest-dreams .clock-face {
+        width: 180px;
+        height: 180px;
+    }
+
+    .your-wildest-dreams td {
+        padding: 1rem;
+        height: 90px;
+    }
+
+    .your-wildest-dreams #theme-switcher {
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 400px) {
+    .your-wildest-dreams th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .your-wildest-dreams td {
+        height: 80px;
+        font-size: 0.9rem;
+    }
+
+    .your-wildest-dreams #theme-switcher {
+        min-width: 160px;
+    }
+}
