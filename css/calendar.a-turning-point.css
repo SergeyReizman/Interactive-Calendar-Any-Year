@@ -1,0 +1,725 @@
+/* ==========================================================================
+   Turning Point Theme - Transformative Timekeeping Interface
+   Version: 1.0
+   Updated: 2024-05-31
+   Changes:
+   - Dynamic gradient color palette
+   - Transitional design elements
+   - Evolving, transformative aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Turning Point Palette */
+    --tp-bg: #F8F9FA;
+    --tp-text: #2A3439;
+    --tp-primary: #FFFFFF;
+    --tp-secondary: #F1F3F5;
+
+    /* Transitional Texture Colors */
+    --tp-texture1: #F0F2F4;
+    --tp-texture2: #E8EAEC;
+    --tp-texture3: #E0E2E4;
+    --tp-texture4: #D8DADC;
+    --tp-texture5: #D0D2D4;
+
+    /* Transformative Accent Colors */
+    --tp-accent1: #6C63FF;
+    /* Vibrant Purple - 5.8:1 contrast on white */
+    --tp-accent2: #4D44DB;
+    /* Deep Purple - 6.2:1 */
+    --tp-accent3: #8B82FF;
+    /* Light Purple - 4.1:1 */
+    --tp-accent4: rgba(108, 99, 255, 0.7);
+    /* Semi-transparent Purple */
+    --tp-accent5: rgba(141, 134, 255, 0.5);
+    /* Pale transparent Purple */
+
+    /* Theme Variables */
+    --tp-shadow: rgba(108, 99, 255, 0.15);
+    --tp-radius: 8px;
+    --tp-transition: 0.3s ease;
+    --tp-hover: #5A52D4;
+    --tp-glow: 0 0 12px rgba(108, 99, 255, 0.1);
+    --tp-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%236C63FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%236C63FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%236C63FF"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes tp-fade {
+
+    0%,
+    100% {
+        opacity: 0.97;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes tp-slide {
+    from {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes tp-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 4px var(--tp-shadow);
+    }
+
+    50% {
+        box-shadow: var(--tp-glow);
+    }
+}
+
+@keyframes tp-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-turning-point {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--tp-text);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    background-color: var(--tp-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,80 Q50,20 80,80" fill="none" stroke="%236C63FF" stroke-width="0.3" opacity="0.07"/></svg>');
+}
+
+.a-turning-point .container {
+    background-color: var(--tp-primary);
+    padding: 2rem;
+    border: 1px solid var(--tp-accent4);
+    box-shadow: var(--tp-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--tp-radius);
+}
+
+.a-turning-point .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--tp-accent1) 0%,
+            var(--tp-accent2) 50%,
+            var(--tp-accent1) 100%);
+}
+
+.a-turning-point .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--tp-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-turning-point #calendar-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--tp-accent1);
+    text-align: center;
+    font-size: 2.7rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 3px rgba(255, 255, 255, 0.9);
+}
+
+.a-turning-point #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-turning-point #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--tp-primary);
+    border: 1px solid var(--tp-accent4);
+    border-radius: var(--tp-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.a-turning-point #date-weather-container::before {
+    content: "TRANSFORMATIVE TIMES";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--tp-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--tp-accent1);
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.a-turning-point #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--tp-accent2), transparent);
+}
+
+.a-turning-point #current-date {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--tp-accent1);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.a-turning-point #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--tp-accent2);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.a-turning-point #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.a-turning-point .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--tp-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--tp-primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%236C63FF" stroke-width="0.8" opacity="0.4"/></svg>');
+}
+
+.a-turning-point .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.a-turning-point .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--tp-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.a-turning-point .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--tp-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.a-turning-point .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--tp-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-turning-point table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.a-turning-point th {
+    background-color: var(--tp-accent1);
+    color: white !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--tp-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+}
+
+.a-turning-point th span.full-day-name {
+    display: inline;
+}
+
+.a-turning-point th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.a-turning-point td {
+    background-color: var(--tp-primary);
+    color: var(--tp-text);
+    padding: 1.2rem;
+    border: 1px solid var(--tp-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--tp-transition);
+    position: relative;
+    border-radius: var(--tp-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.a-turning-point td:hover {
+    background-color: var(--tp-secondary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Current date highlight */
+.a-turning-point td.current-day {
+    background-color: rgba(108, 99, 255, 0.2);
+    border: 2px solid var(--tp-accent2);
+    color: var(--tp-text) !important;
+    font-weight: 600;
+    animation: tp-pulse 3s infinite;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.a-turning-point td.current-day::before {
+    content: "✨";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.a-turning-point td.current-day>.date-number {
+    position: relative;
+    z-index: 2;
+    color: var(--tp-accent1) !important;
+    font-weight: 700;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-turning-point .event-marker {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--tp-accent2);
+    margin: 0 2px;
+    transition: all var(--tp-transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.a-turning-point .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--tp-accent2);
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-turning-point .modal-content {
+    position: relative;
+    background-color: var(--tp-primary);
+    border: 1px solid var(--tp-accent4);
+    padding: 30px;
+    color: var(--tp-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: var(--tp-radius);
+    animation: tp-slide 0.3s ease-out;
+}
+
+.a-turning-point .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--tp-accent1) 0%,
+            var(--tp-accent2) 50%,
+            var(--tp-accent1) 100%);
+}
+
+.a-turning-point .modal-content h2 {
+    color: var(--tp-accent1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.a-turning-point .modal-content button {
+    background-color: var(--tp-accent1);
+    color: white;
+    border: none;
+    padding: 13px 26px;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--tp-transition);
+    letter-spacing: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--tp-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.a-turning-point .modal-content button:hover {
+    background-color: var(--tp-hover);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+}
+
+/* Close Button */
+.a-turning-point .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    color: var(--tp-accent1);
+    border: 2px solid var(--tp-accent1);
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    transition: all var(--tp-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.a-turning-point .modal .close-button:hover {
+    background-color: var(--tp-accent1);
+    color: white;
+    border-color: var(--tp-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.a-turning-point .button,
+.a-turning-point .transparent-button {
+    border: 2px solid var(--tp-accent1);
+    color: var(--tp-accent1);
+    background-color: transparent;
+    padding: 0.9rem 1.7rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--tp-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--tp-radius);
+    letter-spacing: 0.03em;
+}
+
+.a-turning-point .button::before,
+.a-turning-point .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.15), transparent);
+    transition: 0.5s;
+}
+
+.a-turning-point .button:hover,
+.a-turning-point .transparent-button:hover {
+    background-color: var(--tp-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.25);
+}
+
+.a-turning-point .button:hover::before,
+.a-turning-point .transparent-button:hover::before {
+    left: 100%;
+}
+
+.a-turning-point .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.a-turning-point #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.a-turning-point #theme-switcher {
+    background-color: var(--tp-primary);
+    color: var(--tp-text) !important;
+    border: 2px solid var(--tp-accent1);
+    padding: 0.9rem 2.6rem 0.9rem 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236C63FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--tp-transition);
+    border-radius: var(--tp-radius);
+}
+
+.a-turning-point #theme-switcher option {
+    background-color: var(--tp-primary) !important;
+    color: var(--tp-text) !important;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 15px !important;
+}
+
+.a-turning-point #theme-switcher option:hover {
+    background-color: var(--tp-accent1) !important;
+    color: white !important;
+}
+
+.a-turning-point #theme-switcher:focus {
+    outline: none;
+    border-color: var(--tp-accent1);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.a-turning-point #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1.05rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: var(--tp-accent1);
+    cursor: pointer;
+    transition: all var(--tp-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--tp-radius);
+    box-shadow: 0 3px 10px rgba(108, 99, 255, 0.4);
+    letter-spacing: 0.03em;
+}
+
+.a-turning-point #backToTopBtn:hover {
+    background-color: var(--tp-hover);
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.5);
+}
+
+/* ==================== FOOTER ==================== */
+.a-turning-point footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--tp-accent4);
+    color: var(--tp-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .a-turning-point .container {
+        padding: 1.5rem;
+    }
+
+    .a-turning-point #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .a-turning-point #current-date {
+        font-size: 1.6rem;
+    }
+
+    .a-turning-point #today-weather {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-turning-point {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .a-turning-point .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 7px;
+    }
+
+    .a-turning-point th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .a-turning-point th span.full-day-name {
+        display: none;
+    }
+
+    .a-turning-point th abbr {
+        display: inline;
+    }
+
+    .a-turning-point td {
+        padding: 0.8rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .a-turning-point td.current-day::before {
+        font-size: 1.1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .a-turning-point #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.6rem;
+        font-size: 0.95rem;
+    }
+
+    .a-turning-point #theme-switcher {
+        padding: 0.8rem 2.1rem 0.8rem 0.9rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+
+    .a-turning-point #theme-switcher option {
+        font-size: 0.95rem;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-turning-point .container {
+        padding: 1rem;
+    }
+
+    .a-turning-point #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .a-turning-point #current-date {
+        font-size: 1.4rem;
+    }
+
+    .a-turning-point #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .a-turning-point .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 5px;
+    }
+
+    .a-turning-point th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .a-turning-point td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.9rem;
+    }
+
+    .a-turning-point td.current-day::before {
+        font-size: 1rem;
+    }
+
+    .a-turning-point #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-turning-point th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .a-turning-point td {
+        height: 65px;
+    }
+
+    .a-turning-point #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}
