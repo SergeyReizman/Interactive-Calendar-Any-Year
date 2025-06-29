@@ -160,7 +160,7 @@ const applyTheme = (theme) => {
     'velvety-dark', 'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'white-shark', 'white-sun-of-the-desert', 'wild-flower',
     'wild-rose', 'wild-wonders', 'winter-wonderland', 'wonderful-experience',
-    'world-champion', 'work-of-art', 'zodiac-constellations'
+    'world-champion', 'work-of-art', 'your-wildest-guess', 'zodiac-constellations'
 
   );
 
