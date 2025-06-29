@@ -134,7 +134,7 @@ const applyTheme = (theme) => {
     'real-results', 'red-lake', 'red-squirrel', 'remote-island',
     'right-on-track', 'rising-sun',
     'robin-good', 'royal-caribbean', 'samurai-path', 'science-fiction',
-    'sea-breeze', 'sea-diamonds', 'sea-lions', 'sea-star',
+    'sea-breeze', 'seabreeze-avenue', 'sea-diamonds', 'sea-lions', 'sea-star',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery',
     'shift-in-perception', 'significant-improvement', 'silicon-valley', 'sky-eagle', 'sky-hawk', 
