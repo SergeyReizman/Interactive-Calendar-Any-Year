@@ -156,7 +156,7 @@ const applyTheme = (theme) => {
     'the-modern-developer','the-perfect-blend', 'the-real-luxury',
     'the-silver-sword', 'the-spirit-of-innovation', 
     'the-unstoppable-mindset', 'the-west-coast', 'tide-of-dreams',
-    'time-complexity', 'time-machine', 'tokyo-at-night', 
+    'time-complexity', 'time-machine', 'time-to-chill', 'tokyo-at-night', 
     'tropical-islands', 'tropical-jungle', 'tropical-nature',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden',
     'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 'urban-fashion', 
