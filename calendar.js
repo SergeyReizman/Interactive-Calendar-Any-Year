@@ -126,7 +126,7 @@ const applyTheme = (theme) => {
     'niagara-falls', 'night-dragon', 'night-sky','northern-nights','north-pole', 'north-pole-icebreaker',
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'one-way-ticket', 'on-the-island', 'orange-country', 
-    'orion-constellation', 'overnight-train', 'over-the-seven-seas', 
+    'orion-constellation', 'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
     'pacific-ocean', 'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'precious-question','progressive-decision', 'pure-light', 
