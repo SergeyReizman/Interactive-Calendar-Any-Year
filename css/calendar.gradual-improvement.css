@@ -28,9 +28,12 @@
     --gi-texture5: #E7EDFF;
 
     /* Improvement Accents */
-    --gi-accent1: #4E7BFF;  /* Foundation blue */
-    --gi-accent2: #6BDD8B;  /* Growth green */
-    --gi-accent3: #FF9F1C;  /* Achievement gold */
+    --gi-accent1: #4E7BFF;
+    /* Foundation blue */
+    --gi-accent2: #6BDD8B;
+    /* Growth green */
+    --gi-accent3: #FF9F1C;
+    /* Achievement gold */
     --gi-accent4: rgba(78, 123, 255, 0.6);
     --gi-accent5: rgba(107, 221, 139, 0.4);
 
@@ -49,6 +52,7 @@
         transform: translateY(5px);
         opacity: 0;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
@@ -56,9 +60,12 @@
 }
 
 @keyframes progress-glow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 5px var(--gi-shadow);
     }
+
     50% {
         box-shadow: var(--gi-glow);
     }
@@ -68,9 +75,11 @@
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
+
     100% {
         transform: scale(1);
     }
@@ -252,6 +261,16 @@
     text-transform: uppercase;
 }
 
+.gradual-improvement th span.full-day-name {
+    display: inline;
+}
+
+.gradual-improvement th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
 /* DATE CELLS */
 .gradual-improvement td {
     background-color: var(--gi-primary);
@@ -286,6 +305,11 @@
     background-color: rgba(78, 123, 255, 0.08);
     border: 2px solid var(--gi-accent1);
     animation: progress-glow 4s infinite;
+}
+
+.gradual-improvement td.current-day .date-number {
+    color: var(--gi-date-number) !important;
+    font-weight: 800;
 }
 
 .gradual-improvement td.current-day::before {
@@ -347,6 +371,7 @@
     font-weight: 700;
 }
 
+/* Modal date display */
 .gradual-improvement .modal-date {
     font-family: 'Manrope', sans-serif;
     color: var(--gi-text) !important;
@@ -392,8 +417,30 @@
     transform: translateX(8px);
 }
 
-/* ==================== BUTTONS & CONTROLS ==================== */
-.gradual-improvement .button {
+.gradual-improvement .event-time {
+    font-family: 'Manrope', sans-serif;
+    color: var(--gi-accent1) !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.gradual-improvement .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--gi-text) !important;
+}
+
+.gradual-improvement .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gi-text) !important;
+    opacity: 0.9;
+}
+
+.gradual-improvement .modal-content button {
     background: linear-gradient(135deg, var(--gi-accent1), var(--gi-hover));
     color: white !important;
     border: none;
@@ -402,23 +449,356 @@
     font-weight: 600;
     cursor: pointer;
     transition: all var(--gi-transition);
+    letter-spacing: 0.05em;
+    font-family: 'DM Sans', sans-serif;
     border-radius: var(--gi-radius);
+    text-transform: uppercase;
 }
 
-.gradual-improvement .button:hover {
+.gradual-improvement .modal-content button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(78, 123, 255, 0.3);
 }
 
-/* ==================== RESPONSIVE DESIGN ==================== */
-@media (max-width: 768px) {
+/* Close Button */
+.gradual-improvement .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--gi-primary);
+    color: var(--gi-text) !important;
+    border: 1px solid var(--gi-text);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--gi-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.gradual-improvement .modal .close-button:hover {
+    background-color: var(--gi-accent1);
+    color: white !important;
+    border-color: var(--gi-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.gradual-improvement .button,
+.gradual-improvement .transparent-button {
+    border: 2px solid var(--gi-accent1);
+    color: var(--gi-text) !important;
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--gi-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--gi-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+}
+
+.gradual-improvement .button:hover,
+.gradual-improvement .transparent-button:hover {
+    background-color: var(--gi-accent1);
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(78, 123, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.gradual-improvement .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.gradual-improvement #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.gradual-improvement #theme-switcher {
+    background-color: var(--gi-primary);
+    color: var(--gi-text) !important;
+    border: 2px solid var(--gi-accent1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231A2B49'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--gi-transition);
+    border-radius: var(--gi-radius);
+}
+
+.gradual-improvement #theme-switcher option {
+    background-color: var(--gi-primary) !important;
+    color: var(--gi-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 14px !important;
+}
+
+.gradual-improvement #theme-switcher:focus {
+    outline: none;
+    border-color: var(--gi-accent1);
+    box-shadow: 0 0 0 3px rgba(78, 123, 255, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.gradual-improvement #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 2rem;
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: white !important;
+    background: linear-gradient(135deg, var(--gi-accent1), var(--gi-hover));
+    cursor: pointer;
+    transition: all var(--gi-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--gi-radius);
+    box-shadow: 0 4px 12px rgba(78, 123, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.gradual-improvement #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(78, 123, 255, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.gradual-improvement footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gi-accent4);
+    color: var(--gi-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Manrope', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .gradual-improvement #calendar-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .gradual-improvement .container {
+        padding: 2rem;
+    }
+
+    .gradual-improvement #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .gradual-improvement #current-date {
+        font-size: 1.8rem;
+    }
+
+    .gradual-improvement #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .gradual-improvement .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .gradual-improvement .event-title {
+        font-size: 1.1rem;
+    }
+
     .gradual-improvement .step-progress {
         gap: 6px;
     }
+
     .gradual-improvement .step {
         width: 20px;
         height: 20px;
     }
 }
 
-/* [Previous media queries maintained exactly as in original template...] */
+@media (max-width: 768px) {
+    .gradual-improvement {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .gradual-improvement .container {
+        padding: 1.5rem;
+    }
+
+    .gradual-improvement #calendar-title {
+        font-size: 2rem;
+    }
+
+    .gradual-improvement th {
+        font-size: 0.95rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .gradual-improvement th span.full-day-name {
+        display: none;
+    }
+
+    .gradual-improvement th abbr {
+        display: inline;
+    }
+
+    .gradual-improvement td {
+        padding: 1rem;
+        height: 100px;
+        font-size: 0.95rem;
+    }
+
+    .gradual-improvement td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .gradual-improvement td.current-day::before {
+        font-size: 1.2rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .gradual-improvement #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .gradual-improvement #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+    }
+
+    .gradual-improvement .modal-content {
+        padding: 25px;
+    }
+
+    .gradual-improvement .event-item {
+        padding: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .gradual-improvement .container {
+        padding: 1.2rem;
+    }
+
+    .gradual-improvement #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .gradual-improvement #current-date {
+        font-size: 1.5rem;
+    }
+
+    .gradual-improvement #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .gradual-improvement .step-progress {
+        gap: 4px;
+    }
+
+    .gradual-improvement .step {
+        width: 16px;
+        height: 16px;
+    }
+
+    .gradual-improvement th {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .gradual-improvement td {
+        padding: 0.9rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .gradual-improvement td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .gradual-improvement #theme-switcher {
+        min-width: 180px;
+        font-size: 0.9rem;
+    }
+
+    .gradual-improvement .modal-content {
+        padding: 20px;
+    }
+
+    .gradual-improvement .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .gradual-improvement .event-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .gradual-improvement th {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .gradual-improvement td {
+        height: 85px;
+    }
+
+    .gradual-improvement td .date-number {
+        font-size: 1rem;
+    }
+
+    .gradual-improvement #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+
+    .gradual-improvement .step-progress {
+        gap: 3px;
+    }
+
+    .gradual-improvement .step {
+        width: 14px;
+        height: 14px;
+    }
+}
