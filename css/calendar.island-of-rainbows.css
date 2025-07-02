@@ -1,0 +1,848 @@
+/* ==========================================================================
+   Island of Rainbows - Colorful Calendar Theme
+   Version: 2.0
+   Updated: 2024-06-10
+   Changes:
+   - Vibrant rainbow color palette
+   - Tropical design elements
+   - Celebration visualization
+   - Updated all class names to .island-of-rainbows
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Baloo+2:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* Rainbow Color Palette */
+    --ir-bg: #FFF5F5;
+    --ir-text: #2E2E3A;
+    --ir-primary: #FFFFFF;
+    --ir-secondary: #FFF0F0;
+    --ir-date-number: #FF6B6B;
+
+    /* Rainbow Colors */
+    --ir-accent1: #FF6B6B;
+    /* Coral */
+    --ir-accent2: #FFA36B;
+    /* Sunset */
+    --ir-accent3: #FFD166;
+    /* Sunshine */
+    --ir-accent4: #06D6A0;
+    /* Sea green */
+    --ir-accent5: #118AB2;
+    /* Ocean blue */
+    --ir-accent6: #073B4C;
+    /* Deep sea */
+    --ir-accent7: #7209B7;
+    /* Purple rain */
+    --ir-accent8: rgba(255, 107, 107, 0.6);
+
+    /* Theme Variables */
+    --ir-shadow: rgba(255, 107, 107, 0.2);
+    --ir-radius: 20px;
+    --ir-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ir-hover: #FF5252;
+    --ir-glow: 0 0 30px rgba(255, 107, 107, 0.3);
+    --ir-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23FF6B6B"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%23FF6B6B"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%23FF6B6B"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes rainbow-reveal {
+    0% {
+        transform: scale(0.8) rotate(-5deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes palm-sway {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes rainbow-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes rainbow-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(255, 107, 107, 0.2);
+    }
+
+    50% {
+        box-shadow: var(--ir-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.island-of-rainbows {
+    font-family: 'Baloo 2', cursive;
+    color: var(--ir-text) !important;
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--ir-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,30 Q25,20 30,30 T40,30" stroke="%23FF6B6B" fill="none" stroke-width="2" opacity="0.1"/><path d="M50,20 Q55,10 60,20 T70,20" stroke="%23FFA36B" fill="none" stroke-width="2" opacity="0.1"/><path d="M80,30 Q85,20 90,30" stroke="%23FFD166" fill="none" stroke-width="2" opacity="0.1"/></svg>');
+    background-size: 150px 150px;
+}
+
+.island-of-rainbows .container {
+    background-color: var(--ir-primary);
+    padding: 3rem;
+    border: 3px solid var(--ir-accent8);
+    box-shadow: var(--ir-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 3rem auto;
+    border-radius: var(--ir-radius);
+    animation: rainbow-reveal 0.7s ease-out;
+}
+
+.island-of-rainbows .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--ir-accent1) 0%,
+            var(--ir-accent2) 20%,
+            var(--ir-accent3) 40%,
+            var(--ir-accent4) 60%,
+            var(--ir-accent5) 80%,
+            var(--ir-accent7) 100%);
+}
+
+.island-of-rainbows .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--ir-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.island-of-rainbows #calendar-title {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--ir-accent1) !important;
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 3px 3px 0 rgba(255, 107, 107, 0.2);
+}
+
+.island-of-rainbows #calendar-title::after {
+    content: "🌈";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    animation: palm-sway 4s ease-in-out infinite;
+}
+
+/* ==================== RAINBOW TRACKER ==================== */
+.island-of-rainbows #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background-color: var(--ir-primary);
+    border: 3px solid var(--ir-accent8);
+    border-radius: var(--ir-radius);
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.island-of-rainbows #date-weather-container::before {
+    content: "TODAY'S TREASURE";
+    position: absolute;
+    top: -18px;
+    right: 25px;
+    background-color: var(--ir-primary);
+    padding: 0 15px;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--ir-text) !important;
+    font-weight: 700;
+    font-family: 'Bubblegum Sans', cursive;
+    border: 3px solid var(--ir-accent8);
+    border-radius: 25px;
+    text-transform: uppercase;
+}
+
+.island-of-rainbows #current-date {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--ir-text) !important;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+}
+
+.island-of-rainbows #today-weather {
+    font-family: 'Baloo 2', cursive;
+    color: var(--ir-accent5) !important;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Rainbow Visualization */
+.island-of-rainbows #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.island-of-rainbows .rainbow-tracker {
+    width: 100%;
+    max-width: 450px;
+    height: 35px;
+    background-color: var(--ir-secondary);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.island-of-rainbows .rainbow-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg,
+            var(--ir-accent1),
+            var(--ir-accent2),
+            var(--ir-accent3),
+            var(--ir-accent4),
+            var(--ir-accent5),
+            var(--ir-accent7));
+    border-radius: 20px;
+}
+
+.island-of-rainbows .rainbow-marker {
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background-color: var(--ir-primary);
+    border: 4px solid var(--ir-accent1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rainbow-pulse 2s infinite;
+}
+
+.island-of-rainbows .rainbow-marker::after {
+    content: "🏝️";
+    font-size: 2rem;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.island-of-rainbows table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin: 3rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY HEADERS */
+.island-of-rainbows th {
+    background: linear-gradient(135deg, var(--ir-accent1), var(--ir-hover));
+    color: white !important;
+    font-family: 'Bubblegum Sans', cursive;
+    font-weight: 400;
+    padding: 1.5rem;
+    border-radius: var(--ir-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.island-of-rainbows th span.full-day-name {
+    display: inline;
+}
+
+.island-of-rainbows th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE CELLS */
+.island-of-rainbows td {
+    background-color: var(--ir-primary);
+    color: var(--ir-text) !important;
+    padding: 1.5rem;
+    border: 3px solid var(--ir-accent8);
+    height: 130px;
+    vertical-align: top;
+    transition: all var(--ir-transition);
+    position: relative;
+    border-radius: var(--ir-radius);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.island-of-rainbows td .date-number {
+    color: var(--ir-date-number) !important;
+    font-weight: 700;
+    font-size: 1.8rem;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.island-of-rainbows td:hover {
+    background-color: var(--ir-secondary);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.2);
+    transform: translateY(-5px) rotate(1deg);
+}
+
+/* Current day highlight */
+.island-of-rainbows td.current-day {
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 4px solid var(--ir-accent1);
+    animation: rainbow-glow 4s infinite;
+}
+
+.island-of-rainbows td.current-day .date-number {
+    color: var(--ir-date-number) !important;
+    font-weight: 800;
+}
+
+.island-of-rainbows td.current-day::before {
+    content: "🌴";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    font-size: 2rem;
+    animation: palm-sway 4s ease-in-out infinite;
+}
+
+/* ==================== TREASURE MARKERS ==================== */
+.island-of-rainbows .treasure-marker {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--ir-accent5);
+    margin: 0 3px;
+    transition: all var(--ir-transition);
+}
+
+.island-of-rainbows .treasure-marker:hover {
+    transform: scale(2) rotate(15deg);
+    background-color: var(--ir-accent1);
+    box-shadow: 0 0 15px rgba(17, 138, 178, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.island-of-rainbows .modal-content {
+    position: relative;
+    background-color: var(--ir-primary);
+    border: 3px solid var(--ir-accent8);
+    padding: 35px;
+    color: var(--ir-text) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-radius: var(--ir-radius);
+    animation: rainbow-reveal 0.7s ease-out;
+}
+
+.island-of-rainbows .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--ir-accent1) 0%,
+            var(--ir-accent2) 20%,
+            var(--ir-accent3) 40%,
+            var(--ir-accent4) 60%,
+            var(--ir-accent5) 80%,
+            var(--ir-accent7) 100%);
+}
+
+.island-of-rainbows .modal-content h2 {
+    color: var(--ir-accent1) !important;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2.8em;
+    margin-bottom: 25px;
+    letter-spacing: 0.02em;
+    text-shadow: 2px 2px 0 rgba(255, 107, 107, 0.2);
+}
+
+/* Modal date display */
+.island-of-rainbows .modal-date {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--ir-text) !important;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px dotted var(--ir-accent8);
+}
+
+/* Treasure list */
+.island-of-rainbows .treasure-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.island-of-rainbows .treasure-item {
+    background-color: var(--ir-secondary);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid var(--ir-accent1);
+    border-radius: var(--ir-radius);
+    transition: all var(--ir-transition);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.island-of-rainbows .treasure-item::before {
+    content: "💎";
+    font-size: 1.8rem;
+}
+
+.island-of-rainbows .treasure-item.completed::before {
+    content: "🏆";
+}
+
+.island-of-rainbows .treasure-item:hover {
+    background-color: var(--ir-primary);
+    transform: translateX(10px) rotate(2deg);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.2);
+}
+
+.island-of-rainbows .treasure-time {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--ir-accent1) !important;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.island-of-rainbows .treasure-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--ir-text) !important;
+}
+
+.island-of-rainbows .treasure-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ir-text) !important;
+    opacity: 0.9;
+}
+
+.island-of-rainbows .modal-content button {
+    background: linear-gradient(135deg, var(--ir-accent1), var(--ir-hover));
+    color: white !important;
+    border: none;
+    padding: 18px 36px;
+    font-size: 1.3em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ir-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Baloo 2', cursive;
+    border-radius: var(--ir-radius);
+    text-transform: uppercase;
+}
+
+.island-of-rainbows .modal-content button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+/* Close Button */
+.island-of-rainbows .modal .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--ir-primary);
+    color: var(--ir-text) !important;
+    border: 3px solid var(--ir-text);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all var(--ir-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.island-of-rainbows .modal .close-button:hover {
+    background-color: var(--ir-accent1);
+    color: white !important;
+    border-color: var(--ir-accent1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.island-of-rainbows .button,
+.island-of-rainbows .transparent-button {
+    border: 3px solid var(--ir-accent1);
+    color: var(--ir-text) !important;
+    background-color: transparent;
+    padding: 1.2rem 2.4rem;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ir-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.8rem;
+    border-radius: var(--ir-radius);
+    letter-spacing: 0.03em;
+    font-size: 1.2rem;
+}
+
+.island-of-rainbows .button:hover,
+.island-of-rainbows .transparent-button:hover {
+    background-color: var(--ir-accent1);
+    color: white !important;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+    transform: translateY(-5px) rotate(1deg);
+}
+
+.island-of-rainbows .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.island-of-rainbows #theme-switcher-container {
+    position: relative;
+    margin: 0 1.5rem;
+    min-width: 260px;
+    z-index: 1000;
+}
+
+.island-of-rainbows #theme-switcher {
+    background-color: var(--ir-primary);
+    color: var(--ir-text) !important;
+    border: 3px solid var(--ir-accent1);
+    padding: 1.2rem 3rem 1.2rem 1.5rem;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232E2E3A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--ir-transition);
+    border-radius: var(--ir-radius);
+}
+
+.island-of-rainbows #theme-switcher option {
+    background-color: var(--ir-primary) !important;
+    color: var(--ir-text) !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 15px 18px !important;
+}
+
+.island-of-rainbows #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ir-accent1);
+    box-shadow: 0 0 0 5px rgba(255, 107, 107, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.island-of-rainbows #backToTopBtn {
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    z-index: 9999;
+    border: none;
+    padding: 1.5rem 2.5rem;
+    font-size: 1.2rem;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    color: white !important;
+    background: linear-gradient(135deg, var(--ir-accent1), var(--ir-hover));
+    cursor: pointer;
+    transition: all var(--ir-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--ir-radius);
+    box-shadow: 0 6px 18px rgba(255, 107, 107, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.island-of-rainbows #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.island-of-rainbows footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 3px dotted var(--ir-accent8);
+    color: var(--ir-text) !important;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .island-of-rainbows #calendar-title {
+        font-size: 3.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .island-of-rainbows .container {
+        padding: 2.5rem;
+    }
+
+    .island-of-rainbows #calendar-title {
+        font-size: 2.8rem;
+    }
+
+    .island-of-rainbows #current-date {
+        font-size: 2.2rem;
+    }
+
+    .island-of-rainbows #today-weather {
+        font-size: 1.4rem;
+    }
+
+    .island-of-rainbows .modal-date {
+        font-size: 1.8rem;
+    }
+
+    .island-of-rainbows .treasure-title {
+        font-size: 1.3rem;
+    }
+
+    .island-of-rainbows .rainbow-tracker {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .island-of-rainbows {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    .island-of-rainbows .container {
+        padding: 2rem;
+    }
+
+    .island-of-rainbows #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .island-of-rainbows .rainbow-tracker {
+        max-width: 350px;
+        height: 30px;
+    }
+
+    .island-of-rainbows .rainbow-marker {
+        width: 45px;
+        height: 45px;
+    }
+
+    .island-of-rainbows th {
+        font-size: 1.1rem;
+        padding: 1.2rem 0.6rem;
+    }
+
+    .island-of-rainbows th span.full-day-name {
+        display: none;
+    }
+
+    .island-of-rainbows th abbr {
+        display: inline;
+    }
+
+    .island-of-rainbows td {
+        padding: 1.2rem;
+        height: 120px;
+        font-size: 1.1rem;
+    }
+
+    .island-of-rainbows td .date-number {
+        font-size: 1.6rem;
+        top: 10px;
+        left: 10px;
+    }
+
+    .island-of-rainbows td.current-day::before {
+        font-size: 1.6rem;
+        top: 8px;
+        right: 8px;
+    }
+
+    .island-of-rainbows #backToTopBtn {
+        right: 25px;
+        bottom: 25px;
+        padding: 1.2rem 2.2rem;
+        font-size: 1.1rem;
+    }
+
+    .island-of-rainbows #theme-switcher {
+        padding: 1rem 2.8rem 1rem 1.3rem;
+        font-size: 1.1rem;
+        min-width: 240px;
+    }
+
+    .island-of-rainbows .modal-content {
+        padding: 30px;
+    }
+
+    .island-of-rainbows .treasure-item {
+        padding: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .island-of-rainbows .container {
+        padding: 1.8rem;
+    }
+
+    .island-of-rainbows #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .island-of-rainbows #current-date {
+        font-size: 2rem;
+    }
+
+    .island-of-rainbows #today-weather {
+        font-size: 1.3rem;
+    }
+
+    .island-of-rainbows .rainbow-tracker {
+        max-width: 300px;
+        height: 28px;
+    }
+
+    .island-of-rainbows .rainbow-marker {
+        width: 40px;
+        height: 40px;
+    }
+
+    .island-of-rainbows th {
+        font-size: 1rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .island-of-rainbows td {
+        padding: 1rem;
+        height: 110px;
+        font-size: 1rem;
+    }
+
+    .island-of-rainbows td .date-number {
+        font-size: 1.5rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .island-of-rainbows #theme-switcher {
+        min-width: 220px;
+        font-size: 1rem;
+    }
+
+    .island-of-rainbows .modal-content {
+        padding: 25px;
+    }
+
+    .island-of-rainbows .modal-date {
+        font-size: 1.7rem;
+    }
+
+    .island-of-rainbows .treasure-time {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .island-of-rainbows th {
+        font-size: 0.95rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .island-of-rainbows td {
+        height: 105px;
+    }
+
+    .island-of-rainbows td .date-number {
+        font-size: 1.4rem;
+    }
+
+    .island-of-rainbows #theme-switcher {
+        min-width: 200px;
+        font-size: 0.95rem;
+    }
+
+    .island-of-rainbows .rainbow-tracker {
+        max-width: 280px;
+    }
+}
