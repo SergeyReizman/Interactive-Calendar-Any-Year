@@ -101,7 +101,7 @@ const applyTheme = (theme) => {
     'giant-petrel', 'global-impact',
     'glorious-day', 'golden-century', 'golden-coast', 'golden-eagle',
     'golden-gate', 'golden-horizon', 'golden-lights', 'golden-opportunity', 
-    'golden-summer', 'grand-prix', 'great-idea',
+    'golden-summer', 'gradual-improvement', 'grand-prix', 'great-idea',
     'great-lakes', 'green-city', 'green-coffee', 'green-heaven',
     'greenland-icebergs', 'green-light', 'green-tea',
     'greyscale', 'guangzhou-lights', 'heavy-rain', 'hidden-trail', 'hidden-paradise',
