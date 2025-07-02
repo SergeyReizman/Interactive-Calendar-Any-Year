@@ -146,7 +146,7 @@ const applyTheme = (theme) => {
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery',
     'shift-in-perception', 'significant-improvement', 'silicon-valley', 'sky-eagle', 'sky-hawk', 
-    'skylight-window', 'small-happiness', 'solar-flare', 'something-special', 
+    'skylight-window', 'small-happiness', 'solar-flare', 'small-success', 'something-special', 
     'spark-of-knowledge', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'stay-cool', 'stay-positive',
     'steel-shadows', 'stockholm-roofs', 'straight-to-the-point',

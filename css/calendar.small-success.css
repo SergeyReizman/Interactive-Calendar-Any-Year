@@ -1,0 +1,821 @@
+/* ==========================================================================
+   Small Successes - Daily Progress Calendar Theme
+   Version: 2.0
+   Updated: 2024-06-10
+   Changes:
+   - Success-focused color palette
+   - Milestone celebration elements
+   - Daily progress visualization
+   - Updated all class names to .small-success
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* Success Color Palette */
+    --ss-bg: #F8F9FA;
+    --ss-text: #343A40;
+    --ss-primary: #FFFFFF;
+    --ss-secondary: #E9ECEF;
+    --ss-date-number: #5C6BC0;
+
+    /* Progress Colors */
+    --ss-accent1: #4FC3F7;
+    /* Progress blue */
+    --ss-accent2: #66BB6A;
+    /* Success green */
+    --ss-accent3: #FFA726;
+    /* Celebration orange */
+    --ss-accent4: rgba(79, 195, 247, 0.6);
+    --ss-accent5: rgba(102, 187, 106, 0.4);
+
+    /* Theme Variables */
+    --ss-shadow: rgba(79, 195, 247, 0.15);
+    --ss-radius: 12px;
+    --ss-transition: 0.3s ease-out;
+    --ss-hover: #29B6F6;
+    --ss-glow: 0 0 20px rgba(79, 195, 247, 0.2);
+    --ss-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234FC3F7"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%234FC3F7"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%234FC3F7"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes success-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes star-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes progress-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
+    }
+
+    50% {
+        box-shadow: var(--ss-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.small-success {
+    font-family: 'Comfortaa', cursive;
+    color: var(--ss-text) !important;
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--ss-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="1.5" fill="%234FC3F7" opacity="0.2"/><circle cx="50" cy="20" r="2" fill="%234FC3F7" opacity="0.2"/><circle cx="80" cy="30" r="1.5" fill="%234FC3F7" opacity="0.2"/></svg>');
+    background-size: 150px 150px;
+}
+
+.small-success .container {
+    background-color: var(--ss-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--ss-accent4);
+    box-shadow: var(--ss-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2.5rem auto;
+    border-radius: var(--ss-radius);
+}
+
+.small-success .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ss-accent1) 0%,
+            var(--ss-accent2) 50%,
+            var(--ss-accent3) 100%);
+}
+
+.small-success .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--ss-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.small-success #calendar-title {
+    font-family: 'Fredoka One', cursive;
+    color: var(--ss-accent1) !important;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.small-success #calendar-title::after {
+    content: "🏆";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: star-spin 8s linear infinite;
+}
+
+/* ==================== PROGRESS TRACKER ==================== */
+.small-success #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--ss-primary);
+    border: 1px solid var(--ss-accent4);
+    border-radius: var(--ss-radius);
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.small-success #date-weather-container::before {
+    content: "TODAY'S MILESTONE";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--ss-primary);
+    padding: 0 12px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--ss-text) !important;
+    font-weight: 700;
+    font-family: 'Fredoka One', cursive;
+    border: 1px solid var(--ss-accent4);
+    border-radius: 15px;
+    text-transform: uppercase;
+}
+
+.small-success #current-date {
+    font-family: 'Fredoka One', cursive;
+    color: var(--ss-text) !important;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.small-success #today-weather {
+    font-family: 'Comfortaa', cursive;
+    color: var(--ss-accent3) !important;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+/* Progress Visualization */
+.small-success #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.small-success .progress-tracker {
+    width: 100%;
+    max-width: 400px;
+    height: 30px;
+    background-color: var(--ss-secondary);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.small-success .progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg, var(--ss-accent1), var(--ss-accent3));
+    border-radius: 15px;
+}
+
+.small-success .progress-marker {
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--ss-primary);
+    border: 3px solid var(--ss-accent1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: success-pulse 2s infinite;
+}
+
+.small-success .progress-marker::after {
+    content: "✨";
+    font-size: 1.5rem;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.small-success table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY HEADERS */
+.small-success th {
+    background: linear-gradient(135deg, var(--ss-accent1), var(--ss-hover));
+    color: white !important;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 400;
+    padding: 1rem;
+    border-radius: var(--ss-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.small-success th span.full-day-name {
+    display: inline;
+}
+
+.small-success th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE CELLS */
+.small-success td {
+    background-color: var(--ss-primary);
+    color: var(--ss-text) !important;
+    padding: 1.2rem;
+    border: 1px solid var(--ss-accent4);
+    height: 110px;
+    vertical-align: top;
+    transition: all var(--ss-transition);
+    position: relative;
+    border-radius: var(--ss-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.small-success td .date-number {
+    color: var(--ss-date-number) !important;
+    font-weight: 700;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.small-success td:hover {
+    background-color: var(--ss-secondary);
+    box-shadow: 0 8px 20px rgba(79, 195, 247, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Current day highlight */
+.small-success td.current-day {
+    background-color: rgba(79, 195, 247, 0.08);
+    border: 2px solid var(--ss-accent1);
+    animation: progress-glow 4s infinite;
+}
+
+.small-success td.current-day .date-number {
+    color: var(--ss-date-number) !important;
+    font-weight: 800;
+}
+
+.small-success td.current-day::before {
+    content: "⭐";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.4rem;
+    animation: success-pulse 2s infinite;
+}
+
+/* ==================== SUCCESS MARKERS ==================== */
+.small-success .success-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--ss-accent3);
+    margin: 0 2px;
+    transition: all var(--ss-transition);
+}
+
+.small-success .success-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ss-accent1);
+    box-shadow: 0 0 10px rgba(255, 167, 38, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.small-success .modal-content {
+    position: relative;
+    background-color: var(--ss-primary);
+    border: 1px solid var(--ss-accent4);
+    padding: 30px;
+    color: var(--ss-text) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--ss-radius);
+}
+
+.small-success .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ss-accent1) 0%,
+            var(--ss-accent2) 50%,
+            var(--ss-accent3) 100%);
+}
+
+.small-success .modal-content h2 {
+    color: var(--ss-accent1) !important;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+}
+
+/* Modal date display */
+.small-success .modal-date {
+    font-family: 'Fredoka One', cursive;
+    color: var(--ss-text) !important;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--ss-accent4);
+}
+
+/* Success list */
+.small-success .success-list {
+    margin: 1.8rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.small-success .success-item {
+    background-color: var(--ss-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--ss-accent1);
+    border-radius: var(--ss-radius);
+    transition: all var(--ss-transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.small-success .success-item::before {
+    content: "✅";
+    font-size: 1.2rem;
+}
+
+.small-success .success-item.completed::before {
+    content: "🎯";
+}
+
+.small-success .success-item:hover {
+    background-color: var(--ss-primary);
+    transform: translateX(8px);
+    box-shadow: 0 8px 20px rgba(79, 195, 247, 0.1);
+}
+
+.small-success .success-time {
+    font-family: 'Fredoka One', cursive;
+    color: var(--ss-accent1) !important;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.small-success .success-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--ss-text) !important;
+}
+
+.small-success .success-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ss-text) !important;
+    opacity: 0.9;
+}
+
+.small-success .modal-content button {
+    background: linear-gradient(135deg, var(--ss-accent1), var(--ss-hover));
+    color: white !important;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ss-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Comfortaa', cursive;
+    border-radius: var(--ss-radius);
+    text-transform: uppercase;
+}
+
+.small-success .modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+}
+
+/* Close Button */
+.small-success .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--ss-primary);
+    color: var(--ss-text) !important;
+    border: 1px solid var(--ss-text);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ss-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.small-success .modal .close-button:hover {
+    background-color: var(--ss-accent1);
+    color: white !important;
+    border-color: var(--ss-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.small-success .button,
+.small-success .transparent-button {
+    border: 2px solid var(--ss-accent1);
+    color: var(--ss-text) !important;
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ss-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ss-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+}
+
+.small-success .button:hover,
+.small-success .transparent-button:hover {
+    background-color: var(--ss-accent1);
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.2);
+    transform: translateY(-2px);
+}
+
+.small-success .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.small-success #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.small-success #theme-switcher {
+    background-color: var(--ss-primary);
+    color: var(--ss-text) !important;
+    border: 2px solid var(--ss-accent1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'Comfortaa', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23343A40'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ss-transition);
+    border-radius: var(--ss-radius);
+}
+
+.small-success #theme-switcher option {
+    background-color: var(--ss-primary) !important;
+    color: var(--ss-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 14px !important;
+}
+
+.small-success #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ss-accent1);
+    box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.small-success #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 2rem;
+    font-size: 1rem;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 600;
+    color: white !important;
+    background: linear-gradient(135deg, var(--ss-accent1), var(--ss-hover));
+    cursor: pointer;
+    transition: all var(--ss-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--ss-radius);
+    box-shadow: 0 4px 12px rgba(79, 195, 247, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.small-success #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(79, 195, 247, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.small-success footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ss-accent4);
+    color: var(--ss-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Fredoka One', cursive;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .small-success #calendar-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .small-success .container {
+        padding: 2rem;
+    }
+
+    .small-success #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .small-success #current-date {
+        font-size: 1.8rem;
+    }
+
+    .small-success #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .small-success .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .small-success .success-title {
+        font-size: 1.1rem;
+    }
+
+    .small-success .progress-tracker {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .small-success {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .small-success .container {
+        padding: 1.5rem;
+    }
+
+    .small-success #calendar-title {
+        font-size: 2rem;
+    }
+
+    .small-success .progress-tracker {
+        max-width: 300px;
+        height: 25px;
+    }
+
+    .small-success .progress-marker {
+        width: 35px;
+        height: 35px;
+    }
+
+    .small-success th {
+        font-size: 0.95rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .small-success th span.full-day-name {
+        display: none;
+    }
+
+    .small-success th abbr {
+        display: inline;
+    }
+
+    .small-success td {
+        padding: 1rem;
+        height: 100px;
+        font-size: 0.95rem;
+    }
+
+    .small-success td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .small-success td.current-day::before {
+        font-size: 1.2rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .small-success #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .small-success #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+    }
+
+    .small-success .modal-content {
+        padding: 25px;
+    }
+
+    .small-success .success-item {
+        padding: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .small-success .container {
+        padding: 1.2rem;
+    }
+
+    .small-success #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .small-success #current-date {
+        font-size: 1.5rem;
+    }
+
+    .small-success #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .small-success .progress-tracker {
+        max-width: 250px;
+        height: 20px;
+    }
+
+    .small-success .progress-marker {
+        width: 30px;
+        height: 30px;
+    }
+
+    .small-success th {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .small-success td {
+        padding: 0.9rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .small-success td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .small-success #theme-switcher {
+        min-width: 180px;
+        font-size: 0.9rem;
+    }
+
+    .small-success .modal-content {
+        padding: 20px;
+    }
+
+    .small-success .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .small-success .success-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .small-success th {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .small-success td {
+        height: 85px;
+    }
+
+    .small-success td .date-number {
+        font-size: 1rem;
+    }
+
+    .small-success #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+
+    .small-success .progress-tracker {
+        max-width: 200px;
+    }
+}
