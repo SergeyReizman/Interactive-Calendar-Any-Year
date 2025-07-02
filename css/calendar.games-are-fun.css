@@ -1,0 +1,473 @@
+/* ==========================================================================
+   Games Are Fun - Playful Calendar Theme
+   Version: 2.0
+   Updated: 2024-06-10
+   Changes:
+   - Game-inspired color palette
+   - Pixel art elements and retro styling
+   - Playful animations and interactions
+   - Maintained all structure and functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* 8-bit Color Palette */
+    --gaf-bg: #1a1c2c;
+    --gaf-text: #f4f4f4;
+    --gaf-primary: #2d2d4d;
+    --gaf-secondary: #3e3e5d;
+    --gaf-date-number: #ffcc00;
+
+    /* Game Accent Colors */
+    --gaf-accent1: #41a6f6;
+    /* Blue */
+    --gaf-accent2: #ff3a3a;
+    /* Red */
+    --gaf-accent3: #66cc33;
+    /* Green */
+    --gaf-accent4: rgba(65, 166, 246, 0.6);
+    --gaf-accent5: rgba(255, 58, 58, 0.4);
+
+    /* Theme Variables */
+    --gaf-shadow: rgba(0, 0, 0, 0.5);
+    --gaf-radius: 0;
+    /* Pixel-perfect corners */
+    --gaf-transition: 0.2s ease;
+    --gaf-hover: #2d89e5;
+    --gaf-glow: 0 0 10px rgba(65, 166, 246, 0.7);
+    --gaf-pixel: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><rect width="2" height="2" fill="%2341a6f6"/><rect x="2" y="2" width="2" height="2" fill="%2341a6f6"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes pixel-pop {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes power-up {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes score-flash {
+
+    0%,
+    100% {
+        color: var(--gaf-date-number);
+    }
+
+    50% {
+        color: var(--gaf-accent2);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.games-are-fun {
+    font-family: 'VT323', monospace;
+    color: var(--gaf-text) !important;
+    line-height: 1.4;
+    font-size: 1.2rem;
+    background-color: var(--gaf-bg);
+    min-height: 100vh;
+    background-image: var(--gaf-pixel);
+    background-size: 16px 16px;
+    letter-spacing: 1px;
+}
+
+.games-are-fun .container {
+    background-color: var(--gaf-primary);
+    padding: 1.5rem;
+    border: 4px solid var(--gaf-accent1);
+    box-shadow: 4px 4px 0 var(--gaf-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    animation: pixel-pop 0.4s ease-out;
+}
+
+.games-are-fun .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--gaf-accent1) 0%,
+            var(--gaf-accent2) 50%,
+            var(--gaf-accent3) 100%);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.games-are-fun #calendar-title {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--gaf-date-number) !important;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 0 var(--gaf-shadow);
+    position: relative;
+    animation: power-up 2s infinite;
+}
+
+.games-are-fun #calendar-title::after {
+    content: "🕹️";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+}
+
+/* ==================== GAME STATS DISPLAY ==================== */
+.games-are-fun #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--gaf-primary);
+    border: 4px solid var(--gaf-accent1);
+    box-shadow: 4px 4px 0 var(--gaf-shadow);
+    position: relative;
+}
+
+.games-are-fun #date-weather-container::before {
+    content: "GAME STATS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--gaf-accent1);
+    padding: 0 12px;
+    font-size: 0.85rem;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--gaf-text) !important;
+    border: 3px solid var(--gaf-text);
+}
+
+.games-are-fun #current-date {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--gaf-date-number) !important;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    animation: score-flash 3s infinite;
+}
+
+.games-are-fun #today-weather {
+    font-size: 1.5rem;
+    color: var(--gaf-accent3) !important;
+}
+
+/* ==================== HEALTH BAR ==================== */
+.games-are-fun #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.games-are-fun .health-bar {
+    width: 80%;
+    height: 24px;
+    background-color: var(--gaf-secondary);
+    border: 3px solid var(--gaf-text);
+    position: relative;
+}
+
+.games-are-fun .health-fill {
+    height: 100%;
+    width: 75%;
+    background: linear-gradient(90deg, var(--gaf-accent2), var(--gaf-accent3));
+    animation: power-up 1.5s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.games-are-fun table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY HEADERS */
+.games-are-fun th {
+    background-color: var(--gaf-accent1);
+    color: var(--gaf-text) !important;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    border: 3px solid var(--gaf-text);
+    box-shadow: 3px 3px 0 var(--gaf-shadow);
+}
+
+/* DATE CELLS */
+.games-are-fun td {
+    background-color: var(--gaf-primary);
+    color: var(--gaf-text) !important;
+    padding: 1rem;
+    border: 3px solid var(--gaf-accent1);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--gaf-transition);
+    position: relative;
+    box-shadow: 3px 3px 0 var(--gaf-shadow);
+}
+
+.games-are-fun td .date-number {
+    color: var(--gaf-date-number) !important;
+    font-weight: bold;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.games-are-fun td:hover {
+    background-color: var(--gaf-secondary);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--gaf-shadow);
+}
+
+/* Current day highlight */
+.games-are-fun td.current-day {
+    background-color: var(--gaf-accent4);
+    border-color: var(--gaf-date-number);
+    animation: power-up 2s infinite;
+}
+
+.games-are-fun td.current-day::before {
+    content: "★";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--gaf-date-number);
+    font-size: 1.4rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.games-are-fun .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--gaf-accent2);
+    margin: 0 2px;
+    transition: all var(--gaf-transition);
+    box-shadow: 1px 1px 0 var(--gaf-shadow);
+}
+
+.games-are-fun .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--gaf-accent3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.games-are-fun .modal-content {
+    position: relative;
+    background-color: var(--gaf-primary);
+    border: 4px solid var(--gaf-accent1);
+    padding: 20px;
+    color: var(--gaf-text) !important;
+    box-shadow: 6px 6px 0 var(--gaf-shadow);
+    animation: pixel-pop 0.3s ease-out;
+}
+
+.games-are-fun .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--gaf-accent1) 0%,
+            var(--gaf-accent2) 50%,
+            var(--gaf-accent3) 100%);
+}
+
+.games-are-fun .modal-content h2 {
+    color: var(--gaf-date-number) !important;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 var(--gaf-shadow);
+}
+
+.games-are-fun .modal-date {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--gaf-accent1) !important;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--gaf-accent1);
+}
+
+/* Quest list */
+.games-are-fun .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.games-are-fun .event-item {
+    background-color: var(--gaf-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--gaf-accent1);
+    transition: all var(--gaf-transition);
+    position: relative;
+}
+
+.games-are-fun .event-item::before {
+    content: "▶";
+    position: absolute;
+    left: 8px;
+    color: var(--gaf-accent1);
+}
+
+.games-are-fun .event-item.completed {
+    border-left-color: var(--gaf-accent3);
+}
+
+.games-are-fun .event-item.completed::before {
+    content: "✓";
+    color: var(--gaf-accent3);
+}
+
+.games-are-fun .event-item:hover {
+    background-color: var(--gaf-accent4);
+    transform: translateX(8px);
+}
+
+.games-are-fun .event-time {
+    color: var(--gaf-date-number) !important;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    margin-left: 20px;
+}
+
+.games-are-fun .event-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--gaf-text) !important;
+    margin-left: 20px;
+}
+
+.games-are-fun .modal-content button {
+    background-color: var(--gaf-accent1);
+    color: var(--gaf-text) !important;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: all var(--gaf-transition);
+    border: 3px solid var(--gaf-text);
+    box-shadow: 3px 3px 0 var(--gaf-shadow);
+}
+
+.games-are-fun .modal-content button:hover {
+    background-color: var(--gaf-hover);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--gaf-shadow);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+    .games-are-fun #calendar-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .games-are-fun .container {
+        padding: 1rem;
+    }
+
+    .games-are-fun #current-date {
+        font-size: 1.5rem;
+    }
+
+    .games-are-fun th {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .games-are-fun #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .games-are-fun td {
+        height: 80px;
+        padding: 0.8rem;
+    }
+
+    .games-are-fun td .date-number {
+        font-size: 1.1rem;
+    }
+
+    .games-are-fun .health-bar {
+        height: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .games-are-fun #calendar-title {
+        font-size: 1.2rem;
+    }
+
+    .games-are-fun #current-date {
+        font-size: 1.2rem;
+    }
+
+    .games-are-fun th {
+        font-size: 0.6rem;
+        padding: 0.3rem;
+    }
+
+    .games-are-fun td {
+        height: 70px;
+    }
+}
+
+@media (max-width: 400px) {
+    .games-are-fun #calendar-title {
+        font-size: 1rem;
+    }
+
+    .games-are-fun td {
+        height: 60px;
+        padding: 0.5rem;
+    }
+
+    .games-are-fun td .date-number {
+        font-size: 0.9rem;
+    }
+}

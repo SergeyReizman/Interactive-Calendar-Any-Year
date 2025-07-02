@@ -97,7 +97,7 @@ const applyTheme = (theme) => {
     'extraordinary-achievement', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'formula-one',
     'free-flight', 'fresh-start', 'frozen-wilderness', 'full-pink-moon', 'galactic-glow', 
-    'game-changer', 'genghis-khan-arrow',
+    'game-changer', 'games-are-fun', 'genghis-khan-arrow',
     'giant-petrel', 'global-impact',
     'glorious-day', 'golden-century', 'golden-coast', 'golden-eagle',
     'golden-gate', 'golden-horizon', 'golden-lights', 'golden-opportunity', 
