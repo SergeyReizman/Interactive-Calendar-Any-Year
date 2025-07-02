@@ -1,0 +1,811 @@
+/* ==========================================================================
+   Every Little Step Counts - Progress Tracking Theme
+   Version: 2.0
+   Updated: 2024-06-10
+   Changes:
+   - Encouraging color palette
+   - Progress-oriented design elements
+   - Motivational visual feedback
+   - Maintained all structure and functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Work+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* Encouraging Color Palette */
+    --elsc-bg: #F8F9FF;
+    --elsc-text: #2B2D42;
+    /* Deep navy text */
+    --elsc-primary: #FFFFFF;
+    /* Clean white container */
+    --elsc-secondary: #EDF2FF;
+    /* Soft hover */
+    --elsc-date-number: #4A6FA5;
+    /* Friendly blue for dates */
+
+    /* Progress Texture Colors */
+    --elsc-texture1: #FBFCFE;
+    --elsc-texture2: #F6F8FF;
+    --elsc-texture3: #F1F5FF;
+    --elsc-texture4: #ECF1FF;
+    --elsc-texture5: #E7EDFF;
+
+    /* Progress Accent Colors */
+    --elsc-accent1: #4A6FA5;
+    /* Trustworthy blue */
+    --elsc-accent2: #6BDD8B;
+    /* Growth green */
+    --elsc-accent3: #FF9F1C;
+    /* Energetic orange */
+    --elsc-accent4: rgba(74, 111, 165, 0.6);
+    /* Blue with transparency */
+    --elsc-accent5: rgba(107, 221, 139, 0.4);
+    /* Green with transparency */
+
+    /* Theme Variables */
+    --elsc-shadow: rgba(74, 111, 165, 0.15);
+    --elsc-radius: 10px;
+    --elsc-transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    --elsc-hover: #3A5A8F;
+    /* Darker blue */
+    --elsc-glow: 0 0 20px rgba(74, 111, 165, 0.2);
+    --elsc-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234A6FA5"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%234A6FA5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%234A6FA5"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes step-forward {
+    0% {
+        transform: translateX(-5px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes progress-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes progress-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--elsc-shadow);
+    }
+
+    50% {
+        box-shadow: var(--elsc-glow);
+    }
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.every-little-step-counts {
+    font-family: 'Work Sans', sans-serif;
+    color: var(--elsc-text) !important;
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--elsc-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="1.5" fill="%234A6FA5" opacity="0.1"/><circle cx="50" cy="20" r="2" fill="%234A6FA5" opacity="0.1"/><circle cx="80" cy="30" r="1.5" fill="%234A6FA5" opacity="0.1"/></svg>');
+}
+
+.every-little-step-counts .container {
+    background-color: var(--elsc-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--elsc-accent4);
+    box-shadow: var(--elsc-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2.5rem auto;
+    border-radius: var(--elsc-radius);
+    animation: step-forward 0.6s ease-out;
+}
+
+.every-little-step-counts .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--elsc-accent1) 0%,
+            var(--elsc-accent2) 50%,
+            var(--elsc-accent3) 100%);
+}
+
+.every-little-step-counts .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--elsc-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.every-little-step-counts #calendar-title {
+    font-family: 'Nunito', sans-serif;
+    color: var(--elsc-text) !important;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+    font-weight: 800;
+}
+
+.every-little-step-counts #calendar-title::after {
+    content: "✨";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & PROGRESS DISPLAY ==================== */
+.every-little-step-counts #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--elsc-primary);
+    border: 1px solid var(--elsc-accent4);
+    border-radius: var(--elsc-radius);
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.every-little-step-counts #date-weather-container::before {
+    content: "TODAY'S PROGRESS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--elsc-primary);
+    padding: 0 12px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--elsc-text) !important;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    border: 1px solid var(--elsc-accent4);
+    border-radius: 15px;
+    text-transform: uppercase;
+}
+
+.every-little-step-counts #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--elsc-accent1), transparent);
+}
+
+.every-little-step-counts #current-date {
+    font-family: 'Nunito', sans-serif;
+    color: var(--elsc-text) !important;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.every-little-step-counts #today-weather {
+    font-family: 'Work Sans', sans-serif;
+    color: var(--elsc-text) !important;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+/* ==================== PROGRESS TRACKER ==================== */
+.every-little-step-counts #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.every-little-step-counts .progress-tracker {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--elsc-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--elsc-primary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background-image: conic-gradient(var(--elsc-accent2) 75%, transparent 0);
+}
+
+.every-little-step-counts .progress-tracker::before {
+    content: "75%";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--elsc-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.every-little-step-counts table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.every-little-step-counts th {
+    background: linear-gradient(135deg, var(--elsc-accent1), var(--elsc-hover));
+    color: white !important;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: var(--elsc-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.every-little-step-counts th span.full-day-name {
+    display: inline;
+}
+
+.every-little-step-counts th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.every-little-step-counts td {
+    background-color: var(--elsc-primary);
+    color: var(--elsc-text) !important;
+    padding: 1.2rem;
+    border: 1px solid var(--elsc-accent4);
+    height: 110px;
+    vertical-align: top;
+    transition: all var(--elsc-transition);
+    position: relative;
+    border-radius: var(--elsc-radius);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+}
+
+.every-little-step-counts td .date-number {
+    color: var(--elsc-date-number) !important;
+    font-weight: 700;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.every-little-step-counts td:hover {
+    background-color: var(--elsc-secondary);
+    box-shadow: 0 8px 20px rgba(74, 111, 165, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.every-little-step-counts td.current-day {
+    background-color: rgba(74, 111, 165, 0.08);
+    border: 2px solid var(--elsc-accent1);
+    animation: progress-glow 4s infinite;
+}
+
+.every-little-step-counts td.current-day .date-number {
+    color: var(--elsc-date-number) !important;
+    font-weight: 800;
+}
+
+.every-little-step-counts td.current-day::before {
+    content: "🏆";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.4rem;
+    animation: progress-bounce 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.every-little-step-counts .event-marker {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--elsc-accent3);
+    margin: 0 2px;
+    transition: all var(--elsc-transition);
+}
+
+.every-little-step-counts .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--elsc-accent1);
+    box-shadow: 0 0 10px rgba(255, 159, 28, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.every-little-step-counts .modal-content {
+    position: relative;
+    background-color: var(--elsc-primary);
+    border: 1px solid var(--elsc-accent4);
+    padding: 30px;
+    color: var(--elsc-text) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--elsc-radius);
+    animation: step-forward 0.5s ease-out;
+}
+
+.every-little-step-counts .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--elsc-accent1) 0%,
+            var(--elsc-accent2) 50%,
+            var(--elsc-accent3) 100%);
+}
+
+.every-little-step-counts .modal-content h2 {
+    color: var(--elsc-text) !important;
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+/* Modal date display */
+.every-little-step-counts .modal-date {
+    font-family: 'Nunito', sans-serif;
+    color: var(--elsc-text) !important;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--elsc-accent4);
+}
+
+/* Progress list */
+.every-little-step-counts .event-list {
+    margin: 1.8rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.every-little-step-counts .event-item {
+    background-color: var(--elsc-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--elsc-accent1);
+    border-radius: var(--elsc-radius);
+    transition: all var(--elsc-transition);
+}
+
+.every-little-step-counts .event-item:hover {
+    background-color: var(--elsc-texture3);
+    transform: translateX(8px);
+}
+
+.every-little-step-counts .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--elsc-accent1) !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.every-little-step-counts .event-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--elsc-text) !important;
+}
+
+.every-little-step-counts .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--elsc-text) !important;
+    opacity: 0.9;
+}
+
+.every-little-step-counts .modal-content button {
+    background: linear-gradient(135deg, var(--elsc-accent1), var(--elsc-hover));
+    color: white !important;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--elsc-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Work Sans', sans-serif;
+    border-radius: var(--elsc-radius);
+    text-transform: uppercase;
+}
+
+.every-little-step-counts .modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
+}
+
+/* Close Button */
+.every-little-step-counts .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--elsc-primary);
+    color: var(--elsc-text) !important;
+    border: 1px solid var(--elsc-text);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--elsc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.every-little-step-counts .modal .close-button:hover {
+    background-color: var(--elsc-accent1);
+    color: white !important;
+    border-color: var(--elsc-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.every-little-step-counts .button,
+.every-little-step-counts .transparent-button {
+    border: 2px solid var(--elsc-accent1);
+    color: var(--elsc-text) !important;
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--elsc-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--elsc-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+}
+
+.every-little-step-counts .button:hover,
+.every-little-step-counts .transparent-button:hover {
+    background-color: var(--elsc-accent1);
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.2);
+    transform: translateY(-2px);
+}
+
+.every-little-step-counts .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.every-little-step-counts #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.every-little-step-counts #theme-switcher {
+    background-color: var(--elsc-primary);
+    color: var(--elsc-text) !important;
+    border: 2px solid var(--elsc-accent1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B2D42'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--elsc-transition);
+    border-radius: var(--elsc-radius);
+}
+
+.every-little-step-counts #theme-switcher option {
+    background-color: var(--elsc-primary) !important;
+    color: var(--elsc-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 14px !important;
+}
+
+.every-little-step-counts #theme-switcher:focus {
+    outline: none;
+    border-color: var(--elsc-accent1);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.every-little-step-counts #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 2rem;
+    font-size: 1rem;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    color: white !important;
+    background: linear-gradient(135deg, var(--elsc-accent1), var(--elsc-hover));
+    cursor: pointer;
+    transition: all var(--elsc-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--elsc-radius);
+    box-shadow: 0 4px 12px rgba(74, 111, 165, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.every-little-step-counts #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(74, 111, 165, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.every-little-step-counts footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--elsc-accent4);
+    color: var(--elsc-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .every-little-step-counts #calendar-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .every-little-step-counts .container {
+        padding: 2rem;
+    }
+
+    .every-little-step-counts #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .every-little-step-counts #current-date {
+        font-size: 1.8rem;
+    }
+
+    .every-little-step-counts #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .every-little-step-counts .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .every-little-step-counts .event-title {
+        font-size: 1.1rem;
+    }
+
+    .every-little-step-counts .progress-tracker {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .every-little-step-counts {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .every-little-step-counts .container {
+        padding: 1.5rem;
+    }
+
+    .every-little-step-counts #calendar-title {
+        font-size: 2rem;
+    }
+
+    .every-little-step-counts .progress-tracker {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .every-little-step-counts th {
+        font-size: 0.95rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .every-little-step-counts th span.full-day-name {
+        display: none;
+    }
+
+    .every-little-step-counts th abbr {
+        display: inline;
+    }
+
+    .every-little-step-counts td {
+        padding: 1rem;
+        height: 100px;
+        font-size: 0.95rem;
+    }
+
+    .every-little-step-counts td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .every-little-step-counts td.current-day::before {
+        font-size: 1.2rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .every-little-step-counts #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .every-little-step-counts #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+    }
+
+    .every-little-step-counts .modal-content {
+        padding: 25px;
+    }
+
+    .every-little-step-counts .event-item {
+        padding: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .every-little-step-counts .container {
+        padding: 1.2rem;
+    }
+
+    .every-little-step-counts #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .every-little-step-counts #current-date {
+        font-size: 1.5rem;
+    }
+
+    .every-little-step-counts #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .every-little-step-counts .progress-tracker {
+        width: 140px;
+        height: 140px;
+        border-width: 5px;
+    }
+
+    .every-little-step-counts th {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .every-little-step-counts td {
+        padding: 0.9rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .every-little-step-counts td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .every-little-step-counts #theme-switcher {
+        min-width: 180px;
+        font-size: 0.9rem;
+    }
+
+    .every-little-step-counts .modal-content {
+        padding: 20px;
+    }
+
+    .every-little-step-counts .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .every-little-step-counts .event-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .every-little-step-counts th {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .every-little-step-counts td {
+        height: 85px;
+    }
+
+    .every-little-step-counts td .date-number {
+        font-size: 1rem;
+    }
+
+    .every-little-step-counts #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
