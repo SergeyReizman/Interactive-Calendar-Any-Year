@@ -1,0 +1,823 @@
+/* ==========================================================================
+   Enjoy the Journey - Adventure Calendar Theme
+   Version: 2.0
+   Updated: 2024-06-10
+   Changes:
+   - Travel-inspired color palette
+   - Adventure-themed design elements
+   - Journey progress visualization
+   - Maintained all structure and functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Quicksand:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* Adventure Color Palette */
+    --etj-bg: #F5F7FA;
+    --etj-text: #2D3748;
+    --etj-primary: #FFFFFF;
+    --etj-secondary: #EBF4FF;
+    --etj-date-number: #4C51BF;
+
+    /* Journey Colors */
+    --etj-accent1: #667EEA;
+    /* Path blue */
+    --etj-accent2: #48BB78;
+    /* Nature green */
+    --etj-accent3: #ED8936;
+    /* Sunset orange */
+    --etj-accent4: rgba(102, 126, 234, 0.6);
+    --etj-accent5: rgba(72, 187, 120, 0.4);
+
+    /* Theme Variables */
+    --etj-shadow: rgba(102, 126, 234, 0.15);
+    --etj-radius: 12px;
+    --etj-transition: 0.3s ease-out;
+    --etj-hover: #5A67D8;
+    --etj-glow: 0 0 20px rgba(102, 126, 234, 0.2);
+    --etj-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23667EEA"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%23667EEA"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%23667EEA"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes path-reveal {
+    0% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes compass-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes location-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes trail-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+    }
+
+    50% {
+        box-shadow: var(--etj-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.enjoy-the-journey {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--etj-text) !important;
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--etj-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,30 Q25,25 30,30 T40,30" stroke="%23667EEA" fill="none" stroke-width="1" opacity="0.1"/><path d="M50,20 Q55,15 60,20 T70,20" stroke="%23667EEA" fill="none" stroke-width="1.5" opacity="0.1"/><path d="M80,30 Q85,25 90,30" stroke="%23667EEA" fill="none" stroke-width="1" opacity="0.1"/></svg>');
+    background-size: 150px 150px;
+}
+
+.enjoy-the-journey .container {
+    background-color: var(--etj-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--etj-accent4);
+    box-shadow: var(--etj-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2.5rem auto;
+    border-radius: var(--etj-radius);
+    animation: path-reveal 0.6s ease-out;
+}
+
+.enjoy-the-journey .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--etj-accent1) 0%,
+            var(--etj-accent2) 50%,
+            var(--etj-accent3) 100%);
+}
+
+.enjoy-the-journey .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--etj-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.enjoy-the-journey #calendar-title {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--etj-accent1) !important;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.enjoy-the-journey #calendar-title::after {
+    content: "🧭";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: compass-spin 8s linear infinite;
+}
+
+/* ==================== JOURNEY PROGRESS ==================== */
+.enjoy-the-journey #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--etj-primary);
+    border: 1px solid var(--etj-accent4);
+    border-radius: var(--etj-radius);
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.enjoy-the-journey #date-weather-container::before {
+    content: "TODAY'S DESTINATION";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--etj-primary);
+    padding: 0 12px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--etj-text) !important;
+    font-weight: 700;
+    font-family: 'Permanent Marker', cursive;
+    border: 1px solid var(--etj-accent4);
+    border-radius: 15px;
+    text-transform: uppercase;
+}
+
+.enjoy-the-journey #current-date {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--etj-text) !important;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.enjoy-the-journey #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--etj-accent3) !important;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+/* Journey Path Visualization */
+.enjoy-the-journey #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.enjoy-the-journey .journey-path {
+    width: 100%;
+    max-width: 400px;
+    height: 30px;
+    background-color: var(--etj-secondary);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.enjoy-the-journey .path-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg, var(--etj-accent1), var(--etj-accent3));
+    border-radius: 15px;
+}
+
+.enjoy-the-journey .path-marker {
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--etj-primary);
+    border: 3px solid var(--etj-accent1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: location-pulse 2s infinite;
+}
+
+.enjoy-the-journey .path-marker::after {
+    content: "📍";
+    font-size: 1.5rem;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.enjoy-the-journey table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY HEADERS */
+.enjoy-the-journey th {
+    background: linear-gradient(135deg, var(--etj-accent1), var(--etj-hover));
+    color: white !important;
+    font-family: 'Permanent Marker', cursive;
+    font-weight: 400;
+    padding: 1rem;
+    border-radius: var(--etj-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.enjoy-the-journey th span.full-day-name {
+    display: inline;
+}
+
+.enjoy-the-journey th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE CELLS */
+.enjoy-the-journey td {
+    background-color: var(--etj-primary);
+    color: var(--etj-text) !important;
+    padding: 1.2rem;
+    border: 1px solid var(--etj-accent4);
+    height: 110px;
+    vertical-align: top;
+    transition: all var(--etj-transition);
+    position: relative;
+    border-radius: var(--etj-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.enjoy-the-journey td .date-number {
+    color: var(--etj-date-number) !important;
+    font-weight: 700;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.enjoy-the-journey td:hover {
+    background-color: var(--etj-secondary);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Current day highlight */
+.enjoy-the-journey td.current-day {
+    background-color: rgba(102, 126, 234, 0.08);
+    border: 2px solid var(--etj-accent1);
+    animation: trail-glow 4s infinite;
+}
+
+.enjoy-the-journey td.current-day .date-number {
+    color: var(--etj-date-number) !important;
+    font-weight: 800;
+}
+
+.enjoy-the-journey td.current-day::before {
+    content: "⛰️";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.4rem;
+    animation: location-pulse 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.enjoy-the-journey .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--etj-accent3);
+    margin: 0 2px;
+    transition: all var(--etj-transition);
+}
+
+.enjoy-the-journey .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--etj-accent1);
+    box-shadow: 0 0 10px rgba(237, 137, 54, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.enjoy-the-journey .modal-content {
+    position: relative;
+    background-color: var(--etj-primary);
+    border: 1px solid var(--etj-accent4);
+    padding: 30px;
+    color: var(--etj-text) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: var(--etj-radius);
+    animation: path-reveal 0.5s ease-out;
+}
+
+.enjoy-the-journey .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--etj-accent1) 0%,
+            var(--etj-accent2) 50%,
+            var(--etj-accent3) 100%);
+}
+
+.enjoy-the-journey .modal-content h2 {
+    color: var(--etj-accent1) !important;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+}
+
+/* Modal date display */
+.enjoy-the-journey .modal-date {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--etj-text) !important;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--etj-accent4);
+}
+
+/* Adventure list */
+.enjoy-the-journey .event-list {
+    margin: 1.8rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.enjoy-the-journey .event-item {
+    background-color: var(--etj-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--etj-accent1);
+    border-radius: var(--etj-radius);
+    transition: all var(--etj-transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.enjoy-the-journey .event-item::before {
+    content: "🗺️";
+    font-size: 1.2rem;
+}
+
+.enjoy-the-journey .event-item.completed::before {
+    content: "✅";
+}
+
+.enjoy-the-journey .event-item:hover {
+    background-color: var(--etj-primary);
+    transform: translateX(8px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.1);
+}
+
+.enjoy-the-journey .event-time {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--etj-accent1) !important;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.enjoy-the-journey .event-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--etj-text) !important;
+}
+
+.enjoy-the-journey .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--etj-text) !important;
+    opacity: 0.9;
+}
+
+.enjoy-the-journey .modal-content button {
+    background: linear-gradient(135deg, var(--etj-accent1), var(--etj-hover));
+    color: white !important;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--etj-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--etj-radius);
+    text-transform: uppercase;
+}
+
+.enjoy-the-journey .modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Close Button */
+.enjoy-the-journey .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--etj-primary);
+    color: var(--etj-text) !important;
+    border: 1px solid var(--etj-text);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--etj-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.enjoy-the-journey .modal .close-button:hover {
+    background-color: var(--etj-accent1);
+    color: white !important;
+    border-color: var(--etj-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.enjoy-the-journey .button,
+.enjoy-the-journey .transparent-button {
+    border: 2px solid var(--etj-accent1);
+    color: var(--etj-text) !important;
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--etj-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--etj-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+}
+
+.enjoy-the-journey .button:hover,
+.enjoy-the-journey .transparent-button:hover {
+    background-color: var(--etj-accent1);
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+}
+
+.enjoy-the-journey .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.enjoy-the-journey #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.enjoy-the-journey #theme-switcher {
+    background-color: var(--etj-primary);
+    color: var(--etj-text) !important;
+    border: 2px solid var(--etj-accent1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D3748'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--etj-transition);
+    border-radius: var(--etj-radius);
+}
+
+.enjoy-the-journey #theme-switcher option {
+    background-color: var(--etj-primary) !important;
+    color: var(--etj-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 14px !important;
+}
+
+.enjoy-the-journey #theme-switcher:focus {
+    outline: none;
+    border-color: var(--etj-accent1);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.enjoy-the-journey #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 2rem;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: white !important;
+    background: linear-gradient(135deg, var(--etj-accent1), var(--etj-hover));
+    cursor: pointer;
+    transition: all var(--etj-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--etj-radius);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.enjoy-the-journey #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.enjoy-the-journey footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--etj-accent4);
+    color: var(--etj-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Permanent Marker', cursive;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .enjoy-the-journey #calendar-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .enjoy-the-journey .container {
+        padding: 2rem;
+    }
+
+    .enjoy-the-journey #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .enjoy-the-journey #current-date {
+        font-size: 1.8rem;
+    }
+
+    .enjoy-the-journey #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .enjoy-the-journey .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .enjoy-the-journey .event-title {
+        font-size: 1.1rem;
+    }
+
+    .enjoy-the-journey .journey-path {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .enjoy-the-journey {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .enjoy-the-journey .container {
+        padding: 1.5rem;
+    }
+
+    .enjoy-the-journey #calendar-title {
+        font-size: 2rem;
+    }
+
+    .enjoy-the-journey .journey-path {
+        max-width: 300px;
+        height: 25px;
+    }
+
+    .enjoy-the-journey .path-marker {
+        width: 35px;
+        height: 35px;
+    }
+
+    .enjoy-the-journey th {
+        font-size: 0.95rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .enjoy-the-journey th span.full-day-name {
+        display: none;
+    }
+
+    .enjoy-the-journey th abbr {
+        display: inline;
+    }
+
+    .enjoy-the-journey td {
+        padding: 1rem;
+        height: 100px;
+        font-size: 0.95rem;
+    }
+
+    .enjoy-the-journey td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .enjoy-the-journey td.current-day::before {
+        font-size: 1.2rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .enjoy-the-journey #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .enjoy-the-journey #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+    }
+
+    .enjoy-the-journey .modal-content {
+        padding: 25px;
+    }
+
+    .enjoy-the-journey .event-item {
+        padding: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .enjoy-the-journey .container {
+        padding: 1.2rem;
+    }
+
+    .enjoy-the-journey #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .enjoy-the-journey #current-date {
+        font-size: 1.5rem;
+    }
+
+    .enjoy-the-journey #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .enjoy-the-journey .journey-path {
+        max-width: 250px;
+        height: 20px;
+    }
+
+    .enjoy-the-journey .path-marker {
+        width: 30px;
+        height: 30px;
+    }
+
+    .enjoy-the-journey th {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .enjoy-the-journey td {
+        padding: 0.9rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .enjoy-the-journey td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .enjoy-the-journey #theme-switcher {
+        min-width: 180px;
+        font-size: 0.9rem;
+    }
+
+    .enjoy-the-journey .modal-content {
+        padding: 20px;
+    }
+
+    .enjoy-the-journey .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .enjoy-the-journey .event-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .enjoy-the-journey th {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .enjoy-the-journey td {
+        height: 85px;
+    }
+
+    .enjoy-the-journey td .date-number {
+        font-size: 1rem;
+    }
+
+    .enjoy-the-journey #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+
+    .enjoy-the-journey .journey-path {
+        max-width: 200px;
+    }
+}
