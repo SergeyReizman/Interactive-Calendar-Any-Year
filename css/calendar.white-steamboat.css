@@ -1,0 +1,728 @@
+/* ==========================================================================
+   White Steamboat Theme - Nautical Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Clean nautical color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Maritime-inspired UI elements
+   - Subtle wave animations
+   - Enhanced accessibility
+   - Pinstripe textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;600&display=swap');
+
+:root {
+    /* Nautical Color Palette */
+    --ws-bg: #F5F7FA;
+    --ws-text: #2C3E50;
+    --ws-primary: #3498DB;
+    /* Nautical blue */
+    --ws-secondary: #2980B9;
+    /* Darker blue */
+
+    /* Accent Colors */
+    --ws-red: #E74C3C;
+    /* Signal red */
+    --ws-gold: #F1C40F;
+    /* Brass accents */
+    --ws-teal: #1ABC9C;
+    /* Ocean teal */
+    --ws-brown: #8B4513;
+    /* Wooden accents */
+    --ws-silver: #BDC3C7;
+    /* Metallic */
+
+    /* Theme Variables */
+    --ws-shadow: rgba(52, 152, 219, 0.2);
+    --ws-radius: 4px;
+    --ws-transition: 0.25s ease-in-out;
+    --ws-hover: #EAF2F8;
+    --ws-current-day: #D6EAF8;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ws-ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    }
+}
+
+@keyframes ws-wave {
+    0% {
+        background-position-x: 0;
+    }
+
+    100% {
+        background-position-x: 100px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.white-steamboat {
+    font-family: 'Lato', sans-serif;
+    color: var(--ws-text);
+    line-height: 1.6;
+    background: var(--ws-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(90deg,
+            var(--ws-bg) 90%,
+            rgba(52, 152, 219, 0.05) 100%);
+    background-size: 100px 100%;
+}
+
+.white-steamboat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(52, 152, 219, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52, 152, 219, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.white-steamboat .container {
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid var(--ws-primary);
+    box-shadow: 0 5px 15px var(--ws-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: var(--ws-radius);
+    z-index: 1;
+}
+
+.white-steamboat .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ws-primary),
+            var(--ws-teal),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.white-steamboat #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--ws-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.white-steamboat #calendar-title::before,
+.white-steamboat #calendar-title::after {
+    content: "⛵";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ws-gold);
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.white-steamboat #calendar-title::before {
+    left: 1rem;
+}
+
+.white-steamboat #calendar-title::after {
+    right: 1rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.white-steamboat #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: rgba(52, 152, 219, 0.1);
+    border: 1px dashed var(--ws-primary);
+    border-radius: var(--ws-radius);
+    position: relative;
+}
+
+.white-steamboat #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ws-primary),
+            transparent);
+}
+
+.white-steamboat #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--ws-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.white-steamboat #today-weather {
+    font-family: 'Lato', sans-serif;
+    color: var(--ws-secondary);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.white-steamboat #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.white-steamboat .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--ws-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+    box-shadow:
+        0 0 10px var(--ws-shadow),
+        inset 0 0 10px rgba(52, 152, 219, 0.1);
+}
+
+.white-steamboat .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">9</text></svg>');
+}
+
+.white-steamboat .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.white-steamboat .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ws-primary);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.white-steamboat .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ws-secondary);
+    margin-top: -1px;
+    border-radius: 1px;
+}
+
+.white-steamboat .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ws-red);
+    margin-top: -0.5px;
+}
+
+.white-steamboat .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--ws-gold);
+    border-radius: 50%;
+    border: 1px solid var(--ws-brown);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.white-steamboat table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: white;
+    border: 1px solid var(--ws-primary);
+    border-radius: var(--ws-radius);
+    table-layout: fixed;
+    box-shadow: 0 2px 10px var(--ws-shadow);
+}
+
+.white-steamboat th {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--ws-primary) !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ws-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.white-steamboat th .full-day {
+    display: inline;
+}
+
+.white-steamboat th .short-day {
+    display: none;
+}
+
+.white-steamboat td {
+    background-color: white;
+    color: var(--ws-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ws-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.white-steamboat td:hover {
+    background-color: var(--ws-hover);
+}
+
+.white-steamboat .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--ws-text);
+}
+
+.white-steamboat td.current-day {
+    background-color: var(--ws-current-day);
+    border: 2px solid var(--ws-primary);
+    color: var(--ws-primary) !important;
+    font-weight: 600;
+}
+
+.white-steamboat td.current-day .date-number {
+    color: var(--ws-primary) !important;
+    font-weight: 700;
+}
+
+.white-steamboat td.current-day::before {
+    content: "📍";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ws-red);
+    z-index: 1;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.white-steamboat .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ws-primary);
+    margin: 0 1px;
+    transition: all var(--ws-transition);
+    border: 1px solid white;
+}
+
+.white-steamboat .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--ws-secondary);
+}
+
+.white-steamboat .event-marker.holiday {
+    background-color: var(--ws-red);
+}
+
+.white-steamboat .event-marker.historic {
+    background-color: var(--ws-brown);
+}
+
+.white-steamboat .event-marker.patriotic {
+    background-color: var(--ws-gold);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.white-steamboat .modal-content {
+    position: relative;
+    background-color: white;
+    border: 2px solid var(--ws-primary);
+    padding: 25px;
+    color: var(--ws-text);
+    box-shadow: 0 5px 20px var(--ws-shadow);
+    border-radius: var(--ws-radius);
+}
+
+.white-steamboat .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ws-primary),
+            var(--ws-teal));
+}
+
+.white-steamboat .modal-content h2 {
+    color: var(--ws-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.white-steamboat .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.white-steamboat .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--ws-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.white-steamboat .modal-content .event-description {
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--ws-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ws-radius) var(--ws-radius) 0;
+}
+
+.white-steamboat .modal-content button {
+    background-color: var(--ws-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ws-transition);
+    border-radius: var(--ws-radius);
+    font-family: 'Lato', sans-serif;
+}
+
+.white-steamboat .modal-content button:hover {
+    background-color: var(--ws-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px var(--ws-shadow);
+}
+
+.white-steamboat .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ws-primary);
+    border: 1px solid var(--ws-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ws-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.white-steamboat .modal .close-button:hover {
+    background-color: var(--ws-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.white-steamboat .button,
+.white-steamboat .transparent-button {
+    border: 1px solid var(--ws-primary);
+    color: var(--ws-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ws-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ws-radius);
+}
+
+.white-steamboat .button:hover,
+.white-steamboat .transparent-button:hover {
+    background-color: var(--ws-primary);
+    color: white;
+    box-shadow: 0 2px 5px var(--ws-shadow);
+}
+
+.white-steamboat .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.white-steamboat #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.white-steamboat #theme-switcher {
+    background-color: white;
+    color: var(--ws-primary) !important;
+    border: 1px solid var(--ws-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ws-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233498DB'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ws-transition);
+    box-shadow: 0 1px 3px 0 var(--ws-shadow);
+}
+
+.white-steamboat #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.white-steamboat #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ws-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: var(--ws-primary);
+    background-color: white;
+    cursor: pointer;
+    transition: all var(--ws-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ws-radius);
+    box-shadow: 0 2px 5px var(--ws-shadow);
+}
+
+.white-steamboat #backToTopBtn:hover {
+    background-color: var(--ws-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.white-steamboat footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ws-primary);
+    color: var(--ws-text);
+    font-size: 0.8rem;
+}
+
+.white-steamboat footer::before {
+    content: "⚓";
+    color: var(--ws-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .white-steamboat .container {
+        padding: 1.2rem;
+    }
+
+    .white-steamboat #calendar-title {
+        font-size: 2rem;
+    }
+
+    .white-steamboat #current-date {
+        font-size: 1.5rem;
+    }
+
+    .white-steamboat #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .white-steamboat th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .white-steamboat .container {
+        padding: 1rem;
+    }
+
+    .white-steamboat #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .white-steamboat .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .white-steamboat th .full-day {
+        display: none;
+    }
+
+    .white-steamboat th .short-day {
+        display: inline;
+    }
+
+    .white-steamboat th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .white-steamboat td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .white-steamboat #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .white-steamboat #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .white-steamboat .modal-content {
+        padding: 15px;
+    }
+
+    .white-steamboat .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .white-steamboat .container {
+        padding: 0.8rem;
+    }
+
+    .white-steamboat #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .white-steamboat #current-date {
+        font-size: 1.1rem;
+    }
+
+    .white-steamboat #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .white-steamboat .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .white-steamboat th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .white-steamboat td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .white-steamboat td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .white-steamboat #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .white-steamboat th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .white-steamboat td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .white-steamboat #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .white-steamboat #calendar-title {
+        font-size: 1.2rem;
+    }
+}
