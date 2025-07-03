@@ -1,0 +1,819 @@
+/* ==========================================================================
+   Frontier Unknown Theme - Exploration Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Mysterious color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Exploration-inspired UI elements
+   - Animated discovery effects
+   - Enhanced accessibility
+   - Cosmic textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Exo+2:wght@400;600&display=swap');
+
+:root {
+    /* Frontier Unknown Color Palette */
+    --fu-bg: #0a0a12;
+    --fu-text: #F0F0FF;
+    --fu-primary: #7B00FF;
+    /* Cosmic purple */
+    --fu-secondary: #00FFC8;
+    /* Teal accent */
+
+    /* Gradient Colors */
+    --fu-gradient-start: #0F002A;
+    --fu-gradient-end: #002A1A;
+
+    /* Accent Colors */
+    --fu-red: #FF0066;
+    /* Danger signal */
+    --fu-yellow: #FFCC00;
+    /* Warning */
+    --fu-green: #00FF88;
+    /* Life sign */
+    --fu-orange: #FF6600;
+    /* Energy */
+    --fu-silver: #C0C0C0;
+    /* Metallic */
+
+    /* Theme Variables */
+    --fu-shadow: rgba(123, 0, 255, 0.3);
+    --fu-radius: 3px;
+    --fu-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --fu-hover: #1E1E2E;
+    --fu-current-day: #2A1A3A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fu-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--fu-primary),
+            0 0 10px rgba(0, 255, 200, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--fu-primary),
+            0 0 25px rgba(0, 255, 200, 0.7);
+    }
+}
+
+@keyframes cosmic-ray {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes fu-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--fu-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--fu-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.frontier-unknown {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--fu-text);
+    line-height: 1.6;
+    background: var(--fu-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(123, 0, 255, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(123, 0, 255, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: cosmic-ray 2s linear infinite;
+}
+
+.frontier-unknown::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(123, 0, 255, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(0, 255, 200, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cosmic ray pattern */
+.frontier-unknown::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><line x1="0" y1="0" x2="40" y2="40" stroke="%237B00FF" stroke-width="1"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.frontier-unknown .container {
+    background-color: rgba(10, 10, 20, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--fu-primary);
+    box-shadow: 0 0 30px var(--fu-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--fu-radius);
+    z-index: 1;
+}
+
+.frontier-unknown .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--fu-primary),
+            var(--fu-secondary),
+            transparent);
+    animation: fu-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.frontier-unknown #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--fu-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: fu-pulse 3s infinite;
+    text-transform: uppercase;
+}
+
+.frontier-unknown #calendar-title::before,
+.frontier-unknown #calendar-title::after {
+    content: "✧";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--fu-secondary);
+    font-size: 1.5rem;
+}
+
+.frontier-unknown #calendar-title::before {
+    left: 1rem;
+    animation: fu-pulse 2.5s infinite 0.5s;
+}
+
+.frontier-unknown #calendar-title::after {
+    right: 1rem;
+    animation: fu-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.frontier-unknown #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(123, 0, 255, 0.1);
+    border: 1px solid var(--fu-primary);
+    border-radius: var(--fu-radius);
+    position: relative;
+}
+
+.frontier-unknown #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--fu-primary),
+            transparent);
+}
+
+.frontier-unknown #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--fu-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.frontier-unknown #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--fu-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.frontier-unknown #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.frontier-unknown .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--fu-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--fu-bg);
+    box-shadow:
+        0 0 15px var(--fu-shadow),
+        inset 0 0 10px rgba(123, 0, 255, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(123, 0, 255, 0.1) 100%);
+}
+
+/* Cosmic numerals for clock */
+.frontier-unknown .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B00FF">12</text><text x="82" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B00FF">3</text><text x="50" y="92" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B00FF">6</text><text x="18" y="55" text-anchor="middle" font-family="Orbitron" font-size="12" fill="%237B00FF">9</text></svg>');
+}
+
+.frontier-unknown .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.frontier-unknown .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--fu-primary);
+    margin-top: -2px;
+}
+
+.frontier-unknown .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--fu-secondary);
+    margin-top: -1px;
+}
+
+.frontier-unknown .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--fu-yellow);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Cosmic core */
+.frontier-unknown .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--fu-silver);
+    border-radius: 50%;
+    border: 1px solid var(--fu-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.frontier-unknown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 20, 40, 0.9);
+    border: 1px solid var(--fu-primary);
+    border-radius: var(--fu-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.frontier-unknown th {
+    background-color: rgba(123, 0, 255, 0.15);
+    color: var(--fu-primary) !important;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--fu-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.frontier-unknown th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.frontier-unknown th .short-day {
+    display: none;
+}
+
+.frontier-unknown td {
+    background-color: rgba(15, 15, 30, 0.9);
+    color: var(--fu-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--fu-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--fu-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.frontier-unknown td:hover {
+    background-color: var(--fu-hover);
+    box-shadow: inset 0 0 15px var(--fu-shadow);
+}
+
+.frontier-unknown .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--fu-text);
+}
+
+.frontier-unknown td.current-day {
+    background-color: var(--fu-current-day);
+    border: 2px solid var(--fu-secondary);
+    color: var(--fu-secondary) !important;
+    font-weight: 700;
+    animation: fu-glow 3s infinite;
+}
+
+.frontier-unknown td.current-day .date-number {
+    color: var(--fu-secondary) !important;
+    font-weight: 800;
+}
+
+.frontier-unknown td.current-day::before {
+    content: "✦";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--fu-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.frontier-unknown .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--fu-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--fu-shadow);
+    transition: all var(--fu-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.frontier-unknown .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--fu-secondary);
+    box-shadow: 0 0 15px var(--fu-primary);
+}
+
+/* Special event types */
+.frontier-unknown .event-marker.holiday {
+    background-color: var(--fu-yellow);
+}
+
+.frontier-unknown .event-marker.historic {
+    background-color: var(--fu-silver);
+}
+
+.frontier-unknown .event-marker.patriotic {
+    background-color: var(--fu-red);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.frontier-unknown .modal-content {
+    position: relative;
+    background-color: rgba(20, 20, 20, 0.98);
+    border: 1px solid var(--fu-primary);
+    padding: 25px;
+    color: var(--fu-text);
+    box-shadow: 0 0 30px var(--fu-shadow);
+    border-radius: var(--fu-radius);
+    animation: fu-glow 0.5s ease;
+}
+
+.frontier-unknown .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--fu-primary),
+            var(--fu-secondary),
+            var(--fu-yellow));
+}
+
+.frontier-unknown .modal-content h2 {
+    color: var(--fu-primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.frontier-unknown .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.frontier-unknown .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--fu-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.frontier-unknown .modal-content .event-description {
+    background-color: rgba(123, 0, 255, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--fu-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--fu-radius) var(--fu-radius) 0;
+}
+
+.frontier-unknown .modal-content button {
+    background-color: var(--fu-primary);
+    color: var(--fu-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--fu-transition);
+    border-radius: var(--fu-radius);
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
+}
+
+.frontier-unknown .modal-content button:hover {
+    background-color: var(--fu-secondary);
+    box-shadow: 0 4px 6px -1px var(--fu-shadow);
+}
+
+.frontier-unknown .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--fu-primary);
+    border: 1px solid var(--fu-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--fu-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.frontier-unknown .modal .close-button:hover {
+    background-color: var(--fu-primary);
+    color: var(--fu-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.frontier-unknown .button,
+.frontier-unknown .transparent-button {
+    border: 1px solid var(--fu-primary);
+    color: var(--fu-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--fu-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--fu-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.frontier-unknown .button::before,
+.frontier-unknown .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(123, 0, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.frontier-unknown .button:hover,
+.frontier-unknown .transparent-button:hover {
+    background-color: var(--fu-primary);
+    color: var(--fu-bg);
+    box-shadow: 0 4px 6px -1px var(--fu-shadow);
+}
+
+.frontier-unknown .button:hover::before,
+.frontier-unknown .transparent-button:hover::before {
+    left: 100%;
+}
+
+.frontier-unknown .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.frontier-unknown #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.frontier-unknown #theme-switcher {
+    background-color: var(--fu-bg);
+    color: var(--fu-primary) !important;
+    border: 1px solid var(--fu-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--fu-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237B00FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--fu-transition);
+    box-shadow: 0 1px 3px 0 var(--fu-shadow);
+}
+
+.frontier-unknown #theme-switcher option {
+    background-color: var(--fu-bg) !important;
+    color: var(--fu-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.frontier-unknown #theme-switcher option:hover {
+    background-color: var(--fu-primary) !important;
+    color: var(--fu-bg) !important;
+}
+
+.frontier-unknown #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 0, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.frontier-unknown #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--fu-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    color: var(--fu-primary);
+    background-color: var(--fu-bg);
+    cursor: pointer;
+    transition: all var(--fu-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--fu-radius);
+    box-shadow: 0 4px 6px -1px var(--fu-shadow);
+    text-transform: uppercase;
+}
+
+.frontier-unknown #backToTopBtn:hover {
+    background-color: var(--fu-primary);
+    color: var(--fu-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.frontier-unknown footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--fu-primary);
+    color: var(--fu-text);
+    font-size: 0.8rem;
+}
+
+.frontier-unknown footer::before {
+    content: "✧ ";
+    color: var(--fu-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .frontier-unknown .container {
+        padding: 1.2rem;
+    }
+
+    .frontier-unknown #calendar-title {
+        font-size: 2rem;
+    }
+
+    .frontier-unknown #current-date {
+        font-size: 1.5rem;
+    }
+
+    .frontier-unknown #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .frontier-unknown th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .frontier-unknown .container {
+        padding: 1rem;
+    }
+
+    .frontier-unknown #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .frontier-unknown .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .frontier-unknown th .full-day {
+        display: none;
+    }
+
+    .frontier-unknown th .short-day {
+        display: inline;
+    }
+
+    .frontier-unknown th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .frontier-unknown td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .frontier-unknown #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .frontier-unknown #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .frontier-unknown .modal-content {
+        padding: 15px;
+    }
+
+    .frontier-unknown .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .frontier-unknown .container {
+        padding: 0.8rem;
+    }
+
+    .frontier-unknown #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .frontier-unknown #current-date {
+        font-size: 1.1rem;
+    }
+
+    .frontier-unknown #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .frontier-unknown .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .frontier-unknown th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .frontier-unknown td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .frontier-unknown td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .frontier-unknown #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .frontier-unknown th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .frontier-unknown td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .frontier-unknown #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .frontier-unknown #calendar-title {
+        font-size: 1.2rem;
+    }
+}
