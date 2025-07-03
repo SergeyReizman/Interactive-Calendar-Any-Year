@@ -92,7 +92,7 @@ const applyTheme = (theme) => {
     'dragon-flame', 'dragonfly', 'dramatic-coastline.css', 'dream-adventure', 'eagle-swoop',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 'enjoy-the-journey',
     'essential-oils', 'everest-view', 'every-little-step-counts',
-    'excellent-performance', 'executive-management',
+    'excellent-mood', 'excellent-performance', 'executive-management',
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
     'extraordinary-achievement', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'formula-one',

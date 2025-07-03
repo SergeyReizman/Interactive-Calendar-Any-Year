@@ -1,0 +1,842 @@
+/* ==========================================================================
+   Excellent Mood - Uplifting Calendar Theme
+   Version: 2.0
+   Updated: 2024-06-10
+   Changes:
+   - Vibrant, energizing color palette
+   - Positive design elements
+   - Energetic animations
+   - Updated all class names to .excellent-mood
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* Vibrant Color Palette */
+    --em-bg: #FFF9F0;
+    --em-text: #2D3436;
+    --em-primary: #FFFFFF;
+    --em-secondary: #FFF5E6;
+    --em-date-number: #FF7675;
+
+    /* Activity Colors */
+    --em-accent1: #FF7675;
+    /* Coral */
+    --em-accent2: #FDCB6E;
+    /* Sunshine */
+    --em-accent3: #55EFC4;
+    /* Mint */
+    --em-accent4: #74B9FF;
+    /* Sky */
+    --em-accent5: rgba(255, 118, 117, 0.6);
+
+    /* Theme Variables */
+    --em-shadow: rgba(255, 118, 117, 0.2);
+    --em-radius: 16px;
+    --em-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --em-hover: #FF5E5C;
+    --em-glow: 0 0 25px rgba(255, 118, 117, 0.3);
+    --em-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23FF7675"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%23FF7675"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%23FF7675"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes pop-in {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes happy-jump {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(255, 118, 117, 0.3);
+    }
+
+    50% {
+        box-shadow: var(--em-glow);
+    }
+}
+
+@keyframes rainbow-bg {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.excellent-mood {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--em-text) !important;
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--em-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="30" r="3" fill="%23FF7675" opacity="0.1"/><circle cx="50" cy="20" r="4" fill="%23FDCB6E" opacity="0.1"/><circle cx="80" cy="30" r="3" fill="%2355EFC4" opacity="0.1"/></svg>');
+    background-size: 150px 150px;
+}
+
+.excellent-mood .container {
+    background-color: var(--em-primary);
+    padding: 2.5rem;
+    border: 2px dashed var(--em-accent5);
+    box-shadow: var(--em-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2.5rem auto;
+    border-radius: var(--em-radius);
+    animation: pop-in 0.6s ease-out;
+}
+
+.excellent-mood .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--em-accent1) 0%,
+            var(--em-accent2) 33%,
+            var(--em-accent3) 66%,
+            var(--em-accent4) 100%);
+}
+
+.excellent-mood .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--em-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.excellent-mood #calendar-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--em-accent1) !important;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 3px 3px 0 rgba(255, 118, 117, 0.2);
+}
+
+.excellent-mood #calendar-title::after {
+    content: "🌟";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: happy-jump 2s infinite;
+}
+
+/* ==================== ACTIVITY TRACKER ==================== */
+.excellent-mood #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--em-primary);
+    border: 2px dotted var(--em-accent5);
+    border-radius: var(--em-radius);
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.excellent-mood #date-weather-container::before {
+    content: "TODAY'S VIBES";
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background-color: var(--em-primary);
+    padding: 0 15px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--em-text) !important;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    border: 2px dotted var(--em-accent5);
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.excellent-mood #current-date {
+    font-family: 'Poppins', sans-serif;
+    color: var(--em-text) !important;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.excellent-mood #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--em-accent4) !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Activity Visualization */
+.excellent-mood #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.excellent-mood .activity-tracker {
+    width: 100%;
+    max-width: 400px;
+    height: 30px;
+    background-color: var(--em-secondary);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.excellent-mood .activity-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 65%;
+    background: linear-gradient(90deg,
+            var(--em-accent1),
+            var(--em-accent2),
+            var(--em-accent3),
+            var(--em-accent4));
+    border-radius: 20px;
+}
+
+.excellent-mood .activity-marker {
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 45px;
+    height: 45px;
+    background-color: var(--em-primary);
+    border: 3px solid var(--em-accent1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: happy-jump 2s infinite;
+}
+
+.excellent-mood .activity-marker::after {
+    content: "😃";
+    font-size: 1.8rem;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.excellent-mood table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    margin: 2.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY HEADERS */
+.excellent-mood th {
+    background: linear-gradient(135deg, var(--em-accent1), var(--em-hover));
+    color: white !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    padding: 1.2rem;
+    border-radius: var(--em-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.excellent-mood th span.full-day-name {
+    display: inline;
+}
+
+.excellent-mood th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE CELLS */
+.excellent-mood td {
+    background-color: var(--em-primary);
+    color: var(--em-text) !important;
+    padding: 1.3rem;
+    border: 2px solid var(--em-accent5);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--em-transition);
+    position: relative;
+    border-radius: var(--em-radius);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+}
+
+.excellent-mood td .date-number {
+    color: var(--em-date-number) !important;
+    font-weight: 700;
+    font-size: 1.6rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.excellent-mood td:hover {
+    background-color: var(--em-secondary);
+    box-shadow: 0 10px 25px rgba(255, 118, 117, 0.15);
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Current day highlight */
+.excellent-mood td.current-day {
+    background-color: rgba(255, 118, 117, 0.1);
+    border: 3px solid var(--em-accent1);
+    animation: pulse-glow 4s infinite;
+}
+
+.excellent-mood td.current-day .date-number {
+    color: var(--em-date-number) !important;
+    font-weight: 800;
+}
+
+.excellent-mood td.current-day::before {
+    content: "🔥";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.6rem;
+    animation: happy-jump 1.5s infinite;
+}
+
+/* ==================== ACTIVITY MARKERS ==================== */
+.excellent-mood .activity-marker {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--em-accent4);
+    margin: 0 3px;
+    transition: all var(--em-transition);
+}
+
+.excellent-mood .activity-marker:hover {
+    transform: scale(2) rotate(15deg);
+    background-color: var(--em-accent1);
+    box-shadow: 0 0 15px rgba(116, 185, 255, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.excellent-mood .modal-content {
+    position: relative;
+    background-color: var(--em-primary);
+    border: 2px dashed var(--em-accent5);
+    padding: 30px;
+    color: var(--em-text) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: var(--em-radius);
+    animation: pop-in 0.6s ease-out;
+}
+
+.excellent-mood .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--em-accent1) 0%,
+            var(--em-accent2) 33%,
+            var(--em-accent3) 66%,
+            var(--em-accent4) 100%);
+}
+
+.excellent-mood .modal-content h2 {
+    color: var(--em-accent1) !important;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+    text-shadow: 2px 2px 0 rgba(255, 118, 117, 0.2);
+}
+
+/* Modal date display */
+.excellent-mood .modal-date {
+    font-family: 'Poppins', sans-serif;
+    color: var(--em-text) !important;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px dotted var(--em-accent5);
+}
+
+/* Activity list */
+.excellent-mood .activity-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.excellent-mood .activity-item {
+    background-color: var(--em-secondary);
+    padding: 1.3rem;
+    margin-bottom: 1.3rem;
+    border-left: 5px solid var(--em-accent1);
+    border-radius: var(--em-radius);
+    transition: all var(--em-transition);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.excellent-mood .activity-item::before {
+    content: "💪";
+    font-size: 1.5rem;
+}
+
+.excellent-mood .activity-item.completed::before {
+    content: "✅";
+}
+
+.excellent-mood .activity-item:hover {
+    background-color: var(--em-primary);
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(255, 118, 117, 0.15);
+}
+
+.excellent-mood .activity-time {
+    font-family: 'Poppins', sans-serif;
+    color: var(--em-accent1) !important;
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.excellent-mood .activity-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--em-text) !important;
+}
+
+.excellent-mood .activity-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--em-text) !important;
+    opacity: 0.9;
+}
+
+.excellent-mood .modal-content button {
+    background: linear-gradient(135deg, var(--em-accent1), var(--em-hover));
+    color: white !important;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--em-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--em-radius);
+    text-transform: uppercase;
+}
+
+.excellent-mood .modal-content button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 118, 117, 0.3);
+}
+
+/* Close Button */
+.excellent-mood .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--em-primary);
+    color: var(--em-text) !important;
+    border: 2px solid var(--em-text);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--em-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.excellent-mood .modal .close-button:hover {
+    background-color: var(--em-accent1);
+    color: white !important;
+    border-color: var(--em-accent1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.excellent-mood .button,
+.excellent-mood .transparent-button {
+    border: 3px solid var(--em-accent1);
+    color: var(--em-text) !important;
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--em-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.6rem;
+    border-radius: var(--em-radius);
+    letter-spacing: 0.03em;
+    font-size: 1.1rem;
+}
+
+.excellent-mood .button:hover,
+.excellent-mood .transparent-button:hover {
+    background-color: var(--em-accent1);
+    color: white !important;
+    box-shadow: 0 8px 20px rgba(255, 118, 117, 0.2);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.excellent-mood .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.excellent-mood #theme-switcher-container {
+    position: relative;
+    margin: 0 1.5rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.excellent-mood #theme-switcher {
+    background-color: var(--em-primary);
+    color: var(--em-text) !important;
+    border: 3px solid var(--em-accent1);
+    padding: 1rem 2.6rem 1rem 1.4rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D3436'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--em-transition);
+    border-radius: var(--em-radius);
+}
+
+.excellent-mood #theme-switcher option {
+    background-color: var(--em-primary) !important;
+    color: var(--em-text) !important;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 14px 16px !important;
+}
+
+.excellent-mood #theme-switcher:focus {
+    outline: none;
+    border-color: var(--em-accent1);
+    box-shadow: 0 0 0 4px rgba(255, 118, 117, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.excellent-mood #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.3rem 2.2rem;
+    font-size: 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: white !important;
+    background: linear-gradient(135deg, var(--em-accent1), var(--em-hover));
+    cursor: pointer;
+    transition: all var(--em-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--em-radius);
+    box-shadow: 0 5px 15px rgba(255, 118, 117, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.excellent-mood #backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 118, 117, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.excellent-mood footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.8rem;
+    border-top: 2px dashed var(--em-accent5);
+    color: var(--em-text) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .excellent-mood #calendar-title {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .excellent-mood .container {
+        padding: 2.2rem;
+    }
+
+    .excellent-mood #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .excellent-mood #current-date {
+        font-size: 2rem;
+    }
+
+    .excellent-mood #today-weather {
+        font-size: 1.3rem;
+    }
+
+    .excellent-mood .modal-date {
+        font-size: 1.7rem;
+    }
+
+    .excellent-mood .activity-title {
+        font-size: 1.2rem;
+    }
+
+    .excellent-mood .activity-tracker {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .excellent-mood {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .excellent-mood .container {
+        padding: 1.8rem;
+    }
+
+    .excellent-mood #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .excellent-mood .activity-tracker {
+        max-width: 300px;
+        height: 28px;
+    }
+
+    .excellent-mood .activity-marker {
+        width: 40px;
+        height: 40px;
+    }
+
+    .excellent-mood th {
+        font-size: 1rem;
+        padding: 1rem 0.5rem;
+    }
+
+    .excellent-mood th span.full-day-name {
+        display: none;
+    }
+
+    .excellent-mood th abbr {
+        display: inline;
+    }
+
+    .excellent-mood td {
+        padding: 1.1rem;
+        height: 110px;
+        font-size: 1rem;
+    }
+
+    .excellent-mood td .date-number {
+        font-size: 1.4rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .excellent-mood td.current-day::before {
+        font-size: 1.4rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .excellent-mood #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1.1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .excellent-mood #theme-switcher {
+        padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+        font-size: 1rem;
+        min-width: 220px;
+    }
+
+    .excellent-mood .modal-content {
+        padding: 25px;
+    }
+
+    .excellent-mood .activity-item {
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .excellent-mood .container {
+        padding: 1.5rem;
+    }
+
+    .excellent-mood #calendar-title {
+        font-size: 2rem;
+    }
+
+    .excellent-mood #current-date {
+        font-size: 1.8rem;
+    }
+
+    .excellent-mood #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .excellent-mood .activity-tracker {
+        max-width: 250px;
+        height: 25px;
+    }
+
+    .excellent-mood .activity-marker {
+        width: 35px;
+        height: 35px;
+    }
+
+    .excellent-mood th {
+        font-size: 0.95rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .excellent-mood td {
+        padding: 1rem;
+        height: 100px;
+        font-size: 0.95rem;
+    }
+
+    .excellent-mood td .date-number {
+        font-size: 1.3rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .excellent-mood #theme-switcher {
+        min-width: 200px;
+        font-size: 0.95rem;
+    }
+
+    .excellent-mood .modal-content {
+        padding: 20px;
+    }
+
+    .excellent-mood .modal-date {
+        font-size: 1.6rem;
+    }
+
+    .excellent-mood .activity-time {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .excellent-mood th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .excellent-mood td {
+        height: 95px;
+    }
+
+    .excellent-mood td .date-number {
+        font-size: 1.2rem;
+    }
+
+    .excellent-mood #theme-switcher {
+        min-width: 180px;
+        font-size: 0.9rem;
+    }
+
+    .excellent-mood .activity-tracker {
+        max-width: 220px;
+    }
+}
