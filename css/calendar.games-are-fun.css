@@ -1,110 +1,150 @@
 /* ==========================================================================
-   Games Are Fun - Playful Calendar Theme
-   Version: 2.1
-   Updated: 2024-06-10
-   Changes:
-   - Fixed overlapping weekdays in calendar
-   - Game-inspired color palette
-   - Pixel art elements and retro styling
-   - Playful animations and interactions
-   - Maintained all structure and functionality
+   Games Are Fun Theme - Playful Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Vibrant color scheme
+   - Game-inspired UI elements
+   - Mobile-responsive design
+   - Playful animations
+   - Pixel art accents
+   - Enhanced accessibility
+   - Retro gaming textures
+   - Fluid typography
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comic+Neue:wght@400;700&display=swap');
 
 :root {
-    /* 8-bit Color Palette */
-    --gaf-bg: #1a1c2c;
-    --gaf-text: #f4f4f4;
-    --gaf-primary: #2d2d4d;
-    --gaf-secondary: #3e3e5d;
-    --gaf-date-number: #ffcc00;
+    /* Games Are Fun Color Palette */
+    --gaf-bg: #1a1a2e;
+    --gaf-text: #F8F8F8;
+    --gaf-primary: #FF6B6B;
+    /* Vibrant red */
+    --gaf-secondary: #4ECDC4;
+    /* Teal accent */
 
-    /* Game Accent Colors */
-    --gaf-accent1: #41a6f6;
-    /* Blue */
-    --gaf-accent2: #ff3a3a;
-    /* Red */
-    --gaf-accent3: #66cc33;
-    /* Green */
-    --gaf-accent4: rgba(65, 166, 246, 0.6);
-    --gaf-accent5: rgba(255, 58, 58, 0.4);
+    /* Gradient Colors */
+    --gaf-gradient-start: #2A0F45;
+    --gaf-gradient-end: #0F2A45;
+
+    /* Accent Colors */
+    --gaf-red: #FF2D75;
+    /* Power-up */
+    --gaf-yellow: #FFD166;
+    /* Coin */
+    --gaf-green: #06D6A0;
+    /* Life */
+    --gaf-blue: #118AB2;
+    /* Water */
+    --gaf-purple: #8338EC;
+    /* Magic */
 
     /* Theme Variables */
-    --gaf-shadow: rgba(0, 0, 0, 0.5);
-    --gaf-radius: 0;
-    /* Pixel-perfect corners */
-    --gaf-transition: 0.2s ease;
-    --gaf-hover: #2d89e5;
-    --gaf-glow: 0 0 10px rgba(65, 166, 246, 0.7);
-    --gaf-pixel: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><rect width="2" height="2" fill="%2341a6f6"/><rect x="2" y="2" width="2" height="2" fill="%2341a6f6"/></svg>');
+    --gaf-shadow: rgba(255, 107, 107, 0.3);
+    --gaf-radius: 5px;
+    --gaf-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --gaf-hover: #2E2E4E;
+    --gaf-current-day: #3A2A4A;
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes pixel-pop {
+@keyframes gaf-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pixel-glitter {
     0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    50% {
-        transform: scale(1.1);
+        background-position: 0 0;
     }
 
     100% {
-        transform: scale(1);
-        opacity: 1;
+        background-position: 16px 16px;
     }
 }
 
-@keyframes power-up {
+@keyframes gaf-glow {
 
     0%,
     100% {
-        transform: scale(1);
+        box-shadow: 0 0 5px var(--gaf-primary);
     }
 
     50% {
-        transform: scale(1.2);
-    }
-}
-
-@keyframes score-flash {
-
-    0%,
-    100% {
-        color: var(--gaf-date-number);
-    }
-
-    50% {
-        color: var(--gaf-accent2);
+        box-shadow: 0 0 20px var(--gaf-secondary);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .games-are-fun {
-    font-family: 'VT323', monospace;
-    color: var(--gaf-text) !important;
-    line-height: 1.4;
-    font-size: 1.2rem;
-    background-color: var(--gaf-bg);
+    font-family: 'Comic Neue', sans-serif;
+    color: var(--gaf-text);
+    line-height: 1.6;
+    background: var(--gaf-bg);
     min-height: 100vh;
-    background-image: var(--gaf-pixel);
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(255, 107, 107, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(255, 107, 107, 0.05) 1px,
+            transparent 1px);
     background-size: 16px 16px;
-    letter-spacing: 1px;
+    animation: pixel-glitter 2s linear infinite;
+}
+
+.games-are-fun::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(255, 107, 107, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(78, 205, 196, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Pixel pattern */
+.games-are-fun::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" opacity="0.05"><rect x="8" y="0" width="1" height="1" fill="%23FF6B6B"/><rect x="0" y="8" width="1" height="1" fill="%23FF6B6B"/><rect x="4" y="4" width="1" height="1" fill="%234ECDC4"/><rect x="12" y="12" width="1" height="1" fill="%234ECDC4"/></svg>');
+    pointer-events: none;
+    z-index: 0;
 }
 
 .games-are-fun .container {
-    background-color: var(--gaf-primary);
-    padding: 1.5rem;
-    border: 4px solid var(--gaf-accent1);
-    box-shadow: 4px 4px 0 var(--gaf-shadow);
+    background-color: rgba(26, 26, 46, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--gaf-primary);
+    box-shadow: 0 0 30px var(--gaf-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
-    margin: 2rem auto;
-    animation: pixel-pop 0.4s ease-out;
+    margin: 0 auto;
+    border-radius: var(--gaf-radius);
+    z-index: 1;
 }
 
 .games-are-fun .container::before {
@@ -113,194 +153,297 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg,
-            var(--gaf-accent1) 0%,
-            var(--gaf-accent2) 50%,
-            var(--gaf-accent3) 100%);
+            transparent,
+            var(--gaf-primary),
+            var(--gaf-secondary),
+            transparent);
+    animation: gaf-glow 3s infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .games-are-fun #calendar-title {
     font-family: 'Press Start 2P', cursive;
-    color: var(--gaf-date-number) !important;
+    color: var(--gaf-primary);
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 0 var(--gaf-shadow);
+    font-weight: 400;
+    letter-spacing: 0.1em;
     position: relative;
-    animation: power-up 2s infinite;
+    animation: gaf-bounce 2s infinite;
+    text-transform: uppercase;
+}
+
+.games-are-fun #calendar-title::before,
+.games-are-fun #calendar-title::after {
+    content: "★";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gaf-secondary);
+    font-size: 1.5rem;
+}
+
+.games-are-fun #calendar-title::before {
+    left: 1rem;
+    animation: gaf-bounce 2s infinite 0.5s;
 }
 
 .games-are-fun #calendar-title::after {
-    content: "🕹️";
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2rem;
+    right: 1rem;
+    animation: gaf-bounce 2s infinite;
 }
 
-/* ==================== GAME STATS DISPLAY ==================== */
+/* ==================== DATE & WEATHER DISPLAY ==================== */
 .games-are-fun #date-weather-container {
     text-align: center;
     margin: 2rem 0;
     padding: 1rem;
-    background-color: var(--gaf-primary);
-    border: 4px solid var(--gaf-accent1);
-    box-shadow: 4px 4px 0 var(--gaf-shadow);
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid var(--gaf-primary);
+    border-radius: var(--gaf-radius);
     position: relative;
 }
 
-.games-are-fun #date-weather-container::before {
-    content: "GAME STATS";
+.games-are-fun #date-weather-container::after {
+    content: "";
     position: absolute;
-    top: -12px;
-    right: 20px;
-    background-color: var(--gaf-accent1);
-    padding: 0 12px;
-    font-size: 0.85rem;
-    font-family: 'Press Start 2P', cursive;
-    color: var(--gaf-text) !important;
-    border: 3px solid var(--gaf-text);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--gaf-primary),
+            transparent);
 }
 
 .games-are-fun #current-date {
     font-family: 'Press Start 2P', cursive;
-    color: var(--gaf-date-number) !important;
+    color: var(--gaf-primary);
     font-size: 1.8rem;
+    font-weight: 400;
     margin-bottom: 0.5rem;
-    animation: score-flash 3s infinite;
+    letter-spacing: 0.1em;
 }
 
 .games-are-fun #today-weather {
-    font-size: 1.5rem;
-    color: var(--gaf-accent3) !important;
+    font-family: 'Comic Neue', sans-serif;
+    color: var(--gaf-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
 }
 
-/* ==================== HEALTH BAR ==================== */
+/* ==================== ANALOG CLOCK ==================== */
 .games-are-fun #analog-watch {
     display: flex;
     justify-content: center;
     margin: 2rem 0;
 }
 
-.games-are-fun .health-bar {
-    width: 80%;
-    height: 24px;
-    background-color: var(--gaf-secondary);
-    border: 3px solid var(--gaf-text);
+.games-are-fun .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--gaf-primary);
+    border-radius: 50%;
     position: relative;
+    background-color: var(--gaf-bg);
+    box-shadow:
+        0 0 15px var(--gaf-shadow),
+        inset 0 0 10px rgba(255, 107, 107, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 107, 107, 0.1) 100%);
 }
 
-.games-are-fun .health-fill {
-    height: 100%;
-    width: 75%;
-    background: linear-gradient(90deg, var(--gaf-accent2), var(--gaf-accent3));
-    animation: power-up 1.5s infinite;
+/* Game numerals for clock */
+.games-are-fun .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Press Start 2P" font-size="10" fill="%23FF6B6B">12</text><text x="82" y="55" text-anchor="middle" font-family="Press Start 2P" font-size="10" fill="%23FF6B6B">3</text><text x="50" y="92" text-anchor="middle" font-family="Press Start 2P" font-size="10" fill="%23FF6B6B">6</text><text x="18" y="55" text-anchor="middle" font-family="Press Start 2P" font-size="10" fill="%23FF6B6B">9</text></svg>');
 }
 
-/* ==================== CALENDAR TABLE ==================== */
+.games-are-fun .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.games-are-fun .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--gaf-primary);
+    margin-top: -2px;
+}
+
+.games-are-fun .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--gaf-secondary);
+    margin-top: -1px;
+}
+
+.games-are-fun .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--gaf-yellow);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Game core */
+.games-are-fun .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--gaf-blue);
+    border-radius: 50%;
+    border: 1px solid var(--gaf-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
 .games-are-fun table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 4px;
-    /* Reduced from 8px to prevent overlap */
+    border-collapse: collapse;
     margin: 2rem auto;
-    background-color: transparent;
+    background-color: rgba(30, 30, 50, 0.9);
+    border: 1px solid var(--gaf-primary);
+    border-radius: var(--gaf-radius);
     table-layout: fixed;
 }
 
-/* DAY HEADERS */
+/* Weekday headers - responsive solution */
 .games-are-fun th {
-    background-color: var(--gaf-accent1);
-    color: var(--gaf-text) !important;
-    font-family: 'Press Start 2P', cursive;
-    font-weight: normal;
-    padding: 0.5rem 0.3rem;
-    /* Adjusted padding */
+    background-color: rgba(255, 107, 107, 0.15);
+    color: var(--gaf-primary) !important;
+    font-family: 'Comic Neue', sans-serif;
+    font-weight: 700;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--gaf-primary);
+    position: relative;
     font-size: 0.8rem;
-    /* Slightly reduced font size */
-    text-transform: uppercase;
-    border: 3px solid var(--gaf-text);
-    box-shadow: 3px 3px 0 var(--gaf-shadow);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-/* DATE CELLS */
+/* Full names for desktop */
+.games-are-fun th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.games-are-fun th .short-day {
+    display: none;
+}
+
 .games-are-fun td {
-    background-color: var(--gaf-primary);
-    color: var(--gaf-text) !important;
-    padding: 0.5rem;
-    /* Reduced padding */
-    border: 3px solid var(--gaf-accent1);
-    height: 100px;
+    background-color: rgba(25, 25, 45, 0.9);
+    color: var(--gaf-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--gaf-primary);
+    height: 90px;
     vertical-align: top;
     transition: all var(--gaf-transition);
     position: relative;
-    box-shadow: 3px 3px 0 var(--gaf-shadow);
-    overflow: hidden;
-}
-
-.games-are-fun td .date-number {
-    color: var(--gaf-date-number) !important;
-    font-weight: bold;
-    font-size: 1.4rem;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85rem;
 }
 
 .games-are-fun td:hover {
-    background-color: var(--gaf-secondary);
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0 var(--gaf-shadow);
+    background-color: var(--gaf-hover);
+    box-shadow: inset 0 0 15px var(--gaf-shadow);
 }
 
-/* Current day highlight */
+.games-are-fun .date-number {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--gaf-text);
+}
+
 .games-are-fun td.current-day {
-    background-color: var(--gaf-accent4);
-    border-color: var(--gaf-date-number);
-    animation: power-up 2s infinite;
+    background-color: var(--gaf-current-day);
+    border: 2px solid var(--gaf-secondary);
+    color: var(--gaf-secondary) !important;
+    font-weight: 700;
+    animation: gaf-glow 3s infinite;
+}
+
+.games-are-fun td.current-day .date-number {
+    color: var(--gaf-secondary) !important;
+    font-weight: 800;
 }
 
 .games-are-fun td.current-day::before {
     content: "★";
     position: absolute;
-    top: 8px;
-    right: 8px;
-    color: var(--gaf-date-number);
-    font-size: 1.4rem;
+    top: 3px;
+    left: 3px;
+    color: var(--gaf-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .games-are-fun .event-marker {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: var(--gaf-accent2);
-    margin: 0 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--gaf-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--gaf-shadow);
     transition: all var(--gaf-transition);
-    box-shadow: 1px 1px 0 var(--gaf-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .games-are-fun .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--gaf-accent3);
+    transform: scale(1.8);
+    background-color: var(--gaf-secondary);
+    box-shadow: 0 0 15px var(--gaf-primary);
+}
+
+/* Special event types */
+.games-are-fun .event-marker.holiday {
+    background-color: var(--gaf-yellow);
+}
+
+.games-are-fun .event-marker.historic {
+    background-color: var(--gaf-blue);
+}
+
+.games-are-fun .event-marker.patriotic {
+    background-color: var(--gaf-purple);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .games-are-fun .modal-content {
     position: relative;
-    background-color: var(--gaf-primary);
-    border: 4px solid var(--gaf-accent1);
-    padding: 20px;
-    color: var(--gaf-text) !important;
-    box-shadow: 6px 6px 0 var(--gaf-shadow);
-    animation: pixel-pop 0.3s ease-out;
+    background-color: rgba(30, 30, 30, 0.98);
+    border: 1px solid var(--gaf-primary);
+    padding: 25px;
+    color: var(--gaf-text);
+    box-shadow: 0 0 30px var(--gaf-shadow);
+    border-radius: var(--gaf-radius);
+    animation: gaf-glow 0.5s ease;
 }
 
 .games-are-fun .modal-content::before {
@@ -311,181 +454,364 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--gaf-accent1) 0%,
-            var(--gaf-accent2) 50%,
-            var(--gaf-accent3) 100%);
+            var(--gaf-primary),
+            var(--gaf-secondary),
+            var(--gaf-yellow));
 }
 
 .games-are-fun .modal-content h2 {
-    color: var(--gaf-date-number) !important;
+    color: var(--gaf-primary);
     font-family: 'Press Start 2P', cursive;
     font-size: 1.8em;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 0 var(--gaf-shadow);
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
-.games-are-fun .modal-date {
-    font-family: 'Press Start 2P', cursive;
-    color: var(--gaf-accent1) !important;
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 2px solid var(--gaf-accent1);
+.games-are-fun .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
 }
 
-/* Quest list */
-.games-are-fun .event-list {
-    margin: 1.5rem 0;
-    padding: 0;
-    list-style: none;
-}
-
-.games-are-fun .event-item {
-    background-color: var(--gaf-secondary);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-left: 4px solid var(--gaf-accent1);
-    transition: all var(--gaf-transition);
-    position: relative;
-}
-
-.games-are-fun .event-item::before {
-    content: "▶";
-    position: absolute;
-    left: 8px;
-    color: var(--gaf-accent1);
-}
-
-.games-are-fun .event-item.completed {
-    border-left-color: var(--gaf-accent3);
-}
-
-.games-are-fun .event-item.completed::before {
-    content: "✓";
-    color: var(--gaf-accent3);
-}
-
-.games-are-fun .event-item:hover {
-    background-color: var(--gaf-accent4);
-    transform: translateX(8px);
-}
-
-.games-are-fun .event-time {
-    color: var(--gaf-date-number) !important;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 0.4rem;
+.games-are-fun .modal-content .event-time {
     display: block;
-    margin-left: 20px;
+    font-weight: 700;
+    color: var(--gaf-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
 }
 
-.games-are-fun .event-title {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0.6rem;
-    color: var(--gaf-text) !important;
-    margin-left: 20px;
+.games-are-fun .modal-content .event-description {
+    background-color: rgba(255, 107, 107, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--gaf-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--gaf-radius) var(--gaf-radius) 0;
 }
 
 .games-are-fun .modal-content button {
-    background-color: var(--gaf-accent1);
-    color: var(--gaf-text) !important;
+    background-color: var(--gaf-primary);
+    color: var(--gaf-bg);
     border: none;
-    padding: 12px 24px;
-    font-size: 1.1em;
-    font-family: 'Press Start 2P', cursive;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--gaf-transition);
-    border: 3px solid var(--gaf-text);
-    box-shadow: 3px 3px 0 var(--gaf-shadow);
+    border-radius: var(--gaf-radius);
+    font-family: 'Comic Neue', sans-serif;
+    text-transform: uppercase;
 }
 
 .games-are-fun .modal-content button:hover {
-    background-color: var(--gaf-hover);
-    transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0 var(--gaf-shadow);
+    background-color: var(--gaf-secondary);
+    box-shadow: 0 4px 6px -1px var(--gaf-shadow);
 }
 
-/* ==================== RESPONSIVE DESIGN ==================== */
-@media (max-width: 1200px) {
-    .games-are-fun #calendar-title {
-        font-size: 1.8rem;
-    }
+.games-are-fun .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--gaf-primary);
+    border: 1px solid var(--gaf-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--gaf-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
+.games-are-fun .modal .close-button:hover {
+    background-color: var(--gaf-primary);
+    color: var(--gaf-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.games-are-fun .button,
+.games-are-fun .transparent-button {
+    border: 1px solid var(--gaf-primary);
+    color: var(--gaf-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--gaf-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--gaf-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.games-are-fun .button::before,
+.games-are-fun .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.games-are-fun .button:hover,
+.games-are-fun .transparent-button:hover {
+    background-color: var(--gaf-primary);
+    color: var(--gaf-bg);
+    box-shadow: 0 4px 6px -1px var(--gaf-shadow);
+}
+
+.games-are-fun .button:hover::before,
+.games-are-fun .transparent-button:hover::before {
+    left: 100%;
+}
+
+.games-are-fun .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.games-are-fun #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.games-are-fun #theme-switcher {
+    background-color: var(--gaf-bg);
+    color: var(--gaf-primary) !important;
+    border: 1px solid var(--gaf-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Comic Neue', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    width: 100%;
+    border-radius: var(--gaf-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B6B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--gaf-transition);
+    box-shadow: 0 1px 3px 0 var(--gaf-shadow);
+}
+
+.games-are-fun #theme-switcher option {
+    background-color: var(--gaf-bg) !important;
+    color: var(--gaf-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
+}
+
+.games-are-fun #theme-switcher option:hover {
+    background-color: var(--gaf-primary) !important;
+    color: var(--gaf-bg) !important;
+}
+
+.games-are-fun #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.games-are-fun #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--gaf-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: 400;
+    color: var(--gaf-primary);
+    background-color: var(--gaf-bg);
+    cursor: pointer;
+    transition: all var(--gaf-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--gaf-radius);
+    box-shadow: 0 4px 6px -1px var(--gaf-shadow);
+    text-transform: uppercase;
+}
+
+.games-are-fun #backToTopBtn:hover {
+    background-color: var(--gaf-primary);
+    color: var(--gaf-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.games-are-fun footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--gaf-primary);
+    color: var(--gaf-text);
+    font-size: 0.8rem;
+}
+
+.games-are-fun footer::before {
+    content: "★ ";
+    color: var(--gaf-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .games-are-fun .container {
-        padding: 1rem;
+        padding: 1.2rem;
+    }
+
+    .games-are-fun #calendar-title {
+        font-size: 2rem;
     }
 
     .games-are-fun #current-date {
         font-size: 1.5rem;
     }
 
+    .games-are-fun #today-weather {
+        font-size: 1.1rem;
+    }
+
     .games-are-fun th {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.2rem;
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
     }
 }
 
 @media (max-width: 768px) {
+    .games-are-fun .container {
+        padding: 1rem;
+    }
+
     .games-are-fun #calendar-title {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
-    .games-are-fun td {
-        height: 80px;
-        padding: 0.4rem;
+    .games-are-fun .clock-face {
+        width: 140px;
+        height: 140px;
     }
 
-    .games-are-fun td .date-number {
-        font-size: 1.1rem;
+    /* Switch to short day names */
+    .games-are-fun th .full-day {
+        display: none;
     }
 
-    .games-are-fun .health-bar {
-        height: 20px;
+    .games-are-fun th .short-day {
+        display: inline;
     }
 
     .games-are-fun th {
-        font-size: 0.6rem;
-        padding: 0.3rem 0.1rem;
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .games-are-fun td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .games-are-fun #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .games-are-fun #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .games-are-fun .modal-content {
+        padding: 15px;
+    }
+
+    .games-are-fun .modal-content h2 {
+        font-size: 1.5em;
     }
 }
 
 @media (max-width: 576px) {
+    .games-are-fun .container {
+        padding: 0.8rem;
+    }
+
     .games-are-fun #calendar-title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .games-are-fun #current-date {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .games-are-fun #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .games-are-fun .clock-face {
+        width: 110px;
+        height: 110px;
     }
 
     .games-are-fun th {
-        font-size: 0.5rem;
-        padding: 0.2rem 0.1rem;
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .games-are-fun td {
-        height: 70px;
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .games-are-fun td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .games-are-fun #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
-    .games-are-fun #calendar-title {
-        font-size: 1rem;
+    .games-are-fun th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
     }
 
     .games-are-fun td {
-        height: 60px;
-        padding: 0.3rem;
+        height: 50px;
+        font-size: 0.7rem;
     }
 
-    .games-are-fun td .date-number {
-        font-size: 0.9rem;
+    .games-are-fun #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
     }
 
-    .games-are-fun th {
-        font-size: 0.4rem;
+    .games-are-fun #calendar-title {
+        font-size: 1.2rem;
     }
 }
