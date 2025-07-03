@@ -113,7 +113,7 @@ const applyTheme = (theme) => {
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
     'invincible-zone', 'in-your-dreams',
     'island-breeze', 'island-of-rainbows', 'japan-emperor', 'jungle-nature',
-    'keep-it-simple', 'keep-on-smiling', 'kilimanjaro-outskirts', 
+    'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'kilimanjaro-outskirts', 
     'lady-blue', 'last-chance',
     'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
     'life-quality', 'like-a-bird',
