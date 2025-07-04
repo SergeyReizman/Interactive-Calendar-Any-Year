@@ -1,0 +1,820 @@
+/* ==========================================================================
+   Group 11 Theme - Modern Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Vibrant color scheme
+   - Geometric UI elements
+   - Mobile-responsive design
+   - Dynamic animations
+   - Abstract patterns
+   - Enhanced accessibility
+   - Bold typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Inter:wght@300;600&display=swap');
+
+:root {
+    /* Group 11 Color Palette */
+    --g11-bg: #0F172A;
+    --g11-text: #E2E8F0;
+    --g11-primary: #7C3AED;
+    /* Vibrant purple */
+    --g11-secondary: #0EA5E9;
+    /* Electric blue */
+
+    /* Gradient Colors */
+    --g11-gradient-start: #1E1B4B;
+    --g11-gradient-end: #0C4A6E;
+
+    /* Accent Colors */
+    --g11-accent-1: #F59E0B;
+    /* Golden yellow */
+    --g11-accent-2: #10B981;
+    /* Emerald green */
+    --g11-accent-3: #EF4444;
+    /* Ruby red */
+    --g11-accent-4: #8B5CF6;
+    /* Lavender */
+
+    /* Theme Variables */
+    --g11-shadow: rgba(124, 58, 237, 0.3);
+    --g11-radius: 6px;
+    --g11-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --g11-hover: #1E293B;
+    --g11-current-day: #312E81;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes g11-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes geometric-pattern {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes g11-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--g11-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--g11-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.group-11 {
+    font-family: 'Inter', sans-serif;
+    color: var(--g11-text);
+    line-height: 1.6;
+    background: var(--g11-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(45deg,
+            rgba(124, 58, 237, 0.05) 25%,
+            transparent 25%),
+        linear-gradient(-45deg,
+            rgba(124, 58, 237, 0.05) 25%,
+            transparent 25%),
+        linear-gradient(45deg,
+            transparent 75%,
+            rgba(124, 58, 237, 0.05) 75%),
+        linear-gradient(-45deg,
+            transparent 75%,
+            rgba(124, 58, 237, 0.05) 75%);
+    background-size: 20px 20px;
+    animation: geometric-pattern 60s linear infinite;
+}
+
+.group-11::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%,
+            rgba(14, 165, 233, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(124, 58, 237, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Geometric pattern */
+.group-11::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><rect x="10" y="10" width="20" height="20" stroke="%237C3AED" stroke-width="1" fill="none"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.group-11 .container {
+    background-color: rgba(15, 23, 42, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--g11-primary);
+    box-shadow: 0 0 30px var(--g11-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--g11-radius);
+    z-index: 1;
+}
+
+.group-11 .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--g11-primary),
+            var(--g11-secondary),
+            transparent);
+    animation: g11-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.group-11 #calendar-title {
+    font-family: 'Rubik', sans-serif;
+    color: var(--g11-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: g11-pulse 3s infinite;
+    text-transform: uppercase;
+}
+
+.group-11 #calendar-title::before,
+.group-11 #calendar-title::after {
+    content: "◆";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--g11-secondary);
+    font-size: 1.5rem;
+}
+
+.group-11 #calendar-title::before {
+    left: 1rem;
+    animation: g11-pulse 2.5s infinite 0.5s;
+}
+
+.group-11 #calendar-title::after {
+    right: 1rem;
+    animation: g11-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.group-11 #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(124, 58, 237, 0.1);
+    border: 1px solid var(--g11-primary);
+    border-radius: var(--g11-radius);
+    position: relative;
+}
+
+.group-11 #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--g11-primary),
+            transparent);
+}
+
+.group-11 #current-date {
+    font-family: 'Rubik', sans-serif;
+    color: var(--g11-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.group-11 #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--g11-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.group-11 #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.group-11 .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--g11-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--g11-bg);
+    box-shadow:
+        0 0 15px var(--g11-shadow),
+        inset 0 0 10px rgba(124, 58, 237, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(14, 165, 233, 0.1) 100%);
+}
+
+/* Geometric numerals for clock */
+.group-11 .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Rubik" font-size="12" fill="%237C3AED">12</text><text x="82" y="55" text-anchor="middle" font-family="Rubik" font-size="12" fill="%237C3AED">3</text><text x="50" y="92" text-anchor="middle" font-family="Rubik" font-size="12" fill="%237C3AED">6</text><text x="18" y="55" text-anchor="middle" font-family="Rubik" font-size="12" fill="%237C3AED">9</text></svg>');
+}
+
+.group-11 .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group-11 .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--g11-primary);
+    margin-top: -2px;
+}
+
+.group-11 .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--g11-secondary);
+    margin-top: -1px;
+}
+
+.group-11 .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--g11-accent-1);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Geometric core */
+.group-11 .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--g11-accent-4);
+    border-radius: 50%;
+    border: 1px solid var(--g11-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.group-11 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(30, 41, 59, 0.9);
+    border: 1px solid var(--g11-primary);
+    border-radius: var(--g11-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.group-11 th {
+    background-color: rgba(124, 58, 237, 0.15);
+    color: var(--g11-primary) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--g11-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.group-11 th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.group-11 th .short-day {
+    display: none;
+}
+
+.group-11 td {
+    background-color: rgba(15, 23, 42, 0.9);
+    color: var(--g11-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--g11-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--g11-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.group-11 td:hover {
+    background-color: var(--g11-hover);
+    box-shadow: inset 0 0 15px var(--g11-shadow);
+}
+
+.group-11 .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--g11-text);
+}
+
+.group-11 td.current-day {
+    background-color: var(--g11-current-day);
+    border: 2px solid var(--g11-secondary);
+    color: var(--g11-secondary) !important;
+    font-weight: 700;
+    animation: g11-glow 3s infinite;
+}
+
+.group-11 td.current-day .date-number {
+    color: var(--g11-secondary) !important;
+    font-weight: 800;
+}
+
+.group-11 td.current-day::before {
+    content: "◆";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--g11-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.group-11 .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--g11-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--g11-shadow);
+    transition: all var(--g11-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.group-11 .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--g11-secondary);
+    box-shadow: 0 0 15px var(--g11-primary);
+}
+
+/* Special event types */
+.group-11 .event-marker.holiday {
+    background-color: var(--g11-accent-1);
+}
+
+.group-11 .event-marker.historic {
+    background-color: var(--g11-accent-2);
+}
+
+.group-11 .event-marker.patriotic {
+    background-color: var(--g11-accent-3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.group-11 .modal-content {
+    position: relative;
+    background-color: rgba(15, 23, 42, 0.98);
+    border: 1px solid var(--g11-primary);
+    padding: 25px;
+    color: var(--g11-text);
+    box-shadow: 0 0 30px var(--g11-shadow);
+    border-radius: var(--g11-radius);
+    animation: g11-glow 0.5s ease;
+}
+
+.group-11 .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--g11-primary),
+            var(--g11-secondary),
+            var(--g11-accent-1));
+}
+
+.group-11 .modal-content h2 {
+    color: var(--g11-primary);
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.group-11 .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.group-11 .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--g11-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.group-11 .modal-content .event-description {
+    background-color: rgba(124, 58, 237, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--g11-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--g11-radius) var(--g11-radius) 0;
+}
+
+.group-11 .modal-content button {
+    background-color: var(--g11-primary);
+    color: var(--g11-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--g11-transition);
+    border-radius: var(--g11-radius);
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.group-11 .modal-content button:hover {
+    background-color: var(--g11-secondary);
+    box-shadow: 0 4px 6px -1px var(--g11-shadow);
+}
+
+.group-11 .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--g11-primary);
+    border: 1px solid var(--g11-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--g11-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.group-11 .modal .close-button:hover {
+    background-color: var(--g11-primary);
+    color: var(--g11-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.group-11 .button,
+.group-11 .transparent-button {
+    border: 1px solid var(--g11-primary);
+    color: var(--g11-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--g11-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--g11-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.group-11 .button::before,
+.group-11 .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.group-11 .button:hover,
+.group-11 .transparent-button:hover {
+    background-color: var(--g11-primary);
+    color: var(--g11-text);
+    box-shadow: 0 4px 6px -1px var(--g11-shadow);
+}
+
+.group-11 .button:hover::before,
+.group-11 .transparent-button:hover::before {
+    left: 100%;
+}
+
+.group-11 .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.group-11 #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.group-11 #theme-switcher {
+    background-color: var(--g11-bg);
+    color: var(--g11-primary) !important;
+    border: 1px solid var(--g11-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--g11-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237C3AED'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--g11-transition);
+    box-shadow: 0 1px 3px 0 var(--g11-shadow);
+}
+
+.group-11 #theme-switcher option {
+    background-color: var(--g11-bg) !important;
+    color: var(--g11-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.group-11 #theme-switcher option:hover {
+    background-color: var(--g11-primary) !important;
+    color: var(--g11-text) !important;
+}
+
+.group-11 #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.group-11 #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--g11-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: var(--g11-primary);
+    background-color: var(--g11-bg);
+    cursor: pointer;
+    transition: all var(--g11-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--g11-radius);
+    box-shadow: 0 4px 6px -1px var(--g11-shadow);
+    text-transform: uppercase;
+}
+
+.group-11 #backToTopBtn:hover {
+    background-color: var(--g11-primary);
+    color: var(--g11-text);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.group-11 footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--g11-primary);
+    color: var(--g11-text);
+    font-size: 0.8rem;
+}
+
+.group-11 footer::before {
+    content: "◆ ";
+    color: var(--g11-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .group-11 .container {
+        padding: 1.2rem;
+    }
+
+    .group-11 #calendar-title {
+        font-size: 2rem;
+    }
+
+    .group-11 #current-date {
+        font-size: 1.5rem;
+    }
+
+    .group-11 #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .group-11 th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .group-11 .container {
+        padding: 1rem;
+    }
+
+    .group-11 #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .group-11 .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .group-11 th .full-day {
+        display: none;
+    }
+
+    .group-11 th .short-day {
+        display: inline;
+    }
+
+    .group-11 th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .group-11 td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .group-11 #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .group-11 #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .group-11 .modal-content {
+        padding: 15px;
+    }
+
+    .group-11 .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .group-11 .container {
+        padding: 0.8rem;
+    }
+
+    .group-11 #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .group-11 #current-date {
+        font-size: 1.1rem;
+    }
+
+    .group-11 #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .group-11 .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .group-11 th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .group-11 td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .group-11 td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .group-11 #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .group-11 th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .group-11 td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .group-11 #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .group-11 #calendar-title {
+        font-size: 1.2rem;
+    }
+}
