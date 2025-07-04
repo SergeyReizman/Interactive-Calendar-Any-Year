@@ -113,7 +113,7 @@ const applyTheme = (theme) => {
     'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
-    'invincible-zone', 'in-your-dreams',
+    'in-the-raspberry-dawn', 'invincible-zone', 'in-your-dreams',
     'island-breeze', 'island-of-rainbows', 'japan-emperor', 'jungle-nature',
     'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'kilimanjaro-outskirts', 
     'lady-blue', 'last-chance',

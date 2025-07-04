@@ -1,0 +1,807 @@
+/* ==========================================================================
+   In The Raspberry Dawn Theme - Romantic Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Raspberry sunrise color scheme
+   - Soft gradient UI elements
+   - Mobile-responsive design
+   - Gentle glow animations
+   - Watercolor textures
+   - Enhanced accessibility
+   - Elegant typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;500&display=swap');
+
+:root {
+    /* Raspberry Dawn Color Palette */
+    --rd-bg: #FFF5F5;
+    --rd-text: #4A2C40;
+    --rd-primary: #D23C77;
+    /* Raspberry pink */
+    --rd-secondary: #FF7E5F;
+    /* Sunrise orange */
+
+    /* Gradient Colors */
+    --rd-gradient-start: #FFECEC;
+    --rd-gradient-end: #FFEEE8;
+
+    /* Accent Colors */
+    --rd-blush: #FFB7C5;
+    /* Soft pink */
+    --rd-gold: #FFB347;
+    /* Morning gold */
+    --rd-lavender: #B399D4;
+    /* Dawn purple */
+    --rd-sky: #89CFF0;
+    /* Morning sky */
+
+    /* Theme Variables */
+    --rd-shadow: rgba(210, 60, 119, 0.2);
+    --rd-radius: 8px;
+    --rd-transition: 0.3s ease-in-out;
+    --rd-hover: #FFEEF2;
+    --rd-current-day: #FFE5EC;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes rd-glow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes watercolor-spread {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes rd-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.in-the-raspberry-dawn {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--rd-text);
+    line-height: 1.6;
+    background: var(--rd-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(255, 183, 197, 0.1) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(255, 126, 95, 0.1) 0%,
+            transparent 20%);
+    background-size: 50px 50px;
+    animation: watercolor-spread 60s linear infinite;
+}
+
+.in-the-raspberry-dawn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 190, 176, 0.05) 0%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Watercolor pattern */
+.in-the-raspberry-dawn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M30,50 Q40,30 50,50 Q60,70 70,50" stroke="%23D23C77" stroke-width="2" fill="none" stroke-linecap="round"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.in-the-raspberry-dawn .container {
+    background-color: rgba(255, 245, 245, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--rd-blush);
+    box-shadow: 0 0 30px var(--rd-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--rd-radius);
+    z-index: 1;
+}
+
+.in-the-raspberry-dawn .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--rd-primary),
+            var(--rd-secondary),
+            transparent);
+    animation: rd-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.in-the-raspberry-dawn #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--rd-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: rd-pulse 3s infinite;
+}
+
+.in-the-raspberry-dawn #calendar-title::before,
+.in-the-raspberry-dawn #calendar-title::after {
+    content: "❀";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rd-secondary);
+    font-size: 1.5rem;
+}
+
+.in-the-raspberry-dawn #calendar-title::before {
+    left: 1rem;
+    animation: rd-pulse 2.5s infinite 0.5s;
+}
+
+.in-the-raspberry-dawn #calendar-title::after {
+    right: 1rem;
+    animation: rd-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.in-the-raspberry-dawn #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 183, 197, 0.2);
+    border: 1px solid var(--rd-primary);
+    border-radius: var(--rd-radius);
+    position: relative;
+}
+
+.in-the-raspberry-dawn #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--rd-primary),
+            transparent);
+}
+
+.in-the-raspberry-dawn #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--rd-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.in-the-raspberry-dawn #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--rd-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.in-the-raspberry-dawn #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.in-the-raspberry-dawn .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--rd-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--rd-bg);
+    box-shadow:
+        0 0 15px var(--rd-shadow),
+        inset 0 0 10px rgba(255, 183, 197, 0.2);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(255, 126, 95, 0.1) 100%);
+}
+
+/* Floral numerals for clock */
+.in-the-raspberry-dawn .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%23D23C77">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%23D23C77">III</text><text x="50" y="92" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%23D23C77">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="12" fill="%23D23C77">IX</text></svg>');
+}
+
+.in-the-raspberry-dawn .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.in-the-raspberry-dawn .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--rd-primary);
+    margin-top: -2px;
+}
+
+.in-the-raspberry-dawn .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--rd-secondary);
+    margin-top: -1px;
+}
+
+.in-the-raspberry-dawn .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--rd-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Floral */
+.in-the-raspberry-dawn .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--rd-blush);
+    border-radius: 50%;
+    border: 1px solid var(--rd-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.in-the-raspberry-dawn table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--rd-primary);
+    border-radius: var(--rd-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.in-the-raspberry-dawn th {
+    background-color: rgba(210, 60, 119, 0.1);
+    color: var(--rd-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--rd-blush);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.in-the-raspberry-dawn th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.in-the-raspberry-dawn th .short-day {
+    display: none;
+}
+
+.in-the-raspberry-dawn td {
+    background-color: rgba(255, 250, 250, 0.95);
+    color: var(--rd-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(210, 60, 119, 0.1);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--rd-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.in-the-raspberry-dawn td:hover {
+    background-color: var(--rd-hover);
+    box-shadow: inset 0 0 15px var(--rd-shadow);
+}
+
+.in-the-raspberry-dawn .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--rd-text);
+}
+
+.in-the-raspberry-dawn td.current-day {
+    background-color: var(--rd-current-day);
+    border: 2px solid var(--rd-secondary);
+    color: var(--rd-primary) !important;
+    font-weight: 600;
+    animation: rd-glow 3s infinite;
+}
+
+.in-the-raspberry-dawn td.current-day .date-number {
+    color: var(--rd-primary) !important;
+    font-weight: 700;
+}
+
+.in-the-raspberry-dawn td.current-day::before {
+    content: "❀";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--rd-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.in-the-raspberry-dawn .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--rd-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--rd-shadow);
+    transition: all var(--rd-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.in-the-raspberry-dawn .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--rd-secondary);
+    box-shadow: 0 0 15px var(--rd-shadow);
+}
+
+/* Special event types */
+.in-the-raspberry-dawn .event-marker.holiday {
+    background-color: var(--rd-gold);
+}
+
+.in-the-raspberry-dawn .event-marker.historic {
+    background-color: var(--rd-lavender);
+}
+
+.in-the-raspberry-dawn .event-marker.patriotic {
+    background-color: var(--rd-sky);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.in-the-raspberry-dawn .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--rd-primary);
+    padding: 25px;
+    color: var(--rd-text);
+    box-shadow: 0 0 30px var(--rd-shadow);
+    border-radius: var(--rd-radius);
+    animation: rd-glow 0.5s ease;
+}
+
+.in-the-raspberry-dawn .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--rd-primary),
+            var(--rd-secondary),
+            var(--rd-blush));
+}
+
+.in-the-raspberry-dawn .modal-content h2 {
+    color: var(--rd-primary);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.in-the-raspberry-dawn .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.in-the-raspberry-dawn .modal-content .event-time {
+    display: block;
+    font-weight: 500;
+    color: var(--rd-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.in-the-raspberry-dawn .modal-content .event-description {
+    background-color: rgba(255, 183, 197, 0.2);
+    padding: 15px;
+    border-left: 3px solid var(--rd-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--rd-radius) var(--rd-radius) 0;
+}
+
+.in-the-raspberry-dawn .modal-content button {
+    background-color: var(--rd-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--rd-transition);
+    border-radius: var(--rd-radius);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.in-the-raspberry-dawn .modal-content button:hover {
+    background-color: var(--rd-secondary);
+    box-shadow: 0 4px 6px -1px var(--rd-shadow);
+}
+
+.in-the-raspberry-dawn .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--rd-primary);
+    border: 1px solid var(--rd-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--rd-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.in-the-raspberry-dawn .modal .close-button:hover {
+    background-color: var(--rd-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.in-the-raspberry-dawn .button,
+.in-the-raspberry-dawn .transparent-button {
+    border: 1px solid var(--rd-primary);
+    color: var(--rd-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--rd-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--rd-radius);
+    letter-spacing: 0.05em;
+}
+
+.in-the-raspberry-dawn .button::before,
+.in-the-raspberry-dawn .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 183, 197, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.in-the-raspberry-dawn .button:hover,
+.in-the-raspberry-dawn .transparent-button:hover {
+    background-color: var(--rd-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--rd-shadow);
+}
+
+.in-the-raspberry-dawn .button:hover::before,
+.in-the-raspberry-dawn .transparent-button:hover::before {
+    left: 100%;
+}
+
+.in-the-raspberry-dawn .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.in-the-raspberry-dawn #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.in-the-raspberry-dawn #theme-switcher {
+    background-color: var(--rd-bg);
+    color: var(--rd-primary) !important;
+    border: 1px solid var(--rd-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--rd-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D23C77'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--rd-transition);
+    box-shadow: 0 1px 3px 0 var(--rd-shadow);
+}
+
+.in-the-raspberry-dawn #theme-switcher option {
+    background-color: var(--rd-bg) !important;
+    color: var(--rd-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.in-the-raspberry-dawn #theme-switcher option:hover {
+    background-color: var(--rd-primary) !important;
+    color: white !important;
+}
+
+.in-the-raspberry-dawn #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(210, 60, 119, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.in-the-raspberry-dawn #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--rd-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    color: var(--rd-primary);
+    background-color: var(--rd-bg);
+    cursor: pointer;
+    transition: all var(--rd-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--rd-radius);
+    box-shadow: 0 4px 6px -1px var(--rd-shadow);
+}
+
+.in-the-raspberry-dawn #backToTopBtn:hover {
+    background-color: var(--rd-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.in-the-raspberry-dawn footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rd-primary);
+    color: var(--rd-text);
+    font-size: 0.8rem;
+}
+
+.in-the-raspberry-dawn footer::before {
+    content: "❀ ";
+    color: var(--rd-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .in-the-raspberry-dawn .container {
+        padding: 1.2rem;
+    }
+
+    .in-the-raspberry-dawn #calendar-title {
+        font-size: 2rem;
+    }
+
+    .in-the-raspberry-dawn #current-date {
+        font-size: 1.5rem;
+    }
+
+    .in-the-raspberry-dawn #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .in-the-raspberry-dawn th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .in-the-raspberry-dawn .container {
+        padding: 1rem;
+    }
+
+    .in-the-raspberry-dawn #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .in-the-raspberry-dawn .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .in-the-raspberry-dawn th .full-day {
+        display: none;
+    }
+
+    .in-the-raspberry-dawn th .short-day {
+        display: inline;
+    }
+
+    .in-the-raspberry-dawn th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .in-the-raspberry-dawn td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .in-the-raspberry-dawn #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .in-the-raspberry-dawn #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .in-the-raspberry-dawn .modal-content {
+        padding: 15px;
+    }
+
+    .in-the-raspberry-dawn .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .in-the-raspberry-dawn .container {
+        padding: 0.8rem;
+    }
+
+    .in-the-raspberry-dawn #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .in-the-raspberry-dawn #current-date {
+        font-size: 1.1rem;
+    }
+
+    .in-the-raspberry-dawn #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .in-the-raspberry-dawn .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .in-the-raspberry-dawn th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .in-the-raspberry-dawn td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .in-the-raspberry-dawn td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .in-the-raspberry-dawn #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .in-the-raspberry-dawn th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .in-the-raspberry-dawn td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .in-the-raspberry-dawn #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .in-the-raspberry-dawn #calendar-title {
+        font-size: 1.2rem;
+    }
+}
