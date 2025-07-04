@@ -1,0 +1,813 @@
+/* ==========================================================================
+   Coastal Atlantic Theme - Nautical Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Atlantic coastal color scheme
+   - Nautical UI elements
+   - Mobile-responsive design
+   - Wave animations
+   - Lighthouse accents
+   - Enhanced accessibility
+   - Maritime textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Seaweed+Script&family=Open+Sans:wght@300;600&display=swap');
+
+:root {
+    /* Coastal Atlantic Color Palette */
+    --ca-bg: #F0F6F9;
+    --ca-text: #2C3E50;
+    --ca-primary: #2980B9;
+    /* Deep Atlantic blue */
+    --ca-secondary: #16A085;
+    /* Teal wave */
+
+    /* Gradient Colors */
+    --ca-gradient-start: #E8F4FC;
+    --ca-gradient-end: #D6F1F5;
+
+    /* Accent Colors */
+    --ca-lighthouse: #E74C3C;
+    /* Lighthouse red */
+    --ca-sand: #F5D7A1;
+    /* Beach sand */
+    --ca-foam: #A5D8DD;
+    /* Sea foam */
+    --ca-sunset: #E67E22;
+    /* Sunset orange */
+    --ca-sail: #3498DB;
+    /* Sail blue */
+
+    /* Theme Variables */
+    --ca-shadow: rgba(41, 128, 185, 0.2);
+    --ca-radius: 6px;
+    --ca-transition: 0.3s ease-in-out;
+    --ca-hover: #E1F0F7;
+    --ca-current-day: #D4EDFA;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ca-wave {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+}
+
+@keyframes ocean-ripple {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+@keyframes ca-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ca-secondary);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--ca-primary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.coastal-atlantic {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ca-text);
+    line-height: 1.6;
+    background: var(--ca-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(22, 160, 133, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(22, 160, 133, 0.05) 1px,
+            transparent 1px);
+    background-size: 40px 40px;
+    animation: ocean-ripple 60s linear infinite;
+}
+
+.coastal-atlantic::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(41, 128, 185, 0.03) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(22, 160, 133, 0.03) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Nautical pattern */
+.coastal-atlantic::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><path d="M0,20 Q10,10 20,20 T40,20" stroke="%232980B9" stroke-width="1" fill="none"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.coastal-atlantic .container {
+    background-color: rgba(240, 246, 249, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--ca-primary);
+    box-shadow: 0 0 30px var(--ca-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ca-radius);
+    z-index: 1;
+}
+
+.coastal-atlantic .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ca-primary),
+            var(--ca-secondary),
+            transparent);
+    animation: ca-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.coastal-atlantic #calendar-title {
+    font-family: 'Seaweed Script', cursive;
+    color: var(--ca-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: ca-wave 3s infinite;
+}
+
+.coastal-atlantic #calendar-title::before,
+.coastal-atlantic #calendar-title::after {
+    content: "⚓";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ca-secondary);
+    font-size: 1.5rem;
+}
+
+.coastal-atlantic #calendar-title::before {
+    left: 1rem;
+    animation: ca-wave 2.5s infinite 0.5s;
+}
+
+.coastal-atlantic #calendar-title::after {
+    right: 1rem;
+    animation: ca-wave 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.coastal-atlantic #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(22, 160, 133, 0.1);
+    border: 1px solid var(--ca-primary);
+    border-radius: var(--ca-radius);
+    position: relative;
+}
+
+.coastal-atlantic #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ca-primary),
+            transparent);
+}
+
+.coastal-atlantic #current-date {
+    font-family: 'Seaweed Script', cursive;
+    color: var(--ca-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.coastal-atlantic #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ca-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.coastal-atlantic #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.coastal-atlantic .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--ca-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ca-bg);
+    box-shadow:
+        0 0 15px var(--ca-shadow),
+        inset 0 0 10px rgba(41, 128, 185, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(22, 160, 133, 0.1) 100%);
+}
+
+/* Nautical numerals for clock */
+.coastal-atlantic .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Seaweed Script" font-size="12" fill="%232980B9">XII</text><text x="82" y="55" text-anchor="middle" font-family="Seaweed Script" font-size="12" fill="%232980B9">III</text><text x="50" y="92" text-anchor="middle" font-family="Seaweed Script" font-size="12" fill="%232980B9">VI</text><text x="18" y="55" text-anchor="middle" font-family="Seaweed Script" font-size="12" fill="%232980B9">IX</text></svg>');
+}
+
+.coastal-atlantic .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coastal-atlantic .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ca-primary);
+    margin-top: -2px;
+}
+
+.coastal-atlantic .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ca-secondary);
+    margin-top: -1px;
+}
+
+.coastal-atlantic .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ca-lighthouse);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Compass rose */
+.coastal-atlantic .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--ca-foam);
+    border-radius: 50%;
+    border: 1px solid var(--ca-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.coastal-atlantic table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--ca-primary);
+    border-radius: var(--ca-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.coastal-atlantic th {
+    background-color: rgba(41, 128, 185, 0.1);
+    color: var(--ca-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ca-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.coastal-atlantic th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.coastal-atlantic th .short-day {
+    display: none;
+}
+
+.coastal-atlantic td {
+    background-color: rgba(248, 252, 255, 0.95);
+    color: var(--ca-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(41, 128, 185, 0.2);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ca-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.coastal-atlantic td:hover {
+    background-color: var(--ca-hover);
+    box-shadow: inset 0 0 15px var(--ca-shadow);
+}
+
+.coastal-atlantic .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--ca-text);
+}
+
+.coastal-atlantic td.current-day {
+    background-color: var(--ca-current-day);
+    border: 2px solid var(--ca-secondary);
+    color: var(--ca-primary) !important;
+    font-weight: 700;
+    animation: ca-glow 3s infinite;
+}
+
+.coastal-atlantic td.current-day .date-number {
+    color: var(--ca-primary) !important;
+    font-weight: 800;
+}
+
+.coastal-atlantic td.current-day::before {
+    content: "⚓";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ca-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.coastal-atlantic .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ca-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--ca-shadow);
+    transition: all var(--ca-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.coastal-atlantic .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ca-secondary);
+    box-shadow: 0 0 15px var(--ca-primary);
+}
+
+/* Special event types */
+.coastal-atlantic .event-marker.holiday {
+    background-color: var(--ca-sunset);
+}
+
+.coastal-atlantic .event-marker.historic {
+    background-color: var(--ca-sand);
+}
+
+.coastal-atlantic .event-marker.patriotic {
+    background-color: var(--ca-sail);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.coastal-atlantic .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--ca-primary);
+    padding: 25px;
+    color: var(--ca-text);
+    box-shadow: 0 0 30px var(--ca-shadow);
+    border-radius: var(--ca-radius);
+    animation: ca-glow 0.5s ease;
+}
+
+.coastal-atlantic .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ca-primary),
+            var(--ca-secondary),
+            var(--ca-foam));
+}
+
+.coastal-atlantic .modal-content h2 {
+    color: var(--ca-primary);
+    font-family: 'Seaweed Script', cursive;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.coastal-atlantic .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.coastal-atlantic .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--ca-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.coastal-atlantic .modal-content .event-description {
+    background-color: rgba(22, 160, 133, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--ca-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ca-radius) var(--ca-radius) 0;
+}
+
+.coastal-atlantic .modal-content button {
+    background-color: var(--ca-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ca-transition);
+    border-radius: var(--ca-radius);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.coastal-atlantic .modal-content button:hover {
+    background-color: var(--ca-secondary);
+    box-shadow: 0 4px 6px -1px var(--ca-shadow);
+}
+
+.coastal-atlantic .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ca-primary);
+    border: 1px solid var(--ca-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ca-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.coastal-atlantic .modal .close-button:hover {
+    background-color: var(--ca-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.coastal-atlantic .button,
+.coastal-atlantic .transparent-button {
+    border: 1px solid var(--ca-primary);
+    color: var(--ca-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Seaweed Script', cursive;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--ca-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ca-radius);
+    letter-spacing: 0.05em;
+}
+
+.coastal-atlantic .button::before,
+.coastal-atlantic .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(22, 160, 133, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.coastal-atlantic .button:hover,
+.coastal-atlantic .transparent-button:hover {
+    background-color: var(--ca-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--ca-shadow);
+}
+
+.coastal-atlantic .button:hover::before,
+.coastal-atlantic .transparent-button:hover::before {
+    left: 100%;
+}
+
+.coastal-atlantic .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.coastal-atlantic #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.coastal-atlantic #theme-switcher {
+    background-color: var(--ca-bg);
+    color: var(--ca-primary) !important;
+    border: 1px solid var(--ca-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ca-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232980B9'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ca-transition);
+    box-shadow: 0 1px 3px 0 var(--ca-shadow);
+}
+
+.coastal-atlantic #theme-switcher option {
+    background-color: var(--ca-bg) !important;
+    color: var(--ca-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.coastal-atlantic #theme-switcher option:hover {
+    background-color: var(--ca-primary) !important;
+    color: white !important;
+}
+
+.coastal-atlantic #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.coastal-atlantic #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ca-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Seaweed Script', cursive;
+    font-weight: 400;
+    color: var(--ca-primary);
+    background-color: var(--ca-bg);
+    cursor: pointer;
+    transition: all var(--ca-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ca-radius);
+    box-shadow: 0 4px 6px -1px var(--ca-shadow);
+}
+
+.coastal-atlantic #backToTopBtn:hover {
+    background-color: var(--ca-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.coastal-atlantic footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ca-primary);
+    color: var(--ca-text);
+    font-size: 0.8rem;
+}
+
+.coastal-atlantic footer::before {
+    content: "⚓ ";
+    color: var(--ca-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .coastal-atlantic .container {
+        padding: 1.2rem;
+    }
+
+    .coastal-atlantic #calendar-title {
+        font-size: 2rem;
+    }
+
+    .coastal-atlantic #current-date {
+        font-size: 1.5rem;
+    }
+
+    .coastal-atlantic #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .coastal-atlantic th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .coastal-atlantic .container {
+        padding: 1rem;
+    }
+
+    .coastal-atlantic #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .coastal-atlantic .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .coastal-atlantic th .full-day {
+        display: none;
+    }
+
+    .coastal-atlantic th .short-day {
+        display: inline;
+    }
+
+    .coastal-atlantic th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .coastal-atlantic td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .coastal-atlantic #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .coastal-atlantic #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .coastal-atlantic .modal-content {
+        padding: 15px;
+    }
+
+    .coastal-atlantic .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .coastal-atlantic .container {
+        padding: 0.8rem;
+    }
+
+    .coastal-atlantic #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .coastal-atlantic #current-date {
+        font-size: 1.1rem;
+    }
+
+    .coastal-atlantic #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .coastal-atlantic .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .coastal-atlantic th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .coastal-atlantic td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .coastal-atlantic td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .coastal-atlantic #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .coastal-atlantic th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .coastal-atlantic td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .coastal-atlantic #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .coastal-atlantic #calendar-title {
+        font-size: 1.2rem;
+    }
+}
