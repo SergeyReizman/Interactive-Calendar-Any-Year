@@ -1,0 +1,807 @@
+/* ==========================================================================
+   Blue Bliss Theme - Tranquil Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Serene blue color scheme
+   - Cloud-inspired UI elements
+   - Mobile-responsive design
+   - Gentle animations
+   - Sky texture backgrounds
+   - Enhanced accessibility
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    /* Blue Bliss Color Palette */
+    --bb-bg: #F5F9FF;
+    --bb-text: #2D3748;
+    --bb-primary: #3B82F6;
+    /* Sky blue */
+    --bb-secondary: #60A5FA;
+    /* Light sky blue */
+
+    /* Gradient Colors */
+    --bb-gradient-start: #EBF4FF;
+    --bb-gradient-end: #E0F2FE;
+
+    /* Accent Colors */
+    --bb-sun: #F59E0B;
+    /* Golden sun */
+    --bb-cloud: #93C5FD;
+    /* Fluffy cloud */
+    --bb-twilight: #818CF8;
+    /* Evening sky */
+    --bb-storm: #4F46E5;
+    /* Deep blue */
+
+    /* Theme Variables */
+    --bb-shadow: rgba(59, 130, 246, 0.2);
+    --bb-radius: 8px;
+    --bb-transition: 0.25s ease;
+    --bb-hover: #EFF6FF;
+    --bb-current-day: #DBEAFE;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes bb-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes cloud-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes bb-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.blue-bliss {
+    font-family: 'Poppins', sans-serif;
+    color: var(--bb-text);
+    line-height: 1.6;
+    background: var(--bb-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(147, 197, 253, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(147, 197, 253, 0.05) 0%,
+            transparent 20%);
+    background-size: 50px 50px;
+    animation: cloud-drift 60s linear infinite;
+}
+
+.blue-bliss::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(59, 130, 246, 0.02) 0%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cloud pattern */
+.blue-bliss::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M20,50 Q25,40 30,50 Q35,60 40,50 Q45,40 50,50 Q55,60 60,50 Q65,40 70,50 Q75,60 80,50" stroke="%233B82F6" stroke-width="1" fill="none"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.blue-bliss .container {
+    background-color: rgba(245, 249, 255, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--bb-primary);
+    box-shadow: 0 0 30px var(--bb-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--bb-radius);
+    z-index: 1;
+}
+
+.blue-bliss .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bb-primary),
+            var(--bb-secondary),
+            transparent);
+    animation: bb-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.blue-bliss #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--bb-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: bb-float 3s infinite;
+}
+
+.blue-bliss #calendar-title::before,
+.blue-bliss #calendar-title::after {
+    content: "☁";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--bb-cloud);
+    font-size: 1.5rem;
+}
+
+.blue-bliss #calendar-title::before {
+    left: 1rem;
+    animation: bb-float 2.5s infinite 0.5s;
+}
+
+.blue-bliss #calendar-title::after {
+    right: 1rem;
+    animation: bb-float 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.blue-bliss #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(147, 197, 253, 0.1);
+    border: 1px solid var(--bb-primary);
+    border-radius: var(--bb-radius);
+    position: relative;
+}
+
+.blue-bliss #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--bb-primary),
+            transparent);
+}
+
+.blue-bliss #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--bb-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.blue-bliss #today-weather {
+    font-family: 'Poppins', sans-serif;
+    color: var(--bb-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.blue-bliss #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.blue-bliss .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--bb-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--bb-bg);
+    box-shadow:
+        0 0 15px var(--bb-shadow),
+        inset 0 0 10px rgba(59, 130, 246, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(147, 197, 253, 0.1) 100%);
+}
+
+/* Sky numerals for clock */
+.blue-bliss .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233B82F6">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233B82F6">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233B82F6">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233B82F6">9</text></svg>');
+}
+
+.blue-bliss .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blue-bliss .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--bb-primary);
+    margin-top: -2px;
+}
+
+.blue-bliss .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--bb-secondary);
+    margin-top: -1px;
+}
+
+.blue-bliss .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--bb-sun);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Sun */
+.blue-bliss .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--bb-sun);
+    border-radius: 50%;
+    border: 1px solid var(--bb-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.blue-bliss table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--bb-primary);
+    border-radius: var(--bb-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.blue-bliss th {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--bb-primary) !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--bb-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.blue-bliss th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.blue-bliss th .short-day {
+    display: none;
+}
+
+.blue-bliss td {
+    background-color: rgba(248, 250, 255, 0.95);
+    color: var(--bb-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--bb-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.blue-bliss td:hover {
+    background-color: var(--bb-hover);
+    box-shadow: inset 0 0 15px var(--bb-shadow);
+}
+
+.blue-bliss .date-number {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--bb-text);
+}
+
+.blue-bliss td.current-day {
+    background-color: var(--bb-current-day);
+    border: 2px solid var(--bb-secondary);
+    color: var(--bb-primary) !important;
+    font-weight: 600;
+    animation: bb-glow 3s infinite;
+}
+
+.blue-bliss td.current-day .date-number {
+    color: var(--bb-primary) !important;
+    font-weight: 700;
+}
+
+.blue-bliss td.current-day::before {
+    content: "☀";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--bb-sun);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.blue-bliss .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bb-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--bb-shadow);
+    transition: all var(--bb-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.blue-bliss .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--bb-secondary);
+    box-shadow: 0 0 15px var(--bb-primary);
+}
+
+/* Special event types */
+.blue-bliss .event-marker.holiday {
+    background-color: var(--bb-sun);
+}
+
+.blue-bliss .event-marker.historic {
+    background-color: var(--bb-twilight);
+}
+
+.blue-bliss .event-marker.patriotic {
+    background-color: var(--bb-storm);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.blue-bliss .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--bb-primary);
+    padding: 25px;
+    color: var(--bb-text);
+    box-shadow: 0 0 30px var(--bb-shadow);
+    border-radius: var(--bb-radius);
+    animation: bb-glow 0.5s ease;
+}
+
+.blue-bliss .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--bb-primary),
+            var(--bb-secondary),
+            var(--bb-cloud));
+}
+
+.blue-bliss .modal-content h2 {
+    color: var(--bb-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.blue-bliss .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.blue-bliss .modal-content .event-time {
+    display: block;
+    font-weight: 500;
+    color: var(--bb-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.blue-bliss .modal-content .event-description {
+    background-color: rgba(147, 197, 253, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--bb-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--bb-radius) var(--bb-radius) 0;
+}
+
+.blue-bliss .modal-content button {
+    background-color: var(--bb-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--bb-transition);
+    border-radius: var(--bb-radius);
+    font-family: 'Poppins', sans-serif;
+}
+
+.blue-bliss .modal-content button:hover {
+    background-color: var(--bb-secondary);
+    box-shadow: 0 4px 6px -1px var(--bb-shadow);
+}
+
+.blue-bliss .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--bb-primary);
+    border: 1px solid var(--bb-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--bb-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.blue-bliss .modal .close-button:hover {
+    background-color: var(--bb-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.blue-bliss .button,
+.blue-bliss .transparent-button {
+    border: 1px solid var(--bb-primary);
+    color: var(--bb-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--bb-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--bb-radius);
+    letter-spacing: 0.05em;
+}
+
+.blue-bliss .button::before,
+.blue-bliss .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.blue-bliss .button:hover,
+.blue-bliss .transparent-button:hover {
+    background-color: var(--bb-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--bb-shadow);
+}
+
+.blue-bliss .button:hover::before,
+.blue-bliss .transparent-button:hover::before {
+    left: 100%;
+}
+
+.blue-bliss .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.blue-bliss #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.blue-bliss #theme-switcher {
+    background-color: var(--bb-bg);
+    color: var(--bb-primary) !important;
+    border: 1px solid var(--bb-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: var(--bb-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--bb-transition);
+    box-shadow: 0 1px 3px 0 var(--bb-shadow);
+}
+
+.blue-bliss #theme-switcher option {
+    background-color: var(--bb-bg) !important;
+    color: var(--bb-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.blue-bliss #theme-switcher option:hover {
+    background-color: var(--bb-primary) !important;
+    color: white !important;
+}
+
+.blue-bliss #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.blue-bliss #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--bb-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    color: var(--bb-primary);
+    background-color: var(--bb-bg);
+    cursor: pointer;
+    transition: all var(--bb-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--bb-radius);
+    box-shadow: 0 4px 6px -1px var(--bb-shadow);
+}
+
+.blue-bliss #backToTopBtn:hover {
+    background-color: var(--bb-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.blue-bliss footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--bb-primary);
+    color: var(--bb-text);
+    font-size: 0.8rem;
+}
+
+.blue-bliss footer::before {
+    content: "☁ ";
+    color: var(--bb-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .blue-bliss .container {
+        padding: 1.2rem;
+    }
+
+    .blue-bliss #calendar-title {
+        font-size: 2rem;
+    }
+
+    .blue-bliss #current-date {
+        font-size: 1.5rem;
+    }
+
+    .blue-bliss #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .blue-bliss th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blue-bliss .container {
+        padding: 1rem;
+    }
+
+    .blue-bliss #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .blue-bliss .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .blue-bliss th .full-day {
+        display: none;
+    }
+
+    .blue-bliss th .short-day {
+        display: inline;
+    }
+
+    .blue-bliss th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .blue-bliss td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .blue-bliss #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .blue-bliss #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .blue-bliss .modal-content {
+        padding: 15px;
+    }
+
+    .blue-bliss .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .blue-bliss .container {
+        padding: 0.8rem;
+    }
+
+    .blue-bliss #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .blue-bliss #current-date {
+        font-size: 1.1rem;
+    }
+
+    .blue-bliss #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .blue-bliss .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .blue-bliss th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .blue-bliss td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .blue-bliss td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .blue-bliss #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .blue-bliss th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .blue-bliss td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .blue-bliss #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .blue-bliss #calendar-title {
+        font-size: 1.2rem;
+    }
+}
