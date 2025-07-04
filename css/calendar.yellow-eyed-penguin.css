@@ -1,0 +1,807 @@
+/* ==========================================================================
+   Yellow-Eyed Penguin Theme - Cool Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Antarctic color scheme
+   - Penguin-inspired UI elements
+   - Mobile-responsive design
+   - Subtle animations
+   - Ice textures
+   - Enhanced accessibility
+   - Bold typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@300;600&display=swap');
+
+:root {
+    /* Yellow-Eyed Penguin Color Palette */
+    --yep-bg: #F0F7FF;
+    --yep-text: #2C3E50;
+    --yep-primary: #34495E;
+    /* Dark slate */
+    --yep-secondary: #E67E22;
+    /* Pumpkin orange */
+
+    /* Gradient Colors */
+    --yep-gradient-start: #ECF0F1;
+    --yep-gradient-end: #D6EAF8;
+
+    /* Accent Colors */
+    --yep-beak: #F39C12;
+    /* Bright orange */
+    --yep-ice: #AED6F1;
+    /* Pale blue */
+    --yep-feet: #E74C3C;
+    /* Webbed feet red */
+    --yep-gold: #F1C40F;
+    /* Eye ring gold */
+
+    /* Theme Variables */
+    --yep-shadow: rgba(52, 73, 94, 0.2);
+    --yep-radius: 8px;
+    --yep-transition: 0.25s ease;
+    --yep-hover: #EAF2F8;
+    --yep-current-day: #D4E6F1;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes yep-waddle {
+
+    0%,
+    100% {
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes snow-fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes yep-glow {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.yellow-eyed-penguin {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--yep-text);
+    line-height: 1.6;
+    background: var(--yep-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(174, 214, 241, 0.1) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(230, 126, 34, 0.1) 0%,
+            transparent 20%);
+    background-size: 50px 50px;
+    animation: snow-fall 60s linear infinite;
+}
+
+.yellow-eyed-penguin::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(243, 156, 18, 0.05) 0%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ice crack pattern */
+.yellow-eyed-penguin::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M10,10 L30,30 M70,10 L90,30 M10,70 L30,90 M70,70 L90,90 M50,10 L50,30 M50,70 L50,90 M10,50 L30,50 M70,50 L90,50" stroke="%2334495E" stroke-width="1" fill="none" stroke-linecap="round"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.yellow-eyed-penguin .container {
+    background-color: rgba(240, 247, 255, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--yep-primary);
+    box-shadow: 0 0 30px var(--yep-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--yep-radius);
+    z-index: 1;
+}
+
+.yellow-eyed-penguin .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--yep-primary),
+            var(--yep-secondary),
+            transparent);
+    animation: yep-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.yellow-eyed-penguin #calendar-title {
+    font-family: 'Montserrat', serif;
+    color: var(--yep-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: yep-waddle 3s infinite;
+}
+
+.yellow-eyed-penguin #calendar-title::before,
+.yellow-eyed-penguin #calendar-title::after {
+    content: "❄";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--yep-secondary);
+    font-size: 1.5rem;
+}
+
+.yellow-eyed-penguin #calendar-title::before {
+    left: 1rem;
+    animation: yep-waddle 2.5s infinite 0.5s;
+}
+
+.yellow-eyed-penguin #calendar-title::after {
+    right: 1rem;
+    animation: yep-waddle 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.yellow-eyed-penguin #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(52, 73, 94, 0.1);
+    border: 1px solid var(--yep-primary);
+    border-radius: var(--yep-radius);
+    position: relative;
+}
+
+.yellow-eyed-penguin #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--yep-primary),
+            transparent);
+}
+
+.yellow-eyed-penguin #current-date {
+    font-family: 'Montserrat', serif;
+    color: var(--yep-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.yellow-eyed-penguin #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--yep-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.yellow-eyed-penguin #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.yellow-eyed-penguin .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--yep-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--yep-bg);
+    box-shadow:
+        0 0 15px var(--yep-shadow),
+        inset 0 0 10px rgba(52, 73, 94, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(230, 126, 34, 0.1) 100%);
+}
+
+/* Penguin clock numerals */
+.yellow-eyed-penguin .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">12</text><text x="82" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">3</text><text x="50" y="92" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">6</text><text x="18" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">9</text></svg>');
+}
+
+.yellow-eyed-penguin .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.yellow-eyed-penguin .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--yep-primary);
+    margin-top: -2px;
+}
+
+.yellow-eyed-penguin .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--yep-secondary);
+    margin-top: -1px;
+}
+
+.yellow-eyed-penguin .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--yep-gold);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Penguin eye */
+.yellow-eyed-penguin .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--yep-gold);
+    border-radius: 50%;
+    border: 1px solid var(--yep-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.yellow-eyed-penguin table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--yep-primary);
+    border-radius: var(--yep-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.yellow-eyed-penguin th {
+    background-color: rgba(52, 73, 94, 0.1);
+    color: var(--yep-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--yep-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.yellow-eyed-penguin th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.yellow-eyed-penguin th .short-day {
+    display: none;
+}
+
+.yellow-eyed-penguin td {
+    background-color: rgba(240, 247, 255, 0.95);
+    color: var(--yep-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(52, 73, 94, 0.1);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--yep-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.yellow-eyed-penguin td:hover {
+    background-color: var(--yep-hover);
+    box-shadow: inset 0 0 15px var(--yep-shadow);
+}
+
+.yellow-eyed-penguin .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--yep-text);
+}
+
+.yellow-eyed-penguin td.current-day {
+    background-color: var(--yep-current-day);
+    border: 2px solid var(--yep-secondary);
+    color: var(--yep-primary) !important;
+    font-weight: 600;
+    animation: yep-glow 3s infinite;
+}
+
+.yellow-eyed-penguin td.current-day .date-number {
+    color: var(--yep-primary) !important;
+    font-weight: 700;
+}
+
+.yellow-eyed-penguin td.current-day::before {
+    content: "❄";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--yep-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.yellow-eyed-penguin .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--yep-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--yep-shadow);
+    transition: all var(--yep-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.yellow-eyed-penguin .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--yep-secondary);
+    box-shadow: 0 0 15px var(--yep-shadow);
+}
+
+/* Special event types */
+.yellow-eyed-penguin .event-marker.holiday {
+    background-color: var(--yep-beak);
+}
+
+.yellow-eyed-penguin .event-marker.historic {
+    background-color: var(--yep-ice);
+}
+
+.yellow-eyed-penguin .event-marker.patriotic {
+    background-color: var(--yep-feet);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.yellow-eyed-penguin .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--yep-primary);
+    padding: 25px;
+    color: var(--yep-text);
+    box-shadow: 0 0 30px var(--yep-shadow);
+    border-radius: var(--yep-radius);
+    animation: yep-glow 0.5s ease;
+}
+
+.yellow-eyed-penguin .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--yep-primary),
+            var(--yep-secondary),
+            var(--yep-beak));
+}
+
+.yellow-eyed-penguin .modal-content h2 {
+    color: var(--yep-primary);
+    font-family: 'Montserrat', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.yellow-eyed-penguin .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.yellow-eyed-penguin .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--yep-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.yellow-eyed-penguin .modal-content .event-description {
+    background-color: rgba(52, 73, 94, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--yep-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--yep-radius) var(--yep-radius) 0;
+}
+
+.yellow-eyed-penguin .modal-content button {
+    background-color: var(--yep-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--yep-transition);
+    border-radius: var(--yep-radius);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.yellow-eyed-penguin .modal-content button:hover {
+    background-color: var(--yep-secondary);
+    box-shadow: 0 4px 6px -1px var(--yep-shadow);
+}
+
+.yellow-eyed-penguin .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--yep-primary);
+    border: 1px solid var(--yep-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--yep-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.yellow-eyed-penguin .modal .close-button:hover {
+    background-color: var(--yep-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.yellow-eyed-penguin .button,
+.yellow-eyed-penguin .transparent-button {
+    border: 1px solid var(--yep-primary);
+    color: var(--yep-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Montserrat', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--yep-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--yep-radius);
+    letter-spacing: 0.05em;
+}
+
+.yellow-eyed-penguin .button::before,
+.yellow-eyed-penguin .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(52, 73, 94, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.yellow-eyed-penguin .button:hover,
+.yellow-eyed-penguin .transparent-button:hover {
+    background-color: var(--yep-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--yep-shadow);
+}
+
+.yellow-eyed-penguin .button:hover::before,
+.yellow-eyed-penguin .transparent-button:hover::before {
+    left: 100%;
+}
+
+.yellow-eyed-penguin .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.yellow-eyed-penguin #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.yellow-eyed-penguin #theme-switcher {
+    background-color: var(--yep-bg);
+    color: var(--yep-primary) !important;
+    border: 1px solid var(--yep-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--yep-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334495E'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--yep-transition);
+    box-shadow: 0 1px 3px 0 var(--yep-shadow);
+}
+
+.yellow-eyed-penguin #theme-switcher option {
+    background-color: var(--yep-bg) !important;
+    color: var(--yep-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.yellow-eyed-penguin #theme-switcher option:hover {
+    background-color: var(--yep-primary) !important;
+    color: white !important;
+}
+
+.yellow-eyed-penguin #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 73, 94, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.yellow-eyed-penguin #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--yep-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', serif;
+    font-weight: 700;
+    color: var(--yep-primary);
+    background-color: var(--yep-bg);
+    cursor: pointer;
+    transition: all var(--yep-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--yep-radius);
+    box-shadow: 0 4px 6px -1px var(--yep-shadow);
+}
+
+.yellow-eyed-penguin #backToTopBtn:hover {
+    background-color: var(--yep-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.yellow-eyed-penguin footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--yep-primary);
+    color: var(--yep-text);
+    font-size: 0.8rem;
+}
+
+.yellow-eyed-penguin footer::before {
+    content: "❄ ";
+    color: var(--yep-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .yellow-eyed-penguin .container {
+        padding: 1.2rem;
+    }
+
+    .yellow-eyed-penguin #calendar-title {
+        font-size: 2rem;
+    }
+
+    .yellow-eyed-penguin #current-date {
+        font-size: 1.5rem;
+    }
+
+    .yellow-eyed-penguin #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .yellow-eyed-penguin th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .yellow-eyed-penguin .container {
+        padding: 1rem;
+    }
+
+    .yellow-eyed-penguin #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .yellow-eyed-penguin .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .yellow-eyed-penguin th .full-day {
+        display: none;
+    }
+
+    .yellow-eyed-penguin th .short-day {
+        display: inline;
+    }
+
+    .yellow-eyed-penguin th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .yellow-eyed-penguin td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .yellow-eyed-penguin #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .yellow-eyed-penguin #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .yellow-eyed-penguin .modal-content {
+        padding: 15px;
+    }
+
+    .yellow-eyed-penguin .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .yellow-eyed-penguin .container {
+        padding: 0.8rem;
+    }
+
+    .yellow-eyed-penguin #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .yellow-eyed-penguin #current-date {
+        font-size: 1.1rem;
+    }
+
+    .yellow-eyed-penguin #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .yellow-eyed-penguin .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .yellow-eyed-penguin th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .yellow-eyed-penguin td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .yellow-eyed-penguin td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .yellow-eyed-penguin #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .yellow-eyed-penguin th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .yellow-eyed-penguin td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .yellow-eyed-penguin #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .yellow-eyed-penguin #calendar-title {
+        font-size: 1.2rem;
+    }
+}
