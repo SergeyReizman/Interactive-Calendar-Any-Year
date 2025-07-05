@@ -1,0 +1,806 @@
+/* ==========================================================================
+   Mountain Landscape Theme - Nature Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Earthy color scheme
+   - Mountain-inspired UI elements
+   - Mobile-responsive design
+   - Cloud animations
+   - Natural textures
+   - Enhanced accessibility
+   - Organic typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;600&display=swap');
+
+:root {
+    /* Mountain Landscape Color Palette */
+    --ml-bg: #F5F7FA;
+    --ml-text: #2D3748;
+    --ml-primary: #4A5568;
+    /* Mountain shadow */
+    --ml-secondary: #718096;
+    /* Mountain stone */
+
+    /* Gradient Colors */
+    --ml-gradient-start: #EDF2F7;
+    --ml-gradient-end: #E2E8F0;
+
+    /* Accent Colors */
+    --ml-snow: #FFFFFF;
+    /* Snow cap */
+    --ml-forest: #48BB78;
+    /* Alpine forest */
+    --ml-sunset: #DD6B20;
+    /* Mountain sunset */
+    --ml-river: #4299E1;
+    /* Glacier river */
+
+    /* Theme Variables */
+    --ml-shadow: rgba(74, 85, 104, 0.2);
+    --ml-radius: 8px;
+    --ml-transition: 0.25s ease;
+    --ml-hover: #EBF4FF;
+    --ml-current-day: #E6FFFA;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ml-drift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-3px);
+    }
+}
+
+@keyframes cloud-move {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes ml-glow {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.mountain-landscape {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ml-text);
+    line-height: 1.6;
+    background: var(--ml-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(74, 85, 104, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(113, 128, 150, 0.05) 0%,
+            transparent 20%);
+    background-size: 50px 50px;
+    animation: cloud-move 60s linear infinite;
+}
+
+.mountain-landscape::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Mountain range pattern */
+.mountain-landscape::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M0,80 L20,60 L40,70 L60,40 L80,60 L100,30" stroke="%234A5568" stroke-width="1" fill="none" stroke-linecap="round"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.mountain-landscape .container {
+    background-color: rgba(245, 247, 250, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--ml-primary);
+    box-shadow: 0 0 30px var(--ml-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ml-radius);
+    z-index: 1;
+}
+
+.mountain-landscape .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ml-primary),
+            var(--ml-secondary),
+            transparent);
+    animation: ml-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.mountain-landscape #calendar-title {
+    font-family: 'Merriweather', serif;
+    color: var(--ml-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: ml-drift 3s infinite;
+}
+
+.mountain-landscape #calendar-title::before,
+.mountain-landscape #calendar-title::after {
+    content: "🏔";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ml-secondary);
+    font-size: 1.5rem;
+}
+
+.mountain-landscape #calendar-title::before {
+    left: 1rem;
+    animation: ml-drift 2.5s infinite 0.5s;
+}
+
+.mountain-landscape #calendar-title::after {
+    right: 1rem;
+    animation: ml-drift 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.mountain-landscape #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(74, 85, 104, 0.1);
+    border: 1px solid var(--ml-primary);
+    border-radius: var(--ml-radius);
+    position: relative;
+}
+
+.mountain-landscape #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ml-primary),
+            transparent);
+}
+
+.mountain-landscape #current-date {
+    font-family: 'Merriweather', serif;
+    color: var(--ml-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.mountain-landscape #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ml-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.mountain-landscape #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.mountain-landscape .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--ml-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ml-bg);
+    box-shadow:
+        0 0 15px var(--ml-shadow),
+        inset 0 0 10px rgba(74, 85, 104, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(113, 128, 150, 0.1) 100%);
+}
+
+/* Mountain clock numerals */
+.mountain-landscape .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Merriweather" font-size="12" fill="%234A5568">XII</text><text x="82" y="55" text-anchor="middle" font-family="Merriweather" font-size="12" fill="%234A5568">III</text><text x="50" y="92" text-anchor="middle" font-family="Merriweather" font-size="12" fill="%234A5568">VI</text><text x="18" y="55" text-anchor="middle" font-family="Merriweather" font-size="12" fill="%234A5568">IX</text></svg>');
+}
+
+.mountain-landscape .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mountain-landscape .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ml-primary);
+    margin-top: -2px;
+}
+
+.mountain-landscape .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ml-secondary);
+    margin-top: -1px;
+}
+
+.mountain-landscape .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ml-sunset);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Summit marker */
+.mountain-landscape .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--ml-river);
+    border-radius: 50%;
+    border: 1px solid var(--ml-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.mountain-landscape table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--ml-primary);
+    border-radius: var(--ml-radius);
+    table-layout: fixed;
+}
+
+.mountain-landscape th {
+    background-color: rgba(74, 85, 104, 0.1);
+    color: var(--ml-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--ml-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.mountain-landscape th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.mountain-landscape th .short-day {
+    display: none;
+}
+
+.mountain-landscape td {
+    background-color: rgba(245, 247, 250, 0.95);
+    color: var(--ml-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(74, 85, 104, 0.1);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ml-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.mountain-landscape td:hover {
+    background-color: var(--ml-hover);
+    box-shadow: inset 0 0 15px var(--ml-shadow);
+}
+
+.mountain-landscape .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--ml-text);
+}
+
+.mountain-landscape td.current-day {
+    background-color: var(--ml-current-day);
+    border: 2px solid var(--ml-secondary);
+    color: var(--ml-primary) !important;
+    font-weight: 600;
+    animation: ml-glow 3s infinite;
+}
+
+.mountain-landscape td.current-day .date-number {
+    color: var(--ml-primary) !important;
+    font-weight: 700;
+}
+
+.mountain-landscape td.current-day::before {
+    content: "🏔";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--ml-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.mountain-landscape .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ml-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--ml-shadow);
+    transition: all var(--ml-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mountain-landscape .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--ml-secondary);
+    box-shadow: 0 0 15px var(--ml-shadow);
+}
+
+/* Special event types */
+.mountain-landscape .event-marker.holiday {
+    background-color: var(--ml-sunset);
+}
+
+.mountain-landscape .event-marker.historic {
+    background-color: var(--ml-forest);
+}
+
+.mountain-landscape .event-marker.patriotic {
+    background-color: var(--ml-river);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.mountain-landscape .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--ml-primary);
+    padding: 25px;
+    color: var(--ml-text);
+    box-shadow: 0 0 30px var(--ml-shadow);
+    border-radius: var(--ml-radius);
+    animation: ml-glow 0.5s ease;
+}
+
+.mountain-landscape .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ml-primary),
+            var(--ml-secondary),
+            var(--ml-sunset));
+}
+
+.mountain-landscape .modal-content h2 {
+    color: var(--ml-primary);
+    font-family: 'Merriweather', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.mountain-landscape .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.mountain-landscape .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--ml-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.mountain-landscape .modal-content .event-description {
+    background-color: rgba(74, 85, 104, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--ml-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--ml-radius) var(--ml-radius) 0;
+}
+
+.mountain-landscape .modal-content button {
+    background-color: var(--ml-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ml-transition);
+    border-radius: var(--ml-radius);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mountain-landscape .modal-content button:hover {
+    background-color: var(--ml-secondary);
+    box-shadow: 0 4px 6px -1px var(--ml-shadow);
+}
+
+.mountain-landscape .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--ml-primary);
+    border: 1px solid var(--ml-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--ml-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.mountain-landscape .modal .close-button:hover {
+    background-color: var(--ml-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.mountain-landscape .button,
+.mountain-landscape .transparent-button {
+    border: 1px solid var(--ml-primary);
+    color: var(--ml-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--ml-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--ml-radius);
+    letter-spacing: 0.05em;
+}
+
+.mountain-landscape .button::before,
+.mountain-landscape .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 85, 104, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.mountain-landscape .button:hover,
+.mountain-landscape .transparent-button:hover {
+    background-color: var(--ml-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--ml-shadow);
+}
+
+.mountain-landscape .button:hover::before,
+.mountain-landscape .transparent-button:hover::before {
+    left: 100%;
+}
+
+.mountain-landscape .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.mountain-landscape #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.mountain-landscape #theme-switcher {
+    background-color: var(--ml-bg);
+    color: var(--ml-primary) !important;
+    border: 1px solid var(--ml-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--ml-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A5568'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--ml-transition);
+    box-shadow: 0 1px 3px 0 var(--ml-shadow);
+}
+
+.mountain-landscape #theme-switcher option {
+    background-color: var(--ml-bg) !important;
+    color: var(--ml-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.mountain-landscape #theme-switcher option:hover {
+    background-color: var(--ml-primary) !important;
+    color: white !important;
+}
+
+.mountain-landscape #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.mountain-landscape #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--ml-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    color: var(--ml-primary);
+    background-color: var(--ml-bg);
+    cursor: pointer;
+    transition: all var(--ml-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ml-radius);
+    box-shadow: 0 4px 6px -1px var(--ml-shadow);
+}
+
+.mountain-landscape #backToTopBtn:hover {
+    background-color: var(--ml-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.mountain-landscape footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ml-primary);
+    color: var(--ml-text);
+    font-size: 0.8rem;
+}
+
+.mountain-landscape footer::before {
+    content: "🏔 ";
+    color: var(--ml-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .mountain-landscape .container {
+        padding: 1.2rem;
+    }
+
+    .mountain-landscape #calendar-title {
+        font-size: 2rem;
+    }
+
+    .mountain-landscape #current-date {
+        font-size: 1.5rem;
+    }
+
+    .mountain-landscape #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .mountain-landscape th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mountain-landscape .container {
+        padding: 1rem;
+    }
+
+    .mountain-landscape #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .mountain-landscape .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .mountain-landscape th .full-day {
+        display: none;
+    }
+
+    .mountain-landscape th .short-day {
+        display: inline;
+    }
+
+    .mountain-landscape th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .mountain-landscape td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .mountain-landscape #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .mountain-landscape #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .mountain-landscape .modal-content {
+        padding: 15px;
+    }
+
+    .mountain-landscape .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .mountain-landscape .container {
+        padding: 0.8rem;
+    }
+
+    .mountain-landscape #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .mountain-landscape #current-date {
+        font-size: 1.1rem;
+    }
+
+    .mountain-landscape #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .mountain-landscape .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .mountain-landscape th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .mountain-landscape td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .mountain-landscape td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .mountain-landscape #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .mountain-landscape th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .mountain-landscape td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .mountain-landscape #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .mountain-landscape #calendar-title {
+        font-size: 1.2rem;
+    }
+}
