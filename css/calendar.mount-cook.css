@@ -1,0 +1,807 @@
+/* ==========================================================================
+   Mount Cook Theme - Alpine Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Alpine color scheme
+   - Mountain-inspired UI elements
+   - Mobile-responsive design
+   - Snowfall animations
+   - Natural textures
+   - Enhanced accessibility
+   - Crisp typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    /* Mount Cook Color Palette */
+    --mc-bg: #F8FAFB;
+    --mc-text: #2C3E50;
+    --mc-primary: #3A5F7D;
+    /* Mountain blue */
+    --mc-secondary: #8B9EAD;
+    /* Glacier gray */
+
+    /* Gradient Colors */
+    --mc-gradient-start: #F0F4F8;
+    --mc-gradient-end: #E6F0F7;
+
+    /* Accent Colors */
+    --mc-snow: #FFFFFF;
+    /* Pure snow */
+    --mc-rock: #5D6D7E;
+    /* Stone gray */
+    --mc-sunrise: #E74C3C;
+    /* Alpine glow */
+    --mc-tussock: #D4AC0D;
+    /* Golden grass */
+
+    /* Theme Variables */
+    --mc-shadow: rgba(58, 95, 125, 0.2);
+    --mc-radius: 8px;
+    --mc-transition: 0.25s ease;
+    --mc-hover: #EBF5FB;
+    --mc-current-day: #EAF2F8;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mc-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes snow-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes mc-glow {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.mount-cook {
+    font-family: 'Lato', sans-serif;
+    color: var(--mc-text);
+    line-height: 1.6;
+    background: var(--mc-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(58, 95, 125, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(139, 158, 173, 0.05) 0%,
+            transparent 20%);
+    background-size: 50px 50px;
+    animation: snow-drift 60s linear infinite;
+}
+
+.mount-cook::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Mountain silhouette pattern */
+.mount-cook::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.03"><path d="M0,100 L30,50 L50,70 L70,30 L100,80" stroke="%233A5F7D" stroke-width="1" fill="none" stroke-linecap="round"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.mount-cook .container {
+    background-color: rgba(248, 250, 251, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--mc-primary);
+    box-shadow: 0 0 30px var(--mc-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mc-radius);
+    z-index: 1;
+}
+
+.mount-cook .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mc-primary),
+            var(--mc-secondary),
+            transparent);
+    animation: mc-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.mount-cook #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--mc-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: mc-float 3s infinite;
+}
+
+.mount-cook #calendar-title::before,
+.mount-cook #calendar-title::after {
+    content: "⛰";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--mc-secondary);
+    font-size: 1.5rem;
+}
+
+.mount-cook #calendar-title::before {
+    left: 1rem;
+    animation: mc-float 2.5s infinite 0.5s;
+}
+
+.mount-cook #calendar-title::after {
+    right: 1rem;
+    animation: mc-float 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.mount-cook #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(58, 95, 125, 0.1);
+    border: 1px solid var(--mc-primary);
+    border-radius: var(--mc-radius);
+    position: relative;
+}
+
+.mount-cook #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mc-primary),
+            transparent);
+}
+
+.mount-cook #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--mc-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.mount-cook #today-weather {
+    font-family: 'Lato', sans-serif;
+    color: var(--mc-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.mount-cook #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.mount-cook .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--mc-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mc-bg);
+    box-shadow:
+        0 0 15px var(--mc-shadow),
+        inset 0 0 10px rgba(58, 95, 125, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(139, 158, 173, 0.1) 100%);
+}
+
+/* Mountain clock numerals */
+.mount-cook .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233A5F7D">XII</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233A5F7D">III</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233A5F7D">VI</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233A5F7D">IX</text></svg>');
+}
+
+.mount-cook .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mount-cook .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--mc-primary);
+    margin-top: -2px;
+}
+
+.mount-cook .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--mc-secondary);
+    margin-top: -1px;
+}
+
+.mount-cook .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--mc-sunrise);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Summit marker */
+.mount-cook .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--mc-tussock);
+    border-radius: 50%;
+    border: 1px solid var(--mc-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.mount-cook table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--mc-primary);
+    border-radius: var(--mc-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.mount-cook th {
+    background-color: rgba(58, 95, 125, 0.1);
+    color: var(--mc-primary) !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--mc-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.mount-cook th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.mount-cook th .short-day {
+    display: none;
+}
+
+.mount-cook td {
+    background-color: rgba(248, 250, 251, 0.95);
+    color: var(--mc-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(58, 95, 125, 0.1);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--mc-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.mount-cook td:hover {
+    background-color: var(--mc-hover);
+    box-shadow: inset 0 0 15px var(--mc-shadow);
+}
+
+.mount-cook .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--mc-text);
+}
+
+.mount-cook td.current-day {
+    background-color: var(--mc-current-day);
+    border: 2px solid var(--mc-secondary);
+    color: var(--mc-primary) !important;
+    font-weight: 600;
+    animation: mc-glow 3s infinite;
+}
+
+.mount-cook td.current-day .date-number {
+    color: var(--mc-primary) !important;
+    font-weight: 700;
+}
+
+.mount-cook td.current-day::before {
+    content: "⛰";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--mc-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.mount-cook .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--mc-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--mc-shadow);
+    transition: all var(--mc-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mount-cook .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--mc-secondary);
+    box-shadow: 0 0 15px var(--mc-shadow);
+}
+
+/* Special event types */
+.mount-cook .event-marker.holiday {
+    background-color: var(--mc-sunrise);
+}
+
+.mount-cook .event-marker.historic {
+    background-color: var(--mc-rock);
+}
+
+.mount-cook .event-marker.patriotic {
+    background-color: var(--mc-tussock);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.mount-cook .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--mc-primary);
+    padding: 25px;
+    color: var(--mc-text);
+    box-shadow: 0 0 30px var(--mc-shadow);
+    border-radius: var(--mc-radius);
+    animation: mc-glow 0.5s ease;
+}
+
+.mount-cook .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--mc-primary),
+            var(--mc-secondary),
+            var(--mc-sunrise));
+}
+
+.mount-cook .modal-content h2 {
+    color: var(--mc-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.mount-cook .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.mount-cook .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--mc-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.mount-cook .modal-content .event-description {
+    background-color: rgba(58, 95, 125, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--mc-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--mc-radius) var(--mc-radius) 0;
+}
+
+.mount-cook .modal-content button {
+    background-color: var(--mc-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--mc-transition);
+    border-radius: var(--mc-radius);
+    font-family: 'Lato', sans-serif;
+}
+
+.mount-cook .modal-content button:hover {
+    background-color: var(--mc-secondary);
+    box-shadow: 0 4px 6px -1px var(--mc-shadow);
+}
+
+.mount-cook .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--mc-primary);
+    border: 1px solid var(--mc-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--mc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.mount-cook .modal .close-button:hover {
+    background-color: var(--mc-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.mount-cook .button,
+.mount-cook .transparent-button {
+    border: 1px solid var(--mc-primary);
+    color: var(--mc-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--mc-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--mc-radius);
+    letter-spacing: 0.05em;
+}
+
+.mount-cook .button::before,
+.mount-cook .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(58, 95, 125, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.mount-cook .button:hover,
+.mount-cook .transparent-button:hover {
+    background-color: var(--mc-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--mc-shadow);
+}
+
+.mount-cook .button:hover::before,
+.mount-cook .transparent-button:hover::before {
+    left: 100%;
+}
+
+.mount-cook .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.mount-cook #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.mount-cook #theme-switcher {
+    background-color: var(--mc-bg);
+    color: var(--mc-primary) !important;
+    border: 1px solid var(--mc-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--mc-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A5F7D'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--mc-transition);
+    box-shadow: 0 1px 3px 0 var(--mc-shadow);
+}
+
+.mount-cook #theme-switcher option {
+    background-color: var(--mc-bg) !important;
+    color: var(--mc-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.mount-cook #theme-switcher option:hover {
+    background-color: var(--mc-primary) !important;
+    color: white !important;
+}
+
+.mount-cook #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 95, 125, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.mount-cook #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--mc-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--mc-primary);
+    background-color: var(--mc-bg);
+    cursor: pointer;
+    transition: all var(--mc-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--mc-radius);
+    box-shadow: 0 4px 6px -1px var(--mc-shadow);
+}
+
+.mount-cook #backToTopBtn:hover {
+    background-color: var(--mc-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.mount-cook footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--mc-primary);
+    color: var(--mc-text);
+    font-size: 0.8rem;
+}
+
+.mount-cook footer::before {
+    content: "⛰ ";
+    color: var(--mc-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .mount-cook .container {
+        padding: 1.2rem;
+    }
+
+    .mount-cook #calendar-title {
+        font-size: 2rem;
+    }
+
+    .mount-cook #current-date {
+        font-size: 1.5rem;
+    }
+
+    .mount-cook #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .mount-cook th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mount-cook .container {
+        padding: 1rem;
+    }
+
+    .mount-cook #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .mount-cook .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .mount-cook th .full-day {
+        display: none;
+    }
+
+    .mount-cook th .short-day {
+        display: inline;
+    }
+
+    .mount-cook th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .mount-cook td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .mount-cook #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .mount-cook #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .mount-cook .modal-content {
+        padding: 15px;
+    }
+
+    .mount-cook .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .mount-cook .container {
+        padding: 0.8rem;
+    }
+
+    .mount-cook #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .mount-cook #current-date {
+        font-size: 1.1rem;
+    }
+
+    .mount-cook #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .mount-cook .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .mount-cook th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .mount-cook td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .mount-cook td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .mount-cook #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .mount-cook th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .mount-cook td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .mount-cook #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .mount-cook #calendar-title {
+        font-size: 1.2rem;
+    }
+}
