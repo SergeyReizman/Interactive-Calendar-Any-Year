@@ -1,0 +1,809 @@
+/* ==========================================================================
+   Silver Dragon Theme - Mythical Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Metallic color scheme
+   - Dragon-scale UI elements
+   - Mobile-responsive design
+   - Flame animations
+   - Ancient textures
+   - Enhanced accessibility
+   - Regal typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;600&display=swap');
+
+:root {
+    /* Silver Dragon Color Palette */
+    --sd-bg: #F5F7FA;
+    --sd-text: #2D3748;
+    --sd-primary: #718096;
+    /* Steel gray */
+    --sd-secondary: #B7791F;
+    /* Dragon gold */
+
+    /* Gradient Colors */
+    --sd-gradient-start: #EDF2F7;
+    --sd-gradient-end: #E2E8F0;
+
+    /* Accent Colors */
+    --sd-flame: #C53030;
+    /* Dragon fire */
+    --sd-scale: #A0AEC0;
+    /* Silver scale */
+    --sd-claw: #4A5568;
+    /* Dark claw */
+    --sd-treasure: #D69E2E;
+    /* Hoard gold */
+
+    /* Theme Variables */
+    --sd-shadow: rgba(113, 128, 150, 0.2);
+    --sd-radius: 8px;
+    --sd-transition: 0.25s ease;
+    --sd-hover: #EBF4FF;
+    --sd-current-day: #E6FFFA;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sd-breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes scale-pattern {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes sd-flame {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 5px rgba(197, 48, 48, 0.7));
+    }
+
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(197, 48, 48, 0.9));
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.silver-dragon {
+    font-family: 'Raleway', sans-serif;
+    color: var(--sd-text);
+    line-height: 1.6;
+    background: var(--sd-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 30%,
+            rgba(160, 174, 192, 0.1) 0%,
+            transparent 20%),
+        radial-gradient(circle at 80% 70%,
+            rgba(183, 121, 31, 0.1) 0%,
+            transparent 20%);
+    background-size: 50px 50px;
+    animation: scale-pattern 60s linear infinite;
+}
+
+.silver-dragon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(135deg,
+            rgba(197, 48, 48, 0.05) 0%,
+            transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Dragon scale pattern */
+.silver-dragon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M20,50 Q30,30 50,50 Q70,70 80,50 Q90,30 50,50 Q10,70 20,50" fill="%23718096"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.silver-dragon .container {
+    background-color: rgba(245, 247, 250, 0.97);
+    padding: 2rem;
+    border: 1px solid var(--sd-primary);
+    box-shadow: 0 0 30px var(--sd-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--sd-radius);
+    z-index: 1;
+}
+
+.silver-dragon .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--sd-primary),
+            var(--sd-secondary),
+            transparent);
+    animation: sd-flame 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.silver-dragon #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--sd-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    position: relative;
+    animation: sd-breathe 3s infinite;
+}
+
+.silver-dragon #calendar-title::before,
+.silver-dragon #calendar-title::after {
+    content: "⚔";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sd-secondary);
+    font-size: 1.5rem;
+}
+
+.silver-dragon #calendar-title::before {
+    left: 1rem;
+    animation: sd-breathe 2.5s infinite 0.5s;
+}
+
+.silver-dragon #calendar-title::after {
+    right: 1rem;
+    animation: sd-breathe 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.silver-dragon #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(113, 128, 150, 0.1);
+    border: 1px solid var(--sd-primary);
+    border-radius: var(--sd-radius);
+    position: relative;
+}
+
+.silver-dragon #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--sd-primary),
+            transparent);
+}
+
+.silver-dragon #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--sd-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.silver-dragon #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--sd-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.silver-dragon #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.silver-dragon .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--sd-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--sd-bg);
+    box-shadow:
+        0 0 15px var(--sd-shadow),
+        inset 0 0 10px rgba(113, 128, 150, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(183, 121, 31, 0.1) 100%);
+}
+
+/* Dragon clock numerals */
+.silver-dragon .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">III</text><text x="50" y="92" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">IX</text></svg>');
+}
+
+.silver-dragon .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.silver-dragon .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--sd-primary);
+    margin-top: -2px;
+}
+
+.silver-dragon .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--sd-secondary);
+    margin-top: -1px;
+}
+
+.silver-dragon .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--sd-flame);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Dragon eye */
+.silver-dragon .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--sd-treasure);
+    border-radius: 50%;
+    border: 1px solid var(--sd-primary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.silver-dragon table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--sd-primary);
+    border-radius: var(--sd-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.silver-dragon th {
+    background-color: rgba(113, 128, 150, 0.1);
+    color: var(--sd-primary) !important;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--sd-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.silver-dragon th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.silver-dragon th .short-day {
+    display: none;
+}
+
+.silver-dragon td {
+    background-color: rgba(245, 247, 250, 0.95);
+    color: var(--sd-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid rgba(113, 128, 150, 0.1);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--sd-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.silver-dragon td:hover {
+    background-color: var(--sd-hover);
+    box-shadow: inset 0 0 15px var(--sd-shadow);
+}
+
+.silver-dragon .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--sd-text);
+}
+
+.silver-dragon td.current-day {
+    background-color: var(--sd-current-day);
+    border: 2px solid var(--sd-secondary);
+    color: var(--sd-primary) !important;
+    font-weight: 600;
+    animation: sd-flame 3s infinite;
+}
+
+.silver-dragon td.current-day .date-number {
+    color: var(--sd-primary) !important;
+    font-weight: 700;
+}
+
+.silver-dragon td.current-day::before {
+    content: "⚔";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--sd-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.silver-dragon .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--sd-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--sd-shadow);
+    transition: all var(--sd-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.silver-dragon .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--sd-secondary);
+    box-shadow: 0 0 15px var(--sd-shadow);
+}
+
+/* Special event types */
+.silver-dragon .event-marker.holiday {
+    background-color: var(--sd-flame);
+}
+
+.silver-dragon .event-marker.historic {
+    background-color: var(--sd-scale);
+}
+
+.silver-dragon .event-marker.patriotic {
+    background-color: var(--sd-treasure);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.silver-dragon .modal-content {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--sd-primary);
+    padding: 25px;
+    color: var(--sd-text);
+    box-shadow: 0 0 30px var(--sd-shadow);
+    border-radius: var(--sd-radius);
+    animation: sd-flame 0.5s ease;
+}
+
+.silver-dragon .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--sd-primary),
+            var(--sd-secondary),
+            var(--sd-flame));
+}
+
+.silver-dragon .modal-content h2 {
+    color: var(--sd-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.silver-dragon .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.silver-dragon .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--sd-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.silver-dragon .modal-content .event-description {
+    background-color: rgba(113, 128, 150, 0.1);
+    padding: 15px;
+    border-left: 3px solid var(--sd-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--sd-radius) var(--sd-radius) 0;
+}
+
+.silver-dragon .modal-content button {
+    background-color: var(--sd-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    border-radius: var(--sd-radius);
+    font-family: 'Raleway', sans-serif;
+}
+
+.silver-dragon .modal-content button:hover {
+    background-color: var(--sd-secondary);
+    box-shadow: 0 4px 6px -1px var(--sd-shadow);
+}
+
+.silver-dragon .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--sd-primary);
+    border: 1px solid var(--sd-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.silver-dragon .modal .close-button:hover {
+    background-color: var(--sd-primary);
+    color: white;
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.silver-dragon .button,
+.silver-dragon .transparent-button {
+    border: 1px solid var(--sd-primary);
+    color: var(--sd-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--sd-radius);
+    letter-spacing: 0.05em;
+}
+
+.silver-dragon .button::before,
+.silver-dragon .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(113, 128, 150, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.silver-dragon .button:hover,
+.silver-dragon .transparent-button:hover {
+    background-color: var(--sd-primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px var(--sd-shadow);
+}
+
+.silver-dragon .button:hover::before,
+.silver-dragon .transparent-button:hover::before {
+    left: 100%;
+}
+
+.silver-dragon .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.silver-dragon #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.silver-dragon #theme-switcher {
+    background-color: var(--sd-bg);
+    color: var(--sd-primary) !important;
+    border: 1px solid var(--sd-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--sd-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23718096'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    box-shadow: 0 1px 3px 0 var(--sd-shadow);
+}
+
+.silver-dragon #theme-switcher option {
+    background-color: var(--sd-bg) !important;
+    color: var(--sd-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.silver-dragon #theme-switcher option:hover {
+    background-color: var(--sd-primary) !important;
+    color: white !important;
+}
+
+.silver-dragon #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(113, 128, 150, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.silver-dragon #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--sd-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--sd-primary);
+    background-color: var(--sd-bg);
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--sd-radius);
+    box-shadow: 0 4px 6px -1px var(--sd-shadow);
+}
+
+.silver-dragon #backToTopBtn:hover {
+    background-color: var(--sd-primary);
+    color: white;
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.silver-dragon footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--sd-primary);
+    color: var(--sd-text);
+    font-size: 0.8rem;
+}
+
+.silver-dragon footer::before {
+    content: "⚔ ";
+    color: var(--sd-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .silver-dragon .container {
+        padding: 1.2rem;
+    }
+
+    .silver-dragon #calendar-title {
+        font-size: 2rem;
+    }
+
+    .silver-dragon #current-date {
+        font-size: 1.5rem;
+    }
+
+    .silver-dragon #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .silver-dragon th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .silver-dragon .container {
+        padding: 1rem;
+    }
+
+    .silver-dragon #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .silver-dragon .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .silver-dragon th .full-day {
+        display: none;
+    }
+
+    .silver-dragon th .short-day {
+        display: inline;
+    }
+
+    .silver-dragon th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .silver-dragon td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .silver-dragon #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .silver-dragon #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .silver-dragon .modal-content {
+        padding: 15px;
+    }
+
+    .silver-dragon .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .silver-dragon .container {
+        padding: 0.8rem;
+    }
+
+    .silver-dragon #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .silver-dragon #current-date {
+        font-size: 1.1rem;
+    }
+
+    .silver-dragon #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .silver-dragon .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .silver-dragon th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .silver-dragon td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .silver-dragon td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .silver-dragon #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .silver-dragon th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .silver-dragon td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .silver-dragon #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .silver-dragon #calendar-title {
+        font-size: 1.2rem;
+    }
+}
