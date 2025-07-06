@@ -1,144 +1,120 @@
 /* ==========================================================================
-   Yellow-Eyed Penguin Theme - Cool Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Antarctic color scheme
-   - Penguin-inspired UI elements
-   - Mobile-responsive design
-   - Subtle animations
-   - Ice textures
-   - Enhanced accessibility
-   - Bold typography
+   Yellow-Eyed Penguin Theme - Antarctic Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Cool Antarctic color palette with penguin accents
+   - Playful yet elegant design elements
+   - Snow and ice texture details
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap');
 
 :root {
-    /* Yellow-Eyed Penguin Color Palette */
-    --yep-bg: #F0F7FF;
-    --yep-text: #2C3E50;
-    --yep-primary: #34495E;
-    /* Dark slate */
-    --yep-secondary: #E67E22;
-    /* Pumpkin orange */
+    /* Penguin Color Palette */
+    --penguin-bg: #0A1A2A;
+    --penguin-text: #E8F4FF;
+    --penguin-primary: #14293A;
+    --penguin-secondary: #1D384D;
+    --penguin-date-number: #FFEE99;
 
-    /* Gradient Colors */
-    --yep-gradient-start: #ECF0F1;
-    --yep-gradient-end: #D6EAF8;
+    /* Ice Layer Colors */
+    --penguin-ice1: #1A3145;
+    --penguin-ice2: #213A51;
+    --penguin-ice3: #28435D;
+    --penguin-ice4: #2F4C69;
+    --penguin-ice5: #365575;
 
-    /* Accent Colors */
-    --yep-beak: #F39C12;
-    /* Bright orange */
-    --yep-ice: #AED6F1;
-    /* Pale blue */
-    --yep-feet: #E74C3C;
-    /* Webbed feet red */
-    --yep-gold: #F1C40F;
-    /* Eye ring gold */
+    /* Penguin Accent Colors */
+    --penguin-accent1: #FFD166;
+    /* Yellow-Eye */
+    --penguin-accent2: #A3B5CC;
+    /* Belly White */
+    --penguin-accent3: #6B8CA8;
+    /* Beak Orange */
+    --penguin-accent4: rgba(163, 181, 204, 0.7);
+    --penguin-accent5: rgba(255, 209, 102, 0.5);
 
     /* Theme Variables */
-    --yep-shadow: rgba(52, 73, 94, 0.2);
-    --yep-radius: 8px;
-    --yep-transition: 0.25s ease;
-    --yep-hover: #EAF2F8;
-    --yep-current-day: #D4E6F1;
+    --penguin-shadow: rgba(255, 209, 102, 0.15);
+    --penguin-radius: 8px;
+    --penguin-transition: 0.3s ease-in-out;
+    --penguin-hover: #FFC233;
+    --penguin-glow: 0 0 12px rgba(255, 209, 102, 0.25);
+    --penguin-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23FFD166"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23FFD166"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23FFD166"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes yep-waddle {
+@keyframes penguin-waddle {
 
     0%,
     100% {
-        transform: rotate(-1deg);
+        transform: translateY(0);
     }
 
     50% {
-        transform: rotate(1deg);
+        transform: translateY(-5px);
     }
 }
 
 @keyframes snow-fall {
-    0% {
-        background-position: 0 0;
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
     }
 
-    100% {
-        background-position: 50px 50px;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-@keyframes yep-glow {
+@keyframes penguin-pulse {
 
     0%,
     100% {
-        opacity: 0.8;
+        box-shadow: 0 0 3px var(--penguin-shadow);
     }
 
     50% {
+        box-shadow: var(--penguin-glow);
+    }
+}
+
+@keyframes fish-swim {
+    0% {
+        transform: translateX(-20px) rotate(-10deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) rotate(0);
         opacity: 1;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .yellow-eyed-penguin {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--yep-text);
+    font-family: 'Poppins', sans-serif;
+    color: var(--penguin-text);
     line-height: 1.6;
-    background: var(--yep-bg);
+    font-size: 1rem;
+    background-color: var(--penguin-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        radial-gradient(circle at 20% 30%,
-            rgba(174, 214, 241, 0.1) 0%,
-            transparent 20%),
-        radial-gradient(circle at 80% 70%,
-            rgba(230, 126, 34, 0.1) 0%,
-            transparent 20%);
-    background-size: 50px 50px;
-    animation: snow-fall 60s linear infinite;
-}
-
-.yellow-eyed-penguin::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        linear-gradient(135deg,
-            rgba(243, 156, 18, 0.05) 0%,
-            transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Ice crack pattern */
-.yellow-eyed-penguin::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M10,10 L30,30 M70,10 L90,30 M10,70 L30,90 M70,70 L90,90 M50,10 L50,30 M50,70 L50,90 M10,50 L30,50 M70,50 L90,50" stroke="%2334495E" stroke-width="1" fill="none" stroke-linecap="round"/></svg>');
-    pointer-events: none;
-    z-index: 0;
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23A3B5CC" opacity="0.5"/><circle cx="50" cy="40" r="1.5" fill="%23A3B5CC" opacity="0.5"/><circle cx="80" cy="10" r="1.8" fill="%23A3B5CC" opacity="0.5"/><circle cx="30" cy="70" r="1.3" fill="%23A3B5CC" opacity="0.5"/><circle cx="70" cy="80" r="1.6" fill="%23A3B5CC" opacity="0.5"/></svg>');
 }
 
 .yellow-eyed-penguin .container {
-    background-color: rgba(240, 247, 255, 0.97);
+    background-color: var(--penguin-primary);
     padding: 2rem;
-    border: 1px solid var(--yep-primary);
-    box-shadow: 0 0 30px var(--yep-shadow);
+    border: 1px solid var(--penguin-accent4);
+    box-shadow: var(--penguin-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--yep-radius);
-    z-index: 1;
+    border-radius: var(--penguin-radius);
 }
 
 .yellow-eyed-penguin .container::before {
@@ -149,119 +125,118 @@
     right: 0;
     height: 3px;
     background: linear-gradient(90deg,
-            transparent,
-            var(--yep-primary),
-            var(--yep-secondary),
-            transparent);
-    animation: yep-glow 3s infinite;
+            var(--penguin-accent1) 0%,
+            var(--penguin-accent2) 50%,
+            var(--penguin-accent1) 100%);
+}
+
+.yellow-eyed-penguin .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--penguin-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .yellow-eyed-penguin #calendar-title {
-    font-family: 'Montserrat', serif;
-    color: var(--yep-primary);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--penguin-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
     position: relative;
-    animation: yep-waddle 3s infinite;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.yellow-eyed-penguin #calendar-title::before,
 .yellow-eyed-penguin #calendar-title::after {
-    content: "❄";
+    content: "🐧";
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--yep-secondary);
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.5rem;
-}
-
-.yellow-eyed-penguin #calendar-title::before {
-    left: 1rem;
-    animation: yep-waddle 2.5s infinite 0.5s;
-}
-
-.yellow-eyed-penguin #calendar-title::after {
-    right: 1rem;
-    animation: yep-waddle 2.5s infinite;
+    animation: penguin-waddle 2s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .yellow-eyed-penguin #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(52, 73, 94, 0.1);
-    border: 1px solid var(--yep-primary);
-    border-radius: var(--yep-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--penguin-primary);
+    border: 1px solid var(--penguin-accent4);
+    border-radius: var(--penguin-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.yellow-eyed-penguin #date-weather-container::before {
+    content: "PENGUIN TRACKER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--penguin-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--penguin-accent1);
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .yellow-eyed-penguin #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--yep-primary),
-            transparent);
+    background: linear-gradient(90deg, transparent, var(--penguin-accent2), transparent);
 }
 
 .yellow-eyed-penguin #current-date {
-    font-family: 'Montserrat', serif;
-    color: var(--yep-primary);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--penguin-text);
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .yellow-eyed-penguin #today-weather {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--yep-secondary);
+    font-family: 'Poppins', sans-serif;
+    color: var(--penguin-text);
     font-size: 1.2rem;
-    letter-spacing: 0.05em;
     font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .yellow-eyed-penguin #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .yellow-eyed-penguin .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--yep-primary);
+    border: 6px solid var(--penguin-accent2);
     border-radius: 50%;
     position: relative;
-    background-color: var(--yep-bg);
-    box-shadow:
-        0 0 15px var(--yep-shadow),
-        inset 0 0 10px rgba(52, 73, 94, 0.1);
+    background-color: var(--penguin-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
     background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(230, 126, 34, 0.1) 100%);
-}
-
-/* Penguin clock numerals */
-.yellow-eyed-penguin .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">12</text><text x="82" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">3</text><text x="50" y="92" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">6</text><text x="18" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%2334495E">9</text></svg>');
+        radial-gradient(circle at center, transparent 65%, var(--penguin-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L53,25 L68,25 L55,35 L60,50 L50,40 L40,50 L45,35 L32,25 L47,25 Z" fill="%23FFD166" opacity="0.3"/></svg>');
 }
 
 .yellow-eyed-penguin .hand {
@@ -270,129 +245,137 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .yellow-eyed-penguin .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--yep-primary);
-    margin-top: -2px;
+    height: 5px;
+    background: var(--penguin-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
 }
 
 .yellow-eyed-penguin .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--yep-secondary);
-    margin-top: -1px;
+    height: 3px;
+    background: var(--penguin-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
 }
 
 .yellow-eyed-penguin .second-hand {
     width: 48%;
     left: 2%;
     height: 1px;
-    background: var(--yep-gold);
+    background: var(--penguin-accent3);
     margin-top: -0.5px;
 }
 
-/* Clock center - Penguin eye */
+/* Clock center fish */
 .yellow-eyed-penguin .clock-face::after {
-    content: "";
+    content: "🐟";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background-color: var(--yep-gold);
-    border-radius: 50%;
-    border: 1px solid var(--yep-primary);
+    font-size: 1.2rem;
+    color: var(--penguin-accent3);
+    z-index: 10;
+    animation: fish-swim 0.5s ease-out;
 }
 
-/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+/* ==================== CALENDAR TABLE ==================== */
 .yellow-eyed-penguin table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--yep-primary);
-    border-radius: var(--yep-radius);
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+/* DAY OF WEEK HEADERS */
 .yellow-eyed-penguin th {
-    background-color: rgba(52, 73, 94, 0.1);
-    color: var(--yep-primary) !important;
+    background-color: var(--penguin-accent1);
+    color: var(--penguin-primary) !important;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--yep-primary);
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--penguin-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
-/* Full names for desktop */
-.yellow-eyed-penguin th .full-day {
+.yellow-eyed-penguin th span.full-day-name {
     display: inline;
 }
 
-/* Short names for mobile */
-.yellow-eyed-penguin th .short-day {
+.yellow-eyed-penguin th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .yellow-eyed-penguin td {
-    background-color: rgba(240, 247, 255, 0.95);
-    color: var(--yep-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid rgba(52, 73, 94, 0.1);
+    background-color: var(--penguin-primary);
+    color: var(--penguin-text);
+    padding: 1rem;
+    border: 1px solid var(--penguin-accent4);
     height: 90px;
     vertical-align: top;
-    transition: all var(--yep-transition);
+    transition: all var(--penguin-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--penguin-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.yellow-eyed-penguin td .date-number {
+    color: var(--penguin-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Quicksand', sans-serif;
 }
 
 .yellow-eyed-penguin td:hover {
-    background-color: var(--yep-hover);
-    box-shadow: inset 0 0 15px var(--yep-shadow);
+    background-color: var(--penguin-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.yellow-eyed-penguin .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: var(--yep-text);
-}
-
+/* Current date highlight */
 .yellow-eyed-penguin td.current-day {
-    background-color: var(--yep-current-day);
-    border: 2px solid var(--yep-secondary);
-    color: var(--yep-primary) !important;
-    font-weight: 600;
-    animation: yep-glow 3s infinite;
+    background-color: rgba(255, 209, 102, 0.15);
+    border: 2px solid var(--penguin-accent1);
+    animation: penguin-pulse 3s infinite;
 }
 
 .yellow-eyed-penguin td.current-day .date-number {
-    color: var(--yep-primary) !important;
+    color: var(--penguin-date-number) !important;
     font-weight: 700;
 }
 
 .yellow-eyed-penguin td.current-day::before {
-    content: "❄";
+    content: "❄️";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--yep-secondary);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    color: var(--penguin-accent2);
+    font-weight: bold;
+    animation: snow-fall 0.5s ease-out;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -401,42 +384,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--yep-primary);
+    background-color: var(--penguin-accent2);
     margin: 0 1px;
-    box-shadow: 0 0 5px var(--yep-shadow);
-    transition: all var(--yep-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all var(--penguin-transition);
 }
 
 .yellow-eyed-penguin .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--yep-secondary);
-    box-shadow: 0 0 15px var(--yep-shadow);
-}
-
-/* Special event types */
-.yellow-eyed-penguin .event-marker.holiday {
-    background-color: var(--yep-beak);
-}
-
-.yellow-eyed-penguin .event-marker.historic {
-    background-color: var(--yep-ice);
-}
-
-.yellow-eyed-penguin .event-marker.patriotic {
-    background-color: var(--yep-feet);
+    transform: scale(1.4);
+    background-color: var(--penguin-accent1);
+    box-shadow: 0 0 6px rgba(255, 209, 102, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .yellow-eyed-penguin .modal-content {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.98);
-    border: 1px solid var(--yep-primary);
+    background-color: var(--penguin-primary);
+    border: 1px solid var(--penguin-accent4);
     padding: 25px;
-    color: var(--yep-text);
-    box-shadow: 0 0 30px var(--yep-shadow);
-    border-radius: var(--yep-radius);
-    animation: yep-glow 0.5s ease;
+    color: var(--penguin-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--penguin-radius);
+    animation: snow-fall 0.5s ease-out;
 }
 
 .yellow-eyed-penguin .modal-content::before {
@@ -447,121 +415,144 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--yep-primary),
-            var(--yep-secondary),
-            var(--yep-beak));
+            var(--penguin-accent1) 0%,
+            var(--penguin-accent2) 50%,
+            var(--penguin-accent1) 100%);
 }
 
 .yellow-eyed-penguin .modal-content h2 {
-    color: var(--yep-primary);
-    font-family: 'Montserrat', serif;
-    font-size: 1.8em;
+    color: var(--penguin-text);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2em;
     margin-bottom: 15px;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.yellow-eyed-penguin .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* Modal date display */
+.yellow-eyed-penguin .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--penguin-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--penguin-accent4);
 }
 
-.yellow-eyed-penguin .modal-content .event-time {
-    display: block;
+/* Event list */
+.yellow-eyed-penguin .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.yellow-eyed-penguin .event-item {
+    background-color: var(--penguin-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--penguin-accent1);
+    border-radius: var(--penguin-radius);
+    transition: all var(--penguin-transition);
+}
+
+.yellow-eyed-penguin .event-item:hover {
+    background-color: var(--penguin-ice3);
+    transform: translateX(3px);
+}
+
+.yellow-eyed-penguin .event-time {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--penguin-accent1);
     font-weight: 600;
-    color: var(--yep-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
 }
 
-.yellow-eyed-penguin .modal-content .event-description {
-    background-color: rgba(52, 73, 94, 0.1);
-    padding: 15px;
-    border-left: 3px solid var(--yep-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--yep-radius) var(--yep-radius) 0;
+.yellow-eyed-penguin .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--penguin-text);
+}
+
+.yellow-eyed-penguin .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--penguin-text);
+    opacity: 0.9;
 }
 
 .yellow-eyed-penguin .modal-content button {
-    background-color: var(--yep-primary);
-    color: white;
+    background-color: var(--penguin-accent1);
+    color: var(--penguin-primary);
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--yep-transition);
-    border-radius: var(--yep-radius);
-    font-family: 'Quicksand', sans-serif;
+    transition: all var(--penguin-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: var(--penguin-radius);
 }
 
 .yellow-eyed-penguin .modal-content button:hover {
-    background-color: var(--yep-secondary);
-    box-shadow: 0 4px 6px -1px var(--yep-shadow);
+    background-color: var(--penguin-hover);
+    box-shadow: 0 3px 10px rgba(255, 209, 102, 0.2);
 }
 
+/* Close Button */
 .yellow-eyed-penguin .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--yep-primary);
-    border: 1px solid var(--yep-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--penguin-primary);
+    color: var(--penguin-text);
+    border: 1px solid var(--penguin-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--yep-transition);
+    transition: all var(--penguin-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .yellow-eyed-penguin .modal .close-button:hover {
-    background-color: var(--yep-primary);
-    color: white;
+    background-color: var(--penguin-text);
+    color: var(--penguin-accent1);
+    border-color: var(--penguin-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .yellow-eyed-penguin .button,
 .yellow-eyed-penguin .transparent-button {
-    border: 1px solid var(--yep-primary);
-    color: var(--yep-primary);
+    border: 1px solid var(--penguin-accent1);
+    color: var(--penguin-text);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Montserrat', serif;
-    font-weight: 700;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--yep-transition);
+    transition: all var(--penguin-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--yep-radius);
-    letter-spacing: 0.05em;
-}
-
-.yellow-eyed-penguin .button::before,
-.yellow-eyed-penguin .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(52, 73, 94, 0.1), transparent);
-    transition: 0.5s;
+    margin: 0.4rem;
+    border-radius: var(--penguin-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .yellow-eyed-penguin .button:hover,
 .yellow-eyed-penguin .transparent-button:hover {
-    background-color: var(--yep-primary);
-    color: white;
-    box-shadow: 0 4px 6px -1px var(--yep-shadow);
-}
-
-.yellow-eyed-penguin .button:hover::before,
-.yellow-eyed-penguin .transparent-button:hover::before {
-    left: 100%;
+    background-color: var(--penguin-accent1);
+    color: var(--penguin-primary);
+    box-shadow: 0 3px 10px rgba(255, 209, 102, 0.15);
 }
 
 .yellow-eyed-penguin .controls {
@@ -569,55 +560,50 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .yellow-eyed-penguin #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 0.8rem;
     min-width: 200px;
     z-index: 1000;
 }
 
 .yellow-eyed-penguin #theme-switcher {
-    background-color: var(--yep-bg);
-    color: var(--yep-primary) !important;
-    border: 1px solid var(--yep-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
+    background-color: var(--penguin-primary);
+    color: var(--penguin-text) !important;
+    border: 1px solid var(--penguin-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
     width: 100%;
-    border-radius: var(--yep-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2334495E'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD166'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--yep-transition);
-    box-shadow: 0 1px 3px 0 var(--yep-shadow);
+    transition: all var(--penguin-transition);
+    border-radius: var(--penguin-radius);
 }
 
 .yellow-eyed-penguin #theme-switcher option {
-    background-color: var(--yep-bg) !important;
-    color: var(--yep-primary) !important;
-    font-size: 0.9rem;
+    background-color: var(--penguin-primary) !important;
+    color: var(--penguin-text) !important;
+    font-size: 0.95rem;
     font-weight: 600;
     padding: 10px 12px !important;
 }
 
-.yellow-eyed-penguin #theme-switcher option:hover {
-    background-color: var(--yep-primary) !important;
-    color: white !important;
-}
-
 .yellow-eyed-penguin #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 73, 94, 0.3);
+    border-color: var(--penguin-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -626,46 +612,41 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--yep-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Montserrat', serif;
-    font-weight: 700;
-    color: var(--yep-primary);
-    background-color: var(--yep-bg);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: var(--penguin-primary);
+    background-color: var(--penguin-accent1);
     cursor: pointer;
-    transition: all var(--yep-transition);
+    transition: all var(--penguin-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--yep-radius);
-    box-shadow: 0 4px 6px -1px var(--yep-shadow);
+    border-radius: var(--penguin-radius);
+    box-shadow: 0 2px 8px rgba(255, 209, 102, 0.3);
 }
 
 .yellow-eyed-penguin #backToTopBtn:hover {
-    background-color: var(--yep-primary);
-    color: white;
+    background-color: var(--penguin-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .yellow-eyed-penguin footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--yep-primary);
-    color: var(--yep-text);
-    font-size: 0.8rem;
-}
-
-.yellow-eyed-penguin footer::before {
-    content: "❄ ";
-    color: var(--yep-primary);
+    border-top: 1px solid var(--penguin-accent4);
+    color: var(--penguin-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .yellow-eyed-penguin .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .yellow-eyed-penguin #calendar-title {
@@ -680,13 +661,81 @@
         font-size: 1.1rem;
     }
 
-    .yellow-eyed-penguin th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
+    .yellow-eyed-penguin .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .yellow-eyed-penguin .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .yellow-eyed-penguin {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .yellow-eyed-penguin .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .yellow-eyed-penguin th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .yellow-eyed-penguin th span.full-day-name {
+        display: none;
+    }
+
+    .yellow-eyed-penguin th abbr {
+        display: inline;
+    }
+
+    .yellow-eyed-penguin td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .yellow-eyed-penguin td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .yellow-eyed-penguin td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .yellow-eyed-penguin #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .yellow-eyed-penguin #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .yellow-eyed-penguin .modal-content {
+        padding: 20px;
+    }
+
+    .yellow-eyed-penguin .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
     .yellow-eyed-penguin .container {
         padding: 1rem;
     }
@@ -695,113 +744,71 @@
         font-size: 1.7rem;
     }
 
+    .yellow-eyed-penguin #current-date {
+        font-size: 1.3rem;
+    }
+
+    .yellow-eyed-penguin #today-weather {
+        font-size: 1rem;
+    }
+
     .yellow-eyed-penguin .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Switch to short day names */
-    .yellow-eyed-penguin th .full-day {
-        display: none;
-    }
-
-    .yellow-eyed-penguin th .short-day {
-        display: inline;
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
     }
 
     .yellow-eyed-penguin th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .yellow-eyed-penguin td {
-        padding: 0.6rem 0.15rem;
+        padding: 0.6rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    .yellow-eyed-penguin #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+    .yellow-eyed-penguin td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
     .yellow-eyed-penguin #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
     .yellow-eyed-penguin .modal-content {
         padding: 15px;
     }
 
-    .yellow-eyed-penguin .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .yellow-eyed-penguin .container {
-        padding: 0.8rem;
+    .yellow-eyed-penguin .modal-date {
+        font-size: 1.2rem;
     }
 
-    .yellow-eyed-penguin #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .yellow-eyed-penguin #current-date {
-        font-size: 1.1rem;
-    }
-
-    .yellow-eyed-penguin #today-weather {
+    .yellow-eyed-penguin .event-time {
         font-size: 0.9rem;
-    }
-
-    .yellow-eyed-penguin .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .yellow-eyed-penguin th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .yellow-eyed-penguin td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .yellow-eyed-penguin td.current-day::before {
-        font-size: 0.7rem;
-    }
-
-    .yellow-eyed-penguin #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .yellow-eyed-penguin th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .yellow-eyed-penguin td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 60px;
+    }
+
+    .yellow-eyed-penguin td .date-number {
+        font-size: 0.9rem;
     }
 
     .yellow-eyed-penguin #theme-switcher {
         min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .yellow-eyed-penguin #calendar-title {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 }
