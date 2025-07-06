@@ -163,7 +163,7 @@ const applyTheme = (theme) => {
     'success-key','success-motivation', 'success-story', 'sunset-magic', 'sweet-misty-morning',
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
-    'the-best-of-fashion', 'the-black-spruce', 'the-dead-sea', 
+    'the-art-of-visible', 'the-best-of-fashion', 'the-black-spruce', 'the-dead-sea', 
     'the-desert-line', 'the-element-of-surprise','the-final-step',
     'the-great-silk-road', 'the-great-wall', 'the-hidden-jem', 'the-highest-level', 
     'the-last-day-of-spring', 'the-last-mohican', 'the-last-paradise',
