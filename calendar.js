@@ -52,7 +52,8 @@ const generateStars = () => {
 const applyTheme = (theme) => {
   body.classList.remove(
     'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
-    'action-time', 'adelaide-skyline', 'a-desert-island', 'adriatic-sea', 'a-forward-move',
+    'action-time', 'adelaide-skyline', 'a-desert-island', 'adriatic-sea', 
+    'a-foraging-trip', 'a-forward-move',
     'a-good-chapter', 'a-good-idea', 'a-king-of-stone',
     'aloe-vera', 'alone-in-paradise', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',

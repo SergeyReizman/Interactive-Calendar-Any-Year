@@ -1,0 +1,804 @@
+/* ==========================================================================
+   A Foraging Trip Theme - Nature's Bounty
+   Version: 1.0
+   Updated: 2024-06-15
+   Features:
+   - Earthy natural color palette
+   - Organic textures and patterns
+   - Rustic typography
+   - Seasonal design elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=EB+Garamond:wght@400;600&display=swap');
+
+:root {
+    /* Natural Color Palette */
+    --forage-bg: #F8F6F0;
+    --forage-text: #3A3528;
+    --forage-primary: #FFFDF8;
+    --forage-secondary: #F0EDE4;
+    --forage-date-number: #6B8C42;
+
+    /* Organic Texture Colors */
+    --forage-texture1: #E8E5DC;
+    --forage-texture2: #E0DDD4;
+    --forage-texture3: #D8D5CC;
+    --forage-texture4: #D0CDC4;
+    --forage-texture5: #C8C5BC;
+
+    /* Natural Accent Colors */
+    --forage-green: #6B8C42;
+    --forage-brown: #8B5A2B;
+    --forage-cream: #FFFDF8;
+    --forage-accent1: #8BA64A;
+    --forage-accent2: #5A6C3A;
+    --forage-accent3: #9CAC72;
+    --forage-accent4: rgba(107, 140, 66, 0.3);
+    --forage-accent5: rgba(107, 140, 66, 0.1);
+
+    /* Theme Variables */
+    --forage-shadow: rgba(0, 0, 0, 0.08);
+    --forage-radius: 4px;
+    --forage-transition: 0.3s ease-out;
+    --forage-hover: #5A6C3A;
+    --forage-glow: 0 0 0 2px rgba(107, 140, 66, 0.3);
+    --forage-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q30,10 40,20 T60,20 T80,20" stroke="%236B8C42" stroke-width="0.5" fill="none" opacity="0.2"/><path d="M10,40 Q20,30 30,40 T50,40 T70,40" stroke="%236B8C42" stroke-width="0.5" fill="none" opacity="0.2"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes forage-fadein {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes forage-leaf-fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(20px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes forage-highlight {
+
+    0%,
+    100% {
+        box-shadow: var(--forage-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(107, 140, 66, 0.2);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-foraging-trip {
+    font-family: 'EB Garamond', serif;
+    color: var(--forage-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--forage-bg);
+    min-height: 100vh;
+    background-image: var(--forage-pattern);
+    background-attachment: fixed;
+}
+
+.a-foraging-trip .container {
+    background-color: var(--forage-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--forage-texture3);
+    box-shadow: 0 2px 10px var(--forage-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--forage-radius);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="%236B8C42" opacity="0.1"/><circle cx="30" cy="30" r="0.5" fill="%236B8C42" opacity="0.1"/><circle cx="70" cy="70" r="0.5" fill="%236B8C42" opacity="0.1"/></svg>');
+}
+
+.a-foraging-trip .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--forage-green),
+            transparent);
+}
+
+.a-foraging-trip .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--forage-green),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-foraging-trip #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--forage-green);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 600;
+}
+
+.a-foraging-trip #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background-color: var(--forage-green);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-foraging-trip #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--forage-primary);
+    border: 1px solid var(--forage-texture3);
+    position: relative;
+    box-shadow: 0 1px 3px var(--forage-shadow);
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip #date-weather-container::before {
+    content: "SEASONAL GUIDE";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background-color: var(--forage-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--forage-green);
+    font-weight: 600;
+    font-family: 'EB Garamond', serif;
+}
+
+.a-foraging-trip #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--forage-green),
+            transparent);
+}
+
+.a-foraging-trip #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--forage-text);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.a-foraging-trip #today-weather {
+    font-family: 'EB Garamond', serif;
+    color: var(--forage-text);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    font-style: italic;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.a-foraging-trip #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.a-foraging-trip .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--forage-green);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--forage-primary);
+    box-shadow: 0 1px 3px var(--forage-shadow);
+}
+
+.a-foraging-trip .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed var(--forage-green);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.a-foraging-trip .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.a-foraging-trip .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: var(--forage-green);
+    margin-top: -1.5px;
+}
+
+.a-foraging-trip .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--forage-text);
+    margin-top: -1px;
+}
+
+.a-foraging-trip .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--forage-accent3);
+    margin-top: -0.5px;
+}
+
+.a-foraging-trip .clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--forage-green);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-foraging-trip table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.a-foraging-trip th {
+    background-color: var(--forage-primary);
+    color: var(--forage-green) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--forage-green);
+}
+
+.a-foraging-trip th span.full-day-name {
+    display: inline;
+}
+
+.a-foraging-trip th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.a-foraging-trip td {
+    background-color: var(--forage-primary);
+    color: var(--forage-text);
+    padding: 1.2rem;
+    border: 1px solid var(--forage-texture3);
+    height: 120px;
+    vertical-align: top;
+    transition: all var(--forage-transition);
+    position: relative;
+    box-shadow: 0 1px 2px var(--forage-shadow);
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip td .date-number {
+    color: var(--forage-green) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.a-foraging-trip td:hover {
+    background-color: var(--forage-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px var(--forage-shadow);
+}
+
+/* Current date highlight */
+.a-foraging-trip td.current-day {
+    background-color: var(--forage-secondary);
+    border-left: 3px solid var(--forage-green);
+    animation: forage-highlight 3s infinite;
+}
+
+.a-foraging-trip td.current-day .date-number {
+    color: var(--forage-text) !important;
+    font-weight: 700;
+}
+
+.a-foraging-trip td.current-day::before {
+    content: "🍂";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-foraging-trip .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--forage-green);
+    margin: 0 2px;
+    transition: all var(--forage-transition);
+}
+
+.a-foraging-trip .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--forage-accent3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-foraging-trip .modal-content {
+    position: relative;
+    background-color: var(--forage-primary);
+    border: 1px solid var(--forage-texture3);
+    padding: 2rem;
+    color: var(--forage-text);
+    box-shadow: 0 5px 15px var(--forage-shadow);
+    animation: forage-fadein 0.3s ease-out;
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--forage-green),
+            transparent);
+}
+
+.a-foraging-trip .modal-content::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--forage-green),
+            transparent);
+}
+
+.a-foraging-trip .modal-content h2 {
+    color: var(--forage-green);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* Modal date display */
+.a-foraging-trip .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--forage-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--forage-texture3);
+}
+
+/* Event list */
+.a-foraging-trip .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.a-foraging-trip .event-item {
+    background-color: var(--forage-primary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--forage-green);
+    transition: all var(--forage-transition);
+    position: relative;
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip .event-item:hover {
+    background-color: var(--forage-secondary);
+    transform: translateX(5px);
+}
+
+.a-foraging-trip .event-time {
+    font-family: 'EB Garamond', serif;
+    color: var(--forage-green);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.a-foraging-trip .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--forage-text);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.a-foraging-trip .event-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--forage-text);
+}
+
+.a-foraging-trip .modal-content button {
+    background-color: var(--forage-green);
+    color: var(--forage-cream);
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--forage-transition);
+    letter-spacing: 0.05em;
+    font-family: 'EB Garamond', serif;
+    margin-top: 1rem;
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip .modal-content button:hover {
+    background-color: var(--forage-accent2);
+}
+
+/* Close Button */
+.a-foraging-trip .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--forage-text);
+    border: 1px solid var(--forage-texture3);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--forage-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+.a-foraging-trip .modal .close-button:hover {
+    background-color: var(--forage-secondary);
+    color: var(--forage-green);
+    border-color: var(--forage-green);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.a-foraging-trip .button,
+.a-foraging-trip .transparent-button {
+    border: 1px solid var(--forage-green);
+    color: var(--forage-cream);
+    background-color: var(--forage-green);
+    padding: 0.8rem 1.5rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--forage-transition);
+    margin: 0.4rem;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip .transparent-button {
+    background-color: transparent;
+    color: var(--forage-text);
+    border-color: var(--forage-texture4);
+}
+
+.a-foraging-trip .button:hover,
+.a-foraging-trip .transparent-button:hover {
+    background-color: var(--forage-accent2);
+    color: var(--forage-cream);
+    border-color: var(--forage-accent2);
+}
+
+.a-foraging-trip .transparent-button:hover {
+    color: var(--forage-green);
+    background-color: var(--forage-secondary);
+    border-color: var(--forage-green);
+}
+
+.a-foraging-trip .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.a-foraging-trip #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.a-foraging-trip #theme-switcher {
+    background-color: var(--forage-primary);
+    color: var(--forage-text) !important;
+    border: 1px solid var(--forage-texture3);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236B8C42'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--forage-transition);
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip #theme-switcher option {
+    background-color: var(--forage-primary) !important;
+    color: var(--forage-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.a-foraging-trip #theme-switcher:focus {
+    outline: none;
+    border-color: var(--forage-green);
+    box-shadow: var(--forage-glow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.a-foraging-trip #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    color: var(--forage-cream);
+    background-color: var(--forage-green);
+    cursor: pointer;
+    transition: all var(--forage-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--forage-radius);
+}
+
+.a-foraging-trip #backToTopBtn:hover {
+    background-color: var(--forage-accent2);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.a-foraging-trip footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--forage-texture3);
+    color: var(--forage-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .a-foraging-trip .container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .a-foraging-trip #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .a-foraging-trip #current-date {
+        font-size: 1.8rem;
+    }
+
+    .a-foraging-trip .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .a-foraging-trip td {
+        height: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-foraging-trip {
+        font-size: 0.95rem;
+    }
+
+    .a-foraging-trip .container {
+        padding: 1.5rem;
+    }
+
+    .a-foraging-trip #calendar-title {
+        font-size: 2rem;
+    }
+
+    .a-foraging-trip #current-date {
+        font-size: 1.5rem;
+    }
+
+    .a-foraging-trip #today-weather {
+        font-size: 1rem;
+    }
+
+    .a-foraging-trip .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .a-foraging-trip th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .a-foraging-trip td {
+        padding: 1rem;
+        height: 100px;
+    }
+
+    .a-foraging-trip td .date-number {
+        font-size: 1.1rem;
+    }
+
+    .a-foraging-trip #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .a-foraging-trip #theme-switcher {
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-foraging-trip .container {
+        padding: 1.2rem;
+    }
+
+    .a-foraging-trip #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .a-foraging-trip #current-date {
+        font-size: 1.3rem;
+    }
+
+    .a-foraging-trip .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .a-foraging-trip td {
+        height: 90px;
+        padding: 0.8rem;
+    }
+
+    .a-foraging-trip #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-foraging-trip #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .a-foraging-trip .clock-face {
+        width: 100px;
+        height: 100px;
+    }
+
+    .a-foraging-trip td {
+        height: 80px;
+    }
+
+    .a-foraging-trip #theme-switcher {
+        min-width: 140px;
+    }
+}
+
+/* Seasonal Leaf Animation */
+.a-foraging-trip .leaf {
+    position: absolute;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236B8C42"><path d="M17 8C8 10 5.9 16.2 5.9 16.2s1.7 4 7.1 1.8c5.4-2.2 6-8 6-8s-6 3-12-2c0 0-1-5 10-8z"/></svg>');
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    z-index: -1;
+    animation: forage-leaf-fall linear infinite;
+}
