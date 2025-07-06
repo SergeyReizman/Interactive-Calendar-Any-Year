@@ -159,7 +159,7 @@ const applyTheme = (theme) => {
     'statue-of-liberty', 'stay-cool', 'stay-positive',
     'steel-shadows', 'stockholm-roofs', 'straight-to-the-point',
     'strategic-advantage', 'strategic-planning',
-    'strawberry-moon', 'strength-of-spirit', 'strong-foundation',
+    'strawberry-moon', 'street-art-installation', 'strength-of-spirit', 'strong-foundation',
     'success-key','success-motivation', 'success-story', 'sunset-magic', 'sweet-misty-morning',
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
