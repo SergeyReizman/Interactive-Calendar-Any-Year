@@ -1,146 +1,121 @@
 /* ==========================================================================
-   Silver Dragon Theme - Mythical Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Metallic color scheme
-   - Dragon-scale UI elements
-   - Mobile-responsive design
-   - Flame animations
-   - Ancient textures
-   - Enhanced accessibility
-   - Regal typography
+   Silver Dragon Theme - Fantasy Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Metallic silver and dragon-scale color palette
+   - Fantasy-themed design elements
+   - Mystical animations and effects
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:wght@400;500;600&display=swap');
 
 :root {
-    /* Silver Dragon Color Palette */
-    --sd-bg: #F5F7FA;
-    --sd-text: #2D3748;
-    --sd-primary: #718096;
-    /* Steel gray */
-    --sd-secondary: #B7791F;
-    /* Dragon gold */
+    /* Dragon Scale Palette */
+    --dragon-bg: #0A0E17;
+    --dragon-text: #E8E6E3;
+    --dragon-primary: #121828;
+    --dragon-secondary: #1A2238;
+    --dragon-date-number: #FFFFFF;
 
-    /* Gradient Colors */
-    --sd-gradient-start: #EDF2F7;
-    --sd-gradient-end: #E2E8F0;
+    /* Metallic Scale Colors */
+    --dragon-scale1: #1A1F35;
+    --dragon-scale2: #222A42;
+    --dragon-scale3: #2A354F;
+    --dragon-scale4: #32405C;
+    --dragon-scale5: #3A4B69;
 
-    /* Accent Colors */
-    --sd-flame: #C53030;
-    /* Dragon fire */
-    --sd-scale: #A0AEC0;
-    /* Silver scale */
-    --sd-claw: #4A5568;
-    /* Dark claw */
-    --sd-treasure: #D69E2E;
-    /* Hoard gold */
+    /* Dragonfire Accent Colors */
+    --dragon-accent1: #7D8CA3;
+    /* Silver Scale */
+    --dragon-accent2: #A3B5CC;
+    /* Pale Silver */
+    --dragon-accent3: #C9D5E5;
+    /* Moonlight */
+    --dragon-accent4: rgba(163, 181, 204, 0.7);
+    --dragon-accent5: rgba(201, 213, 229, 0.5);
 
     /* Theme Variables */
-    --sd-shadow: rgba(113, 128, 150, 0.2);
-    --sd-radius: 8px;
-    --sd-transition: 0.25s ease;
-    --sd-hover: #EBF4FF;
-    --sd-current-day: #E6FFFA;
+    --dragon-shadow: rgba(125, 140, 163, 0.15);
+    --dragon-radius: 6px;
+    --dragon-transition: 0.25s ease;
+    --dragon-hover: #6C7B94;
+    --dragon-glow: 0 0 12px rgba(125, 140, 163, 0.25);
+    --dragon-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%237D8CA3"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%237D8CA3"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%237D8CA3"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes sd-breathe {
+@keyframes dragon-fade {
 
     0%,
     100% {
-        transform: scale(1);
+        opacity: 0.95;
     }
 
     50% {
-        transform: scale(1.02);
+        opacity: 1;
     }
 }
 
-@keyframes scale-pattern {
+@keyframes dragon-emerge {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dragon-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--dragon-shadow);
+    }
+
+    50% {
+        box-shadow: var(--dragon-glow);
+    }
+}
+
+@keyframes scale-gleam {
     0% {
         background-position: 0 0;
     }
 
     100% {
-        background-position: 50px 50px;
-    }
-}
-
-@keyframes sd-flame {
-
-    0%,
-    100% {
-        opacity: 0.8;
-        filter: drop-shadow(0 0 5px rgba(197, 48, 48, 0.7));
-    }
-
-    50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 10px rgba(197, 48, 48, 0.9));
+        background-position: 100px 100px;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .silver-dragon {
-    font-family: 'Raleway', sans-serif;
-    color: var(--sd-text);
+    font-family: 'EB Garamond', serif;
+    color: var(--dragon-text);
     line-height: 1.6;
-    background: var(--sd-bg);
+    font-size: 1rem;
+    background-color: var(--dragon-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        radial-gradient(circle at 20% 30%,
-            rgba(160, 174, 192, 0.1) 0%,
-            transparent 20%),
-        radial-gradient(circle at 80% 70%,
-            rgba(183, 121, 31, 0.1) 0%,
-            transparent 20%);
-    background-size: 50px 50px;
-    animation: scale-pattern 60s linear infinite;
-}
-
-.silver-dragon::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        linear-gradient(135deg,
-            rgba(197, 48, 48, 0.05) 0%,
-            transparent 100%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Dragon scale pattern */
-.silver-dragon::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M20,50 Q30,30 50,50 Q70,70 80,50 Q90,30 50,50 Q10,70 20,50" fill="%23718096"/></svg>');
-    pointer-events: none;
-    z-index: 0;
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,10 Q25,5 40,15 T70,10 Q85,5 90,20 T70,40 Q85,35 80,50 T60,70 Q75,65 70,80 T50,90 Q35,95 30,80 T10,60 Q25,55 20,40 T10,10 Z" fill="%237D8CA3" opacity="0.05"/></svg>');
+    animation: scale-gleam 20s linear infinite;
 }
 
 .silver-dragon .container {
-    background-color: rgba(245, 247, 250, 0.97);
+    background-color: var(--dragon-primary);
     padding: 2rem;
-    border: 1px solid var(--sd-primary);
-    box-shadow: 0 0 30px var(--sd-shadow);
+    border: 1px solid var(--dragon-accent4);
+    box-shadow: var(--dragon-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--sd-radius);
-    z-index: 1;
+    border-radius: var(--dragon-radius);
+    background-image:
+        linear-gradient(135deg, rgba(125, 140, 163, 0.05) 0%, transparent 50%, rgba(201, 213, 229, 0.05) 100%);
 }
 
 .silver-dragon .container::before {
@@ -151,119 +126,118 @@
     right: 0;
     height: 3px;
     background: linear-gradient(90deg,
-            transparent,
-            var(--sd-primary),
-            var(--sd-secondary),
-            transparent);
-    animation: sd-flame 3s infinite;
+            var(--dragon-accent1) 0%,
+            var(--dragon-accent2) 50%,
+            var(--dragon-accent1) 100%);
+}
+
+.silver-dragon .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--dragon-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .silver-dragon #calendar-title {
-    font-family: 'Cinzel', serif;
-    color: var(--sd-primary);
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--dragon-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
     position: relative;
-    animation: sd-breathe 3s infinite;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.silver-dragon #calendar-title::before,
 .silver-dragon #calendar-title::after {
-    content: "⚔";
+    content: "🐉";
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--sd-secondary);
-    font-size: 1.5rem;
-}
-
-.silver-dragon #calendar-title::before {
-    left: 1rem;
-    animation: sd-breathe 2.5s infinite 0.5s;
-}
-
-.silver-dragon #calendar-title::after {
-    right: 1rem;
-    animation: sd-breathe 2.5s infinite;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .silver-dragon #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(113, 128, 150, 0.1);
-    border: 1px solid var(--sd-primary);
-    border-radius: var(--sd-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--dragon-primary);
+    border: 1px solid var(--dragon-accent4);
+    border-radius: var(--dragon-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.silver-dragon #date-weather-container::before {
+    content: "DRAGON CHRONICLE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--dragon-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--dragon-text);
+    font-weight: 700;
+    font-family: 'Cinzel Decorative', serif;
 }
 
 .silver-dragon #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--sd-primary),
-            transparent);
+    background: linear-gradient(90deg, transparent, var(--dragon-accent2), transparent);
 }
 
 .silver-dragon #current-date {
-    font-family: 'Cinzel', serif;
-    color: var(--sd-primary);
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--dragon-text);
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .silver-dragon #today-weather {
-    font-family: 'Raleway', sans-serif;
-    color: var(--sd-secondary);
+    font-family: 'EB Garamond', serif;
+    color: var(--dragon-text);
     font-size: 1.2rem;
-    letter-spacing: 0.05em;
     font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .silver-dragon #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .silver-dragon .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--sd-primary);
+    border: 6px solid var(--dragon-accent2);
     border-radius: 50%;
     position: relative;
-    background-color: var(--sd-bg);
-    box-shadow:
-        0 0 15px var(--sd-shadow),
-        inset 0 0 10px rgba(113, 128, 150, 0.1);
+    background-color: var(--dragon-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
     background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(183, 121, 31, 0.1) 100%);
-}
-
-/* Dragon clock numerals */
-.silver-dragon .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><text x="50" y="18" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">XII</text><text x="82" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">III</text><text x="50" y="92" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">VI</text><text x="18" y="55" text-anchor="middle" font-family="Cinzel" font-size="12" fill="%23718096">IX</text></svg>');
+        radial-gradient(circle at center, transparent 65%, var(--dragon-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,5 L53,20 L68,20 L55,30 L60,45 L50,35 L40,45 L45,30 L32,20 L47,20 Z" fill="%23A3B5CC" opacity="0.3"/></svg>');
 }
 
 .silver-dragon .hand {
@@ -272,129 +246,135 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .silver-dragon .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--sd-primary);
-    margin-top: -2px;
+    height: 6px;
+    background: var(--dragon-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
 }
 
 .silver-dragon .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--sd-secondary);
-    margin-top: -1px;
+    height: 4px;
+    background: var(--dragon-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
 }
 
 .silver-dragon .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--sd-flame);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--dragon-accent3);
+    margin-top: -1px;
 }
 
-/* Clock center - Dragon eye */
+/* Clock center ornament */
 .silver-dragon .clock-face::after {
-    content: "";
+    content: "✦";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background-color: var(--sd-treasure);
-    border-radius: 50%;
-    border: 1px solid var(--sd-primary);
+    font-size: 1.2rem;
+    color: var(--dragon-accent1);
+    z-index: 10;
 }
 
-/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+/* ==================== CALENDAR TABLE ==================== */
 .silver-dragon table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--sd-primary);
-    border-radius: var(--sd-radius);
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+/* DAY OF WEEK HEADERS */
 .silver-dragon th {
-    background-color: rgba(113, 128, 150, 0.1);
-    color: var(--sd-primary) !important;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--sd-primary);
+    background-color: var(--dragon-accent1);
+    color: var(--dragon-text) !important;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--dragon-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
-/* Full names for desktop */
-.silver-dragon th .full-day {
+.silver-dragon th span.full-day-name {
     display: inline;
 }
 
-/* Short names for mobile */
-.silver-dragon th .short-day {
+.silver-dragon th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .silver-dragon td {
-    background-color: rgba(245, 247, 250, 0.95);
-    color: var(--sd-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid rgba(113, 128, 150, 0.1);
+    background-color: var(--dragon-primary);
+    color: var(--dragon-text);
+    padding: 1rem;
+    border: 1px solid var(--dragon-accent4);
     height: 90px;
     vertical-align: top;
-    transition: all var(--sd-transition);
+    transition: all var(--dragon-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--dragon-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.silver-dragon td .date-number {
+    color: var(--dragon-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Cinzel Decorative', serif;
 }
 
 .silver-dragon td:hover {
-    background-color: var(--sd-hover);
-    box-shadow: inset 0 0 15px var(--sd-shadow);
+    background-color: var(--dragon-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.silver-dragon .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: var(--sd-text);
-}
-
+/* Current date highlight */
 .silver-dragon td.current-day {
-    background-color: var(--sd-current-day);
-    border: 2px solid var(--sd-secondary);
-    color: var(--sd-primary) !important;
-    font-weight: 600;
-    animation: sd-flame 3s infinite;
+    background-color: rgba(125, 140, 163, 0.15);
+    border: 2px solid var(--dragon-accent2);
+    animation: dragon-pulse 3s infinite;
 }
 
 .silver-dragon td.current-day .date-number {
-    color: var(--sd-primary) !important;
+    color: var(--dragon-text) !important;
     font-weight: 700;
 }
 
 .silver-dragon td.current-day::before {
-    content: "⚔";
+    content: "✨";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--sd-secondary);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    color: var(--dragon-accent3);
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -403,42 +383,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--sd-primary);
+    background-color: var(--dragon-accent2);
     margin: 0 1px;
-    box-shadow: 0 0 5px var(--sd-shadow);
-    transition: all var(--sd-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all var(--dragon-transition);
 }
 
 .silver-dragon .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--sd-secondary);
-    box-shadow: 0 0 15px var(--sd-shadow);
-}
-
-/* Special event types */
-.silver-dragon .event-marker.holiday {
-    background-color: var(--sd-flame);
-}
-
-.silver-dragon .event-marker.historic {
-    background-color: var(--sd-scale);
-}
-
-.silver-dragon .event-marker.patriotic {
-    background-color: var(--sd-treasure);
+    transform: scale(1.4);
+    background-color: var(--dragon-accent2);
+    box-shadow: 0 0 6px rgba(163, 181, 204, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .silver-dragon .modal-content {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.98);
-    border: 1px solid var(--sd-primary);
+    background-color: var(--dragon-primary);
+    border: 1px solid var(--dragon-accent4);
     padding: 25px;
-    color: var(--sd-text);
-    box-shadow: 0 0 30px var(--sd-shadow);
-    border-radius: var(--sd-radius);
-    animation: sd-flame 0.5s ease;
+    color: var(--dragon-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--dragon-radius);
+    animation: dragon-emerge 0.3s ease-out;
 }
 
 .silver-dragon .modal-content::before {
@@ -449,121 +414,144 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--sd-primary),
-            var(--sd-secondary),
-            var(--sd-flame));
+            var(--dragon-accent1) 0%,
+            var(--dragon-accent2) 50%,
+            var(--dragon-accent1) 100%);
 }
 
 .silver-dragon .modal-content h2 {
-    color: var(--sd-primary);
-    font-family: 'Cinzel', serif;
-    font-size: 1.8em;
+    color: var(--dragon-text);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2em;
     margin-bottom: 15px;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.silver-dragon .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* Modal date display */
+.silver-dragon .modal-date {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--dragon-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--dragon-accent4);
 }
 
-.silver-dragon .modal-content .event-time {
-    display: block;
+/* Event list */
+.silver-dragon .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.silver-dragon .event-item {
+    background-color: var(--dragon-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--dragon-accent1);
+    border-radius: var(--dragon-radius);
+    transition: all var(--dragon-transition);
+}
+
+.silver-dragon .event-item:hover {
+    background-color: var(--dragon-scale3);
+    transform: translateX(3px);
+}
+
+.silver-dragon .event-time {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--dragon-text);
     font-weight: 600;
-    color: var(--sd-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
 }
 
-.silver-dragon .modal-content .event-description {
-    background-color: rgba(113, 128, 150, 0.1);
-    padding: 15px;
-    border-left: 3px solid var(--sd-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--sd-radius) var(--sd-radius) 0;
+.silver-dragon .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--dragon-text);
+}
+
+.silver-dragon .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--dragon-text);
+    opacity: 0.9;
 }
 
 .silver-dragon .modal-content button {
-    background-color: var(--sd-primary);
-    color: white;
+    background-color: var(--dragon-accent1);
+    color: var(--dragon-text);
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--sd-transition);
-    border-radius: var(--sd-radius);
-    font-family: 'Raleway', sans-serif;
+    transition: all var(--dragon-transition);
+    letter-spacing: 0.5px;
+    font-family: 'EB Garamond', serif;
+    border-radius: var(--dragon-radius);
 }
 
 .silver-dragon .modal-content button:hover {
-    background-color: var(--sd-secondary);
-    box-shadow: 0 4px 6px -1px var(--sd-shadow);
+    background-color: var(--dragon-hover);
+    box-shadow: 0 3px 10px rgba(125, 140, 163, 0.2);
 }
 
+/* Close Button */
 .silver-dragon .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--sd-primary);
-    border: 1px solid var(--sd-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--dragon-primary);
+    color: var(--dragon-text);
+    border: 1px solid var(--dragon-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--sd-transition);
+    transition: all var(--dragon-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .silver-dragon .modal .close-button:hover {
-    background-color: var(--sd-primary);
-    color: white;
+    background-color: var(--dragon-text);
+    color: var(--dragon-accent1);
+    border-color: var(--dragon-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .silver-dragon .button,
 .silver-dragon .transparent-button {
-    border: 1px solid var(--sd-primary);
-    color: var(--sd-primary);
+    border: 1px solid var(--dragon-accent1);
+    color: var(--dragon-text);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
+    padding: 0.8rem 1.5rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--sd-transition);
+    transition: all var(--dragon-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--sd-radius);
-    letter-spacing: 0.05em;
-}
-
-.silver-dragon .button::before,
-.silver-dragon .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(113, 128, 150, 0.1), transparent);
-    transition: 0.5s;
+    margin: 0.4rem;
+    border-radius: var(--dragon-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .silver-dragon .button:hover,
 .silver-dragon .transparent-button:hover {
-    background-color: var(--sd-primary);
-    color: white;
-    box-shadow: 0 4px 6px -1px var(--sd-shadow);
-}
-
-.silver-dragon .button:hover::before,
-.silver-dragon .transparent-button:hover::before {
-    left: 100%;
+    background-color: var(--dragon-accent1);
+    color: var(--dragon-text);
+    box-shadow: 0 3px 10px rgba(125, 140, 163, 0.15);
 }
 
 .silver-dragon .controls {
@@ -571,55 +559,50 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .silver-dragon #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 0.8rem;
     min-width: 200px;
     z-index: 1000;
 }
 
 .silver-dragon #theme-switcher {
-    background-color: var(--sd-bg);
-    color: var(--sd-primary) !important;
-    border: 1px solid var(--sd-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.9rem;
+    background-color: var(--dragon-primary);
+    color: var(--dragon-text) !important;
+    border: 1px solid var(--dragon-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
     font-weight: 600;
     width: 100%;
-    border-radius: var(--sd-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23718096'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8E6E3'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--sd-transition);
-    box-shadow: 0 1px 3px 0 var(--sd-shadow);
+    transition: all var(--dragon-transition);
+    border-radius: var(--dragon-radius);
 }
 
 .silver-dragon #theme-switcher option {
-    background-color: var(--sd-bg) !important;
-    color: var(--sd-primary) !important;
-    font-size: 0.9rem;
+    background-color: var(--dragon-primary) !important;
+    color: var(--dragon-text) !important;
+    font-size: 0.95rem;
     font-weight: 600;
     padding: 10px 12px !important;
 }
 
-.silver-dragon #theme-switcher option:hover {
-    background-color: var(--sd-primary) !important;
-    color: white !important;
-}
-
 .silver-dragon #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(113, 128, 150, 0.3);
+    border-color: var(--dragon-accent1);
+    box-shadow: 0 0 0 2px rgba(125, 140, 163, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -628,46 +611,41 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--sd-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    color: var(--sd-primary);
-    background-color: var(--sd-bg);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    color: var(--dragon-text);
+    background-color: var(--dragon-accent1);
     cursor: pointer;
-    transition: all var(--sd-transition);
+    transition: all var(--dragon-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--sd-radius);
-    box-shadow: 0 4px 6px -1px var(--sd-shadow);
+    border-radius: var(--dragon-radius);
+    box-shadow: 0 2px 8px rgba(125, 140, 163, 0.3);
 }
 
 .silver-dragon #backToTopBtn:hover {
-    background-color: var(--sd-primary);
-    color: white;
+    background-color: var(--dragon-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .silver-dragon footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--sd-primary);
-    color: var(--sd-text);
-    font-size: 0.8rem;
-}
-
-.silver-dragon footer::before {
-    content: "⚔ ";
-    color: var(--sd-primary);
+    border-top: 1px solid var(--dragon-accent4);
+    color: var(--dragon-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .silver-dragon .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .silver-dragon #calendar-title {
@@ -682,13 +660,81 @@
         font-size: 1.1rem;
     }
 
-    .silver-dragon th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
+    .silver-dragon .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .silver-dragon .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .silver-dragon {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .silver-dragon .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .silver-dragon th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .silver-dragon th span.full-day-name {
+        display: none;
+    }
+
+    .silver-dragon th abbr {
+        display: inline;
+    }
+
+    .silver-dragon td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .silver-dragon td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .silver-dragon td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .silver-dragon #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .silver-dragon #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .silver-dragon .modal-content {
+        padding: 20px;
+    }
+
+    .silver-dragon .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
     .silver-dragon .container {
         padding: 1rem;
     }
@@ -697,113 +743,71 @@
         font-size: 1.7rem;
     }
 
+    .silver-dragon #current-date {
+        font-size: 1.3rem;
+    }
+
+    .silver-dragon #today-weather {
+        font-size: 1rem;
+    }
+
     .silver-dragon .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Switch to short day names */
-    .silver-dragon th .full-day {
-        display: none;
-    }
-
-    .silver-dragon th .short-day {
-        display: inline;
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
     }
 
     .silver-dragon th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .silver-dragon td {
-        padding: 0.6rem 0.15rem;
+        padding: 0.6rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    .silver-dragon #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+    .silver-dragon td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
     .silver-dragon #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
     .silver-dragon .modal-content {
         padding: 15px;
     }
 
-    .silver-dragon .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .silver-dragon .container {
-        padding: 0.8rem;
+    .silver-dragon .modal-date {
+        font-size: 1.2rem;
     }
 
-    .silver-dragon #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .silver-dragon #current-date {
-        font-size: 1.1rem;
-    }
-
-    .silver-dragon #today-weather {
+    .silver-dragon .event-time {
         font-size: 0.9rem;
-    }
-
-    .silver-dragon .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .silver-dragon th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .silver-dragon td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .silver-dragon td.current-day::before {
-        font-size: 0.7rem;
-    }
-
-    .silver-dragon #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .silver-dragon th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .silver-dragon td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 60px;
+    }
+
+    .silver-dragon td .date-number {
+        font-size: 0.9rem;
     }
 
     .silver-dragon #theme-switcher {
         min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .silver-dragon #calendar-title {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 }
