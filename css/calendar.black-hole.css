@@ -1,84 +1,84 @@
 /* ==========================================================================
-   Black Hole Theme - Cosmic Void Interface
+   Black Hole Theme - Cosmic Darkness
    Version: 1.0
-   Updated: 2025-05-29
-   Changes:
-   - Created dark cosmic color palette
-   - Added starfield textures and gravitational elements
-   - Designed with futuristic typography
-   - Maintained all structural elements from Black Hawk
+   Updated: 2024-06-15
+   Features:
+   - Deep space color palette
+   - Celestial typography and effects
+   - Event horizon design elements
+   - Gravitational visual hierarchy
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
     /* Cosmic Color Palette */
     --void-bg: #0A0A12;
-    --void-text: #E0E0E8;
-    --void-primary: #1A1A2E;
-    --void-secondary: #2A2A3E;
+    --void-text: #E0E0E0;
+    --void-primary: #12121A;
+    --void-secondary: #1A1A22;
+    --void-date-number: #6D8BFF;
 
-    /* Event Horizon Shades */
-    --void-light: #3A3A4E;
-    --void-medium: #2A2A3E;
-    --void-dark: #1A1A2E;
-    --void-darker: #0A0A1E;
-    --void-darkest: #00000E;
+    /* Cosmic Texture Colors */
+    --void-texture1: #181820;
+    --void-texture2: #202028;
+    --void-texture3: #282830;
+    --void-texture4: #303038;
+    --void-texture5: #383840;
 
-    /* Accent Colors */
-    --void-accent1: #4E4E7E;
-    --void-accent2: #3E3E6E;
-    --void-accent3: #2E2E5E;
-    --void-accent4: #1E1E4E;
-    --void-accent5: #6A1B9A;
+    /* Cosmic Accent Colors */
+    --void-blue: #6D8BFF;
+    --void-purple: #8B6DFF;
+    --void-neon: #6DFF8B;
+    --void-accent1: #8BA6FF;
+    --void-accent2: #6D6DFF;
+    --void-accent3: #8B6DFF;
+    --void-accent4: rgba(109, 139, 255, 0.3);
+    --void-accent5: rgba(109, 139, 255, 0.1);
 
     /* Theme Variables */
-    --void-shadow: rgba(106, 27, 154, 0.3);
+    --void-shadow: rgba(0, 0, 0, 0.5);
     --void-radius: 4px;
-    --void-transition: 0.3s ease;
-    --void-hover: #9C27B0;
-    --void-glow: 0 0 15px rgba(106, 27, 154, 0.5);
-    --void-starfield: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="0.5" fill="white"/><circle cx="50" cy="30" r="0.7" fill="white"/><circle cx="80" cy="20" r="0.5" fill="white"/><circle cx="30" cy="70" r="0.7" fill="white"/><circle cx="70" cy="80" r="0.5" fill="white"/></svg>');
+    --void-transition: 0.3s ease-out;
+    --void-hover: #8BA6FF;
+    --void-glow: 0 0 8px 2px rgba(109, 139, 255, 0.5);
+    --void-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%236D8BFF" opacity="0.5"/><circle cx="20" cy="20" r="1" fill="%236D8BFF" opacity="0.5"/><circle cx="80" cy="80" r="1" fill="%236D8BFF" opacity="0.5"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
 @keyframes void-pulse {
-
-    0%,
-    100% {
-        opacity: 0.8;
-        text-shadow: 0 0 5px var(--void-accent5);
+    0% {
+        opacity: 0.5;
     }
 
     50% {
         opacity: 1;
-        text-shadow: 0 0 15px var(--void-accent5);
-    }
-}
-
-@keyframes void-gravity {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
     }
 
     100% {
-        transform: scale(1);
+        opacity: 0.5;
     }
 }
 
-@keyframes void-fadeIn {
+@keyframes void-spin {
     from {
-        opacity: 0;
-        transform: translateY(10px);
+        transform: rotate(0deg);
     }
 
     to {
-        opacity: 1;
-        transform: translateY(0);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes void-glow {
+
+    0%,
+    100% {
+        box-shadow: var(--void-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 16px 4px rgba(109, 139, 255, 0.7);
     }
 }
 
@@ -87,17 +87,17 @@
     font-family: 'Space Mono', monospace;
     color: var(--void-text);
     line-height: 1.6;
+    font-size: 1rem;
     background-color: var(--void-bg);
     min-height: 100vh;
-    background-image: var(--void-starfield);
-    background-size: 300px 300px;
+    background-image: var(--void-pattern);
 }
 
 .black-hole .container {
     background-color: var(--void-primary);
-    padding: 2rem;
-    border: 1px solid var(--void-accent1);
-    box-shadow: var(--void-glow);
+    padding: 2.5rem;
+    border: 1px solid var(--void-texture3);
+    box-shadow: 0 2px 20px var(--void-shadow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
@@ -112,41 +112,49 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--void-accent5), transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--void-blue),
+            transparent);
 }
 
-/* Singularity Element */
 .black-hole .container::after {
-    content: "•";
+    content: "";
     position: absolute;
-    bottom: -15px;
-    right: 30px;
-    font-size: 3rem;
-    color: var(--void-accent5);
-    opacity: 0.1;
-    z-index: -1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--void-blue),
+            transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .black-hole #calendar-title {
     font-family: 'Orbitron', sans-serif;
-    color: var(--void-accent5);
+    color: var(--void-blue);
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
     letter-spacing: 0.1em;
     position: relative;
-    animation: void-pulse 3s infinite;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--void-accent4);
 }
 
 .black-hole #calendar-title::after {
     content: "";
     position: absolute;
-    bottom: -10px;
-    left: 30%;
-    right: 30%;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--void-accent5), transparent);
+    background-color: var(--void-blue);
+    box-shadow: var(--void-glow);
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -154,49 +162,57 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1.5rem;
-    background-color: var(--void-medium);
-    border: 1px solid var(--void-accent1);
+    background-color: var(--void-primary);
+    border: 1px solid var(--void-texture3);
     position: relative;
+    box-shadow: 0 1px 10px var(--void-shadow);
     border-radius: var(--void-radius);
 }
 
 .black-hole #date-weather-container::before {
-    content: "";
+    content: "COSMIC EVENT";
     position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border: 1px dashed var(--void-accent1);
-    border-radius: var(--void-radius);
-    pointer-events: none;
-    opacity: 0.3;
+    top: -12px;
+    left: 20px;
+    background-color: var(--void-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--void-blue);
+    font-weight: 600;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
 }
 
 .black-hole #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--void-accent5), transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--void-blue),
+            transparent);
 }
 
 .black-hole #current-date {
     font-family: 'Orbitron', sans-serif;
-    color: var(--void-accent5);
-    font-size: 1.8rem;
-    font-weight: 700;
+    color: var(--void-text);
+    font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
 }
 
 .black-hole #today-weather {
     font-family: 'Space Mono', monospace;
-    color: var(--void-accent3);
-    font-size: 1.4rem;
-    font-weight: 600;
-    font-style: italic;
+    color: var(--void-text);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -207,25 +223,26 @@
     position: relative;
 }
 
-.black-hole #analog-watch::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    width: 50px;
-    height: 20px;
-    background-color: var(--void-dark);
-    border-radius: 50% 50% 0 0;
-    z-index: -1;
-}
-
 .black-hole .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 8px solid var(--void-accent1);
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--void-blue);
     border-radius: 50%;
     position: relative;
-    background-color: var(--void-darkest);
-    box-shadow: var(--void-glow);
+    background-color: var(--void-primary);
+    box-shadow: 0 0 20px var(--void-shadow), inset 0 0 10px var(--void-shadow);
+}
+
+.black-hole .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed var(--void-blue);
+    border-radius: 50%;
+    opacity: 0.3;
 }
 
 .black-hole .hand {
@@ -238,34 +255,46 @@
 }
 
 .black-hole .hour-hand {
-    width: 40%;
-    left: 10%;
-    height: 6px;
-    background: var(--void-accent1);
-    margin-top: -3px;
-}
-
-.black-hole .minute-hand {
-    width: 48%;
-    left: 2%;
+    width: 35%;
+    left: 15%;
     height: 4px;
-    background: var(--void-accent1);
+    background: var(--void-blue);
     margin-top: -2px;
 }
 
+.black-hole .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: var(--void-text);
+    margin-top: -1.5px;
+}
+
 .black-hole .second-hand {
-    width: 48%;
-    left: 2%;
+    width: 45%;
+    left: 5%;
     height: 2px;
-    background: var(--void-accent5);
+    background: var(--void-neon);
     margin-top: -1px;
+}
+
+.black-hole .clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--void-blue);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px var(--void-blue);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .black-hole table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 5px;
+    border-spacing: 0 5px;
     margin: 2rem auto;
     background-color: transparent;
     table-layout: fixed;
@@ -273,18 +302,20 @@
 
 /* DAY OF WEEK HEADERS */
 .black-hole th {
-    background-color: var(--void-medium);
-    color: var(--void-text) !important;
+    background-color: var(--void-primary);
+    color: var(--void-blue) !important;
     font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     padding: 1rem 0.5rem;
-    border: 1px solid var(--void-accent1);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-    border-radius: var(--void-radius);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--void-blue);
+    text-transform: uppercase;
 }
 
 .black-hole th span.full-day-name {
@@ -297,90 +328,85 @@
     border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .black-hole td {
-    background-color: var(--void-dark);
+    background-color: var(--void-primary);
     color: var(--void-text);
     padding: 1.2rem;
-    border: 1px solid var(--void-accent1);
-    height: 100px;
+    border: 1px solid var(--void-texture3);
+    height: 120px;
     vertical-align: top;
     transition: all var(--void-transition);
     position: relative;
+    box-shadow: 0 1px 5px var(--void-shadow);
     border-radius: var(--void-radius);
 }
 
+.black-hole td .date-number {
+    color: var(--void-blue) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Orbitron', sans-serif;
+}
+
 .black-hole td:hover {
-    background-color: var(--void-medium);
-    box-shadow: 0 2px 8px var(--void-shadow);
-    animation: void-gravity 0.5s ease;
+    background-color: var(--void-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--void-shadow);
 }
 
 /* Current date highlight */
 .black-hole td.current-day {
-    background-color: var(--void-light);
-    border: 1px solid var(--void-accent5);
-    color: var(--void-text) !important;
+    background-color: var(--void-secondary);
+    border-left: 3px solid var(--void-neon);
+    animation: void-glow 3s infinite;
+}
+
+.black-hole td.current-day .date-number {
+    color: var(--void-neon) !important;
     font-weight: 700;
 }
 
 .black-hole td.current-day::before {
-    content: "⚫";
+    content: "✦";
     position: absolute;
-    top: 5px;
-    right: 5px;
-    color: var(--void-accent5);
+    top: 8px;
+    right: 8px;
     z-index: 1;
-    font-size: 1.2rem;
-}
-
-.black-hole td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--void-text) !important;
-    font-weight: bold;
+    font-size: 1rem;
+    color: var(--void-neon);
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .black-hole .event-marker {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: var(--void-accent5);
+    background-color: var(--void-blue);
     margin: 0 2px;
-    box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
     transition: all var(--void-transition);
+    box-shadow: 0 0 3px var(--void-blue);
 }
 
 .black-hole .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--void-accent5);
-    box-shadow: 0 0 15px rgba(106, 27, 154, 0.8);
-}
-
-/* Gravity effect on event hover */
-.black-hole .event-marker:hover::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 15px;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, var(--void-accent5) 0%, transparent 70%);
-    transform: translateX(-50%);
-    opacity: 0;
-    animation: void-fadeIn 0.5s ease-out forwards;
+    transform: scale(1.5);
+    background-color: var(--void-neon);
+    box-shadow: 0 0 6px var(--void-neon);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .black-hole .modal-content {
     position: relative;
     background-color: var(--void-primary);
-    border: 1px solid var(--void-accent1);
-    padding: 30px;
+    border: 1px solid var(--void-texture3);
+    padding: 2rem;
     color: var(--void-text);
-    box-shadow: var(--void-glow);
-    animation: void-fadeIn 0.3s ease-out;
+    box-shadow: 0 5px 25px var(--void-shadow);
+    animation: void-pulse 2s infinite;
     border-radius: var(--void-radius);
 }
 
@@ -391,34 +417,114 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--void-accent5);
+    background: linear-gradient(90deg,
+            transparent,
+            var(--void-blue),
+            transparent);
+}
+
+.black-hole .modal-content::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--void-blue),
+            transparent);
 }
 
 .black-hole .modal-content h2 {
-    color: var(--void-accent5);
+    color: var(--void-blue);
     font-family: 'Orbitron', sans-serif;
-    font-size: 2em;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    font-size: 2.2em;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px var(--void-accent4);
+}
+
+/* Modal date display */
+.black-hole .modal-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--void-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--void-texture3);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.black-hole .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.black-hole .event-item {
+    background-color: var(--void-primary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--void-blue);
+    transition: all var(--void-transition);
+    position: relative;
+    border-radius: var(--void-radius);
+}
+
+.black-hole .event-item:hover {
+    background-color: var(--void-secondary);
+    transform: translateX(5px);
+    box-shadow: 0 0 15px var(--void-shadow);
+}
+
+.black-hole .event-time {
+    font-family: 'Space Mono', monospace;
+    color: var(--void-blue);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.black-hole .event-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--void-text);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.black-hole .event-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--void-text);
 }
 
 .black-hole .modal-content button {
-    background-color: transparent;
-    color: var(--void-accent5);
-    border: 1px solid var(--void-accent5);
-    padding: 12px 24px;
+    background-color: var(--void-blue);
+    color: var(--void-primary);
+    border: none;
+    padding: 0.8rem 1.8rem;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--void-transition);
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
     font-family: 'Space Mono', monospace;
+    margin-top: 1rem;
+    text-transform: uppercase;
     border-radius: var(--void-radius);
 }
 
 .black-hole .modal-content button:hover {
-    background-color: var(--void-accent5);
-    color: var(--void-text);
+    background-color: var(--void-accent2);
     box-shadow: var(--void-glow);
 }
 
@@ -428,64 +534,62 @@
     top: 15px;
     right: 15px;
     background-color: transparent;
-    color: var(--void-accent5);
-    border: 1px solid var(--void-accent5);
-    width: 32px;
-    height: 32px;
+    color: var(--void-text);
+    border: 1px solid var(--void-texture3);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     transition: all var(--void-transition);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
     border-radius: 50%;
 }
 
 .black-hole .modal .close-button:hover {
-    background-color: var(--void-accent5);
-    color: var(--void-text);
-    transform: rotate(90deg);
+    background-color: var(--void-secondary);
+    color: var(--void-blue);
+    border-color: var(--void-blue);
+    box-shadow: var(--void-glow);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .black-hole .button,
 .black-hole .transparent-button {
-    border: 1px solid var(--void-accent1);
-    color: var(--void-accent3);
-    background-color: transparent;
-    padding: 0.8rem 1.6rem;
+    border: 1px solid var(--void-blue);
+    color: var(--void-primary);
+    background-color: var(--void-blue);
+    padding: 0.8rem 1.5rem;
     font-family: 'Space Mono', monospace;
-    letter-spacing: 0.1em;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--void-transition);
-    position: relative;
-    overflow: hidden;
-    margin: 0.5rem;
+    margin: 0.4rem;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
     border-radius: var(--void-radius);
 }
 
-.black-hole .button::before,
-.black-hole .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(106, 27, 154, 0.2), transparent);
-    transition: 0.5s;
+.black-hole .transparent-button {
+    background-color: transparent;
+    color: var(--void-text);
+    border-color: var(--void-texture4);
 }
 
 .black-hole .button:hover,
 .black-hole .transparent-button:hover {
-    background-color: rgba(106, 27, 154, 0.2);
-    color: var(--void-accent5);
-    border-color: var(--void-accent5);
+    background-color: var(--void-accent2);
+    color: var(--void-primary);
+    border-color: var(--void-accent2);
     box-shadow: var(--void-glow);
 }
 
-.black-hole .button:hover::before,
-.black-hole .transparent-button:hover::before {
-    left: 100%;
+.black-hole .transparent-button:hover {
+    color: var(--void-blue);
+    background-color: var(--void-secondary);
+    border-color: var(--void-blue);
 }
 
 .black-hole .controls {
@@ -499,24 +603,24 @@
 /* ==================== THEME SWITCHER ==================== */
 .black-hole #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
-    min-width: 220px;
+    margin: 0 0.8rem;
+    min-width: 200px;
     z-index: 1000;
 }
 
 .black-hole #theme-switcher {
-    background-color: var(--void-medium);
+    background-color: var(--void-primary);
     color: var(--void-text) !important;
-    border: 1px solid var(--void-accent1);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    border: 1px solid var(--void-texture3);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0E8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236D8BFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
@@ -526,51 +630,44 @@
 }
 
 .black-hole #theme-switcher option {
-    background-color: var(--void-dark) !important;
+    background-color: var(--void-primary) !important;
     color: var(--void-text) !important;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 12px 15px !important;
-    border-bottom: 1px solid var(--void-accent1) !important;
-}
-
-.black-hole #theme-switcher option:hover {
-    background-color: var(--void-accent5) !important;
-    color: var(--void-text) !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
 }
 
 .black-hole #theme-switcher:focus {
     outline: none;
-    border-color: var(--void-accent5);
+    border-color: var(--void-blue);
     box-shadow: var(--void-glow);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .black-hole #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--void-accent1);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
     font-family: 'Space Mono', monospace;
-    letter-spacing: 0.1em;
-    color: var(--void-accent3);
-    background-color: var(--void-medium);
+    font-weight: 700;
+    color: var(--void-primary);
+    background-color: var(--void-blue);
     cursor: pointer;
     transition: all var(--void-transition);
     opacity: 0.9;
     display: none;
+    text-transform: uppercase;
     border-radius: var(--void-radius);
 }
 
 .black-hole #backToTopBtn:hover {
-    background-color: rgba(106, 27, 154, 0.2);
-    color: var(--void-accent5);
-    border-color: var(--void-accent5);
-    box-shadow: var(--void-glow);
+    background-color: var(--void-accent2);
     opacity: 1;
+    box-shadow: var(--void-glow);
 }
 
 /* ==================== FOOTER ==================== */
@@ -578,13 +675,44 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--void-accent1);
+    border-top: 1px solid var(--void-texture3);
     color: var(--void-text);
     font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .black-hole .container {
+        padding: 2rem;
+    }
+}
+
 @media (max-width: 992px) {
+    .black-hole #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .black-hole #current-date {
+        font-size: 1.8rem;
+    }
+
+    .black-hole .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .black-hole td {
+        height: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    .black-hole {
+        font-size: 0.95rem;
+    }
+
     .black-hole .container {
         padding: 1.5rem;
     }
@@ -598,117 +726,82 @@
     }
 
     .black-hole #today-weather {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
-}
 
-@media (max-width: 768px) {
     .black-hole .clock-face {
-        width: 160px;
-        height: 160px;
-        border-width: 6px;
+        width: 140px;
+        height: 140px;
     }
 
     .black-hole th {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         padding: 0.8rem 0.3rem;
     }
 
-    .black-hole th span.full-day-name {
-        display: none;
-    }
-
-    .black-hole th abbr {
-        display: inline;
-    }
-
     .black-hole td {
-        padding: 0.6rem;
-        height: 70px;
-        font-size: 0.8rem;
+        padding: 1rem;
+        height: 100px;
     }
 
-    .black-hole td.current-day::before {
-        font-size: 1rem;
-        top: 3px;
-        right: 3px;
+    .black-hole td .date-number {
+        font-size: 1.1rem;
     }
 
     .black-hole #backToTopBtn {
         right: 20px;
         bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
     }
 
     .black-hole #theme-switcher {
-        padding: 0.7rem 2rem 0.7rem 0.8rem;
-        font-size: 0.9rem;
         min-width: 180px;
-    }
-
-    .black-hole #theme-switcher option {
-        font-size: 0.9rem;
-        padding: 10px !important;
     }
 }
 
 @media (max-width: 576px) {
     .black-hole .container {
-        padding: 0.8rem;
+        padding: 1.2rem;
     }
 
     .black-hole #calendar-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .black-hole #current-date {
-        font-size: 1.1rem;
-    }
-
-    .black-hole #today-weather {
-        font-size: 0.9rem;
+        font-size: 1.3rem;
     }
 
     .black-hole .clock-face {
         width: 120px;
         height: 120px;
-        border-width: 4px;
-    }
-
-    .black-hole th {
-        font-size: 0.75rem;
-        padding: 0.5rem 0.2rem;
     }
 
     .black-hole td {
-        padding: 0.3rem;
-        height: 60px;
-        font-size: 0.7rem;
-    }
-
-    .black-hole td.current-day::before {
-        font-size: 0.8rem;
+        height: 90px;
+        padding: 0.8rem;
     }
 
     .black-hole #theme-switcher {
         min-width: 160px;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 400px) {
-    .black-hole th {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.1rem;
+    .black-hole #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .black-hole .clock-face {
+        width: 100px;
+        height: 100px;
     }
 
     .black-hole td {
-        height: 50px;
+        height: 80px;
     }
 
     .black-hole #theme-switcher {
         min-width: 140px;
-        font-size: 0.8rem;
     }
 }
