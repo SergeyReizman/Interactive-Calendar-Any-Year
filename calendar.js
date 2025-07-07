@@ -111,7 +111,7 @@ const applyTheme = (theme) => {
     'great-lakes', 'green-city', 'green-coffee', 'green-heaven',
     'greenland-icebergs', 'green-light', 'green-tea',
     'greyscale', 'group-11',
-    'guangzhou-lights', 'heavy-rain', 'hidden-trail', 'hidden-paradise',
+    'guangzhou-lights', 'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
     'high-intelligence','high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
     'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
