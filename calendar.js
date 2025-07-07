@@ -141,7 +141,7 @@ const applyTheme = (theme) => {
     'one-way-ticket', 'on-the-island', 'on-the-wild-side','orange-country', 
     'orion-constellation', 'out-of-the-blue',
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
-    'pacific-ocean', 'patagonian-shores',
+    'pacific-ocean', 'palma-de-mallorca', 'patagonian-shores',
     'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'practice-makes-perfect',
