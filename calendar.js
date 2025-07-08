@@ -136,7 +136,7 @@ const applyTheme = (theme) => {
     'mount-cook', 'mount-fuji', 'my-dream-country', 'my-tomorrow', 'neon-nights',
     'new-ai', 'new-black', 'new-millenium', 'new-style', 'next-steps',
     'niagara-falls', 'night-dragon', 'night-sky','northern-nights','north-pole', 
-    'north-pole-icebreaker', 'now-is-your-moment',
+    'north-pole-icebreaker', 'now-is-your-moment', 'ocean-dreams',
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-step-ahead', 'one-step-at-a-time', 
     'one-way-ticket', 'on-the-island', 'on-the-wild-side','orange-country', 
