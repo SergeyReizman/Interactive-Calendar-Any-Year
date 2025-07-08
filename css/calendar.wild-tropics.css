@@ -1,0 +1,835 @@
+/* ==========================================================================
+   Wild Tropics Theme - Tropical Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Tropical color palette with lush greens and vibrant accents
+   - Natural, organic design with jungle elements
+   - Leafy textures and exotic motifs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;600&display=swap');
+
+:root {
+    /* Tropical Color Palette */
+    --tropic-bg: #0A1A0E;
+    --tropic-text: #E8F5E9;
+    --tropic-primary: #1B5E20;
+    --tropic-secondary: #2E7D32;
+    --tropic-date-number: #4CAF50;
+
+    /* Nature Layer Colors */
+    --tropic-layer1: #2E7D32;
+    --tropic-layer2: #388E3C;
+    --tropic-layer3: #43A047;
+    --tropic-layer4: #4CAF50;
+    --tropic-layer5: #66BB6A;
+
+    /* Vibrant Accent Colors */
+    --tropic-accent1: #4CAF50;
+    /* Jungle Green */
+    --tropic-accent2: #FFC107;
+    /* Sunshine Yellow */
+    --tropic-accent3: #FF5722;
+    /* Coral Orange */
+    --tropic-accent4: rgba(76, 175, 80, 0.5);
+    --tropic-accent5: rgba(255, 193, 7, 0.3);
+
+    /* Theme Variables */
+    --tropic-shadow: rgba(76, 175, 80, 0.15);
+    --tropic-radius: 8px;
+    --tropic-transition: 0.3s ease-out;
+    --tropic-hover: #66BB6A;
+    --tropic-glow: 0 0 12px rgba(76, 175, 80, 0.35);
+    --tropic-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q50,10 80,20 T100,50 Q90,80 80,80 T50,100 Q10,90 20,60 Z" fill="none" stroke="%234CAF50" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes tropic-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--tropic-accent1);
+    }
+}
+
+@keyframes tropic-sway {
+    from {
+        transform: rotate(-2deg);
+    }
+
+    to {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes tropic-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--tropic-shadow);
+    }
+
+    50% {
+        box-shadow: var(--tropic-glow);
+    }
+}
+
+@keyframes water-ripple {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.wild-tropics {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--tropic-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--tropic-bg);
+    min-height: 100vh;
+    background-image:
+        var(--tropic-texture),
+        linear-gradient(to bottom, var(--tropic-bg), var(--tropic-layer5));
+    background-repeat: repeat;
+    animation: water-ripple 60s linear infinite;
+}
+
+.wild-tropics .container {
+    background-color: var(--tropic-primary);
+    padding: 2rem;
+    border: 1px solid var(--tropic-accent4);
+    box-shadow: var(--tropic-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--tropic-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.wild-tropics .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--tropic-accent1),
+            transparent);
+}
+
+.wild-tropics .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--tropic-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.wild-tropics #calendar-title {
+    font-family: 'Pacifico', cursive;
+    color: var(--tropic-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
+}
+
+.wild-tropics #calendar-title::after {
+    content: "🌴";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: tropic-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.wild-tropics #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--tropic-primary);
+    border: 1px solid var(--tropic-accent4);
+    border-radius: var(--tropic-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.wild-tropics #date-weather-container::before {
+    content: "TROPICAL PARADISE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--tropic-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--tropic-accent1);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+}
+
+.wild-tropics #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tropic-accent1), transparent);
+}
+
+.wild-tropics #current-date {
+    font-family: 'Pacifico', cursive;
+    color: var(--tropic-accent1);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.wild-tropics #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--tropic-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.wild-tropics #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.wild-tropics .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--tropic-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--tropic-primary);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--tropic-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234CAF50" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.wild-tropics .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.wild-tropics .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--tropic-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.wild-tropics .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--tropic-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.wild-tropics .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--tropic-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.wild-tropics .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--tropic-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--tropic-primary);
+}
+
+/* Digital display in clock */
+.wild-tropics .clock-face::before {
+    content: "🌺";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.wild-tropics table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.wild-tropics th {
+    background-color: var(--tropic-accent1);
+    color: var(--tropic-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--tropic-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.wild-tropics th span.full-day-name {
+    display: inline;
+}
+
+.wild-tropics th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.wild-tropics td {
+    background-color: var(--tropic-primary);
+    color: var(--tropic-text);
+    padding: 1rem;
+    border: 1px solid var(--tropic-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--tropic-transition);
+    position: relative;
+    border-radius: var(--tropic-radius);
+    box-shadow: inset 0 0 0 1px rgba(76, 175, 80, 0.1);
+}
+
+.wild-tropics td .date-number {
+    color: var(--tropic-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Pacifico', cursive;
+}
+
+.wild-tropics td:hover {
+    background-color: var(--tropic-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.wild-tropics td.current-day {
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 2px solid var(--tropic-accent1);
+    animation: tropic-glow 3s infinite;
+}
+
+.wild-tropics td.current-day .date-number {
+    color: var(--tropic-text) !important;
+    font-weight: 600;
+}
+
+.wild-tropics td.current-day::before {
+    content: "🌞";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--tropic-accent2);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.wild-tropics .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--tropic-accent2);
+    margin: 0 1px;
+    transition: all var(--tropic-transition);
+}
+
+.wild-tropics .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--tropic-accent2);
+    box-shadow: 0 0 6px rgba(255, 193, 7, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.wild-tropics .modal-content {
+    position: relative;
+    background-color: var(--tropic-primary);
+    border: 1px solid var(--tropic-accent4);
+    padding: 25px;
+    color: var(--tropic-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--tropic-radius);
+    animation: tropic-sway 0.3s ease-out;
+}
+
+.wild-tropics .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--tropic-accent1) 0%,
+            var(--tropic-accent2) 50%,
+            var(--tropic-accent1) 100%);
+}
+
+.wild-tropics .modal-content h2 {
+    color: var(--tropic-accent1);
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.wild-tropics .modal-date {
+    font-family: 'Pacifico', cursive;
+    color: var(--tropic-accent1);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--tropic-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.wild-tropics .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wild-tropics .event-item {
+    background-color: var(--tropic-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--tropic-accent1);
+    border-radius: var(--tropic-radius);
+    transition: all var(--tropic-transition);
+}
+
+.wild-tropics .event-item:hover {
+    background-color: var(--tropic-layer3);
+    transform: translateX(3px);
+}
+
+.wild-tropics .event-time {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--tropic-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.wild-tropics .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--tropic-text);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.wild-tropics .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--tropic-text);
+    opacity: 0.9;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.wild-tropics .modal-content button {
+    background-color: var(--tropic-accent1);
+    color: var(--tropic-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tropic-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--tropic-radius);
+}
+
+.wild-tropics .modal-content button:hover {
+    background-color: var(--tropic-hover);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.2);
+}
+
+/* Close Button */
+.wild-tropics .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--tropic-primary);
+    color: var(--tropic-text);
+    border: 1px solid var(--tropic-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--tropic-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.wild-tropics .modal .close-button:hover {
+    background-color: var(--tropic-text);
+    color: var(--tropic-accent1);
+    border-color: var(--tropic-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.wild-tropics .button,
+.wild-tropics .transparent-button {
+    border: 1px solid var(--tropic-accent1);
+    color: var(--tropic-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tropic-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--tropic-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.wild-tropics .button:hover,
+.wild-tropics .transparent-button:hover {
+    background-color: var(--tropic-accent1);
+    color: var(--tropic-primary);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.15);
+}
+
+.wild-tropics .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.wild-tropics #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.wild-tropics #theme-switcher {
+    background-color: var(--tropic-primary);
+    color: var(--tropic-text) !important;
+    border: 1px solid var(--tropic-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8F5E9'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--tropic-transition);
+    border-radius: var(--tropic-radius);
+}
+
+.wild-tropics #theme-switcher option {
+    background-color: var(--tropic-primary) !important;
+    color: var(--tropic-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.wild-tropics #theme-switcher:focus {
+    outline: none;
+    border-color: var(--tropic-accent1);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.wild-tropics #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: var(--tropic-primary);
+    background-color: var(--tropic-accent1);
+    cursor: pointer;
+    transition: all var(--tropic-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--tropic-radius);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.wild-tropics #backToTopBtn:hover {
+    background-color: var(--tropic-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.wild-tropics footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--tropic-accent4);
+    color: var(--tropic-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .wild-tropics .container {
+        padding: 1.5rem;
+    }
+
+    .wild-tropics #calendar-title {
+        font-size: 2rem;
+    }
+
+    .wild-tropics #current-date {
+        font-size: 1.5rem;
+    }
+
+    .wild-tropics #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .wild-tropics .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .wild-tropics .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .wild-tropics {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .wild-tropics .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .wild-tropics th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .wild-tropics th span.full-day-name {
+        display: none;
+    }
+
+    .wild-tropics th abbr {
+        display: inline;
+    }
+
+    .wild-tropics td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .wild-tropics td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .wild-tropics td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .wild-tropics #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .wild-tropics #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .wild-tropics .modal-content {
+        padding: 20px;
+    }
+
+    .wild-tropics .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .wild-tropics .container {
+        padding: 1rem;
+    }
+
+    .wild-tropics #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .wild-tropics #current-date {
+        font-size: 1.3rem;
+    }
+
+    .wild-tropics #today-weather {
+        font-size: 1rem;
+    }
+
+    .wild-tropics .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .wild-tropics th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .wild-tropics td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .wild-tropics td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .wild-tropics #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .wild-tropics .modal-content {
+        padding: 15px;
+    }
+
+    .wild-tropics .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .wild-tropics .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .wild-tropics th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .wild-tropics td {
+        height: 60px;
+    }
+
+    .wild-tropics td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .wild-tropics #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
