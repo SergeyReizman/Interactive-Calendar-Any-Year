@@ -94,7 +94,7 @@ const applyTheme = (theme) => {
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 
     'doterra-magic', 'doterra-new', 'doterra-power',
     'dragon-flame', 'dragonfly', 'dramatic-coastline.css', 'dream-adventure', 
-    'eagle-swoop', 'early-dreams',
+    'eagle-creek', 'eagle-swoop', 'early-dreams',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 'enjoy-the-journey',
     'essential-oils', 'everest-view', 'every-little-step-counts',
     'excellent-mood', 'excellent-performance', 'executive-management',
