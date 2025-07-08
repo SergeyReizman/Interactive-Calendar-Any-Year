@@ -1,0 +1,820 @@
+/* ==========================================================================
+   A Quiet Creek Theme - Serene Nature Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Soft aquatic color palette with gentle nature tones
+   - Peaceful, minimalist design with subtle water motifs
+   - Flowing transitions and organic textures
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif:wght@300;400;600&display=swap');
+
+:root {
+    /* Creek Color Palette */
+    --creek-bg: #0D1A12;
+    --creek-text: #E0EBE5;
+    --creek-primary: #1E2E24;
+    --creek-secondary: #2A3B30;
+    --creek-date-number: #6A9C89;
+
+    /* Water Layer Colors */
+    --creek-layer1: #2A3B30;
+    --creek-layer2: #3A4B40;
+    --creek-layer3: #4A5B50;
+    --creek-layer4: #5A6B60;
+    --creek-layer5: #6A7B70;
+
+    /* Natural Accent Colors */
+    --creek-accent1: #6A9C89;
+    /* Creek Green */
+    --creek-accent2: #8AB8A6;
+    /* Moss Green */
+    --creek-accent3: #C4D8C4;
+    /* Mist Gray */
+    --creek-accent4: rgba(106, 156, 137, 0.5);
+    --creek-accent5: rgba(138, 184, 166, 0.3);
+
+    /* Theme Variables */
+    --creek-shadow: rgba(106, 156, 137, 0.15);
+    --creek-radius: 6px;
+    --creek-transition: 0.4s ease-in-out;
+    --creek-hover: #7CAC99;
+    --creek-glow: 0 0 8px rgba(106, 156, 137, 0.2);
+    --creek-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,20 Q25,15 50,20 T100,30 Q80,40 50,50 T0,60 Q20,70 50,80 T100,90" fill="none" stroke="%236A9C89" stroke-width="0.3" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes creek-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--creek-accent1);
+    }
+}
+
+@keyframes water-flow {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes leaf-float {
+    0% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.a-quiet-creek {
+    font-family: 'Noto Serif', serif;
+    color: var(--creek-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--creek-bg);
+    min-height: 100vh;
+    background-image:
+        var(--creek-texture),
+        linear-gradient(to bottom, var(--creek-bg), var(--creek-layer5));
+    background-repeat: repeat;
+    animation: water-flow 80s linear infinite;
+}
+
+.a-quiet-creek .container {
+    background-color: var(--creek-primary);
+    padding: 2rem;
+    border: 1px solid var(--creek-accent4);
+    box-shadow: var(--creek-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--creek-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.a-quiet-creek .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--creek-accent1),
+            transparent);
+}
+
+.a-quiet-creek .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--creek-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.a-quiet-creek #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--creek-text);
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 300;
+}
+
+.a-quiet-creek #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    animation: creek-pulse 4s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.a-quiet-creek #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--creek-primary);
+    border: 1px solid var(--creek-accent4);
+    border-radius: var(--creek-radius);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.a-quiet-creek #date-weather-container::before {
+    content: "WATER MEMORY";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--creek-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--creek-accent1);
+    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.a-quiet-creek #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--creek-accent1), transparent);
+}
+
+.a-quiet-creek #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--creek-accent1);
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.a-quiet-creek #today-weather {
+    font-family: 'Noto Serif', serif;
+    color: var(--creek-text);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.a-quiet-creek #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.a-quiet-creek .clock-face {
+    width: 160px;
+    height: 160px;
+    border: 2px solid var(--creek-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--creek-primary);
+    box-shadow: 0 0 10px rgba(106, 156, 137, 0.2);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--creek-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%236A9C89" stroke-width="0.2" opacity="0.2"/></svg>');
+}
+
+.a-quiet-creek .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.a-quiet-creek .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 3px;
+    background: var(--creek-accent1);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.a-quiet-creek .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--creek-accent2);
+    margin-top: -1px;
+    border-radius: 1px;
+}
+
+.a-quiet-creek .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--creek-accent3);
+    margin-top: -0.5px;
+}
+
+/* Clock center ornament */
+.a-quiet-creek .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: var(--creek-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--creek-primary);
+}
+
+/* Digital display in clock */
+.a-quiet-creek .clock-face::before {
+    content: "💧";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.a-quiet-creek table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.a-quiet-creek th {
+    background-color: var(--creek-accent1);
+    color: var(--creek-primary) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    padding: 0.7rem 0.3rem;
+    border-radius: var(--creek-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+.a-quiet-creek th span.full-day-name {
+    display: inline;
+}
+
+.a-quiet-creek th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.a-quiet-creek td {
+    background-color: var(--creek-primary);
+    color: var(--creek-text);
+    padding: 1rem;
+    border: 1px solid var(--creek-accent4);
+    height: 85px;
+    vertical-align: top;
+    transition: all var(--creek-transition);
+    position: relative;
+    border-radius: var(--creek-radius);
+    box-shadow: inset 0 0 0 1px rgba(106, 156, 137, 0.1);
+}
+
+.a-quiet-creek td .date-number {
+    color: var(--creek-date-number) !important;
+    font-weight: 500;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.a-quiet-creek td:hover {
+    background-color: var(--creek-secondary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Current date highlight */
+.a-quiet-creek td.current-day {
+    background-color: rgba(106, 156, 137, 0.1);
+    border: 2px solid var(--creek-accent1);
+    animation: leaf-float 3s ease-in-out infinite alternate;
+}
+
+.a-quiet-creek td.current-day .date-number {
+    color: var(--creek-text) !important;
+    font-weight: 500;
+}
+
+.a-quiet-creek td.current-day::before {
+    content: "🌊";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1rem;
+    color: var(--creek-accent1);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.a-quiet-creek .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--creek-accent2);
+    margin: 0 1px;
+    transition: all var(--creek-transition);
+}
+
+.a-quiet-creek .event-marker:hover {
+    transform: scale(1.3);
+    background-color: var(--creek-accent2);
+    box-shadow: 0 0 5px rgba(138, 184, 166, 0.3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.a-quiet-creek .modal-content {
+    position: relative;
+    background-color: var(--creek-primary);
+    border: 1px solid var(--creek-accent4);
+    padding: 20px;
+    color: var(--creek-text);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border-radius: var(--creek-radius);
+    animation: leaf-float 0.4s ease-out;
+}
+
+.a-quiet-creek .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--creek-accent1) 0%,
+            var(--creek-accent2) 50%,
+            var(--creek-accent1) 100%);
+}
+
+.a-quiet-creek .modal-content h2 {
+    color: var(--creek-accent1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.a-quiet-creek .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--creek-accent1);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--creek-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.a-quiet-creek .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.a-quiet-creek .event-item {
+    background-color: var(--creek-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--creek-accent1);
+    border-radius: var(--creek-radius);
+    transition: all var(--creek-transition);
+}
+
+.a-quiet-creek .event-item:hover {
+    background-color: var(--creek-layer3);
+    transform: translateX(3px);
+}
+
+.a-quiet-creek .event-time {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--creek-accent1);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.a-quiet-creek .event-title {
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    color: var(--creek-text);
+    font-family: 'Noto Serif', serif;
+}
+
+.a-quiet-creek .event-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--creek-text);
+    opacity: 0.9;
+    font-family: 'Noto Serif', serif;
+}
+
+.a-quiet-creek .modal-content button {
+    background-color: var(--creek-accent1);
+    color: var(--creek-primary);
+    border: none;
+    padding: 8px 18px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--creek-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Noto Serif', serif;
+    border-radius: var(--creek-radius);
+}
+
+.a-quiet-creek .modal-content button:hover {
+    background-color: var(--creek-hover);
+    box-shadow: 0 2px 8px rgba(106, 156, 137, 0.15);
+}
+
+/* Close Button */
+.a-quiet-creek .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--creek-primary);
+    color: var(--creek-text);
+    border: 1px solid var(--creek-text);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--creek-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.a-quiet-creek .modal .close-button:hover {
+    background-color: var(--creek-text);
+    color: var(--creek-accent1);
+    border-color: var(--creek-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.a-quiet-creek .button,
+.a-quiet-creek .transparent-button {
+    border: 1px solid var(--creek-accent1);
+    color: var(--creek-text);
+    background-color: transparent;
+    padding: 0.7rem 1.3rem;
+    font-family: 'Noto Serif', serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--creek-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: var(--creek-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
+.a-quiet-creek .button:hover,
+.a-quiet-creek .transparent-button:hover {
+    background-color: var(--creek-accent1);
+    color: var(--creek-primary);
+    box-shadow: 0 2px 8px rgba(106, 156, 137, 0.1);
+}
+
+.a-quiet-creek .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.a-quiet-creek #theme-switcher-container {
+    position: relative;
+    margin: 0 0.7rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.a-quiet-creek #theme-switcher {
+    background-color: var(--creek-primary);
+    color: var(--creek-text) !important;
+    border: 1px solid var(--creek-accent1);
+    padding: 0.7rem 2rem 0.7rem 0.9rem;
+    font-family: 'Noto Serif', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0EBE5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--creek-transition);
+    border-radius: var(--creek-radius);
+}
+
+.a-quiet-creek #theme-switcher option {
+    background-color: var(--creek-primary) !important;
+    color: var(--creek-text) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 10px !important;
+}
+
+.a-quiet-creek #theme-switcher:focus {
+    outline: none;
+    border-color: var(--creek-accent1);
+    box-shadow: 0 0 0 2px rgba(106, 156, 137, 0.15);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.a-quiet-creek #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Noto Serif', serif;
+    font-weight: 500;
+    color: var(--creek-primary);
+    background-color: var(--creek-accent1);
+    cursor: pointer;
+    transition: all var(--creek-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--creek-radius);
+    box-shadow: 0 2px 6px rgba(106, 156, 137, 0.2);
+}
+
+.a-quiet-creek #backToTopBtn:hover {
+    background-color: var(--creek-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.a-quiet-creek footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--creek-accent4);
+    color: var(--creek-text);
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .a-quiet-creek .container {
+        padding: 1.5rem;
+    }
+
+    .a-quiet-creek #calendar-title {
+        font-size: 2rem;
+    }
+
+    .a-quiet-creek #current-date {
+        font-size: 1.5rem;
+    }
+
+    .a-quiet-creek #today-weather {
+        font-size: 1rem;
+    }
+
+    .a-quiet-creek .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .a-quiet-creek .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .a-quiet-creek {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .a-quiet-creek .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 2px;
+    }
+
+    .a-quiet-creek th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .a-quiet-creek th span.full-day-name {
+        display: none;
+    }
+
+    .a-quiet-creek th abbr {
+        display: inline;
+    }
+
+    .a-quiet-creek td {
+        padding: 0.8rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .a-quiet-creek td .date-number {
+        font-size: 1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .a-quiet-creek td.current-day::before {
+        font-size: 0.9rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .a-quiet-creek #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.8rem 1.3rem;
+        font-size: 0.85rem;
+    }
+
+    .a-quiet-creek #theme-switcher {
+        padding: 0.6rem 1.6rem 0.6rem 0.7rem;
+        font-size: 0.85rem;
+        min-width: 160px;
+    }
+
+    .a-quiet-creek .modal-content {
+        padding: 18px;
+    }
+
+    .a-quiet-creek .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .a-quiet-creek .container {
+        padding: 1rem;
+    }
+
+    .a-quiet-creek #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .a-quiet-creek #current-date {
+        font-size: 1.2rem;
+    }
+
+    .a-quiet-creek #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .a-quiet-creek .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 1.5px;
+    }
+
+    .a-quiet-creek th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .a-quiet-creek td {
+        padding: 0.6rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .a-quiet-creek td .date-number {
+        font-size: 0.9rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .a-quiet-creek #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+
+    .a-quiet-creek .modal-content {
+        padding: 15px;
+    }
+
+    .a-quiet-creek .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .a-quiet-creek .event-time {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-quiet-creek th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .a-quiet-creek td {
+        height: 55px;
+    }
+
+    .a-quiet-creek td .date-number {
+        font-size: 0.85rem;
+    }
+
+    .a-quiet-creek #theme-switcher {
+        min-width: 120px;
+        font-size: 0.75rem;
+    }
+}

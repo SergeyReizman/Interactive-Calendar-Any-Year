@@ -59,7 +59,7 @@ const applyTheme = (theme) => {
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',
     'amazon-river', 'american-dream', 'andromeda-galaxy', 'a-new-chapter', 
     'a-new-opportunity', 'antarctic-ice',
-    'antarctic-snowdrifts', 'arctic-glow', 'arctic-snowfall', 
+    'antarctic-snowdrifts', 'a-quiet-creek', 'arctic-glow', 'arctic-snowfall', 
     'art-studio', 'a-simple-task', 'a-thing-of-beauty', 
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
     'back-on-track', 'back-to-paradise', 'bamboo-flute',
