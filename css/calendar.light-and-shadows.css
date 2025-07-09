@@ -1,0 +1,829 @@
+/* ==========================================================================
+   Light & Shadows Theme - Elegant Depth & Dimension
+   Version: 1.5
+   Updated: 2024-06-22
+   Changes:
+   - Enhanced depth with multi-layer shadows
+   - Refined light/dark contrast
+   - Added subtle glow effects
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+:root {
+    /* Light & Shadow Palette */
+    --shadow-bg: #FDFDFD;
+    --shadow-text: #333333;
+    --shadow-primary: #FFFFFF;
+    --shadow-secondary: #F8F8F8;
+    --shadow-date-number: #444444;
+
+    /* Contrast Colors */
+    --shadow-accent1: #555555;
+    --shadow-accent2: #777777;
+    --shadow-accent3: #999999;
+    --shadow-accent4: rgba(85, 85, 85, 0.3);
+    --shadow-accent5: rgba(85, 85, 85, 0.1);
+
+    /* Theme Variables */
+    --shadow-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-radius: 6px;
+    --shadow-transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --shadow-hover: #444444;
+    --shadow-glow: 0 0 15px rgba(0, 0, 0, 0.08);
+    --shadow-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23555555"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%23555555"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".3" fill="%23555555"/></svg>');
+    --shadow-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23555555" stroke-width="0.5" stroke-dasharray="1,2" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes shadow-fade {
+
+    0%,
+    100% {
+        opacity: 0.96;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes shadow-slide {
+    from {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shadow-pulse {
+
+    0%,
+    100% {
+        box-shadow: var(--shadow-shadow);
+    }
+
+    50% {
+        box-shadow: var(--shadow-glow);
+    }
+}
+
+@keyframes light-dance {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.light-and-shadows {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--shadow-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--shadow-bg);
+    min-height: 100vh;
+    background-image: var(--shadow-texture);
+}
+
+.light-and-shadows .container {
+    background-color: var(--shadow-primary);
+    padding: 2.5rem;
+    border-radius: var(--shadow-radius);
+    box-shadow: var(--shadow-shadow),
+        0 10px 20px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.light-and-shadows .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--shadow-accent4),
+            transparent);
+}
+
+.light-and-shadows .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--shadow-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.light-and-shadows #calendar-title {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--shadow-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.02em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.light-and-shadows #calendar-title::after {
+    content: "◯";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    animation: light-dance 3s ease infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.light-and-shadows #date-weather-container {
+    text-align: center;
+    margin: 2.2rem 0;
+    padding: 1.5rem;
+    background-color: var(--shadow-primary);
+    border-radius: var(--shadow-radius);
+    position: relative;
+    box-shadow: var(--shadow-shadow);
+    border: 1px solid var(--shadow-accent5);
+}
+
+.light-and-shadows #date-weather-container::before {
+    content: "TIME & ELEMENTS";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--shadow-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--shadow-accent1);
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-transform: uppercase;
+}
+
+.light-and-shadows #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--shadow-accent2),
+            transparent);
+}
+
+.light-and-shadows #current-date {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--shadow-text);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.light-and-shadows #today-weather {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--shadow-text);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    opacity: 0.9;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.light-and-shadows #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2.2rem 0;
+    position: relative;
+}
+
+.light-and-shadows .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--shadow-accent4);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--shadow-primary);
+    box-shadow: var(--shadow-shadow),
+        inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.light-and-shadows .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.light-and-shadows .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: var(--shadow-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.light-and-shadows .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: var(--shadow-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.light-and-shadows .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--shadow-accent3);
+    margin-top: -0.5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.light-and-shadows .clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--shadow-accent1);
+    border-radius: 50%;
+    border: 2px solid var(--shadow-primary);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.light-and-shadows table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    margin: 2.2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.light-and-shadows th {
+    background-color: var(--shadow-secondary);
+    color: var(--shadow-text) !important;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-radius: var(--shadow-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows th span.full-day-name {
+    display: inline;
+}
+
+.light-and-shadows th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.light-and-shadows td {
+    background-color: var(--shadow-primary);
+    color: var(--shadow-text);
+    padding: 1.2rem;
+    border: 1px solid var(--shadow-accent5);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--shadow-transition);
+    position: relative;
+    border-radius: var(--shadow-radius);
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows td .date-number {
+    color: var(--shadow-date-number) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.light-and-shadows td:hover {
+    background-color: var(--shadow-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.light-and-shadows td.current-day {
+    background-color: var(--shadow-primary);
+    border: 1px solid var(--shadow-accent4);
+    animation: shadow-pulse 3s infinite;
+}
+
+.light-and-shadows td.current-day .date-number {
+    color: var(--shadow-accent1) !important;
+    font-weight: 700;
+}
+
+.light-and-shadows td.current-day::before {
+    content: "●";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1rem;
+    color: var(--shadow-accent1);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.light-and-shadows .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--shadow-accent1);
+    margin: 0 2px;
+    transition: all var(--shadow-transition);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.light-and-shadows .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--shadow-accent2);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.light-and-shadows .modal-content {
+    position: relative;
+    background-color: var(--shadow-primary);
+    border: 1px solid var(--shadow-accent5);
+    padding: 30px;
+    color: var(--shadow-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    border-radius: var(--shadow-radius);
+    animation: shadow-slide 0.3s ease-out;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.light-and-shadows .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--shadow-accent4),
+            transparent);
+}
+
+.light-and-shadows .modal-content h2 {
+    color: var(--shadow-text);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Modal date display */
+.light-and-shadows .modal-date {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--shadow-text);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--shadow-accent5);
+}
+
+/* Event list */
+.light-and-shadows .event-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.light-and-shadows .event-item {
+    background-color: var(--shadow-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--shadow-accent1);
+    border-radius: var(--shadow-radius);
+    transition: all var(--shadow-transition);
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows .event-item:hover {
+    background-color: var(--shadow-primary);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-and-shadows .event-time {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--shadow-text);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.light-and-shadows .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--shadow-text);
+    font-family: 'Libre Baskerville', serif;
+}
+
+.light-and-shadows .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--shadow-text);
+    opacity: 0.85;
+}
+
+.light-and-shadows .modal-content button {
+    background-color: var(--shadow-accent1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--shadow-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: var(--shadow-radius);
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows .modal-content button:hover {
+    background-color: var(--shadow-hover);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.light-and-shadows .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: var(--shadow-text);
+    border: 1px solid var(--shadow-accent5);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--shadow-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows .modal .close-button:hover {
+    background-color: var(--shadow-accent1);
+    color: white;
+    border-color: var(--shadow-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.light-and-shadows .button,
+.light-and-shadows .transparent-button {
+    border: 1px solid var(--shadow-accent1);
+    color: var(--shadow-accent1);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--shadow-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--shadow-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows .button:hover,
+.light-and-shadows .transparent-button:hover {
+    background-color: var(--shadow-accent1);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-and-shadows .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.light-and-shadows #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.light-and-shadows #theme-switcher {
+    background-color: var(--shadow-primary);
+    color: var(--shadow-text) !important;
+    border: 1px solid var(--shadow-accent5);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--shadow-transition);
+    border-radius: var(--shadow-radius);
+    box-shadow: var(--shadow-shadow);
+}
+
+.light-and-shadows #theme-switcher option {
+    background-color: var(--shadow-primary) !important;
+    color: var(--shadow-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 15px !important;
+}
+
+.light-and-shadows #theme-switcher:focus {
+    outline: none;
+    border-color: var(--shadow-accent1);
+    box-shadow: 0 0 0 3px rgba(85, 85, 85, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.light-and-shadows #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--shadow-accent1);
+    cursor: pointer;
+    transition: all var(--shadow-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--shadow-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.light-and-shadows #backToTopBtn:hover {
+    background-color: var(--shadow-hover);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== FOOTER ==================== */
+.light-and-shadows footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--shadow-accent5);
+    color: var(--shadow-text);
+    font-size: 0.95rem;
+    font-weight: 400;
+    box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.05);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .light-and-shadows .container {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .light-and-shadows .container {
+        padding: 1.8rem;
+    }
+
+    .light-and-shadows #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .light-and-shadows #current-date {
+        font-size: 1.8rem;
+    }
+
+    .light-and-shadows #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .light-and-shadows .clock-face {
+        width: 180px;
+        height: 180px;
+    }
+
+    .light-and-shadows .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .light-and-shadows .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .light-and-shadows {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .light-and-shadows #calendar-title {
+        font-size: 2rem;
+    }
+
+    .light-and-shadows th {
+        font-size: 0.9rem;
+        padding: 0.9rem 0.4rem;
+    }
+
+    .light-and-shadows th span.full-day-name {
+        display: none;
+    }
+
+    .light-and-shadows th abbr {
+        display: inline;
+    }
+
+    .light-and-shadows td {
+        padding: 1rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .light-and-shadows td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .light-and-shadows #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+    }
+
+    .light-and-shadows #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        min-width: 180px;
+    }
+
+    .light-and-shadows .modal-content {
+        padding: 25px;
+    }
+
+    .light-and-shadows .event-item {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .light-and-shadows .container {
+        padding: 1.5rem;
+    }
+
+    .light-and-shadows #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .light-and-shadows #current-date {
+        font-size: 1.5rem;
+    }
+
+    .light-and-shadows #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .light-and-shadows .clock-face {
+        width: 150px;
+        height: 150px;
+    }
+
+    .light-and-shadows th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .light-and-shadows td {
+        padding: 0.9rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .light-and-shadows td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .light-and-shadows #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+
+    .light-and-shadows .modal-content {
+        padding: 20px;
+    }
+
+    .light-and-shadows .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .light-and-shadows .event-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .light-and-shadows th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .light-and-shadows td {
+        height: 70px;
+    }
+
+    .light-and-shadows td .date-number {
+        font-size: 1rem;
+    }
+
+    .light-and-shadows #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+}

@@ -123,7 +123,7 @@ const applyTheme = (theme) => {
     'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'kilimanjaro-outskirts', 
     'lady-blue', 'last-chance',
     'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
-    'life-quality', 'like-a-bird',
+    'life-quality', 'light-and-shadows', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence', 'love-and-passion',
     'love-of-yesterday','love-station', 'lucid-dream', 'lunar-eclipse', 
     'luxury-design', 'luxury-life', 'macaroni-penguin',
