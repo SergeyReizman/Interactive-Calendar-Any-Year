@@ -57,6 +57,7 @@ const applyTheme = (theme) => {
     'a-good-chapter', 'a-good-idea', 'a-king-of-stone',
     'aloe-vera', 'alone-in-paradise', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',
+    'amazon-rainforest',
     'amazon-river', 'american-dream', 'andromeda-galaxy', 'a-new-chapter', 
     'a-new-opportunity', 'antarctic-ice',
     'antarctic-snowdrifts', 'a-quiet-creek', 'arctic-glow', 'arctic-snowfall', 

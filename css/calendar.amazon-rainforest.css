@@ -1,0 +1,820 @@
+/* ==========================================================================
+   Amazon Rainforest Theme - Nature Calendar UI
+   Version: 4.1
+   Updated: 2025-06-25
+   Features:
+   - Green rainforest color scheme
+   - Optimized weekday headers
+   - Mobile-responsive design
+   - Nature-inspired UI elements
+   - Animated rain effects
+   - Enhanced accessibility
+   - Leaf textures
+   - Fluid typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Karla:wght@400;600&display=swap');
+
+:root {
+    /* Rainforest Color Palette */
+    --rainforest-bg: #0a120a;
+    --rainforest-text: #F0FFF0;
+    --rainforest-primary: #007F3E;
+    /* Jungle green */
+    --rainforest-secondary: #00FF7F;
+    /* Vibrant green accent */
+
+    /* Gradient Colors */
+    --rainforest-gradient-start: #000A0A;
+    --rainforest-gradient-end: #001A0A;
+
+    /* Accent Colors */
+    --rainforest-red: #FF4500;
+    /* Toucan beak */
+    --rainforest-yellow: #FFD700;
+    /* Sunlight */
+    --rainforest-blue: #1E90FF;
+    /* Water */
+    --rainforest-orange: #FF8C00;
+    /* Flower */
+    --rainforest-brown: #8B4513;
+    /* Tree bark */
+
+    /* Theme Variables */
+    --rainforest-shadow: rgba(0, 127, 62, 0.3);
+    --rainforest-radius: 5px;
+    /* Organic edges */
+    --rainforest-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --rainforest-hover: #1E2E1E;
+    --rainforest-current-day: #1A3A1A;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes rainforest-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px var(--rainforest-primary),
+            0 0 10px rgba(0, 255, 127, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--rainforest-primary),
+            0 0 25px rgba(0, 255, 127, 0.7);
+    }
+}
+
+@keyframes rain-fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes rainforest-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--rainforest-primary);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--rainforest-secondary);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.amazon-rainforest {
+    font-family: 'Karla', sans-serif;
+    color: var(--rainforest-text);
+    line-height: 1.6;
+    background: var(--rainforest-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        linear-gradient(135deg,
+            rgba(0, 127, 62, 0.05) 1px,
+            transparent 1px),
+        linear-gradient(-135deg,
+            rgba(0, 127, 62, 0.05) 1px,
+            transparent 1px);
+    background-size: 50px 50px;
+    animation: rain-fall 3s linear infinite;
+}
+
+.amazon-rainforest::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 90% 10%,
+            rgba(0, 127, 62, 0.05) 0%,
+            transparent 20%),
+        radial-gradient(circle at 10% 90%,
+            rgba(0, 255, 127, 0.05) 0%,
+            transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Leaf pattern */
+.amazon-rainforest::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" opacity="0.03"><path d="M25,5 C15,15 5,25 5,35 C5,45 15,45 25,35 C35,45 45,45 45,35 C45,25 35,15 25,5 Z" fill="%23007F3E"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+.amazon-rainforest .container {
+    background-color: rgba(10, 20, 10, 0.95);
+    padding: 2rem;
+    border: 1px solid var(--rainforest-primary);
+    box-shadow: 0 0 30px var(--rainforest-shadow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--rainforest-radius);
+    z-index: 1;
+}
+
+.amazon-rainforest .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--rainforest-primary),
+            var(--rainforest-secondary),
+            transparent);
+    animation: rainforest-glow 3s infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.amazon-rainforest #calendar-title {
+    font-family: 'Rubik Dirt', sans-serif;
+    color: var(--rainforest-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    position: relative;
+    animation: rainforest-pulse 3s infinite;
+    text-transform: uppercase;
+}
+
+.amazon-rainforest #calendar-title::before,
+.amazon-rainforest #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rainforest-secondary);
+    font-size: 1.5rem;
+}
+
+.amazon-rainforest #calendar-title::before {
+    left: 1rem;
+    animation: rainforest-pulse 2.5s infinite 0.5s;
+}
+
+.amazon-rainforest #calendar-title::after {
+    right: 1rem;
+    animation: rainforest-pulse 2.5s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.amazon-rainforest #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: rgba(0, 127, 62, 0.1);
+    border: 1px solid var(--rainforest-primary);
+    border-radius: var(--rainforest-radius);
+    position: relative;
+}
+
+.amazon-rainforest #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--rainforest-primary),
+            transparent);
+}
+
+.amazon-rainforest #current-date {
+    font-family: 'Rubik Dirt', sans-serif;
+    color: var(--rainforest-primary);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.amazon-rainforest #today-weather {
+    font-family: 'Karla', sans-serif;
+    color: var(--rainforest-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.amazon-rainforest #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.amazon-rainforest .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--rainforest-primary);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--rainforest-bg);
+    box-shadow:
+        0 0 15px var(--rainforest-shadow),
+        inset 0 0 10px rgba(0, 127, 62, 0.1);
+    background-image:
+        radial-gradient(circle at center,
+            transparent 65%,
+            rgba(0, 127, 62, 0.1) 100%);
+}
+
+/* Nature numerals for clock */
+.amazon-rainforest .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Rubik Dirt" font-size="12" fill="%23007F3E">12</text><text x="82" y="55" text-anchor="middle" font-family="Rubik Dirt" font-size="12" fill="%23007F3E">3</text><text x="50" y="92" text-anchor="middle" font-family="Rubik Dirt" font-size="12" fill="%23007F3E">6</text><text x="18" y="55" text-anchor="middle" font-family="Rubik Dirt" font-size="12" fill="%23007F3E">9</text></svg>');
+}
+
+.amazon-rainforest .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.amazon-rainforest .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--rainforest-primary);
+    margin-top: -2px;
+}
+
+.amazon-rainforest .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--rainforest-secondary);
+    margin-top: -1px;
+}
+
+.amazon-rainforest .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--rainforest-yellow);
+    margin-top: -0.5px;
+}
+
+/* Clock center - Flower */
+.amazon-rainforest .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--rainforest-orange);
+    border-radius: 50%;
+    border: 1px solid var(--rainforest-secondary);
+}
+
+/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+.amazon-rainforest table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    background-color: rgba(20, 40, 20, 0.9);
+    border: 1px solid var(--rainforest-primary);
+    border-radius: var(--rainforest-radius);
+    table-layout: fixed;
+}
+
+/* Weekday headers - responsive solution */
+.amazon-rainforest th {
+    background-color: rgba(0, 127, 62, 0.15);
+    color: var(--rainforest-primary) !important;
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--rainforest-primary);
+    position: relative;
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Full names for desktop */
+.amazon-rainforest th .full-day {
+    display: inline;
+}
+
+/* Short names for mobile */
+.amazon-rainforest th .short-day {
+    display: none;
+}
+
+.amazon-rainforest td {
+    background-color: rgba(15, 30, 15, 0.9);
+    color: var(--rainforest-text);
+    padding: 0.8rem 0.3rem;
+    border: 1px solid var(--rainforest-primary);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--rainforest-transition);
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.amazon-rainforest td:hover {
+    background-color: var(--rainforest-hover);
+    box-shadow: inset 0 0 15px var(--rainforest-shadow);
+}
+
+.amazon-rainforest .date-number {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--rainforest-text);
+}
+
+.amazon-rainforest td.current-day {
+    background-color: var(--rainforest-current-day);
+    border: 2px solid var(--rainforest-secondary);
+    color: var(--rainforest-secondary) !important;
+    font-weight: 700;
+    animation: rainforest-glow 3s infinite;
+}
+
+.amazon-rainforest td.current-day .date-number {
+    color: var(--rainforest-secondary) !important;
+    font-weight: 800;
+}
+
+.amazon-rainforest td.current-day::before {
+    content: "🌴";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    color: var(--rainforest-secondary);
+    z-index: 1;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.amazon-rainforest .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--rainforest-primary);
+    margin: 0 1px;
+    box-shadow: 0 0 5px var(--rainforest-shadow);
+    transition: all var(--rainforest-transition);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.amazon-rainforest .event-marker:hover {
+    transform: scale(1.8);
+    background-color: var(--rainforest-secondary);
+    box-shadow: 0 0 15px var(--rainforest-primary);
+}
+
+/* Special event types */
+.amazon-rainforest .event-marker.rainy {
+    background-color: var(--rainforest-blue);
+}
+
+.amazon-rainforest .event-marker.sunny {
+    background-color: var(--rainforest-yellow);
+}
+
+.amazon-rainforest .event-marker.animal {
+    background-color: var(--rainforest-orange);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.amazon-rainforest .modal-content {
+    position: relative;
+    background-color: rgba(20, 20, 20, 0.98);
+    border: 1px solid var(--rainforest-primary);
+    padding: 25px;
+    color: var(--rainforest-text);
+    box-shadow: 0 0 30px var(--rainforest-shadow);
+    border-radius: var(--rainforest-radius);
+    animation: rainforest-glow 0.5s ease;
+}
+
+.amazon-rainforest .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--rainforest-primary),
+            var(--rainforest-secondary),
+            var(--rainforest-yellow));
+}
+
+.amazon-rainforest .modal-content h2 {
+    color: var(--rainforest-primary);
+    font-family: 'Rubik Dirt', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.amazon-rainforest .modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+.amazon-rainforest .modal-content .event-time {
+    display: block;
+    font-weight: 600;
+    color: var(--rainforest-secondary);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.amazon-rainforest .modal-content .event-description {
+    background-color: rgba(0, 127, 62, 0.15);
+    padding: 15px;
+    border-left: 3px solid var(--rainforest-primary);
+    margin: 15px 0;
+    border-radius: 0 var(--rainforest-radius) var(--rainforest-radius) 0;
+}
+
+.amazon-rainforest .modal-content button {
+    background-color: var(--rainforest-primary);
+    color: var(--rainforest-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--rainforest-transition);
+    border-radius: var(--rainforest-radius);
+    font-family: 'Karla', sans-serif;
+    text-transform: uppercase;
+}
+
+.amazon-rainforest .modal-content button:hover {
+    background-color: var(--rainforest-secondary);
+    box-shadow: 0 4px 6px -1px var(--rainforest-shadow);
+}
+
+.amazon-rainforest .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: transparent;
+    color: var(--rainforest-primary);
+    border: 1px solid var(--rainforest-primary);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--rainforest-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.amazon-rainforest .modal .close-button:hover {
+    background-color: var(--rainforest-primary);
+    color: var(--rainforest-bg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.amazon-rainforest .button,
+.amazon-rainforest .transparent-button {
+    border: 1px solid var(--rainforest-primary);
+    color: var(--rainforest-primary);
+    background-color: transparent;
+    padding: 0.7rem 1.4rem;
+    font-family: 'Rubik Dirt', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--rainforest-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--rainforest-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.amazon-rainforest .button::before,
+.amazon-rainforest .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 127, 62, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.amazon-rainforest .button:hover,
+.amazon-rainforest .transparent-button:hover {
+    background-color: var(--rainforest-primary);
+    color: var(--rainforest-bg);
+    box-shadow: 0 4px 6px -1px var(--rainforest-shadow);
+}
+
+.amazon-rainforest .button:hover::before,
+.amazon-rainforest .transparent-button:hover::before {
+    left: 100%;
+}
+
+.amazon-rainforest .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.amazon-rainforest #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.amazon-rainforest #theme-switcher {
+    background-color: var(--rainforest-bg);
+    color: var(--rainforest-primary) !important;
+    border: 1px solid var(--rainforest-primary);
+    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--rainforest-radius);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007F3E'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--rainforest-transition);
+    box-shadow: 0 1px 3px 0 var(--rainforest-shadow);
+}
+
+.amazon-rainforest #theme-switcher option {
+    background-color: var(--rainforest-bg) !important;
+    color: var(--rainforest-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.amazon-rainforest #theme-switcher option:hover {
+    background-color: var(--rainforest-primary) !important;
+    color: var(--rainforest-bg) !important;
+}
+
+.amazon-rainforest #theme-switcher:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 127, 62, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.amazon-rainforest #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: 1px solid var(--rainforest-primary);
+    padding: 0.9rem 1.6rem;
+    font-size: 0.9rem;
+    font-family: 'Rubik Dirt', sans-serif;
+    font-weight: 400;
+    color: var(--rainforest-primary);
+    background-color: var(--rainforest-bg);
+    cursor: pointer;
+    transition: all var(--rainforest-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--rainforest-radius);
+    box-shadow: 0 4px 6px -1px var(--rainforest-shadow);
+    text-transform: uppercase;
+}
+
+.amazon-rainforest #backToTopBtn:hover {
+    background-color: var(--rainforest-primary);
+    color: var(--rainforest-bg);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.amazon-rainforest footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rainforest-primary);
+    color: var(--rainforest-text);
+    font-size: 0.8rem;
+}
+
+.amazon-rainforest footer::before {
+    content: "🌱 ";
+    color: var(--rainforest-primary);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .amazon-rainforest .container {
+        padding: 1.2rem;
+    }
+
+    .amazon-rainforest #calendar-title {
+        font-size: 2rem;
+    }
+
+    .amazon-rainforest #current-date {
+        font-size: 1.5rem;
+    }
+
+    .amazon-rainforest #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .amazon-rainforest th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .amazon-rainforest .container {
+        padding: 1rem;
+    }
+
+    .amazon-rainforest #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .amazon-rainforest .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    /* Switch to short day names */
+    .amazon-rainforest th .full-day {
+        display: none;
+    }
+
+    .amazon-rainforest th .short-day {
+        display: inline;
+    }
+
+    .amazon-rainforest th {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.15rem;
+    }
+
+    .amazon-rainforest td {
+        padding: 0.6rem 0.15rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .amazon-rainforest #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .amazon-rainforest #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 170px;
+    }
+
+    .amazon-rainforest .modal-content {
+        padding: 15px;
+    }
+
+    .amazon-rainforest .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .amazon-rainforest .container {
+        padding: 0.8rem;
+    }
+
+    .amazon-rainforest #calendar-title {
+        font-size: 1.4rem;
+    }
+
+    .amazon-rainforest #current-date {
+        font-size: 1.1rem;
+    }
+
+    .amazon-rainforest #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .amazon-rainforest .clock-face {
+        width: 110px;
+        height: 110px;
+    }
+
+    .amazon-rainforest th {
+        font-size: 0.65rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .amazon-rainforest td {
+        padding: 0.4rem 0.1rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .amazon-rainforest td.current-day::before {
+        font-size: 0.7rem;
+    }
+
+    .amazon-rainforest #theme-switcher {
+        min-width: 150px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .amazon-rainforest th {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .amazon-rainforest td {
+        height: 50px;
+        font-size: 0.7rem;
+    }
+
+    .amazon-rainforest #theme-switcher {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+
+    .amazon-rainforest #calendar-title {
+        font-size: 1.2rem;
+    }
+}
