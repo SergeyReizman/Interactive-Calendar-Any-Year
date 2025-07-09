@@ -102,7 +102,7 @@ const applyTheme = (theme) => {
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
     'extraordinary-achievement', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'formula-one',
-    'free-flight', 'fresh-start', 'frontier-unknown',
+    'forward-thinking', 'free-flight', 'fresh-start', 'frontier-unknown',
     'frozen-wilderness', 'full-pink-moon', 'fun-activity',
     'galactic-glow', 'game-changer', 'games-are-fun', 'genghis-khan-arrow',
     'giant-petrel', 'global-impact',
