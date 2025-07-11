@@ -148,7 +148,7 @@ const applyTheme = (theme) => {
     'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'practice-makes-perfect',
-    'precious-question','progressive-decision', 'pure-light', 
+    'precious-question', 'pristine-lake','progressive-decision', 'pure-light', 
     'purple-fog', 'quantum-programmer', 'queen-of-ambience', 'quiet-evening', 'quiet-progress',
     'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'random-coincidence',
     'real-results', 'red-lake', 'red-squirrel', 'remote-island',
