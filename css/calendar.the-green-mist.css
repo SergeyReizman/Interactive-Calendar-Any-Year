@@ -1,0 +1,786 @@
+/* ==========================================================================
+   The Green Mist Theme - Ethereal Nature-Inspired Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Mystical green color palette inspired by forest mists
+   - Soft, dreamy design elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Raleway:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Misty Green Palette */
+    --mist-bg: #F0F5F0;
+    --mist-text: #2D3A2D;
+    --mist-primary: #FFFFFF;
+    --mist-secondary: #E8EFE8;
+    --mist-date-number: #2D3A2D;
+
+    /* Nature Texture Colors */
+    --mist-texture1: #E0EAE0;
+    --mist-texture2: #D8E5D8;
+    --mist-texture3: #D0E0D0;
+    --mist-texture4: #C8DBC8;
+    --mist-texture5: #C0D6C0;
+
+    /* Forest Accent Colors */
+    --mist-accent1: #6B8E6B;
+    --mist-accent2: #5A7E5A;
+    --mist-accent3: #496E49;
+    --mist-accent4: rgba(73, 110, 73, 0.7);
+    --mist-accent5: rgba(73, 110, 73, 0.5);
+
+    /* Theme Variables */
+    --mist-shadow: rgba(107, 142, 107, 0.15);
+    --mist-radius: 8px;
+    --mist-transition: 0.3s ease;
+    --mist-hover: #3A5D3A;
+    --mist-glow: 0 0 12px rgba(107, 142, 107, 0.2);
+    --mist-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%236B8E6B"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%236B8E6B"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%236B8E6B"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mist-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes mist-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes mist-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--mist-shadow);
+    }
+
+    50% {
+        box-shadow: var(--mist-glow);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-green-mist {
+    font-family: 'Raleway', sans-serif;
+    color: var(--mist-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--mist-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q30,15 40,20 T60,20 T80,20" stroke="%236B8E6B" stroke-width="0.5" fill="none" opacity="0.1"/><path d="M10,40 Q20,35 30,40 T50,40 T70,40" stroke="%236B8E6B" stroke-width="0.5" fill="none" opacity="0.1"/><path d="M30,70 Q40,65 50,70 T70,70 T90,70" stroke="%236B8E6B" stroke-width="0.5" fill="none" opacity="0.1"/></svg>');
+}
+
+.the-green-mist .container {
+    background-color: var(--mist-primary);
+    padding: 2rem;
+    border: 1px solid var(--mist-accent4);
+    box-shadow: var(--mist-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mist-radius);
+}
+
+.the-green-mist .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--mist-accent1) 0%,
+            var(--mist-accent2) 50%,
+            var(--mist-accent1) 100%);
+}
+
+.the-green-mist .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--mist-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-green-mist #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--mist-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 600;
+}
+
+.the-green-mist #calendar-title::after {
+    content: "⋆";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-green-mist #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--mist-primary);
+    border: 1px solid var(--mist-accent4);
+    border-radius: var(--mist-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.the-green-mist #date-weather-container::before {
+    content: "FOREST WHISPER";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--mist-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--mist-text);
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+}
+
+.the-green-mist #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mist-accent2), transparent);
+}
+
+.the-green-mist #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--mist-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.the-green-mist #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--mist-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-green-mist #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.the-green-mist .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--mist-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mist-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.the-green-mist .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.the-green-mist .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--mist-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.the-green-mist .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--mist-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.the-green-mist .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--mist-accent3);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.the-green-mist table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.the-green-mist th {
+    background-color: var(--mist-accent1);
+    color: var(--mist-primary) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--mist-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.the-green-mist th span.full-day-name {
+    display: inline;
+}
+
+.the-green-mist th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.the-green-mist td {
+    background-color: var(--mist-primary);
+    color: var(--mist-text);
+    padding: 1rem;
+    border: 1px solid var(--mist-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--mist-transition);
+    position: relative;
+    border-radius: var(--mist-radius);
+    box-shadow: inset 0 0 0 1px rgba(107, 142, 107, 0.1);
+}
+
+.the-green-mist td .date-number {
+    color: var(--mist-text) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.the-green-mist td:hover {
+    background-color: var(--mist-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Current date highlight */
+.the-green-mist td.current-day {
+    background-color: rgba(107, 142, 107, 0.1);
+    border: 2px solid var(--mist-accent2);
+    animation: mist-pulse 3s infinite;
+}
+
+.the-green-mist td.current-day .date-number {
+    color: var(--mist-text) !important;
+    font-weight: 700;
+}
+
+.the-green-mist td.current-day::before {
+    content: "✿";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--mist-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-green-mist .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--mist-accent2);
+    margin: 0 1px;
+    transition: all var(--mist-transition);
+}
+
+.the-green-mist .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--mist-accent2);
+    box-shadow: 0 0 6px rgba(107, 142, 107, 0.2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-green-mist .modal-content {
+    position: relative;
+    background-color: var(--mist-primary);
+    border: 1px solid var(--mist-accent4);
+    padding: 25px;
+    color: var(--mist-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--mist-radius);
+    animation: mist-slide 0.2s ease-out;
+}
+
+.the-green-mist .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--mist-accent1) 0%,
+            var(--mist-accent2) 50%,
+            var(--mist-accent1) 100%);
+}
+
+.the-green-mist .modal-content h2 {
+    color: var(--mist-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Modal date display */
+.the-green-mist .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--mist-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--mist-accent4);
+}
+
+/* Event list */
+.the-green-mist .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.the-green-mist .event-item {
+    background-color: var(--mist-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--mist-accent1);
+    border-radius: var(--mist-radius);
+    transition: all var(--mist-transition);
+}
+
+.the-green-mist .event-item:hover {
+    background-color: var(--mist-texture3);
+    transform: translateX(3px);
+}
+
+.the-green-mist .event-time {
+    font-family: 'Raleway', sans-serif;
+    color: var(--mist-text);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.the-green-mist .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--mist-text);
+}
+
+.the-green-mist .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--mist-text);
+    opacity: 0.9;
+}
+
+.the-green-mist .modal-content button {
+    background-color: var(--mist-accent1);
+    color: var(--mist-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mist-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Raleway', sans-serif;
+    border-radius: var(--mist-radius);
+}
+
+.the-green-mist .modal-content button:hover {
+    background-color: var(--mist-hover);
+    box-shadow: 0 3px 10px rgba(107, 142, 107, 0.1);
+}
+
+/* Close Button */
+.the-green-mist .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--mist-primary);
+    color: var(--mist-text);
+    border: 1px solid var(--mist-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--mist-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.the-green-mist .modal .close-button:hover {
+    background-color: var(--mist-text);
+    color: var(--mist-accent1);
+    border-color: var(--mist-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-green-mist .button,
+.the-green-mist .transparent-button {
+    border: 1px solid var(--mist-accent1);
+    color: var(--mist-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--mist-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--mist-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.the-green-mist .button:hover,
+.the-green-mist .transparent-button:hover {
+    background-color: var(--mist-accent1);
+    color: var(--mist-primary);
+    box-shadow: 0 3px 10px rgba(107, 142, 107, 0.1);
+}
+
+.the-green-mist .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-green-mist #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.the-green-mist #theme-switcher {
+    background-color: var(--mist-primary);
+    color: var(--mist-text) !important;
+    border: 1px solid var(--mist-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D3A2D'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--mist-transition);
+    border-radius: var(--mist-radius);
+}
+
+.the-green-mist #theme-switcher option {
+    background-color: var(--mist-primary) !important;
+    color: var(--mist-text) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.the-green-mist #theme-switcher:focus {
+    outline: none;
+    border-color: var(--mist-accent1);
+    box-shadow: 0 0 0 2px rgba(107, 142, 107, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-green-mist #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    color: var(--mist-primary);
+    background-color: var(--mist-accent1);
+    cursor: pointer;
+    transition: all var(--mist-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--mist-radius);
+    box-shadow: 0 2px 8px rgba(107, 142, 107, 0.2);
+}
+
+.the-green-mist #backToTopBtn:hover {
+    background-color: var(--mist-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.the-green-mist footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--mist-accent4);
+    color: var(--mist-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-green-mist .container {
+        padding: 1.5rem;
+    }
+
+    .the-green-mist #calendar-title {
+        font-size: 2rem;
+    }
+
+    .the-green-mist #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-green-mist #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .the-green-mist .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .the-green-mist .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-green-mist {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .the-green-mist .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .the-green-mist th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .the-green-mist th span.full-day-name {
+        display: none;
+    }
+
+    .the-green-mist th abbr {
+        display: inline;
+    }
+
+    .the-green-mist td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .the-green-mist td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .the-green-mist td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .the-green-mist #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .the-green-mist #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .the-green-mist .modal-content {
+        padding: 20px;
+    }
+
+    .the-green-mist .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-green-mist .container {
+        padding: 1rem;
+    }
+
+    .the-green-mist #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .the-green-mist #current-date {
+        font-size: 1.3rem;
+    }
+
+    .the-green-mist #today-weather {
+        font-size: 1rem;
+    }
+
+    .the-green-mist .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .the-green-mist th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .the-green-mist td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .the-green-mist td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .the-green-mist #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .the-green-mist .modal-content {
+        padding: 15px;
+    }
+
+    .the-green-mist .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .the-green-mist .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-green-mist th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .the-green-mist td {
+        height: 60px;
+    }
+
+    .the-green-mist td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .the-green-mist #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
