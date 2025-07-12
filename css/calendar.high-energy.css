@@ -1,0 +1,825 @@
+/* ==========================================================================
+   High Energy Theme - Vibrant & Dynamic Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Bold, high-contrast color scheme for maximum energy
+   - Dynamic animations and visual effects
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Energy Color Palette */
+    --energy-bg: #0A0A0A;
+    --energy-text: #FFFFFF;
+    --energy-primary: #1A1A1A;
+    --energy-secondary: #252525;
+    --energy-date-number: #FFFFFF;
+
+    /* Dynamic Texture Colors */
+    --energy-texture1: #222222;
+    --energy-texture2: #2A2A2A;
+    --energy-texture3: #333333;
+    --energy-texture4: #3A3A3A;
+    --energy-texture5: #444444;
+
+    /* Electric Accent Colors */
+    --energy-accent1: #FF3E00;
+    --energy-accent2: #FF5500;
+    --energy-accent3: #FF6B00;
+    --energy-accent4: rgba(255, 107, 0, 0.7);
+    --energy-accent5: rgba(255, 107, 0, 0.5);
+
+    /* Theme Variables */
+    --energy-shadow: rgba(255, 62, 0, 0.3);
+    --energy-radius: 6px;
+    --energy-transition: 0.15s ease-out;
+    --energy-hover: #FF2A00;
+    --energy-glow: 0 0 15px rgba(255, 62, 0, 0.4);
+    --energy-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23FF3E00"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23FF3E00"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".6" fill="%23FF3E00"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes energy-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.02);
+        opacity: 0.9;
+    }
+}
+
+@keyframes energy-slide {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes energy-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--energy-shadow);
+    }
+
+    50% {
+        box-shadow: var(--energy-glow);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+        background-color: var(--energy-accent1);
+    }
+
+    100% {
+        width: 100%;
+        background-color: var(--energy-accent3);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.high-energy {
+    font-family: 'Kanit', sans-serif;
+    color: var(--energy-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--energy-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="1" height="1" x="10" y="10" fill="%23FF3E00" opacity="0.2"/><rect width="1" height="1" x="30" y="70" fill="%23FF3E00" opacity="0.2"/><rect width="1" height="1" x="70" y="30" fill="%23FF3E00" opacity="0.2"/><rect width="1" height="1" x="90" y="90" fill="%23FF3E00" opacity="0.2"/></svg>');
+}
+
+.high-energy .container {
+    background-color: var(--energy-primary);
+    padding: 2rem;
+    border: 1px solid var(--energy-accent4);
+    box-shadow: var(--energy-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--energy-radius);
+    animation: energy-pulse 4s infinite;
+}
+
+.high-energy .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--energy-accent1) 0%,
+            var(--energy-accent2) 50%,
+            var(--energy-accent1) 100%);
+}
+
+.high-energy .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-image: var(--energy-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.high-energy #calendar-title {
+    font-family: 'Rubik', sans-serif;
+    color: var(--energy-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 62, 0, 0.5);
+}
+
+.high-energy #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    opacity: 0.8;
+    animation: energy-glow 2s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.high-energy #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--energy-primary);
+    border: 1px solid var(--energy-accent4);
+    border-radius: var(--energy-radius);
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: energy-glow 3s infinite;
+}
+
+.high-energy #date-weather-container::before {
+    content: "POWER METER";
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: var(--energy-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--energy-accent1);
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+}
+
+.high-energy #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--energy-accent2), transparent);
+}
+
+.high-energy #current-date {
+    font-family: 'Rubik', sans-serif;
+    color: var(--energy-text);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(255, 62, 0, 0.3);
+}
+
+.high-energy #today-weather {
+    font-family: 'Kanit', sans-serif;
+    color: var(--energy-text);
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.high-energy #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.high-energy .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--energy-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--energy-primary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 15px rgba(255, 62, 0, 0.2);
+    animation: energy-glow 3s infinite;
+}
+
+.high-energy .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.high-energy .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--energy-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(255, 62, 0, 0.5);
+}
+
+.high-energy .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--energy-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(255, 62, 0, 0.5);
+}
+
+.high-energy .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--energy-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 5px rgba(255, 62, 0, 0.7);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.high-energy table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.high-energy th {
+    background-color: var(--energy-accent1);
+    color: var(--energy-text) !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--energy-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 10px rgba(255, 62, 0, 0.2);
+}
+
+.high-energy th span.full-day-name {
+    display: inline;
+}
+
+.high-energy th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.high-energy td {
+    background-color: var(--energy-primary);
+    color: var(--energy-text);
+    padding: 1.2rem;
+    border: 1px solid var(--energy-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--energy-transition);
+    position: relative;
+    border-radius: var(--energy-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 62, 0, 0.2);
+}
+
+.high-energy td .date-number {
+    color: var(--energy-text) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Rubik', sans-serif;
+    text-shadow: 0 0 5px rgba(255, 62, 0, 0.3);
+}
+
+.high-energy td:hover {
+    background-color: var(--energy-secondary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.high-energy td.current-day {
+    background-color: rgba(255, 62, 0, 0.15);
+    border: 2px solid var(--energy-accent2);
+    animation: energy-glow 2s infinite;
+}
+
+.high-energy td.current-day .date-number {
+    color: var(--energy-text) !important;
+    font-weight: 800;
+}
+
+.high-energy td.current-day::before {
+    content: "🔥";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    color: var(--energy-accent1);
+    font-weight: bold;
+    animation: energy-pulse 1.5s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.high-energy .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--energy-accent2);
+    margin: 0 2px;
+    transition: all var(--energy-transition);
+    box-shadow: 0 0 5px rgba(255, 62, 0, 0.5);
+}
+
+.high-energy .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--energy-accent2);
+    box-shadow: 0 0 10px rgba(255, 62, 0, 0.7);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.high-energy .modal-content {
+    position: relative;
+    background-color: var(--energy-primary);
+    border: 1px solid var(--energy-accent4);
+    padding: 30px;
+    color: var(--energy-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border-radius: var(--energy-radius);
+    animation: energy-slide 0.3s ease-out;
+}
+
+.high-energy .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--energy-accent1) 0%,
+            var(--energy-accent2) 50%,
+            var(--energy-accent1) 100%);
+}
+
+.high-energy .modal-content h2 {
+    color: var(--energy-text);
+    font-family: 'Rubik', sans-serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 8px rgba(255, 62, 0, 0.3);
+}
+
+/* Modal date display */
+.high-energy .modal-date {
+    font-family: 'Rubik', sans-serif;
+    color: var(--energy-text);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--energy-accent4);
+    text-shadow: 0 0 5px rgba(255, 62, 0, 0.2);
+}
+
+/* Event list */
+.high-energy .event-list {
+    margin: 1.8rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.high-energy .event-item {
+    background-color: var(--energy-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid var(--energy-accent1);
+    border-radius: var(--energy-radius);
+    transition: all var(--energy-transition);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.high-energy .event-item:hover {
+    background-color: var(--energy-texture3);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.high-energy .event-time {
+    font-family: 'Kanit', sans-serif;
+    color: var(--energy-accent1);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.high-energy .event-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+    color: var(--energy-text);
+}
+
+.high-energy .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--energy-text);
+    opacity: 0.9;
+}
+
+.high-energy .modal-content button {
+    background-color: var(--energy-accent1);
+    color: var(--energy-text);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--energy-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Kanit', sans-serif;
+    border-radius: var(--energy-radius);
+    text-transform: uppercase;
+    box-shadow: 0 3px 10px rgba(255, 62, 0, 0.3);
+}
+
+.high-energy .modal-content button:hover {
+    background-color: var(--energy-hover);
+    box-shadow: 0 5px 15px rgba(255, 62, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.high-energy .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--energy-primary);
+    color: var(--energy-text);
+    border: 2px solid var(--energy-text);
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all var(--energy-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.high-energy .modal .close-button:hover {
+    background-color: var(--energy-text);
+    color: var(--energy-accent1);
+    border-color: var(--energy-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.high-energy .button,
+.high-energy .transparent-button {
+    border: 2px solid var(--energy-accent1);
+    color: var(--energy-text);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--energy-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--energy-radius);
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.high-energy .button:hover,
+.high-energy .transparent-button:hover {
+    background-color: var(--energy-accent1);
+    color: var(--energy-text);
+    box-shadow: 0 5px 15px rgba(255, 62, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.high-energy .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.high-energy #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.high-energy #theme-switcher {
+    background-color: var(--energy-primary);
+    color: var(--energy-text) !important;
+    border: 2px solid var(--energy-accent1);
+    padding: 1rem 2.5rem 1rem 1.2rem;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--energy-transition);
+    border-radius: var(--energy-radius);
+    text-transform: uppercase;
+}
+
+.high-energy #theme-switcher option {
+    background-color: var(--energy-primary) !important;
+    color: var(--energy-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 15px !important;
+}
+
+.high-energy #theme-switcher:focus {
+    outline: none;
+    border-color: var(--energy-accent1);
+    box-shadow: 0 0 0 3px rgba(255, 62, 0, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.high-energy #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 600;
+    color: var(--energy-text);
+    background-color: var(--energy-accent1);
+    cursor: pointer;
+    transition: all var(--energy-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--energy-radius);
+    box-shadow: 0 5px 15px rgba(255, 62, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.high-energy #backToTopBtn:hover {
+    background-color: var(--energy-hover);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 62, 0, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.high-energy footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--energy-accent4);
+    color: var(--energy-text);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .high-energy .container {
+        padding: 1.8rem;
+    }
+
+    .high-energy #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .high-energy #current-date {
+        font-size: 1.8rem;
+    }
+
+    .high-energy #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .high-energy .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .high-energy .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .high-energy {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .high-energy .clock-face {
+        width: 180px;
+        height: 180px;
+        border-width: 7px;
+    }
+
+    .high-energy th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .high-energy th span.full-day-name {
+        display: none;
+    }
+
+    .high-energy th abbr {
+        display: inline;
+    }
+
+    .high-energy td {
+        padding: 1rem;
+        height: 90px;
+        font-size: 0.9rem;
+    }
+
+    .high-energy td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .high-energy td.current-day::before {
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .high-energy #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .high-energy #theme-switcher {
+        padding: 0.9rem 2.2rem 0.9rem 1rem;
+        font-size: 0.95rem;
+        min-width: 190px;
+    }
+
+    .high-energy .modal-content {
+        padding: 25px;
+    }
+
+    .high-energy .event-item {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .high-energy .container {
+        padding: 1.5rem;
+    }
+
+    .high-energy #calendar-title {
+        font-size: 2rem;
+    }
+
+    .high-energy #current-date {
+        font-size: 1.5rem;
+    }
+
+    .high-energy #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .high-energy .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
+
+    .high-energy th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .high-energy td {
+        padding: 0.8rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .high-energy td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .high-energy #theme-switcher {
+        min-width: 170px;
+        font-size: 0.9rem;
+    }
+
+    .high-energy .modal-content {
+        padding: 20px;
+    }
+
+    .high-energy .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .high-energy .event-time {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .high-energy th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .high-energy td {
+        height: 70px;
+    }
+
+    .high-energy td .date-number {
+        font-size: 1rem;
+    }
+
+    .high-energy #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+}

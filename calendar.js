@@ -114,7 +114,7 @@ const applyTheme = (theme) => {
     'greyscale', 'group-11',
     'guangzhou-lights', 'haute-couture',
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
-    'high-intelligence','high-performance', 
+    'high-energy', 'high-intelligence','high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
     'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
