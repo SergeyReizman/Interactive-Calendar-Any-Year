@@ -164,7 +164,7 @@ const applyTheme = (theme) => {
     'smiley-world', 'solar-flare', 'something-special', 
     'spark-of-knowledge', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'stay-cool', 'stay-positive',
-    'steel-shadows', 'stockholm-roofs', 'straight-to-the-point',
+    'steel-shadows', 'still-a-highlight', 'stockholm-roofs', 'straight-to-the-point',
     'strategic-advantage', 'strategic-planning',
     'strawberry-moon', 'street-art-installation', 'strength-of-spirit', 'strong-foundation',
     'success-key','success-motivation', 'success-story', 
