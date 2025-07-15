@@ -1,0 +1,825 @@
+/* ==========================================================================
+   Palm Beach Theme - Luxury Coastal Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Sandy beige and ocean blue color palette
+   - Tropical elegance with palm tree motifs
+   - Light, airy design with nautical elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap');
+
+:root {
+    /* Coastal Color Palette */
+    --beach-bg: #F5F5F0;
+    --beach-text: #333333;
+    --beach-primary: #E8E5DA;
+    --beach-secondary: #D4D1C5;
+    --beach-date-number: #5A8F7B;
+
+    /* Ocean Depth Layers */
+    --beach-layer1: #D4E3E6;
+    --beach-layer2: #B8D5DC;
+    --beach-layer3: #9CC7D2;
+    --beach-layer4: #80B9C8;
+    --beach-layer5: #64ABBE;
+
+    /* Tropical Accent Colors */
+    --beach-accent1: #5A8F7B;
+    /* Palm Green */
+    --beach-accent2: #3A6B7D;
+    /* Ocean Blue */
+    --beach-accent3: #D4A762;
+    /* Sand Gold */
+    --beach-accent4: rgba(90, 143, 123, 0.3);
+    --beach-accent5: rgba(58, 107, 125, 0.2);
+
+    /* Theme Variables */
+    --beach-shadow: rgba(90, 143, 123, 0.15);
+    --beach-radius: 8px;
+    --beach-transition: 0.3s ease-out;
+    --beach-hover: #6BA18B;
+    --beach-glow: 0 0 12px rgba(90, 143, 123, 0.2);
+    --beach-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,80 Q25,70 50,80 T100,80" fill="none" stroke="%235A8F7B" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes beach-wave {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes palm-sway {
+
+    0%,
+    100% {
+        transform: rotate(-2deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes beach-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--beach-shadow);
+    }
+
+    50% {
+        box-shadow: var(--beach-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.palm-beach {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--beach-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--beach-bg);
+    min-height: 100vh;
+    background-image:
+        var(--beach-texture),
+        linear-gradient(to bottom, var(--beach-bg), var(--beach-layer1));
+    background-repeat: repeat;
+    animation: beach-wave 60s linear infinite;
+}
+
+.palm-beach .container {
+    background-color: var(--beach-primary);
+    padding: 2rem;
+    border: 1px solid var(--beach-accent4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--beach-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.palm-beach .container::before,
+.palm-beach .container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--beach-accent1),
+            transparent);
+}
+
+.palm-beach .container::before {
+    top: 0;
+}
+
+.palm-beach .container::after {
+    bottom: 0;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.palm-beach #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--beach-accent2);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
+}
+
+.palm-beach #calendar-title::after {
+    content: "🌴";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: palm-sway 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.palm-beach #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--beach-primary);
+    border: 1px solid var(--beach-accent4);
+    border-radius: var(--beach-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.palm-beach #date-weather-container::before {
+    content: "OCEAN VIEW";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--beach-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--beach-accent2);
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.palm-beach #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--beach-accent1), transparent);
+}
+
+.palm-beach #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--beach-accent1);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.palm-beach #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--beach-text);
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.palm-beach #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.palm-beach .clock-face {
+    width: 200px;
+    height: 200px;
+    border: 3px solid var(--beach-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--beach-primary);
+    box-shadow:
+        0 0 15px rgba(90, 143, 123, 0.1),
+        inset 0 0 10px rgba(255, 255, 255, 0.5);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--beach-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%235A8F7B" stroke-width="0.3" opacity="0.2"/></svg>');
+}
+
+.palm-beach .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.palm-beach .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--beach-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.palm-beach .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--beach-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.palm-beach .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--beach-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.palm-beach .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--beach-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 3px var(--beach-primary);
+}
+
+/* Digital display in clock */
+.palm-beach .clock-face::before {
+    content: "⛱";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.palm-beach table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.palm-beach th {
+    background-color: var(--beach-accent1);
+    color: var(--beach-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--beach-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.palm-beach th span.full-day-name {
+    display: inline;
+}
+
+.palm-beach th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE CELLS */
+.palm-beach td {
+    background-color: var(--beach-primary);
+    color: var(--beach-text);
+    padding: 1.2rem;
+    border: 1px solid var(--beach-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--beach-transition);
+    position: relative;
+    border-radius: var(--beach-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.palm-beach td .date-number {
+    color: var(--beach-date-number) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.palm-beach td:hover {
+    background-color: var(--beach-secondary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.palm-beach td.current-day {
+    background-color: rgba(90, 143, 123, 0.1);
+    border: 2px solid var(--beach-accent1);
+    animation: beach-glow 3s infinite;
+}
+
+.palm-beach td.current-day .date-number {
+    color: var(--beach-accent2) !important;
+}
+
+.palm-beach td.current-day::before {
+    content: "🌊";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.3rem;
+    color: var(--beach-accent2);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.palm-beach .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--beach-accent2);
+    margin: 0 2px;
+    transition: all var(--beach-transition);
+    box-shadow: 0 0 3px rgba(58, 107, 125, 0.3);
+}
+
+.palm-beach .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--beach-accent2);
+    box-shadow: 0 0 8px rgba(58, 107, 125, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.palm-beach .modal-content {
+    position: relative;
+    background-color: var(--beach-primary);
+    border: 1px solid var(--beach-accent4);
+    padding: 30px;
+    color: var(--beach-text);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: var(--beach-radius);
+    animation: palm-sway 0.3s ease-out;
+}
+
+.palm-beach .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--beach-accent1) 0%,
+            var(--beach-accent2) 50%,
+            var(--beach-accent1) 100%);
+}
+
+.palm-beach .modal-content h2 {
+    color: var(--beach-accent2);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.palm-beach .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--beach-accent1);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--beach-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.palm-beach .event-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.palm-beach .event-item {
+    background-color: var(--beach-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--beach-accent1);
+    border-radius: var(--beach-radius);
+    transition: all var(--beach-transition);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.palm-beach .event-item:hover {
+    background-color: var(--beach-primary);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.palm-beach .event-time {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--beach-accent2);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.palm-beach .event-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--beach-text);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.palm-beach .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--beach-text);
+    opacity: 0.9;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.palm-beach .modal-content button {
+    background-color: var(--beach-accent1);
+    color: var(--beach-primary);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--beach-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--beach-radius);
+    text-transform: uppercase;
+}
+
+.palm-beach .modal-content button:hover {
+    background-color: var(--beach-hover);
+    box-shadow: 0 5px 15px rgba(90, 143, 123, 0.2);
+}
+
+/* Close Button */
+.palm-beach .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--beach-primary);
+    color: var(--beach-text);
+    border: 1px solid var(--beach-text);
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all var(--beach-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.palm-beach .modal .close-button:hover {
+    background-color: var(--beach-text);
+    color: var(--beach-accent1);
+    border-color: var(--beach-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.palm-beach .button,
+.palm-beach .transparent-button {
+    border: 1px solid var(--beach-accent1);
+    color: var(--beach-text);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--beach-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--beach-radius);
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.palm-beach .button:hover,
+.palm-beach .transparent-button:hover {
+    background-color: var(--beach-accent1);
+    color: var(--beach-primary);
+    box-shadow: 0 5px 15px rgba(90, 143, 123, 0.1);
+}
+
+.palm-beach .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.palm-beach #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.palm-beach #theme-switcher {
+    background-color: var(--beach-primary);
+    color: var(--beach-text) !important;
+    border: 1px solid var(--beach-accent1);
+    padding: 1rem 2.5rem 1rem 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--beach-transition);
+    border-radius: var(--beach-radius);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.palm-beach #theme-switcher option {
+    background-color: var(--beach-primary) !important;
+    color: var(--beach-text) !important;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px 15px !important;
+}
+
+.palm-beach #theme-switcher:focus {
+    outline: none;
+    border-color: var(--beach-accent2);
+    box-shadow: 0 0 0 3px rgba(90, 143, 123, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.palm-beach #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--beach-primary);
+    background-color: var(--beach-accent1);
+    cursor: pointer;
+    transition: all var(--beach-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--beach-radius);
+    box-shadow: 0 0 20px rgba(90, 143, 123, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.palm-beach #backToTopBtn:hover {
+    background-color: var(--beach-hover);
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(90, 143, 123, 0.3);
+}
+
+/* ==================== FOOTER ==================== */
+.palm-beach footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--beach-accent4);
+    color: var(--beach-text);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 1200px) {
+    .palm-beach #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .palm-beach .clock-face {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 992px) {
+    .palm-beach .container {
+        padding: 1.5rem;
+    }
+
+    .palm-beach #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .palm-beach #current-date {
+        font-size: 1.8rem;
+    }
+
+    .palm-beach #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .palm-beach .modal-date {
+        font-size: 1.6rem;
+    }
+
+    .palm-beach .event-title {
+        font-size: 1.2rem;
+    }
+
+    .palm-beach td {
+        height: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .palm-beach {
+        font-size: 0.95rem;
+    }
+
+    .palm-beach #calendar-title {
+        font-size: 2rem;
+    }
+
+    .palm-beach .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .palm-beach th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .palm-beach th span.full-day-name {
+        display: none;
+    }
+
+    .palm-beach th abbr {
+        display: inline;
+    }
+
+    .palm-beach td {
+        padding: 0.8rem;
+        height: 80px;
+    }
+
+    .palm-beach td .date-number {
+        font-size: 1.1rem;
+    }
+
+    .palm-beach #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+    }
+
+    .palm-beach #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        min-width: 190px;
+    }
+
+    .palm-beach .modal-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .palm-beach .container {
+        padding: 1rem;
+    }
+
+    .palm-beach #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .palm-beach #current-date {
+        font-size: 1.5rem;
+    }
+
+    .palm-beach #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .palm-beach .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .palm-beach th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .palm-beach td {
+        padding: 0.7rem;
+        height: 70px;
+    }
+
+    .palm-beach td .date-number {
+        font-size: 1rem;
+    }
+
+    .palm-beach #theme-switcher {
+        min-width: 170px;
+        font-size: 0.9rem;
+    }
+
+    .palm-beach .modal-content {
+        padding: 20px;
+    }
+
+    .palm-beach .modal-date {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .palm-beach #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .palm-beach th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .palm-beach td {
+        height: 60px;
+    }
+
+    .palm-beach #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+}
