@@ -161,7 +161,7 @@ const applyTheme = (theme) => {
     'shift-in-perception', 'significant-improvement', 'silicon-valley', 
     'silver-dragon', 'sky-eagle', 'sky-hawk', 
     'skylight-window', 'small-happiness', 'small-success', 
-    'smiley-world', 'solar-flare', 'something-special', 
+    'smiley-world', 'snake-river', 'solar-flare', 'something-special', 
     'spark-of-knowledge', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'stay-cool', 'stay-positive',
     'steel-shadows', 'still-a-highlight', 'stockholm-roofs', 'straight-to-the-point',
