@@ -1,0 +1,502 @@
+/* ==========================================================================
+   Citrus Blaze Theme - Pure Orange Calendar
+   Version: 1.0
+   Updated: 2024-06-15
+   Colors:
+   - Primary: #FF6B35 (Vibrant Orange)
+   - Secondary: #FF8C42 (Bright Orange)
+   - Highlight: #FFA94D (Light Orange)
+   - Dark: #E05E28 (Dark Orange)
+   - Cream: #FFF3E6 (Background)
+   - Text: #3A2000 (Dark Brown)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Citrus Color Palette */
+    --citrus-bg: #FFF3E6;
+    --citrus-text: #3A2000;
+    --citrus-primary: #FFE4CC;
+    --citrus-secondary: #FFD8B3;
+    --citrus-date-number: #E05E28;
+
+    /* Orange Texture Colors */
+    --citrus-texture1: #FFEBD5;
+    --citrus-texture2: #FFE2C2;
+    --citrus-texture3: #FFD9AF;
+    --citrus-texture4: #FFD09C;
+    --citrus-texture5: #FFC789;
+
+    /* Vibrant Accent Colors */
+    --citrus-accent1: #FF6B35;
+    --citrus-accent2: #FF8C42;
+    --citrus-accent3: #FFA94D;
+    --citrus-accent4: rgba(255, 140, 66, 0.7);
+    --citrus-accent5: rgba(255, 107, 53, 0.5);
+
+    /* Theme Variables */
+    --citrus-shadow: rgba(255, 107, 53, 0.25);
+    --citrus-radius: 8px;
+    --citrus-transition: 0.2s ease-out;
+    --citrus-hover: #FF8C42;
+    --citrus-glow: 0 0 15px rgba(255, 107, 53, 0.3);
+    --citrus-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23FF6B35"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".35" fill="%23FF6B35"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".45" fill="%23FF6B35"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes citrus-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px var(--citrus-shadow);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: var(--citrus-glow);
+    }
+}
+
+@keyframes citrus-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.citrus-blaze {
+    font-family: 'Poppins', sans-serif;
+    color: var(--citrus-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--citrus-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23FF6B35" opacity="0.1"/><circle cx="50" cy="50" r="1.2" fill="%23FF8C42" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23FFA94D" opacity="0.1"/></svg>');
+}
+
+.citrus-blaze .container {
+    background-color: var(--citrus-primary);
+    padding: 2rem;
+    border: 2px solid var(--citrus-accent2);
+    box-shadow: var(--citrus-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--citrus-radius);
+}
+
+.citrus-blaze .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--citrus-accent1) 0%,
+            var(--citrus-accent2) 50%,
+            var(--citrus-accent3) 100%);
+}
+
+.citrus-blaze .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--citrus-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.citrus-blaze #calendar-title {
+    font-family: 'Poppins', sans-serif;
+    color: var(--citrus-accent1);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(234, 88, 12, 0.2);
+    position: relative;
+}
+
+.citrus-blaze #calendar-title::after {
+    content: "🍊";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.citrus-blaze #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--citrus-primary);
+    border: 2px solid var(--citrus-accent2);
+    border-radius: var(--citrus-radius);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.citrus-blaze #date-weather-container::before {
+    content: "ORANGE SEASON";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--citrus-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--citrus-accent1);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.citrus-blaze #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--citrus-accent2), transparent);
+}
+
+.citrus-blaze #current-date {
+    font-family: 'Poppins', sans-serif;
+    color: var(--citrus-accent1);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.citrus-blaze #today-weather {
+    font-family: 'Poppins', sans-serif;
+    color: var(--citrus-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.citrus-blaze #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.citrus-blaze .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--citrus-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--citrus-primary);
+    box-shadow: 0 0 20px rgba(255, 140, 66, 0.3);
+}
+
+.citrus-blaze .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.citrus-blaze .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--citrus-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.citrus-blaze .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--citrus-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.citrus-blaze .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--citrus-accent3);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.citrus-blaze table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.citrus-blaze th {
+    background-color: var(--citrus-accent1);
+    color: white !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: var(--citrus-radius);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+}
+
+/* DATE CELLS */
+.citrus-blaze td {
+    background-color: var(--citrus-primary);
+    color: var(--citrus-text);
+    padding: 1.2rem;
+    height: 100px;
+    vertical-align: top;
+    border: 2px solid var(--citrus-accent4);
+    border-radius: var(--citrus-radius);
+    transition: all var(--citrus-transition);
+    position: relative;
+}
+
+.citrus-blaze td .date-number {
+    color: var(--citrus-date-number) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.citrus-blaze td:hover {
+    background-color: var(--citrus-secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--citrus-shadow);
+}
+
+/* CURRENT DAY HIGHLIGHT */
+.citrus-blaze td.current-day {
+    background-color: var(--citrus-accent2);
+    border-color: var(--citrus-accent1);
+    color: white !important;
+    animation: citrus-pulse 2s infinite;
+}
+
+.citrus-blaze td.current-day .date-number {
+    color: white !important;
+}
+
+.citrus-blaze td.current-day::before {
+    content: "⭐";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* EVENT MARKERS */
+.citrus-blaze .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--citrus-accent1);
+    margin: 0 2px;
+    transition: all var(--citrus-transition);
+    box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+}
+
+.citrus-blaze .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--citrus-accent3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.citrus-blaze .modal-content {
+    position: relative;
+    background-color: var(--citrus-primary);
+    border: 2px solid var(--citrus-accent2);
+    padding: 2rem;
+    color: var(--citrus-text);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+    border-radius: var(--citrus-radius);
+    animation: citrus-slide 0.2s ease-out;
+}
+
+.citrus-blaze .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--citrus-accent1) 0%,
+            var(--citrus-accent2) 50%,
+            var(--citrus-accent3) 100%);
+}
+
+.citrus-blaze .modal-content h2 {
+    color: var(--citrus-accent1);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.citrus-blaze .modal-date {
+    color: var(--citrus-accent1);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--citrus-accent4);
+}
+
+.citrus-blaze .event-item {
+    background-color: var(--citrus-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--citrus-accent1);
+    border-radius: var(--citrus-radius);
+    transition: all var(--citrus-transition);
+}
+
+.citrus-blaze .event-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px var(--citrus-shadow);
+}
+
+.citrus-blaze .modal-content button {
+    background-color: var(--citrus-accent1);
+    color: white !important;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--citrus-radius);
+    transition: all var(--citrus-transition);
+}
+
+.citrus-blaze .modal-content button:hover {
+    background-color: var(--citrus-accent2);
+    transform: translateY(-2px);
+    box-shadow: var(--citrus-glow);
+}
+
+/* ==================== CONTROLS ==================== */
+.citrus-blaze .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.8rem;
+}
+
+.citrus-blaze .button {
+    background-color: var(--citrus-accent1);
+    color: white !important;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    font-weight: 600;
+    border-radius: var(--citrus-radius);
+    transition: all var(--citrus-transition);
+}
+
+.citrus-blaze .button:hover {
+    background-color: var(--citrus-accent2);
+    transform: translateY(-2px);
+    box-shadow: var(--citrus-glow);
+}
+
+/* ==================== FOOTER ==================== */
+.citrus-blaze footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--citrus-accent4);
+    color: var(--citrus-text);
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .citrus-blaze .container {
+        padding: 1.5rem;
+    }
+
+    .citrus-blaze #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .citrus-blaze td {
+        height: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .citrus-blaze #calendar-title {
+        font-size: 2rem;
+    }
+
+    .citrus-blaze #current-date {
+        font-size: 1.5rem;
+    }
+
+    .citrus-blaze td {
+        height: 80px;
+        padding: 0.8rem;
+    }
+
+    .citrus-blaze .date-number {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .citrus-blaze .container {
+        padding: 1rem;
+    }
+
+    .citrus-blaze #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .citrus-blaze td {
+        height: 70px;
+        padding: 0.6rem;
+    }
+
+    .citrus-blaze .date-number {
+        font-size: 1rem;
+    }
+
+    .citrus-blaze th {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+    }
+}
