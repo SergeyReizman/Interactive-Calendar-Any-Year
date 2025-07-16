@@ -1,44 +1,51 @@
 /* ==========================================================================
-   On The Island Theme - Tropical Paradise Inspired
-   Version: 2.4
-   Updated: 2025-03-28
-   Fixes:
-   - Theme switcher now properly visible
-   - Current date highlighting improved
-   - Day-of-week header overlap fixed
-   - Mobile table layout optimized
+   On The Island Theme - Tropical Paradise Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Vibrant tropical color palette
+   - Palm and wave motifs
+   - Relaxed island-inspired design with sandy textures
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;500;700&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --ti-bg: #e6f7ff;
-    --ti-text: #2a4b5e;
-    --ti-primary: #00a8cc;
-    --ti-secondary: #ff9a3c;
+    /* Island Color Palette */
+    --island-bg: #0077BE;
+    --island-text: #F5F5DC;
+    --island-primary: #00587A;
+    --island-secondary: #006D8B;
+    --island-date-number: #FFD166;
 
-    /* Gradient Colors */
-    --ti-gradient-start: #a8e6cf;
-    --ti-gradient-end: #dcedc1;
+    /* Ocean Depth Layers */
+    --island-layer1: #006D8B;
+    --island-layer2: #0081A7;
+    --island-layer3: #0096C7;
+    --island-layer4: #00A8E8;
+    --island-layer5: #48CAE4;
 
-    /* Accent Colors */
-    --ti-accent1: #ff6b6b;
-    --ti-accent2: #4cc9f0;
-    --ti-accent3: #f8bbd0;
-    --ti-accent4: #ffd166;
-    --ti-accent5: #06d6a0;
+    /* Tropical Accent Colors */
+    --island-accent1: #06D6A0;
+    /* Sea Green */
+    --island-accent2: #FFD166;
+    /* Sun Yellow */
+    --island-accent3: #EF476F;
+    /* Coral Pink */
+    --island-accent4: rgba(6, 214, 160, 0.5);
+    --island-accent5: rgba(255, 209, 102, 0.3);
 
     /* Theme Variables */
-    --ti-shadow: rgba(0, 168, 204, 0.2);
-    --ti-radius: 16px;
-    --ti-transition: 0.3s ease;
-    --ti-hover: #ff7b54;
-    --ti-current-day: #ff9a3c;
+    --island-shadow: rgba(6, 214, 160, 0.15);
+    --island-radius: 12px;
+    --island-transition: 0.3s ease-out;
+    --island-hover: #FFE066;
+    --island-glow: 0 0 12px rgba(255, 209, 102, 0.35);
+    --island-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,80 Q25,70 50,80 T100,80" fill="none" stroke="%23FFD166" stroke-width="0.5" opacity="0.1"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes ti-wave {
+@keyframes island-sway {
 
     0%,
     100% {
@@ -50,148 +57,190 @@
     }
 }
 
-@keyframes ti-bounce {
+@keyframes island-pulse {
 
     0%,
     100% {
-        transform: translateY(0);
+        opacity: 0.95;
     }
 
     50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--island-accent2);
+    }
+}
+
+@keyframes island-bob {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
         transform: translateY(-5px);
     }
 }
 
-@keyframes ti-pulse {
+@keyframes island-glow {
 
     0%,
     100% {
-        transform: scale(1);
+        box-shadow: 0 0 3px var(--island-shadow);
     }
 
     50% {
-        transform: scale(1.05);
+        box-shadow: var(--island-glow);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .on-the-island {
     font-family: 'Quicksand', sans-serif;
-    color: var(--ti-text);
+    color: var(--island-text);
     line-height: 1.6;
-    background: linear-gradient(135deg, var(--ti-gradient-start), var(--ti-gradient-end));
+    font-size: 1rem;
+    background-color: var(--island-bg);
     min-height: 100vh;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%234cc9f0" opacity="0.1" d="M30,50 Q50,30 70,50 Q50,70 30,50"/></svg>');
-    background-size: 100px 100px;
+    background-image:
+        var(--island-texture),
+        linear-gradient(to bottom, var(--island-bg), var(--island-layer5));
+    background-repeat: repeat;
 }
 
 .on-the-island .container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--island-primary);
     padding: 2rem;
-    border: 2px solid var(--ti-accent4);
-    box-shadow: 0 5px 20px var(--ti-shadow);
+    border: 1px solid var(--island-accent4);
+    box-shadow: var(--island-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--ti-radius);
+    border-radius: var(--island-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
 }
 
 .on-the-island .container::before {
     content: "";
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--island-accent2),
+            transparent);
+}
+
+.on-the-island .container::after {
+    content: "";
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 10px;
-    background: linear-gradient(90deg, var(--ti-accent5), var(--ti-primary), var(--ti-accent5));
-    opacity: 0.5;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--island-accent2),
+            transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .on-the-island #calendar-title {
     font-family: 'Pacifico', cursive;
-    color: var(--ti-primary);
+    color: var(--island-text);
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 0 var(--ti-accent3);
-    animation: ti-wave 5s ease-in-out infinite;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
 }
 
 .on-the-island #calendar-title::after {
     content: "🌴";
-    display: block;
-    font-size: 2rem;
-    margin-top: 0.5rem;
-    animation: ti-bounce 2s ease-in-out infinite;
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: island-pulse 3s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .on-the-island #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 2px dashed var(--ti-secondary);
-    border-radius: var(--ti-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--island-primary);
+    border: 1px solid var(--island-accent4);
+    border-radius: var(--island-radius);
     position: relative;
-    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .on-the-island #date-weather-container::before {
-    content: "☀️";
+    content: "PARADISE ISLAND";
     position: absolute;
-    top: -20px;
-    right: -20px;
-    font-size: 4rem;
-    opacity: 0.1;
-    z-index: 0;
+    top: -10px;
+    right: 20px;
+    background-color: var(--island-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--island-accent2);
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+}
+
+.on-the-island #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--island-accent2), transparent);
 }
 
 .on-the-island #current-date {
     font-family: 'Pacifico', cursive;
-    color: var(--ti-secondary);
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-    z-index: 1;
+    color: var(--island-accent2);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
 }
 
 .on-the-island #today-weather {
     font-family: 'Quicksand', sans-serif;
-    color: var(--ti-primary);
-    font-size: 1.5rem;
-    font-weight: 600;
-    position: relative;
-    z-index: 1;
+    color: var(--island-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .on-the-island #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .on-the-island .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 8px solid var(--ti-accent4);
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--island-accent2);
     border-radius: 50%;
     position: relative;
-    background-color: white;
-    box-shadow: 0 5px 15px var(--ti-shadow);
-}
-
-.on-the-island .clock-face::before {
-    content: "🌊";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    z-index: 1;
+    background-color: var(--island-primary);
+    box-shadow: 0 0 15px rgba(255, 209, 102, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--island-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23FFD166" stroke-width="0.3" opacity="0.3"/></svg>');
 }
 
 .on-the-island .hand {
@@ -201,144 +250,178 @@
     transform: rotate(90deg);
     transition: all 0.05s;
     transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
-    z-index: 2;
 }
 
 .on-the-island .hour-hand {
-    width: 35%;
-    left: 15%;
-    height: 8px;
-    background: var(--ti-secondary);
-    margin-top: -4px;
-    border-radius: 4px;
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--island-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
 }
 
 .on-the-island .minute-hand {
-    width: 45%;
-    left: 5%;
-    height: 6px;
-    background: var(--ti-primary);
-    margin-top: -3px;
-    border-radius: 3px;
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--island-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
 }
 
 .on-the-island .second-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--ti-accent1);
-    margin-top: -1.5px;
-    border-radius: 3px;
+    height: 2px;
+    background: var(--island-text);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.on-the-island .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--island-accent2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--island-primary);
+}
+
+/* Digital display in clock */
+.on-the-island .clock-face::before {
+    content: "🌊";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .on-the-island table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: white;
-    border: 2px solid var(--ti-accent4);
-    border-radius: var(--ti-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
-    box-shadow: 0 5px 15px var(--ti-shadow);
 }
 
+/* DAY OF WEEK HEADERS */
 .on-the-island th {
-    background-color: var(--ti-accent5);
-    color: white;
+    background-color: var(--island-accent2);
+    color: var(--island-primary) !important;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    padding: 1rem;
-    border: 1px solid var(--ti-accent4);
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--island-radius);
     position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.on-the-island th::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 25%;
-    right: 25%;
-    height: 3px;
-    background: white;
-    border-radius: 3px;
+.on-the-island th span.full-day-name {
+    display: inline;
 }
 
+.on-the-island th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
 .on-the-island td {
-    background-color: rgba(168, 230, 207, 0.1);
-    color: var(--ti-text);
-    padding: 1.2rem;
-    border: 1px solid var(--ti-accent4);
-    height: 100px;
+    background-color: var(--island-primary);
+    color: var(--island-text);
+    padding: 1rem;
+    border: 1px solid var(--island-accent4);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--ti-transition);
+    transition: all var(--island-transition);
     position: relative;
+    border-radius: var(--island-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 209, 102, 0.1);
+}
+
+.on-the-island td .date-number {
+    color: var(--island-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Pacifico', cursive;
 }
 
 .on-the-island td:hover {
-    background-color: rgba(255, 154, 60, 0.1);
+    background-color: var(--island-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Current date highlight */
 .on-the-island td.current-day {
-    background-color: var(--ti-current-day);
-    border: 2px solid var(--ti-secondary);
-    color: white;
-    font-weight: 600;
-    animation: ti-pulse 2s infinite;
+    background-color: rgba(255, 209, 102, 0.1);
+    border: 2px solid var(--island-accent2);
+    animation: island-glow 3s infinite;
 }
 
-/* Current date number indicator */
+.on-the-island td.current-day .date-number {
+    color: var(--island-text) !important;
+    font-weight: 700;
+}
+
 .on-the-island td.current-day::before {
-    content: "🏝";
+    content: "🏝️";
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
-    font-size: 1.2rem;
-}
-
-.on-the-island td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: white;
+    font-size: 1.1rem;
+    color: var(--island-accent2);
     font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .on-the-island .event-marker {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: var(--ti-accent1);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--ti-shadow);
-    transition: all var(--ti-transition);
+    background-color: var(--island-accent3);
+    margin: 0 1px;
+    transition: all var(--island-transition);
 }
 
 .on-the-island .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--ti-secondary);
-    box-shadow: 0 0 10px var(--ti-shadow);
+    transform: scale(1.4);
+    background-color: var(--island-accent3);
+    box-shadow: 0 0 6px rgba(239, 71, 111, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .on-the-island .modal-content {
     position: relative;
-    background-color: white;
-    border: 2px solid var(--ti-accent4);
-    padding: 30px;
-    color: var(--ti-text);
-    box-shadow: 0 5px 25px var(--ti-shadow);
-    border-radius: var(--ti-radius);
-    animation: ti-pulse 0.3s ease;
-    overflow: hidden;
+    background-color: var(--island-primary);
+    border: 1px solid var(--island-accent4);
+    padding: 25px;
+    color: var(--island-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--island-radius);
+    animation: island-bob 0.3s ease-out;
 }
 
 .on-the-island .modal-content::before {
@@ -347,49 +430,112 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, var(--ti-accent5), var(--ti-primary), var(--ti-accent1), var(--ti-secondary));
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--island-accent1) 0%,
+            var(--island-accent2) 50%,
+            var(--island-accent1) 100%);
 }
 
 .on-the-island .modal-content h2 {
-    color: var(--ti-primary);
+    color: var(--island-accent2);
     font-family: 'Pacifico', cursive;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 0 var(--ti-accent3);
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.on-the-island .modal-date {
+    font-family: 'Pacifico', cursive;
+    color: var(--island-accent2);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--island-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.on-the-island .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.on-the-island .event-item {
+    background-color: var(--island-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--island-accent2);
+    border-radius: var(--island-radius);
+    transition: all var(--island-transition);
+}
+
+.on-the-island .event-item:hover {
+    background-color: var(--island-layer3);
+    transform: translateX(3px);
+}
+
+.on-the-island .event-time {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--island-accent2);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.on-the-island .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--island-text);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.on-the-island .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--island-text);
+    opacity: 0.9;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .on-the-island .modal-content button {
-    background-color: var(--ti-secondary);
-    color: white;
+    background-color: var(--island-accent2);
+    color: var(--island-primary);
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--ti-transition);
-    border-radius: var(--ti-radius);
-    box-shadow: 0 3px 10px var(--ti-shadow);
+    transition: all var(--island-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--island-radius);
 }
 
 .on-the-island .modal-content button:hover {
-    background-color: var(--ti-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px var(--ti-shadow);
+    background-color: var(--island-hover);
+    box-shadow: 0 3px 10px rgba(255, 209, 102, 0.2);
 }
 
 /* Close Button */
 .on-the-island .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: var(--ti-accent1);
-    color: white;
-    border: none;
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    background-color: var(--island-primary);
+    color: var(--island-text);
+    border: 1px solid var(--island-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--ti-transition);
+    transition: all var(--island-transition);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -398,39 +544,35 @@
 }
 
 .on-the-island .modal .close-button:hover {
-    background-color: var(--ti-secondary);
-    transform: rotate(90deg);
+    background-color: var(--island-text);
+    color: var(--island-accent2);
+    border-color: var(--island-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .on-the-island .button,
 .on-the-island .transparent-button {
-    border: 2px solid var(--ti-secondary);
-    color: var(--ti-secondary);
-    background-color: white;
-    padding: 0.8rem 1.6rem;
+    border: 1px solid var(--island-accent2);
+    color: var(--island-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all var(--ti-transition);
+    transition: all var(--island-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--ti-radius);
-}
-
-.on-the-island .button {
-    background-color: var(--ti-secondary);
-    color: white;
+    margin: 0.4rem;
+    border-radius: var(--island-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .on-the-island .button:hover,
 .on-the-island .transparent-button:hover {
-    background-color: var(--ti-hover);
-    color: white;
-    border-color: var(--ti-hover);
-    box-shadow: 0 5px 15px var(--ti-shadow);
-    transform: translateY(-3px);
+    background-color: var(--island-accent2);
+    color: var(--island-primary);
+    box-shadow: 0 3px 10px rgba(255, 209, 102, 0.15);
 }
 
 .on-the-island .controls {
@@ -438,82 +580,89 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
-/* ==================== THEME SWITCHER FIX ==================== */
+/* ==================== THEME SWITCHER ==================== */
+.on-the-island #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
 .on-the-island #theme-switcher {
-    background-color: white;
-    color: var(--ti-text);
-    border: 2px solid var(--ti-accent4);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    background-color: var(--island-primary);
+    color: var(--island-text) !important;
+    border: 1px solid var(--island-accent2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
     font-family: 'Quicksand', sans-serif;
-    margin-left: 1rem;
-    border-radius: var(--ti-radius);
+    font-size: 0.95rem;
+    font-weight: 700;
+    width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff9a3c'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F5F5DC'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
     cursor: pointer;
-    transition: all var(--ti-transition);
+    transition: all var(--island-transition);
+    border-radius: var(--island-radius);
 }
 
-.on-the-island #theme-switcher:hover {
-    border-color: var(--ti-secondary);
-    box-shadow: 0 3px 10px var(--ti-shadow);
+.on-the-island #theme-switcher option {
+    background-color: var(--island-primary) !important;
+    color: var(--island-text) !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
 }
 
 .on-the-island #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 154, 60, 0.3);
-}
-
-.on-the-island #theme-switcher option {
-    background-color: white;
-    color: var(--ti-text);
-    padding: 0.5rem;
+    border-color: var(--island-accent2);
+    box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .on-the-island #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 2px solid var(--ti-secondary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    color: var(--ti-secondary);
-    background-color: white;
+    font-weight: 700;
+    color: var(--island-primary);
+    background-color: var(--island-accent2);
     cursor: pointer;
-    transition: all var(--ti-transition);
+    transition: all var(--island-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--ti-radius);
-    box-shadow: 0 3px 10px var(--ti-shadow);
+    border-radius: var(--island-radius);
+    box-shadow: 0 2px 8px rgba(255, 209, 102, 0.3);
 }
 
 .on-the-island #backToTopBtn:hover {
-    background-color: var(--ti-secondary);
-    color: white;
-    box-shadow: 0 5px 15px var(--ti-shadow);
+    background-color: var(--island-hover);
     opacity: 1;
-    transform: translateY(-3px);
 }
 
 /* ==================== FOOTER ==================== */
 .on-the-island footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 2px dashed var(--ti-secondary);
-    color: var(--ti-text);
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--island-accent4);
+    color: var(--island-text);
     font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 0.05em;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -523,70 +672,88 @@
     }
 
     .on-the-island #calendar-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .on-the-island #current-date {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .on-the-island #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .on-the-island .modal-date {
         font-size: 1.3rem;
+    }
+
+    .on-the-island .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .on-the-island {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
     .on-the-island .clock-face {
-        width: 160px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
     }
 
-    /* Improved day headers for mobile */
     .on-the-island th {
-        padding: 0.8rem 0.3rem;
-        font-size: 0.9rem;
-        white-space: normal;
-        word-break: break-word;
-        line-height: 1.2;
-    }
-
-    /* 3-letter abbreviations for small screens */
-    .on-the-island th abbr {
-        display: inline;
-        text-decoration: none;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
     }
 
     .on-the-island th span.full-day-name {
         display: none;
     }
 
-    .on-the-island td {
-        padding: 0.6rem;
-        height: 80px;
-        font-size: 0.9rem;
+    .on-the-island th abbr {
+        display: inline;
     }
 
-    /* Adjust current date marker for mobile */
+    .on-the-island td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .on-the-island td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
     .on-the-island td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
     }
 
     .on-the-island #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
         font-size: 0.9rem;
     }
 
-    /* Theme switcher mobile adjustments */
     .on-the-island #theme-switcher {
-        padding: 0.6rem 2rem 0.6rem 0.8rem;
-        background-position: right 0.5rem center;
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
         font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .on-the-island .modal-content {
+        padding: 20px;
+    }
+
+    .on-the-island .event-item {
+        padding: 0.8rem;
     }
 }
 
@@ -596,51 +763,74 @@
     }
 
     .on-the-island #calendar-title {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     .on-the-island #current-date {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .on-the-island #today-weather {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .on-the-island .clock-face {
-        width: 120px;
-        height: 120px;
-        border-width: 6px;
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
     }
 
-    /* Further day header adjustments */
     .on-the-island th {
         font-size: 0.8rem;
-        padding: 0.5rem 0.2rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .on-the-island td {
-        padding: 0.4rem;
+        padding: 0.6rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    /* Current date marker for very small screens */
-    .on-the-island td.current-day::before {
-        width: 16px;
-        height: 16px;
-        font-size: 0.8rem;
+    .on-the-island td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .on-the-island #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .on-the-island .modal-content {
+        padding: 15px;
+    }
+
+    .on-the-island .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .on-the-island .event-time {
+        font-size: 0.9rem;
     }
 }
 
-/* Extra small devices (phones, 400px and down) */
 @media (max-width: 400px) {
     .on-the-island th {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .on-the-island td {
         height: 60px;
+    }
+
+    .on-the-island td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .on-the-island #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
