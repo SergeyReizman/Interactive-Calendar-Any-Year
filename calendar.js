@@ -92,6 +92,7 @@ const applyTheme = (theme) => {
     'desert-mirage', 'desert-water',
     'developers-zone', 'diamond-planet', 'different-perspective',
     'digital-excellence', 'digital-progress', 'distant-skies','divi-divi-trees',
+    'domino-dancing',
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 
     'doterra-magic', 'doterra-new', 'doterra-power', 'dragonfire',
     'dragon-flame', 'dragonfly', 'dragon-well',
