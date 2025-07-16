@@ -147,7 +147,7 @@ const applyTheme = (theme) => {
     'orion-constellation', 'out-of-the-blue',
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
     'pacific-ocean', 'palm-beach',
-    'palma-de-mallorca', 'patagonian-shores', 'patagonian-sky',
+    'palma-de-mallorca', 'patagonian-shores', 'patagonian-sky', 'perfect-afternoon',
     'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'practice-makes-perfect',

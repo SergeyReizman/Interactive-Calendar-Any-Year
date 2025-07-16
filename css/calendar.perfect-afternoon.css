@@ -1,0 +1,834 @@
+/* ==========================================================================
+   Perfect Afternoon Theme - Warm & Cozy Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Golden hour color palette
+   - Soft sunset gradients
+   - Comfortable, inviting design with warm textures
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Afternoon Color Palette */
+    --afternoon-bg: #FFF5E6;
+    --afternoon-text: #3A3226;
+    --afternoon-primary: #FFE8CC;
+    --afternoon-secondary: #FFD8A8;
+    --afternoon-date-number: #E67E22;
+
+    /* Sunset Layers */
+    --afternoon-layer1: #FFE8CC;
+    --afternoon-layer2: #FFD8A8;
+    --afternoon-layer3: #FFC988;
+    --afternoon-layer4: #FFB966;
+    --afternoon-layer5: #FFA94D;
+
+    /* Accent Colors */
+    --afternoon-accent1: #D35400;
+    /* Dark Orange */
+    --afternoon-accent2: #E67E22;
+    /* Carrot Orange */
+    --afternoon-accent3: #F39C12;
+    /* Bright Orange */
+    --afternoon-accent4: rgba(230, 126, 34, 0.5);
+    --afternoon-accent5: rgba(230, 126, 34, 0.3);
+
+    /* Theme Variables */
+    --afternoon-shadow: rgba(230, 126, 34, 0.15);
+    --afternoon-radius: 8px;
+    --afternoon-transition: 0.3s ease-out;
+    --afternoon-hover: #FF8C00;
+    --afternoon-glow: 0 0 12px rgba(230, 126, 34, 0.35);
+    --afternoon-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23E67E22" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes afternoon-glow {
+    0% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes afternoon-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--afternoon-accent2);
+    }
+}
+
+@keyframes afternoon-float {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes afternoon-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--afternoon-shadow);
+    }
+
+    50% {
+        box-shadow: var(--afternoon-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.perfect-afternoon {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--afternoon-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--afternoon-bg);
+    min-height: 100vh;
+    background-image:
+        var(--afternoon-texture),
+        linear-gradient(to bottom, var(--afternoon-bg), var(--afternoon-layer5));
+    background-repeat: repeat;
+}
+
+.perfect-afternoon .container {
+    background-color: var(--afternoon-primary);
+    padding: 2rem;
+    border: 1px solid var(--afternoon-accent4);
+    box-shadow: var(--afternoon-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--afternoon-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.perfect-afternoon .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--afternoon-accent2),
+            transparent);
+}
+
+.perfect-afternoon .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--afternoon-accent2),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.perfect-afternoon #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--afternoon-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+}
+
+.perfect-afternoon #calendar-title::after {
+    content: "☀️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: afternoon-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.perfect-afternoon #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--afternoon-primary);
+    border: 1px solid var(--afternoon-accent4);
+    border-radius: var(--afternoon-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.perfect-afternoon #date-weather-container::before {
+    content: "GOLDEN HOUR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--afternoon-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--afternoon-accent2);
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.perfect-afternoon #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--afternoon-accent2), transparent);
+}
+
+.perfect-afternoon #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--afternoon-accent2);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.perfect-afternoon #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--afternoon-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.perfect-afternoon #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.perfect-afternoon .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--afternoon-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--afternoon-primary);
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--afternoon-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23E67E22" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.perfect-afternoon .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.perfect-afternoon .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--afternoon-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.perfect-afternoon .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--afternoon-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.perfect-afternoon .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--afternoon-text);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.perfect-afternoon .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--afternoon-accent2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--afternoon-primary);
+}
+
+/* Digital display in clock */
+.perfect-afternoon .clock-face::before {
+    content: "⏳";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.perfect-afternoon table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.perfect-afternoon th {
+    background-color: var(--afternoon-accent2);
+    color: var(--afternoon-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--afternoon-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.perfect-afternoon th span.full-day-name {
+    display: inline;
+}
+
+.perfect-afternoon th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.perfect-afternoon td {
+    background-color: var(--afternoon-primary);
+    color: var(--afternoon-text);
+    padding: 1rem;
+    border: 1px solid var(--afternoon-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--afternoon-transition);
+    position: relative;
+    border-radius: var(--afternoon-radius);
+    box-shadow: inset 0 0 0 1px rgba(230, 126, 34, 0.1);
+}
+
+.perfect-afternoon td .date-number {
+    color: var(--afternoon-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.perfect-afternoon td:hover {
+    background-color: var(--afternoon-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.perfect-afternoon td.current-day {
+    background-color: rgba(230, 126, 34, 0.1);
+    border: 2px solid var(--afternoon-accent2);
+    animation: afternoon-glow 3s infinite;
+}
+
+.perfect-afternoon td.current-day .date-number {
+    color: var(--afternoon-text) !important;
+    font-weight: 600;
+}
+
+.perfect-afternoon td.current-day::before {
+    content: "✨";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--afternoon-accent2);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.perfect-afternoon .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--afternoon-accent3);
+    margin: 0 1px;
+    transition: all var(--afternoon-transition);
+}
+
+.perfect-afternoon .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--afternoon-accent3);
+    box-shadow: 0 0 6px rgba(243, 156, 18, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.perfect-afternoon .modal-content {
+    position: relative;
+    background-color: var(--afternoon-primary);
+    border: 1px solid var(--afternoon-accent4);
+    padding: 25px;
+    color: var(--afternoon-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--afternoon-radius);
+    animation: afternoon-float 0.3s ease-out;
+}
+
+.perfect-afternoon .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--afternoon-accent1) 0%,
+            var(--afternoon-accent2) 50%,
+            var(--afternoon-accent1) 100%);
+}
+
+.perfect-afternoon .modal-content h2 {
+    color: var(--afternoon-accent2);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.perfect-afternoon .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--afternoon-accent2);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--afternoon-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.perfect-afternoon .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.perfect-afternoon .event-item {
+    background-color: var(--afternoon-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--afternoon-accent2);
+    border-radius: var(--afternoon-radius);
+    transition: all var(--afternoon-transition);
+}
+
+.perfect-afternoon .event-item:hover {
+    background-color: var(--afternoon-layer3);
+    transform: translateX(3px);
+}
+
+.perfect-afternoon .event-time {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--afternoon-accent2);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.perfect-afternoon .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--afternoon-text);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.perfect-afternoon .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--afternoon-text);
+    opacity: 0.9;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.perfect-afternoon .modal-content button {
+    background-color: var(--afternoon-accent2);
+    color: var(--afternoon-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--afternoon-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--afternoon-radius);
+}
+
+.perfect-afternoon .modal-content button:hover {
+    background-color: var(--afternoon-hover);
+    box-shadow: 0 3px 10px rgba(230, 126, 34, 0.2);
+}
+
+/* Close Button */
+.perfect-afternoon .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--afternoon-primary);
+    color: var(--afternoon-text);
+    border: 1px solid var(--afternoon-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--afternoon-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.perfect-afternoon .modal .close-button:hover {
+    background-color: var(--afternoon-text);
+    color: var(--afternoon-accent2);
+    border-color: var(--afternoon-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.perfect-afternoon .button,
+.perfect-afternoon .transparent-button {
+    border: 1px solid var(--afternoon-accent2);
+    color: var(--afternoon-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--afternoon-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--afternoon-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.perfect-afternoon .button:hover,
+.perfect-afternoon .transparent-button:hover {
+    background-color: var(--afternoon-accent2);
+    color: var(--afternoon-primary);
+    box-shadow: 0 3px 10px rgba(230, 126, 34, 0.15);
+}
+
+.perfect-afternoon .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.perfect-afternoon #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.perfect-afternoon #theme-switcher {
+    background-color: var(--afternoon-primary);
+    color: var(--afternoon-text) !important;
+    border: 1px solid var(--afternoon-accent2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A3226'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--afternoon-transition);
+    border-radius: var(--afternoon-radius);
+}
+
+.perfect-afternoon #theme-switcher option {
+    background-color: var(--afternoon-primary) !important;
+    color: var(--afternoon-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.perfect-afternoon #theme-switcher:focus {
+    outline: none;
+    border-color: var(--afternoon-accent2);
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.perfect-afternoon #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--afternoon-primary);
+    background-color: var(--afternoon-accent2);
+    cursor: pointer;
+    transition: all var(--afternoon-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--afternoon-radius);
+    box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+}
+
+.perfect-afternoon #backToTopBtn:hover {
+    background-color: var(--afternoon-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.perfect-afternoon footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--afternoon-accent4);
+    color: var(--afternoon-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .perfect-afternoon .container {
+        padding: 1.5rem;
+    }
+
+    .perfect-afternoon #calendar-title {
+        font-size: 2rem;
+    }
+
+    .perfect-afternoon #current-date {
+        font-size: 1.5rem;
+    }
+
+    .perfect-afternoon #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .perfect-afternoon .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .perfect-afternoon .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .perfect-afternoon {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .perfect-afternoon .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .perfect-afternoon th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .perfect-afternoon th span.full-day-name {
+        display: none;
+    }
+
+    .perfect-afternoon th abbr {
+        display: inline;
+    }
+
+    .perfect-afternoon td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .perfect-afternoon td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .perfect-afternoon td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .perfect-afternoon #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .perfect-afternoon #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .perfect-afternoon .modal-content {
+        padding: 20px;
+    }
+
+    .perfect-afternoon .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .perfect-afternoon .container {
+        padding: 1rem;
+    }
+
+    .perfect-afternoon #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .perfect-afternoon #current-date {
+        font-size: 1.3rem;
+    }
+
+    .perfect-afternoon #today-weather {
+        font-size: 1rem;
+    }
+
+    .perfect-afternoon .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .perfect-afternoon th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .perfect-afternoon td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .perfect-afternoon td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .perfect-afternoon #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .perfect-afternoon .modal-content {
+        padding: 15px;
+    }
+
+    .perfect-afternoon .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .perfect-afternoon .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .perfect-afternoon th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .perfect-afternoon td {
+        height: 60px;
+    }
+
+    .perfect-afternoon td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .perfect-afternoon #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
