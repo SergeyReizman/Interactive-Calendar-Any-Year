@@ -117,7 +117,7 @@ const applyTheme = (theme) => {
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
     'high-energy', 'high-intelligence','high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
-    'hurricane-clouds', 'hyperloop', 'ice-giant', 'ice-palace',
+    'hurricane-clouds', 'hyperloop', 'iceberg-lake', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 
     'in-the-raspberry-dawn', 'invincible-zone', 'in-your-dreams',
