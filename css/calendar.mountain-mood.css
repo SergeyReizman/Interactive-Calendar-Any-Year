@@ -1,0 +1,835 @@
+/* ==========================================================================
+   Mountain Mood Theme - Earthy Outdoor Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Natural earth tone color palette
+   - Rustic outdoor-inspired design elements
+   - Organic textures and mountain motifs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Mountain Color Palette */
+    --mountain-bg: #2D3436;
+    --mountain-text: #F5F5F5;
+    --mountain-primary: #3A4245;
+    --mountain-secondary: #4A5255;
+    --mountain-date-number: #A5BECC;
+
+    /* Elevation Layers */
+    --mountain-layer1: #3A4245;
+    --mountain-layer2: #4A5255;
+    --mountain-layer3: #5A6265;
+    --mountain-layer4: #6A7275;
+    --mountain-layer5: #7A8285;
+
+    /* Natural Accent Colors */
+    --mountain-accent1: #6C7A89;
+    /* Slate */
+    --mountain-accent2: #A5BECC;
+    /* Sky */
+    --mountain-accent3: #D6DBDF;
+    /* Cloud */
+    --mountain-accent4: rgba(165, 190, 204, 0.5);
+    --mountain-accent5: rgba(165, 190, 204, 0.3);
+
+    /* Theme Variables */
+    --mountain-shadow: rgba(165, 190, 204, 0.15);
+    --mountain-radius: 6px;
+    --mountain-transition: 0.3s ease-out;
+    --mountain-hover: #B8D3E0;
+    --mountain-glow: 0 0 12px rgba(165, 190, 204, 0.35);
+    --mountain-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,60 L30,30 L50,50 L70,20 L100,60 Z" fill="none" stroke="%23A5BECC" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mountain-mist {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes mountain-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--mountain-accent2);
+    }
+}
+
+@keyframes mountain-float {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes mountain-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--mountain-shadow);
+    }
+
+    50% {
+        box-shadow: var(--mountain-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.mountain-mood {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--mountain-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--mountain-bg);
+    min-height: 100vh;
+    background-image:
+        var(--mountain-texture),
+        linear-gradient(to bottom, var(--mountain-bg), var(--mountain-layer5));
+    background-repeat: repeat;
+    animation: mountain-mist 60s linear infinite;
+}
+
+.mountain-mood .container {
+    background-color: var(--mountain-primary);
+    padding: 2rem;
+    border: 1px solid var(--mountain-accent4);
+    box-shadow: var(--mountain-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mountain-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.mountain-mood .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mountain-accent2),
+            transparent);
+}
+
+.mountain-mood .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mountain-accent2),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.mountain-mood #calendar-title {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--mountain-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
+}
+
+.mountain-mood #calendar-title::after {
+    content: "⛰️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: mountain-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.mountain-mood #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--mountain-primary);
+    border: 1px solid var(--mountain-accent4);
+    border-radius: var(--mountain-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mountain-mood #date-weather-container::before {
+    content: "HIGH COUNTRY";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--mountain-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--mountain-accent2);
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.mountain-mood #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mountain-accent2), transparent);
+}
+
+.mountain-mood #current-date {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--mountain-accent2);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.mountain-mood #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--mountain-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.mountain-mood #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.mountain-mood .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--mountain-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mountain-primary);
+    box-shadow: 0 0 15px rgba(165, 190, 204, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--mountain-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23A5BECC" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.mountain-mood .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.mountain-mood .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--mountain-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.mountain-mood .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--mountain-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.mountain-mood .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--mountain-text);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.mountain-mood .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--mountain-accent2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--mountain-primary);
+}
+
+/* Digital display in clock */
+.mountain-mood .clock-face::before {
+    content: "🌄";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.mountain-mood table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.mountain-mood th {
+    background-color: var(--mountain-accent2);
+    color: var(--mountain-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--mountain-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.mountain-mood th span.full-day-name {
+    display: inline;
+}
+
+.mountain-mood th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.mountain-mood td {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-text);
+    padding: 1rem;
+    border: 1px solid var(--mountain-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--mountain-transition);
+    position: relative;
+    border-radius: var(--mountain-radius);
+    box-shadow: inset 0 0 0 1px rgba(165, 190, 204, 0.1);
+}
+
+.mountain-mood td .date-number {
+    color: var(--mountain-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.mountain-mood td:hover {
+    background-color: var(--mountain-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.mountain-mood td.current-day {
+    background-color: rgba(165, 190, 204, 0.1);
+    border: 2px solid var(--mountain-accent2);
+    animation: mountain-glow 3s infinite;
+}
+
+.mountain-mood td.current-day .date-number {
+    color: var(--mountain-text) !important;
+    font-weight: 600;
+}
+
+.mountain-mood td.current-day::before {
+    content: "🏔️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--mountain-accent2);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.mountain-mood .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--mountain-accent3);
+    margin: 0 1px;
+    transition: all var(--mountain-transition);
+}
+
+.mountain-mood .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--mountain-accent3);
+    box-shadow: 0 0 6px rgba(214, 219, 223, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.mountain-mood .modal-content {
+    position: relative;
+    background-color: var(--mountain-primary);
+    border: 1px solid var(--mountain-accent4);
+    padding: 25px;
+    color: var(--mountain-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--mountain-radius);
+    animation: mountain-float 0.3s ease-out;
+}
+
+.mountain-mood .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--mountain-accent1) 0%,
+            var(--mountain-accent2) 50%,
+            var(--mountain-accent1) 100%);
+}
+
+.mountain-mood .modal-content h2 {
+    color: var(--mountain-accent2);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.mountain-mood .modal-date {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--mountain-accent2);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--mountain-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.mountain-mood .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mountain-mood .event-item {
+    background-color: var(--mountain-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--mountain-accent2);
+    border-radius: var(--mountain-radius);
+    transition: all var(--mountain-transition);
+}
+
+.mountain-mood .event-item:hover {
+    background-color: var(--mountain-layer3);
+    transform: translateX(3px);
+}
+
+.mountain-mood .event-time {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--mountain-accent2);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.mountain-mood .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--mountain-text);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mountain-mood .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--mountain-text);
+    opacity: 0.9;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mountain-mood .modal-content button {
+    background-color: var(--mountain-accent2);
+    color: var(--mountain-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--mountain-radius);
+}
+
+.mountain-mood .modal-content button:hover {
+    background-color: var(--mountain-hover);
+    box-shadow: 0 3px 10px rgba(165, 190, 204, 0.2);
+}
+
+/* Close Button */
+.mountain-mood .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--mountain-primary);
+    color: var(--mountain-text);
+    border: 1px solid var(--mountain-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.mountain-mood .modal .close-button:hover {
+    background-color: var(--mountain-text);
+    color: var(--mountain-accent2);
+    border-color: var(--mountain-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.mountain-mood .button,
+.mountain-mood .transparent-button {
+    border: 1px solid var(--mountain-accent2);
+    color: var(--mountain-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--mountain-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.mountain-mood .button:hover,
+.mountain-mood .transparent-button:hover {
+    background-color: var(--mountain-accent2);
+    color: var(--mountain-primary);
+    box-shadow: 0 3px 10px rgba(165, 190, 204, 0.15);
+}
+
+.mountain-mood .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.mountain-mood #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.mountain-mood #theme-switcher {
+    background-color: var(--mountain-primary);
+    color: var(--mountain-text) !important;
+    border: 1px solid var(--mountain-accent2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F5F5F5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    border-radius: var(--mountain-radius);
+}
+
+.mountain-mood #theme-switcher option {
+    background-color: var(--mountain-primary) !important;
+    color: var(--mountain-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.mountain-mood #theme-switcher:focus {
+    outline: none;
+    border-color: var(--mountain-accent2);
+    box-shadow: 0 0 0 2px rgba(165, 190, 204, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.mountain-mood #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--mountain-primary);
+    background-color: var(--mountain-accent2);
+    cursor: pointer;
+    transition: all var(--mountain-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--mountain-radius);
+    box-shadow: 0 2px 8px rgba(165, 190, 204, 0.3);
+}
+
+.mountain-mood #backToTopBtn:hover {
+    background-color: var(--mountain-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.mountain-mood footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--mountain-accent4);
+    color: var(--mountain-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Libre Baskerville', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .mountain-mood .container {
+        padding: 1.5rem;
+    }
+
+    .mountain-mood #calendar-title {
+        font-size: 2rem;
+    }
+
+    .mountain-mood #current-date {
+        font-size: 1.5rem;
+    }
+
+    .mountain-mood #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .mountain-mood .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .mountain-mood .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mountain-mood {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .mountain-mood .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .mountain-mood th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .mountain-mood th span.full-day-name {
+        display: none;
+    }
+
+    .mountain-mood th abbr {
+        display: inline;
+    }
+
+    .mountain-mood td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .mountain-mood td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .mountain-mood td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .mountain-mood #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .mountain-mood #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .mountain-mood .modal-content {
+        padding: 20px;
+    }
+
+    .mountain-mood .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .mountain-mood .container {
+        padding: 1rem;
+    }
+
+    .mountain-mood #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .mountain-mood #current-date {
+        font-size: 1.3rem;
+    }
+
+    .mountain-mood #today-weather {
+        font-size: 1rem;
+    }
+
+    .mountain-mood .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .mountain-mood th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .mountain-mood td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .mountain-mood td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .mountain-mood #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .mountain-mood .modal-content {
+        padding: 15px;
+    }
+
+    .mountain-mood .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .mountain-mood .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .mountain-mood th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .mountain-mood td {
+        height: 60px;
+    }
+
+    .mountain-mood td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .mountain-mood #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}

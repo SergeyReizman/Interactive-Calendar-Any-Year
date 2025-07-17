@@ -136,7 +136,7 @@ const applyTheme = (theme) => {
     'midnight-black', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'modern-technology',
     'monochrome-ink','moonlit-path', 'morning-forest', 'mountain-lake', 'mountain-landscape', 
-    'mountain-of-dreams', 'mountain-peak', 'mountain-view',
+    'mountain-mood', 'mountain-of-dreams', 'mountain-peak', 'mountain-view',
     'mount-cook', 'mount-fuji', 'my-dream-country', 'my-tomorrow', 'neon-nights',
     'new-ai', 'new-black', 'new-millenium', 'new-style', 'next-steps',
     'niagara-falls', 'night-dragon', 'night-mode-design', 
