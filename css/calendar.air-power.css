@@ -1,0 +1,835 @@
+/* ==========================================================================
+   Air Power Theme - Modern Aviation Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Sleek aviation color palette (blues, grays, accents)
+   - Modern, clean interface with aircraft-inspired elements
+   - Dynamic transitions and HUD-style elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;700&family=Orbitron:wght@400;700&display=swap');
+
+:root {
+    /* Aviation Color Palette */
+    --air-bg: #0A1A2F;
+    --air-text: #E0F0FF;
+    --air-primary: #1A2A3F;
+    --air-secondary: #2A3A4F;
+    --air-date-number: #00B4D8;
+
+    /* Sky Layers */
+    --air-layer1: #1A2A3F;
+    --air-layer2: #2A3A4F;
+    --air-layer3: #3A4A5F;
+    --air-layer4: #4A5A6F;
+    --air-layer5: #5A6A7F;
+
+    /* Accent Colors */
+    --air-accent1: #0077B6;
+    /* Deep Blue */
+    --air-accent2: #00B4D8;
+    /* Sky Blue */
+    --air-accent3: #90E0EF;
+    /* Light Blue */
+    --air-accent4: rgba(0, 180, 216, 0.5);
+    --air-accent5: rgba(0, 180, 216, 0.3);
+
+    /* Theme Variables */
+    --air-shadow: rgba(0, 180, 216, 0.15);
+    --air-radius: 4px;
+    --air-transition: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    --air-hover: #48CAE4;
+    --air-glow: 0 0 12px rgba(0, 180, 216, 0.35);
+    --air-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,50 Q25,40 50,50 T90,50" fill="none" stroke="%2300B4D8" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes air-scan {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes air-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--air-accent2);
+    }
+}
+
+@keyframes air-hud {
+    from {
+        transform: scale(0.98);
+    }
+
+    to {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes air-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--air-shadow);
+    }
+
+    50% {
+        box-shadow: var(--air-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.air-power {
+    font-family: 'Kanit', sans-serif;
+    color: var(--air-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--air-bg);
+    min-height: 100vh;
+    background-image:
+        var(--air-texture),
+        linear-gradient(to bottom, var(--air-bg), var(--air-layer5));
+    background-repeat: repeat;
+    animation: air-scan 60s linear infinite;
+}
+
+.air-power .container {
+    background-color: var(--air-primary);
+    padding: 2rem;
+    border: 1px solid var(--air-accent4);
+    box-shadow: var(--air-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--air-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.air-power .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--air-accent2),
+            transparent);
+}
+
+.air-power .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--air-accent2),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.air-power #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--air-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+}
+
+.air-power #calendar-title::after {
+    content: "✈️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: air-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.air-power #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--air-primary);
+    border: 1px solid var(--air-accent4);
+    border-radius: var(--air-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.air-power #date-weather-container::before {
+    content: "FLIGHT DECK";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--air-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--air-accent2);
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+.air-power #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--air-accent2), transparent);
+}
+
+.air-power #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--air-accent2);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.1em;
+}
+
+.air-power #today-weather {
+    font-family: 'Kanit', sans-serif;
+    color: var(--air-text);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.air-power #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.air-power .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--air-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--air-primary);
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--air-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300B4D8" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.air-power .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.air-power .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--air-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.air-power .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--air-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.air-power .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--air-text);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.air-power .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--air-accent2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--air-primary);
+}
+
+/* Digital display in clock */
+.air-power .clock-face::before {
+    content: "🛩️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.air-power table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.air-power th {
+    background-color: var(--air-accent2);
+    color: var(--air-primary) !important;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--air-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.air-power th span.full-day-name {
+    display: inline;
+}
+
+.air-power th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.air-power td {
+    background-color: var(--air-primary);
+    color: var(--air-text);
+    padding: 1rem;
+    border: 1px solid var(--air-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--air-transition);
+    position: relative;
+    border-radius: var(--air-radius);
+    box-shadow: inset 0 0 0 1px rgba(0, 180, 216, 0.1);
+}
+
+.air-power td .date-number {
+    color: var(--air-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.air-power td:hover {
+    background-color: var(--air-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.air-power td.current-day {
+    background-color: rgba(0, 180, 216, 0.1);
+    border: 2px solid var(--air-accent2);
+    animation: air-glow 3s infinite;
+}
+
+.air-power td.current-day .date-number {
+    color: var(--air-text) !important;
+    font-weight: 700;
+}
+
+.air-power td.current-day::before {
+    content: "🛫";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--air-accent2);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.air-power .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--air-accent3);
+    margin: 0 1px;
+    transition: all var(--air-transition);
+}
+
+.air-power .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--air-accent3);
+    box-shadow: 0 0 6px rgba(144, 224, 239, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.air-power .modal-content {
+    position: relative;
+    background-color: var(--air-primary);
+    border: 1px solid var(--air-accent4);
+    padding: 25px;
+    color: var(--air-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--air-radius);
+    animation: air-hud 0.3s ease-out;
+}
+
+.air-power .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--air-accent1) 0%,
+            var(--air-accent2) 50%,
+            var(--air-accent1) 100%);
+}
+
+.air-power .modal-content h2 {
+    color: var(--air-accent2);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+/* Modal date display */
+.air-power .modal-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--air-accent2);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--air-accent4);
+    letter-spacing: 0.1em;
+}
+
+/* Event list */
+.air-power .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.air-power .event-item {
+    background-color: var(--air-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--air-accent2);
+    border-radius: var(--air-radius);
+    transition: all var(--air-transition);
+}
+
+.air-power .event-item:hover {
+    background-color: var(--air-layer3);
+    transform: translateX(3px);
+}
+
+.air-power .event-time {
+    font-family: 'Kanit', sans-serif;
+    color: var(--air-accent2);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.air-power .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--air-text);
+    font-family: 'Kanit', sans-serif;
+}
+
+.air-power .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--air-text);
+    opacity: 0.9;
+    font-family: 'Kanit', sans-serif;
+}
+
+.air-power .modal-content button {
+    background-color: var(--air-accent2);
+    color: var(--air-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--air-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Kanit', sans-serif;
+    border-radius: var(--air-radius);
+}
+
+.air-power .modal-content button:hover {
+    background-color: var(--air-hover);
+    box-shadow: 0 3px 10px rgba(0, 180, 216, 0.2);
+}
+
+/* Close Button */
+.air-power .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--air-primary);
+    color: var(--air-text);
+    border: 1px solid var(--air-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--air-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.air-power .modal .close-button:hover {
+    background-color: var(--air-text);
+    color: var(--air-accent2);
+    border-color: var(--air-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.air-power .button,
+.air-power .transparent-button {
+    border: 1px solid var(--air-accent2);
+    color: var(--air-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--air-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--air-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.air-power .button:hover,
+.air-power .transparent-button:hover {
+    background-color: var(--air-accent2);
+    color: var(--air-primary);
+    box-shadow: 0 3px 10px rgba(0, 180, 216, 0.15);
+}
+
+.air-power .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.air-power #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.air-power #theme-switcher {
+    background-color: var(--air-primary);
+    color: var(--air-text) !important;
+    border: 1px solid var(--air-accent2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--air-transition);
+    border-radius: var(--air-radius);
+}
+
+.air-power #theme-switcher option {
+    background-color: var(--air-primary) !important;
+    color: var(--air-text) !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
+}
+
+.air-power #theme-switcher:focus {
+    outline: none;
+    border-color: var(--air-accent2);
+    box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.air-power #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 700;
+    color: var(--air-primary);
+    background-color: var(--air-accent2);
+    cursor: pointer;
+    transition: all var(--air-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--air-radius);
+    box-shadow: 0 2px 8px rgba(0, 180, 216, 0.3);
+}
+
+.air-power #backToTopBtn:hover {
+    background-color: var(--air-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.air-power footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--air-accent4);
+    color: var(--air-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .air-power .container {
+        padding: 1.5rem;
+    }
+
+    .air-power #calendar-title {
+        font-size: 2rem;
+    }
+
+    .air-power #current-date {
+        font-size: 1.5rem;
+    }
+
+    .air-power #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .air-power .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .air-power .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .air-power {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .air-power .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .air-power th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .air-power th span.full-day-name {
+        display: none;
+    }
+
+    .air-power th abbr {
+        display: inline;
+    }
+
+    .air-power td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .air-power td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .air-power td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .air-power #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .air-power #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .air-power .modal-content {
+        padding: 20px;
+    }
+
+    .air-power .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .air-power .container {
+        padding: 1rem;
+    }
+
+    .air-power #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .air-power #current-date {
+        font-size: 1.3rem;
+    }
+
+    .air-power #today-weather {
+        font-size: 1rem;
+    }
+
+    .air-power .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .air-power th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .air-power td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .air-power td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .air-power #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .air-power .modal-content {
+        padding: 15px;
+    }
+
+    .air-power .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .air-power .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .air-power th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .air-power td {
+        height: 60px;
+    }
+
+    .air-power td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .air-power #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
