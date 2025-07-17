@@ -1,0 +1,834 @@
+/* ==========================================================================
+   Main Stream Theme - Clean & Modern Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Minimal blue and white color palette
+   - Streamlined design with clean typography
+   - Smooth transitions and subtle textures
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Main Stream Color Palette */
+    --mainstream-bg: #FFFFFF;
+    --mainstream-text: #333333;
+    --mainstream-primary: #F8FAFC;
+    --mainstream-secondary: #EFF2F5;
+    --mainstream-date-number: #2563EB;
+
+    /* Main Stream Layers */
+    --mainstream-layer1: #F8FAFC;
+    --mainstream-layer2: #EFF2F5;
+    --mainstream-layer3: #E5E9EC;
+    --mainstream-layer4: #DCE0E3;
+    --mainstream-layer5: #D2D6DA;
+
+    /* Accent Colors */
+    --mainstream-accent1: #1D4ED8;
+    /* Dark Blue */
+    --mainstream-accent2: #2563EB;
+    /* Bright Blue */
+    --mainstream-accent3: #3B82F6;
+    /* Light Blue */
+    --mainstream-accent4: rgba(37, 99, 235, 0.5);
+    --mainstream-accent5: rgba(37, 99, 235, 0.3);
+
+    /* Theme Variables */
+    --mainstream-shadow: rgba(37, 99, 235, 0.15);
+    --mainstream-radius: 6px;
+    --mainstream-transition: 0.2s ease-out;
+    --mainstream-hover: #3B82F6;
+    --mainstream-glow: 0 0 12px rgba(37, 99, 235, 0.15);
+    --mainstream-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="5" fill="%232563EB" opacity="0.05"/><rect x="10" y="25" width="80" height="5" fill="%232563EB" opacity="0.05"/><rect x="10" y="40" width="80" height="5" fill="%232563EB" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mainstream-fade {
+    0% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes mainstream-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--mainstream-accent2);
+    }
+}
+
+@keyframes mainstream-slide {
+    from {
+        transform: translateY(5px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mainstream-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--mainstream-shadow);
+    }
+
+    50% {
+        box-shadow: var(--mainstream-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.main-stream {
+    font-family: 'Inter', sans-serif;
+    color: var(--mainstream-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--mainstream-bg);
+    min-height: 100vh;
+    background-image:
+        var(--mainstream-texture),
+        linear-gradient(to bottom, var(--mainstream-bg), var(--mainstream-layer5));
+    background-repeat: repeat;
+}
+
+.main-stream .container {
+    background-color: var(--mainstream-primary);
+    padding: 2rem;
+    border: 1px solid var(--mainstream-accent4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mainstream-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.02), transparent);
+}
+
+.main-stream .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mainstream-accent2),
+            transparent);
+}
+
+.main-stream .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--mainstream-accent2),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.main-stream #calendar-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--mainstream-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+    position: relative;
+    font-weight: 700;
+}
+
+.main-stream #calendar-title::after {
+    content: "📅";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: mainstream-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.main-stream #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--mainstream-primary);
+    border: 1px solid var(--mainstream-accent4);
+    border-radius: var(--mainstream-radius);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.main-stream #date-weather-container::before {
+    content: "TODAY";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--mainstream-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--mainstream-accent2);
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.main-stream #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mainstream-accent2), transparent);
+}
+
+.main-stream #current-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--mainstream-accent2);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+}
+
+.main-stream #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--mainstream-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.main-stream #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.main-stream .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--mainstream-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mainstream-primary);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--mainstream-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%232563EB" stroke-width="0.3" opacity="0.2"/></svg>');
+}
+
+.main-stream .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.main-stream .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--mainstream-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.main-stream .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--mainstream-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.main-stream .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--mainstream-text);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.main-stream .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--mainstream-accent2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--mainstream-primary);
+}
+
+/* Digital display in clock */
+.main-stream .clock-face::before {
+    content: "🕒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.main-stream table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.main-stream th {
+    background-color: var(--mainstream-accent2);
+    color: var(--mainstream-primary) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--mainstream-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.main-stream th span.full-day-name {
+    display: inline;
+}
+
+.main-stream th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.main-stream td {
+    background-color: var(--mainstream-primary);
+    color: var(--mainstream-text);
+    padding: 1rem;
+    border: 1px solid var(--mainstream-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--mainstream-transition);
+    position: relative;
+    border-radius: var(--mainstream-radius);
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.05);
+}
+
+.main-stream td .date-number {
+    color: var(--mainstream-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.main-stream td:hover {
+    background-color: var(--mainstream-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.main-stream td.current-day {
+    background-color: rgba(37, 99, 235, 0.05);
+    border: 2px solid var(--mainstream-accent2);
+    animation: mainstream-glow 3s infinite;
+}
+
+.main-stream td.current-day .date-number {
+    color: var(--mainstream-text) !important;
+    font-weight: 700;
+}
+
+.main-stream td.current-day::before {
+    content: "📍";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--mainstream-accent2);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.main-stream .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--mainstream-accent3);
+    margin: 0 1px;
+    transition: all var(--mainstream-transition);
+}
+
+.main-stream .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--mainstream-accent3);
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.main-stream .modal-content {
+    position: relative;
+    background-color: var(--mainstream-primary);
+    border: 1px solid var(--mainstream-accent4);
+    padding: 25px;
+    color: var(--mainstream-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--mainstream-radius);
+    animation: mainstream-slide 0.3s ease-out;
+}
+
+.main-stream .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--mainstream-accent1) 0%,
+            var(--mainstream-accent2) 50%,
+            var(--mainstream-accent1) 100%);
+}
+
+.main-stream .modal-content h2 {
+    color: var(--mainstream-accent2);
+    font-family: 'Inter', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Modal date display */
+.main-stream .modal-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--mainstream-accent2);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--mainstream-accent4);
+    letter-spacing: -0.02em;
+}
+
+/* Event list */
+.main-stream .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-stream .event-item {
+    background-color: var(--mainstream-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--mainstream-accent2);
+    border-radius: var(--mainstream-radius);
+    transition: all var(--mainstream-transition);
+}
+
+.main-stream .event-item:hover {
+    background-color: var(--mainstream-layer3);
+    transform: translateX(3px);
+}
+
+.main-stream .event-time {
+    font-family: 'Inter', sans-serif;
+    color: var(--mainstream-accent2);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: -0.01em;
+}
+
+.main-stream .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--mainstream-text);
+    font-family: 'Inter', sans-serif;
+}
+
+.main-stream .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--mainstream-text);
+    opacity: 0.9;
+    font-family: 'Inter', sans-serif;
+}
+
+.main-stream .modal-content button {
+    background-color: var(--mainstream-accent2);
+    color: var(--mainstream-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--mainstream-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--mainstream-radius);
+}
+
+.main-stream .modal-content button:hover {
+    background-color: var(--mainstream-hover);
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.1);
+}
+
+/* Close Button */
+.main-stream .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--mainstream-primary);
+    color: var(--mainstream-text);
+    border: 1px solid var(--mainstream-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--mainstream-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.main-stream .modal .close-button:hover {
+    background-color: var(--mainstream-text);
+    color: var(--mainstream-accent2);
+    border-color: var(--mainstream-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.main-stream .button,
+.main-stream .transparent-button {
+    border: 1px solid var(--mainstream-accent2);
+    color: var(--mainstream-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--mainstream-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--mainstream-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.main-stream .button:hover,
+.main-stream .transparent-button:hover {
+    background-color: var(--mainstream-accent2);
+    color: var(--mainstream-primary);
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.1);
+}
+
+.main-stream .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.main-stream #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.main-stream #theme-switcher {
+    background-color: var(--mainstream-primary);
+    color: var(--mainstream-text) !important;
+    border: 1px solid var(--mainstream-accent2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--mainstream-transition);
+    border-radius: var(--mainstream-radius);
+}
+
+.main-stream #theme-switcher option {
+    background-color: var(--mainstream-primary) !important;
+    color: var(--mainstream-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.main-stream #theme-switcher:focus {
+    outline: none;
+    border-color: var(--mainstream-accent2);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.main-stream #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--mainstream-primary);
+    background-color: var(--mainstream-accent2);
+    cursor: pointer;
+    transition: all var(--mainstream-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--mainstream-radius);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+}
+
+.main-stream #backToTopBtn:hover {
+    background-color: var(--mainstream-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.main-stream footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--mainstream-accent4);
+    color: var(--mainstream-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .main-stream .container {
+        padding: 1.5rem;
+    }
+
+    .main-stream #calendar-title {
+        font-size: 2rem;
+    }
+
+    .main-stream #current-date {
+        font-size: 1.5rem;
+    }
+
+    .main-stream #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .main-stream .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .main-stream .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-stream {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .main-stream .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
+    }
+
+    .main-stream th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .main-stream th span.full-day-name {
+        display: none;
+    }
+
+    .main-stream th abbr {
+        display: inline;
+    }
+
+    .main-stream td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .main-stream td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .main-stream td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .main-stream #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .main-stream #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .main-stream .modal-content {
+        padding: 20px;
+    }
+
+    .main-stream .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-stream .container {
+        padding: 1rem;
+    }
+
+    .main-stream #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .main-stream #current-date {
+        font-size: 1.3rem;
+    }
+
+    .main-stream #today-weather {
+        font-size: 1rem;
+    }
+
+    .main-stream .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .main-stream th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .main-stream td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .main-stream td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .main-stream #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .main-stream .modal-content {
+        padding: 15px;
+    }
+
+    .main-stream .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .main-stream .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .main-stream th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .main-stream td {
+        height: 60px;
+    }
+
+    .main-stream td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .main-stream #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}

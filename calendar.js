@@ -130,7 +130,7 @@ const applyTheme = (theme) => {
     'limited-edition', 'lions-mane', 'logical-intelligence', 'love-and-passion',
     'love-of-yesterday','love-station', 'lucid-dream', 'lunar-eclipse', 
     'luxury-design', 'luxury-life', 'macaroni-penguin',
-    'magellanic-penguin', 'magic-colors', 'magic-fly',
+    'magellanic-penguin', 'magic-colors', 'magic-fly', 'main-stream',
     'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment', 'midnight-alchemy', 
     'midnight-black', 'midnight-train', 'midnight-elegance',
