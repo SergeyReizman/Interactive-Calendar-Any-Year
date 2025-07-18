@@ -1,0 +1,835 @@
+/* ==========================================================================
+   Blue Sky Theme - Serene Sky Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Sky blue color palette with soft clouds and bright accents
+   - Airy, open design with cloud elements
+   - Light textures and celestial motifs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;600&display=swap');
+
+:root {
+    /* Sky Color Palette */
+    --sky-bg: #E6F7FF;
+    --sky-text: #1A3E72;
+    --sky-primary: #B3E5FC;
+    --sky-secondary: #81D4FA;
+    --sky-date-number: #0288D1;
+
+    /* Cloud Layer Colors */
+    --sky-layer1: #B3E5FC;
+    --sky-layer2: #81D4FA;
+    --sky-layer3: #4FC3F7;
+    --sky-layer4: #29B6F6;
+    --sky-layer5: #03A9F4;
+
+    /* Bright Accent Colors */
+    --sky-accent1: #0288D1;
+    /* Deep Sky Blue */
+    --sky-accent2: #FFEB3B;
+    /* Sunshine Yellow */
+    --sky-accent3: #FF9800;
+    /* Sunrise Orange */
+    --sky-accent4: rgba(2, 136, 209, 0.5);
+    --sky-accent5: rgba(255, 235, 59, 0.3);
+
+    /* Theme Variables */
+    --sky-shadow: rgba(2, 136, 209, 0.15);
+    --sky-radius: 8px;
+    --sky-transition: 0.3s ease-out;
+    --sky-hover: #4FC3F7;
+    --sky-glow: 0 0 12px rgba(2, 136, 209, 0.35);
+    --sky-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,50 Q35,30 50,50 T80,50 Q95,70 80,50 T50,50 Q20,30 20,50 Z" fill="none" stroke="%230288D1" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sky-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--sky-accent1);
+    }
+}
+
+@keyframes sky-float {
+    from {
+        transform: translateY(-2px);
+    }
+
+    to {
+        transform: translateY(2px);
+    }
+}
+
+@keyframes sky-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--sky-shadow);
+    }
+
+    50% {
+        box-shadow: var(--sky-glow);
+    }
+}
+
+@keyframes cloud-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.blue-sky {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--sky-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--sky-bg);
+    min-height: 100vh;
+    background-image:
+        var(--sky-texture),
+        linear-gradient(to bottom, var(--sky-bg), var(--sky-layer5));
+    background-repeat: repeat;
+    animation: cloud-drift 60s linear infinite;
+}
+
+.blue-sky .container {
+    background-color: var(--sky-primary);
+    padding: 2rem;
+    border: 1px solid var(--sky-accent4);
+    box-shadow: var(--sky-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--sky-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.blue-sky .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--sky-accent1),
+            transparent);
+}
+
+.blue-sky .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--sky-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.blue-sky #calendar-title {
+    font-family: 'Pacifico', cursive;
+    color: var(--sky-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
+}
+
+.blue-sky #calendar-title::after {
+    content: "☀️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: sky-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.blue-sky #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--sky-primary);
+    border: 1px solid var(--sky-accent4);
+    border-radius: var(--sky-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blue-sky #date-weather-container::before {
+    content: "SERENE SKIES";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--sky-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--sky-accent1);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+}
+
+.blue-sky #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sky-accent1), transparent);
+}
+
+.blue-sky #current-date {
+    font-family: 'Pacifico', cursive;
+    color: var(--sky-accent1);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.blue-sky #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--sky-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.blue-sky #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.blue-sky .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--sky-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--sky-primary);
+    box-shadow: 0 0 15px rgba(2, 136, 209, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--sky-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%230288D1" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.blue-sky .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.blue-sky .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--sky-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.blue-sky .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--sky-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.blue-sky .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--sky-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.blue-sky .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--sky-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--sky-primary);
+}
+
+/* Digital display in clock */
+.blue-sky .clock-face::before {
+    content: "☁️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.blue-sky table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.blue-sky th {
+    background-color: var(--sky-accent1);
+    color: var(--sky-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--sky-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.blue-sky th span.full-day-name {
+    display: inline;
+}
+
+.blue-sky th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.blue-sky td {
+    background-color: var(--sky-primary);
+    color: var(--sky-text);
+    padding: 1rem;
+    border: 1px solid var(--sky-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--sky-transition);
+    position: relative;
+    border-radius: var(--sky-radius);
+    box-shadow: inset 0 0 0 1px rgba(2, 136, 209, 0.1);
+}
+
+.blue-sky td .date-number {
+    color: var(--sky-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Pacifico', cursive;
+}
+
+.blue-sky td:hover {
+    background-color: var(--sky-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.blue-sky td.current-day {
+    background-color: rgba(2, 136, 209, 0.1);
+    border: 2px solid var(--sky-accent1);
+    animation: sky-glow 3s infinite;
+}
+
+.blue-sky td.current-day .date-number {
+    color: var(--sky-text) !important;
+    font-weight: 600;
+}
+
+.blue-sky td.current-day::before {
+    content: "☀️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--sky-accent2);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.blue-sky .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--sky-accent2);
+    margin: 0 1px;
+    transition: all var(--sky-transition);
+}
+
+.blue-sky .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--sky-accent2);
+    box-shadow: 0 0 6px rgba(255, 235, 59, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.blue-sky .modal-content {
+    position: relative;
+    background-color: var(--sky-primary);
+    border: 1px solid var(--sky-accent4);
+    padding: 25px;
+    color: var(--sky-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: var(--sky-radius);
+    animation: sky-float 0.3s ease-out;
+}
+
+.blue-sky .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--sky-accent1) 0%,
+            var(--sky-accent2) 50%,
+            var(--sky-accent1) 100%);
+}
+
+.blue-sky .modal-content h2 {
+    color: var(--sky-accent1);
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.blue-sky .modal-date {
+    font-family: 'Pacifico', cursive;
+    color: var(--sky-accent1);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--sky-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.blue-sky .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.blue-sky .event-item {
+    background-color: var(--sky-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--sky-accent1);
+    border-radius: var(--sky-radius);
+    transition: all var(--sky-transition);
+}
+
+.blue-sky .event-item:hover {
+    background-color: var(--sky-layer3);
+    transform: translateX(3px);
+}
+
+.blue-sky .event-time {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--sky-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.blue-sky .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--sky-text);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.blue-sky .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--sky-text);
+    opacity: 0.9;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.blue-sky .modal-content button {
+    background-color: var(--sky-accent1);
+    color: var(--sky-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sky-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--sky-radius);
+}
+
+.blue-sky .modal-content button:hover {
+    background-color: var(--sky-hover);
+    box-shadow: 0 3px 10px rgba(2, 136, 209, 0.2);
+}
+
+/* Close Button */
+.blue-sky .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--sky-primary);
+    color: var(--sky-text);
+    border: 1px solid var(--sky-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--sky-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.blue-sky .modal .close-button:hover {
+    background-color: var(--sky-text);
+    color: var(--sky-accent1);
+    border-color: var(--sky-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.blue-sky .button,
+.blue-sky .transparent-button {
+    border: 1px solid var(--sky-accent1);
+    color: var(--sky-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sky-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--sky-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.blue-sky .button:hover,
+.blue-sky .transparent-button:hover {
+    background-color: var(--sky-accent1);
+    color: var(--sky-primary);
+    box-shadow: 0 3px 10px rgba(2, 136, 209, 0.15);
+}
+
+.blue-sky .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.blue-sky #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.blue-sky #theme-switcher {
+    background-color: var(--sky-primary);
+    color: var(--sky-text) !important;
+    border: 1px solid var(--sky-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231A3E72'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--sky-transition);
+    border-radius: var(--sky-radius);
+}
+
+.blue-sky #theme-switcher option {
+    background-color: var(--sky-primary) !important;
+    color: var(--sky-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.blue-sky #theme-switcher:focus {
+    outline: none;
+    border-color: var(--sky-accent1);
+    box-shadow: 0 0 0 2px rgba(2, 136, 209, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.blue-sky #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: var(--sky-primary);
+    background-color: var(--sky-accent1);
+    cursor: pointer;
+    transition: all var(--sky-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--sky-radius);
+    box-shadow: 0 2px 8px rgba(2, 136, 209, 0.3);
+}
+
+.blue-sky #backToTopBtn:hover {
+    background-color: var(--sky-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.blue-sky footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--sky-accent4);
+    color: var(--sky-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .blue-sky .container {
+        padding: 1.5rem;
+    }
+
+    .blue-sky #calendar-title {
+        font-size: 2rem;
+    }
+
+    .blue-sky #current-date {
+        font-size: 1.5rem;
+    }
+
+    .blue-sky #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .blue-sky .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .blue-sky .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blue-sky {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .blue-sky .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .blue-sky th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .blue-sky th span.full-day-name {
+        display: none;
+    }
+
+    .blue-sky th abbr {
+        display: inline;
+    }
+
+    .blue-sky td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .blue-sky td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .blue-sky td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .blue-sky #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .blue-sky #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .blue-sky .modal-content {
+        padding: 20px;
+    }
+
+    .blue-sky .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .blue-sky .container {
+        padding: 1rem;
+    }
+
+    .blue-sky #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .blue-sky #current-date {
+        font-size: 1.3rem;
+    }
+
+    .blue-sky #today-weather {
+        font-size: 1rem;
+    }
+
+    .blue-sky .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .blue-sky th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .blue-sky td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .blue-sky td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .blue-sky #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .blue-sky .modal-content {
+        padding: 15px;
+    }
+
+    .blue-sky .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .blue-sky .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .blue-sky th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .blue-sky td {
+        height: 60px;
+    }
+
+    .blue-sky td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .blue-sky #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
