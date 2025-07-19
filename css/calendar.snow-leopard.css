@@ -1,0 +1,845 @@
+/* ==========================================================================
+   Snow Leopard Theme - Arctic Wilderness Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Frosty color palette with cool blues and whites
+   - Winter wildlife elements with snow textures
+   - Elegant, crisp design with subtle animal motifs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    /* Arctic Color Palette */
+    --snow-bg: #F8FBFE;
+    --snow-text: #2C3E50;
+    --snow-primary: #E6F0F7;
+    --snow-secondary: #D4E6F4;
+    --snow-date-number: #5D8BF4;
+
+    /* Frost Layer Colors */
+    --snow-layer1: #E6F0F7;
+    --snow-layer2: #D4E6F4;
+    --snow-layer3: #C2DCF1;
+    --snow-layer4: #B0D2EE;
+    --snow-layer5: #9EC8EB;
+
+    /* Cool Accent Colors */
+    --snow-accent1: #5D8BF4;
+    /* Ice Blue */
+    --snow-accent2: #2E86C1;
+    /* Deep Blue */
+    --snow-accent3: #A569BD;
+    /* Frost Purple */
+    --snow-accent4: rgba(93, 139, 244, 0.5);
+    --snow-accent5: rgba(46, 134, 193, 0.3);
+
+    /* Theme Variables */
+    --snow-shadow: rgba(93, 139, 244, 0.15);
+    --snow-radius: 8px;
+    --snow-transition: 0.3s ease-out;
+    --snow-hover: #7D9FF7;
+    --snow-glow: 0 0 12px rgba(93, 139, 244, 0.25);
+    --snow-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%235D8BF4" opacity="0.1"/><circle cx="50" cy="50" r="1.5" fill="%235D8BF4" opacity="0.1"/><circle cx="80" cy="30" r="1" fill="%235D8BF4" opacity="0.1"/></svg>');
+    --snow-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,30 Q40,20 50,30 T70,30 Q80,40 70,50 T70,70 Q60,80 50,70 T30,70 Q20,60 30,50 Z" fill="none" stroke="%235D8BF4" stroke-width="0.3" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes snow-fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.5;
+    }
+}
+
+@keyframes snow-pulse {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--snow-accent1);
+    }
+}
+
+@keyframes snow-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--snow-shadow);
+    }
+
+    50% {
+        box-shadow: var(--snow-glow);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.snow-leopard {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--snow-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--snow-bg);
+    min-height: 100vh;
+    background-image:
+        var(--snow-texture),
+        var(--snow-pattern),
+        linear-gradient(to bottom, var(--snow-bg), var(--snow-layer5));
+    background-repeat: repeat;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Snowfall effect */
+.snow-leopard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.8"/><circle cx="30" cy="30" r="0.8" fill="white" opacity="0.6"/><circle cx="70" cy="20" r="0.6" fill="white" opacity="0.4"/></svg>');
+    background-repeat: repeat;
+    pointer-events: none;
+    animation: snow-fall 10s linear infinite;
+    z-index: 1;
+}
+
+.snow-leopard .container {
+    background-color: var(--snow-primary);
+    padding: 2rem;
+    border: 1px solid var(--snow-accent4);
+    box-shadow: var(--snow-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--snow-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    z-index: 2;
+}
+
+.snow-leopard .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--snow-accent1),
+            transparent);
+}
+
+.snow-leopard .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--snow-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.snow-leopard #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--snow-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+}
+
+.snow-leopard #calendar-title::after {
+    content: "❄️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: snow-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.snow-leopard #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--snow-primary);
+    border: 1px solid var(--snow-accent4);
+    border-radius: var(--snow-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.snow-leopard #date-weather-container::before {
+    content: "ARCTIC WILDERNESS";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--snow-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--snow-accent1);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.snow-leopard #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--snow-accent1), transparent);
+}
+
+.snow-leopard #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--snow-accent1);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.snow-leopard #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--snow-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.snow-leopard #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.snow-leopard .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--snow-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--snow-primary);
+    box-shadow: 0 0 15px rgba(93, 139, 244, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--snow-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%235D8BF4" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.snow-leopard .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.snow-leopard .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--snow-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.snow-leopard .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--snow-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.snow-leopard .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--snow-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.snow-leopard .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--snow-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--snow-primary);
+}
+
+/* Digital display in clock */
+.snow-leopard .clock-face::before {
+    content: "🐾";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.snow-leopard table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.snow-leopard th {
+    background-color: var(--snow-accent1);
+    color: var(--snow-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--snow-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.snow-leopard th span.full-day-name {
+    display: inline;
+}
+
+.snow-leopard th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.snow-leopard td {
+    background-color: var(--snow-primary);
+    color: var(--snow-text);
+    padding: 1rem;
+    border: 1px solid var(--snow-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--snow-transition);
+    position: relative;
+    border-radius: var(--snow-radius);
+    box-shadow: inset 0 0 0 1px rgba(93, 139, 244, 0.1);
+}
+
+.snow-leopard td .date-number {
+    color: var(--snow-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Playfair Display', serif;
+}
+
+.snow-leopard td:hover {
+    background-color: var(--snow-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.snow-leopard td.current-day {
+    background-color: rgba(93, 139, 244, 0.1);
+    border: 2px solid var(--snow-accent1);
+    animation: snow-glow 3s infinite;
+}
+
+.snow-leopard td.current-day .date-number {
+    color: var(--snow-text) !important;
+    font-weight: 600;
+}
+
+.snow-leopard td.current-day::before {
+    content: "🐆";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--snow-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.snow-leopard .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--snow-accent2);
+    margin: 0 1px;
+    transition: all var(--snow-transition);
+}
+
+.snow-leopard .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--snow-accent2);
+    box-shadow: 0 0 6px rgba(46, 134, 193, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.snow-leopard .modal-content {
+    position: relative;
+    background-color: var(--snow-primary);
+    border: 1px solid var(--snow-accent4);
+    padding: 25px;
+    color: var(--snow-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: var(--snow-radius);
+}
+
+.snow-leopard .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--snow-accent1) 0%,
+            var(--snow-accent2) 50%,
+            var(--snow-accent1) 100%);
+}
+
+.snow-leopard .modal-content h2 {
+    color: var(--snow-accent1);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.snow-leopard .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--snow-accent1);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--snow-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.snow-leopard .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.snow-leopard .event-item {
+    background-color: var(--snow-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--snow-accent1);
+    border-radius: var(--snow-radius);
+    transition: all var(--snow-transition);
+}
+
+.snow-leopard .event-item:hover {
+    background-color: var(--snow-layer3);
+    transform: translateX(3px);
+}
+
+.snow-leopard .event-time {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--snow-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.snow-leopard .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--snow-text);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.snow-leopard .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--snow-text);
+    opacity: 0.9;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.snow-leopard .modal-content button {
+    background-color: var(--snow-accent1);
+    color: var(--snow-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--snow-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--snow-radius);
+}
+
+.snow-leopard .modal-content button:hover {
+    background-color: var(--snow-hover);
+    box-shadow: 0 3px 10px rgba(93, 139, 244, 0.2);
+}
+
+/* Close Button */
+.snow-leopard .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--snow-primary);
+    color: var(--snow-text);
+    border: 1px solid var(--snow-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--snow-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.snow-leopard .modal .close-button:hover {
+    background-color: var(--snow-text);
+    color: var(--snow-accent1);
+    border-color: var(--snow-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.snow-leopard .button,
+.snow-leopard .transparent-button {
+    border: 1px solid var(--snow-accent1);
+    color: var(--snow-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--snow-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--snow-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.snow-leopard .button:hover,
+.snow-leopard .transparent-button:hover {
+    background-color: var(--snow-accent1);
+    color: var(--snow-primary);
+    box-shadow: 0 3px 10px rgba(93, 139, 244, 0.15);
+}
+
+.snow-leopard .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.snow-leopard #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.snow-leopard #theme-switcher {
+    background-color: var(--snow-primary);
+    color: var(--snow-text) !important;
+    border: 1px solid var(--snow-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C3E50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--snow-transition);
+    border-radius: var(--snow-radius);
+}
+
+.snow-leopard #theme-switcher option {
+    background-color: var(--snow-primary) !important;
+    color: var(--snow-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.snow-leopard #theme-switcher:focus {
+    outline: none;
+    border-color: var(--snow-accent1);
+    box-shadow: 0 0 0 2px rgba(93, 139, 244, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.snow-leopard #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--snow-primary);
+    background-color: var(--snow-accent1);
+    cursor: pointer;
+    transition: all var(--snow-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--snow-radius);
+    box-shadow: 0 2px 8px rgba(93, 139, 244, 0.3);
+}
+
+.snow-leopard #backToTopBtn:hover {
+    background-color: var(--snow-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.snow-leopard footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--snow-accent4);
+    color: var(--snow-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .snow-leopard .container {
+        padding: 1.5rem;
+    }
+
+    .snow-leopard #calendar-title {
+        font-size: 2rem;
+    }
+
+    .snow-leopard #current-date {
+        font-size: 1.5rem;
+    }
+
+    .snow-leopard #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .snow-leopard .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .snow-leopard .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .snow-leopard {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .snow-leopard .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .snow-leopard th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .snow-leopard th span.full-day-name {
+        display: none;
+    }
+
+    .snow-leopard th abbr {
+        display: inline;
+    }
+
+    .snow-leopard td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .snow-leopard td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .snow-leopard td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .snow-leopard #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .snow-leopard #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .snow-leopard .modal-content {
+        padding: 20px;
+    }
+
+    .snow-leopard .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .snow-leopard .container {
+        padding: 1rem;
+    }
+
+    .snow-leopard #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .snow-leopard #current-date {
+        font-size: 1.3rem;
+    }
+
+    .snow-leopard #today-weather {
+        font-size: 1rem;
+    }
+
+    .snow-leopard .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .snow-leopard th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .snow-leopard td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .snow-leopard td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .snow-leopard #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .snow-leopard .modal-content {
+        padding: 15px;
+    }
+
+    .snow-leopard .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .snow-leopard .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .snow-leopard th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .snow-leopard td {
+        height: 60px;
+    }
+
+    .snow-leopard td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .snow-leopard #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
