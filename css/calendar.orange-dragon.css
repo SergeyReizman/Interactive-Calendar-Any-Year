@@ -1,0 +1,844 @@
+/* ==========================================================================
+   Orange Dragon Theme - Fiery Oriental Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Fiery red/orange color palette with dragon motifs
+   - Bold oriental-inspired patterns and textures
+   - Dynamic animations with "dragon energy" effects
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&family=Noto+Sans+SC:wght@300;400;600&display=swap');
+
+:root {
+    /* Dragon Color Palette */
+    --dragon-bg: #1A0A0A;
+    --dragon-text: #F8E6C3;
+    --dragon-primary: #3A1100;
+    --dragon-secondary: #5A1A00;
+    --dragon-date-number: #FF5E00;
+
+    /* Dragon Scale Layers */
+    --dragon-layer1: #3A1100;
+    --dragon-layer2: #5A1A00;
+    --dragon-layer3: #7A2300;
+    --dragon-layer4: #9A2C00;
+    --dragon-layer5: #BA3500;
+
+    /* Fiery Accent Colors */
+    --dragon-accent1: #FF5E00;
+    /* Dragon Fire */
+    --dragon-accent2: #FF9500;
+    /* Ember Glow */
+    --dragon-accent3: #E63E00;
+    /* Volcanic Core */
+    --dragon-accent4: rgba(255, 94, 0, 0.5);
+    --dragon-accent5: rgba(255, 149, 0, 0.3);
+
+    /* Theme Variables */
+    --dragon-shadow: rgba(255, 94, 0, 0.15);
+    --dragon-radius: 4px;
+    --dragon-transition: 0.3s ease-out;
+    --dragon-hover: #5A1A00;
+    --dragon-glow: 0 0 15px rgba(255, 94, 0, 0.4);
+    --dragon-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 L40,40 L30,60 L50,50 L70,70 L60,90" fill="none" stroke="%23FF5E00" stroke-width="0.5" opacity="0.1" stroke-linecap="round"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dragon-pulse {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--dragon-accent1);
+    }
+}
+
+@keyframes fire-flicker {
+    from {
+        box-shadow: 0 0 5px var(--dragon-shadow);
+    }
+
+    to {
+        box-shadow: var(--dragon-glow);
+    }
+}
+
+@keyframes dragon-movement {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 0;
+    }
+}
+
+@keyframes smoke-wisp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-10px) rotate(5deg);
+        opacity: 0;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.orange-dragon {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--dragon-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--dragon-bg);
+    min-height: 100vh;
+    background-image:
+        var(--dragon-texture),
+        linear-gradient(to bottom, #1A0A0A, #3A1100);
+    background-repeat: repeat;
+    animation: dragon-movement 60s linear infinite;
+}
+
+.orange-dragon .container {
+    background-color: var(--dragon-primary);
+    padding: 2rem;
+    border: 1px solid var(--dragon-accent4);
+    box-shadow: var(--dragon-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--dragon-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.orange-dragon .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dragon-accent1),
+            var(--dragon-accent2),
+            transparent);
+}
+
+.orange-dragon .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dragon-accent3),
+            var(--dragon-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.orange-dragon #calendar-title {
+    font-family: 'Zhi Mang Xing', cursive;
+    color: var(--dragon-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.orange-dragon #calendar-title::after {
+    content: "🐉";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: dragon-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.orange-dragon #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--dragon-primary);
+    border: 1px solid var(--dragon-accent4);
+    border-radius: var(--dragon-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.orange-dragon #date-weather-container::before {
+    content: "YEAR OF THE DRAGON";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--dragon-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--dragon-accent1);
+    font-weight: 600;
+    font-family: 'Noto Sans SC', sans-serif;
+    text-transform: uppercase;
+}
+
+.orange-dragon #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dragon-accent1), transparent);
+}
+
+.orange-dragon #current-date {
+    font-family: 'Zhi Mang Xing', cursive;
+    color: var(--dragon-accent1);
+    font-size: 2.1rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.orange-dragon #today-weather {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--dragon-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.orange-dragon #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.orange-dragon .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--dragon-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dragon-primary);
+    box-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--dragon-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23FF5E00" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.orange-dragon .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.orange-dragon .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--dragon-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.orange-dragon .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--dragon-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.orange-dragon .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--dragon-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.orange-dragon .clock-face::after {
+    content: "☯";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: var(--dragon-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--dragon-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--dragon-primary);
+}
+
+/* Digital display in clock */
+.orange-dragon .clock-face::before {
+    content: "龍";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.1;
+    z-index: 1;
+    font-family: 'Zhi Mang Xing', cursive;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.orange-dragon table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.orange-dragon th {
+    background-color: var(--dragon-accent1);
+    color: var(--dragon-primary) !important;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--dragon-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.orange-dragon th span.full-day-name {
+    display: inline;
+}
+
+.orange-dragon th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.orange-dragon td {
+    background-color: var(--dragon-primary);
+    color: var(--dragon-text);
+    padding: 1rem;
+    border: 1px solid var(--dragon-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--dragon-transition);
+    position: relative;
+    border-radius: var(--dragon-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 94, 0, 0.1);
+}
+
+.orange-dragon td .date-number {
+    color: var(--dragon-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Zhi Mang Xing', cursive;
+}
+
+.orange-dragon td:hover {
+    background-color: var(--dragon-secondary);
+    box-shadow: 0 2px 12px rgba(255, 94, 0, 0.2);
+}
+
+/* Current date highlight */
+.orange-dragon td.current-day {
+    background-color: rgba(255, 94, 0, 0.1);
+    border: 2px solid var(--dragon-accent1);
+    animation: fire-flicker 3s infinite;
+}
+
+.orange-dragon td.current-day .date-number {
+    color: var(--dragon-text) !important;
+    font-weight: 600;
+}
+
+.orange-dragon td.current-day::before {
+    content: "🔥";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--dragon-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.orange-dragon .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dragon-accent2);
+    margin: 0 1px;
+    transition: all var(--dragon-transition);
+}
+
+.orange-dragon .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--dragon-accent2);
+    box-shadow: 0 0 6px rgba(255, 149, 0, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.orange-dragon .modal-content {
+    position: relative;
+    background-color: var(--dragon-primary);
+    border: 1px solid var(--dragon-accent4);
+    padding: 25px;
+    color: var(--dragon-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-radius: var(--dragon-radius);
+    animation: smoke-wisp 0.3s ease-out;
+}
+
+.orange-dragon .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--dragon-accent1) 0%,
+            var(--dragon-accent2) 50%,
+            var(--dragon-accent1) 100%);
+}
+
+.orange-dragon .modal-content h2 {
+    color: var(--dragon-accent1);
+    font-family: 'Zhi Mang Xing', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.orange-dragon .modal-date {
+    font-family: 'Zhi Mang Xing', cursive;
+    color: var(--dragon-accent1);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--dragon-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.orange-dragon .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.orange-dragon .event-item {
+    background-color: var(--dragon-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--dragon-accent1);
+    border-radius: var(--dragon-radius);
+    transition: all var(--dragon-transition);
+}
+
+.orange-dragon .event-item:hover {
+    background-color: var(--dragon-layer3);
+    transform: translateX(3px);
+}
+
+.orange-dragon .event-time {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--dragon-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.orange-dragon .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--dragon-text);
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.orange-dragon .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--dragon-text);
+    opacity: 0.9;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.orange-dragon .modal-content button {
+    background-color: var(--dragon-accent1);
+    color: var(--dragon-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dragon-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Noto Sans SC', sans-serif;
+    border-radius: var(--dragon-radius);
+}
+
+.orange-dragon .modal-content button:hover {
+    background-color: var(--dragon-hover);
+    box-shadow: 0 3px 10px rgba(255, 94, 0, 0.2);
+}
+
+/* Close Button */
+.orange-dragon .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--dragon-primary);
+    color: var(--dragon-text);
+    border: 1px solid var(--dragon-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--dragon-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.orange-dragon .modal .close-button:hover {
+    background-color: var(--dragon-text);
+    color: var(--dragon-accent1);
+    border-color: var(--dragon-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.orange-dragon .button,
+.orange-dragon .transparent-button {
+    border: 1px solid var(--dragon-accent1);
+    color: var(--dragon-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dragon-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--dragon-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.orange-dragon .button:hover,
+.orange-dragon .transparent-button:hover {
+    background-color: var(--dragon-accent1);
+    color: var(--dragon-primary);
+    box-shadow: 0 3px 10px rgba(255, 94, 0, 0.15);
+}
+
+.orange-dragon .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.orange-dragon #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.orange-dragon #theme-switcher {
+    background-color: var(--dragon-primary);
+    color: var(--dragon-text) !important;
+    border: 1px solid var(--dragon-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F8E6C3'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--dragon-transition);
+    border-radius: var(--dragon-radius);
+}
+
+.orange-dragon #theme-switcher option {
+    background-color: var(--dragon-primary) !important;
+    color: var(--dragon-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.orange-dragon #theme-switcher:focus {
+    outline: none;
+    border-color: var(--dragon-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 94, 0, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.orange-dragon #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 600;
+    color: var(--dragon-primary);
+    background-color: var(--dragon-accent1);
+    cursor: pointer;
+    transition: all var(--dragon-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--dragon-radius);
+    box-shadow: 0 2px 8px rgba(255, 94, 0, 0.3);
+}
+
+.orange-dragon #backToTopBtn:hover {
+    background-color: var(--dragon-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.orange-dragon footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--dragon-accent4);
+    color: var(--dragon-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Zhi Mang Xing', cursive;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .orange-dragon .container {
+        padding: 1.5rem;
+    }
+
+    .orange-dragon #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .orange-dragon #current-date {
+        font-size: 1.7rem;
+    }
+
+    .orange-dragon #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .orange-dragon .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .orange-dragon .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .orange-dragon {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .orange-dragon .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .orange-dragon th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .orange-dragon th span.full-day-name {
+        display: none;
+    }
+
+    .orange-dragon th abbr {
+        display: inline;
+    }
+
+    .orange-dragon td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .orange-dragon td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .orange-dragon td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .orange-dragon #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .orange-dragon #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .orange-dragon .modal-content {
+        padding: 20px;
+    }
+
+    .orange-dragon .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .orange-dragon .container {
+        padding: 1rem;
+    }
+
+    .orange-dragon #calendar-title {
+        font-size: 1.9rem;
+    }
+
+    .orange-dragon #current-date {
+        font-size: 1.5rem;
+    }
+
+    .orange-dragon #today-weather {
+        font-size: 1rem;
+    }
+
+    .orange-dragon .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .orange-dragon th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .orange-dragon td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .orange-dragon td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .orange-dragon #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .orange-dragon .modal-content {
+        padding: 15px;
+    }
+
+    .orange-dragon .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .orange-dragon .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .orange-dragon th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .orange-dragon td {
+        height: 60px;
+    }
+
+    .orange-dragon td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .orange-dragon #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}

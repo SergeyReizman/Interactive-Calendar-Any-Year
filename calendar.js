@@ -148,7 +148,7 @@ const applyTheme = (theme) => {
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-dream','one-step-ahead', 'one-step-at-a-time', 
     'one-way-ticket', 'on-the-island', 'on-the-wild-side','orange-country', 
-    'orion-constellation', 'out-of-the-blue',
+    'orange-dragon', 'orion-constellation', 'out-of-the-blue',
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
     'pacific-ocean', 'palm-beach',
     'palma-de-mallorca', 'patagonian-shores', 'patagonian-sky', 'perfect-afternoon',
