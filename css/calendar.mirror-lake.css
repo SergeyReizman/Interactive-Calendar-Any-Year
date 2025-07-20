@@ -1,0 +1,839 @@
+/* ==========================================================================
+   Mirror Lake Theme - Tranquil Water Reflection Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Cool aquatic color palette with reflection effects
+   - Smooth, liquid design with wave elements
+   - Glass-like transparency and ripple animations
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Lake Color Palette */
+    --lake-bg: #0A1A2F;
+    --lake-text: #E0F7FF;
+    --lake-primary: #1A2F4A;
+    --lake-secondary: #2A4466;
+    --lake-date-number: #8AB4D4;
+
+    /* Water Depth Colors */
+    --lake-layer1: #1A2F4A;
+    --lake-layer2: #2A4466;
+    --lake-layer3: #3A5982;
+    --lake-layer4: #4A6E9E;
+    --lake-layer5: #5A83BA;
+
+    /* Reflection Accent Colors */
+    --lake-accent1: #8AB4D4;
+    /* Surface Reflection */
+    --lake-accent2: #5D90B5;
+    /* Deep Water */
+    --lake-accent3: #C4E4FF;
+    /* Sun Glitter */
+    --lake-accent4: rgba(138, 180, 212, 0.5);
+    --lake-accent5: rgba(197, 228, 255, 0.3);
+
+    /* Theme Variables */
+    --lake-shadow: rgba(138, 180, 212, 0.15);
+    --lake-radius: 12px;
+    --lake-transition: 0.4s ease-in-out;
+    --lake-hover: #3A5982;
+    --lake-glow: 0 0 15px rgba(138, 180, 212, 0.4);
+    --lake-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 Q25,40 50,50 T100,50" fill="none" stroke="%238AB4D4" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes lake-ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes lake-glimmer {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--lake-accent3);
+    }
+}
+
+@keyframes lake-float {
+    0% {
+        transform: translateY(-3px);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+
+    100% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes wave-movement {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 0;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.mirror-lake {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--lake-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--lake-bg);
+    min-height: 100vh;
+    background-image:
+        var(--lake-texture),
+        linear-gradient(to bottom, var(--lake-bg), var(--lake-layer5));
+    background-repeat: repeat;
+    animation: wave-movement 60s linear infinite;
+}
+
+.mirror-lake .container {
+    background-color: var(--lake-primary);
+    padding: 2rem;
+    border: 1px solid var(--lake-accent4);
+    box-shadow: var(--lake-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--lake-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.mirror-lake .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--lake-accent1),
+            var(--lake-accent3),
+            transparent);
+}
+
+.mirror-lake .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--lake-accent3),
+            var(--lake-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.mirror-lake #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--lake-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.mirror-lake #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: lake-glimmer 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.mirror-lake #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--lake-primary);
+    border: 1px solid var(--lake-accent4);
+    border-radius: var(--lake-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    animation: lake-float 6s ease-in-out infinite;
+}
+
+.mirror-lake #date-weather-container::before {
+    content: "WATER REFLECTIONS";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--lake-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--lake-accent1);
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.mirror-lake #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lake-accent1), transparent);
+}
+
+.mirror-lake #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--lake-accent1);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.mirror-lake #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--lake-text);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.mirror-lake #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.mirror-lake .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--lake-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--lake-primary);
+    box-shadow: 0 0 20px rgba(138, 180, 212, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--lake-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%238AB4D4" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.mirror-lake .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.mirror-lake .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--lake-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.mirror-lake .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--lake-accent3);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.mirror-lake .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--lake-accent2);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.mirror-lake .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--lake-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--lake-primary);
+}
+
+/* Digital display in clock */
+.mirror-lake .clock-face::before {
+    content: "💧";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.mirror-lake table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.mirror-lake th {
+    background-color: var(--lake-accent1);
+    color: var(--lake-primary) !important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--lake-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.mirror-lake th span.full-day-name {
+    display: inline;
+}
+
+.mirror-lake th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.mirror-lake td {
+    background-color: var(--lake-primary);
+    color: var(--lake-text);
+    padding: 1rem;
+    border: 1px solid var(--lake-accent4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--lake-transition);
+    position: relative;
+    border-radius: var(--lake-radius);
+    box-shadow: inset 0 0 0 1px rgba(138, 180, 212, 0.1);
+}
+
+.mirror-lake td .date-number {
+    color: var(--lake-date-number) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Playfair Display', serif;
+}
+
+.mirror-lake td:hover {
+    background-color: var(--lake-secondary);
+    box-shadow: 0 5px 15px rgba(138, 180, 212, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.mirror-lake td.current-day {
+    background-color: rgba(138, 180, 212, 0.1);
+    border: 2px solid var(--lake-accent1);
+    animation: lake-float 4s ease-in-out infinite;
+}
+
+.mirror-lake td.current-day .date-number {
+    color: var(--lake-text) !important;
+    font-weight: 600;
+}
+
+.mirror-lake td.current-day::before {
+    content: "🌅";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+    animation: lake-glimmer 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.mirror-lake .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--lake-accent3);
+    margin: 0 1px;
+    transition: all var(--lake-transition);
+    animation: lake-glimmer 2s infinite;
+}
+
+.mirror-lake .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--lake-accent3);
+    box-shadow: 0 0 8px rgba(197, 228, 255, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.mirror-lake .modal-content {
+    position: relative;
+    background-color: var(--lake-primary);
+    border: 1px solid var(--lake-accent4);
+    padding: 25px;
+    color: var(--lake-text);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-radius: var(--lake-radius);
+    animation: lake-float 0.5s ease-out;
+}
+
+.mirror-lake .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--lake-accent1) 0%,
+            var(--lake-accent3) 50%,
+            var(--lake-accent1) 100%);
+}
+
+.mirror-lake .modal-content h2 {
+    color: var(--lake-accent1);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.mirror-lake .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--lake-accent1);
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--lake-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.mirror-lake .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mirror-lake .event-item {
+    background-color: var(--lake-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--lake-accent1);
+    border-radius: var(--lake-radius);
+    transition: all var(--lake-transition);
+}
+
+.mirror-lake .event-item:hover {
+    background-color: var(--lake-layer3);
+    transform: translateX(5px);
+}
+
+.mirror-lake .event-time {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--lake-accent1);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.mirror-lake .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--lake-text);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mirror-lake .event-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--lake-text);
+    opacity: 0.9;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mirror-lake .modal-content button {
+    background-color: var(--lake-accent1);
+    color: var(--lake-primary);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--lake-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--lake-radius);
+}
+
+.mirror-lake .modal-content button:hover {
+    background-color: var(--lake-hover);
+    box-shadow: 0 5px 15px rgba(138, 180, 212, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.mirror-lake .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--lake-primary);
+    color: var(--lake-text);
+    border: 1px solid var(--lake-text);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--lake-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.mirror-lake .modal .close-button:hover {
+    background-color: var(--lake-text);
+    color: var(--lake-accent1);
+    border-color: var(--lake-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.mirror-lake .button,
+.mirror-lake .transparent-button {
+    border: 1px solid var(--lake-accent1);
+    color: var(--lake-text);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--lake-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--lake-radius);
+    letter-spacing: 0.02em;
+    font-size: 1rem;
+}
+
+.mirror-lake .button:hover,
+.mirror-lake .transparent-button:hover {
+    background-color: var(--lake-accent1);
+    color: var(--lake-primary);
+    box-shadow: 0 5px 15px rgba(138, 180, 212, 0.2);
+}
+
+.mirror-lake .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.mirror-lake #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.mirror-lake #theme-switcher {
+    background-color: var(--lake-primary);
+    color: var(--lake-text) !important;
+    border: 1px solid var(--lake-accent1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F7FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--lake-transition);
+    border-radius: var(--lake-radius);
+}
+
+.mirror-lake #theme-switcher option {
+    background-color: var(--lake-primary) !important;
+    color: var(--lake-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.mirror-lake #theme-switcher:focus {
+    outline: none;
+    border-color: var(--lake-accent1);
+    box-shadow: 0 0 0 3px rgba(138, 180, 212, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.mirror-lake #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--lake-primary);
+    background-color: var(--lake-accent1);
+    cursor: pointer;
+    transition: all var(--lake-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--lake-radius);
+    box-shadow: 0 3px 10px rgba(138, 180, 212, 0.3);
+}
+
+.mirror-lake #backToTopBtn:hover {
+    background-color: var(--lake-hover);
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.mirror-lake footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--lake-accent4);
+    color: var(--lake-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .mirror-lake .container {
+        padding: 1.5rem;
+    }
+
+    .mirror-lake #calendar-title {
+        font-size: 2.3rem;
+    }
+
+    .mirror-lake #current-date {
+        font-size: 1.7rem;
+    }
+
+    .mirror-lake #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .mirror-lake .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .mirror-lake .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mirror-lake {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .mirror-lake .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .mirror-lake th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .mirror-lake th span.full-day-name {
+        display: none;
+    }
+
+    .mirror-lake th abbr {
+        display: inline;
+    }
+
+    .mirror-lake td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.85rem;
+    }
+
+    .mirror-lake td .date-number {
+        font-size: 1.2rem;
+    }
+
+    .mirror-lake td.current-day::before {
+        font-size: 1.1rem;
+    }
+
+    .mirror-lake #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 1rem 1.6rem;
+        font-size: 0.9rem;
+    }
+
+    .mirror-lake #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.9rem;
+        min-width: 190px;
+    }
+
+    .mirror-lake .modal-content {
+        padding: 20px;
+    }
+
+    .mirror-lake .event-item {
+        padding: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .mirror-lake .container {
+        padding: 1.2rem;
+    }
+
+    .mirror-lake #calendar-title {
+        font-size: 2rem;
+    }
+
+    .mirror-lake #current-date {
+        font-size: 1.5rem;
+    }
+
+    .mirror-lake #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .mirror-lake .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .mirror-lake th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .mirror-lake td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+
+    .mirror-lake td .date-number {
+        font-size: 1.1rem;
+    }
+
+    .mirror-lake #theme-switcher {
+        min-width: 170px;
+        font-size: 0.85rem;
+    }
+
+    .mirror-lake .modal-content {
+        padding: 18px;
+    }
+
+    .mirror-lake .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .mirror-lake .event-time {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .mirror-lake th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.1rem;
+    }
+
+    .mirror-lake td {
+        height: 70px;
+    }
+
+    .mirror-lake td .date-number {
+        font-size: 1rem;
+    }
+
+    .mirror-lake #theme-switcher {
+        min-width: 150px;
+        font-size: 0.8rem;
+    }
+}
