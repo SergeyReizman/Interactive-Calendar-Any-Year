@@ -1,88 +1,82 @@
 /* ==========================================================================
-   Midnight Theme - Elegant Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Deep purple color scheme
-   - Optimized weekday headers
-   - Mobile-responsive design
-   - Sophisticated UI elements
-   - Subtle animation effects
-   - Enhanced accessibility
-   - Velvet textures
-   - Fluid typography
+   Midnight Elegance Theme - Sophisticated Dark Theme Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Luxurious dark color palette with gold accents
+   - Refined typography and subtle textures
+   - Elegant transitions and glowing highlights
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;600&display=swap');
 
 :root {
     /* Midnight Color Palette */
-    --midnight-bg: #0a0a12;
-    --midnight-text: #F0F0FF;
-    --midnight-primary: #7B1FA2;
-    /* Deep purple */
-    --midnight-secondary: #BA68C8;
-    /* Light purple accent */
+    --midnight-bg: #0A0A0A;
+    --midnight-text: #E8E8E8;
+    --midnight-primary: #1A1A1A;
+    --midnight-secondary: #2A2A2A;
+    --midnight-date-number: #D4AF37;
 
-    /* Gradient Colors */
-    --midnight-gradient-start: #1A001A;
-    --midnight-gradient-end: #0A001A;
+    /* Depth Layer Colors */
+    --midnight-layer1: #1A1A1A;
+    --midnight-layer2: #2A2A2A;
+    --midnight-layer3: #3A3A3A;
+    --midnight-layer4: #4A4A4A;
+    --midnight-layer5: #5A5A5A;
 
-    /* Accent Colors */
-    --midnight-red: #D32F2F;
-    /* Rich red */
-    --midnight-gold: #FFD700;
-    /* Gold accent */
-    --midnight-teal: #00897B;
-    /* Teal accent */
-    --midnight-orange: #F57C00;
-    /* Warm orange */
-    --midnight-silver: #E0E0E0;
-    /* Light silver */
+    /* Elegant Accent Colors */
+    --midnight-accent1: #D4AF37;
+    /* Gold */
+    --midnight-accent2: #A78B5F;
+    /* Aged Gold */
+    --midnight-accent3: #7A6A4B;
+    /* Dark Gold */
+    --midnight-accent4: rgba(212, 175, 55, 0.5);
+    --midnight-accent5: rgba(167, 139, 95, 0.3);
 
     /* Theme Variables */
-    --midnight-shadow: rgba(123, 31, 162, 0.3);
+    --midnight-shadow: rgba(212, 175, 55, 0.15);
     --midnight-radius: 4px;
-    /* Soft edges */
-    --midnight-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --midnight-hover: #1E1E2E;
-    --midnight-current-day: #2A1A3A;
+    --midnight-transition: 0.3s ease-in-out;
+    --midnight-hover: #3A3A3A;
+    --midnight-glow: 0 0 12px rgba(212, 175, 55, 0.35);
+    --midnight-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 L30,30 M70,70 L80,80 M30,70 L40,80 M70,30 L80,20" stroke="%23D4AF37" stroke-width="0.5" opacity="0.1"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes midnight-pulse {
+@keyframes gold-pulse {
 
     0%,
     100% {
-        text-shadow: 0 0 5px var(--midnight-primary),
-            0 0 10px rgba(186, 104, 200, 0.5);
+        opacity: 0.9;
     }
 
     50% {
-        text-shadow: 0 0 15px var(--midnight-primary),
-            0 0 25px rgba(186, 104, 200, 0.7);
+        opacity: 1;
+        text-shadow: 0 0 8px var(--midnight-accent1);
     }
 }
 
-@keyframes velvet-pattern {
+@keyframes subtle-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--midnight-shadow);
+    }
+
+    50% {
+        box-shadow: var(--midnight-glow);
+    }
+}
+
+@keyframes float-elegant {
     0% {
-        background-position: 0 0;
+        transform: translateY(-2px);
     }
 
     100% {
-        background-position: 40px 40px;
-    }
-}
-
-@keyframes midnight-glow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--midnight-primary);
-    }
-
-    50% {
-        box-shadow: 0 0 20px var(--midnight-secondary);
+        transform: translateY(2px);
     }
 }
 
@@ -91,63 +85,27 @@
     font-family: 'Montserrat', sans-serif;
     color: var(--midnight-text);
     line-height: 1.6;
-    background: var(--midnight-bg);
+    font-size: 1rem;
+    background-color: var(--midnight-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        linear-gradient(135deg,
-            rgba(123, 31, 162, 0.05) 1px,
-            transparent 1px),
-        linear-gradient(-135deg,
-            rgba(123, 31, 162, 0.05) 1px,
-            transparent 1px);
-    background-size: 40px 40px;
-    animation: velvet-pattern 3s linear infinite;
-}
-
-.midnight-elegance::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 90% 10%,
-            rgba(123, 31, 162, 0.05) 0%,
-            transparent 20%),
-        radial-gradient(circle at 10% 90%,
-            rgba(186, 104, 200, 0.05) 0%,
-            transparent 20%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Velvet pattern */
-.midnight-elegance::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><circle cx="20" cy="20" r="2" fill="%237B1FA2"/></svg>');
-    pointer-events: none;
-    z-index: 0;
+        var(--midnight-texture),
+        linear-gradient(to bottom, var(--midnight-bg), var(--midnight-layer5));
+    background-repeat: repeat;
 }
 
 .midnight-elegance .container {
-    background-color: rgba(10, 10, 20, 0.95);
+    background-color: var(--midnight-primary);
     padding: 2rem;
-    border: 1px solid var(--midnight-primary);
-    box-shadow: 0 0 30px var(--midnight-shadow);
+    border: 1px solid var(--midnight-accent4);
+    box-shadow: var(--midnight-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
     border-radius: var(--midnight-radius);
-    z-index: 1;
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent);
 }
 
 .midnight-elegance .container::before {
@@ -156,60 +114,14 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--midnight-primary),
-            var(--midnight-secondary),
+            var(--midnight-accent1),
             transparent);
-    animation: midnight-glow 3s infinite;
 }
 
-/* ==================== HEADER & TITLE ==================== */
-.midnight-elegance #calendar-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--midnight-primary);
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    position: relative;
-    animation: midnight-pulse 3s infinite;
-}
-
-.midnight-elegance #calendar-title::before,
-.midnight-elegance #calendar-title::after {
-    content: "❖";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--midnight-secondary);
-    font-size: 1.5rem;
-}
-
-.midnight-elegance #calendar-title::before {
-    left: 1rem;
-    animation: midnight-pulse 2.5s infinite 0.5s;
-}
-
-.midnight-elegance #calendar-title::after {
-    right: 1rem;
-    animation: midnight-pulse 2.5s infinite;
-}
-
-/* ==================== DATE & WEATHER DISPLAY ==================== */
-.midnight-elegance #date-weather-container {
-    text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(123, 31, 162, 0.1);
-    border: 1px solid var(--midnight-primary);
-    border-radius: var(--midnight-radius);
-    position: relative;
-}
-
-.midnight-elegance #date-weather-container::after {
+.midnight-elegance .container::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -218,59 +130,105 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--midnight-primary),
+            var(--midnight-accent1),
             transparent);
 }
 
+/* ==================== HEADER & TITLE ==================== */
+.midnight-elegance #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--midnight-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 600;
+}
+
+.midnight-elegance #calendar-title::after {
+    content: "✨";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: gold-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.midnight-elegance #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--midnight-primary);
+    border: 1px solid var(--midnight-accent4);
+    border-radius: var(--midnight-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.midnight-elegance #date-weather-container::before {
+    content: "NOCTURNAL ELEGANCE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--midnight-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--midnight-accent1);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.midnight-elegance #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--midnight-accent1), transparent);
+}
+
 .midnight-elegance #current-date {
-    font-family: 'Playfair Display', serif;
-    color: var(--midnight-primary);
-    font-size: 1.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--midnight-accent1);
+    font-size: 2rem;
     font-weight: 400;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     letter-spacing: 0.05em;
 }
 
 .midnight-elegance #today-weather {
     font-family: 'Montserrat', sans-serif;
-    color: var(--midnight-secondary);
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+    color: var(--midnight-text);
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .midnight-elegance #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .midnight-elegance .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--midnight-primary);
+    border: 2px solid var(--midnight-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--midnight-bg);
-    box-shadow:
-        0 0 15px var(--midnight-shadow),
-        inset 0 0 10px rgba(123, 31, 162, 0.1);
+    background-color: var(--midnight-primary);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
     background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(123, 31, 162, 0.1) 100%);
-}
-
-/* Elegant numerals for clock */
-.midnight-elegance .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.3"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%237B1FA2">XII</text><text x="82" cy="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%237B1FA2">III</text><text x="50" cy="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%237B1FA2">VI</text><text x="18" cy="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%237B1FA2">IX</text></svg>');
+        radial-gradient(circle at center, transparent 65%, var(--midnight-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23D4AF37" stroke-width="0.3" opacity="0.3"/></svg>');
 }
 
 .midnight-elegance .hand {
@@ -279,129 +237,149 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .midnight-elegance .hour-hand {
     width: 40%;
     left: 10%;
     height: 4px;
-    background: var(--midnight-primary);
+    background: var(--midnight-accent1);
     margin-top: -2px;
+    border-radius: 2px;
 }
 
 .midnight-elegance .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--midnight-secondary);
-    margin-top: -1px;
+    height: 3px;
+    background: var(--midnight-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
 }
 
 .midnight-elegance .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--midnight-gold);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--midnight-accent3);
+    margin-top: -1px;
 }
 
-/* Clock center - Jewel */
+/* Clock center ornament */
 .midnight-elegance .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
-    background-color: var(--midnight-silver);
+    background-color: var(--midnight-accent1);
     border-radius: 50%;
-    border: 1px solid var(--midnight-secondary);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--midnight-primary);
 }
 
-/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+/* Digital display in clock */
+.midnight-elegance .clock-face::before {
+    content: "🕰️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
 .midnight-elegance table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(20, 20, 40, 0.9);
-    border: 1px solid var(--midnight-primary);
-    border-radius: var(--midnight-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+/* DAY OF WEEK HEADERS */
 .midnight-elegance th {
-    background-color: rgba(123, 31, 162, 0.15);
+    background-color: var(--midnight-accent1);
     color: var(--midnight-primary) !important;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--midnight-primary);
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--midnight-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-/* Full names for desktop */
-.midnight-elegance th .full-day {
+.midnight-elegance th span.full-day-name {
     display: inline;
 }
 
-/* Short names for mobile */
-.midnight-elegance th .short-day {
+.midnight-elegance th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .midnight-elegance td {
-    background-color: rgba(15, 15, 30, 0.9);
+    background-color: var(--midnight-primary);
     color: var(--midnight-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--midnight-primary);
-    height: 90px;
+    padding: 1rem;
+    border: 1px solid var(--midnight-accent4);
+    height: 100px;
     vertical-align: top;
     transition: all var(--midnight-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--midnight-radius);
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.1);
+}
+
+.midnight-elegance td .date-number {
+    color: var(--midnight-date-number) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .midnight-elegance td:hover {
-    background-color: var(--midnight-hover);
-    box-shadow: inset 0 0 15px var(--midnight-shadow);
+    background-color: var(--midnight-secondary);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
 }
 
-.midnight-elegance .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: var(--midnight-text);
-}
-
+/* Current date highlight */
 .midnight-elegance td.current-day {
-    background-color: var(--midnight-current-day);
-    border: 2px solid var(--midnight-secondary);
-    color: var(--midnight-secondary) !important;
-    font-weight: 700;
-    animation: midnight-glow 3s infinite;
+    background-color: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--midnight-accent1);
+    animation: subtle-glow 3s infinite;
 }
 
 .midnight-elegance td.current-day .date-number {
-    color: var(--midnight-secondary) !important;
-    font-weight: 800;
+    color: var(--midnight-text) !important;
+    font-weight: 600;
 }
 
 .midnight-elegance td.current-day::before {
-    content: "✧";
+    content: "🌟";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--midnight-secondary);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    animation: gold-pulse 2s infinite;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -410,42 +388,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--midnight-primary);
+    background-color: var(--midnight-accent1);
     margin: 0 1px;
-    box-shadow: 0 0 5px var(--midnight-shadow);
     transition: all var(--midnight-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .midnight-elegance .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--midnight-secondary);
-    box-shadow: 0 0 15px var(--midnight-primary);
-}
-
-/* Special event types */
-.midnight-elegance .event-marker.holiday {
-    background-color: var(--midnight-gold);
-}
-
-.midnight-elegance .event-marker.historic {
-    background-color: var(--midnight-silver);
-}
-
-.midnight-elegance .event-marker.patriotic {
-    background-color: var(--midnight-red);
+    transform: scale(1.5);
+    background-color: var(--midnight-accent1);
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .midnight-elegance .modal-content {
     position: relative;
-    background-color: rgba(20, 20, 20, 0.98);
-    border: 1px solid var(--midnight-primary);
+    background-color: var(--midnight-primary);
+    border: 1px solid var(--midnight-accent4);
     padding: 25px;
     color: var(--midnight-text);
-    box-shadow: 0 0 30px var(--midnight-shadow);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     border-radius: var(--midnight-radius);
-    animation: midnight-glow 0.5s ease;
+    animation: float-elegant 0.5s ease-out;
 }
 
 .midnight-elegance .modal-content::before {
@@ -454,122 +417,149 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 2px;
     background: linear-gradient(90deg,
-            var(--midnight-primary),
-            var(--midnight-secondary),
-            var(--midnight-gold));
+            var(--midnight-accent1) 0%,
+            var(--midnight-accent2) 50%,
+            var(--midnight-accent1) 100%);
 }
 
 .midnight-elegance .modal-content h2 {
-    color: var(--midnight-primary);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
+    color: var(--midnight-accent1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
     margin-bottom: 15px;
     font-weight: 400;
+    letter-spacing: 0.05em;
 }
 
-.midnight-elegance .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* Modal date display */
+.midnight-elegance .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--midnight-accent1);
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--midnight-accent4);
+    letter-spacing: 0.05em;
 }
 
-.midnight-elegance .modal-content .event-time {
-    display: block;
-    font-weight: 600;
-    color: var(--midnight-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
+/* Event list */
+.midnight-elegance .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
 }
 
-.midnight-elegance .modal-content .event-description {
-    background-color: rgba(123, 31, 162, 0.15);
-    padding: 15px;
-    border-left: 3px solid var(--midnight-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--midnight-radius) var(--midnight-radius) 0;
-}
-
-.midnight-elegance .modal-content button {
-    background-color: var(--midnight-primary);
-    color: var(--midnight-bg);
-    border: none;
-    padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--midnight-transition);
+.midnight-elegance .event-item {
+    background-color: var(--midnight-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--midnight-accent1);
     border-radius: var(--midnight-radius);
+    transition: all var(--midnight-transition);
+}
+
+.midnight-elegance .event-item:hover {
+    background-color: var(--midnight-layer3);
+    transform: translateX(5px);
+}
+
+.midnight-elegance .event-time {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--midnight-accent1);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.midnight-elegance .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--midnight-text);
     font-family: 'Montserrat', sans-serif;
 }
 
-.midnight-elegance .modal-content button:hover {
-    background-color: var(--midnight-secondary);
-    box-shadow: 0 4px 6px -1px var(--midnight-shadow);
+.midnight-elegance .event-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--midnight-text);
+    opacity: 0.9;
+    font-family: 'Montserrat', sans-serif;
 }
 
+.midnight-elegance .modal-content button {
+    background-color: var(--midnight-accent1);
+    color: var(--midnight-primary);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--midnight-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--midnight-radius);
+}
+
+.midnight-elegance .modal-content button:hover {
+    background-color: var(--midnight-hover);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Close Button */
 .midnight-elegance .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--midnight-primary);
-    border: 1px solid var(--midnight-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--midnight-primary);
+    color: var(--midnight-text);
+    border: 1px solid var(--midnight-text);
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     transition: all var(--midnight-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .midnight-elegance .modal .close-button:hover {
-    background-color: var(--midnight-primary);
-    color: var(--midnight-bg);
+    background-color: var(--midnight-text);
+    color: var(--midnight-accent1);
+    border-color: var(--midnight-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .midnight-elegance .button,
 .midnight-elegance .transparent-button {
-    border: 1px solid var(--midnight-primary);
-    color: var(--midnight-primary);
+    border: 1px solid var(--midnight-accent1);
+    color: var(--midnight-text);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--midnight-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
+    margin: 0.4rem;
     border-radius: var(--midnight-radius);
-    letter-spacing: 0.05em;
-}
-
-.midnight-elegance .button::before,
-.midnight-elegance .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(123, 31, 162, 0.1), transparent);
-    transition: 0.5s;
+    letter-spacing: 0.02em;
+    font-size: 1rem;
 }
 
 .midnight-elegance .button:hover,
 .midnight-elegance .transparent-button:hover {
-    background-color: var(--midnight-primary);
-    color: var(--midnight-bg);
-    box-shadow: 0 4px 6px -1px var(--midnight-shadow);
-}
-
-.midnight-elegance .button:hover::before,
-.midnight-elegance .transparent-button:hover::before {
-    left: 100%;
+    background-color: var(--midnight-accent1);
+    color: var(--midnight-primary);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
 }
 
 .midnight-elegance .controls {
@@ -583,49 +573,44 @@
 /* ==================== THEME SWITCHER ==================== */
 .midnight-elegance #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
-    min-width: 200px;
+    margin: 0 0.8rem;
+    min-width: 220px;
     z-index: 1000;
 }
 
 .midnight-elegance #theme-switcher {
-    background-color: var(--midnight-bg);
-    color: var(--midnight-primary) !important;
-    border: 1px solid var(--midnight-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    background-color: var(--midnight-primary);
+    color: var(--midnight-text) !important;
+    border: 1px solid var(--midnight-accent1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     width: 100%;
-    border-radius: var(--midnight-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237B1FA2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8E8E8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.9rem center;
+    background-size: 1.2rem;
     cursor: pointer;
     transition: all var(--midnight-transition);
-    box-shadow: 0 1px 3px 0 var(--midnight-shadow);
+    border-radius: var(--midnight-radius);
 }
 
 .midnight-elegance #theme-switcher option {
-    background-color: var(--midnight-bg) !important;
-    color: var(--midnight-primary) !important;
-    font-size: 0.9rem;
+    background-color: var(--midnight-primary) !important;
+    color: var(--midnight-text) !important;
+    font-size: 0.95rem;
     font-weight: 600;
     padding: 10px 12px !important;
 }
 
-.midnight-elegance #theme-switcher option:hover {
-    background-color: var(--midnight-primary) !important;
-    color: var(--midnight-bg) !important;
-}
-
 .midnight-elegance #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.3);
+    border-color: var(--midnight-accent1);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -634,45 +619,127 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--midnight-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
+    border: none;
+    padding: 1.1rem 1.9rem;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     color: var(--midnight-primary);
-    background-color: var(--midnight-bg);
+    background-color: var(--midnight-accent1);
     cursor: pointer;
     transition: all var(--midnight-transition);
     opacity: 0.9;
     display: none;
     border-radius: var(--midnight-radius);
-    box-shadow: 0 4px 6px -1px var(--midnight-shadow);
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
 }
 
 .midnight-elegance #backToTopBtn:hover {
-    background-color: var(--midnight-primary);
-    color: var(--midnight-bg);
+    background-color: var(--midnight-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .midnight-elegance footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--midnight-primary);
+    border-top: 1px solid var(--midnight-accent4);
     color: var(--midnight-text);
-    font-size: 0.8rem;
-}
-
-.midnight-elegance footer::before {
-    content: "❖ ";
-    color: var(--midnight-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
-/* calendar.breaking-point.css */
 @media (max-width: 992px) {
+    .midnight-elegance .container {
+        padding: 1.5rem;
+    }
+
+    .midnight-elegance #calendar-title {
+        font-size: 2.3rem;
+    }
+
+    .midnight-elegance #current-date {
+        font-size: 1.7rem;
+    }
+
+    .midnight-elegance #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .midnight-elegance .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .midnight-elegance .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .midnight-elegance {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .midnight-elegance .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .midnight-elegance th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .midnight-elegance th span.full-day-name {
+        display: none;
+    }
+
+    .midnight-elegance th abbr {
+        display: inline;
+    }
+
+    .midnight-elegance td {
+        padding: 0.8rem;
+        height: 90px;
+        font-size: 0.85rem;
+    }
+
+    .midnight-elegance td .date-number {
+        font-size: 1.2rem;
+    }
+
+    .midnight-elegance td.current-day::before {
+        font-size: 1.1rem;
+    }
+
+    .midnight-elegance #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 1rem 1.6rem;
+        font-size: 0.9rem;
+    }
+
+    .midnight-elegance #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.9rem;
+        min-width: 190px;
+    }
+
+    .midnight-elegance .modal-content {
+        padding: 20px;
+    }
+
+    .midnight-elegance .event-item {
+        padding: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
     .midnight-elegance .container {
         padding: 1.2rem;
     }
@@ -689,128 +756,60 @@
         font-size: 1.1rem;
     }
 
-    .midnight-elegance th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .midnight-elegance .container {
-        padding: 1rem;
-    }
-
-    .midnight-elegance #calendar-title {
-        font-size: 1.7rem;
-    }
-
     .midnight-elegance .clock-face {
         width: 140px;
         height: 140px;
     }
 
-    /* Switch to short day names */
-    .midnight-elegance th .full-day {
-        display: none;
-    }
-
-    .midnight-elegance th .short-day {
-        display: inline;
-    }
-
     .midnight-elegance th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
     }
 
     .midnight-elegance td {
-        padding: 0.6rem 0.15rem;
-        height: 70px;
+        padding: 0.7rem;
+        height: 80px;
         font-size: 0.8rem;
     }
 
-    .midnight-elegance #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
-    }
-
-    .midnight-elegance #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
-    }
-
-    .midnight-elegance .modal-content {
-        padding: 15px;
-    }
-
-    .midnight-elegance .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .midnight-elegance .container {
-        padding: 0.8rem;
-    }
-
-    .midnight-elegance #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .midnight-elegance #current-date {
+    .midnight-elegance td .date-number {
         font-size: 1.1rem;
     }
 
-    .midnight-elegance #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .midnight-elegance .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .midnight-elegance th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .midnight-elegance td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .midnight-elegance td.current-day::before {
-        font-size: 0.7rem;
-    }
-
     .midnight-elegance #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
+        min-width: 170px;
+        font-size: 0.85rem;
+    }
+
+    .midnight-elegance .modal-content {
+        padding: 18px;
+    }
+
+    .midnight-elegance .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .midnight-elegance .event-time {
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 400px) {
     .midnight-elegance th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.6rem 0.1rem;
     }
 
     .midnight-elegance td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 70px;
+    }
+
+    .midnight-elegance td .date-number {
+        font-size: 1rem;
     }
 
     .midnight-elegance #theme-switcher {
-        min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .midnight-elegance #calendar-title {
-        font-size: 1.2rem;
+        min-width: 150px;
+        font-size: 0.8rem;
     }
 }
