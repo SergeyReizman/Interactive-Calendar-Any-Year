@@ -173,7 +173,7 @@ const applyTheme = (theme) => {
     'strategic-advantage', 'strategic-planning',
     'strawberry-moon', 'street-art-installation', 'strength-of-spirit', 'strong-foundation',
     'style-spectrum', 'success-key','success-motivation', 'success-story', 
-    'summer-breeze', 'sunset-magic', 'sweet-misty-morning',
+    'summer-breeze', 'summer-vibes', 'sunset-magic', 'sweet-misty-morning',
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
     'the-art-of-visible', 'the-best-of-fashion', 'the-black-spruce', 
