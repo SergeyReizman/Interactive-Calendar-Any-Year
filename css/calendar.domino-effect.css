@@ -1,0 +1,838 @@
+/* ==========================================================================
+   Domino Effect Theme - Dynamic Falling Dominoes Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Monochrome domino color palette with accent highlights
+   - Animated domino falling effects and patterns
+   - Clean, geometric design with tile-like elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Major+Mono+Display&display=swap');
+
+:root {
+    /* Domino Color Palette */
+    --domino-bg: #121212;
+    --domino-text: #F0F0F0;
+    --domino-primary: #222222;
+    --domino-secondary: #333333;
+    --domino-date-number: #FF5555;
+
+    /* Domino Spot Colors */
+    --domino-layer1: #222222;
+    --domino-layer2: #2A2A2A;
+    --domino-layer3: #333333;
+    --domino-layer4: #3A3A3A;
+    --domino-layer5: #444444;
+
+    /* Accent Colors */
+    --domino-accent1: #FF5555;
+    /* Domino Dot Red */
+    --domino-accent2: #55FF55;
+    /* Domino Dot Green */
+    --domino-accent3: #5555FF;
+    /* Domino Dot Blue */
+    --domino-accent4: rgba(255, 85, 85, 0.5);
+    --domino-accent5: rgba(85, 255, 85, 0.3);
+
+    /* Theme Variables */
+    --domino-shadow: rgba(255, 85, 85, 0.15);
+    --domino-radius: 0px;
+    --domino-transition: 0.2s linear;
+    --domino-hover: #3A3A3A;
+    --domino-glow: 0 0 10px rgba(255, 85, 85, 0.35);
+    --domino-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="10" height="10" fill="%23FF5555" opacity="0.1"/><rect x="30" y="30" width="10" height="10" fill="%23FF5555" opacity="0.1"/><rect x="50" y="50" width="10" height="10" fill="%23FF5555" opacity="0.1"/><rect x="70" y="70" width="10" height="10" fill="%23FF5555" opacity="0.1"/><rect x="90" y="90" width="10" height="10" fill="%23FF5555" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes domino-fall {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes domino-pulse {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: var(--domino-glow);
+    }
+}
+
+@keyframes domino-spot {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes domino-chain {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.domino-effect {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--domino-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--domino-bg);
+    min-height: 100vh;
+    background-image:
+        var(--domino-texture),
+        linear-gradient(to bottom, var(--domino-bg), var(--domino-layer5));
+    background-repeat: repeat;
+    animation: domino-chain 60s linear infinite;
+}
+
+.domino-effect .container {
+    background-color: var(--domino-primary);
+    padding: 2rem;
+    border: 1px solid var(--domino-accent4);
+    box-shadow: 0 0 0 1px var(--domino-text);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--domino-radius);
+}
+
+.domino-effect .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--domino-accent1),
+            var(--domino-accent2),
+            var(--domino-accent3),
+            transparent);
+}
+
+.domino-effect .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--domino-accent3),
+            var(--domino-accent2),
+            var(--domino-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.domino-effect #calendar-title {
+    font-family: 'Major Mono Display', monospace;
+    color: var(--domino-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.05em;
+    position: relative;
+    font-weight: 400;
+}
+
+.domino-effect #calendar-title::after {
+    content: "🀙";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    animation: domino-spot 2s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.domino-effect #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--domino-primary);
+    border: 1px solid var(--domino-text);
+    border-radius: var(--domino-radius);
+    position: relative;
+    box-shadow: 0 0 0 1px var(--domino-accent1);
+}
+
+.domino-effect #date-weather-container::before {
+    content: "DOMINO CHAIN";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--domino-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--domino-accent1);
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.domino-effect #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--domino-accent1), transparent);
+}
+
+.domino-effect #current-date {
+    font-family: 'Major Mono Display', monospace;
+    color: var(--domino-accent1);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.05em;
+}
+
+.domino-effect #today-weather {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--domino-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.domino-effect #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.domino-effect .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--domino-text);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--domino-primary);
+    box-shadow: 0 0 0 2px var(--domino-accent1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--domino-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="45" y="5" width="10" height="10" fill="%23FF5555" opacity="0.5"/><rect x="85" y="45" width="10" height="10" fill="%23FF5555" opacity="0.5"/><rect x="45" y="85" width="10" height="10" fill="%23FF5555" opacity="0.5"/><rect x="5" y="45" width="10" height="10" fill="%23FF5555" opacity="0.5"/></svg>');
+}
+
+.domino-effect .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.domino-effect .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--domino-accent1);
+    margin-top: -2px;
+}
+
+.domino-effect .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--domino-accent2);
+    margin-top: -1.5px;
+}
+
+.domino-effect .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--domino-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.domino-effect .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--domino-text);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--domino-primary);
+}
+
+/* Digital display in clock */
+.domino-effect .clock-face::before {
+    content: "🀫";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.domino-effect table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.domino-effect th {
+    background-color: var(--domino-text);
+    color: var(--domino-primary) !important;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--domino-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.domino-effect th span.full-day-name {
+    display: inline;
+}
+
+.domino-effect th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.domino-effect td {
+    background-color: var(--domino-primary);
+    color: var(--domino-text);
+    padding: 1rem;
+    border: 1px solid var(--domino-text);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--domino-transition);
+    position: relative;
+    border-radius: var(--domino-radius);
+    box-shadow: inset 0 0 0 1px var(--domino-accent4);
+}
+
+.domino-effect td .date-number {
+    color: var(--domino-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Major Mono Display', monospace;
+}
+
+.domino-effect td:hover {
+    background-color: var(--domino-secondary);
+    box-shadow: 0 0 0 2px var(--domino-accent1);
+}
+
+/* Current date highlight */
+.domino-effect td.current-day {
+    background-color: rgba(255, 85, 85, 0.1);
+    border: 2px solid var(--domino-accent1);
+    animation: domino-pulse 2s infinite;
+}
+
+.domino-effect td.current-day .date-number {
+    color: var(--domino-text) !important;
+    font-weight: 600;
+}
+
+.domino-effect td.current-day::before {
+    content: "🀅";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--domino-accent1);
+    animation: domino-spot 1.5s infinite;
+}
+
+/* Weekend day highlight */
+.domino-effect td.weekend-day {
+    border-right: 2px solid var(--domino-accent2);
+    border-left: 2px solid var(--domino-accent2);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.domino-effect .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--domino-accent1);
+    margin: 0 1px;
+    transition: all var(--domino-transition);
+}
+
+.domino-effect .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--domino-accent1);
+    box-shadow: 0 0 6px rgba(255, 85, 85, 0.4);
+    animation: domino-spot 0.5s;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.domino-effect .modal-content {
+    position: relative;
+    background-color: var(--domino-primary);
+    border: 2px solid var(--domino-text);
+    padding: 25px;
+    color: var(--domino-text);
+    box-shadow: 0 0 0 2px var(--domino-accent1);
+    border-radius: var(--domino-radius);
+}
+
+.domino-effect .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--domino-accent1) 0%,
+            var(--domino-accent2) 50%,
+            var(--domino-accent3) 100%);
+}
+
+.domino-effect .modal-content h2 {
+    color: var(--domino-accent1);
+    font-family: 'Major Mono Display', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+}
+
+/* Modal date display */
+.domino-effect .modal-date {
+    font-family: 'Major Mono Display', monospace;
+    color: var(--domino-accent1);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--domino-text);
+    letter-spacing: -0.05em;
+}
+
+/* Event list */
+.domino-effect .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.domino-effect .event-item {
+    background-color: var(--domino-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--domino-accent1);
+    border-radius: var(--domino-radius);
+    transition: all var(--domino-transition);
+}
+
+.domino-effect .event-item:hover {
+    background-color: var(--domino-layer3);
+    transform: translateX(5px);
+    border-left: 3px solid var(--domino-accent2);
+}
+
+.domino-effect .event-time {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--domino-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.domino-effect .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--domino-text);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.domino-effect .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--domino-text);
+    opacity: 0.9;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.domino-effect .modal-content button {
+    background-color: var(--domino-accent1);
+    color: var(--domino-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--domino-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: var(--domino-radius);
+}
+
+.domino-effect .modal-content button:hover {
+    background-color: var(--domino-hover);
+    box-shadow: 0 0 0 2px var(--domino-accent1);
+}
+
+/* Close Button */
+.domino-effect .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--domino-primary);
+    color: var(--domino-text);
+    border: 1px solid var(--domino-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--domino-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--domino-radius);
+    font-weight: bold;
+}
+
+.domino-effect .modal .close-button:hover {
+    background-color: var(--domino-text);
+    color: var(--domino-accent1);
+    border-color: var(--domino-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.domino-effect .button,
+.domino-effect .transparent-button {
+    border: 1px solid var(--domino-text);
+    color: var(--domino-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--domino-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--domino-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.domino-effect .button:hover,
+.domino-effect .transparent-button:hover {
+    background-color: var(--domino-accent1);
+    color: var(--domino-primary);
+    box-shadow: 0 0 0 1px var(--domino-text);
+}
+
+.domino-effect .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.domino-effect #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.domino-effect #theme-switcher {
+    background-color: var(--domino-primary);
+    color: var(--domino-text) !important;
+    border: 1px solid var(--domino-text);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0F0F0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--domino-transition);
+    border-radius: var(--domino-radius);
+}
+
+.domino-effect #theme-switcher option {
+    background-color: var(--domino-primary) !important;
+    color: var(--domino-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.domino-effect #theme-switcher:focus {
+    outline: none;
+    border-color: var(--domino-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 85, 85, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.domino-effect #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    color: var(--domino-primary);
+    background-color: var(--domino-accent1);
+    cursor: pointer;
+    transition: all var(--domino-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--domino-radius);
+    box-shadow: 0 0 0 1px var(--domino-text);
+}
+
+.domino-effect #backToTopBtn:hover {
+    background-color: var(--domino-hover);
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.domino-effect footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--domino-text);
+    color: var(--domino-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Major Mono Display', monospace;
+    letter-spacing: -0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .domino-effect .container {
+        padding: 1.5rem;
+    }
+
+    .domino-effect #calendar-title {
+        font-size: 2rem;
+    }
+
+    .domino-effect #current-date {
+        font-size: 1.5rem;
+    }
+
+    .domino-effect #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .domino-effect .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .domino-effect .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .domino-effect {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .domino-effect .clock-face {
+        width: 150px;
+        height: 150px;
+    }
+
+    .domino-effect th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .domino-effect th span.full-day-name {
+        display: none;
+    }
+
+    .domino-effect th abbr {
+        display: inline;
+    }
+
+    .domino-effect td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .domino-effect td .date-number {
+        font-size: 1.1rem;
+    }
+
+    .domino-effect td.current-day::before {
+        font-size: 1rem;
+    }
+
+    .domino-effect #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .domino-effect #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .domino-effect .modal-content {
+        padding: 20px;
+    }
+
+    .domino-effect .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .domino-effect .container {
+        padding: 1rem;
+    }
+
+    .domino-effect #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .domino-effect #current-date {
+        font-size: 1.3rem;
+    }
+
+    .domino-effect #today-weather {
+        font-size: 1rem;
+    }
+
+    .domino-effect .clock-face {
+        width: 130px;
+        height: 130px;
+    }
+
+    .domino-effect th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .domino-effect td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .domino-effect td .date-number {
+        font-size: 1rem;
+    }
+
+    .domino-effect #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .domino-effect .modal-content {
+        padding: 15px;
+    }
+
+    .domino-effect .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .domino-effect .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .domino-effect th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .domino-effect td {
+        height: 60px;
+    }
+
+    .domino-effect td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .domino-effect #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
