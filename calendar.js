@@ -177,7 +177,7 @@ const applyTheme = (theme) => {
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
     'the-art-of-visible', 'the-best-of-fashion', 'the-black-spruce', 
-    'the-burning-heart-of-the-sahara', 'the-dead-sea', 
+    'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
     'the-desert-line', 'the-element-of-surprise','the-final-step',
     'the-finest-green-tea',
     'the-great-silk-road', 'the-great-wall', 'the-green-mist',
