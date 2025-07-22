@@ -118,7 +118,7 @@ const applyTheme = (theme) => {
     'guangzhou-lights', 'haute-couture',
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
     'high-energy', 'high-intelligence','high-performance', 
-    'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes',
+    'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes', 'hot-desert-summer',
     'hurricane-clouds', 'hyperloop', 'iceberg-lake', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 'into-the-jungle',
     'inspiration-line', 'in-the-dusk', 'intelligence-quotient', 'into-the-night', 

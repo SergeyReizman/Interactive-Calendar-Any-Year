@@ -1,0 +1,845 @@
+/* ==========================================================================
+   Hot Desert Summer Theme - Arid Landscape Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Scorching desert color palette with mirage effects
+   - Sandy textures and cactus/sun motifs
+   - Heat wave animations and drought-tolerant elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Desert+Storm:wght@400;700&family=Sandscript:wght@300;400;600&display=swap');
+
+:root {
+    /* Desert Color Palette */
+    --desert-bg: #F5E6CA;
+    --desert-text: #4A3A2F;
+    --desert-primary: #E8D5B5;
+    --desert-secondary: #D8C5A5;
+    --desert-date-number: #E25822;
+
+    /* Arid Layer Colors */
+    --desert-layer1: #E8D5B5;
+    --desert-layer2: #D8C5A5;
+    --desert-layer3: #C8B595;
+    --desert-layer4: #B8A585;
+    --desert-layer5: #A89575;
+
+    /* Scorching Accents */
+    --desert-accent1: #E25822;
+    /* Sunset Red */
+    --desert-accent2: #F0A830;
+    /* Sun Yellow */
+    --desert-accent3: #78C850;
+    /* Cactus Green */
+    --desert-accent4: rgba(226, 88, 34, 0.5);
+    --desert-accent5: rgba(240, 168, 48, 0.3);
+
+    /* Theme Variables */
+    --desert-shadow: rgba(226, 88, 34, 0.15);
+    --desert-radius: 6px;
+    --desert-transition: 0.3s ease-out;
+    --desert-hover: #D8C5A5;
+    --desert-glow: 0 0 15px rgba(226, 88, 34, 0.3);
+    --desert-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,80 Q25,70 50,80 Q75,90 100,80" fill="none" stroke="%23E25822" stroke-width="0.5" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes heat-wave {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px var(--desert-accent1);
+    }
+}
+
+@keyframes mirage {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100px 0;
+    }
+}
+
+@keyframes sun-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes tumbleweed {
+    0% {
+        transform: translateX(-10px) rotate(-10deg);
+    }
+
+    100% {
+        transform: translateX(10px) rotate(10deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.hot-desert-summer {
+    font-family: 'Sandscript', sans-serif;
+    color: var(--desert-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--desert-bg);
+    min-height: 100vh;
+    background-image:
+        var(--desert-texture),
+        linear-gradient(to bottom, #F5E6CA, #E8D5B5);
+    background-repeat: repeat;
+    animation: mirage 60s linear infinite;
+}
+
+.hot-desert-summer .container {
+    background-color: var(--desert-primary);
+    padding: 2rem;
+    border: 1px solid var(--desert-accent4);
+    box-shadow: var(--desert-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--desert-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+}
+
+.hot-desert-summer .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--desert-accent1),
+            var(--desert-accent2),
+            transparent);
+}
+
+.hot-desert-summer .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--desert-accent3),
+            var(--desert-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.hot-desert-summer #calendar-title {
+    font-family: 'Desert Storm', serif;
+    color: var(--desert-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.hot-desert-summer #calendar-title::after {
+    content: "☀️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: sun-pulse 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.hot-desert-summer #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--desert-primary);
+    border: 1px solid var(--desert-accent4);
+    border-radius: var(--desert-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hot-desert-summer #date-weather-container::before {
+    content: "HIGH NOON";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--desert-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--desert-accent1);
+    font-weight: 600;
+    font-family: 'Sandscript', sans-serif;
+    text-transform: uppercase;
+}
+
+.hot-desert-summer #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--desert-accent1), transparent);
+}
+
+.hot-desert-summer #current-date {
+    font-family: 'Desert Storm', serif;
+    color: var(--desert-accent1);
+    font-size: 2.1rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.hot-desert-summer #today-weather {
+    font-family: 'Sandscript', sans-serif;
+    color: var(--desert-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.hot-desert-summer #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.hot-desert-summer .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--desert-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--desert-primary);
+    box-shadow: 0 0 20px rgba(226, 88, 34, 0.2);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--desert-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23E25822" stroke-width="0.3" opacity="0.3"/></svg>');
+}
+
+.hot-desert-summer .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hot-desert-summer .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--desert-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.hot-desert-summer .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--desert-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.hot-desert-summer .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--desert-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.hot-desert-summer .clock-face::after {
+    content: "🌵";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: var(--desert-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--desert-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--desert-primary);
+}
+
+/* Digital display in clock */
+.hot-desert-summer .clock-face::before {
+    content: "🏜️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.hot-desert-summer table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.hot-desert-summer th {
+    background-color: var(--desert-accent1);
+    color: var(--desert-primary) !important;
+    font-family: 'Sandscript', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--desert-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.hot-desert-summer th span.full-day-name {
+    display: inline;
+}
+
+.hot-desert-summer th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.hot-desert-summer td {
+    background-color: var(--desert-primary);
+    color: var(--desert-text);
+    padding: 1rem;
+    border: 1px solid var(--desert-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--desert-transition);
+    position: relative;
+    border-radius: var(--desert-radius);
+    box-shadow: inset 0 0 0 1px rgba(226, 88, 34, 0.1);
+}
+
+.hot-desert-summer td .date-number {
+    color: var(--desert-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Desert Storm', serif;
+}
+
+.hot-desert-summer td:hover {
+    background-color: var(--desert-secondary);
+    box-shadow: 0 2px 12px rgba(226, 88, 34, 0.15);
+}
+
+/* Current date highlight */
+.hot-desert-summer td.current-day {
+    background-color: rgba(226, 88, 34, 0.1);
+    border: 2px solid var(--desert-accent1);
+    animation: heat-wave 3s infinite;
+}
+
+.hot-desert-summer td.current-day .date-number {
+    color: var(--desert-text) !important;
+    font-weight: 600;
+}
+
+.hot-desert-summer td.current-day::before {
+    content: "🔥";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--desert-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.hot-desert-summer .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--desert-accent2);
+    margin: 0 1px;
+    transition: all var(--desert-transition);
+}
+
+.hot-desert-summer .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--desert-accent2);
+    box-shadow: 0 0 6px rgba(240, 168, 48, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.hot-desert-summer .modal-content {
+    position: relative;
+    background-color: var(--desert-primary);
+    border: 1px solid var(--desert-accent4);
+    padding: 25px;
+    color: var(--desert-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: var(--desert-radius);
+    animation: tumbleweed 0.3s ease-out;
+}
+
+.hot-desert-summer .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--desert-accent1) 0%,
+            var(--desert-accent2) 50%,
+            var(--desert-accent1) 100%);
+}
+
+.hot-desert-summer .modal-content h2 {
+    color: var(--desert-accent1);
+    font-family: 'Desert Storm', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.hot-desert-summer .modal-date {
+    font-family: 'Desert Storm', serif;
+    color: var(--desert-accent1);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--desert-accent4);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.hot-desert-summer .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hot-desert-summer .event-item {
+    background-color: var(--desert-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--desert-accent1);
+    border-radius: var(--desert-radius);
+    transition: all var(--desert-transition);
+}
+
+.hot-desert-summer .event-item:hover {
+    background-color: var(--desert-layer3);
+    transform: translateX(3px);
+}
+
+.hot-desert-summer .event-time {
+    font-family: 'Sandscript', sans-serif;
+    color: var(--desert-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.hot-desert-summer .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--desert-text);
+    font-family: 'Sandscript', sans-serif;
+}
+
+.hot-desert-summer .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--desert-text);
+    opacity: 0.9;
+    font-family: 'Sandscript', sans-serif;
+}
+
+.hot-desert-summer .modal-content button {
+    background-color: var(--desert-accent1);
+    color: var(--desert-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Sandscript', sans-serif;
+    border-radius: var(--desert-radius);
+}
+
+.hot-desert-summer .modal-content button:hover {
+    background-color: var(--desert-hover);
+    box-shadow: 0 3px 10px rgba(226, 88, 34, 0.2);
+}
+
+/* Close Button */
+.hot-desert-summer .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--desert-primary);
+    color: var(--desert-text);
+    border: 1px solid var(--desert-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.hot-desert-summer .modal .close-button:hover {
+    background-color: var(--desert-text);
+    color: var(--desert-accent1);
+    border-color: var(--desert-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.hot-desert-summer .button,
+.hot-desert-summer .transparent-button {
+    border: 1px solid var(--desert-accent1);
+    color: var(--desert-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Sandscript', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--desert-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.hot-desert-summer .button:hover,
+.hot-desert-summer .transparent-button:hover {
+    background-color: var(--desert-accent1);
+    color: var(--desert-primary);
+    box-shadow: 0 3px 10px rgba(226, 88, 34, 0.15);
+}
+
+.hot-desert-summer .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.hot-desert-summer #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.hot-desert-summer #theme-switcher {
+    background-color: var(--desert-primary);
+    color: var(--desert-text) !important;
+    border: 1px solid var(--desert-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Sandscript', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A3A2F'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    border-radius: var(--desert-radius);
+}
+
+.hot-desert-summer #theme-switcher option {
+    background-color: var(--desert-primary) !important;
+    color: var(--desert-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.hot-desert-summer #theme-switcher:focus {
+    outline: none;
+    border-color: var(--desert-accent1);
+    box-shadow: 0 0 0 2px rgba(226, 88, 34, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.hot-desert-summer #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Sandscript', sans-serif;
+    font-weight: 600;
+    color: var(--desert-primary);
+    background-color: var(--desert-accent1);
+    cursor: pointer;
+    transition: all var(--desert-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--desert-radius);
+    box-shadow: 0 2px 8px rgba(226, 88, 34, 0.3);
+}
+
+.hot-desert-summer #backToTopBtn:hover {
+    background-color: var(--desert-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.hot-desert-summer footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--desert-accent4);
+    color: var(--desert-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Desert Storm', serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .hot-desert-summer .container {
+        padding: 1.5rem;
+    }
+
+    .hot-desert-summer #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .hot-desert-summer #current-date {
+        font-size: 1.7rem;
+    }
+
+    .hot-desert-summer #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .hot-desert-summer .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .hot-desert-summer .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hot-desert-summer {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .hot-desert-summer .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .hot-desert-summer th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .hot-desert-summer th span.full-day-name {
+        display: none;
+    }
+
+    .hot-desert-summer th abbr {
+        display: inline;
+    }
+
+    .hot-desert-summer td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .hot-desert-summer td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .hot-desert-summer td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .hot-desert-summer #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .hot-desert-summer #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .hot-desert-summer .modal-content {
+        padding: 20px;
+    }
+
+    .hot-desert-summer .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hot-desert-summer .container {
+        padding: 1rem;
+    }
+
+    .hot-desert-summer #calendar-title {
+        font-size: 1.9rem;
+    }
+
+    .hot-desert-summer #current-date {
+        font-size: 1.5rem;
+    }
+
+    .hot-desert-summer #today-weather {
+        font-size: 1rem;
+    }
+
+    .hot-desert-summer .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .hot-desert-summer th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .hot-desert-summer td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .hot-desert-summer td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .hot-desert-summer #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .hot-desert-summer .modal-content {
+        padding: 15px;
+    }
+
+    .hot-desert-summer .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .hot-desert-summer .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hot-desert-summer th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .hot-desert-summer td {
+        height: 60px;
+    }
+
+    .hot-desert-summer td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .hot-desert-summer #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
