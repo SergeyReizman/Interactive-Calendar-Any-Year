@@ -65,7 +65,7 @@ const applyTheme = (theme) => {
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
     'back-on-track', 'back-to-paradise', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 
-    'be-yourself', 'big-dream',
+    'be-yourself', 'bigboss-style', 'big-dream',
     'big-fashion', 'big-pacific',
     'black-fashion', 'black-bird', 'black-coffee', 'black-hacker',
     'black-hawk', 'black-hole', 'black-magic', 'black-mountain',
