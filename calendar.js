@@ -177,7 +177,7 @@ const applyTheme = (theme) => {
     'summer-breeze', 'summer-vibes', 'sunset-magic', 'sweet-misty-morning',
     'sword-of-fate', 'technological-future',
     'technological-might', 'tactical-advantage', 'tactical-command', 
-    'the-art-of-visible', 'the-best-of-fashion', 'the-black-spruce', 
+    'the-art-of-visible', 'the-best-mood', 'the-best-of-fashion', 'the-black-spruce', 
     'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
     'the-desert-line', 'the-element-of-surprise','the-final-step',
     'the-finest-green-tea',

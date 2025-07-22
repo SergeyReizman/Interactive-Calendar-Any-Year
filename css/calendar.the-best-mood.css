@@ -1,0 +1,856 @@
+/* ==========================================================================
+   The Best Mood Theme - Joyful & Vibrant Calendar
+   Version: 1.2
+   Updated: 2024-06-15
+   Changes:
+   - Supercharged color palette with happier, brighter tones
+   - Added more playful accent colors while keeping the cheerful vibe
+   - Enhanced visual contrast for better readability
+   - Maintained all original functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Nunito:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Enhanced Happy Color Palette */
+    --happy-bg: #FFF5F5;
+    /* Soft pink background */
+    --happy-text: #333333;
+    /* Dark text for contrast */
+    --happy-primary: #FFFFFF;
+    /* White panels */
+    --happy-secondary: #FFF0F0;
+    /* Light pink */
+    --happy-date-number: #FF6B6B;
+    /* Cheerful coral */
+
+    /* Vibrant Accent Colors */
+    --happy-accent1: #FF9E9E;
+    /* Soft coral */
+    --happy-accent2: #6BCB77;
+    /* Happy green */
+    --happy-accent3: #4D96FF;
+    /* Bright blue */
+    --happy-accent4: #FFD93D;
+    /* Sunny yellow */
+    --happy-accent5: #FF78C4;
+    /* Playful pink */
+    --happy-accent6: #9C51B6;
+    /* Creative purple */
+    --happy-accent7: #FF7F3F;
+    /* Energetic orange */
+
+    /* New Semi-transparent Colors */
+    --happy-accent1-trans: rgba(255, 158, 158, 0.5);
+    --happy-accent2-trans: rgba(107, 203, 119, 0.3);
+    --happy-accent3-trans: rgba(77, 150, 255, 0.3);
+
+    /* Theme Variables */
+    --happy-shadow: rgba(255, 107, 107, 0.15);
+    --happy-radius: 12px;
+    --happy-transition: 0.3s ease-out;
+    --happy-hover: #FFE0E0;
+    --happy-glow: 0 0 15px rgba(255, 107, 107, 0.2);
+    --happy-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%23FF9E9E" opacity="0.2"/><circle cx="50" cy="50" r="5" fill="%236BCB77" opacity="0.2"/><circle cx="80" cy="30" r="5" fill="%234D96FF" opacity="0.2"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes happy-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes confetti-fall {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes rainbow-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--happy-accent1);
+    }
+
+    25% {
+        box-shadow: 0 0 10px var(--happy-accent2);
+    }
+
+    50% {
+        box-shadow: 0 0 10px var(--happy-accent3);
+    }
+
+    75% {
+        box-shadow: 0 0 10px var(--happy-accent5);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-best-mood {
+    font-family: 'Nunito', sans-serif;
+    color: var(--happy-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--happy-bg);
+    min-height: 100vh;
+    background-image:
+        var(--happy-texture),
+        linear-gradient(to bottom, #FFF5F5, #FFE9E9);
+    background-repeat: repeat;
+    animation: confetti-fall 60s linear infinite;
+}
+
+.the-best-mood .container {
+    background-color: var(--happy-primary);
+    padding: 2rem;
+    border: 1px solid var(--happy-accent1-trans);
+    box-shadow: var(--happy-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--happy-radius);
+}
+
+.the-best-mood .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--happy-accent1),
+            var(--happy-accent2),
+            var(--happy-accent3),
+            var(--happy-accent4),
+            var(--happy-accent5),
+            var(--happy-accent1));
+    border-radius: var(--happy-radius) var(--happy-radius) 0 0;
+}
+
+.the-best-mood .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--happy-accent1),
+            var(--happy-accent5),
+            var(--happy-accent4),
+            var(--happy-accent3),
+            var(--happy-accent2),
+            var(--happy-accent1));
+    border-radius: 0 0 var(--happy-radius) var(--happy-radius);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-best-mood #calendar-title {
+    font-family: 'Comic Neue', cursive;
+    color: var(--happy-accent1);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.the-best-mood #calendar-title::after {
+    content: "😊";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: happy-bounce 2s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-best-mood #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--happy-primary);
+    border: 1px solid var(--happy-accent1-trans);
+    border-radius: var(--happy-radius);
+    position: relative;
+    box-shadow: 0 3px 10px var(--happy-shadow);
+}
+
+.the-best-mood #date-weather-container::before {
+    content: "HAPPY DAYS";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--happy-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--happy-accent1);
+    font-weight: 600;
+    font-family: 'Comic Neue', cursive;
+    text-transform: uppercase;
+}
+
+.the-best-mood #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--happy-accent1), transparent);
+}
+
+.the-best-mood #current-date {
+    font-family: 'Comic Neue', cursive;
+    color: var(--happy-accent1);
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.the-best-mood #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--happy-accent3);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-best-mood #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.the-best-mood .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 4px solid var(--happy-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--happy-primary);
+    box-shadow: 0 0 20px rgba(255, 158, 158, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--happy-accent1-trans) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23FF9E9E" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.the-best-mood .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.the-best-mood .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--happy-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.the-best-mood .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--happy-accent3);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.the-best-mood .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--happy-accent5);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.the-best-mood .clock-face::after {
+    content: "⏰";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--happy-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--happy-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--happy-primary);
+    animation: happy-bounce 1.5s infinite;
+}
+
+/* Digital display in clock */
+.the-best-mood .clock-face::before {
+    content: "✨";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.the-best-mood table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.the-best-mood th {
+    background: linear-gradient(to bottom, var(--happy-accent1), #FF8E8E);
+    color: var(--happy-primary) !important;
+    font-family: 'Comic Neue', cursive;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--happy-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 3px 5px var(--happy-shadow);
+}
+
+.the-best-mood th span.full-day-name {
+    display: inline;
+}
+
+.the-best-mood th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.the-best-mood td {
+    background-color: var(--happy-primary);
+    color: var(--happy-text);
+    padding: 1rem;
+    border: 1px solid var(--happy-accent1-trans);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--happy-transition);
+    position: relative;
+    border-radius: var(--happy-radius);
+    box-shadow: 0 2px 5px var(--happy-shadow);
+}
+
+.the-best-mood td .date-number {
+    color: var(--happy-date-number) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Comic Neue', cursive;
+}
+
+.the-best-mood td:hover {
+    background-color: var(--happy-hover);
+    box-shadow: 0 5px 15px rgba(255, 158, 158, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.the-best-mood td.current-day {
+    background-color: rgba(255, 158, 158, 0.1);
+    border: 2px solid var(--happy-accent1);
+    animation: rainbow-glow 4s infinite;
+}
+
+.the-best-mood td.current-day .date-number {
+    color: var(--happy-accent1) !important;
+    font-weight: 700;
+}
+
+.the-best-mood td.current-day::before {
+    content: "🌟";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+    color: var(--happy-accent4);
+    animation: happy-bounce 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-best-mood .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--happy-accent3);
+    margin: 0 2px;
+    transition: all var(--happy-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.the-best-mood .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--happy-accent3);
+    box-shadow: 0 0 8px rgba(77, 150, 255, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-best-mood .modal-content {
+    position: relative;
+    background-color: var(--happy-primary);
+    border: 1px solid var(--happy-accent1-trans);
+    padding: 25px;
+    color: var(--happy-text);
+    box-shadow: 0 8px 20px var(--happy-shadow);
+    border-radius: var(--happy-radius);
+}
+
+.the-best-mood .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--happy-accent1),
+            var(--happy-accent2),
+            var(--happy-accent3),
+            var(--happy-accent4),
+            var(--happy-accent5));
+    border-radius: var(--happy-radius) var(--happy-radius) 0 0;
+}
+
+.the-best-mood .modal-content h2 {
+    color: var(--happy-accent1);
+    font-family: 'Comic Neue', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Modal date display */
+.the-best-mood .modal-date {
+    font-family: 'Comic Neue', cursive;
+    color: var(--happy-accent1);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--happy-accent1-trans);
+}
+
+/* Event list */
+.the-best-mood .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.the-best-mood .event-item {
+    background-color: var(--happy-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--happy-accent1);
+    border-radius: var(--happy-radius);
+    transition: all var(--happy-transition);
+    box-shadow: 0 2px 5px var(--happy-shadow);
+}
+
+.the-best-mood .event-item:hover {
+    background-color: var(--happy-hover);
+    transform: translateX(5px);
+    box-shadow: 0 5px 10px rgba(255, 158, 158, 0.3);
+}
+
+.the-best-mood .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--happy-accent3);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.the-best-mood .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--happy-text);
+    font-family: 'Nunito', sans-serif;
+}
+
+.the-best-mood .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--happy-text);
+    opacity: 0.9;
+    font-family: 'Nunito', sans-serif;
+}
+
+.the-best-mood .modal-content button {
+    background: linear-gradient(to bottom, var(--happy-accent1), #FF8E8E);
+    color: var(--happy-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--happy-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: var(--happy-radius);
+    box-shadow: 0 2px 5px var(--happy-shadow);
+}
+
+.the-best-mood .modal-content button:hover {
+    background: linear-gradient(to bottom, #FF8E8E, var(--happy-accent1));
+    box-shadow: 0 5px 10px rgba(255, 158, 158, 0.4);
+}
+
+/* Close Button */
+.the-best-mood .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--happy-primary);
+    color: var(--happy-text);
+    border: 1px solid var(--happy-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--happy-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.the-best-mood .modal .close-button:hover {
+    background-color: var(--happy-accent1);
+    color: var(--happy-primary);
+    border-color: var(--happy-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-best-mood .button,
+.the-best-mood .transparent-button {
+    border: 1px solid var(--happy-accent1);
+    color: var(--happy-text);
+    background-color: var(--happy-primary);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--happy-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--happy-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px var(--happy-shadow);
+}
+
+.the-best-mood .button:hover,
+.the-best-mood .transparent-button:hover {
+    background: linear-gradient(to bottom, var(--happy-accent1), #FF8E8E);
+    color: var(--happy-primary);
+    box-shadow: 0 5px 10px rgba(255, 158, 158, 0.3);
+}
+
+.the-best-mood .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-best-mood #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.the-best-mood #theme-switcher {
+    background-color: var(--happy-primary);
+    color: var(--happy-text) !important;
+    border: 1px solid var(--happy-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B6B'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--happy-transition);
+    border-radius: var(--happy-radius);
+}
+
+.the-best-mood #theme-switcher option {
+    background-color: var(--happy-primary) !important;
+    color: var(--happy-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.the-best-mood #theme-switcher:focus {
+    outline: none;
+    border-color: var(--happy-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-best-mood #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    color: var(--happy-primary);
+    background: linear-gradient(to bottom, var(--happy-accent1), #FF8E8E);
+    cursor: pointer;
+    transition: all var(--happy-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--happy-radius);
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+}
+
+.the-best-mood #backToTopBtn:hover {
+    background: linear-gradient(to bottom, #FF8E8E, var(--happy-accent1));
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.the-best-mood footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--happy-accent1-trans);
+    color: var(--happy-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Comic Neue', cursive;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-best-mood .container {
+        padding: 1.5rem;
+    }
+
+    .the-best-mood #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .the-best-mood #current-date {
+        font-size: 1.7rem;
+    }
+
+    .the-best-mood #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .the-best-mood .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .the-best-mood .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-best-mood {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .the-best-mood .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .the-best-mood th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .the-best-mood th span.full-day-name {
+        display: none;
+    }
+
+    .the-best-mood th abbr {
+        display: inline;
+    }
+
+    .the-best-mood td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .the-best-mood td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .the-best-mood td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .the-best-mood #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .the-best-mood #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .the-best-mood .modal-content {
+        padding: 20px;
+    }
+
+    .the-best-mood .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-best-mood .container {
+        padding: 1rem;
+    }
+
+    .the-best-mood #calendar-title {
+        font-size: 1.9rem;
+    }
+
+    .the-best-mood #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-best-mood #today-weather {
+        font-size: 1rem;
+    }
+
+    .the-best-mood .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .the-best-mood th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .the-best-mood td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .the-best-mood td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .the-best-mood #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .the-best-mood .modal-content {
+        padding: 15px;
+    }
+
+    .the-best-mood .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .the-best-mood .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-best-mood th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .the-best-mood td {
+        height: 60px;
+    }
+
+    .the-best-mood td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .the-best-mood #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
