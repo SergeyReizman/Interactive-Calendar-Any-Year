@@ -176,7 +176,7 @@ const applyTheme = (theme) => {
     'style-spectrum', 'success-key','success-motivation', 'success-story', 
     'summer-breeze', 'summer-vibes', 'sunset-magic', 'surfing-club', 'sweet-misty-morning',
     'sword-of-fate', 'technological-future',
-    'technological-might', 'tactical-advantage', 'tactical-command', 
+    'technological-might', 'tactical-advantage', 'tactical-command', 'take-me-to-summer',
     'the-art-of-visible', 'the-best-mood', 'the-best-of-fashion', 'the-black-spruce', 
     'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
     'the-desert-line', 'the-element-of-surprise','the-final-step',
