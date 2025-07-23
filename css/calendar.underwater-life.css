@@ -1,0 +1,874 @@
+/* ==========================================================================
+   Underwater Life Theme - Oceanic Calendar
+   Version: 1.0
+   Updated: 2024-06-15
+   Changes:
+   - Aquatic color palette with ocean blues and coral accents
+   - Marine-inspired design elements
+   - Smooth wave-like animations
+   - Maintained all original functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Bubblegum+Sans&display=swap');
+
+:root {
+    /* Oceanic Color Palette */
+    --moment-bg: #E0F7FA;
+    /* Light ocean blue background */
+    --moment-text: #006064;
+    /* Deep teal text */
+    --moment-primary: #FFFFFF;
+    /* White */
+    --moment-secondary: #B2EBF2;
+    /* Pale aqua */
+    --moment-date-number: #00838F;
+    /* Medium teal */
+
+    /* Marine Accent Colors */
+    --moment-accent1: #00838F;
+    /* Teal */
+    --moment-accent2: #4DD0E1;
+    /* Light turquoise */
+    --moment-accent3: #FF8A65;
+    /* Coral */
+    --moment-accent4: #80DEEA;
+    /* Sky blue */
+    --moment-accent5: #26C6DA;
+    /* Bright turquoise */
+    --moment-accent6: #FFA726;
+    /* Orange coral */
+    --moment-accent7: #00796B;
+    /* Dark teal */
+
+    /* Semi-transparent Colors */
+    --moment-accent1-trans: rgba(0, 131, 143, 0.3);
+    --moment-accent2-trans: rgba(77, 208, 225, 0.3);
+    --moment-accent3-trans: rgba(255, 138, 101, 0.2);
+
+    /* Theme Variables */
+    --moment-shadow: rgba(0, 131, 143, 0.15);
+    --moment-radius: 12px;
+    --moment-transition: 0.3s ease-out;
+    --moment-hover: #E0F7FA;
+    --moment-glow: 0 0 15px rgba(0, 131, 143, 0.2);
+    --moment-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%2300838F" opacity="0.2"/><circle cx="50" cy="50" r="1" fill="%234DD0E1" opacity="0.2"/><circle cx="80" cy="30" r="1" fill="%23FF8A65" opacity="0.2"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes bubble-float {
+    0% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+@keyframes wave-motion {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes fish-swim {
+
+    0%,
+    100% {
+        transform: translateX(0) scaleX(1);
+    }
+
+    50% {
+        transform: translateX(10px) scaleX(-1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.underwater-life {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--moment-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--moment-bg);
+    min-height: 100vh;
+    background-image:
+        var(--moment-texture),
+        linear-gradient(to bottom, #E0F7FA, #B2EBF2);
+    background-repeat: repeat;
+}
+
+.underwater-life .container {
+    background-color: var(--moment-primary);
+    padding: 2rem;
+    border: 1px solid var(--moment-accent1-trans);
+    box-shadow: var(--moment-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--moment-radius);
+}
+
+.underwater-life .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--moment-accent1),
+            var(--moment-accent2),
+            var(--moment-accent3),
+            var(--moment-accent1));
+    border-radius: var(--moment-radius) var(--moment-radius) 0 0;
+}
+
+.underwater-life .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--moment-accent1),
+            var(--moment-accent5),
+            var(--moment-accent3),
+            var(--moment-accent1));
+    border-radius: 0 0 var(--moment-radius) var(--moment-radius);
+}
+
+/* Bubble decorations */
+.underwater-life .container::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="3" fill="%2300838F" opacity="0.1"/><circle cx="30" cy="40" r="2" fill="%234DD0E1" opacity="0.1"/><circle cx="70" cy="20" r="4" fill="%23008080" opacity="0.1"/></svg>');
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.underwater-life #calendar-title {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--moment-accent1);
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    font-weight: 400;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.05);
+    animation: wave-motion 3s infinite;
+}
+
+.underwater-life #calendar-title::after {
+    content: "🐠";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: fish-swim 4s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.underwater-life #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--moment-primary);
+    border: 1px solid var(--moment-accent1-trans);
+    border-radius: var(--moment-radius);
+    position: relative;
+    box-shadow: 0 3px 10px var(--moment-shadow);
+    overflow: hidden;
+}
+
+.underwater-life #date-weather-container::before {
+    content: "OCEAN TIME";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--moment-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--moment-accent1);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.underwater-life #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--moment-accent1), transparent);
+}
+
+.underwater-life #current-date {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--moment-accent1);
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+}
+
+.underwater-life #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--moment-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Bubble decoration */
+.underwater-life #date-weather-container .bubble {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--moment-accent2-trans);
+    animation: bubble-float 4s infinite;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.underwater-life #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+    position: relative;
+}
+
+.underwater-life .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 4px solid var(--moment-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--moment-primary);
+    box-shadow: 0 0 20px rgba(0, 131, 143, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--moment-accent1-trans) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300838F" stroke-width="0.5" opacity="0.3"/></svg>');
+    z-index: 1;
+}
+
+.underwater-life .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.underwater-life .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--moment-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.underwater-life .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--moment-accent3);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.underwater-life .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--moment-accent5);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.underwater-life .clock-face::after {
+    content: "🐚";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: var(--moment-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--moment-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--moment-primary);
+}
+
+/* Clock background wave */
+.underwater-life .clock-face::before {
+    content: "🌊";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.underwater-life table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+    position: relative;
+    z-index: 1;
+}
+
+/* DAY OF WEEK HEADERS */
+.underwater-life th {
+    background: linear-gradient(to bottom, var(--moment-accent1), #006064);
+    color: var(--moment-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--moment-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 3px 5px var(--moment-shadow);
+}
+
+.underwater-life th span.full-day-name {
+    display: inline;
+}
+
+.underwater-life th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.underwater-life td {
+    background-color: var(--moment-primary);
+    color: var(--moment-text);
+    padding: 1rem;
+    border: 1px solid var(--moment-accent1-trans);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--moment-transition);
+    position: relative;
+    border-radius: var(--moment-radius);
+    box-shadow: 0 2px 5px var(--moment-shadow);
+}
+
+.underwater-life td .date-number {
+    color: var(--moment-date-number) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+.underwater-life td:hover {
+    background-color: var(--moment-hover);
+    box-shadow: 0 5px 15px rgba(0, 131, 143, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.underwater-life td.current-day {
+    background-color: rgba(0, 131, 143, 0.1);
+    border: 2px solid var(--moment-accent1);
+    animation: wave-motion 3s infinite;
+}
+
+.underwater-life td.current-day .date-number {
+    color: var(--moment-accent1) !important;
+    font-weight: 600;
+}
+
+.underwater-life td.current-day::before {
+    content: "🐡";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+    color: var(--moment-accent3);
+    animation: fish-swim 3s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.underwater-life .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--moment-accent3);
+    margin: 0 2px;
+    transition: all var(--moment-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.underwater-life .event-marker:hover {
+    transform: scale(1.5);
+    background-color: var(--moment-accent3);
+    box-shadow: 0 0 8px rgba(255, 138, 101, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.underwater-life .modal-content {
+    position: relative;
+    background-color: var(--moment-primary);
+    border: 1px solid var(--moment-accent1-trans);
+    padding: 25px;
+    color: var(--moment-text);
+    box-shadow: 0 8px 20px var(--moment-shadow);
+    border-radius: var(--moment-radius);
+    overflow: hidden;
+}
+
+.underwater-life .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+            var(--moment-accent1) 0%,
+            var(--moment-accent3) 50%,
+            var(--moment-accent1) 100%);
+    border-radius: var(--moment-radius) var(--moment-radius) 0 0;
+}
+
+.underwater-life .modal-content h2 {
+    color: var(--moment-accent1);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+/* Modal date display */
+.underwater-life .modal-date {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--moment-accent1);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--moment-accent1-trans);
+}
+
+/* Event list */
+.underwater-life .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.underwater-life .event-item {
+    background-color: var(--moment-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--moment-accent1);
+    border-radius: var(--moment-radius);
+    transition: all var(--moment-transition);
+    box-shadow: 0 2px 5px var(--moment-shadow);
+}
+
+.underwater-life .event-item:hover {
+    background-color: var(--moment-hover);
+    transform: translateX(5px);
+    box-shadow: 0 5px 10px rgba(0, 131, 143, 0.3);
+}
+
+.underwater-life .event-time {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--moment-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.underwater-life .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--moment-text);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.underwater-life .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--moment-text);
+    opacity: 0.9;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.underwater-life .modal-content button {
+    background: linear-gradient(to bottom, var(--moment-accent1), #006064);
+    color: var(--moment-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--moment-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--moment-radius);
+    box-shadow: 0 2px 5px var(--moment-shadow);
+}
+
+.underwater-life .modal-content button:hover {
+    background: linear-gradient(to bottom, #006064, var(--moment-accent1));
+    box-shadow: 0 5px 10px rgba(0, 96, 100, 0.4);
+}
+
+/* Close Button */
+.underwater-life .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--moment-primary);
+    color: var(--moment-text);
+    border: 1px solid var(--moment-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--moment-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.underwater-life .modal .close-button:hover {
+    background-color: var(--moment-accent1);
+    color: var(--moment-primary);
+    border-color: var(--moment-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.underwater-life .button,
+.underwater-life .transparent-button {
+    border: 1px solid var(--moment-accent1);
+    color: var(--moment-text);
+    background-color: var(--moment-primary);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--moment-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--moment-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px var(--moment-shadow);
+}
+
+.underwater-life .button:hover,
+.underwater-life .transparent-button:hover {
+    background: linear-gradient(to bottom, var(--moment-accent1), #006064);
+    color: var(--moment-primary);
+    box-shadow: 0 5px 10px rgba(0, 96, 100, 0.3);
+}
+
+.underwater-life .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.underwater-life #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.underwater-life #theme-switcher {
+    background-color: var(--moment-primary);
+    color: var(--moment-text) !important;
+    border: 1px solid var(--moment-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300838F'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--moment-transition);
+    border-radius: var(--moment-radius);
+}
+
+.underwater-life #theme-switcher option {
+    background-color: var(--moment-primary) !important;
+    color: var(--moment-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.underwater-life #theme-switcher:focus {
+    outline: none;
+    border-color: var(--moment-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 131, 143, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.underwater-life #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--moment-primary);
+    background: linear-gradient(to bottom, var(--moment-accent1), #006064);
+    cursor: pointer;
+    transition: all var(--moment-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--moment-radius);
+    box-shadow: 0 2px 8px rgba(0, 96, 100, 0.4);
+}
+
+.underwater-life #backToTopBtn:hover {
+    background: linear-gradient(to bottom, #006064, var(--moment-accent1));
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.underwater-life footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--moment-accent1-trans);
+    color: var(--moment-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Bubblegum Sans', cursive;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .underwater-lifee .container {
+        padding: 1.5rem;
+    }
+
+    .underwater-lifee #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .underwater-lifee #current-date {
+        font-size: 2rem;
+    }
+
+    .underwater-lifee #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .underwater-lifee .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .underwater-lifee .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .underwater-lifee {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .underwater-lifee .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .underwater-lifee th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .underwater-lifee th span.full-day-name {
+        display: none;
+    }
+
+    .underwater-lifee th abbr {
+        display: inline;
+    }
+
+    .underwater-lifee td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .underwater-lifee td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .underwater-lifee td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .underwater-lifee #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .underwater-lifee #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .underwater-lifee .modal-content {
+        padding: 20px;
+    }
+
+    .underwater-lifee .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .underwater-lifee .container {
+        padding: 1rem;
+    }
+
+    .underwater-lifee #calendar-title {
+        font-size: 2rem;
+    }
+
+    .underwater-lifee #current-date {
+        font-size: 1.5rem;
+    }
+
+    .underwater-lifee #today-weather {
+        font-size: 1rem;
+    }
+
+    .underwater-lifee .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .underwater-lifee th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .underwater-lifee td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .underwater-lifee td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .underwater-lifee #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .underwater-lifee .modal-content {
+        padding: 15px;
+    }
+
+    .underwater-lifee .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .underwater-lifee .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .underwater-lifee th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .underwater-lifee td {
+        height: 60px;
+    }
+
+    .underwater-lifee td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .underwater-lifee #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
