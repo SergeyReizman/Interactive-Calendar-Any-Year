@@ -1,0 +1,842 @@
+/* ==========================================================================
+   Darkness Blue Theme - Deep Ocean Calendar
+   Version: 1.2
+   Updated: 2024-06-15
+   Changes:
+   - Richer deep blue color palette with vibrant accent colors
+   - Added more contrast while keeping the dark theme
+   - Enhanced glow effects for better visual hierarchy
+   - Maintained all original functionality
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;600&display=swap');
+
+:root {
+    /* Enhanced Deep Ocean Color Palette */
+    --darkness-bg: #0A0F1A;
+    /* Midnight blue background */
+    --darkness-text: #E0E5FF;
+    /* Ice blue text */
+    --darkness-primary: #121A2A;
+    /* Dark navy panels */
+    --darkness-secondary: #1A243A;
+    /* Slightly lighter navy */
+    --darkness-date-number: #4D79FF;
+    /* Electric blue */
+
+    /* Vibrant Depth Accent Colors */
+    --darkness-accent1: #3A5FCD;
+    /* Deep sapphire */
+    --darkness-accent2: #00C8FF;
+    /* Cyan glow */
+    --darkness-accent3: #6B8EFF;
+    /* Lighter blue */
+    --darkness-accent4: #FF6B6B;
+    /* Coral highlight */
+    --darkness-accent5: #9D50FF;
+    /* Deep purple */
+    --darkness-accent6: #00E676;
+    /* Emerald */
+    --darkness-accent7: #FFA726;
+    /* Amber */
+
+    /* New Semi-transparent Colors */
+    --darkness-accent1-trans: rgba(58, 95, 205, 0.5);
+    --darkness-accent2-trans: rgba(0, 200, 255, 0.3);
+    --darkness-accent3-trans: rgba(107, 142, 255, 0.2);
+
+    /* Theme Variables */
+    --darkness-shadow: rgba(0, 0, 0, 0.5);
+    --darkness-radius: 6px;
+    --darkness-transition: 0.3s ease-out;
+    --darkness-hover: #1E2A4A;
+    --darkness-glow: 0 0 15px rgba(77, 121, 255, 0.3);
+    --darkness-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,80 Q25,70 50,80 Q75,90 100,80 L100,100 L0,100 Z" fill="%233A5FCD" opacity="0.1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes deep-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(77, 121, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(77, 121, 255, 0);
+    }
+}
+
+@keyframes ocean-current {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100px 0;
+    }
+}
+
+@keyframes bubble-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.darkness-blue {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--darkness-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--darkness-bg);
+    min-height: 100vh;
+    background-image:
+        var(--darkness-texture),
+        linear-gradient(to bottom, #0A0F1A, #121A2A);
+    background-repeat: repeat;
+    animation: ocean-current 60s linear infinite;
+}
+
+.darkness-blue .container {
+    background-color: var(--darkness-primary);
+    padding: 2rem;
+    border: 1px solid var(--darkness-accent1-trans);
+    box-shadow: var(--darkness-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--darkness-radius);
+}
+
+.darkness-blue .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--darkness-accent1),
+            var(--darkness-accent2),
+            transparent);
+}
+
+.darkness-blue .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--darkness-accent5),
+            var(--darkness-accent1),
+            transparent);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.darkness-blue #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--darkness-accent2);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--darkness-accent2-trans);
+}
+
+.darkness-blue #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    animation: bubble-float 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.darkness-blue #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--darkness-primary);
+    border: 1px solid var(--darkness-accent1-trans);
+    border-radius: var(--darkness-radius);
+    position: relative;
+    box-shadow: 0 3px 10px var(--darkness-shadow);
+}
+
+.darkness-blue #date-weather-container::before {
+    content: "DEEP BLUE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--darkness-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--darkness-accent2);
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+.darkness-blue #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--darkness-accent1), transparent);
+}
+
+.darkness-blue #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--darkness-accent2);
+    font-size: 2.1rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.darkness-blue #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--darkness-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.darkness-blue #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.darkness-blue .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--darkness-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--darkness-primary);
+    box-shadow: 0 0 20px rgba(58, 95, 205, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--darkness-accent1-trans) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%233A5FCD" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.darkness-blue .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.darkness-blue .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--darkness-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.darkness-blue .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--darkness-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.darkness-blue .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--darkness-accent4);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.darkness-blue .clock-face::after {
+    content: "🕒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: var(--darkness-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--darkness-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--darkness-primary);
+}
+
+/* Digital display in clock */
+.darkness-blue .clock-face::before {
+    content: "🌌";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.darkness-blue table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.darkness-blue th {
+    background: linear-gradient(to bottom, #1E2A4A, var(--darkness-accent1));
+    color: var(--darkness-text) !important;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--darkness-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--darkness-accent2);
+}
+
+.darkness-blue th span.full-day-name {
+    display: inline;
+}
+
+.darkness-blue th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.darkness-blue td {
+    background-color: var(--darkness-primary);
+    color: var(--darkness-text);
+    padding: 1rem;
+    border: 1px solid var(--darkness-accent1-trans);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--darkness-transition);
+    position: relative;
+    border-radius: var(--darkness-radius);
+    box-shadow: 0 2px 5px var(--darkness-shadow);
+}
+
+.darkness-blue td .date-number {
+    color: var(--darkness-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.darkness-blue td:hover {
+    background-color: var(--darkness-hover);
+    box-shadow: 0 4px 8px rgba(58, 95, 205, 0.3);
+}
+
+/* Current date highlight */
+.darkness-blue td.current-day {
+    background-color: rgba(58, 95, 205, 0.1);
+    border: 2px solid var(--darkness-accent1);
+    animation: deep-pulse 2s infinite;
+}
+
+.darkness-blue td.current-day .date-number {
+    color: var(--darkness-accent2) !important;
+    font-weight: 700;
+}
+
+.darkness-blue td.current-day::before {
+    content: "🔵";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--darkness-accent2);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.darkness-blue .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--darkness-accent2);
+    margin: 0 1px;
+    transition: all var(--darkness-transition);
+    box-shadow: 0 0 3px var(--darkness-accent2-trans);
+}
+
+.darkness-blue .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--darkness-accent2);
+    box-shadow: 0 0 8px var(--darkness-accent2-trans);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.darkness-blue .modal-content {
+    position: relative;
+    background-color: var(--darkness-primary);
+    border: 1px solid var(--darkness-accent1-trans);
+    padding: 25px;
+    color: var(--darkness-text);
+    box-shadow: 0 8px 20px var(--darkness-shadow);
+    border-radius: var(--darkness-radius);
+}
+
+.darkness-blue .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--darkness-accent1) 0%,
+            var(--darkness-accent2) 50%,
+            var(--darkness-accent1) 100%);
+}
+
+.darkness-blue .modal-content h2 {
+    color: var(--darkness-accent2);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* Modal date display */
+.darkness-blue .modal-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--darkness-accent2);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--darkness-accent1-trans);
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.darkness-blue .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.darkness-blue .event-item {
+    background: linear-gradient(to right, #1A243A 0%, #121A2A 100%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--darkness-accent1);
+    border-radius: var(--darkness-radius);
+    transition: all var(--darkness-transition);
+    box-shadow: 0 2px 5px var(--darkness-shadow);
+}
+
+.darkness-blue .event-item:hover {
+    background: linear-gradient(to right, #1E2A4A 0%, #1A243A 100%);
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px var(--darkness-shadow);
+}
+
+.darkness-blue .event-time {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--darkness-accent2);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.03em;
+}
+
+.darkness-blue .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--darkness-text);
+    font-family: 'Exo 2', sans-serif;
+}
+
+.darkness-blue .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--darkness-text);
+    opacity: 0.9;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.darkness-blue .modal-content button {
+    background: linear-gradient(to bottom, var(--darkness-accent1), #2A3A5A);
+    color: var(--darkness-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--darkness-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Exo 2', sans-serif;
+    border-radius: var(--darkness-radius);
+}
+
+.darkness-blue .modal-content button:hover {
+    background: linear-gradient(to bottom, #2A3A5A, var(--darkness-accent1));
+    box-shadow: 0 3px 10px rgba(58, 95, 205, 0.3);
+}
+
+/* Close Button */
+.darkness-blue .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--darkness-primary);
+    color: var(--darkness-text);
+    border: 1px solid var(--darkness-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--darkness-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.darkness-blue .modal .close-button:hover {
+    background-color: var(--darkness-accent1);
+    color: var(--darkness-primary);
+    border-color: var(--darkness-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.darkness-blue .button,
+.darkness-blue .transparent-button {
+    border: 1px solid var(--darkness-accent1);
+    color: var(--darkness-text);
+    background: linear-gradient(to bottom, #1A243A, #121A2A);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--darkness-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--darkness-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.darkness-blue .button:hover,
+.darkness-blue .transparent-button:hover {
+    background: linear-gradient(to bottom, var(--darkness-accent1), #2A3A5A);
+    color: var(--darkness-text);
+    box-shadow: 0 3px 10px rgba(58, 95, 205, 0.2);
+}
+
+.darkness-blue .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.darkness-blue #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.darkness-blue #theme-switcher {
+    background-color: var(--darkness-primary);
+    color: var(--darkness-text) !important;
+    border: 1px solid var(--darkness-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234D79FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--darkness-transition);
+    border-radius: var(--darkness-radius);
+}
+
+.darkness-blue #theme-switcher option {
+    background-color: var(--darkness-primary) !important;
+    color: var(--darkness-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.darkness-blue #theme-switcher:focus {
+    outline: none;
+    border-color: var(--darkness-accent1);
+    box-shadow: 0 0 0 2px rgba(77, 121, 255, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.darkness-blue #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    color: var(--darkness-text);
+    background: linear-gradient(to bottom, var(--darkness-accent1), #2A3A5A);
+    cursor: pointer;
+    transition: all var(--darkness-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--darkness-radius);
+    box-shadow: 0 2px 8px rgba(58, 95, 205, 0.4);
+}
+
+.darkness-blue #backToTopBtn:hover {
+    background: linear-gradient(to bottom, #2A3A5A, var(--darkness-accent1));
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.darkness-blue footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--darkness-accent1-trans);
+    color: var(--darkness-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .darkness-blue .container {
+        padding: 1.5rem;
+    }
+
+    .darkness-blue #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .darkness-blue #current-date {
+        font-size: 1.7rem;
+    }
+
+    .darkness-blue #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .darkness-blue .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .darkness-blue .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .darkness-blue {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .darkness-blue .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .darkness-blue th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .darkness-blue th span.full-day-name {
+        display: none;
+    }
+
+    .darkness-blue th abbr {
+        display: inline;
+    }
+
+    .darkness-blue td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .darkness-blue td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .darkness-blue td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .darkness-blue #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .darkness-blue #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .darkness-blue .modal-content {
+        padding: 20px;
+    }
+
+    .darkness-blue .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .darkness-blue .container {
+        padding: 1rem;
+    }
+
+    .darkness-blue #calendar-title {
+        font-size: 1.9rem;
+    }
+
+    .darkness-blue #current-date {
+        font-size: 1.5rem;
+    }
+
+    .darkness-blue #today-weather {
+        font-size: 1rem;
+    }
+
+    .darkness-blue .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .darkness-blue th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .darkness-blue td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .darkness-blue td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .darkness-blue #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .darkness-blue .modal-content {
+        padding: 15px;
+    }
+
+    .darkness-blue .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .darkness-blue .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .darkness-blue th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .darkness-blue td {
+        height: 60px;
+    }
+
+    .darkness-blue td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .darkness-blue #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
