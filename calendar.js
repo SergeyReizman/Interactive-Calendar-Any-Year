@@ -61,7 +61,7 @@ const applyTheme = (theme) => {
     'amazon-river', 'american-dream', 'andromeda-galaxy', 'a-new-chapter', 
     'a-new-opportunity', 'antarctic-ice',
     'antarctic-snowdrifts', 'a-quiet-creek', 'arctic-glow', 'arctic-snowfall', 
-    'art-studio', 'a-simple-task', 'a-thing-of-beauty', 
+    'art-studio', 'a-simple-task', 'a-solitude-moment', 'a-thing-of-beauty', 
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
     'back-on-track', 'back-to-paradise', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 
