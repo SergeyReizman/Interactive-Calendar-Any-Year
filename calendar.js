@@ -54,7 +54,7 @@ const applyTheme = (theme) => {
     'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
     'action-time', 'adelaide-skyline', 'a-desert-island', 'adriatic-sea', 
     'a-foraging-trip', 'a-forward-move',
-    'a-good-chapter', 'a-good-idea', 'a-great-experience', 'air-power',
+    'a-good-chapter', 'a-good-idea', 'a-great-experience', 'a-huge-moment', 'air-power',
     'a-king-of-stone', 'aloe-vera', 'alone-in-paradise', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 'amazon-dolphin',
     'amazon-rainforest',
