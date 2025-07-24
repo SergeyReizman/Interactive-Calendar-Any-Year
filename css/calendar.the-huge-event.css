@@ -1,118 +1,119 @@
 /* ==========================================================================
-   The Huge Event Theme - Grand Calendar
-   Version: 1.3
+   The Huge Event Theme - Grand Celebration Calendar
+   Version: 1.0
    Updated: 2024-06-15
    Changes:
-   - Bold, high-contrast color palette for events
-   - Dramatic typography and spacing
-   - Enhanced visual hierarchy for important dates
+   - Vibrant color palette for festive occasions
+   - Added celebratory accent colors
+   - Improved visual hierarchy with bold contrasts
    - Maintained all original functionality
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap');
 
 :root {
-    /* Bold Event Color Palette */
-    --moment-bg: #121212;
-    /* Dark background */
-    --moment-text: #FFFFFF;
-    /* White text */
-    --moment-primary: #1E1E1E;
-    /* Dark gray */
-    --moment-secondary: #2A2A2A;
-    /* Medium gray */
-    --moment-date-number: #FF5722;
-    /* Vibrant orange */
+    /* Celebration Color Palette */
+    --huge-bg: #1A1A2E;
+    /* Deep navy background */
+    --huge-text: #F8F8F8;
+    /* Bright white text */
+    --huge-primary: #16213E;
+    /* Dark panel background */
+    --huge-secondary: #0F3460;
+    /* Slightly lighter panel */
+    --huge-date-number: #FFFFFF;
+    /* Bright white date numbers */
 
-    /* High-Impact Accent Colors */
-    --moment-accent1: #FF5722;
-    /* Bright orange */
-    --moment-accent2: #2196F3;
-    /* Electric blue */
-    --moment-accent3: #FFEB3B;
-    /* Yellow */
-    --moment-accent4: #4CAF50;
-    /* Green */
-    --moment-accent5: #9C27B0;
-    /* Purple */
-    --moment-accent6: #00BCD4;
-    /* Cyan */
-    --moment-accent7: #F44336;
-    /* Red */
+    /* Vibrant Celebration Accent Colors */
+    --huge-accent1: #E94560;
+    /* Passionate pink */
+    --huge-accent2: #00B4D8;
+    /* Joyful blue */
+    --huge-accent3: #2ECC71;
+    /* Lucky green */
+    --huge-accent4: #F9C74F;
+    /* Golden yellow */
+    --huge-accent5: #9D4EDD;
+    /* Royal purple */
+    --huge-accent6: #FF9E00;
+    /* Festive orange */
+    --huge-accent7: #EF476F;
+    /* Exciting red */
 
-    /* Semi-transparent Colors */
-    --moment-accent1-trans: rgba(255, 87, 34, 0.3);
-    --moment-accent2-trans: rgba(33, 150, 243, 0.3);
-    --moment-accent3-trans: rgba(255, 235, 59, 0.2);
+    /* New Semi-transparent Colors */
+    --huge-accent1-trans: rgba(233, 69, 96, 0.7);
+    --huge-accent2-trans: rgba(0, 180, 216, 0.5);
+    --huge-accent3-trans: rgba(46, 204, 113, 0.3);
 
     /* Theme Variables */
-    --moment-shadow: rgba(255, 87, 34, 0.2);
-    --moment-radius: 4px;
-    --moment-transition: 0.2s ease-out;
-    --moment-hover: #333333;
-    --moment-glow: 0 0 20px rgba(255, 87, 34, 0.4);
-    --moment-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="2" height="2" fill="%23FF5722" opacity="0.3"/><rect x="30" y="30" width="2" height="2" fill="%232196F3" opacity="0.3"/><rect x="50" y="50" width="2" height="2" fill="%23FFEB3B" opacity="0.3"/></svg>');
+    --huge-shadow: rgba(0, 0, 0, 0.5);
+    --huge-radius: 8px;
+    --huge-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --huge-hover: #2A2A4A;
+    --huge-glow: 0 0 15px rgba(255, 255, 255, 0.2);
+    --huge-confetti: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23E94560"/><circle cx="50" cy="30" r="1.5" fill="%2300B4D8"/><circle cx="80" cy="20" r="1.5" fill="%23F9C74F"/><circle cx="30" cy="70" r="1.5" fill="%239D4EDD"/><circle cx="70" cy="80" r="2" fill="%232ECC71"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes spotlight {
+@keyframes celebration-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(233, 69, 96, 0);
+    }
+}
+
+@keyframes confetti-fall {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.6);
+        background-position: 0 0;
     }
 
     100% {
-        box-shadow: 0 0 30px 15px rgba(255, 87, 34, 0);
+        background-position: 0 100px;
     }
 }
 
-@keyframes flash {
+@keyframes highlight-sparkle {
 
     0%,
     100% {
-        opacity: 1;
+        background-color: var(--huge-primary);
     }
 
     50% {
-        opacity: 0.7;
-    }
-}
-
-@keyframes float-up {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
+        background-color: var(--huge-accent2-trans);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .the-huge-event {
-    font-family: 'Roboto Condensed', sans-serif;
-    color: var(--moment-text);
-    line-height: 1.5;
-    font-size: 1rem;
-    background-color: var(--moment-bg);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--huge-text);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    background-color: var(--huge-bg);
     min-height: 100vh;
     background-image:
-        var(--moment-texture),
-        linear-gradient(to bottom, #121212, #1E1E1E);
+        var(--huge-confetti),
+        linear-gradient(to bottom, #1A1A2E, #16213E);
     background-repeat: repeat;
+    animation: confetti-fall 60s linear infinite;
 }
 
 .the-huge-event .container {
-    background-color: var(--moment-primary);
-    padding: 2rem;
-    border: 1px solid var(--moment-accent1-trans);
-    box-shadow: var(--moment-glow);
+    background-color: var(--huge-primary);
+    padding: 2.5rem;
+    border: 2px solid var(--huge-accent1);
+    box-shadow: var(--huge-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--moment-radius);
+    border-radius: var(--huge-radius);
 }
 
 .the-huge-event .container::before {
@@ -123,11 +124,10 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--moment-accent1),
-            var(--moment-accent2),
-            var(--moment-accent3),
-            var(--moment-accent1));
-    border-radius: var(--moment-radius) var(--moment-radius) 0 0;
+            transparent,
+            var(--huge-accent1),
+            var(--huge-accent5),
+            transparent);
 }
 
 .the-huge-event .container::after {
@@ -138,34 +138,32 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--moment-accent1),
-            var(--moment-accent5),
-            var(--moment-accent3),
-            var(--moment-accent1));
-    border-radius: 0 0 var(--moment-radius) var(--moment-radius);
+            transparent,
+            var(--huge-accent5),
+            var(--huge-accent1),
+            transparent);
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .the-huge-event #calendar-title {
-    font-family: 'Oswald', sans-serif;
-    color: var(--moment-accent1);
+    font-family: 'Pacifico', cursive;
+    color: var(--huge-text);
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
     position: relative;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-weight: 400;
+    text-shadow: 0 3px 6px var(--huge-shadow);
 }
 
 .the-huge-event #calendar-title::after {
-    content: "✨";
+    content: "🎉";
     position: absolute;
-    bottom: -25px;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5rem;
-    animation: float-up 2s infinite;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
@@ -173,25 +171,25 @@
     text-align: center;
     margin: 2rem 0;
     padding: 1.5rem;
-    background-color: var(--moment-secondary);
-    border: 1px solid var(--moment-accent1-trans);
-    border-radius: var(--moment-radius);
+    background-color: var(--huge-primary);
+    border: 2px solid var(--huge-accent1);
+    border-radius: var(--huge-radius);
     position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px var(--huge-shadow);
 }
 
 .the-huge-event #date-weather-container::before {
-    content: "MAIN EVENT";
+    content: "GRAND CELEBRATION";
     position: absolute;
     top: -12px;
-    right: 20px;
-    background-color: var(--moment-accent1);
+    right: 25px;
+    background-color: var(--huge-primary);
     padding: 0 10px;
     font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    color: var(--moment-text);
+    letter-spacing: 0.1em;
+    color: var(--huge-accent1);
     font-weight: 700;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
 
@@ -203,23 +201,24 @@
     transform: translateX(-50%);
     width: 80%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--moment-accent1), transparent);
+    background: linear-gradient(90deg, transparent, var(--huge-accent1), transparent);
 }
 
 .the-huge-event #current-date {
-    font-family: 'Oswald', sans-serif;
-    color: var(--moment-accent1);
-    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--huge-text);
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .the-huge-event #today-weather {
-    font-family: 'Roboto Condensed', sans-serif;
-    color: var(--moment-text);
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--huge-accent2);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
@@ -232,14 +231,14 @@
 .the-huge-event .clock-face {
     width: 200px;
     height: 200px;
-    border: 5px solid var(--moment-accent1);
+    border: 4px solid var(--huge-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--moment-primary);
-    box-shadow: 0 0 30px rgba(255, 87, 34, 0.5);
+    background-color: var(--huge-primary);
+    box-shadow: 0 0 25px rgba(233, 69, 96, 0.4);
     background-image:
-        radial-gradient(circle at center, transparent 65%, var(--moment-accent1-trans) 100%),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23FF5722" stroke-width="1" opacity="0.5"/></svg>');
+        radial-gradient(circle at center, transparent 65%, var(--huge-accent1-trans) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23E94560" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
 .the-huge-event .hand {
@@ -248,15 +247,15 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .the-huge-event .hour-hand {
     width: 40%;
     left: 10%;
-    height: 6px;
-    background: var(--moment-accent1);
-    margin-top: -3px;
+    height: 5px;
+    background: var(--huge-accent1);
+    margin-top: -2.5px;
     border-radius: 3px;
 }
 
@@ -264,7 +263,7 @@
     width: 48%;
     left: 2%;
     height: 4px;
-    background: var(--moment-accent3);
+    background: var(--huge-accent2);
     margin-top: -2px;
     border-radius: 2px;
 }
@@ -272,35 +271,40 @@
 .the-huge-event .second-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--moment-accent5);
-    margin-top: -1px;
+    height: 3px;
+    background: var(--huge-accent5);
+    margin-top: -1.5px;
 }
 
 /* Clock center ornament */
 .the-huge-event .clock-face::after {
-    content: "";
+    content: "⏱️";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 16px;
-    height: 16px;
-    background-color: var(--moment-accent1);
+    width: 20px;
+    height: 20px;
+    background-color: var(--huge-accent1);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    box-shadow: 0 0 0 3px var(--moment-primary);
+    box-shadow: 0 0 0 3px var(--huge-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--huge-primary);
 }
 
 /* Digital display in clock */
 .the-huge-event .clock-face::before {
-    content: "🕒";
+    content: "🕰️";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 3rem;
-    opacity: 0.2;
+    opacity: 0.1;
     z-index: 1;
 }
 
@@ -308,7 +312,7 @@
 .the-huge-event table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 12px;
+    border-spacing: 0 8px;
     margin: 2rem auto;
     background-color: transparent;
     table-layout: fixed;
@@ -316,21 +320,22 @@
 
 /* DAY OF WEEK HEADERS */
 .the-huge-event th {
-    background: linear-gradient(to bottom, var(--moment-accent1), #E64A19);
-    color: var(--moment-text) !important;
-    font-family: 'Oswald', sans-serif;
+    background: linear-gradient(to bottom, #0F3460, #16213E);
+    color: var(--huge-text) !important;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     padding: 1rem 0.5rem;
-    border-radius: var(--moment-radius);
+    border-radius: var(--huge-radius);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid var(--huge-accent1);
+    box-shadow: 0 3px 8px var(--huge-shadow);
 }
 
 .the-huge-event th span.full-day-name {
@@ -345,85 +350,83 @@
 
 /* DATE NUMBER STYLES */
 .the-huge-event td {
-    background-color: var(--moment-primary);
-    color: var(--moment-text);
+    background-color: var(--huge-primary);
+    color: var(--huge-text);
     padding: 1.2rem;
-    border: 1px solid var(--moment-accent1-trans);
-    height: 100px;
+    border: 2px solid var(--huge-accent1);
+    height: 110px;
     vertical-align: top;
-    transition: all var(--moment-transition);
+    transition: all var(--huge-transition);
     position: relative;
-    border-radius: var(--moment-radius);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    border-radius: var(--huge-radius);
+    box-shadow: 0 3px 8px var(--huge-shadow);
 }
 
 .the-huge-event td .date-number {
-    color: var(--moment-date-number) !important;
+    color: var(--huge-date-number) !important;
     font-weight: 700;
     font-size: 1.5rem;
     position: absolute;
     top: 10px;
     left: 10px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .the-huge-event td:hover {
-    background-color: var(--moment-hover);
-    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4);
-    transform: translateY(-5px);
+    background-color: var(--huge-hover);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
 }
 
 /* Current date highlight */
 .the-huge-event td.current-day {
-    background-color: rgba(255, 87, 34, 0.2);
-    border: 2px solid var(--moment-accent1);
-    animation: spotlight 2s infinite alternate;
+    background-color: rgba(233, 69, 96, 0.15);
+    border: 3px solid var(--huge-accent1);
+    animation: celebration-pulse 2s infinite;
 }
 
 .the-huge-event td.current-day .date-number {
-    color: var(--moment-accent1) !important;
+    color: var(--huge-accent1) !important;
     font-weight: 700;
-    font-size: 1.8rem;
 }
 
 .the-huge-event td.current-day::before {
-    content: "🔥";
+    content: "✨";
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 8px;
+    right: 8px;
     z-index: 1;
     font-size: 1.5rem;
-    color: var(--moment-accent1);
-    animation: flash 1s infinite;
+    color: var(--huge-accent4);
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .the-huge-event .event-marker {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: var(--moment-accent3);
-    margin: 0 3px;
-    transition: all var(--moment-transition);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: var(--huge-accent2);
+    margin: 0 2px;
+    transition: all var(--huge-transition);
 }
 
 .the-huge-event .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--moment-accent3);
-    box-shadow: 0 0 15px rgba(255, 235, 59, 0.7);
+    transform: scale(1.5);
+    background-color: var(--huge-accent2);
+    box-shadow: 0 0 8px rgba(0, 180, 216, 0.7);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .the-huge-event .modal-content {
     position: relative;
-    background-color: var(--moment-primary);
-    border: 1px solid var(--moment-accent1-trans);
+    background-color: var(--huge-primary);
+    border: 2px solid var(--huge-accent1);
     padding: 30px;
-    color: var(--moment-text);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border-radius: var(--moment-radius);
+    color: var(--huge-text);
+    box-shadow: 0 10px 25px var(--huge-shadow);
+    border-radius: var(--huge-radius);
 }
 
 .the-huge-event .modal-content::before {
@@ -432,33 +435,32 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
+    height: 4px;
     background: linear-gradient(90deg,
-            var(--moment-accent1) 0%,
-            var(--moment-accent3) 50%,
-            var(--moment-accent1) 100%);
-    border-radius: var(--moment-radius) var(--moment-radius) 0 0;
+            var(--huge-accent1) 0%,
+            var(--huge-accent5) 50%,
+            var(--huge-accent1) 100%);
 }
 
 .the-huge-event .modal-content h2 {
-    color: var(--moment-accent1);
-    font-family: 'Oswald', sans-serif;
-    font-size: 3em;
+    color: var(--huge-accent1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
     margin-bottom: 20px;
     font-weight: 700;
-    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 /* Modal date display */
 .the-huge-event .modal-date {
-    font-family: 'Oswald', sans-serif;
-    color: var(--moment-accent1);
-    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--huge-accent1);
+    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--moment-accent1-trans);
-    text-transform: uppercase;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--huge-accent1);
+    letter-spacing: 0.05em;
 }
 
 /* Event list */
@@ -469,67 +471,65 @@
 }
 
 .the-huge-event .event-item {
-    background-color: var(--moment-secondary);
+    background: linear-gradient(to right, #0F3460 0%, #16213E 100%);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    border-left: 5px solid var(--moment-accent1);
-    border-radius: var(--moment-radius);
-    transition: all var(--moment-transition);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--huge-accent1);
+    border-radius: var(--huge-radius);
+    transition: all var(--huge-transition);
+    box-shadow: 0 3px 8px var(--huge-shadow);
 }
 
 .the-huge-event .event-item:hover {
-    background-color: var(--moment-hover);
-    transform: translateX(10px);
-    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.4);
+    background: linear-gradient(to right, #1A3A6A 0%, #0F3460 100%);
+    transform: translateX(8px);
+    box-shadow: 0 6px 12px var(--huge-shadow);
 }
 
 .the-huge-event .event-time {
-    font-family: 'Oswald', sans-serif;
-    color: var(--moment-accent1);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--huge-accent2);
     font-weight: 700;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     display: block;
-    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .the-huge-event .event-title {
     font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--moment-text);
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--huge-text);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .the-huge-event .event-description {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: var(--moment-text);
+    color: var(--huge-text);
     opacity: 0.9;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .the-huge-event .modal-content button {
-    background: linear-gradient(to bottom, var(--moment-accent1), #E64A19);
-    color: var(--moment-text);
+    background: linear-gradient(to bottom, var(--huge-accent1), #D23369);
+    color: var(--huge-text);
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
+    padding: 12px 25px;
+    font-size: 1.1em;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--moment-transition);
-    letter-spacing: 0.1em;
-    font-family: 'Oswald', sans-serif;
-    border-radius: var(--moment-radius);
-    box-shadow: 0 4px 10px rgba(230, 74, 25, 0.5);
-    text-transform: uppercase;
+    transition: all var(--huge-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--huge-radius);
+    box-shadow: 0 3px 8px var(--huge-shadow);
 }
 
 .the-huge-event .modal-content button:hover {
-    background: linear-gradient(to bottom, #E64A19, var(--moment-accent1));
-    box-shadow: 0 8px 15px rgba(230, 74, 25, 0.7);
+    background: linear-gradient(to bottom, #EF476F, var(--huge-accent1));
+    box-shadow: 0 6px 12px rgba(233, 69, 96, 0.5);
 }
 
 /* Close Button */
@@ -537,54 +537,51 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    background-color: var(--moment-primary);
-    color: var(--moment-text);
-    border: 2px solid var(--moment-accent1);
-    width: 40px;
-    height: 40px;
+    background-color: var(--huge-primary);
+    color: var(--huge-text);
+    border: 2px solid var(--huge-accent1);
+    width: 35px;
+    height: 35px;
     cursor: pointer;
-    transition: all var(--moment-transition);
+    transition: all var(--huge-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     font-weight: bold;
-    font-size: 1.2rem;
 }
 
 .the-huge-event .modal .close-button:hover {
-    background-color: var(--moment-accent1);
-    color: var(--moment-primary);
-    border-color: var(--moment-accent1);
-    transform: rotate(90deg);
+    background-color: var(--huge-accent1);
+    color: var(--huge-primary);
+    border-color: var(--huge-accent1);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .the-huge-event .button,
 .the-huge-event .transparent-button {
-    border: 2px solid var(--moment-accent1);
-    color: var(--moment-text);
-    background-color: var(--moment-primary);
+    border: 2px solid var(--huge-accent1);
+    color: var(--huge-text);
+    background: linear-gradient(to bottom, #0F3460, #16213E);
     padding: 1rem 2rem;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--moment-transition);
+    transition: all var(--huge-transition);
     position: relative;
     overflow: hidden;
     margin: 0.5rem;
-    border-radius: var(--moment-radius);
-    letter-spacing: 0.1em;
+    border-radius: var(--huge-radius);
+    letter-spacing: 0.03em;
     font-size: 1.1rem;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-    text-transform: uppercase;
+    box-shadow: 0 3px 8px var(--huge-shadow);
 }
 
 .the-huge-event .button:hover,
 .the-huge-event .transparent-button:hover {
-    background: linear-gradient(to bottom, var(--moment-accent1), #E64A19);
-    color: var(--moment-text);
-    box-shadow: 0 8px 15px rgba(230, 74, 25, 0.5);
+    background: linear-gradient(to bottom, var(--huge-accent1), #D23369);
+    color: var(--huge-text);
+    box-shadow: 0 6px 12px rgba(233, 69, 96, 0.4);
 }
 
 .the-huge-event .controls {
@@ -604,41 +601,38 @@
 }
 
 .the-huge-event #theme-switcher {
-    background-color: var(--moment-primary);
-    color: var(--moment-text) !important;
-    border: 2px solid var(--moment-accent1);
+    background-color: var(--huge-primary);
+    color: var(--huge-text) !important;
+    border: 2px solid var(--huge-accent1);
     padding: 1rem 2.5rem 1rem 1.2rem;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF5722'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F8F8F8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1.2rem;
     cursor: pointer;
-    transition: all var(--moment-transition);
-    border-radius: var(--moment-radius);
-    text-transform: uppercase;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    transition: all var(--huge-transition);
+    border-radius: var(--huge-radius);
 }
 
 .the-huge-event #theme-switcher option {
-    background-color: var(--moment-primary) !important;
-    color: var(--moment-text) !important;
+    background-color: var(--huge-primary) !important;
+    color: var(--huge-text) !important;
     font-size: 1.1rem;
     font-weight: 700;
     padding: 12px 15px !important;
-    text-transform: uppercase;
 }
 
 .the-huge-event #theme-switcher:focus {
     outline: none;
-    border-color: var(--moment-accent1);
-    box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3);
+    border-color: var(--huge-accent1);
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.4);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -650,24 +644,21 @@
     border: none;
     padding: 1.2rem 2rem;
     font-size: 1.1rem;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    color: var(--moment-text);
-    background: linear-gradient(to bottom, var(--moment-accent1), #E64A19);
+    color: var(--huge-text);
+    background: linear-gradient(to bottom, var(--huge-accent1), #D23369);
     cursor: pointer;
-    transition: all var(--moment-transition);
+    transition: all var(--huge-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--moment-radius);
-    box-shadow: 0 4px 10px rgba(230, 74, 25, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    border-radius: var(--huge-radius);
+    box-shadow: 0 3px 12px rgba(233, 69, 96, 0.6);
 }
 
 .the-huge-event #backToTopBtn:hover {
-    background: linear-gradient(to bottom, #E64A19, var(--moment-accent1));
+    background: linear-gradient(to bottom, #EF476F, var(--huge-accent1));
     opacity: 1;
-    box-shadow: 0 8px 15px rgba(230, 74, 25, 0.7);
 }
 
 /* ==================== FOOTER ==================== */
@@ -675,19 +666,18 @@
     text-align: center;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--moment-accent1-trans);
-    color: var(--moment-text);
+    border-top: 2px solid var(--huge-accent1);
+    color: var(--huge-text);
     font-size: 1rem;
     font-weight: 700;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .the-huge-event .container {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .the-huge-event #calendar-title {
@@ -695,37 +685,37 @@
     }
 
     .the-huge-event #current-date {
-        font-size: 2.5rem;
-    }
-
-    .the-huge-event #today-weather {
-        font-size: 1.2rem;
-    }
-
-    .the-huge-event .modal-date {
         font-size: 2rem;
     }
 
-    .the-huge-event .event-title {
+    .the-huge-event #today-weather {
         font-size: 1.3rem;
+    }
+
+    .the-huge-event .modal-date {
+        font-size: 1.6rem;
+    }
+
+    .the-huge-event .event-title {
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
     .the-huge-event {
-        font-size: 0.95rem;
-        line-height: 1.5;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 
     .the-huge-event .clock-face {
         width: 180px;
         height: 180px;
-        border-width: 4px;
+        border-width: 3px;
     }
 
     .the-huge-event th {
-        font-size: 0.9rem;
-        padding: 0.8rem 0.4rem;
+        font-size: 1rem;
+        padding: 0.9rem 0.4rem;
     }
 
     .the-huge-event th span.full-day-name {
@@ -738,8 +728,8 @@
 
     .the-huge-event td {
         padding: 1rem;
-        height: 90px;
-        font-size: 0.9rem;
+        height: 100px;
+        font-size: 0.95rem;
     }
 
     .the-huge-event td .date-number {
@@ -757,14 +747,14 @@
     .the-huge-event #backToTopBtn {
         right: 20px;
         bottom: 20px;
-        padding: 1rem 1.8rem;
+        padding: 1.1rem 1.8rem;
         font-size: 1rem;
     }
 
     .the-huge-event #theme-switcher {
         padding: 0.9rem 2.2rem 0.9rem 1rem;
         font-size: 1rem;
-        min-width: 200px;
+        min-width: 190px;
     }
 
     .the-huge-event .modal-content {
@@ -778,7 +768,7 @@
 
 @media (max-width: 576px) {
     .the-huge-event .container {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 
     .the-huge-event #calendar-title {
@@ -786,11 +776,11 @@
     }
 
     .the-huge-event #current-date {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .the-huge-event #today-weather {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .the-huge-event .clock-face {
@@ -800,25 +790,25 @@
     }
 
     .the-huge-event th {
-        font-size: 0.8rem;
-        padding: 0.7rem 0.3rem;
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
     }
 
     .the-huge-event td {
-        padding: 0.8rem;
-        height: 80px;
-        font-size: 0.8rem;
+        padding: 0.9rem;
+        height: 90px;
+        font-size: 0.9rem;
     }
 
     .the-huge-event td .date-number {
-        font-size: 1.1rem;
-        top: 6px;
-        left: 6px;
+        font-size: 1.2rem;
+        top: 7px;
+        left: 7px;
     }
 
     .the-huge-event #theme-switcher {
-        min-width: 180px;
-        font-size: 0.9rem;
+        min-width: 170px;
+        font-size: 0.95rem;
     }
 
     .the-huge-event .modal-content {
@@ -826,30 +816,30 @@
     }
 
     .the-huge-event .modal-date {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     .the-huge-event .event-time {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 400px) {
     .the-huge-event th {
-        font-size: 0.75rem;
-        padding: 0.6rem 0.2rem;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.2rem;
     }
 
     .the-huge-event td {
-        height: 70px;
+        height: 80px;
     }
 
     .the-huge-event td .date-number {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .the-huge-event #theme-switcher {
-        min-width: 160px;
-        font-size: 0.85rem;
+        min-width: 150px;
+        font-size: 0.9rem;
     }
 }
