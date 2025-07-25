@@ -167,7 +167,7 @@ const applyTheme = (theme) => {
     'sea-breeze', 'seabreeze-avenue', 'sea-diamonds', 'sea-lions', 'sea-star', 'secret-item',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery','shift-in-perception', 'significant-improvement', 'silicon-valley', 
-    'silver-dragon', 'sky-eagle', 'sky-hawk', 
+    'silver-dragon', 'sky-diving', 'sky-eagle', 'sky-hawk', 
     'skylight-window', 'small-happiness', 'small-success', 
     'smiley-world', 'snake-river', 'snow-leopard',
     'solar-flare', 'something-special', 
