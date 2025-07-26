@@ -92,7 +92,7 @@ const applyTheme = (theme) => {
     'dark-mode', 'darkness-blue',
     'dark-star', 'dartagnans-rapier', 'daruma-doll', 
     'deep-forest', 'deep-ocean','deep-space', 'desert-between-us', 'desert-miracle', 
-    'desert-mirage', 'desert-water',
+    'desert-mirage', 'desert-rose', 'desert-water',
     'developers-zone', 'diamond-planet', 'different-perspective',
     'digital-excellence', 'digital-progress', 'distant-skies','divi-divi-trees',
     'domino-dancing', 'domino-effect',
