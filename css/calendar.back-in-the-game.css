@@ -1,0 +1,874 @@
+/* ==========================================================================
+   Back in the Game Theme - Retro Sports/Arcade Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - 90s arcade/sports color palette
+   - Pixel art and CRT screen effects
+   - Retro gaming design elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;700&display=swap');
+
+:root {
+    /* Retro Game Color Palette */
+    --game-bg: #0A0E17;
+    --game-text: #E0F0FF;
+    --game-primary: #1A2238;
+    --game-secondary: #242E4D;
+    --game-date-number: #FFD700;
+
+    /* CRT Screen Layers */
+    --game-layer1: #1E2745;
+    --game-layer2: #283155;
+    --game-layer3: #323B65;
+    --game-layer4: #3C4575;
+    --game-layer5: #464F85;
+
+    /* Arcade Accent Colors */
+    --game-accent1: #FF5555;
+    /* Player 1 Red */
+    --game-accent2: #55FF55;
+    /* Player 2 Green */
+    --game-accent3: #5555FF;
+    /* Player 3 Blue */
+    --game-accent4: rgba(255, 85, 85, 0.7);
+    --game-accent5: rgba(85, 255, 85, 0.5);
+
+    /* Theme Variables */
+    --game-shadow: rgba(255, 85, 85, 0.15);
+    --game-radius: 4px;
+    --game-transition: 0.2s linear;
+    --game-hover: #FF3333;
+    --game-glow: 0 0 8px rgba(255, 85, 85, 0.5);
+    --game-scanlines: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="1" fill="rgba(0,255,255,0.1)"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes game-flicker {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes game-startup {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes game-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--game-shadow);
+    }
+
+    50% {
+        box-shadow: var(--game-glow);
+    }
+}
+
+@keyframes game-scan {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 10px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.back-in-the-game {
+    font-family: 'Rubik', sans-serif;
+    color: var(--game-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--game-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><rect x="0" y="80" width="50" height="40" fill="%231A2238" opacity="0.8"/><rect x="70" y="60" width="40" height="60" fill="%231A2238" opacity="0.8"/><rect x="130" y="40" width="60" height="80" fill="%231A2238" opacity="0.8"/><rect x="210" y="20" width="80" height="100" fill="%231A2238" opacity="0.8"/><rect x="310" y="50" width="70" height="70" fill="%231A2238" opacity="0.8"/><rect x="400" y="30" width="90" height="90" fill="%231A2238" opacity="0.8"/><rect x="510" y="10" width="110" height="110" fill="%231A2238" opacity="0.8"/><rect x="640" y="40" width="80" height="80" fill="%231A2238" opacity="0.8"/><rect x="740" y="20" width="100" height="100" fill="%231A2238" opacity="0.8"/><rect x="860" y="60" width="60" height="60" fill="%231A2238" opacity="0.8"/><rect x="940" y="30" width="80" height="90" fill="%231A2238" opacity="0.8"/><rect x="1040" y="10" width="120" height="110" fill="%231A2238" opacity="0.8"/></svg>'),
+        linear-gradient(to bottom, var(--game-bg), var(--game-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: game-scan 0.5s linear infinite;
+    position: relative;
+}
+
+.back-in-the-game::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--game-scanlines);
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.15;
+}
+
+.back-in-the-game .container {
+    background-color: var(--game-primary);
+    padding: 2rem;
+    border: 1px solid var(--game-accent4);
+    box-shadow: var(--game-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--game-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+    border-image: linear-gradient(45deg, var(--game-accent1), var(--game-accent2), var(--game-accent3)) 1;
+}
+
+.back-in-the-game .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--game-accent1) 0%,
+            var(--game-accent2) 50%,
+            var(--game-accent3) 100%);
+}
+
+.back-in-the-game .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg,
+            var(--game-accent1) 0%,
+            var(--game-accent2) 50%,
+            var(--game-accent3) 100%);
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.back-in-the-game #calendar-title {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--game-text);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: normal;
+    text-shadow: 0 0 10px var(--game-accent1),
+        0 0 20px var(--game-accent1),
+        4px 4px 0 var(--game-accent3);
+}
+
+.back-in-the-game #calendar-title::after {
+    content: "🕹️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.back-in-the-game #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--game-primary);
+    border: 1px solid var(--game-accent4);
+    border-radius: var(--game-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-image: linear-gradient(45deg, var(--game-accent1), var(--game-accent3)) 1;
+}
+
+.back-in-the-game #date-weather-container::before {
+    content: "HIGH SCORE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--game-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--game-text);
+    font-weight: 700;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.back-in-the-game #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--game-accent1), transparent);
+}
+
+.back-in-the-game #current-date {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--game-date-number);
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0.4rem;
+    text-shadow: 2px 2px 0 var(--game-accent3);
+}
+
+.back-in-the-game #today-weather {
+    font-family: 'Rubik', sans-serif;
+    color: var(--game-text);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.back-in-the-game #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.back-in-the-game .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--game-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--game-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--game-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23FF5555" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.back-in-the-game .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.back-in-the-game .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--game-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.back-in-the-game .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--game-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.back-in-the-game .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--game-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.back-in-the-game .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--game-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--game-primary),
+        0 0 10px var(--game-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.back-in-the-game table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.back-in-the-game th {
+    background: linear-gradient(45deg, var(--game-accent1), var(--game-accent3));
+    color: var(--game-bg) !important;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: normal;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--game-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid var(--game-accent2);
+}
+
+.back-in-the-game th span.full-day-name {
+    display: inline;
+}
+
+.back-in-the-game th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.back-in-the-game td {
+    background-color: var(--game-primary);
+    color: var(--game-text);
+    padding: 1rem;
+    border: 1px solid var(--game-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--game-transition);
+    position: relative;
+    border-radius: var(--game-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.back-in-the-game td .date-number {
+    color: var(--game-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.back-in-the-game td:hover {
+    background-color: var(--game-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 0 10px var(--game-accent1);
+}
+
+/* Current date highlight */
+.back-in-the-game td.current-day {
+    background-color: rgba(255, 85, 85, 0.15);
+    border: 2px solid var(--game-accent1);
+    animation: game-pulse 2s infinite;
+}
+
+.back-in-the-game td.current-day .date-number {
+    color: var(--game-date-number) !important;
+    font-weight: 700;
+}
+
+.back-in-the-game td.current-day::before {
+    content: "★";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--game-date-number);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.back-in-the-game .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--game-accent1);
+    margin: 0 1px;
+    transition: all var(--game-transition);
+    box-shadow: 0 0 3px var(--game-accent1);
+}
+
+.back-in-the-game .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--game-accent2);
+    box-shadow: 0 0 6px var(--game-accent2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.back-in-the-game .modal-content {
+    position: relative;
+    background-color: var(--game-primary);
+    border: 1px solid var(--game-accent4);
+    padding: 25px;
+    color: var(--game-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 0 15px rgba(255, 85, 85, 0.2);
+    border-radius: var(--game-radius);
+    animation: game-startup 0.3s ease-out;
+    border-image: linear-gradient(45deg, var(--game-accent1), var(--game-accent3)) 1;
+}
+
+.back-in-the-game .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--game-accent1) 0%,
+            var(--game-accent2) 50%,
+            var(--game-accent3) 100%);
+}
+
+.back-in-the-game .modal-content h2 {
+    color: var(--game-text);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    text-shadow: 2px 2px 0 var(--game-accent3);
+}
+
+/* Modal date display */
+.back-in-the-game .modal-date {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--game-date-number);
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--game-accent4);
+    text-shadow: 1px 1px 0 var(--game-accent3);
+}
+
+/* Event list */
+.back-in-the-game .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.back-in-the-game .event-item {
+    background-color: var(--game-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--game-accent1);
+    border-radius: var(--game-radius);
+    transition: all var(--game-transition);
+    box-shadow: inset 2px 0 0 var(--game-accent1);
+}
+
+.back-in-the-game .event-item:hover {
+    background-color: var(--game-layer3);
+    transform: translateX(3px);
+    box-shadow: inset 5px 0 0 var(--game-accent2);
+}
+
+.back-in-the-game .event-time {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--game-date-number);
+    font-weight: normal;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.back-in-the-game .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--game-text);
+    font-family: 'Rubik', sans-serif;
+}
+
+.back-in-the-game .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--game-text);
+    opacity: 0.9;
+}
+
+.back-in-the-game .modal-content button {
+    background: linear-gradient(45deg, var(--game-accent1), var(--game-accent3));
+    color: var(--game-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--game-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Rubik', sans-serif;
+    border-radius: var(--game-radius);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 0 var(--game-accent2);
+}
+
+.back-in-the-game .modal-content button:hover {
+    background: linear-gradient(45deg, var(--game-hover), var(--game-accent3));
+    box-shadow: 0 5px 0 var(--game-accent2);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.back-in-the-game .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--game-accent1);
+    color: var(--game-bg);
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--game-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow: 0 3px 0 var(--game-accent3);
+}
+
+.back-in-the-game .modal .close-button:hover {
+    background-color: var(--game-accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 var(--game-accent3);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.back-in-the-game .button,
+.back-in-the-game .transparent-button {
+    border: none;
+    color: var(--game-bg);
+    background: linear-gradient(45deg, var(--game-accent1), var(--game-accent3));
+    padding: 0.8rem 1.5rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--game-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--game-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 0 var(--game-accent2);
+}
+
+.back-in-the-game .transparent-button {
+    background: transparent;
+    color: var(--game-text);
+    border: 2px solid var(--game-accent1);
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.back-in-the-game .button:hover,
+.back-in-the-game .transparent-button:hover {
+    background: linear-gradient(45deg, var(--game-hover), var(--game-accent3));
+    color: var(--game-bg);
+    box-shadow: 0 5px 0 var(--game-accent2);
+    transform: translateY(-2px);
+}
+
+.back-in-the-game .transparent-button:hover {
+    background: var(--game-accent1);
+}
+
+.back-in-the-game .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.back-in-the-game #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.back-in-the-game #theme-switcher {
+    background-color: var(--game-primary);
+    color: var(--game-text) !important;
+    border: 2px solid var(--game-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Rubik', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--game-transition);
+    border-radius: var(--game-radius);
+}
+
+.back-in-the-game #theme-switcher option {
+    background-color: var(--game-primary) !important;
+    color: var(--game-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.back-in-the-game #theme-switcher:focus {
+    outline: none;
+    border-color: var(--game-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 85, 85, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.back-in-the-game #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    color: var(--game-bg);
+    background: linear-gradient(45deg, var(--game-accent1), var(--game-accent3));
+    cursor: pointer;
+    transition: all var(--game-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--game-radius);
+    box-shadow: 0 3px 0 var(--game-accent2);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.back-in-the-game #backToTopBtn:hover {
+    background: linear-gradient(45deg, var(--game-hover), var(--game-accent3));
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 var(--game-accent2);
+}
+
+/* ==================== FOOTER ==================== */
+.back-in-the-game footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--game-accent4);
+    color: var(--game-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .back-in-the-game .container {
+        padding: 1.5rem;
+    }
+
+    .back-in-the-game #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .back-in-the-game #current-date {
+        font-size: 1.3rem;
+    }
+
+    .back-in-the-game #today-weather {
+        font-size: 1rem;
+    }
+
+    .back-in-the-game .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .back-in-the-game .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .back-in-the-game {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .back-in-the-game .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .back-in-the-game th {
+        font-size: 0.7rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .back-in-the-game th span.full-day-name {
+        display: none;
+    }
+
+    .back-in-the-game th abbr {
+        display: inline;
+    }
+
+    .back-in-the-game td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .back-in-the-game td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .back-in-the-game td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .back-in-the-game #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .back-in-the-game #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .back-in-the-game .modal-content {
+        padding: 20px;
+    }
+
+    .back-in-the-game .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .back-in-the-game .container {
+        padding: 1rem;
+    }
+
+    .back-in-the-game #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .back-in-the-game #current-date {
+        font-size: 1.1rem;
+    }
+
+    .back-in-the-game #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .back-in-the-game .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .back-in-the-game th {
+        font-size: 0.6rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .back-in-the-game td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .back-in-the-game td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .back-in-the-game #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .back-in-the-game .modal-content {
+        padding: 15px;
+    }
+
+    .back-in-the-game .modal-date {
+        font-size: 1rem;
+    }
+
+    .back-in-the-game .event-time {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .back-in-the-game th {
+        font-size: 0.5rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .back-in-the-game td {
+        height: 60px;
+    }
+
+    .back-in-the-game td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .back-in-the-game #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}

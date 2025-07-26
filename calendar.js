@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'antarctic-snowdrifts', 'a-quiet-creek', 'arctic-glow', 'arctic-snowfall', 
     'art-studio', 'a-simple-task', 'a-solitude-moment', 'a-thing-of-beauty', 
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
-    'back-on-track', 'back-to-paradise', 'bamboo-flute',
+    'back-in-the-game', 'back-on-track', 'back-to-paradise', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 'best-practice', 'best-response', 
     'be-yourself', 'bigboss-style', 'big-dream',
     'big-fashion', 'big-pacific',
