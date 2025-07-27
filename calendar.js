@@ -148,7 +148,7 @@ const applyTheme = (theme) => {
     'my-tomorrow', 'natural-wonders', 'neon-nights',
     'new-ai', 'new-black', 'new-millenium', 'new-style', 'next-steps',
     'niagara-falls', 'night-dragon', 'night-mode-design', 
-    'night-sky','northern-nights','north-pole', 
+    'night-sky', 'northern-lights', 'northern-nights','north-pole', 
     'north-pole-icebreaker', 'now-is-your-moment', 'ocean-dreams',
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
     'okinawa-breeze', 'one-dream','one-step-ahead', 'one-step-at-a-time', 
