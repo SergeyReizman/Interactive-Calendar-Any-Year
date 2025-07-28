@@ -115,7 +115,7 @@ const applyTheme = (theme) => {
     'glorious-day', 'golden-century', 'golden-coast', 'golden-eagle',
     'golden-gate', 'golden-horizon', 'golden-lights', 'golden-opportunity', 
     'golden-summer', 'gold-mine', 'gradual-improvement', 'grand-prix', 'great-idea',
-    'great-lakes', 'green-city', 'green-coffee', 'green-heaven',
+    'great-lakes', 'greece-is-bliss', 'green-city', 'green-coffee', 'green-heaven',
     'greenland-icebergs', 'green-light', 'green-tea',
     'greyscale', 'group-11',
     'guangzhou-lights', 'haute-couture',
