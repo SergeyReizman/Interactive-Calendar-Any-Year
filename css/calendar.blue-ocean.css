@@ -1,55 +1,72 @@
 /* ==========================================================================
-   Blue Ocean Theme - Calm, Ocean-Inspired Interface
+   Blue Ocean Theme - Deep Sea Inspired Calendar
    Version: 1.0
-   Updated: 2025-05-18
+   Updated: 2024-06-10
    Changes:
-   - Created serene blue ocean color palette
-   - Added water-like animations
-   - Designed smooth wave-like elements
-   - Maintained all structural elements from Black Hawk
+   - Oceanic color palette (deep blues, teals)
+   - Marine and underwater elements
+   - Fluid, wave-like design aesthetic
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap');
 
 :root {
     /* Ocean Color Palette */
-    --ocean-bg: #001F3F;
-    --ocean-text: #E0F2FE;
-    --ocean-primary: #003366;
-    --ocean-secondary: #005588;
+    --ocean-bg: #0A2342;
+    --ocean-text: #E8F1F2;
+    --ocean-primary: #1A3A5A;
+    --ocean-secondary: #254E70;
+    --ocean-date-number: #4DA8DA;
 
-    /* Depth Colors */
-    --ocean-deep1: #002244;
-    --ocean-deep2: #003355;
-    --ocean-deep3: #004466;
-    --ocean-deep4: #005577;
-    --ocean-deep5: #006688;
+    /* Depth Layer Colors */
+    --ocean-layer1: #1A3A5A;
+    --ocean-layer2: #254E70;
+    --ocean-layer3: #30638E;
+    --ocean-layer4: #3B78A8;
+    --ocean-layer5: #468DC2;
 
-    /* Accent Colors */
+    /* Marine Accent Colors */
     --ocean-accent1: #4DA8DA;
-    --ocean-accent2: #66B3E6;
-    --ocean-accent3: #80BEF2;
-    --ocean-accent4: #99C9FF;
-    --ocean-accent5: #00B4D8;
+    /* Surface Blue */
+    --ocean-accent2: #3DDC97;
+    /* Sea Green */
+    --ocean-accent3: #FF715B;
+    /* Coral */
+    --ocean-accent4: rgba(77, 168, 218, 0.7);
+    --ocean-accent5: rgba(61, 220, 151, 0.5);
 
     /* Theme Variables */
-    --ocean-shadow: rgba(0, 63, 127, 0.7);
-    --ocean-radius: 4px;
-    --ocean-transition: 0.3s ease;
-    --ocean-hover: #00B4D8;
-    --ocean-glow: 0 0 15px rgba(0, 180, 216, 0.5);
+    --ocean-shadow: rgba(77, 168, 218, 0.15);
+    --ocean-radius: 8px;
+    --ocean-transition: 0.3s ease-in-out;
+    --ocean-hover: #5DB8EA;
+    --ocean-glow: 0 0 12px rgba(77, 168, 218, 0.25);
+    --ocean-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234DA8DA"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%234DA8DA"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%234DA8DA"/></svg>');
+    --ocean-waves: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 C150,90 300,110 450,90 C600,70 750,100 900,80 C1050,60 1200,90 1200,80 L1200,120 L0,120 Z" fill="%234DA8DA" opacity="0.3"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes ocean-wave {
+@keyframes ocean-fade {
 
     0%,
     100% {
-        transform: translateY(0);
+        opacity: 0.95;
     }
 
     50% {
-        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+@keyframes ocean-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
@@ -57,55 +74,67 @@
 
     0%,
     100% {
-        opacity: 0.9;
+        box-shadow: 0 0 3px var(--ocean-shadow);
     }
 
     50% {
-        opacity: 1;
+        box-shadow: var(--ocean-glow);
     }
 }
 
-@keyframes ocean-ripple {
+@keyframes ocean-drift {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.4);
+        background-position: 0 0;
     }
 
     100% {
-        box-shadow: 0 0 0 20px rgba(0, 180, 216, 0);
+        background-position: 1000px 0;
     }
 }
 
-@keyframes ocean-fadeIn {
-    from {
+@keyframes bubble-float {
+    0% {
+        transform: translateY(0) translateX(0);
         opacity: 0;
-        transform: translateY(-10px);
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100vh) translateX(20px);
+        opacity: 0;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .blue-ocean {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--ocean-text);
     line-height: 1.6;
-    background: linear-gradient(135deg, var(--ocean-bg), var(--ocean-deep1));
+    font-size: 1rem;
+    background-color: var(--ocean-bg);
     min-height: 100vh;
+    background-image: var(--ocean-waves),
+        linear-gradient(to bottom, var(--ocean-bg), var(--ocean-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: ocean-drift 60s linear infinite;
 }
 
 .blue-ocean .container {
-    background-color: rgba(0, 31, 63, 0.95);
+    background-color: var(--ocean-primary);
     padding: 2rem;
-    border: 1px solid var(--ocean-accent1);
+    border: 1px solid var(--ocean-accent4);
     box-shadow: var(--ocean-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
     border-radius: var(--ocean-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
 }
 
 .blue-ocean .container::before {
@@ -114,76 +143,129 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--ocean-accent1), transparent);
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--ocean-accent1) 0%,
+            var(--ocean-accent2) 50%,
+            var(--ocean-accent3) 100%);
+}
+
+.blue-ocean .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--ocean-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* Bubble decorations */
+.blue-ocean .bubble {
+    position: absolute;
+    background-color: rgba(77, 168, 218, 0.3);
+    border-radius: 50%;
+    animation: bubble-float 8s linear infinite;
+    z-index: 0;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .blue-ocean #calendar-title {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--ocean-accent5);
+    font-family: 'Merriweather', serif;
+    color: var(--ocean-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
-    animation: ocean-pulse 3s infinite;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.blue-ocean #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .blue-ocean #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(0, 51, 102, 0.5);
-    border: 1px solid var(--ocean-accent1);
-    position: relative;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--ocean-primary);
+    border: 1px solid var(--ocean-accent4);
     border-radius: var(--ocean-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.blue-ocean #date-weather-container::before {
+    content: "OCEAN CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--ocean-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ocean-text);
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
 }
 
 .blue-ocean #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--ocean-accent1), transparent);
 }
 
 .blue-ocean #current-date {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--ocean-accent3);
+    font-family: 'Merriweather', serif;
+    color: var(--ocean-text);
     font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .blue-ocean #today-weather {
-    font-family: 'Rajdhani', sans-serif;
-    color: var(--ocean-accent3);
-    font-size: 1.4rem;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ocean-accent1);
+    font-size: 1.2rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .blue-ocean #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .blue-ocean .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 8px solid var(--ocean-accent1);
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--ocean-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--ocean-bg);
-    box-shadow: var(--ocean-glow);
+    background-color: var(--ocean-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--ocean-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234DA8DA" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
 .blue-ocean .hand {
@@ -201,50 +283,68 @@
     height: 6px;
     background: var(--ocean-accent1);
     margin-top: -3px;
+    border-radius: 3px;
 }
 
 .blue-ocean .minute-hand {
     width: 48%;
     left: 2%;
     height: 4px;
-    background: var(--ocean-accent1);
+    background: var(--ocean-accent2);
     margin-top: -2px;
+    border-radius: 2px;
 }
 
 .blue-ocean .second-hand {
     width: 48%;
     left: 2%;
     height: 2px;
-    background: var(--ocean-accent5);
+    background: var(--ocean-accent3);
     margin-top: -1px;
+}
+
+/* Clock center ornament */
+.blue-ocean .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--ocean-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--ocean-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .blue-ocean table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(0, 31, 63, 0.9);
-    border: 1px solid var(--ocean-accent1);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
-    border-radius: var(--ocean-radius);
 }
 
 /* DAY OF WEEK HEADERS */
 .blue-ocean th {
-    background-color: rgba(0, 51, 102, 0.8);
+    background: linear-gradient(to right,
+            var(--ocean-accent1),
+            var(--ocean-accent2));
     color: var(--ocean-text) !important;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Merriweather', serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--ocean-accent1);
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--ocean-radius);
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
 .blue-ocean th span.full-day-name {
@@ -257,48 +357,56 @@
     border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .blue-ocean td {
-    background-color: rgba(0, 51, 102, 0.3);
+    background-color: var(--ocean-primary);
     color: var(--ocean-text);
-    padding: 1.2rem;
-    border: 1px solid var(--ocean-accent1);
-    height: 100px;
+    padding: 1rem;
+    border: 1px solid var(--ocean-accent4);
+    height: 90px;
     vertical-align: top;
     transition: all var(--ocean-transition);
     position: relative;
+    border-radius: var(--ocean-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.blue-ocean td .date-number {
+    color: var(--ocean-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Merriweather', serif;
 }
 
 .blue-ocean td:hover {
-    background-color: rgba(0, 180, 216, 0.1);
-    box-shadow: inset 0 0 15px rgba(0, 180, 216, 0.3);
+    background-color: var(--ocean-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Current date highlight */
 .blue-ocean td.current-day {
-    background-color: rgba(0, 180, 216, 0.2);
-    border: 1px solid var(--ocean-accent5);
+    background-color: rgba(77, 168, 218, 0.15);
+    border: 2px solid var(--ocean-accent1);
+    animation: ocean-pulse 3s infinite;
+}
+
+.blue-ocean td.current-day .date-number {
     color: var(--ocean-text) !important;
     font-weight: 700;
-    animation: ocean-wave 2s infinite;
 }
 
 .blue-ocean td.current-day::before {
-    content: "";
+    content: "🐬";
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--ocean-accent5);
-    border-radius: 50%;
     z-index: 1;
-    opacity: 0.7;
-}
-
-.blue-ocean td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--ocean-text) !important;
+    font-size: 1.1rem;
+    color: var(--ocean-accent1);
     font-weight: bold;
 }
 
@@ -308,29 +416,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--ocean-accent5);
-    margin: 0 2px;
-    box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+    background-color: var(--ocean-accent1);
+    margin: 0 1px;
     transition: all var(--ocean-transition);
 }
 
 .blue-ocean .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--ocean-accent5);
-    box-shadow: 0 0 15px rgba(0, 180, 216, 0.8);
-    animation: ocean-ripple 1s infinite;
+    transform: scale(1.4);
+    background-color: var(--ocean-accent3);
+    box-shadow: 0 0 6px rgba(255, 113, 91, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .blue-ocean .modal-content {
     position: relative;
-    background-color: rgba(0, 31, 63, 0.98);
-    border: 1px solid var(--ocean-accent1);
-    padding: 30px;
+    background-color: var(--ocean-primary);
+    border: 1px solid var(--ocean-accent4);
+    padding: 25px;
     color: var(--ocean-text);
-    box-shadow: var(--ocean-glow);
-    animation: ocean-fadeIn 0.3s ease-out;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-radius: var(--ocean-radius);
+    animation: ocean-rise 0.3s ease-out;
 }
 
 .blue-ocean .modal-content::before {
@@ -339,105 +445,152 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: var(--ocean-accent5);
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ocean-accent1) 0%,
+            var(--ocean-accent2) 50%,
+            var(--ocean-accent3) 100%);
 }
 
 .blue-ocean .modal-content h2 {
-    color: var(--ocean-accent5);
-    font-family: 'Orbitron', sans-serif;
+    color: var(--ocean-text);
+    font-family: 'Merriweather', serif;
     font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.blue-ocean .modal-date {
+    font-family: 'Merriweather', serif;
+    color: var(--ocean-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ocean-accent4);
+}
+
+/* Event list */
+.blue-ocean .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.blue-ocean .event-item {
+    background-color: var(--ocean-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--ocean-accent1);
+    border-radius: var(--ocean-radius);
+    transition: all var(--ocean-transition);
+}
+
+.blue-ocean .event-item:hover {
+    background-color: var(--ocean-layer3);
+    transform: translateX(3px);
+}
+
+.blue-ocean .event-time {
+    font-family: 'Merriweather', serif;
+    color: var(--ocean-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.blue-ocean .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ocean-text);
+}
+
+.blue-ocean .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ocean-text);
+    opacity: 0.9;
 }
 
 .blue-ocean .modal-content button {
-    background-color: transparent;
-    color: var(--ocean-accent5);
-    border: 1px solid var(--ocean-accent5);
-    padding: 12px 24px;
+    background: linear-gradient(to right,
+            var(--ocean-accent1),
+            var(--ocean-accent2));
+    color: var(--ocean-text);
+    border: none;
+    padding: 10px 20px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--ocean-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
     border-radius: var(--ocean-radius);
 }
 
 .blue-ocean .modal-content button:hover {
-    background-color: var(--ocean-accent5);
-    color: var(--ocean-bg);
-    box-shadow: var(--ocean-glow);
+    background: linear-gradient(to right,
+            var(--ocean-hover),
+            #4DECA7);
+    box-shadow: 0 3px 10px rgba(77, 168, 218, 0.2);
 }
 
 /* Close Button */
 .blue-ocean .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: var(--ocean-accent5);
-    border: 1px solid var(--ocean-accent5);
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    background-color: var(--ocean-primary);
+    color: var(--ocean-text);
+    border: 1px solid var(--ocean-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     transition: all var(--ocean-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .blue-ocean .modal .close-button:hover {
-    background-color: var(--ocean-accent5);
-    color: var(--ocean-bg);
-    transform: rotate(90deg);
+    background-color: var(--ocean-text);
+    color: var(--ocean-accent1);
+    border-color: var(--ocean-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .blue-ocean .button,
 .blue-ocean .transparent-button {
     border: 1px solid var(--ocean-accent1);
-    color: var(--ocean-accent3);
+    color: var(--ocean-text);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--ocean-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
+    margin: 0.4rem;
     border-radius: var(--ocean-radius);
-}
-
-.blue-ocean .button::before,
-.blue-ocean .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 180, 216, 0.2), transparent);
-    transition: 0.5s;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .blue-ocean .button:hover,
 .blue-ocean .transparent-button:hover {
-    background-color: rgba(0, 180, 216, 0.1);
-    color: var(--ocean-accent5);
-    border-color: var(--ocean-accent5);
-    box-shadow: var(--ocean-glow);
-}
-
-.blue-ocean .button:hover::before,
-.blue-ocean .transparent-button:hover::before {
-    left: 100%;
+    background: linear-gradient(to right,
+            var(--ocean-accent1),
+            var(--ocean-accent2));
+    color: var(--ocean-text);
+    box-shadow: 0 3px 10px rgba(77, 168, 218, 0.15);
 }
 
 .blue-ocean .controls {
@@ -445,30 +598,30 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .blue-ocean #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
-    min-width: 220px;
+    margin: 0 0.8rem;
+    min-width: 200px;
     z-index: 1000;
 }
 
 .blue-ocean #theme-switcher {
-    background-color: rgba(0, 51, 102, 0.8);
+    background-color: var(--ocean-primary);
     color: var(--ocean-text) !important;
     border: 1px solid var(--ocean-accent1);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1rem;
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
     width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F2FE'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8F1F2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
@@ -478,62 +631,58 @@
 }
 
 .blue-ocean #theme-switcher option {
-    background-color: rgba(0, 31, 63, 0.98) !important;
+    background-color: var(--ocean-primary) !important;
     color: var(--ocean-text) !important;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 12px 15px !important;
-    border-bottom: 1px solid var(--ocean-accent1) !important;
-}
-
-.blue-ocean #theme-switcher option:hover {
-    background-color: var(--ocean-accent5) !important;
-    color: var(--ocean-bg) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
 }
 
 .blue-ocean #theme-switcher:focus {
     outline: none;
-    border-color: var(--ocean-accent5);
-    box-shadow: var(--ocean-glow);
+    border-color: var(--ocean-accent1);
+    box-shadow: 0 0 0 2px rgba(77, 168, 218, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .blue-ocean #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--ocean-accent1);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ocean-accent3);
-    background-color: rgba(0, 51, 102, 0.8);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--ocean-text);
+    background: linear-gradient(to right,
+            var(--ocean-accent1),
+            var(--ocean-accent2));
     cursor: pointer;
     transition: all var(--ocean-transition);
     opacity: 0.9;
     display: none;
     border-radius: var(--ocean-radius);
+    box-shadow: 0 2px 8px rgba(77, 168, 218, 0.3);
 }
 
 .blue-ocean #backToTopBtn:hover {
-    background-color: rgba(0, 180, 216, 0.2);
-    color: var(--ocean-accent5);
-    border-color: var(--ocean-accent5);
-    box-shadow: var(--ocean-glow);
+    background: linear-gradient(to right,
+            var(--ocean-hover),
+            #4DECA7);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .blue-ocean footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--ocean-accent1);
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ocean-accent4);
     color: var(--ocean-text);
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -544,7 +693,6 @@
 
     .blue-ocean #calendar-title {
         font-size: 2rem;
-        letter-spacing: 0.2em;
     }
 
     .blue-ocean #current-date {
@@ -552,20 +700,33 @@
     }
 
     .blue-ocean #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .blue-ocean .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .blue-ocean .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .blue-ocean {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
     .blue-ocean .clock-face {
-        width: 160px;
-        height: 160px;
-        border-width: 6px;
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
     }
 
     .blue-ocean th {
         font-size: 0.85rem;
-        padding: 0.8rem 0.3rem;
+        padding: 0.7rem 0.3rem;
     }
 
     .blue-ocean th span.full-day-name {
@@ -577,95 +738,119 @@
     }
 
     .blue-ocean td {
-        padding: 0.6rem;
-        height: 70px;
-        font-size: 0.8rem;
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .blue-ocean td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
     }
 
     .blue-ocean td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
     }
 
     .blue-ocean #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
         font-size: 0.9rem;
     }
 
     .blue-ocean #theme-switcher {
-        padding: 0.7rem 2rem 0.7rem 0.8rem;
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
         font-size: 0.9rem;
-        min-width: 180px;
+        min-width: 170px;
     }
 
-    .blue-ocean #theme-switcher option {
-        font-size: 0.9rem;
-        padding: 10px !important;
+    .blue-ocean .modal-content {
+        padding: 20px;
+    }
+
+    .blue-ocean .event-item {
+        padding: 0.8rem;
     }
 }
 
 @media (max-width: 576px) {
     .blue-ocean .container {
-        padding: 0.8rem;
+        padding: 1rem;
     }
 
     .blue-ocean #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
+        font-size: 1.7rem;
     }
 
     .blue-ocean #current-date {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .blue-ocean #today-weather {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .blue-ocean .clock-face {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
         border-width: 4px;
     }
 
     .blue-ocean th {
-        font-size: 0.75rem;
-        padding: 0.5rem 0.2rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .blue-ocean td {
-        padding: 0.3rem;
-        height: 60px;
-        font-size: 0.7rem;
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    .blue-ocean td.current-day::before {
-        width: 16px;
-        height: 16px;
+    .blue-ocean td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
     .blue-ocean #theme-switcher {
-        min-width: 160px;
+        min-width: 150px;
         font-size: 0.85rem;
+    }
+
+    .blue-ocean .modal-content {
+        padding: 15px;
+    }
+
+    .blue-ocean .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .blue-ocean .event-time {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 400px) {
     .blue-ocean th {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .blue-ocean td {
-        height: 50px;
+        height: 60px;
+    }
+
+    .blue-ocean td .date-number {
+        font-size: 0.9rem;
     }
 
     .blue-ocean #theme-switcher {
-        min-width: 140px;
+        min-width: 130px;
         font-size: 0.8rem;
     }
 }
