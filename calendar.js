@@ -157,7 +157,7 @@ const applyTheme = (theme) => {
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
     'pacific-ocean', 'palm-beach',
     'palma-de-mallorca', 'patagonian-shores', 'patagonian-sky', 'perfect-afternoon',
-    'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
+    'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 'planet-of-robots', 
     'polar-bear', 'porcupine-quill', 'port-victoria', 'positive-energy' , 'power-play',
     'practical-experience', 'practice-makes-perfect',
     'precious-question', 'pristine-lake','progressive-decision', 'pure-light', 
