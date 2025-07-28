@@ -198,8 +198,8 @@ const applyTheme = (theme) => {
     'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 'urban-fashion', 
     'velvety-dark', 'vibrant-colors',
     'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
-    'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 'wild-flower',
-    'wild-rose', 'wild-tropics',
+    'we-fly-higher', 'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 
+    'wild-flower','wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-wonderland', 'wonderful-experience',
     'world-champion', 'work-of-art', 'yellow-eyed-penguin', 'your-wildest-dreams',
     'your-wildest-guess', 'zodiac-constellations'
