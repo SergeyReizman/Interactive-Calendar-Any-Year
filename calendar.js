@@ -196,7 +196,7 @@ const applyTheme = (theme) => {
     'the-silver-sword', 'the-spirit-of-innovation', 
     'the-unstoppable-mindset', 'the-west-coast', 'tide-of-dreams',
     'time-complexity', 'time-machine', 'time-to-chill', 'tokyo-at-night', 
-    'tropical-islands', 'tropical-jungle', 'tropical-nature',
+    'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden', 'underwater-life',
     'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 'urban-fashion', 
     'velvety-dark', 'vibrant-colors',
