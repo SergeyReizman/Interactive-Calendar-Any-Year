@@ -169,7 +169,7 @@ const applyTheme = (theme) => {
     'race-ready', 'rainbow-dream', 'rainforest-jungle', 'rain-waltz', 'random-coincidence',
     'real-results', 'red-lake', 'red-squirrel', 'remarkable-city',
     'remote-island','right-on-track', 'rising-sun',
-    'robin-good', 'royal-caribbean', 'samurai-path', 'science-fiction',
+    'robin-good', 'royal-caribbean', 'royal-crown', 'samurai-path', 'science-fiction',
     'sea-breeze', 'seabreeze-avenue', 'sea-diamonds', 'sea-lions', 'sea-star', 'secret-item',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 'serene-shores', 'shades-of-blue',
     'shaolin-monastery','shift-in-perception', 'significant-improvement', 'silicon-valley', 
