@@ -1,89 +1,66 @@
 /* ==========================================================================
-   Medieval Knights Theme - Bold, Majestic, and Timeless! (Enhanced Version)
-   Purpose: Styles specific to the Medieval Knights theme for the calendar.
-   Sections:
-     - Variables: Defines color palette, spacing, and typographic settings.
-     - Keyframe Animations: Defines animations for visual effects.
-     - Base Styles: Applies global styles to the calendar container.
-     - Layout: Structures the calendar grid and containers.
-     - Typography: Sets font styles for text elements.
-     - Interactive Elements: Styles buttons, hover effects, and event markers.
-     - Modals: Styles modal windows for event details.
-     - Event List: Styles for the event list.
-     - Buttons & Navigation: Styles for buttons and navigation.
-     - Calendar Header & Title: Styles for the header and title.
-     - Week Number & No Events: Styles for these elements.
-     - Responsive Design: Adjusts styles for different screen sizes.
+   Medieval Knights Theme - Chivalric Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Medieval color palette (deep reds, aged parchment)
+   - Castle and knight elements
+   - Heraldic design aesthetic
    ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;600&display=swap');
+
 :root {
-    /* Metal-Inspired Color Palette */
-    --mk-bg: #f0f0f0;
-    /* Light steel background */
-    --mk-text: #2c2c2c;
-    /* Dark iron text */
-    --mk-primary: #8b7355;
-    /* Bronze (primary action) */
-    --mk-secondary: #5a4d3d;
-    /* Dark bronze */
-    --mk-header-accent: #b87333;
-    /* Copper (header accent) */
-    --mk-button-accent: #c0c0c0;
-    /* Silver (button accent) */
-    --mk-hover-accent: #d4af37;
-    /* Gold (hover) */
-    --mk-shadow: rgba(0, 0, 0, 0.1);
-    /* Subtle shadow */
+    /* Medieval Color Palette */
+    --castle-bg: #1A0A0E;
+    --castle-text: #F0E2D0;
+    --castle-primary: #291E1E;
+    --castle-secondary: #3B2E2E;
+    --castle-date-number: #C8A145;
 
-    /* Spacing and Borders */
-    --mk-radius: 8px;
-    /* Rounded corners */
-    --mk-border: 1px solid var(--mk-secondary);
-    /* Default border */
+    /* Castle Layer Colors */
+    --castle-layer1: #291E1E;
+    --castle-layer2: #3B2E2E;
+    --castle-layer3: #4D3C3C;
+    --castle-layer4: #5E4A4A;
+    --castle-layer5: #7A6363;
 
-    /* Transitions and Animations */
-    --mk-transition: 0.2s ease-in-out;
-    /* Smooth transition */
-    --mk-wave-animation: waveAnimation 10s linear infinite;
-    /* Wave animation */
+    /* Heraldic Accent Colors */
+    --castle-accent1: #C8A145;
+    /* Gold */
+    --castle-accent2: #8B0000;
+    /* Crimson */
+    --castle-accent3: #4B5320;
+    /* Olive */
+    --castle-accent4: rgba(200, 161, 69, 0.6);
+    --castle-accent5: rgba(139, 0, 0, 0.4);
 
-    /* Typography */
-    --mk-font-family: 'Cinzel', serif;
-    /* Medieval serif font */
-    --mk-font-size: 1em;
-    /* Base font size */
+    /* Theme Variables */
+    --castle-shadow: rgba(200, 161, 69, 0.15);
+    --castle-radius: 8px;
+    --castle-transition: 0.3s ease-in-out;
+    --castle-hover: #D9B96E;
+    --castle-glow: 0 0 12px rgba(200, 161, 69, 0.25);
+    --castle-banners: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23C8A145"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23C8A145"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23C8A145"/></svg>');
+    --castle-tapestry: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L200,100 L400,110 L600,90 L800,100 L1000,80 L1200,90 L1200,120 L0,120 Z" fill="%23C8A145" opacity="0.2"/></svg>');
 }
 
-/* Keyframe Animations */
-@keyframes waveAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes pulse {
+/* ==================== ANIMATIONS ==================== */
+@keyframes castle-fade {
 
     0%,
     100% {
-        transform: scale(1);
+        opacity: 0.95;
     }
 
     50% {
-        transform: scale(1.04);
+        opacity: 1;
     }
 }
 
-@keyframes slideIn {
+@keyframes castle-rise {
     from {
-        transform: translateY(-18px);
+        transform: translateY(20px);
         opacity: 0;
     }
 
@@ -93,329 +70,786 @@
     }
 }
 
-/* Base Styles */
+@keyframes castle-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--castle-shadow);
+    }
+
+    50% {
+        box-shadow: var(--castle-glow);
+    }
+}
+
+@keyframes castle-banners {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes torch-flicker {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
 .medieval-knights {
-    font-family: var(--mk-font-family);
-    color: var(--mk-text);
+    font-family: 'EB Garamond', serif;
+    color: var(--castle-text);
     line-height: 1.6;
-    background-color: var(--mk-bg);
-    font-size: var(--mk-font-size);
+    font-size: 1rem;
+    background-color: var(--castle-bg);
+    min-height: 100vh;
+    background-image: var(--castle-tapestry),
+        linear-gradient(to bottom, var(--castle-bg), var(--castle-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: castle-banners 60s linear infinite;
 }
 
 .medieval-knights .container {
-    background: linear-gradient(270deg, var(--mk-bg), var(--mk-button-accent), var(--mk-header-accent), var(--mk-button-accent));
-    background-size: 400% 400%;
-    animation: var(--mk-wave-animation);
-    padding: 24px;
-    border-radius: var(--mk-radius);
-    box-shadow: 0 4px 12px var(--mk-shadow);
-    border: 1px solid var(--mk-header-accent);
+    background-color: var(--castle-primary);
+    padding: 2rem;
+    border: 1px solid var(--castle-accent4);
+    box-shadow: var(--castle-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--castle-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
 }
 
-/* Layout */
-.medieval-knights .calendar-container {
-    padding: 20px;
-    background: linear-gradient(145deg, var(--mk-header-accent), var(--mk-button-accent));
-    border-radius: var(--mk-radius);
-    border: 1px dashed var(--mk-primary);
+.medieval-knights .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--castle-accent1) 0%,
+            var(--castle-accent2) 50%,
+            var(--castle-accent3) 100%);
 }
 
+.medieval-knights .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--castle-banners);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* Heraldic decorations */
+.medieval-knights .heraldic-shield {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    background: var(--castle-accent1);
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.medieval-knights #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--castle-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.medieval-knights #calendar-title::after {
+    content: "⚔️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.medieval-knights #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--castle-primary);
+    border: 1px solid var(--castle-accent4);
+    border-radius: var(--castle-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.medieval-knights #date-weather-container::before {
+    content: "ROYAL COURT";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--castle-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--castle-text);
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+}
+
+.medieval-knights #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--castle-accent1), transparent);
+}
+
+.medieval-knights #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--castle-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.medieval-knights #today-weather {
+    font-family: 'EB Garamond', serif;
+    color: var(--castle-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.medieval-knights #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.medieval-knights .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--castle-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--castle-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--castle-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23C8A145" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.medieval-knights .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.medieval-knights .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--castle-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.medieval-knights .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--castle-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.medieval-knights .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--castle-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.medieval-knights .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--castle-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--castle-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
 .medieval-knights table {
     width: 100%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    border-radius: var(--mk-radius);
-    box-shadow: 0 2px 8px var(--mk-shadow);
-    overflow: hidden;
-    background-color: var(--mk-bg);
-    border: var(--mk-border);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
-.medieval-knights th,
-.medieval-knights td {
-    padding: 12px;
-    text-align: center;
-    border: var(--mk-border);
-    transition: all var(--mk-transition);
-    word-wrap: break-word;
-}
-
-/* Typography */
+/* DAY OF WEEK HEADERS */
 .medieval-knights th {
-    background: linear-gradient(to bottom, var(--mk-primary), var(--mk-secondary));
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 1em;
-    letter-spacing: 0.5px;
+    background: linear-gradient(to right,
+            var(--castle-accent1),
+            var(--castle-accent2));
+    color: var(--castle-text) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--castle-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
-.medieval-knights td {
-    background-color: var(--mk-bg);
-    color: var(--mk-text);
+.medieval-knights th span.full-day-name {
+    display: inline;
 }
 
-/* Interactive Elements */
-.medieval-knights td:hover {
-    background: linear-gradient(to bottom, var(--mk-primary), var(--mk-header-accent));
-    transform: scale(1.02);
-    box-shadow: 0 2px 8px var(--mk-shadow);
-    border-color: var(--mk-primary);
-    color: white;
-}
-
-.medieval-knights td.current-day {
-    background: linear-gradient(to bottom, var(--mk-primary), var(--mk-header-accent));
-    border: 2px solid var(--mk-primary);
-    font-weight: 600;
-    color: white;
-    box-shadow: inset 0 0 8px var(--mk-shadow);
-    animation: pulse 2s infinite;
-}
-
-.medieval-knights .event-marker {
-    background-color: var(--mk-primary);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    transition: transform var(--mk-transition);
-    box-shadow: 0 0 4px var(--mk-shadow);
-}
-
-.medieval-knights .event-marker:hover {
-    background-color: var(--mk-hover-accent);
-    transform: scale(1.5);
-    box-shadow: 0 0 8px var(--mk-primary);
-}
-
-/* Modals */
-.medieval-knights .modal-content {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border: var(--mk-border);
-    border-radius: var(--mk-radius);
-    box-shadow: 0 8px 16px var(--mk-shadow);
-    padding: 20px;
-    color: var(--mk-text);
-    animation: slideIn 0.3s var(--mk-transition);
-}
-
-.medieval-knights .modal .close-button {
-    background-color: var(--mk-primary);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    transition: all var(--mk-transition);
-    box-shadow: 0 0 4px var(--mk-shadow);
-}
-
-.medieval-knights .modal .close-button:hover {
-    background-color: var(--mk-hover-accent);
-    color: black;
-    transform: rotate(90deg);
-    box-shadow: 0 0 8px var(--mk-primary);
-}
-
-/* Event List */
-.medieval-knights .event-list li {
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--mk-secondary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.medieval-knights .event-list li:last-child {
+.medieval-knights th abbr {
+    display: none;
+    text-decoration: none;
     border-bottom: none;
 }
 
-.medieval-knights .event-list button {
-    background: linear-gradient(to bottom, var(--mk-primary), var(--mk-button-accent));
-    color: white;
+/* DATE NUMBER STYLES */
+.medieval-knights td {
+    background-color: var(--castle-primary);
+    color: var(--castle-text);
+    padding: 1rem;
+    border: 1px solid var(--castle-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--castle-transition);
+    position: relative;
+    border-radius: var(--castle-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.medieval-knights td .date-number {
+    color: var(--castle-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Cinzel', serif;
+}
+
+.medieval-knights td:hover {
+    background-color: var(--castle-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.medieval-knights td.current-day {
+    background-color: rgba(200, 161, 69, 0.15);
+    border: 2px solid var(--castle-accent1);
+    animation: castle-pulse 3s infinite;
+}
+
+.medieval-knights td.current-day .date-number {
+    color: var(--castle-text) !important;
+    font-weight: 700;
+}
+
+.medieval-knights td.current-day::before {
+    content: "🛡️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--castle-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.medieval-knights .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--castle-accent1);
+    margin: 0 1px;
+    transition: all var(--castle-transition);
+}
+
+.medieval-knights .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--castle-accent3);
+    box-shadow: 0 0 6px rgba(75, 83, 32, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.medieval-knights .modal-content {
+    position: relative;
+    background-color: var(--castle-primary);
+    border: 1px solid var(--castle-accent4);
+    padding: 25px;
+    color: var(--castle-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--castle-radius);
+    animation: castle-rise 0.3s ease-out;
+}
+
+.medieval-knights .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--castle-accent1) 0%,
+            var(--castle-accent2) 50%,
+            var(--castle-accent3) 100%);
+}
+
+.medieval-knights .modal-content h2 {
+    color: var(--castle-text);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.medieval-knights .modal-date {
+    font-family: 'Cinzel', serif;
+    color: var(--castle-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--castle-accent4);
+}
+
+/* Event list */
+.medieval-knights .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.medieval-knights .event-item {
+    background-color: var(--castle-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--castle-accent1);
+    border-radius: var(--castle-radius);
+    transition: all var(--castle-transition);
+}
+
+.medieval-knights .event-item:hover {
+    background-color: var(--castle-layer3);
+    transform: translateX(3px);
+}
+
+.medieval-knights .event-time {
+    font-family: 'Cinzel', serif;
+    color: var(--castle-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.medieval-knights .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--castle-text);
+}
+
+.medieval-knights .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--castle-text);
+    opacity: 0.9;
+}
+
+.medieval-knights .modal-content button {
+    background: linear-gradient(to right,
+            var(--castle-accent1),
+            var(--castle-accent2));
+    color: var(--castle-text);
     border: none;
-    padding: 6px 12px;
-    border-radius: var(--mk-radius);
-    cursor: pointer;
-    transition: all var(--mk-transition);
-    box-shadow: 0 1px 4px var(--mk-shadow);
-}
-
-.medieval-knights .event-list button:hover {
-    background: linear-gradient(to bottom, var(--mk-primary), var(--mk-header-accent));
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px var(--mk-shadow);
-}
-
-/* Buttons & Navigation */
-.medieval-knights .button,
-.medieval-knights .transparent-button,
-.medieval-knights #backToTopBtn {
-    border-radius: var(--mk-radius);
     padding: 10px 20px;
     font-size: 1em;
-    transition: all var(--mk-transition);
+    font-weight: 600;
     cursor: pointer;
-    border: 1px solid var(--mk-primary);
-    color: white;
-    background: linear-gradient(to bottom, var(--mk-secondary), var(--mk-header-accent));
-    box-shadow: 0 2px 8px var(--mk-shadow);
+    transition: all var(--castle-transition);
+    letter-spacing: 0.5px;
+    font-family: 'EB Garamond', serif;
+    border-radius: var(--castle-radius);
+}
+
+.medieval-knights .modal-content button:hover {
+    background: linear-gradient(to right,
+            var(--castle-hover),
+            #A52A2A);
+    box-shadow: 0 3px 10px rgba(200, 161, 69, 0.2);
+}
+
+/* Close Button */
+.medieval-knights .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--castle-primary);
+    color: var(--castle-text);
+    border: 1px solid var(--castle-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--castle-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.medieval-knights .modal .close-button:hover {
+    background-color: var(--castle-text);
+    color: var(--castle-accent1);
+    border-color: var(--castle-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.medieval-knights .button,
+.medieval-knights .transparent-button {
+    border: 1px solid var(--castle-accent1);
+    color: var(--castle-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--castle-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--castle-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .medieval-knights .button:hover,
-.medieval-knights .transparent-button:hover,
-.medieval-knights #backToTopBtn:hover {
-    background: linear-gradient(to bottom, var(--mk-hover-accent), var(--mk-button-accent));
-    box-shadow: 0 4px 12px var(--mk-shadow);
-    transform: scale(1.03);
+.medieval-knights .transparent-button:hover {
+    background: linear-gradient(to right,
+            var(--castle-accent1),
+            var(--castle-accent2));
+    color: var(--castle-text);
+    box-shadow: 0 3px 10px rgba(200, 161, 69, 0.15);
 }
 
-.medieval-knights .button.secondary {
-    background: linear-gradient(to bottom, var(--mk-secondary), var(--mk-primary));
-    border: none;
+.medieval-knights .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
 }
 
-.medieval-knights .button.secondary:hover {
-    background: linear-gradient(to bottom, var(--mk-header-accent), var(--mk-primary));
+/* ==================== THEME SWITCHER ==================== */
+.medieval-knights #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
 }
 
-.medieval-knights .calendar-navigation button {
-    background: linear-gradient(to bottom, var(--mk-button-accent), var(--mk-secondary));
-    border: none;
-    font-size: 1em;
-    padding: 6px 12px;
-    cursor: pointer;
-    color: var(--mk-primary);
-    transition: color 0.2s ease-in-out;
-    box-shadow: 0 2px 8px var(--mk-shadow);
-}
-
-.medieval-knights .calendar-navigation button:hover {
-    color: var(--mk-hover-accent);
-    transform: scale(1.05);
-}
-
-/* Calendar Header & Title */
-.medieval-knights .calendar-header {
-    text-align: center;
-    font-size: 1.5em;
+.medieval-knights #theme-switcher {
+    background-color: var(--castle-primary);
+    color: var(--castle-text) !important;
+    border: 1px solid var(--castle-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--mk-primary);
-    text-shadow: 1px 1px 2px var(--mk-shadow);
-}
-
-.medieval-knights .calendar-title {
-    font-size: 1.2em;
-    font-style: italic;
-    text-shadow: 0.5px 0.5px 1px var(--mk-shadow);
-}
-
-/* Modal Close */
-.medieval-knights .modal-close {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 1.1em;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0E2D0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    color: var(--mk-primary);
-    background: none;
+    transition: all var(--castle-transition);
+    border-radius: var(--castle-radius);
+}
+
+.medieval-knights #theme-switcher option {
+    background-color: var(--castle-primary) !important;
+    color: var(--castle-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.medieval-knights #theme-switcher:focus {
+    outline: none;
+    border-color: var(--castle-accent1);
+    box-shadow: 0 0 0 2px rgba(200, 161, 69, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.medieval-knights #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
     border: none;
-    padding: 4px;
-    transition: color 0.2s ease-in-out;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    color: var(--castle-text);
+    background: linear-gradient(to right,
+            var(--castle-accent1),
+            var(--castle-accent2));
+    cursor: pointer;
+    transition: all var(--castle-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--castle-radius);
+    box-shadow: 0 2px 8px rgba(200, 161, 69, 0.3);
 }
 
-.medieval-knights .modal-close:hover {
-    color: var(--mk-header-accent);
-    transform: scale(1.1);
+.medieval-knights #backToTopBtn:hover {
+    background: linear-gradient(to right,
+            var(--castle-hover),
+            #A52A2A);
+    opacity: 1;
 }
 
-/* Week Number & No Events */
-.medieval-knights .week-number {
-    color: #6c757d;
-    font-size: 0.85em;
-    padding: 2px 4px;
-    background: linear-gradient(to bottom, var(--mk-header-accent), var(--mk-button-accent));
-    border-radius: 4px;
-    margin: 1px;
-}
-
-.medieval-knights .no-events {
-    font-style: italic;
-    color: #6c757d;
+/* ==================== FOOTER ==================== */
+.medieval-knights footer {
     text-align: center;
-    margin-top: 8px;
-    font-size: 0.9em;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--castle-accent4);
+    color: var(--castle-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* Media Queries */
-@media (max-width: 575.98px) {
-    .medieval-knights table {
-        font-size: 0.8em;
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .medieval-knights .container {
+        padding: 1.5rem;
     }
 
-    .medieval-knights th,
+    .medieval-knights #calendar-title {
+        font-size: 2rem;
+    }
+
+    .medieval-knights #current-date {
+        font-size: 1.5rem;
+    }
+
+    .medieval-knights #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .medieval-knights .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .medieval-knights .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .medieval-knights {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .medieval-knights .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .medieval-knights th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .medieval-knights th span.full-day-name {
+        display: none;
+    }
+
+    .medieval-knights th abbr {
+        display: inline;
+    }
+
     .medieval-knights td {
-        padding: 8px;
-        border: 1px solid var(--mk-secondary);
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
     }
 
-    .medieval-knights th:nth-child(1),
-    .medieval-knights td:nth-child(1) {
-        width: 14%;
+    .medieval-knights td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
     }
 
-    .medieval-knights th:nth-child(2),
-    .medieval-knights td:nth-child(2) {
-        width: 16%;
+    .medieval-knights td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
     }
 
-    .medieval-knights th:nth-child(3),
-    .medieval-knights td:nth-child(3) {
-        width: 16%;
-    }
-
-    .medieval-knights th:nth-child(4),
-    .medieval-knights td:nth-child(4) {
-        width: 16%;
-    }
-
-    .medieval-knights th:nth-child(5),
-    .medieval-knights td:nth-child(5) {
-        width: 16%;
-    }
-
-    .medieval-knights th:nth-child(6),
-    .medieval-knights td:nth-child(6) {
-        width: 16%;
-    }
-
-    .medieval-knights th:nth-child(7),
-    .medieval-knights td:nth-child(7) {
-        width: 6%;
-    }
-
-    .medieval-knights .event-marker-container {
-        flex-direction: row;
-        gap: 4px;
-    }
-
-    .medieval-knights .event-marker {
-        width: 8px;
-        height: 8px;
-    }
-
-    .medieval-knights .calendar-container {
-        padding: 16px;
-    }
-
-    .medieval-knights .button,
-    .medieval-knights .transparent-button,
     .medieval-knights #backToTopBtn {
-        padding: 8px 16px;
-        font-size: 0.95em;
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .medieval-knights #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .medieval-knights .modal-content {
+        padding: 20px;
+    }
+
+    .medieval-knights .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .medieval-knights .container {
+        padding: 1rem;
+    }
+
+    .medieval-knights #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .medieval-knights #current-date {
+        font-size: 1.3rem;
+    }
+
+    .medieval-knights #today-weather {
+        font-size: 1rem;
+    }
+
+    .medieval-knights .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .medieval-knights th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .medieval-knights td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .medieval-knights td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .medieval-knights #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .medieval-knights .modal-content {
+        padding: 15px;
+    }
+
+    .medieval-knights .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .medieval-knights .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .medieval-knights th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .medieval-knights td {
+        height: 60px;
+    }
+
+    .medieval-knights td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .medieval-knights #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
