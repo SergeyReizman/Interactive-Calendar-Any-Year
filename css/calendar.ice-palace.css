@@ -1,73 +1,71 @@
 /* ==========================================================================
-   Ice Palace Theme - Frozen Elegance Style
-   Version: 2.4
-   Updated: 2025-04-08
-   Includes:
-   - MAXIMUM current day highlighting (crystalline glow)
-   - Fixed day-of-week header overlapping
-   - Proper right-aligned back-to-top button
-   - Themed frost clock
-   - Mobile responsiveness
+   Ice Palace Theme - Frozen Elegance Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Icy blue color palette
+   - Crystal and snowflake elements
+   - Frozen palace design aesthetic
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;700&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --ice-bg: #1A2A3A;
-    /* Deep winter night */
-    --ice-text: #E6F0F1;
-    /* Frost white */
-    --ice-primary: #6BB9F0;
-    /* Ice blue */
-    --ice-secondary: #3498DB;
-    /* Deep ice */
-    --ice-current: #7EC0EE;
-    /* Crystal highlight */
-    --ice-accent: #89C4F4;
-    /* Frozen blue */
+    /* Ice Palace Color Palette */
+    --ice-bg: #F0F8FF;
+    --ice-text: #2A3A4A;
+    --ice-primary: #E6F2FF;
+    --ice-secondary: #D9ECFF;
+    --ice-date-number: #4A6B8B;
 
-    /* Ice Gradient */
-    --ice-dark1: #0E1A26;
-    /* Midnight */
-    --ice-dark2: #1A2A3A;
-    /* Deep frost */
-    --ice-dark3: #223344;
-    /* Frozen surface */
-    --ice-dark4: #2C3D4E;
-    /* Thawing ice */
-    --ice-dark5: #3D566E;
-    /* Glacier edge */
+    /* Frozen Layer Colors */
+    --ice-layer1: #D5E5F5;
+    --ice-layer2: #CEE0F2;
+    --ice-layer3: #C6DBEF;
+    --ice-layer4: #BFD6EC;
+    --ice-layer5: #B7D1E9;
 
-    /* Frost Spectrum */
-    --ice-sun1: #A2DED0;
-    /* Mint frost */
-    --ice-sun2: #6BB9F0;
-    /* Clear ice */
-    --ice-sun3: #3498DB;
-    /* Deep freeze */
-    --ice-sun4: #89C4F4;
-    /* Sky reflection */
-    --ice-sun5: #D2D7D3;
-    /* Snow glow */
+    /* Crystal Accent Colors */
+    --ice-accent1: #8BB3D4;
+    /* Ice Blue */
+    --ice-accent2: #9BD4FF;
+    /* Frost */
+    --ice-accent3: #B3D4E8;
+    /* Arctic */
+    --ice-accent4: rgba(139, 179, 212, 0.7);
+    --ice-accent5: rgba(155, 210, 255, 0.5);
 
     /* Theme Variables */
-    --ice-shadow: rgba(107, 185, 240, 0.3);
-    --ice-radius: 0;
-    --ice-transition: 0.3s ease;
-    --ice-hover: #6BB9F0;
+    --ice-shadow: rgba(139, 179, 212, 0.15);
+    --ice-radius: 12px;
+    --ice-transition: 0.3s ease-in-out;
+    --ice-hover: #7BA2C5;
+    --ice-glow: 0 0 12px rgba(139, 179, 212, 0.25);
+    --ice-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%238BB3D4"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%238BB3D4"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%238BB3D4"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes ice-glow {
+@keyframes ice-fade {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--ice-sun1);
+        opacity: 0.95;
     }
 
     50% {
-        box-shadow: 0 0 25px var(--ice-sun2);
+        opacity: 1;
+    }
+}
+
+@keyframes ice-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
@@ -75,61 +73,52 @@
 
     0%,
     100% {
-        transform: scale(1);
+        box-shadow: 0 0 3px var(--ice-shadow);
     }
 
     50% {
-        transform: scale(1.03);
+        box-shadow: var(--ice-glow);
     }
 }
 
-@keyframes iceFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+@keyframes ice-twinkle {
+    0% {
+        background-position: 0 0;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes current-day-pulse {
-
-    0%,
     100% {
-        box-shadow: 0 0 15px var(--ice-shadow),
-            inset 0 0 10px var(--ice-current);
-    }
-
-    50% {
-        box-shadow: 0 0 30px var(--ice-current),
-            inset 0 0 20px var(--ice-sun1);
+        background-position: 1000px 0;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .ice-palace {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     color: var(--ice-text);
     line-height: 1.6;
+    font-size: 1rem;
     background-color: var(--ice-bg);
     min-height: 100vh;
     background-image:
-        radial-gradient(circle at 20% 50%, var(--ice-accent) 0%, transparent 25%),
-        radial-gradient(circle at 80% 50%, var(--ice-primary) 0%, transparent 25%);
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%23E6F2FF" opacity="0.5"/></svg>'),
+        linear-gradient(to bottom, var(--ice-bg), var(--ice-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: ice-twinkle 60s linear infinite;
 }
 
 .ice-palace .container {
-    background-color: var(--ice-dark2);
+    background-color: var(--ice-primary);
     padding: 2rem;
-    border: 1px solid var(--ice-primary);
-    box-shadow: 0 0 30px var(--ice-shadow);
+    border: 1px solid var(--ice-accent4);
+    box-shadow: var(--ice-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
+    border-radius: var(--ice-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
 }
 
 .ice-palace .container::before {
@@ -138,181 +127,260 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--ice-primary), transparent);
-    animation: ice-pulse 3s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--ice-accent1) 0%,
+            var(--ice-accent2) 50%,
+            var(--ice-accent1) 100%);
+}
+
+.ice-palace .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--ice-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .ice-palace #calendar-title {
-    font-family: 'Playfair Display', serif;
-    color: var(--ice-primary);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ice-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 15px var(--ice-shadow);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ice-palace #calendar-title::after {
+    content: "❄️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .ice-palace #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: var(--ice-dark3);
-    border: 1px solid var(--ice-dark5);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--ice-primary);
+    border: 1px solid var(--ice-accent4);
+    border-radius: var(--ice-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ice-palace #date-weather-container::before {
+    content: "FROZEN CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--ice-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ice-text);
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .ice-palace #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--ice-primary), transparent);
+    background: linear-gradient(90deg, transparent, var(--ice-accent1), transparent);
 }
 
 .ice-palace #current-date {
-    font-family: 'Playfair Display', serif;
-    color: var(--ice-primary);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ice-text);
     font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--ice-shadow);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .ice-palace #today-weather {
-    font-family: 'Raleway', sans-serif;
-    color: var(--ice-sun5);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--ice-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
-/* ==================== FROST CLOCK ==================== */
-.ice-palace #frost-clock {
-    font-family: 'Playfair Display', serif;
-    color: var(--ice-primary);
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 2rem 0;
-    text-shadow: 0 0 10px var(--ice-shadow);
-    letter-spacing: 0.1em;
+/* ==================== ANALOG CLOCK ==================== */
+.ice-palace #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.ice-palace .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--ice-accent1);
+    border-radius: 50%;
     position: relative;
+    background-color: var(--ice-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--ice-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%238BB3D4" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
-.ice-palace #frost-clock::after {
-    content: "❄️";
+.ice-palace .hand {
     position: absolute;
-    right: calc(50% - 100px);
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5em;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.ice-palace .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--ice-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.ice-palace .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--ice-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.ice-palace .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ice-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.ice-palace .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--ice-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--ice-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .ice-palace table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: var(--ice-dark2);
-    border: 1px solid var(--ice-primary);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
+/* DAY OF WEEK HEADERS */
 .ice-palace th {
-    background-color: var(--ice-dark1);
-    color: var(--ice-primary);
-    font-family: 'Playfair Display', serif;
+    background-color: var(--ice-accent1);
+    color: var(--ice-text) !important;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--ice-dark5);
-    border-bottom: 2px solid var(--ice-primary);
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--ice-radius);
+    position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.ice-palace th span.full-day-name {
+    display: inline;
 }
 
 .ice-palace th abbr {
-    border-bottom: none;
+    display: none;
     text-decoration: none;
-    cursor: default;
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .ice-palace td {
-    background-color: var(--ice-dark3);
+    background-color: var(--ice-primary);
     color: var(--ice-text);
-    padding: 1.2rem;
-    border: 1px solid var(--ice-dark5);
-    height: 100px;
+    padding: 1rem;
+    border: 1px solid var(--ice-accent4);
+    height: 90px;
     vertical-align: top;
     transition: all var(--ice-transition);
     position: relative;
+    border-radius: var(--ice-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.ice-palace td .date-number {
+    color: var(--ice-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .ice-palace td:hover {
-    background-color: var(--ice-dark4);
-    box-shadow: inset 0 0 15px var(--ice-shadow);
+    background-color: var(--ice-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== ULTRA-VISIBLE CURRENT DAY ==================== */
+/* Current date highlight */
 .ice-palace td.current-day {
-    background-color: var(--ice-dark1) !important;
-    border: 3px solid var(--ice-current) !important;
-    color: var(--ice-sun5) !important;
+    background-color: rgba(139, 179, 212, 0.15);
+    border: 2px solid var(--ice-accent1);
+    animation: ice-pulse 3s infinite;
+}
+
+.ice-palace td.current-day .date-number {
+    color: var(--ice-text) !important;
     font-weight: 700;
-    position: relative;
-    z-index: 10;
-    animation:
-        current-day-pulse 1.5s infinite,
-        ice-glow 2s infinite;
-    box-shadow:
-        0 0 20px var(--ice-shadow),
-        inset 0 0 15px rgba(126, 192, 238, 0.3);
 }
 
 .ice-palace td.current-day::before {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border: 2px solid var(--ice-sun1);
-    animation: ice-pulse 2s infinite;
-    z-index: -1;
-}
-
-.ice-palace td.current-day::after {
-    content: "❄ NOW";
+    content: "❄️";
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: var(--ice-current);
-    color: var(--ice-dark1);
-    font-size: 0.7rem;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--ice-accent1);
     font-weight: bold;
-    padding: 3px 8px;
-    border-radius: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Playfair Display', serif;
-    text-shadow: 0 0 5px var(--ice-dark1);
-    box-shadow: 0 0 10px var(--ice-current);
-}
-
-.ice-palace td.current-day .event-marker {
-    background-color: var(--ice-sun5);
-    box-shadow: 0 0 8px var(--ice-current);
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -321,27 +389,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--ice-primary);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--ice-shadow);
+    background-color: var(--ice-accent1);
+    margin: 0 1px;
     transition: all var(--ice-transition);
 }
 
 .ice-palace .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--ice-sun1);
-    box-shadow: 0 0 15px var(--ice-primary);
+    transform: scale(1.4);
+    background-color: var(--ice-accent2);
+    box-shadow: 0 0 6px rgba(155, 210, 255, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .ice-palace .modal-content {
     position: relative;
-    background-color: var(--ice-dark2);
-    border: 2px solid var(--ice-primary);
-    padding: 30px;
+    background-color: var(--ice-primary);
+    border: 1px solid var(--ice-accent4);
+    padding: 25px;
     color: var(--ice-text);
-    box-shadow: 0 0 40px var(--ice-shadow);
-    animation: iceFadeIn 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--ice-radius);
+    animation: ice-rise 0.3s ease-out;
 }
 
 .ice-palace .modal-content::before {
@@ -350,47 +418,105 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--ice-primary);
-    animation: ice-pulse 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ice-accent1) 0%,
+            var(--ice-accent2) 50%,
+            var(--ice-accent1) 100%);
 }
 
 .ice-palace .modal-content h2 {
-    color: var(--ice-primary);
-    font-family: 'Playfair Display', serif;
+    color: var(--ice-text);
+    font-family: 'Cormorant Garamond', serif;
     font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal date display */
+.ice-palace .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ice-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ice-accent4);
+}
+
+/* Event list */
+.ice-palace .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ice-palace .event-item {
+    background-color: var(--ice-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--ice-accent1);
+    border-radius: var(--ice-radius);
+    transition: all var(--ice-transition);
+}
+
+.ice-palace .event-item:hover {
+    background-color: var(--ice-layer3);
+    transform: translateX(3px);
+}
+
+.ice-palace .event-time {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ice-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.ice-palace .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ice-text);
+}
+
+.ice-palace .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ice-text);
+    opacity: 0.9;
 }
 
 .ice-palace .modal-content button {
-    background-color: transparent;
-    color: var(--ice-primary);
-    border: 1px solid var(--ice-primary);
-    padding: 12px 24px;
+    background-color: var(--ice-accent1);
+    color: var(--ice-text);
+    border: none;
+    padding: 10px 20px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--ice-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: var(--ice-radius);
 }
 
 .ice-palace .modal-content button:hover {
-    background-color: var(--ice-primary);
-    color: var(--ice-text);
-    box-shadow: 0 0 15px var(--ice-shadow);
+    background-color: var(--ice-hover);
+    box-shadow: 0 3px 10px rgba(139, 179, 212, 0.2);
 }
 
 /* Close Button */
 .ice-palace .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: var(--ice-primary);
-    border: 1px solid var(--ice-primary);
+    top: 12px;
+    right: 12px;
+    background-color: var(--ice-primary);
+    color: var(--ice-text);
+    border: 1px solid var(--ice-text);
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -398,53 +524,40 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
 }
 
 .ice-palace .modal .close-button:hover {
-    background-color: var(--ice-primary);
-    color: var(--ice-text);
-    transform: rotate(90deg);
+    background-color: var(--ice-text);
+    color: var(--ice-accent1);
+    border-color: var(--ice-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .ice-palace .button,
 .ice-palace .transparent-button {
-    border: 1px solid var(--ice-primary);
-    color: var(--ice-primary);
+    border: 1px solid var(--ice-accent1);
+    color: var(--ice-text);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Playfair Display', serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--ice-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-}
-
-.ice-palace .button::before,
-.ice-palace .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(107, 185, 240, 0.2), transparent);
-    transition: 0.5s;
+    margin: 0.4rem;
+    border-radius: var(--ice-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .ice-palace .button:hover,
 .ice-palace .transparent-button:hover {
-    background-color: var(--ice-primary);
+    background-color: var(--ice-accent1);
     color: var(--ice-text);
-    box-shadow: 0 0 20px var(--ice-shadow);
-}
-
-.ice-palace .button:hover::before,
-.ice-palace .transparent-button:hover::before {
-    left: 100%;
+    box-shadow: 0 3px 10px rgba(139, 179, 212, 0.15);
 }
 
 .ice-palace .controls {
@@ -452,53 +565,87 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.ice-palace #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
 }
 
 .ice-palace #theme-switcher {
-    background-color: var(--ice-dark3);
-    color: var(--ice-text);
-    border: 1px solid var(--ice-primary);
-    padding: 0.8rem;
-    font-family: 'Raleway', sans-serif;
-    margin-left: 1rem;
+    background-color: var(--ice-primary);
+    color: var(--ice-text) !important;
+    border: 1px solid var(--ice-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232A3A4A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ice-transition);
+    border-radius: var(--ice-radius);
+}
+
+.ice-palace #theme-switcher option {
+    background-color: var(--ice-primary) !important;
+    color: var(--ice-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.ice-palace #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ice-accent1);
+    box-shadow: 0 0 0 2px rgba(139, 179, 212, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .ice-palace #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--ice-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Playfair Display', serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ice-primary);
-    background-color: var(--ice-dark3);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    color: var(--ice-text);
+    background-color: var(--ice-accent1);
     cursor: pointer;
     transition: all var(--ice-transition);
     opacity: 0.9;
     display: none;
+    border-radius: var(--ice-radius);
+    box-shadow: 0 2px 8px rgba(139, 179, 212, 0.3);
 }
 
 .ice-palace #backToTopBtn:hover {
-    background-color: var(--ice-primary);
-    color: var(--ice-text);
-    box-shadow: 0 0 20px var(--ice-shadow);
+    background-color: var(--ice-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .ice-palace footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--ice-dark5);
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ice-accent4);
     color: var(--ice-text);
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -516,23 +663,109 @@
     }
 
     .ice-palace #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
-    .ice-palace #frost-clock {
-        font-size: 2rem;
+    .ice-palace .modal-date {
+        font-size: 1.3rem;
     }
 
-    .ice-palace #frost-clock::after {
-        right: calc(50% - 80px);
+    .ice-palace .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .ice-palace {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .ice-palace .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
     .ice-palace th {
-        padding: 0.5rem 0.2rem;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .ice-palace th span.full-day-name {
+        display: none;
+    }
+
+    .ice-palace th abbr {
+        display: inline;
+    }
+
+    .ice-palace td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .ice-palace td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .ice-palace td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .ice-palace #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .ice-palace #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .ice-palace .modal-content {
+        padding: 20px;
+    }
+
+    .ice-palace .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .ice-palace .container {
+        padding: 1rem;
+    }
+
+    .ice-palace #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .ice-palace #current-date {
+        font-size: 1.3rem;
+    }
+
+    .ice-palace #today-weather {
+        font-size: 1rem;
+    }
+
+    .ice-palace .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .ice-palace th {
         font-size: 0.8rem;
-        letter-spacing: normal;
+        padding: 0.6rem 0.2rem;
     }
 
     .ice-palace td {
@@ -541,99 +774,46 @@
         font-size: 0.8rem;
     }
 
-    .ice-palace td.current-day::after {
-        font-size: 0.6rem;
-        padding: 2px 4px;
-        content: "❄";
+    .ice-palace td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
-    .ice-palace #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+    .ice-palace #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
-    .ice-palace #frost-clock {
-        font-size: 1.8rem;
+    .ice-palace .modal-content {
+        padding: 15px;
     }
 
-    .ice-palace #frost-clock::after {
-        right: calc(50% - 70px);
-    }
-}
-
-@media (max-width: 576px) {
-    .ice-palace .container {
-        padding: 0.8rem;
-    }
-
-    .ice-palace #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
-    }
-
-    .ice-palace #current-date {
-        font-size: 1.1rem;
-    }
-
-    .ice-palace #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .ice-palace th {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.1rem;
-    }
-
-    .ice-palace td {
-        font-size: 0.7rem;
-        padding: 0.3rem;
-        height: 60px;
-    }
-
-    .ice-palace td.current-day::after {
-        content: "❄";
-        font-size: 0.6rem;
-        top: 3px;
-        right: 3px;
-        padding: 1px 3px;
-    }
-
-    .ice-palace #backToTopBtn {
-        right: 10px;
-        bottom: 10px;
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
-    }
-
-    .ice-palace #frost-clock {
-        font-size: 1.5rem;
-    }
-
-    .ice-palace #frost-clock::after {
-        right: calc(50% - 60px);
+    .ice-palace .modal-date {
         font-size: 1.2rem;
+    }
+
+    .ice-palace .event-time {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 400px) {
     .ice-palace th {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .ice-palace td {
-        height: 50px;
+        height: 60px;
     }
 
-    .ice-palace td.current-day::after {
-        font-size: 0.5rem;
-        top: 2px;
-        right: 2px;
+    .ice-palace td .date-number {
+        font-size: 0.9rem;
     }
 
-    .ice-palace #frost-clock::after {
-        display: none;
+    .ice-palace #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
