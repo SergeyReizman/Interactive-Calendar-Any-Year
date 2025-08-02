@@ -1,150 +1,125 @@
 /* ==========================================================================
-   Coastal Beauty Theme - Serene Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Ocean-inspired color scheme
-   - Beach-themed UI elements
-   - Mobile-responsive design
-   - Wave-like animations
-   - Sand texture backgrounds
-   - Enhanced accessibility
-   - Nautical accents
-   - Fluid typography
+   Coastal Beauty Theme - Seaside Serenity Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Coastal color palette (blues, sands, corals)
+   - Nautical design elements
+   - Beachy relaxed aesthetic
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Quicksand:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;700&display=swap');
 
 :root {
-    /* Coastal Beauty Color Palette */
-    --cb-bg: #F5F9FA;
-    --cb-text: #2E5266;
-    --cb-primary: #3A7CA5;
-    /* Ocean blue */
-    --cb-secondary: #81C7D4;
-    /* Sky blue */
+    /* Coastal Color Palette */
+    --coastal-bg: #F5F9FC;
+    --coastal-text: #3A4A5A;
+    --coastal-primary: #E8F0F7;
+    --coastal-secondary: #D9E7F2;
+    --coastal-date-number: #4A8BB5;
 
-    /* Gradient Colors */
-    --cb-gradient-start: #E4F2F7;
-    --cb-gradient-end: #D1E9F0;
+    /* Wave Layer Colors */
+    --coastal-layer1: #D4E4F0;
+    --coastal-layer2: #C5DAEA;
+    --coastal-layer3: #B6D0E4;
+    --coastal-layer4: #A7C6DE;
+    --coastal-layer5: #98BCD8;
 
-    /* Accent Colors */
-    --cb-sand: #D9C5B2;
-    /* Beach sand */
-    --cb-coral: #F08080;
-    /* Coral pink */
-    --cb-seafoam: #A7D8D6;
-    /* Seafoam green */
-    --cb-sunset: #F4A261;
-    /* Sunset orange */
-    --cb-shell: #FFDAC1;
-    /* Shell pink */
+    /* Seaside Accent Colors */
+    --coastal-accent1: #4A8BB5;
+    /* Ocean Blue */
+    --coastal-accent2: #F4A261;
+    /* Sunset Coral */
+    --coastal-accent3: #8BB5A3;
+    /* Seafoam */
+    --coastal-accent4: rgba(74, 139, 181, 0.7);
+    --coastal-accent5: rgba(244, 162, 97, 0.5);
 
     /* Theme Variables */
-    --cb-shadow: rgba(58, 124, 165, 0.2);
-    --cb-radius: 5px;
-    --cb-transition: 0.3s ease-in-out;
-    --cb-hover: #E8F4F8;
-    --cb-current-day: #D1E9F0;
+    --coastal-shadow: rgba(74, 139, 181, 0.15);
+    --coastal-radius: 12px;
+    --coastal-transition: 0.3s ease-in-out;
+    --coastal-hover: #3A7BA5;
+    --coastal-glow: 0 0 12px rgba(74, 139, 181, 0.2);
+    --coastal-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234A8BB5"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%234A8BB5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%234A8BB5"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes cb-wave {
+@keyframes coastal-fade {
 
     0%,
     100% {
-        transform: translateY(0);
+        opacity: 0.95;
     }
 
     50% {
-        transform: translateY(-3px);
+        opacity: 1;
     }
 }
 
-@keyframes water-ripple {
+@keyframes coastal-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes coastal-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--coastal-shadow);
+    }
+
+    50% {
+        box-shadow: var(--coastal-glow);
+    }
+}
+
+@keyframes coastal-waves {
     0% {
         background-position: 0 0;
     }
 
     100% {
-        background-position: 40px 40px;
-    }
-}
-
-@keyframes cb-glow {
-
-    0%,
-    100% {
-        box-shadow: 0 0 5px var(--cb-secondary);
-    }
-
-    50% {
-        box-shadow: 0 0 15px var(--cb-primary);
+        background-position: 1000px 0;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .coastal-beauty {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--cb-text);
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--coastal-text);
     line-height: 1.6;
-    background: var(--cb-bg);
+    font-size: 1rem;
+    background-color: var(--coastal-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        linear-gradient(135deg,
-            rgba(129, 199, 212, 0.05) 1px,
-            transparent 1px),
-        linear-gradient(-135deg,
-            rgba(129, 199, 212, 0.05) 1px,
-            transparent 1px);
-    background-size: 40px 40px;
-    animation: water-ripple 60s linear infinite;
-}
-
-.coastal-beauty::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 90% 10%,
-            rgba(58, 124, 165, 0.03) 0%,
-            transparent 20%),
-        radial-gradient(circle at 10% 90%,
-            rgba(129, 199, 212, 0.03) 0%,
-            transparent 20%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Wave pattern */
-.coastal-beauty::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" opacity="0.03"><path d="M0,20 Q10,15 20,20 T40,20" stroke="%233A7CA5" stroke-width="1" fill="none"/></svg>');
-    pointer-events: none;
-    z-index: 0;
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%23E8F0F7" opacity="0.5"/></svg>'),
+        linear-gradient(to bottom, var(--coastal-bg), var(--coastal-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: coastal-waves 60s linear infinite;
 }
 
 .coastal-beauty .container {
-    background-color: rgba(245, 249, 250, 0.95);
+    background-color: var(--coastal-primary);
     padding: 2rem;
-    border: 1px solid var(--cb-primary);
-    box-shadow: 0 0 30px var(--cb-shadow);
+    border: 1px solid var(--coastal-accent4);
+    box-shadow: var(--coastal-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--cb-radius);
-    z-index: 1;
+    border-radius: var(--coastal-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.05"><path d="M20,80 Q30,70 40,80 T60,80 T80,80" stroke="%234A8BB5" fill="none" stroke-width="1"/><path d="M10,70 Q20,60 30,70 T50,70 T70,70" stroke="%234A8BB5" fill="none" stroke-width="1"/></svg>');
 }
 
 .coastal-beauty .container::before {
@@ -155,119 +130,117 @@
     right: 0;
     height: 3px;
     background: linear-gradient(90deg,
-            transparent,
-            var(--cb-primary),
-            var(--cb-secondary),
-            transparent);
-    animation: cb-glow 3s infinite;
+            var(--coastal-accent1) 0%,
+            var(--coastal-accent2) 50%,
+            var(--coastal-accent1) 100%);
+}
+
+.coastal-beauty .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--coastal-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .coastal-beauty #calendar-title {
-    font-family: 'Poiret One', cursive;
-    color: var(--cb-primary);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--coastal-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
     position: relative;
-    animation: cb-wave 3s infinite;
+    font-weight: 700;
 }
 
-.coastal-beauty #calendar-title::before,
 .coastal-beauty #calendar-title::after {
-    content: "~";
+    content: "🌊";
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--cb-secondary);
-    font-size: 1.5rem;
-}
-
-.coastal-beauty #calendar-title::before {
-    left: 1rem;
-    animation: cb-wave 2.5s infinite 0.5s;
-}
-
-.coastal-beauty #calendar-title::after {
-    right: 1rem;
-    animation: cb-wave 2.5s infinite;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .coastal-beauty #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(129, 199, 212, 0.1);
-    border: 1px solid var(--cb-primary);
-    border-radius: var(--cb-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--coastal-primary);
+    border: 1px solid var(--coastal-accent4);
+    border-radius: var(--coastal-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.coastal-beauty #date-weather-container::before {
+    content: "SEASIDE CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--coastal-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--coastal-text);
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .coastal-beauty #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--cb-primary),
-            transparent);
+    background: linear-gradient(90deg, transparent, var(--coastal-accent1), transparent);
 }
 
 .coastal-beauty #current-date {
-    font-family: 'Poiret One', cursive;
-    color: var(--cb-primary);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--coastal-text);
     font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .coastal-beauty #today-weather {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--cb-secondary);
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--coastal-text);
     font-size: 1.2rem;
-    letter-spacing: 0.1em;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .coastal-beauty #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .coastal-beauty .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--cb-primary);
+    border: 6px solid var(--coastal-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--cb-bg);
-    box-shadow:
-        0 0 15px var(--cb-shadow),
-        inset 0 0 10px rgba(58, 124, 165, 0.1);
+    background-color: var(--coastal-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
     background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(129, 199, 212, 0.1) 100%);
-}
-
-/* Nautical numerals for clock */
-.coastal-beauty .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Poiret One" font-size="12" fill="%233A7CA5">12</text><text x="82" y="55" text-anchor="middle" font-family="Poiret One" font-size="12" fill="%233A7CA5">3</text><text x="50" y="92" text-anchor="middle" font-family="Poiret One" font-size="12" fill="%233A7CA5">6</text><text x="18" y="55" text-anchor="middle" font-family="Poiret One" font-size="12" fill="%233A7CA5">9</text></svg>');
+        radial-gradient(circle at center, transparent 65%, var(--coastal-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234A8BB5" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
 .coastal-beauty .hand {
@@ -276,129 +249,138 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .coastal-beauty .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--cb-primary);
-    margin-top: -2px;
+    height: 6px;
+    background: var(--coastal-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
 }
 
 .coastal-beauty .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--cb-secondary);
-    margin-top: -1px;
+    height: 4px;
+    background: var(--coastal-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
 }
 
 .coastal-beauty .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--cb-coral);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--coastal-accent3);
+    margin-top: -1px;
 }
 
-/* Clock center - Nautical compass */
+/* Clock center ornament */
 .coastal-beauty .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background-color: var(--cb-seafoam);
+    width: 12px;
+    height: 12px;
+    background-color: var(--coastal-accent1);
     border-radius: 50%;
-    border: 1px solid var(--cb-primary);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--coastal-primary);
 }
 
-/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+/* ==================== CALENDAR TABLE ==================== */
 .coastal-beauty table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--cb-primary);
-    border-radius: var(--cb-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+/* DAY OF WEEK HEADERS */
 .coastal-beauty th {
-    background-color: rgba(58, 124, 165, 0.1);
-    color: var(--cb-primary) !important;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--cb-primary);
+    background-color: var(--coastal-accent1);
+    color: var(--coastal-primary) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--coastal-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
-/* Full names for desktop */
-.coastal-beauty th .full-day {
+.coastal-beauty th span.full-day-name {
     display: inline;
 }
 
-/* Short names for mobile */
-.coastal-beauty th .short-day {
+.coastal-beauty th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .coastal-beauty td {
-    background-color: rgba(248, 251, 252, 0.9);
-    color: var(--cb-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid rgba(58, 124, 165, 0.2);
+    background-color: var(--coastal-primary);
+    color: var(--coastal-text);
+    padding: 1rem;
+    border: 1px solid var(--coastal-accent4);
     height: 90px;
     vertical-align: top;
-    transition: all var(--cb-transition);
+    transition: all var(--coastal-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--coastal-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.coastal-beauty td .date-number {
+    color: var(--coastal-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Cormorant Garamond', serif;
 }
 
 .coastal-beauty td:hover {
-    background-color: var(--cb-hover);
-    box-shadow: inset 0 0 15px var(--cb-shadow);
+    background-color: var(--coastal-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.coastal-beauty .date-number {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 3px;
-    color: var(--cb-text);
-}
-
+/* Current date highlight */
 .coastal-beauty td.current-day {
-    background-color: var(--cb-current-day);
-    border: 2px solid var(--cb-secondary);
-    color: var(--cb-primary) !important;
-    font-weight: 600;
-    animation: cb-glow 3s infinite;
+    background-color: rgba(74, 139, 181, 0.15);
+    border: 2px solid var(--coastal-accent1);
+    animation: coastal-pulse 3s infinite;
 }
 
 .coastal-beauty td.current-day .date-number {
-    color: var(--cb-primary) !important;
+    color: var(--coastal-text) !important;
     font-weight: 700;
 }
 
 .coastal-beauty td.current-day::before {
-    content: "~";
+    content: "🐚";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--cb-secondary);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    color: var(--coastal-accent1);
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -407,42 +389,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--cb-primary);
+    background-color: var(--coastal-accent1);
     margin: 0 1px;
-    box-shadow: 0 0 5px var(--cb-shadow);
-    transition: all var(--cb-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all var(--coastal-transition);
 }
 
 .coastal-beauty .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--cb-secondary);
-    box-shadow: 0 0 15px var(--cb-primary);
-}
-
-/* Special event types */
-.coastal-beauty .event-marker.holiday {
-    background-color: var(--cb-sunset);
-}
-
-.coastal-beauty .event-marker.historic {
-    background-color: var(--cb-sand);
-}
-
-.coastal-beauty .event-marker.patriotic {
-    background-color: var(--cb-seafoam);
+    transform: scale(1.4);
+    background-color: var(--coastal-accent2);
+    box-shadow: 0 0 6px rgba(244, 162, 97, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .coastal-beauty .modal-content {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.98);
-    border: 1px solid var(--cb-primary);
+    background-color: var(--coastal-primary);
+    border: 1px solid var(--coastal-accent4);
     padding: 25px;
-    color: var(--cb-text);
-    box-shadow: 0 0 30px var(--cb-shadow);
-    border-radius: var(--cb-radius);
-    animation: cb-glow 0.5s ease;
+    color: var(--coastal-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--coastal-radius);
+    animation: coastal-rise 0.3s ease-out;
 }
 
 .coastal-beauty .modal-content::before {
@@ -453,121 +420,144 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--cb-primary),
-            var(--cb-secondary),
-            var(--cb-seafoam));
+            var(--coastal-accent1) 0%,
+            var(--coastal-accent2) 50%,
+            var(--coastal-accent1) 100%);
 }
 
 .coastal-beauty .modal-content h2 {
-    color: var(--cb-primary);
-    font-family: 'Poiret One', cursive;
-    font-size: 1.8em;
+    color: var(--coastal-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
     margin-bottom: 15px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.coastal-beauty .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* Modal date display */
+.coastal-beauty .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--coastal-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--coastal-accent4);
 }
 
-.coastal-beauty .modal-content .event-time {
+/* Event list */
+.coastal-beauty .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.coastal-beauty .event-item {
+    background-color: var(--coastal-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--coastal-accent1);
+    border-radius: var(--coastal-radius);
+    transition: all var(--coastal-transition);
+}
+
+.coastal-beauty .event-item:hover {
+    background-color: var(--coastal-layer3);
+    transform: translateX(3px);
+}
+
+.coastal-beauty .event-time {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--coastal-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
     display: block;
-    font-weight: 500;
-    color: var(--cb-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
 }
 
-.coastal-beauty .modal-content .event-description {
-    background-color: rgba(129, 199, 212, 0.1);
-    padding: 15px;
-    border-left: 3px solid var(--cb-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--cb-radius) var(--cb-radius) 0;
+.coastal-beauty .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--coastal-text);
+}
+
+.coastal-beauty .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--coastal-text);
+    opacity: 0.9;
 }
 
 .coastal-beauty .modal-content button {
-    background-color: var(--cb-primary);
-    color: white;
+    background-color: var(--coastal-accent1);
+    color: var(--coastal-primary);
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--cb-transition);
-    border-radius: var(--cb-radius);
-    font-family: 'Quicksand', sans-serif;
+    transition: all var(--coastal-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Josefin Sans', sans-serif;
+    border-radius: var(--coastal-radius);
 }
 
 .coastal-beauty .modal-content button:hover {
-    background-color: var(--cb-secondary);
-    box-shadow: 0 4px 6px -1px var(--cb-shadow);
+    background-color: var(--coastal-hover);
+    box-shadow: 0 3px 10px rgba(74, 139, 181, 0.2);
 }
 
+/* Close Button */
 .coastal-beauty .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--cb-primary);
-    border: 1px solid var(--cb-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--coastal-primary);
+    color: var(--coastal-text);
+    border: 1px solid var(--coastal-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--cb-transition);
+    transition: all var(--coastal-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .coastal-beauty .modal .close-button:hover {
-    background-color: var(--cb-primary);
-    color: white;
+    background-color: var(--coastal-text);
+    color: var(--coastal-accent1);
+    border-color: var(--coastal-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .coastal-beauty .button,
 .coastal-beauty .transparent-button {
-    border: 1px solid var(--cb-primary);
-    color: var(--cb-primary);
+    border: 1px solid var(--coastal-accent1);
+    color: var(--coastal-text);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Poiret One', cursive;
-    font-weight: 400;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--cb-transition);
+    transition: all var(--coastal-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--cb-radius);
-    letter-spacing: 0.1em;
-}
-
-.coastal-beauty .button::before,
-.coastal-beauty .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(129, 199, 212, 0.1), transparent);
-    transition: 0.5s;
+    margin: 0.4rem;
+    border-radius: var(--coastal-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .coastal-beauty .button:hover,
 .coastal-beauty .transparent-button:hover {
-    background-color: var(--cb-primary);
-    color: white;
-    box-shadow: 0 4px 6px -1px var(--cb-shadow);
-}
-
-.coastal-beauty .button:hover::before,
-.coastal-beauty .transparent-button:hover::before {
-    left: 100%;
+    background-color: var(--coastal-accent1);
+    color: var(--coastal-primary);
+    box-shadow: 0 3px 10px rgba(74, 139, 181, 0.15);
 }
 
 .coastal-beauty .controls {
@@ -575,55 +565,50 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .coastal-beauty #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 0.8rem;
     min-width: 200px;
     z-index: 1000;
 }
 
 .coastal-beauty #theme-switcher {
-    background-color: var(--cb-bg);
-    color: var(--cb-primary) !important;
-    border: 1px solid var(--cb-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
+    background-color: var(--coastal-primary);
+    color: var(--coastal-text) !important;
+    border: 1px solid var(--coastal-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
     width: 100%;
-    border-radius: var(--cb-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A7CA5'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A4A5A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--cb-transition);
-    box-shadow: 0 1px 3px 0 var(--cb-shadow);
+    transition: all var(--coastal-transition);
+    border-radius: var(--coastal-radius);
 }
 
 .coastal-beauty #theme-switcher option {
-    background-color: var(--cb-bg) !important;
-    color: var(--cb-primary) !important;
-    font-size: 0.9rem;
-    font-weight: 500;
+    background-color: var(--coastal-primary) !important;
+    color: var(--coastal-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
     padding: 10px 12px !important;
-}
-
-.coastal-beauty #theme-switcher option:hover {
-    background-color: var(--cb-primary) !important;
-    color: white !important;
 }
 
 .coastal-beauty #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(58, 124, 165, 0.3);
+    border-color: var(--coastal-accent1);
+    box-shadow: 0 0 0 2px rgba(74, 139, 181, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -632,46 +617,41 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--cb-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Poiret One', cursive;
-    font-weight: 400;
-    color: var(--cb-primary);
-    background-color: var(--cb-bg);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    color: var(--coastal-primary);
+    background-color: var(--coastal-accent1);
     cursor: pointer;
-    transition: all var(--cb-transition);
+    transition: all var(--coastal-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--cb-radius);
-    box-shadow: 0 4px 6px -1px var(--cb-shadow);
+    border-radius: var(--coastal-radius);
+    box-shadow: 0 2px 8px rgba(74, 139, 181, 0.3);
 }
 
 .coastal-beauty #backToTopBtn:hover {
-    background-color: var(--cb-primary);
-    color: white;
+    background-color: var(--coastal-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .coastal-beauty footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--cb-primary);
-    color: var(--cb-text);
-    font-size: 0.8rem;
-}
-
-.coastal-beauty footer::before {
-    content: "~ ";
-    color: var(--cb-primary);
+    border-top: 1px solid var(--coastal-accent4);
+    color: var(--coastal-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .coastal-beauty .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .coastal-beauty #calendar-title {
@@ -686,13 +666,81 @@
         font-size: 1.1rem;
     }
 
-    .coastal-beauty th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
+    .coastal-beauty .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .coastal-beauty .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .coastal-beauty {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .coastal-beauty .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .coastal-beauty th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .coastal-beauty th span.full-day-name {
+        display: none;
+    }
+
+    .coastal-beauty th abbr {
+        display: inline;
+    }
+
+    .coastal-beauty td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .coastal-beauty td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .coastal-beauty td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .coastal-beauty #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .coastal-beauty #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .coastal-beauty .modal-content {
+        padding: 20px;
+    }
+
+    .coastal-beauty .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
     .coastal-beauty .container {
         padding: 1rem;
     }
@@ -701,113 +749,71 @@
         font-size: 1.7rem;
     }
 
+    .coastal-beauty #current-date {
+        font-size: 1.3rem;
+    }
+
+    .coastal-beauty #today-weather {
+        font-size: 1rem;
+    }
+
     .coastal-beauty .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Switch to short day names */
-    .coastal-beauty th .full-day {
-        display: none;
-    }
-
-    .coastal-beauty th .short-day {
-        display: inline;
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
     }
 
     .coastal-beauty th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .coastal-beauty td {
-        padding: 0.6rem 0.15rem;
+        padding: 0.6rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    .coastal-beauty #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+    .coastal-beauty td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
     .coastal-beauty #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
     .coastal-beauty .modal-content {
         padding: 15px;
     }
 
-    .coastal-beauty .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .coastal-beauty .container {
-        padding: 0.8rem;
+    .coastal-beauty .modal-date {
+        font-size: 1.2rem;
     }
 
-    .coastal-beauty #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .coastal-beauty #current-date {
-        font-size: 1.1rem;
-    }
-
-    .coastal-beauty #today-weather {
+    .coastal-beauty .event-time {
         font-size: 0.9rem;
-    }
-
-    .coastal-beauty .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .coastal-beauty th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .coastal-beauty td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .coastal-beauty td.current-day::before {
-        font-size: 0.7rem;
-    }
-
-    .coastal-beauty #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .coastal-beauty th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .coastal-beauty td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 60px;
+    }
+
+    .coastal-beauty td .date-number {
+        font-size: 0.9rem;
     }
 
     .coastal-beauty #theme-switcher {
         min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .coastal-beauty #calendar-title {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 }
