@@ -1,140 +1,140 @@
 /* ==========================================================================
-   Emperor Penguin Theme - Arctic Calendar Style
-   Version: 2.4
-   Updated: 2025-04-08
-   Includes:
-   - MAXIMUM current day highlighting (snowy glow)
-   - Fixed day-of-week header overlapping
-   - Proper right-aligned back-to-top button
-   - Themed aurora clock
-   - Mobile responsiveness
+   Emperor Penguin Theme - Antarctic Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Polar color palette (blacks, whites, icy blues)
+   - Penguin and snow elements
+   - Clean, crisp design aesthetic
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Arimo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --penguin-bg: #0A1A2F;
-    /* Midnight ocean */
-    --penguin-text: #E0FBFC;
-    /* Snow white */
-    --penguin-primary: #98C1D9;
-    /* Ice blue */
-    --penguin-secondary: #3D5A80;
-    /* Deep water */
-    --penguin-current: #EE6C4D;
-    /* Penguin belly orange */
-    --penguin-accent: #A8DADC;
-    /* Aurora teal */
+    /* Polar Color Palette */
+    --penguin-bg: #0A1A2A;
+    --penguin-text: #E8F1F2;
+    --penguin-primary: #1A2A3A;
+    --penguin-secondary: #2A3A4A;
+    --penguin-date-number: #7AB3D6;
 
-    /* Arctic Gradient */
-    --penguin-dark1: #050F1A;
-    /* Deep ocean */
-    --penguin-dark2: #0A1A2F;
-    /* Night water */
-    --penguin-dark3: #1F3A5F;
-    /* Twilight ice */
-    --penguin-dark4: #3D5A80;
-    /* Surface water */
-    --penguin-dark5: #577399;
-    /* Ice edge */
+    /* Ice Layer Colors */
+    --penguin-layer1: #1A2A3A;
+    --penguin-layer2: #2A3A4A;
+    --penguin-layer3: #3A4A5A;
+    --penguin-layer4: #4A5A6A;
+    --penguin-layer5: #5A6A7A;
 
-    /* Aurora Spectrum */
-    --penguin-aurora1: #A8DADC;
-    /* Pale teal */
-    --penguin-aurora2: #98C1D9;
-    /* Ice blue */
-    --penguin-aurora3: #EE6C4D;
-    /* Penguin orange */
-    --penguin-aurora4: #E0FBFC;
-    /* Snow glow */
-    --penguin-aurora5: #3D5A80;
-    /* Deep blue */
+    /* Penguin Accent Colors */
+    --penguin-accent1: #7AB3D6;
+    /* Icy Blue */
+    --penguin-accent2: #FFFFFF;
+    /* Snow White */
+    --penguin-accent3: #FF9E5B;
+    /* Orange Beak */
+    --penguin-accent4: rgba(122, 179, 214, 0.7);
+    --penguin-accent5: rgba(255, 255, 255, 0.5);
 
     /* Theme Variables */
-    --penguin-shadow: rgba(238, 108, 77, 0.3);
+    --penguin-shadow: rgba(122, 179, 214, 0.15);
     --penguin-radius: 8px;
-    --penguin-transition: 0.3s ease;
-    --penguin-hover: #EE6C4D;
+    --penguin-transition: 0.3s ease-in-out;
+    --penguin-hover: #8AC3E6;
+    --penguin-glow: 0 0 12px rgba(122, 179, 214, 0.25);
+    --penguin-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%237AB3D6"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%237AB3D6"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%237AB3D6"/></svg>');
+    --penguin-snowflakes: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 C150,90 300,110 450,90 C600,70 750,100 900,80 C1050,60 1200,90 1200,80 L1200,120 L0,120 Z" fill="%23FFFFFF" opacity="0.3"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes penguin-glow {
+@keyframes penguin-fade {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--penguin-aurora1);
+        opacity: 0.95;
     }
 
     50% {
-        box-shadow: 0 0 25px var(--penguin-aurora2);
+        opacity: 1;
     }
 }
 
-@keyframes penguin-waddle {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-3px);
-    }
-
-    75% {
-        transform: translateX(3px);
-    }
-}
-
-@keyframes auroraFadeIn {
+@keyframes penguin-slide {
     from {
+        transform: translateY(20px);
         opacity: 0;
-        transform: translateY(10px);
     }
 
     to {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
     }
 }
 
-@keyframes current-day-aurora {
+@keyframes penguin-pulse {
 
     0%,
     100% {
-        box-shadow: 0 0 15px var(--penguin-shadow),
-            inset 0 0 10px var(--penguin-current);
+        box-shadow: 0 0 3px var(--penguin-shadow);
     }
 
     50% {
-        box-shadow: 0 0 30px var(--penguin-current),
-            inset 0 0 20px var(--penguin-aurora3);
+        box-shadow: var(--penguin-glow);
+    }
+}
+
+@keyframes penguin-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes snowflake-fall {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(100vh) translateX(20px);
+        opacity: 0;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .emperor-penguin {
-    font-family: 'Arimo', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--penguin-text);
     line-height: 1.6;
+    font-size: 1rem;
     background-color: var(--penguin-bg);
     min-height: 100vh;
-    background-image:
-        radial-gradient(circle at 20% 30%, var(--penguin-accent) 0%, transparent 25%),
-        radial-gradient(circle at 80% 70%, var(--penguin-primary) 0%, transparent 25%);
+    background-image: var(--penguin-snowflakes),
+        linear-gradient(to bottom, var(--penguin-bg), var(--penguin-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: penguin-drift 60s linear infinite;
 }
 
 .emperor-penguin .container {
-    background-color: var(--penguin-dark2);
+    background-color: var(--penguin-primary);
     padding: 2rem;
-    border: 1px solid var(--penguin-primary);
-    box-shadow: 0 0 30px var(--penguin-shadow);
+    border: 1px solid var(--penguin-accent4);
+    box-shadow: var(--penguin-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
     border-radius: var(--penguin-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
 }
 
 .emperor-penguin .container::before {
@@ -143,183 +143,271 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--penguin-primary), transparent);
-    animation: penguin-glow 3s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--penguin-accent1) 0%,
+            var(--penguin-accent2) 50%,
+            var(--penguin-accent3) 100%);
+}
+
+.emperor-penguin .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--penguin-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* Snowflake decorations */
+.emperor-penguin .snowflake {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: snowflake-fall 8s linear infinite;
+    z-index: 0;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .emperor-penguin #calendar-title {
-    font-family: 'Iceberg', cursive;
-    color: var(--penguin-primary);
+    font-family: 'Merriweather', serif;
+    color: var(--penguin-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 15px var(--penguin-shadow);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.emperor-penguin #calendar-title::after {
+    content: "🐧";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .emperor-penguin #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: var(--penguin-dark3);
-    border: 1px solid var(--penguin-dark5);
-    position: relative;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--penguin-primary);
+    border: 1px solid var(--penguin-accent4);
     border-radius: var(--penguin-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.emperor-penguin #date-weather-container::before {
+    content: "ANTARCTIC CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--penguin-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--penguin-text);
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
 }
 
 .emperor-penguin #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--penguin-primary), transparent);
+    background: linear-gradient(90deg, transparent, var(--penguin-accent1), transparent);
 }
 
 .emperor-penguin #current-date {
-    font-family: 'Iceberg', cursive;
-    color: var(--penguin-primary);
+    font-family: 'Merriweather', serif;
+    color: var(--penguin-text);
     font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--penguin-shadow);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .emperor-penguin #today-weather {
-    font-family: 'Arimo', sans-serif;
-    color: var(--penguin-aurora4);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--penguin-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
-/* ==================== AURORA CLOCK ==================== */
-.emperor-penguin #aurora-clock {
-    font-family: 'Iceberg', cursive;
-    color: var(--penguin-primary);
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 2rem 0;
-    text-shadow: 0 0 10px var(--penguin-shadow);
-    letter-spacing: 0.1em;
+/* ==================== ANALOG CLOCK ==================== */
+.emperor-penguin #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.emperor-penguin .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--penguin-accent1);
+    border-radius: 50%;
     position: relative;
+    background-color: var(--penguin-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--penguin-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%237AB3D6" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
-.emperor-penguin #aurora-clock::after {
-    content: "❄️";
+.emperor-penguin .hand {
     position: absolute;
-    right: calc(50% - 100px);
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5em;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.emperor-penguin .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--penguin-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.emperor-penguin .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--penguin-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.emperor-penguin .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--penguin-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.emperor-penguin .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--penguin-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--penguin-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .emperor-penguin table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: var(--penguin-dark2);
-    border: 1px solid var(--penguin-primary);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
-    border-radius: var(--penguin-radius);
 }
 
+/* DAY OF WEEK HEADERS */
 .emperor-penguin th {
-    background-color: var(--penguin-dark1);
-    color: var(--penguin-primary);
-    font-family: 'Iceberg', cursive;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 0.5rem;
-    border: 1px solid var(--penguin-dark5);
-    border-bottom: 2px solid var(--penguin-primary);
+    background: linear-gradient(to right,
+            var(--penguin-accent1),
+            var(--penguin-accent2));
+    color: var(--penguin-text) !important;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--penguin-radius);
+    position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.emperor-penguin th span.full-day-name {
+    display: inline;
 }
 
 .emperor-penguin th abbr {
-    border-bottom: none;
+    display: none;
     text-decoration: none;
-    cursor: default;
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .emperor-penguin td {
-    background-color: var(--penguin-dark3);
+    background-color: var(--penguin-primary);
     color: var(--penguin-text);
-    padding: 1.2rem;
-    border: 1px solid var(--penguin-dark5);
-    height: 100px;
+    padding: 1rem;
+    border: 1px solid var(--penguin-accent4);
+    height: 90px;
     vertical-align: top;
     transition: all var(--penguin-transition);
     position: relative;
+    border-radius: var(--penguin-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.emperor-penguin td .date-number {
+    color: var(--penguin-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Merriweather', serif;
 }
 
 .emperor-penguin td:hover {
-    background-color: var(--penguin-dark4);
-    box-shadow: inset 0 0 15px var(--penguin-shadow);
+    background-color: var(--penguin-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* ==================== SNOWY CURRENT DAY ==================== */
+/* Current date highlight */
 .emperor-penguin td.current-day {
-    background-color: var(--penguin-dark1) !important;
-    border: 3px solid var(--penguin-current) !important;
-    color: var(--penguin-aurora4) !important;
+    background-color: rgba(122, 179, 214, 0.15);
+    border: 2px solid var(--penguin-accent1);
+    animation: penguin-pulse 3s infinite;
+}
+
+.emperor-penguin td.current-day .date-number {
+    color: var(--penguin-text) !important;
     font-weight: 700;
-    position: relative;
-    z-index: 10;
-    animation:
-        current-day-aurora 1.5s infinite,
-        penguin-glow 2s infinite;
-    box-shadow:
-        0 0 20px var(--penguin-shadow),
-        inset 0 0 15px rgba(238, 108, 77, 0.3);
 }
 
 .emperor-penguin td.current-day::before {
-    content: "";
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border: 2px solid var(--penguin-aurora3);
-    animation: penguin-glow 2s infinite;
-    z-index: -1;
-}
-
-.emperor-penguin td.current-day::after {
-    content: "🐧 TODAY";
+    content: "❄️";
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: var(--penguin-current);
-    color: var(--penguin-dark1);
-    font-size: 0.7rem;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--penguin-accent1);
     font-weight: bold;
-    padding: 3px 8px;
-    border-radius: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Iceberg', cursive;
-    text-shadow: 0 0 5px var(--penguin-dark1);
-    box-shadow: 0 0 10px var(--penguin-current);
-}
-
-.emperor-penguin td.current-day .event-marker {
-    background-color: var(--penguin-aurora4);
-    box-shadow: 0 0 8px var(--penguin-current);
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -328,28 +416,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--penguin-primary);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--penguin-shadow);
+    background-color: var(--penguin-accent1);
+    margin: 0 1px;
     transition: all var(--penguin-transition);
 }
 
 .emperor-penguin .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--penguin-aurora3);
-    box-shadow: 0 0 15px var(--penguin-primary);
+    transform: scale(1.4);
+    background-color: var(--penguin-accent3);
+    box-shadow: 0 0 6px rgba(255, 158, 91, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .emperor-penguin .modal-content {
     position: relative;
-    background-color: var(--penguin-dark2);
-    border: 2px solid var(--penguin-primary);
-    padding: 30px;
+    background-color: var(--penguin-primary);
+    border: 1px solid var(--penguin-accent4);
+    padding: 25px;
     color: var(--penguin-text);
-    box-shadow: 0 0 40px var(--penguin-shadow);
-    animation: auroraFadeIn 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-radius: var(--penguin-radius);
+    animation: penguin-slide 0.3s ease-out;
 }
 
 .emperor-penguin .modal-content::before {
@@ -358,48 +445,109 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--penguin-primary);
-    animation: penguin-glow 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--penguin-accent1) 0%,
+            var(--penguin-accent2) 50%,
+            var(--penguin-accent3) 100%);
 }
 
 .emperor-penguin .modal-content h2 {
-    color: var(--penguin-primary);
-    font-family: 'Iceberg', cursive;
+    color: var(--penguin-text);
+    font-family: 'Merriweather', serif;
     font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.emperor-penguin .modal-date {
+    font-family: 'Merriweather', serif;
+    color: var(--penguin-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--penguin-accent4);
+}
+
+/* Event list */
+.emperor-penguin .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.emperor-penguin .event-item {
+    background-color: var(--penguin-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--penguin-accent1);
+    border-radius: var(--penguin-radius);
+    transition: all var(--penguin-transition);
+}
+
+.emperor-penguin .event-item:hover {
+    background-color: var(--penguin-layer3);
+    transform: translateX(3px);
+}
+
+.emperor-penguin .event-time {
+    font-family: 'Merriweather', serif;
+    color: var(--penguin-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.emperor-penguin .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--penguin-text);
+}
+
+.emperor-penguin .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--penguin-text);
+    opacity: 0.9;
 }
 
 .emperor-penguin .modal-content button {
-    background-color: transparent;
-    color: var(--penguin-primary);
-    border: 1px solid var(--penguin-primary);
-    padding: 12px 24px;
+    background: linear-gradient(to right,
+            var(--penguin-accent1),
+            var(--penguin-accent2));
+    color: var(--penguin-text);
+    border: none;
+    padding: 10px 20px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--penguin-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
     border-radius: var(--penguin-radius);
 }
 
 .emperor-penguin .modal-content button:hover {
-    background-color: var(--penguin-primary);
-    color: var(--penguin-text);
-    box-shadow: 0 0 15px var(--penguin-shadow);
+    background: linear-gradient(to right,
+            var(--penguin-hover),
+            #8AECB7);
+    box-shadow: 0 3px 10px rgba(122, 179, 214, 0.2);
 }
 
 /* Close Button */
 .emperor-penguin .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: var(--penguin-primary);
-    border: 1px solid var(--penguin-primary);
+    top: 12px;
+    right: 12px;
+    background-color: var(--penguin-primary);
+    color: var(--penguin-text);
+    border: 1px solid var(--penguin-text);
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -408,54 +556,41 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .emperor-penguin .modal .close-button:hover {
-    background-color: var(--penguin-primary);
-    color: var(--penguin-text);
-    transform: rotate(90deg);
+    background-color: var(--penguin-text);
+    color: var(--penguin-accent1);
+    border-color: var(--penguin-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .emperor-penguin .button,
 .emperor-penguin .transparent-button {
-    border: 1px solid var(--penguin-primary);
-    color: var(--penguin-primary);
+    border: 1px solid var(--penguin-accent1);
+    color: var(--penguin-text);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Iceberg', cursive;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
     cursor: pointer;
     transition: all var(--penguin-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
+    margin: 0.4rem;
     border-radius: var(--penguin-radius);
-}
-
-.emperor-penguin .button::before,
-.emperor-penguin .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(152, 193, 217, 0.2), transparent);
-    transition: 0.5s;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .emperor-penguin .button:hover,
 .emperor-penguin .transparent-button:hover {
-    background-color: var(--penguin-primary);
+    background: linear-gradient(to right,
+            var(--penguin-accent1),
+            var(--penguin-accent2));
     color: var(--penguin-text);
-    box-shadow: 0 0 20px var(--penguin-shadow);
-}
-
-.emperor-penguin .button:hover::before,
-.emperor-penguin .transparent-button:hover::before {
-    left: 100%;
+    box-shadow: 0 3px 10px rgba(122, 179, 214, 0.15);
 }
 
 .emperor-penguin .controls {
@@ -463,56 +598,91 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.emperor-penguin #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
 }
 
 .emperor-penguin #theme-switcher {
-    background-color: var(--penguin-dark3);
-    color: var(--penguin-text);
-    border: 1px solid var(--penguin-primary);
-    padding: 0.8rem;
-    font-family: 'Arimo', sans-serif;
-    margin-left: 1rem;
+    background-color: var(--penguin-primary);
+    color: var(--penguin-text) !important;
+    border: 1px solid var(--penguin-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8F1F2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--penguin-transition);
     border-radius: var(--penguin-radius);
+}
+
+.emperor-penguin #theme-switcher option {
+    background-color: var(--penguin-primary) !important;
+    color: var(--penguin-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.emperor-penguin #theme-switcher:focus {
+    outline: none;
+    border-color: var(--penguin-accent1);
+    box-shadow: 0 0 0 2px rgba(122, 179, 214, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .emperor-penguin #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--penguin-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Iceberg', cursive;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--penguin-primary);
-    background-color: var(--penguin-dark3);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--penguin-text);
+    background: linear-gradient(to right,
+            var(--penguin-accent1),
+            var(--penguin-accent2));
     cursor: pointer;
     transition: all var(--penguin-transition);
     opacity: 0.9;
     display: none;
     border-radius: var(--penguin-radius);
+    box-shadow: 0 2px 8px rgba(122, 179, 214, 0.3);
 }
 
 .emperor-penguin #backToTopBtn:hover {
-    background-color: var(--penguin-primary);
-    color: var(--penguin-text);
-    box-shadow: 0 0 20px var(--penguin-shadow);
+    background: linear-gradient(to right,
+            var(--penguin-hover),
+            #8AECB7);
     opacity: 1;
-    animation: penguin-waddle 0.5s infinite;
 }
 
 /* ==================== FOOTER ==================== */
 .emperor-penguin footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--penguin-dark5);
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--penguin-accent4);
     color: var(--penguin-text);
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -530,23 +700,109 @@
     }
 
     .emperor-penguin #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
-    .emperor-penguin #aurora-clock {
-        font-size: 2rem;
+    .emperor-penguin .modal-date {
+        font-size: 1.3rem;
     }
 
-    .emperor-penguin #aurora-clock::after {
-        right: calc(50% - 80px);
+    .emperor-penguin .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .emperor-penguin {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .emperor-penguin .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
     .emperor-penguin th {
-        padding: 0.5rem 0.2rem;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .emperor-penguin th span.full-day-name {
+        display: none;
+    }
+
+    .emperor-penguin th abbr {
+        display: inline;
+    }
+
+    .emperor-penguin td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .emperor-penguin td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .emperor-penguin td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .emperor-penguin #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .emperor-penguin #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .emperor-penguin .modal-content {
+        padding: 20px;
+    }
+
+    .emperor-penguin .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .emperor-penguin .container {
+        padding: 1rem;
+    }
+
+    .emperor-penguin #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .emperor-penguin #current-date {
+        font-size: 1.3rem;
+    }
+
+    .emperor-penguin #today-weather {
+        font-size: 1rem;
+    }
+
+    .emperor-penguin .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .emperor-penguin th {
         font-size: 0.8rem;
-        letter-spacing: normal;
+        padding: 0.6rem 0.2rem;
     }
 
     .emperor-penguin td {
@@ -555,99 +811,46 @@
         font-size: 0.8rem;
     }
 
-    .emperor-penguin td.current-day::after {
-        font-size: 0.6rem;
-        padding: 2px 4px;
-        content: "🐧";
+    .emperor-penguin td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
-    .emperor-penguin #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+    .emperor-penguin #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
-    .emperor-penguin #aurora-clock {
-        font-size: 1.8rem;
+    .emperor-penguin .modal-content {
+        padding: 15px;
     }
 
-    .emperor-penguin #aurora-clock::after {
-        right: calc(50% - 70px);
-    }
-}
-
-@media (max-width: 576px) {
-    .emperor-penguin .container {
-        padding: 0.8rem;
-    }
-
-    .emperor-penguin #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
-    }
-
-    .emperor-penguin #current-date {
-        font-size: 1.1rem;
-    }
-
-    .emperor-penguin #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .emperor-penguin th {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.1rem;
-    }
-
-    .emperor-penguin td {
-        font-size: 0.7rem;
-        padding: 0.3rem;
-        height: 60px;
-    }
-
-    .emperor-penguin td.current-day::after {
-        content: "🐧";
-        font-size: 0.6rem;
-        top: 3px;
-        right: 3px;
-        padding: 1px 3px;
-    }
-
-    .emperor-penguin #backToTopBtn {
-        right: 10px;
-        bottom: 10px;
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
-    }
-
-    .emperor-penguin #aurora-clock {
-        font-size: 1.5rem;
-    }
-
-    .emperor-penguin #aurora-clock::after {
-        right: calc(50% - 60px);
+    .emperor-penguin .modal-date {
         font-size: 1.2rem;
+    }
+
+    .emperor-penguin .event-time {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 400px) {
     .emperor-penguin th {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .emperor-penguin td {
-        height: 50px;
+        height: 60px;
     }
 
-    .emperor-penguin td.current-day::after {
-        font-size: 0.5rem;
-        top: 2px;
-        right: 2px;
+    .emperor-penguin td .date-number {
+        font-size: 0.9rem;
     }
 
-    .emperor-penguin #aurora-clock::after {
-        display: none;
+    .emperor-penguin #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
