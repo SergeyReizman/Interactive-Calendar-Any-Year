@@ -155,8 +155,8 @@ const applyTheme = (theme) => {
     'niagara-falls', 'night-dragon', 'night-mode-design', 
     'night-sky', 'northern-lights', 'northern-nights','north-pole', 
     'north-pole-icebreaker', 'now-is-your-moment', 'ocean-dreams',
-    'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 'ocean-vortex',
-    'okinawa-breeze', 'old-lighthouse',
+    'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 
+    'ocean-view-drive', 'ocean-vortex','okinawa-breeze', 'old-lighthouse',
     'one-dream','one-step-ahead', 'one-step-at-a-time', 
     'one-way-ticket', 'on-the-island', 'on-the-wild-side','orange-country', 
     'orange-dragon', 'orion-constellation', 'out-of-the-blue',
@@ -211,8 +211,8 @@ const applyTheme = (theme) => {
     'we-fly-higher', 'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 
     'wild-flower','wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-wonderland', 'wonderful-experience',
-    'world-champion', 'work-of-art', 'yellow-eyed-penguin', 'your-wildest-dreams',
-    'your-wildest-guess', 'zodiac-constellations'
+    'world-champion', 'work-of-art', 'yellow-eyed-penguin', 'your-dreamland',
+    'your-wildest-dreams', 'your-wildest-guess', 'zodiac-constellations'
 
   );
 

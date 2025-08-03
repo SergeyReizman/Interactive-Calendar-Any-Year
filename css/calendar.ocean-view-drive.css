@@ -1,0 +1,796 @@
+/* ==========================================================================
+   Ocean View Drive Theme - Coastal Journey Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Coastal highway color palette
+   - Road trip design elements
+   - Nautical-inspired interface
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Road+Rage:wght@400&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Coastal Color Palette */
+    --ocean-bg: #F0F8FF;
+    --ocean-text: #2A3546;
+    --ocean-primary: #E6F0FA;
+    --ocean-secondary: #D8E8F5;
+    --ocean-date-number: #4A7B9D;
+
+    /* Horizon Layer Colors */
+    --ocean-layer1: #D0E0F0;
+    --ocean-layer2: #C8D8EC;
+    --ocean-layer3: #C0D0E8;
+    --ocean-layer4: #B8C8E4;
+    --ocean-layer5: #B0C0E0;
+
+    /* Coastal Accent Colors */
+    --ocean-accent1: #4A7B9D;
+    /* Ocean Blue */
+    --ocean-accent2: #9D7B4A;
+    /* Sand */
+    --ocean-accent3: #7B9D4A;
+    /* Palm Green */
+    --ocean-accent4: rgba(74, 123, 157, 0.7);
+    --ocean-accent5: rgba(157, 123, 74, 0.5);
+
+    /* Theme Variables */
+    --ocean-shadow: rgba(74, 123, 157, 0.15);
+    --ocean-radius: 8px;
+    --ocean-transition: 0.3s ease-out;
+    --ocean-hover: #3A6B8D;
+    --ocean-glow: 0 0 12px rgba(74, 123, 157, 0.25);
+    --ocean-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234A7B9D"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%234A7B9D"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%234A7B9D"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ocean-wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes ocean-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--ocean-shadow);
+    }
+
+    50% {
+        box-shadow: var(--ocean-glow);
+    }
+}
+
+@keyframes road-move {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.ocean-view-drive {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ocean-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--ocean-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%23E6F0FA" opacity="0.5"/></svg>'),
+        linear-gradient(to bottom, var(--ocean-bg), var(--ocean-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: road-move 60s linear infinite;
+}
+
+.ocean-view-drive .container {
+    background-color: var(--ocean-primary);
+    padding: 2rem;
+    border: 1px solid var(--ocean-accent4);
+    box-shadow: var(--ocean-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ocean-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.ocean-view-drive .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ocean-accent1) 0%,
+            var(--ocean-accent2) 50%,
+            var(--ocean-accent3) 100%);
+    border-radius: var(--ocean-radius) var(--ocean-radius) 0 0;
+}
+
+.ocean-view-drive .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--ocean-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.ocean-view-drive #calendar-title {
+    font-family: 'Road Rage', cursive;
+    color: var(--ocean-accent1);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    text-shadow: 2px 2px 0 var(--ocean-accent2);
+}
+
+.ocean-view-drive #calendar-title::after {
+    content: "🌊";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: ocean-wave 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.ocean-view-drive #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--ocean-primary);
+    border: 1px solid var(--ocean-accent4);
+    border-radius: var(--ocean-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ocean-view-drive #date-weather-container::before {
+    content: "COASTAL ITINERARY";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--ocean-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ocean-text);
+    font-weight: 700;
+    font-family: 'Road Rage', cursive;
+}
+
+.ocean-view-drive #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ocean-accent1), transparent);
+}
+
+.ocean-view-drive #current-date {
+    font-family: 'Road Rage', cursive;
+    color: var(--ocean-accent1);
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.ocean-view-drive #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--ocean-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.ocean-view-drive #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.ocean-view-drive .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 5px solid var(--ocean-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ocean-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--ocean-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234A7B9D" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.ocean-view-drive .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.ocean-view-drive .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--ocean-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+}
+
+.ocean-view-drive .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--ocean-accent2);
+    margin-top: -1.5px;
+    border-radius: 2px;
+}
+
+.ocean-view-drive .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--ocean-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.ocean-view-drive .clock-face::after {
+    content: "⛵";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.ocean-view-drive table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.ocean-view-drive th {
+    background-color: var(--ocean-accent1);
+    color: white !important;
+    font-family: 'Road Rage', cursive;
+    font-size: 1.1rem;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--ocean-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    letter-spacing: 0.05em;
+}
+
+.ocean-view-drive th span.full-day-name {
+    display: inline;
+}
+
+.ocean-view-drive th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.ocean-view-drive td {
+    background-color: var(--ocean-primary);
+    color: var(--ocean-text);
+    padding: 1rem;
+    border: 1px solid var(--ocean-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ocean-transition);
+    position: relative;
+    border-radius: var(--ocean-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.ocean-view-drive td .date-number {
+    color: var(--ocean-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Road Rage', cursive;
+}
+
+.ocean-view-drive td:hover {
+    background-color: var(--ocean-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.ocean-view-drive td.current-day {
+    background-color: rgba(74, 123, 157, 0.1);
+    border: 2px solid var(--ocean-accent1);
+    animation: ocean-pulse 3s infinite;
+}
+
+.ocean-view-drive td.current-day .date-number {
+    color: var(--ocean-text) !important;
+    font-weight: 700;
+}
+
+.ocean-view-drive td.current-day::before {
+    content: "📍";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--ocean-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.ocean-view-drive .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ocean-accent1);
+    margin: 0 1px;
+    transition: all var(--ocean-transition);
+}
+
+.ocean-view-drive .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--ocean-accent2);
+    box-shadow: 0 0 6px rgba(157, 123, 74, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.ocean-view-drive .modal-content {
+    position: relative;
+    background-color: var(--ocean-primary);
+    border: 1px solid var(--ocean-accent4);
+    padding: 25px;
+    color: var(--ocean-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--ocean-radius);
+}
+
+.ocean-view-drive .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ocean-accent1) 0%,
+            var(--ocean-accent2) 50%,
+            var(--ocean-accent3) 100%);
+}
+
+.ocean-view-drive .modal-content h2 {
+    color: var(--ocean-accent1);
+    font-family: 'Road Rage', cursive;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 0 var(--ocean-accent2);
+}
+
+/* Modal date display */
+.ocean-view-drive .modal-date {
+    font-family: 'Road Rage', cursive;
+    color: var(--ocean-text);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ocean-accent4);
+}
+
+/* Event list */
+.ocean-view-drive .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ocean-view-drive .event-item {
+    background-color: var(--ocean-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--ocean-accent1);
+    border-radius: var(--ocean-radius);
+    transition: all var(--ocean-transition);
+}
+
+.ocean-view-drive .event-item:hover {
+    background-color: var(--ocean-layer3);
+    transform: translateX(3px);
+}
+
+.ocean-view-drive .event-time {
+    font-family: 'Road Rage', cursive;
+    color: var(--ocean-text);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.ocean-view-drive .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--ocean-text);
+}
+
+.ocean-view-drive .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ocean-text);
+    opacity: 0.9;
+}
+
+.ocean-view-drive .modal-content button {
+    background-color: var(--ocean-accent1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--ocean-radius);
+}
+
+.ocean-view-drive .modal-content button:hover {
+    background-color: var(--ocean-hover);
+    box-shadow: 0 3px 10px rgba(74, 123, 157, 0.2);
+}
+
+/* Close Button */
+.ocean-view-drive .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--ocean-primary);
+    color: var(--ocean-text);
+    border: 1px solid var(--ocean-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.ocean-view-drive .modal .close-button:hover {
+    background-color: var(--ocean-text);
+    color: var(--ocean-accent1);
+    border-color: var(--ocean-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.ocean-view-drive .button,
+.ocean-view-drive .transparent-button {
+    border: 1px solid var(--ocean-accent1);
+    color: var(--ocean-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--ocean-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.ocean-view-drive .button:hover,
+.ocean-view-drive .transparent-button:hover {
+    background-color: var(--ocean-accent1);
+    color: white;
+    box-shadow: 0 3px 10px rgba(74, 123, 157, 0.15);
+}
+
+.ocean-view-drive .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.ocean-view-drive #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.ocean-view-drive #theme-switcher {
+    background-color: var(--ocean-primary);
+    color: var(--ocean-text) !important;
+    border: 1px solid var(--ocean-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232A3546'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    border-radius: var(--ocean-radius);
+}
+
+.ocean-view-drive #theme-switcher option {
+    background-color: var(--ocean-primary) !important;
+    color: var(--ocean-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.ocean-view-drive #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ocean-accent1);
+    box-shadow: 0 0 0 2px rgba(74, 123, 157, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.ocean-view-drive #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--ocean-accent1);
+    cursor: pointer;
+    transition: all var(--ocean-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ocean-radius);
+    box-shadow: 0 2px 8px rgba(74, 123, 157, 0.3);
+}
+
+.ocean-view-drive #backToTopBtn:hover {
+    background-color: var(--ocean-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.ocean-view-drive footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ocean-accent4);
+    color: var(--ocean-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .ocean-view-drive .container {
+        padding: 1.5rem;
+    }
+
+    .ocean-view-drive #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .ocean-view-drive #current-date {
+        font-size: 1.8rem;
+    }
+
+    .ocean-view-drive #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .ocean-view-drive .modal-date {
+        font-size: 1.5rem;
+    }
+
+    .ocean-view-drive .event-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ocean-view-drive {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .ocean-view-drive .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 4px;
+    }
+
+    .ocean-view-drive th {
+        font-size: 1rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .ocean-view-drive th span.full-day-name {
+        display: none;
+    }
+
+    .ocean-view-drive th abbr {
+        display: inline;
+    }
+
+    .ocean-view-drive td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .ocean-view-drive td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .ocean-view-drive td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .ocean-view-drive #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .ocean-view-drive #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .ocean-view-drive .modal-content {
+        padding: 20px;
+    }
+
+    .ocean-view-drive .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .ocean-view-drive .container {
+        padding: 1rem;
+    }
+
+    .ocean-view-drive #calendar-title {
+        font-size: 2rem;
+    }
+
+    .ocean-view-drive #current-date {
+        font-size: 1.5rem;
+    }
+
+    .ocean-view-drive #today-weather {
+        font-size: 1rem;
+    }
+
+    .ocean-view-drive .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 3px;
+    }
+
+    .ocean-view-drive th {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .ocean-view-drive td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .ocean-view-drive td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .ocean-view-drive #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .ocean-view-drive .modal-content {
+        padding: 15px;
+    }
+
+    .ocean-view-drive .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .ocean-view-drive .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .ocean-view-drive th {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .ocean-view-drive td {
+        height: 60px;
+    }
+
+    .ocean-view-drive td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .ocean-view-drive #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
