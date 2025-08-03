@@ -1,672 +1,802 @@
 /* ==========================================================================
-  AWAY FROM HOME CALENDAR
-  A warm, travel-inspired calendar theme with viewport-centered modals
-  ========================================================================== */
+   Away From Home Theme - Travel Memories Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Vintage travel color palette
+   - Postcard and luggage design elements
+   - Nostalgic wanderlust aesthetic
+   ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap');
 
 :root {
-    /* ----- CORE COLORS ----- */
-    --travel-bg: #FFF8F0;
-    --travel-text: #2A1A0A;
-    --travel-primary: #E67E22;
-    --travel-secondary: #8E44AD;
+    /* Travel Color Palette */
+    --travel-bg: #F5F3EE;
+    --travel-text: #3A3632;
+    --travel-primary: #EDE8E0;
+    --travel-secondary: #E5DED5;
+    --travel-date-number: #8C6A56;
 
-    /* ----- NEUTRAL PALETTE ----- */
-    --travel-cream: #FDF2E9;
-    --travel-ivory: #FBEEE6;
-    --travel-cashmere: #F5E6D9;
-    --travel-stone: #E0C9B8;
-    --travel-taupe: #C9A88C;
-    --travel-mink: #A67C52;
-    --travel-espresso: #7D4E2E;
+    /* Vintage Layer Colors */
+    --travel-layer1: #E5DED5;
+    --travel-layer2: #DDD4C9;
+    --travel-layer3: #D5CABD;
+    --travel-layer4: #CDC0B1;
+    --travel-layer5: #C5B6A5;
 
-    /* ----- ACCENT COLORS ----- */
-    --travel-gold: #F1C40F;
-    --travel-silver: #ECF0F1;
-    --travel-denim: #3498DB;
-    --travel-leather: #5D4037;
-    --travel-ruby: #C0392B;
+    /* Journey Accent Colors */
+    --travel-accent1: #8C6A56;
+    /* Leather Brown */
+    --travel-accent2: #6B8C56;
+    /* Forest Green */
+    --travel-accent3: #568C8C;
+    /* Ocean Blue */
+    --travel-accent4: rgba(140, 106, 86, 0.5);
+    --travel-accent5: rgba(107, 140, 86, 0.3);
 
-    /* ----- SPECIAL EFFECTS ----- */
-    --travel-glow: 0 0 0 3px rgba(230, 126, 34, 0.15);
-    --travel-shadow-sm: 0 2px 8px rgba(42, 26, 10, 0.08);
-    --travel-shadow-md: 0 4px 16px rgba(42, 26, 10, 0.12);
-    --travel-shadow-lg: 0 8px 32px rgba(42, 26, 10, 0.16);
-
-    /* ----- TYPOGRAPHY ----- */
-    --font-main: 'Montserrat', sans-serif;
-    --font-display: 'Playfair Display', serif;
-
-    /* ----- DIMENSIONS ----- */
-    --radius-sm: 4px;
-    --radius-md: 6px;
-    --radius-lg: 8px;
-
-    /* ----- TRANSITIONS ----- */
-    --transition-fast: 0.2s cubic-bezier(0.65, 0, 0.35, 1);
-    --transition-normal: 0.35s cubic-bezier(0.65, 0, 0.35, 1);
-    --transition-slow: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    /* Theme Variables */
+    --travel-shadow: rgba(140, 106, 86, 0.1);
+    --travel-radius: 8px;
+    --travel-transition: 0.3s ease-in-out;
+    --travel-hover: #7A5A46;
+    --travel-glow: 0 0 10px rgba(140, 106, 86, 0.15);
+    --travel-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%238C6A56"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%238C6A56"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%238C6A56"/></svg>');
 }
 
-/* ================ BASE STYLES ================ */
-.away-from-home {
-    font-family: var(--font-main);
-    color: var(--travel-text);
-    line-height: 1.6;
-    background-color: var(--travel-bg);
-    background-image:
-        linear-gradient(90deg, transparent 98%, var(--travel-primary) 98%),
-        linear-gradient(90deg, transparent 96%, var(--travel-secondary) 96%);
-    background-size: 40px 40px;
-    min-height: 100vh;
-    padding: 2rem 0;
-}
-
-.away-from-home * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* ================ LAYOUT CONTAINERS ================ */
-.away-from-home .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    padding: 2.5rem;
-    border-radius: var(--radius-md);
-    box-shadow: var(--travel-shadow-lg);
-    border: 1px solid var(--travel-cashmere);
-    position: relative;
-    overflow: hidden;
-}
-
-.away-from-home .container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg,
-            var(--travel-primary) 0%,
-            var(--travel-primary) 33%,
-            var(--travel-secondary) 33%,
-            var(--travel-secondary) 66%,
-            white 66%,
-            white 100%);
-}
-
-.away-from-home .calendar-container {
-    padding: 2rem;
-    background: white;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--travel-cashmere);
-    position: relative;
-    z-index: 1;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* ================ TYPOGRAPHY ================ */
-.away-from-home h1,
-.away-from-home h2,
-.away-from-home h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--travel-secondary);
-}
-
-.away-from-home .calendar-header {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 900;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-.away-from-home .calendar-title {
-    font-size: 1.25rem;
-    color: var(--travel-primary);
-    letter-spacing: 1px;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-/* ================ CALENDAR TABLE ================ */
-.away-from-home table {
-    width: 100%;
-    min-width: 600px;
-    margin: 2rem auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: var(--radius-md);
-    box-shadow: var(--travel-shadow-sm);
-    overflow: hidden;
-    background-color: white;
-    border: 1px solid var(--travel-cashmere);
-    table-layout: fixed;
-}
-
-.away-from-home th {
-    background: var(--travel-secondary);
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    padding: 1rem 0.5rem;
-    border-color: var(--travel-secondary);
-    min-width: 40px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.away-from-home td {
-    background-color: white;
-    color: var(--travel-text);
-    font-weight: 400;
-    padding: 1.25rem 1rem;
-    border: 1px solid var(--travel-cashmere);
-    transition: all var(--transition-fast);
-    position: relative;
-    vertical-align: top;
-    height: 100px;
-}
-
-.away-from-home td:hover {
-    background: rgba(230, 126, 34, 0.03);
-    box-shadow: inset 0 0 0 1px var(--travel-primary);
-}
-
-.away-from-home td.current-day {
-    background: white;
-    border: 2px solid var(--travel-primary);
-    font-weight: 600;
-    color: var(--travel-primary);
-    animation: fashionPulse 3s infinite;
-}
-
-/* ================ CALENDAR ELEMENTS ================ */
-.away-from-home .day-number {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.away-from-home .event-marker {
-    background-color: var(--travel-primary);
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    transition: all var(--transition-fast);
-    display: inline-block;
-    box-shadow: 0 0 0 1px white;
-    margin: 0 1px;
-}
-
-.away-from-home .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--travel-gold);
-    box-shadow: 0 0 0 2px var(--travel-secondary);
-}
-
-.away-from-home .week-number {
-    color: var(--travel-gold);
-    font-size: 0.8rem;
-    padding: 0.2rem 0.4rem;
-    background: white;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--travel-gold);
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-}
-
-.away-from-home .no-events {
-    font-style: italic;
-    color: var(--travel-taupe);
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-}
-
-/* ================ NAVIGATION CONTROLS ================ */
-.away-from-home .calendar-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.away-from-home .calendar-navigation button {
-    background: white;
-    border: 1px solid var(--travel-cashmere);
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    cursor: pointer;
-    color: var(--travel-text);
-    transition: all var(--transition-fast);
-    border-radius: var(--radius-md);
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.away-from-home .calendar-navigation button:hover {
-    color: var(--travel-primary);
-    border-color: var(--travel-primary);
-}
-
-.away-from-home .month-year-display {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--travel-secondary);
-}
-
-/* ================ BUTTONS ================ */
-.away-from-home .button,
-.away-from-home #backToTopBtn {
-    border-radius: var(--radius-md);
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    transition: all var(--transition-normal);
-    cursor: pointer;
-    border: 1px solid var(--travel-secondary);
-    color: var(--travel-secondary);
-    background: white;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.away-from-home .button:hover,
-.away-from-home #backToTopBtn:hover {
-    background: var(--travel-secondary);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(142, 68, 173, 0.1);
-}
-
-.away-from-home .button.secondary {
-    background: var(--travel-gold);
-    color: var(--travel-secondary);
-    border: none;
-}
-
-.away-from-home .button.secondary:hover {
-    background: var(--travel-leather);
-    color: white;
-}
-
-/* ================ MODAL STYLES (PERFECTLY CENTERED) ================ */
-.away-from-home .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-    padding: 20px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-}
-
-.away-from-home .modal-content {
-    background: white;
-    border: 1px solid var(--travel-cashmere);
-    border-radius: var(--radius-md);
-    box-shadow: var(--travel-shadow-lg);
-    padding: 2.5rem;
-    color: var(--travel-text);
-    text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 600px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    animation: modalAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes modalAppear {
+/* ==================== ANIMATIONS ==================== */
+@keyframes travel-fade {
     from {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.95);
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translateY(0);
     }
 }
 
-.away-from-home .modal-content::before {
-    content: '';
+@keyframes travel-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--travel-shadow);
+    }
+
+    50% {
+        box-shadow: var(--travel-glow);
+    }
+}
+
+@keyframes travel-stamp {
+    0% {
+        transform: rotate(-5deg) scale(0.9);
+    }
+
+    100% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.away-from-home {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--travel-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--travel-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,90 L200,110 L300,80 L400,100 L500,70 L600,90 L700,60 L800,80 L900,50 L1000,70 L1100,40 L1200,60 L1200,120 Z" fill="%23EDE8E0" opacity="0.5"/></svg>'),
+        linear-gradient(to bottom, var(--travel-bg), var(--travel-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.away-from-home .container {
+    background-color: var(--travel-primary);
+    padding: 2rem;
+    border: 1px solid var(--travel-accent4);
+    box-shadow: var(--travel-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--travel-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.away-from-home .container::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
-    background: var(--travel-primary);
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--travel-accent1) 0%,
+            var(--travel-accent2) 50%,
+            var(--travel-accent3) 100%);
 }
 
-.away-from-home .modal-header {
-    margin-bottom: 1.5rem;
+.away-from-home .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--travel-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
 }
 
-.away-from-home .modal-header h2 {
-    color: var(--travel-primary);
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+/* ==================== HEADER & TITLE ==================== */
+.away-from-home #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--travel-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
 }
 
-.away-from-home .modal-body {
-    margin-bottom: 2rem;
-    text-align: left;
+.away-from-home #calendar-title::after {
+    content: "✈️";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
 }
 
-.away-from-home .modal-footer {
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.away-from-home #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--travel-primary);
+    border: 1px solid var(--travel-accent4);
+    border-radius: var(--travel-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.away-from-home #date-weather-container::before {
+    content: "TRAVEL JOURNAL";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--travel-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--travel-text);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.away-from-home #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--travel-accent1), transparent);
+}
+
+.away-from-home #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--travel-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.away-from-home #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--travel-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.away-from-home #analog-watch {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    margin: 1.8rem 0;
 }
 
-.away-from-home .modal-close {
+.away-from-home .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--travel-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--travel-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--travel-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%238C6A56" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.away-from-home .hand {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.away-from-home .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--travel-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.away-from-home .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--travel-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.away-from-home .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--travel-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.away-from-home .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--travel-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--travel-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.away-from-home table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.away-from-home th {
+    background-color: var(--travel-accent1);
+    color: var(--travel-text) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--travel-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.away-from-home th span.full-day-name {
+    display: inline;
+}
+
+.away-from-home th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.away-from-home td {
+    background-color: var(--travel-primary);
     color: var(--travel-text);
-    background: none;
+    padding: 1rem;
+    border: 1px solid var(--travel-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--travel-transition);
+    position: relative;
+    border-radius: var(--travel-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.away-from-home td .date-number {
+    color: var(--travel-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Playfair Display', serif;
+}
+
+.away-from-home td:hover {
+    background-color: var(--travel-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.away-from-home td.current-day {
+    background-color: rgba(140, 106, 86, 0.1);
+    border: 2px solid var(--travel-accent1);
+    animation: travel-pulse 3s infinite;
+}
+
+.away-from-home td.current-day .date-number {
+    color: var(--travel-text) !important;
+    font-weight: 700;
+}
+
+.away-from-home td.current-day::before {
+    content: "📍";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--travel-accent2);
+    animation: travel-stamp 2s ease-in-out infinite alternate;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.away-from-home .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--travel-accent1);
+    margin: 0 1px;
+    transition: all var(--travel-transition);
+}
+
+.away-from-home .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--travel-accent2);
+    box-shadow: 0 0 6px rgba(107, 140, 86, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.away-from-home .modal-content {
+    position: relative;
+    background-color: var(--travel-primary);
+    border: 1px solid var(--travel-accent4);
+    padding: 25px;
+    color: var(--travel-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--travel-radius);
+    animation: travel-fade 0.3s ease-out;
+}
+
+.away-from-home .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--travel-accent1) 0%,
+            var(--travel-accent2) 50%,
+            var(--travel-accent3) 100%);
+}
+
+.away-from-home .modal-content h2 {
+    color: var(--travel-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Modal date display */
+.away-from-home .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--travel-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--travel-accent4);
+}
+
+/* Event list */
+.away-from-home .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.away-from-home .event-item {
+    background-color: var(--travel-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--travel-accent1);
+    border-radius: var(--travel-radius);
+    transition: all var(--travel-transition);
+}
+
+.away-from-home .event-item:hover {
+    background-color: var(--travel-layer3);
+    transform: translateX(3px);
+}
+
+.away-from-home .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--travel-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.away-from-home .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--travel-text);
+}
+
+.away-from-home .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--travel-text);
+    opacity: 0.9;
+}
+
+.away-from-home .modal-content button {
+    background-color: var(--travel-accent1);
+    color: var(--travel-text);
     border: none;
-    width: 2.5rem;
-    height: 2.5rem;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--travel-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--travel-radius);
+}
+
+.away-from-home .modal-content button:hover {
+    background-color: var(--travel-hover);
+    box-shadow: 0 3px 10px rgba(140, 106, 86, 0.2);
+}
+
+/* Close Button */
+.away-from-home .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--travel-primary);
+    color: var(--travel-text);
+    border: 1px solid var(--travel-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--travel-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all var(--transition-fast);
+    font-weight: bold;
 }
 
-.away-from-home .modal-close:hover {
-    background: rgba(230, 126, 34, 0.1);
+.away-from-home .modal .close-button:hover {
+    background-color: var(--travel-text);
     color: var(--travel-primary);
+    border-color: var(--travel-text);
 }
 
-/* ================ EVENT LIST ================ */
-.away-from-home .event-list {
-    list-style: none;
-}
-
-.away-from-home .event-list li {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--travel-cashmere);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    animation: catwalk 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.away-from-home .event-list li:last-child {
-    border-bottom: none;
-}
-
-.away-from-home .event-details {
-    flex: 1;
-}
-
-.away-from-home .event-time {
-    color: var(--travel-primary);
+/* ==================== BUTTONS & CONTROLS ==================== */
+.away-from-home .button,
+.away-from-home .transparent-button {
+    border: 1px solid var(--travel-accent1);
+    color: var(--travel-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    margin-right: 1rem;
-    min-width: 80px;
-}
-
-.away-from-home .event-title {
-    font-weight: 500;
-}
-
-.away-from-home .event-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.away-from-home .event-list button {
-    background: transparent;
-    color: var(--travel-primary);
-    border: 1px solid var(--travel-primary);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all var(--transition-fast);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    transition: all var(--travel-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--travel-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
-.away-from-home .event-list button:hover {
-    background: var(--travel-primary);
-    color: white;
+.away-from-home .button:hover,
+.away-from-home .transparent-button:hover {
+    background-color: var(--travel-accent1);
+    color: var(--travel-text);
+    box-shadow: 0 3px 10px rgba(140, 106, 86, 0.15);
 }
 
-/* ================ FORM ELEMENTS ================ */
-.away-from-home .form-group {
-    margin-bottom: 1.5rem;
+.away-from-home .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
 }
 
-.away-from-home .form-label {
-    display: block;
-    margin-bottom: 0.5rem;
+/* ==================== THEME SWITCHER ==================== */
+.away-from-home #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.away-from-home #theme-switcher {
+    background-color: var(--travel-primary);
+    color: var(--travel-text) !important;
+    border: 1px solid var(--travel-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
-    color: var(--travel-secondary);
-}
-
-.away-from-home .form-control {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--travel-cashmere);
-    border-radius: var(--radius-md);
-    font-family: var(--font-main);
-    transition: all var(--transition-fast);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A3632'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--travel-transition);
+    border-radius: var(--travel-radius);
 }
 
-.away-from-home .form-control:focus {
+.away-from-home #theme-switcher option {
+    background-color: var(--travel-primary) !important;
+    color: var(--travel-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.away-from-home #theme-switcher:focus {
     outline: none;
-    border-color: var(--travel-primary);
-    box-shadow: var(--travel-glow);
+    border-color: var(--travel-accent1);
+    box-shadow: 0 0 0 2px rgba(140, 106, 86, 0.2);
 }
 
-/* ================ UTILITY CLASSES ================ */
-.away-from-home .text-center {
+/* ==================== BACK TO TOP BUTTON ==================== */
+.away-from-home #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: var(--travel-text);
+    background-color: var(--travel-accent1);
+    cursor: pointer;
+    transition: all var(--travel-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--travel-radius);
+    box-shadow: 0 2px 8px rgba(140, 106, 86, 0.3);
+}
+
+.away-from-home #backToTopBtn:hover {
+    background-color: var(--travel-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.away-from-home footer {
     text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--travel-accent4);
+    color: var(--travel-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-.away-from-home .text-primary {
-    color: var(--travel-primary);
-}
-
-.away-from-home .text-secondary {
-    color: var(--travel-secondary);
-}
-
-.away-from-home .mb-1 {
-    margin-bottom: 0.5rem;
-}
-
-.away-from-home .mb-2 {
-    margin-bottom: 1rem;
-}
-
-.away-from-home .mb-3 {
-    margin-bottom: 1.5rem;
-}
-
-.away-from-home .mb-4 {
-    margin-bottom: 2rem;
-}
-
-/* ================ ANIMATIONS ================ */
-@keyframes fashionPulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-        box-shadow: var(--travel-glow);
-    }
-
-    50% {
-        transform: scale(1.02);
-        box-shadow: 0 0 0 6px rgba(230, 126, 34, 0.1);
-    }
-}
-
-@keyframes catwalk {
-    0% {
-        transform: translateX(-15px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* ================ RESPONSIVE ADJUSTMENTS ================ */
+/* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .away-from-home .container {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
-    .away-from-home .calendar-header {
+    .away-from-home #calendar-title {
         font-size: 2rem;
     }
 
-    .away-from-home td {
-        height: 80px;
-        padding: 1rem 0.75rem;
+    .away-from-home #current-date {
+        font-size: 1.5rem;
     }
 
-    .away-from-home th {
-        font-size: 0.75rem;
-        padding: 0.75rem 0.25rem;
-        letter-spacing: 1px;
+    .away-from-home #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .away-from-home .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .away-from-home .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .away-from-home .container {
-        padding: 1.5rem;
+    .away-from-home {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
-    .away-from-home .calendar-container {
-        padding: 1.5rem;
-    }
-
-    .away-from-home .calendar-header {
-        font-size: 1.75rem;
-        letter-spacing: 2px;
-    }
-
-    .away-from-home td {
-        height: 70px;
-        padding: 0.75rem 0.5rem;
-    }
-
-    .away-from-home .day-number {
-        font-size: 0.9rem;
-    }
-
-    .away-from-home .modal-content {
-        padding: 1.5rem;
-        width: 95%;
+    .away-from-home .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
     }
 
     .away-from-home th {
-        font-size: 0.7rem;
-        padding: 0.5rem 0.25rem;
-        letter-spacing: 0.5px;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
     }
 
-    .away-from-home table {
-        min-width: 500px;
+    .away-from-home th span.full-day-name {
+        display: none;
+    }
+
+    .away-from-home th abbr {
+        display: inline;
+    }
+
+    .away-from-home td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .away-from-home td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .away-from-home td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .away-from-home #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .away-from-home #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .away-from-home .modal-content {
+        padding: 20px;
+    }
+
+    .away-from-home .event-item {
+        padding: 0.8rem;
     }
 }
 
 @media (max-width: 576px) {
     .away-from-home .container {
         padding: 1rem;
-        border-radius: 0;
     }
 
-    .away-from-home .calendar-header {
-        font-size: 1.5rem;
-        letter-spacing: 1px;
+    .away-from-home #calendar-title {
+        font-size: 1.7rem;
     }
 
-    .away-from-home th,
-    .away-from-home td {
-        padding: 0.5rem;
-        font-size: 0.8rem;
+    .away-from-home #current-date {
+        font-size: 1.3rem;
     }
 
-    .away-from-home .event-marker {
-        width: 5px;
-        height: 5px;
+    .away-from-home #today-weather {
+        font-size: 1rem;
     }
 
-    .away-from-home .button,
-    .away-from-home #backToTopBtn {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.8rem;
-    }
-
-    .away-from-home .modal-content {
-        padding: 1.25rem;
-        max-height: 85vh;
-    }
-
-    .away-from-home .modal-header h2 {
-        font-size: 1.5rem;
+    .away-from-home .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
     }
 
     .away-from-home th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
-    .away-from-home table {
-        min-width: 400px;
+    .away-from-home td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
 
-    /* Show abbreviated weekday names on very small screens */
-    .away-from-home .weekday-abbr {
-        display: inline;
+    .away-from-home td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
-    .away-from-home .weekday-full {
-        display: none;
+    .away-from-home #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .away-from-home .modal-content {
+        padding: 15px;
+    }
+
+    .away-from-home .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .away-from-home .event-time {
+        font-size: 0.9rem;
     }
 }
 
-/* For screens wider than 1200px - ensure cells don't get too wide */
-@media (min-width: 1200px) {
-    .away-from-home table {
-        max-width: 1100px;
+@media (max-width: 400px) {
+    .away-from-home th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .away-from-home td {
+        height: 60px;
+    }
+
+    .away-from-home td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .away-from-home #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
