@@ -1,106 +1,144 @@
 /* ==========================================================================
-   Cyber Pulse Theme - Enhanced Neon Cyberpunk Style
-   Version: 2.3
-   Updated: 2025-03-27
-   Fixes:
-   - Current date now properly highlighted in calendar cells
-   - Fixed day-of-week header overlap on mobile
-   - Improved mobile table layout
+   Cyber Pulse Theme - Neon Interface Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Cyberpunk neon color palette
+   - Glowing interface elements
+   - Futuristic HUD design aesthetic
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
 :root {
-    /* Core Color Palette */
-    --cp-bg: #0a0a0a;
-    --cp-text: #00ffcc;
-    --cp-primary: #00ffcc;
-    --cp-secondary: #00e6ff;
+    /* Cyber Color Palette */
+    --cyber-bg: #0D0F18;
+    --cyber-text: #E0F2FF;
+    --cyber-primary: #151A27;
+    --cyber-secondary: #1E2436;
+    --cyber-date-number: #00F0FF;
 
-    /* Black Gradient */
-    --cp-black1: #000000;
-    --cp-black2: #0a0a0a;
-    --cp-black3: #111111;
-    --cp-black4: #1a1a1a;
-    --cp-black5: #222222;
+    /* Interface Layer Colors */
+    --cyber-layer1: #1A2135;
+    --cyber-layer2: #212B45;
+    --cyber-layer3: #283555;
+    --cyber-layer4: #2F3F65;
+    --cyber-layer5: #364975;
 
-    /* Neon Spectrum */
-    --cp-neon1: #00ff99;
-    --cp-neon2: #00ffcc;
-    --cp-neon3: #00e6ff;
-    --cp-neon4: #cc33ff;
-    --cp-neon5: #ff33cc;
-
-    /* Special Effects */
-    --cp-glow: #00ffcc;
-    --cp-accent: #00e6ff;
-    --cp-purple: #cc33ff;
+    /* Neon Accent Colors */
+    --cyber-accent1: #00F0FF;
+    /* Electric Blue */
+    --cyber-accent2: #FF00F0;
+    /* Hot Pink */
+    --cyber-accent3: #F0FF00;
+    /* Cyber Yellow */
+    --cyber-accent4: rgba(0, 240, 255, 0.7);
+    --cyber-accent5: rgba(255, 0, 240, 0.5);
 
     /* Theme Variables */
-    --cp-shadow: rgba(0, 255, 204, 0.7);
-    --cp-radius: 8px;
-    --cp-transition: 0.3s ease-in-out;
-    --cp-hover: #00ff99;
+    --cyber-shadow: rgba(0, 240, 255, 0.15);
+    --cyber-radius: 4px;
+    --cyber-transition: 0.2s ease-out;
+    --cyber-hover: #00C0D0;
+    --cyber-glow: 0 0 15px rgba(0, 240, 255, 0.5);
+    --cyber-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%2300F0FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%2300F0FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%2300F0FF"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes cp-glow {
+@keyframes cyber-flicker {
 
     0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
     100% {
-        box-shadow: 0 0 10px var(--cp-neon1);
-    }
-
-    50% {
-        box-shadow: 0 0 25px var(--cp-neon2);
-    }
-}
-
-@keyframes cp-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
         opacity: 1;
+        text-shadow: 0 0 10px var(--cyber-accent1);
     }
 
-    50% {
-        transform: scale(1.03);
-        opacity: 0.9;
+    20%,
+    22%,
+    24%,
+    55% {
+        opacity: 0.8;
+        text-shadow: none;
     }
 }
 
-@keyframes cp-slideIn {
+@keyframes cyber-scanline {
     from {
-        transform: translateY(-10px);
-        opacity: 0;
+        background-position: 0 0;
     }
 
     to {
-        transform: translateY(0);
-        opacity: 1;
+        background-position: 0 1000px;
+    }
+}
+
+@keyframes cyber-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--cyber-shadow);
+    }
+
+    50% {
+        box-shadow: var(--cyber-glow);
+    }
+}
+
+@keyframes cyber-glitch {
+    0% {
+        text-shadow: 2px 0 var(--cyber-accent2), -2px 0 var(--cyber-accent3);
+    }
+
+    25% {
+        text-shadow: -2px 0 var(--cyber-accent2), 2px 0 var(--cyber-accent3);
+    }
+
+    50% {
+        text-shadow: 2px 0 var(--cyber-accent3), -2px 0 var(--cyber-accent2);
+    }
+
+    75% {
+        text-shadow: -2px 0 var(--cyber-accent3), 2px 0 var(--cyber-accent2);
+    }
+
+    100% {
+        text-shadow: 2px 0 var(--cyber-accent2), -2px 0 var(--cyber-accent3);
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .cyber-pulse {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cp-text);
-    line-height: 1.6;
-    background-color: var(--cp-bg);
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--cyber-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--cyber-bg);
     min-height: 100vh;
+    background-image:
+        linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: cyber-scanline 60s linear infinite;
 }
 
 .cyber-pulse .container {
-    background-color: var(--cp-black2);
+    background-color: var(--cyber-primary);
     padding: 2rem;
-    border: 2px solid var(--cp-primary);
-    box-shadow: 0 0 30px var(--cp-shadow);
+    border: 1px solid var(--cyber-accent4);
+    box-shadow: var(--cyber-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--cp-radius);
+    border-radius: var(--cyber-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.05), transparent);
 }
 
 .cyber-pulse .container::before {
@@ -110,75 +148,123 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cp-primary), transparent);
-    animation: cp-pulse 3s infinite;
+    background: linear-gradient(90deg,
+            var(--cyber-accent1) 0%,
+            var(--cyber-accent2) 50%,
+            var(--cyber-accent1) 100%);
+    box-shadow: 0 0 10px var(--cyber-accent1);
+}
+
+.cyber-pulse .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--cyber-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.5;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .cyber-pulse #calendar-title {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cp-primary);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--cyber-accent1);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: 0 0 15px var(--cp-shadow);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--cyber-accent1);
+    animation: cyber-flicker 5s infinite;
+}
+
+.cyber-pulse #calendar-title::after {
+    content: "⏣";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .cyber-pulse #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: var(--cp-black3);
-    border: 1px solid var(--cp-black5);
-    border-radius: var(--cp-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--cyber-primary);
+    border: 1px solid var(--cyber-accent4);
+    border-radius: var(--cyber-radius);
     position: relative;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.cyber-pulse #date-weather-container::before {
+    content: "CYBER SYSTEM CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--cyber-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--cyber-accent1);
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
 }
 
 .cyber-pulse #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cp-primary), transparent);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyber-accent1), transparent);
+    box-shadow: 0 0 5px var(--cyber-accent1);
 }
 
 .cyber-pulse #current-date {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cp-primary);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--cyber-accent1);
     font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px var(--cp-shadow);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
 }
 
 .cyber-pulse #today-weather {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cp-neon4);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--cyber-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
-/* ==================== ANALOG CLOCK ==================== */
+/* ==================== DIGITAL CLOCK ==================== */
 .cyber-pulse #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .cyber-pulse .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 12px solid var(--cp-primary);
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--cyber-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--cp-black1);
-    box-shadow: 0 0 20px var(--cp-shadow);
+    background-color: var(--cyber-primary);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--cyber-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300F0FF" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
 .cyber-pulse .hand {
@@ -193,96 +279,136 @@
 .cyber-pulse .hour-hand {
     width: 40%;
     left: 10%;
-    height: 8px;
-    background: var(--cp-primary);
-    margin-top: -4px;
+    height: 4px;
+    background: var(--cyber-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--cyber-accent1);
 }
 
 .cyber-pulse .minute-hand {
     width: 48%;
     left: 2%;
-    height: 6px;
-    background: var(--cp-neon2);
-    margin-top: -3px;
+    height: 3px;
+    background: var(--cyber-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 5px var(--cyber-accent2);
 }
 
 .cyber-pulse .second-hand {
     width: 48%;
     left: 2%;
-    height: 3px;
-    background: var(--cp-neon1);
-    margin-top: -1.5px;
+    height: 2px;
+    background: var(--cyber-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 5px var(--cyber-accent3);
+}
+
+/* Clock center ornament */
+.cyber-pulse .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--cyber-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--cyber-primary), 0 0 10px var(--cyber-accent1);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .cyber-pulse table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: var(--cp-black2);
-    border: 2px solid var(--cp-primary);
-    border-radius: var(--cp-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
+/* DAY OF WEEK HEADERS */
 .cyber-pulse th {
-    background-color: var(--cp-black1);
-    color: var(--cp-primary);
-    font-family: 'Orbitron', sans-serif;
+    background-color: var(--cyber-accent1);
+    color: var(--cyber-bg) !important;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem;
-    border: 1px solid var(--cp-black5);
-    border-bottom: 3px solid var(--cp-primary);
-    word-break: normal;
-    white-space: nowrap;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--cyber-radius);
+    position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
+.cyber-pulse th span.full-day-name {
+    display: inline;
+}
+
+.cyber-pulse th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
 .cyber-pulse td {
-    background-color: var(--cp-black3);
-    color: var(--cp-text);
-    padding: 1.2rem;
-    border: 1px solid var(--cp-black5);
-    height: 100px;
+    background-color: var(--cyber-primary);
+    color: var(--cyber-text);
+    padding: 1rem;
+    border: 1px solid var(--cyber-accent4);
+    height: 90px;
     vertical-align: top;
-    transition: all var(--cp-transition);
+    transition: all var(--cyber-transition);
     position: relative;
+    border-radius: var(--cyber-radius);
+    box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.cyber-pulse td .date-number {
+    color: var(--cyber-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    text-shadow: 0 0 5px var(--cyber-accent1);
 }
 
 .cyber-pulse td:hover {
-    background-color: var(--cp-black4);
-    box-shadow: inset 0 0 15px var(--cp-shadow);
+    background-color: var(--cyber-secondary);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
 }
 
 /* Current date highlight */
 .cyber-pulse td.current-day {
-    background-color: var(--cp-black1);
-    border: 2px solid var(--cp-primary);
-    color: var(--cp-primary);
-    font-weight: 600;
-    animation: cp-glow 2s infinite;
+    background-color: rgba(0, 240, 255, 0.1);
+    border: 2px solid var(--cyber-accent1);
+    animation: cyber-pulse 3s infinite;
 }
 
-/* Current date number indicator */
+.cyber-pulse td.current-day .date-number {
+    color: var(--cyber-text) !important;
+    font-weight: 700;
+}
+
 .cyber-pulse td.current-day::before {
-    content: "";
+    content: "⚡";
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--cp-primary);
-    border-radius: 50%;
     z-index: 1;
-}
-
-.cyber-pulse td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--cp-black1);
+    font-size: 1.1rem;
+    color: var(--cyber-accent1);
     font-weight: bold;
 }
 
@@ -292,28 +418,28 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--cp-primary);
-    margin: 0 2px;
-    box-shadow: 0 0 5px var(--cp-shadow);
-    transition: all var(--cp-transition);
+    background-color: var(--cyber-accent1);
+    margin: 0 1px;
+    transition: all var(--cyber-transition);
+    box-shadow: 0 0 5px var(--cyber-accent1);
 }
 
 .cyber-pulse .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--cp-neon2);
-    box-shadow: 0 0 15px var(--cp-primary);
+    transform: scale(1.4);
+    background-color: var(--cyber-accent2);
+    box-shadow: 0 0 10px var(--cyber-accent2);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .cyber-pulse .modal-content {
     position: relative;
-    background-color: var(--cp-black2);
-    border: 2px solid var(--cp-primary);
-    padding: 30px;
-    color: var(--cp-text);
-    box-shadow: 0 0 40px var(--cp-shadow);
-    border-radius: var(--cp-radius);
-    animation: cp-slideIn 0.4s ease;
+    background-color: var(--cyber-primary);
+    border: 1px solid var(--cyber-accent4);
+    padding: 25px;
+    color: var(--cyber-text);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    border-radius: var(--cyber-radius);
+    animation: cyber-flicker 0.5s;
 }
 
 .cyber-pulse .modal-content::before {
@@ -323,103 +449,149 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--cp-primary);
-    animation: cp-pulse 2s infinite;
+    background: linear-gradient(90deg,
+            var(--cyber-accent1) 0%,
+            var(--cyber-accent2) 50%,
+            var(--cyber-accent1) 100%);
+    box-shadow: 0 0 10px var(--cyber-accent1);
 }
 
 .cyber-pulse .modal-content h2 {
-    color: var(--cp-primary);
-    font-family: 'Orbitron', sans-serif;
+    color: var(--cyber-accent1);
+    font-family: 'Rajdhani', sans-serif;
     font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px var(--cyber-accent1);
+}
+
+/* Modal date display */
+.cyber-pulse .modal-date {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--cyber-accent1);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cyber-accent4);
+    text-shadow: 0 0 5px var(--cyber-accent1);
+}
+
+/* Event list */
+.cyber-pulse .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cyber-pulse .event-item {
+    background-color: var(--cyber-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--cyber-accent1);
+    border-radius: var(--cyber-radius);
+    transition: all var(--cyber-transition);
+}
+
+.cyber-pulse .event-item:hover {
+    background-color: var(--cyber-layer3);
+    transform: translateX(3px);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.cyber-pulse .event-time {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--cyber-accent1);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.cyber-pulse .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--cyber-text);
+}
+
+.cyber-pulse .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--cyber-text);
+    opacity: 0.9;
 }
 
 .cyber-pulse .modal-content button {
-    background-color: transparent;
-    color: var(--cp-primary);
-    border: 2px solid var(--cp-primary);
-    padding: 12px 24px;
+    background-color: var(--cyber-accent1);
+    color: var(--cyber-bg);
+    border: none;
+    padding: 10px 20px;
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--cp-transition);
+    transition: all var(--cyber-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Share Tech Mono', monospace;
+    border-radius: var(--cyber-radius);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: var(--cp-radius);
 }
 
 .cyber-pulse .modal-content button:hover {
-    background-color: var(--cp-primary);
-    color: var(--cp-text);
-    box-shadow: 0 0 15px var(--cp-shadow);
+    background-color: var(--cyber-hover);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
 /* Close Button */
 .cyber-pulse .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: var(--cp-primary);
-    border: 2px solid var(--cp-primary);
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    background-color: var(--cyber-primary);
+    color: var(--cyber-text);
+    border: 1px solid var(--cyber-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--cp-transition);
+    transition: all var(--cyber-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .cyber-pulse .modal .close-button:hover {
-    background-color: var(--cp-primary);
-    color: var(--cp-text);
-    transform: rotate(90deg);
+    background-color: var(--cyber-text);
+    color: var(--cyber-accent1);
+    border-color: var(--cyber-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .cyber-pulse .button,
 .cyber-pulse .transparent-button {
-    border: 2px solid var(--cp-primary);
-    color: var(--cp-primary);
+    border: 1px solid var(--cyber-accent1);
+    color: var(--cyber-text);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--cp-transition);
+    transition: all var(--cyber-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--cp-radius);
-}
-
-.cyber-pulse .button::before,
-.cyber-pulse .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.2), transparent);
-    transition: 0.5s;
+    margin: 0.4rem;
+    border-radius: var(--cyber-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .cyber-pulse .button:hover,
 .cyber-pulse .transparent-button:hover {
-    background-color: var(--cp-primary);
-    color: var(--cp-text);
-    box-shadow: 0 0 20px var(--cp-shadow);
-}
-
-.cyber-pulse .button:hover::before,
-.cyber-pulse .transparent-button:hover::before {
-    left: 100%;
+    background-color: var(--cyber-accent1);
+    color: var(--cyber-bg);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
 }
 
 .cyber-pulse .controls {
@@ -427,55 +599,87 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.cyber-pulse #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
 }
 
 .cyber-pulse #theme-switcher {
-    background-color: var(--cp-black3);
-    color: var(--cp-text);
-    border: 2px solid var(--cp-primary);
-    padding: 0.8rem;
-    font-family: 'Orbitron', sans-serif;
-    margin-left: 1rem;
-    border-radius: var(--cp-radius);
+    background-color: var(--cyber-primary);
+    color: var(--cyber-text) !important;
+    border: 1px solid var(--cyber-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0F2FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--cyber-transition);
+    border-radius: var(--cyber-radius);
+}
+
+.cyber-pulse #theme-switcher option {
+    background-color: var(--cyber-primary) !important;
+    color: var(--cyber-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.cyber-pulse #theme-switcher:focus {
+    outline: none;
+    border-color: var(--cyber-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .cyber-pulse #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 2px solid var(--cp-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--cp-primary);
-    background-color: var(--cp-black3);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 600;
+    color: var(--cyber-bg);
+    background-color: var(--cyber-accent1);
     cursor: pointer;
-    transition: all var(--cp-transition);
+    transition: all var(--cyber-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--cp-radius);
+    border-radius: var(--cyber-radius);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
 .cyber-pulse #backToTopBtn:hover {
-    background-color: var(--cp-primary);
-    color: var(--cp-text);
-    box-shadow: 0 0 20px var(--cp-shadow);
+    background-color: var(--cyber-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .cyber-pulse footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--cp-black5);
-    color: var(--cp-text);
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--cyber-accent4);
+    color: var(--cyber-text);
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -493,34 +697,109 @@
     }
 
     .cyber-pulse #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .cyber-pulse .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .cyber-pulse .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .cyber-pulse {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
     .cyber-pulse .clock-face {
-        width: 160px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
     }
 
-    /* Improved day headers for mobile */
     .cyber-pulse th {
-        padding: 0.8rem 0.3rem;
-        font-size: 0.8rem;
-        letter-spacing: normal;
-        white-space: normal;
-        word-break: break-word;
-        line-height: 1.2;
-    }
-
-    /* 3-letter abbreviations for small screens */
-    .cyber-pulse th abbr {
-        display: inline;
-        text-decoration: none;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
     }
 
     .cyber-pulse th span.full-day-name {
         display: none;
+    }
+
+    .cyber-pulse th abbr {
+        display: inline;
+    }
+
+    .cyber-pulse td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .cyber-pulse td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .cyber-pulse td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .cyber-pulse #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .cyber-pulse #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .cyber-pulse .modal-content {
+        padding: 20px;
+    }
+
+    .cyber-pulse .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .cyber-pulse .container {
+        padding: 1rem;
+    }
+
+    .cyber-pulse #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .cyber-pulse #current-date {
+        font-size: 1.3rem;
+    }
+
+    .cyber-pulse #today-weather {
+        font-size: 1rem;
+    }
+
+    .cyber-pulse .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .cyber-pulse th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .cyber-pulse td {
@@ -529,72 +808,46 @@
         font-size: 0.8rem;
     }
 
-    /* Adjust current date marker for mobile */
-    .cyber-pulse td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
+    .cyber-pulse td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
-    .cyber-pulse #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
+    .cyber-pulse #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .cyber-pulse .modal-content {
+        padding: 15px;
+    }
+
+    .cyber-pulse .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .cyber-pulse .event-time {
         font-size: 0.9rem;
     }
 }
 
-@media (max-width: 576px) {
-    .cyber-pulse .container {
-        padding: 0.8rem;
-    }
-
-    .cyber-pulse #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
-    }
-
-    .cyber-pulse #current-date {
-        font-size: 1.1rem;
-    }
-
-    .cyber-pulse #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .cyber-pulse .clock-face {
-        width: 120px;
-        height: 120px;
-    }
-
-    /* Further day header adjustments */
-    .cyber-pulse th {
-        font-size: 0.7rem;
-        padding: 0.5rem 0.2rem;
-    }
-
-    .cyber-pulse td {
-        padding: 0.3rem;
-        height: 60px;
-        font-size: 0.7rem;
-    }
-
-    /* Current date marker for very small screens */
-    .cyber-pulse td.current-day::before {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-/* Extra small devices (phones, 400px and down) */
 @media (max-width: 400px) {
     .cyber-pulse th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .cyber-pulse td {
-        height: 50px;
+        height: 60px;
+    }
+
+    .cyber-pulse td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .cyber-pulse #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
