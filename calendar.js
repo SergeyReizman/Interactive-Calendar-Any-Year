@@ -123,7 +123,7 @@ const applyTheme = (theme) => {
     'greyscale', 'group-11',
     'guangzhou-lights', 'haute-couture',
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
-    'high-energy', 'high-intelligence','high-performance', 
+    'high-energy', 'high-intelligence', 'highline-trail', 'high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'hometown-vibes', 
     'honolulu-weekend', 'hot-desert-summer',
     'hurricane-clouds', 'hyperloop', 'iceberg-lake', 'ice-giant', 'ice-palace',
