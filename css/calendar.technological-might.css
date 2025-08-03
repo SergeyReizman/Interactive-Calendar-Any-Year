@@ -1,81 +1,66 @@
 /* ==========================================================================
-   Technological Might Theme - Cybernetic Interface Inspired
-   Version: 2.4
-   Updated: 2025-03-28
-   Fixes:
-   - Theme switcher now properly visible
-   - Current date highlighting improved
-   - Day-of-week header overlap fixed
-   - Mobile table layout optimized
+   Technological Might Theme - Futuristic Tech-Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Cyberpunk color palette (neons, dark tones, electric accents)
+   - Digital and tech elements
+   - Sleek, high-tech design aesthetic
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;600&display=swap');
 
 :root {
     /* Cyber Color Palette */
     --tech-bg: #0A0A12;
     --tech-text: #E0E0E0;
-    --tech-primary: #00F0FF;
-    --tech-secondary: #7B2DFF;
+    --tech-primary: #1A1A2E;
+    --tech-secondary: #25253E;
+    --tech-date-number: #00F0FF;
 
-    /* Interface Gradients */
-    --tech-layer1: #12121D;
-    --tech-layer2: #1A1A2E;
-    --tech-layer3: #242442;
-    --tech-layer4: #2D2D5D;
-    --tech-layer5: #3A3A7A;
+    /* Circuit Layer Colors */
+    --tech-layer1: #1E1E3A;
+    --tech-layer2: #252545;
+    --tech-layer3: #2D2D50;
+    --tech-layer4: #35355B;
+    --tech-layer5: #3D3D66;
 
-    /* Status Indicators */
-    --tech-success: #00FF9D;
-    --tech-warning: #FFD600;
-    --tech-danger: #FF2D5A;
-    --tech-info: #00A3FF;
-
-    /* HUD Elements */
-    --tech-hud1: #00F0FF;
-    --tech-hud2: #FF00F0;
-    --tech-hud3: #F0FF00;
+    /* Neon Accent Colors */
+    --tech-accent1: #00F0FF;
+    /* Electric Blue */
+    --tech-accent2: #FF00AA;
+    /* Hot Pink */
+    --tech-accent3: #00FF88;
+    /* Neon Green */
+    --tech-accent4: rgba(0, 240, 255, 0.5);
+    --tech-accent5: rgba(255, 0, 170, 0.3);
 
     /* Theme Variables */
-    --tech-shadow: rgba(0, 240, 255, 0.15);
-    --tech-radius: 4px;
-    --tech-transition: 0.2s linear;
-    --tech-hover: #00C4FF;
-    --tech-glow: 0 0 10px rgba(0, 240, 255, 0.7);
-    --tech-border-glow: 0 0 5px rgba(0, 240, 255, 0.9);
-    --tech-current-day: #7B2DFF;
+    --tech-shadow: rgba(0, 240, 255, 0.1);
+    --tech-radius: 8px;
+    --tech-transition: 0.15s ease-out;
+    --tech-hover: #20FFFF;
+    --tech-glow: 0 0 10px rgba(0, 240, 255, 0.3);
+    --tech-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%2300F0FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%2300F0FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%2300F0FF"/></svg>');
+    --tech-grid: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 L1200,0 L1200,120 L0,120 Z" fill="none" stroke="%2300F0FF" stroke-width="1" stroke-dasharray="5,5" opacity="0.2"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes tech-glow {
+@keyframes tech-flicker {
 
     0%,
     100% {
-        box-shadow: 0 0 10px var(--tech-hud1);
+        opacity: 0.95;
     }
 
     50% {
-        box-shadow: 0 0 25px var(--tech-hud2);
-    }
-}
-
-@keyframes tech-pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
         opacity: 1;
     }
-
-    50% {
-        transform: scale(1.03);
-        opacity: 0.9;
-    }
 }
 
-@keyframes tech-slideIn {
+@keyframes tech-boot {
     from {
-        transform: translateY(-10px);
+        transform: translateY(10px);
         opacity: 0;
     }
 
@@ -85,25 +70,71 @@
     }
 }
 
+@keyframes tech-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--tech-shadow);
+    }
+
+    50% {
+        box-shadow: var(--tech-glow);
+    }
+}
+
+@keyframes tech-scan {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes pixel-float {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-100vh) translateX(20px);
+        opacity: 0;
+    }
+}
+
 /* ==================== BASE STYLES ==================== */
 .technological-might {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     color: var(--tech-text);
     line-height: 1.6;
-    background: var(--tech-bg);
+    font-size: 1rem;
+    background-color: var(--tech-bg);
     min-height: 100vh;
+    background-image: var(--tech-grid),
+        linear-gradient(to bottom, var(--tech-bg), var(--tech-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: tech-scan 60s linear infinite;
 }
 
 .technological-might .container {
-    background-color: var(--tech-layer1);
+    background-color: var(--tech-primary);
     padding: 2rem;
-    border: 1px solid var(--tech-primary);
+    border: 1px solid var(--tech-accent4);
     box-shadow: var(--tech-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
     border-radius: var(--tech-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(26, 26, 46, 0.8), transparent);
 }
 
 .technological-might .container::before {
@@ -112,76 +143,129 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--tech-primary), transparent);
-    animation: tech-pulse 3s infinite;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--tech-accent1) 0%,
+            var(--tech-accent2) 50%,
+            var(--tech-accent3) 100%);
+}
+
+.technological-might .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--tech-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* Pixel decorations */
+.technological-might .pixel {
+    position: absolute;
+    background-color: rgba(0, 240, 255, 0.2);
+    border-radius: 2px;
+    animation: pixel-float 8s linear infinite;
+    z-index: 0;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .technological-might #calendar-title {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--tech-primary);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    text-shadow: var(--tech-glow);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--tech-accent1);
+}
+
+.technological-might #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .technological-might #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: var(--tech-layer2);
-    border: 1px solid var(--tech-secondary);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--tech-primary);
+    border: 1px solid var(--tech-accent4);
     border-radius: var(--tech-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.technological-might #date-weather-container::before {
+    content: "DIGITAL ENGINE JS v8.0";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--tech-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--tech-text);
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .technological-might #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--tech-primary), transparent);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tech-accent1), transparent);
 }
 
 .technological-might #current-date {
-    font-family: 'Share Tech Mono', monospace;
-    color: var(--tech-primary);
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
     font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-shadow: var(--tech-glow);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 5px var(--tech-accent1);
 }
 
 .technological-might #today-weather {
-    font-family: 'Rajdhani', sans-serif;
-    color: var(--tech-info);
-    font-size: 1.4rem;
-    font-style: italic;
-    letter-spacing: 0.1em;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--tech-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .technological-might #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .technological-might .clock-face {
-    width: 200px;
-    height: 200px;
-    border: 2px solid var(--tech-primary);
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--tech-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--tech-layer1);
-    box-shadow: var(--tech-glow);
+    background-color: var(--tech-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--tech-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300F0FF" stroke-width="0.5" opacity="0.2"/></svg>');
 }
 
 .technological-might .hand {
@@ -197,94 +281,130 @@
     width: 40%;
     left: 10%;
     height: 6px;
-    background: var(--tech-primary);
+    background: var(--tech-accent1);
     margin-top: -3px;
+    border-radius: 3px;
 }
 
 .technological-might .minute-hand {
     width: 48%;
     left: 2%;
     height: 4px;
-    background: var(--tech-hud2);
+    background: var(--tech-accent2);
     margin-top: -2px;
+    border-radius: 2px;
 }
 
 .technological-might .second-hand {
     width: 48%;
     left: 2%;
     height: 2px;
-    background: var(--tech-hud3);
-    margin-top: -1px;
+    background: var(--tech-accent3);
+}
+
+/* Clock center ornament */
+.technological-might .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--tech-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--tech-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .technological-might table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: var(--tech-layer2);
-    border: 1px solid var(--tech-primary);
-    border-radius: var(--tech-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
+/* DAY OF WEEK HEADERS */
 .technological-might th {
-    background-color: var(--tech-layer4);
-    color: var(--tech-text);
-    font-family: 'Share Tech Mono', monospace;
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
+    color: var(--tech-text) !important;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem;
-    border: 1px solid var(--tech-primary);
-    word-break: normal;
-    white-space: nowrap;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--tech-radius);
+    position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
+.technological-might th span.full-day-name {
+    display: inline;
+}
+
+.technological-might th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
 .technological-might td {
-    background-color: var(--tech-layer3);
+    background-color: var(--tech-primary);
     color: var(--tech-text);
-    padding: 1.2rem;
-    border: 1px solid var(--tech-secondary);
-    height: 100px;
+    padding: 1rem;
+    border: 1px solid var(--tech-accent4);
+    height: 90px;
     vertical-align: top;
     transition: all var(--tech-transition);
     position: relative;
+    border-radius: var(--tech-radius);
+    box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.1);
+}
+
+.technological-might td .date-number {
+    color: var(--tech-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .technological-might td:hover {
-    background-color: var(--tech-layer4);
-    box-shadow: inset var(--tech-border-glow);
+    background-color: var(--tech-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Current date highlight */
 .technological-might td.current-day {
-    background-color: var(--tech-current-day);
-    border: 2px solid var(--tech-primary);
-    color: var(--tech-text);
-    font-weight: 600;
-    animation: tech-glow 2s infinite;
+    background-color: rgba(0, 240, 255, 0.1);
+    border: 2px solid var(--tech-accent1);
+    animation: tech-pulse 3s infinite;
 }
 
-/* Current date number indicator */
+.technological-might td.current-day .date-number {
+    color: var(--tech-text) !important;
+    font-weight: 700;
+}
+
 .technological-might td.current-day::before {
-    content: "";
+    content: "⌗";
     position: absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
-    background-color: var(--tech-primary);
-    border-radius: 50%;
     z-index: 1;
-}
-
-.technological-might td.current-day>.date-number {
-    position: relative;
-    z-index: 2;
-    color: var(--tech-text);
+    font-size: 1.1rem;
+    color: var(--tech-accent1);
     font-weight: bold;
 }
 
@@ -293,29 +413,28 @@
     display: inline-block;
     width: 8px;
     height: 8px;
-    border-radius: 50%;
-    background-color: var(--tech-hud2);
-    margin: 0 2px;
-    box-shadow: var(--tech-glow);
+    border-radius: 2px;
+    background-color: var(--tech-accent1);
+    margin: 0 1px;
     transition: all var(--tech-transition);
 }
 
 .technological-might .event-marker:hover {
-    transform: scale(2);
-    background-color: var(--tech-hud1);
-    box-shadow: 0 0 15px var(--tech-hud2);
+    transform: scale(1.4);
+    background-color: var(--tech-accent3);
+    box-shadow: 0 0 6px rgba(0, 255, 136, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .technological-might .modal-content {
     position: relative;
-    background-color: var(--tech-layer1);
-    border: 2px solid var(--tech-primary);
-    padding: 30px;
+    background-color: var(--tech-primary);
+    border: 1px solid var(--tech-accent4);
+    padding: 25px;
     color: var(--tech-text);
-    box-shadow: var(--tech-glow);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-radius: var(--tech-radius);
-    animation: tech-slideIn 0.4s ease;
+    animation: tech-boot 0.3s ease-out;
 }
 
 .technological-might .modal-content::before {
@@ -324,104 +443,152 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: var(--tech-primary);
-    animation: tech-pulse 2s infinite;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--tech-accent1) 0%,
+            var(--tech-accent2) 50%,
+            var(--tech-accent3) 100%);
 }
 
 .technological-might .modal-content h2 {
-    color: var(--tech-primary);
-    font-family: 'Share Tech Mono', monospace;
+    color: var(--tech-text);
+    font-family: 'Orbitron', sans-serif;
     font-size: 2em;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 5px var(--tech-accent1);
+}
+
+/* Modal date display */
+.technological-might .modal-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--tech-accent4);
+}
+
+/* Event list */
+.technological-might .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.technological-might .event-item {
+    background-color: var(--tech-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--tech-accent1);
+    border-radius: var(--tech-radius);
+    transition: all var(--tech-transition);
+}
+
+.technological-might .event-item:hover {
+    background-color: var(--tech-layer3);
+    transform: translateX(3px);
+}
+
+.technological-might .event-time {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.technological-might .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--tech-text);
+}
+
+.technological-might .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--tech-text);
+    opacity: 0.9;
 }
 
 .technological-might .modal-content button {
-    background-color: transparent;
-    color: var(--tech-primary);
-    border: 2px solid var(--tech-primary);
-    padding: 12px 24px;
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
+    color: var(--tech-text);
+    border: none;
+    padding: 10px 20px;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--tech-transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    font-family: 'Roboto Mono', monospace;
     border-radius: var(--tech-radius);
 }
 
 .technological-might .modal-content button:hover {
-    background-color: var(--tech-primary);
-    color: var(--tech-text);
-    box-shadow: var(--tech-glow);
+    background: linear-gradient(to right,
+            var(--tech-hover),
+            #FF20BA);
+    box-shadow: 0 3px 10px rgba(0, 240, 255, 0.3);
 }
 
 /* Close Button */
 .technological-might .modal .close-button {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: transparent;
-    color: var(--tech-primary);
-    border: 2px solid var(--tech-primary);
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    background-color: var(--tech-primary);
+    color: var(--tech-text);
+    border: 1px solid var(--tech-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     transition: all var(--tech-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .technological-might .modal .close-button:hover {
-    background-color: var(--tech-primary);
-    color: var(--tech-text);
-    transform: rotate(90deg);
+    background-color: var(--tech-text);
+    color: var(--tech-accent1);
+    border-color: var(--tech-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .technological-might .button,
 .technological-might .transparent-button {
-    border: 2px solid var(--tech-primary);
-    color: var(--tech-primary);
+    border: 1px solid var(--tech-accent1);
+    color: var(--tech-text);
     background-color: transparent;
-    padding: 0.8rem 1.6rem;
-    font-family: 'Share Tech Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--tech-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
+    margin: 0.4rem;
     border-radius: var(--tech-radius);
-}
-
-.technological-might .button::before,
-.technological-might .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
-    transition: 0.5s;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .technological-might .button:hover,
 .technological-might .transparent-button:hover {
-    background-color: var(--tech-primary);
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
     color: var(--tech-text);
-    box-shadow: var(--tech-glow);
-}
-
-.technological-might .button:hover::before,
-.technological-might .transparent-button:hover::before {
-    left: 100%;
+    box-shadow: 0 3px 10px rgba(0, 240, 255, 0.2);
 }
 
 .technological-might .controls {
@@ -429,81 +596,91 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
-/* ==================== THEME SWITCHER FIX ==================== */
+/* ==================== THEME SWITCHER ==================== */
+.technological-might #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
 .technological-might #theme-switcher {
-    background-color: var(--tech-layer2);
-    color: var(--tech-text);
-    border: 2px solid var(--tech-primary);
-    padding: 0.8rem 2.5rem 0.8rem 1rem;
-    font-family: 'Rajdhani', sans-serif;
-    margin-left: 1rem;
-    border-radius: var(--tech-radius);
+    background-color: var(--tech-primary);
+    color: var(--tech-text) !important;
+    border: 1px solid var(--tech-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    width: 100%;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0E0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
     background-size: 1rem;
     cursor: pointer;
     transition: all var(--tech-transition);
+    border-radius: var(--tech-radius);
 }
 
-.technological-might #theme-switcher:hover {
-    background-color: var(--tech-layer3);
-    box-shadow: var(--tech-glow);
+.technological-might #theme-switcher option {
+    background-color: var(--tech-primary) !important;
+    color: var(--tech-text) !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 12px !important;
 }
 
 .technological-might #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--tech-primary);
-}
-
-.technological-might #theme-switcher option {
-    background-color: var(--tech-layer4);
-    color: var(--tech-text);
-    padding: 0.5rem;
+    border-color: var(--tech-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.3);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .technological-might #backToTopBtn {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 25px;
+    bottom: 25px;
     z-index: 9999;
-    border: 2px solid var(--tech-primary);
-    padding: 1rem 1.8rem;
-    font-size: 1rem;
-    font-family: 'Share Tech Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--tech-primary);
-    background-color: var(--tech-layer2);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    color: var(--tech-text);
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
     cursor: pointer;
     transition: all var(--tech-transition);
     opacity: 0.9;
     display: none;
     border-radius: var(--tech-radius);
+    box-shadow: 0 2px 8px rgba(0, 240, 255, 0.4);
 }
 
 .technological-might #backToTopBtn:hover {
-    background-color: var(--tech-primary);
-    color: var(--tech-text);
-    box-shadow: var(--tech-glow);
+    background: linear-gradient(to right,
+            var(--tech-hover),
+            #FF20BA);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .technological-might footer {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--tech-secondary);
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--tech-accent4);
     color: var(--tech-text);
     font-size: 0.9rem;
+    font-weight: 700;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
@@ -521,34 +698,109 @@
     }
 
     .technological-might #today-weather {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .technological-might .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .technological-might .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .technological-might {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
     .technological-might .clock-face {
-        width: 160px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
     }
 
-    /* Improved day headers for mobile */
     .technological-might th {
-        padding: 0.8rem 0.3rem;
-        font-size: 0.8rem;
-        letter-spacing: normal;
-        white-space: normal;
-        word-break: break-word;
-        line-height: 1.2;
-    }
-
-    /* 3-letter abbreviations for small screens */
-    .technological-might th abbr {
-        display: inline;
-        text-decoration: none;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
     }
 
     .technological-might th span.full-day-name {
         display: none;
+    }
+
+    .technological-might th abbr {
+        display: inline;
+    }
+
+    .technological-might td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .technological-might td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .technological-might td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .technological-might #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .technological-might #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .technological-might .modal-content {
+        padding: 20px;
+    }
+
+    .technological-might .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .technological-might .container {
+        padding: 1rem;
+    }
+
+    .technological-might #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .technological-might #current-date {
+        font-size: 1.3rem;
+    }
+
+    .technological-might #today-weather {
+        font-size: 1rem;
+    }
+
+    .technological-might .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .technological-might th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .technological-might td {
@@ -557,79 +809,46 @@
         font-size: 0.8rem;
     }
 
-    /* Adjust current date marker for mobile */
-    .technological-might td.current-day::before {
-        width: 18px;
-        height: 18px;
-        top: 3px;
-        right: 3px;
+    .technological-might td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
-    .technological-might #backToTopBtn {
-        right: 20px;
-        bottom: 20px;
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-    }
-
-    /* Theme switcher mobile adjustments */
     .technological-might #theme-switcher {
-        padding: 0.6rem 2rem 0.6rem 0.8rem;
-        background-position: right 0.5rem center;
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .technological-might .modal-content {
+        padding: 15px;
+    }
+
+    .technological-might .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .technological-might .event-time {
         font-size: 0.9rem;
     }
 }
 
-@media (max-width: 576px) {
-    .technological-might .container {
-        padding: 0.8rem;
-    }
-
-    .technological-might #calendar-title {
-        font-size: 1.6rem;
-        letter-spacing: 0.1em;
-    }
-
-    .technological-might #current-date {
-        font-size: 1.1rem;
-    }
-
-    .technological-might #today-weather {
-        font-size: 0.9rem;
-    }
-
-    .technological-might .clock-face {
-        width: 120px;
-        height: 120px;
-    }
-
-    /* Further day header adjustments */
-    .technological-might th {
-        font-size: 0.7rem;
-        padding: 0.5rem 0.2rem;
-    }
-
-    .technological-might td {
-        padding: 0.3rem;
-        height: 60px;
-        font-size: 0.7rem;
-    }
-
-    /* Current date marker for very small screens */
-    .technological-might td.current-day::before {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-/* Extra small devices (phones, 400px and down) */
 @media (max-width: 400px) {
     .technological-might th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .technological-might td {
-        height: 50px;
+        height: 60px;
+    }
+
+    .technological-might td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .technological-might #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
