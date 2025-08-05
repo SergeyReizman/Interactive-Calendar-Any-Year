@@ -1,112 +1,122 @@
 /* ==========================================================================
-   White Steamboat Theme - Nautical Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Clean nautical color scheme
-   - Optimized weekday headers
-   - Mobile-responsive design
-   - Maritime-inspired UI elements
-   - Subtle wave animations
-   - Enhanced accessibility
-   - Pinstripe textures
-   - Fluid typography
+   White Steamboat Theme - Nautical-Inspired Calendar with Classic Elegance
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Nautical blue and white color palette
+   - Classic steamboat/shipping elements
+   - Clean, crisp design with subtle maritime textures
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
 
 :root {
-    /* Nautical Color Palette */
-    --ws-bg: #F5F7FA;
-    --ws-text: #2C3E50;
-    --ws-primary: #3498DB;
-    /* Nautical blue */
-    --ws-secondary: #2980B9;
-    /* Darker blue */
+    /* White Steamboat Color Palette */
+    --steamboat-bg: #F5F9FC;
+    --steamboat-text: #2C3E50;
+    --steamboat-primary: #FFFFFF;
+    --steamboat-secondary: #EFF3F6;
+    --steamboat-date-number: #3498DB;
 
-    /* Accent Colors */
-    --ws-red: #E74C3C;
-    /* Signal red */
-    --ws-gold: #F1C40F;
-    /* Brass accents */
-    --ws-teal: #1ABC9C;
-    /* Ocean teal */
-    --ws-brown: #8B4513;
-    /* Wooden accents */
-    --ws-silver: #BDC3C7;
-    /* Metallic */
+    /* Nautical Layer Colors */
+    --steamboat-layer1: #EFF3F6;
+    --steamboat-layer2: #E0E9F0;
+    --steamboat-layer3: #D1DFEA;
+    --steamboat-layer4: #C2D5E4;
+    --steamboat-layer5: #B3CBDE;
+
+    /* Maritime Accent Colors */
+    --steamboat-accent1: #2980B9;
+    /* Classic Navy */
+    --steamboat-accent2: #E74C3C;
+    /* Signal Red */
+    --steamboat-accent3: #16A085;
+    /* Teal */
+    --steamboat-accent4: rgba(41, 128, 185, 0.7);
+    --steamboat-accent5: rgba(231, 76, 60, 0.5);
 
     /* Theme Variables */
-    --ws-shadow: rgba(52, 152, 219, 0.2);
-    --ws-radius: 4px;
-    --ws-transition: 0.25s ease-in-out;
-    --ws-hover: #EAF2F8;
-    --ws-current-day: #D6EAF8;
+    --steamboat-shadow: rgba(41, 128, 185, 0.15);
+    --steamboat-radius: 8px;
+    --steamboat-transition: 0.3s ease-in-out;
+    --steamboat-hover: #2472A4;
+    --steamboat-glow: 0 0 12px rgba(41, 128, 185, 0.25);
+    --steamboat-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%232980B9"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%232980B9"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%232980B9"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes ws-ripple {
-    0% {
-        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+@keyframes steamboat-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
     }
 
-    100% {
-        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    50% {
+        opacity: 1;
     }
 }
 
-@keyframes ws-wave {
+@keyframes steamboat-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes steamboat-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--steamboat-shadow);
+    }
+
+    50% {
+        box-shadow: var(--steamboat-glow);
+    }
+}
+
+@keyframes steamboat-wave {
     0% {
-        background-position-x: 0;
+        background-position: 0 0;
     }
 
     100% {
-        background-position-x: 100px;
+        background-position: 1000px 0;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .white-steamboat {
     font-family: 'Lato', sans-serif;
-    color: var(--ws-text);
+    color: var(--steamboat-text);
     line-height: 1.6;
-    background: var(--ws-bg);
+    font-size: 1rem;
+    background-color: var(--steamboat-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        linear-gradient(90deg,
-            var(--ws-bg) 90%,
-            rgba(52, 152, 219, 0.05) 100%);
-    background-size: 100px 100%;
-}
-
-.white-steamboat::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image:
-        linear-gradient(rgba(52, 152, 219, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(52, 152, 219, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-    pointer-events: none;
-    z-index: 0;
+        url('data:image/svg+xml;utf8,<svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg" opacity="0.05"><path d="M0,10 C20,15 40,5 60,15 C80,5 100,15 100,10 L100,20 L0,20 Z" fill="%232980B9"/></svg>'),
+        linear-gradient(to bottom, var(--steamboat-bg), var(--steamboat-layer5));
+    background-repeat: repeat-x;
+    background-position: bottom;
+    animation: steamboat-wave 60s linear infinite;
 }
 
 .white-steamboat .container {
-    background-color: white;
+    background-color: var(--steamboat-primary);
     padding: 2rem;
-    border: 1px solid var(--ws-primary);
-    box-shadow: 0 5px 15px var(--ws-shadow);
+    border: 1px solid var(--steamboat-accent4);
+    box-shadow: var(--steamboat-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
-    margin: 2rem auto;
-    border-radius: var(--ws-radius);
-    z-index: 1;
+    margin: 0 auto;
+    border-radius: var(--steamboat-radius);
 }
 
 .white-steamboat .container::before {
@@ -115,55 +125,71 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg,
-            transparent,
-            var(--ws-primary),
-            var(--ws-teal),
-            transparent);
+            var(--steamboat-accent1) 0%,
+            var(--steamboat-accent2) 50%,
+            var(--steamboat-accent1) 100%);
+}
+
+.white-steamboat .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--steamboat-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .white-steamboat #calendar-title {
     font-family: 'Playfair Display', serif;
-    color: var(--ws-primary);
+    color: var(--steamboat-text);
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
     position: relative;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 700;
 }
 
-.white-steamboat #calendar-title::before,
 .white-steamboat #calendar-title::after {
-    content: "⛵";
+    content: "⛴";
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--ws-gold);
-    font-size: 1.5rem;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
     opacity: 0.8;
-}
-
-.white-steamboat #calendar-title::before {
-    left: 1rem;
-}
-
-.white-steamboat #calendar-title::after {
-    right: 1rem;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .white-steamboat #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background-color: rgba(52, 152, 219, 0.1);
-    border: 1px dashed var(--ws-primary);
-    border-radius: var(--ws-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--steamboat-primary);
+    border: 1px solid var(--steamboat-accent4);
+    border-radius: var(--steamboat-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.white-steamboat #date-weather-container::before {
+    content: "NAUTICAL CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--steamboat-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--steamboat-text);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
 }
 
 .white-steamboat #date-weather-container::after {
@@ -172,56 +198,45 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--ws-primary),
-            transparent);
+    background: linear-gradient(90deg, transparent, var(--steamboat-accent1), transparent);
 }
 
 .white-steamboat #current-date {
     font-family: 'Playfair Display', serif;
-    color: var(--ws-primary);
+    color: var(--steamboat-text);
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .white-steamboat #today-weather {
     font-family: 'Lato', sans-serif;
-    color: var(--ws-secondary);
+    color: var(--steamboat-text);
     font-size: 1.2rem;
     font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .white-steamboat #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .white-steamboat .clock-face {
     width: 180px;
     height: 180px;
-    border: 2px solid var(--ws-primary);
+    border: 6px solid var(--steamboat-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: white;
-    box-shadow:
-        0 0 10px var(--ws-shadow),
-        inset 0 0 10px rgba(52, 152, 219, 0.1);
-}
-
-.white-steamboat .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%233498DB">9</text></svg>');
+    background-color: var(--steamboat-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--steamboat-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%232980B9" stroke-width="0.5" opacity="0.3"/></svg>');
 }
 
 .white-steamboat .hand {
@@ -230,126 +245,136 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .white-steamboat .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--ws-primary);
-    margin-top: -2px;
-    border-radius: 2px;
+    height: 6px;
+    background: var(--steamboat-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
 }
 
 .white-steamboat .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--ws-secondary);
-    margin-top: -1px;
-    border-radius: 1px;
+    height: 4px;
+    background: var(--steamboat-accent3);
+    margin-top: -2px;
+    border-radius: 2px;
 }
 
 .white-steamboat .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--ws-red);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--steamboat-accent2);
+    margin-top: -1px;
 }
 
+/* Clock center ornament */
 .white-steamboat .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background-color: var(--ws-gold);
+    width: 12px;
+    height: 12px;
+    background-color: var(--steamboat-accent1);
     border-radius: 50%;
-    border: 1px solid var(--ws-brown);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--steamboat-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .white-steamboat table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: white;
-    border: 1px solid var(--ws-primary);
-    border-radius: var(--ws-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
-    box-shadow: 0 2px 10px var(--ws-shadow);
 }
 
+/* DAY OF WEEK HEADERS */
 .white-steamboat th {
-    background-color: rgba(52, 152, 219, 0.1);
-    color: var(--ws-primary) !important;
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--ws-primary);
+    background-color: var(--steamboat-accent1);
+    color: white !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--steamboat-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-transform: uppercase;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
 }
 
-.white-steamboat th .full-day {
+.white-steamboat th span.full-day-name {
     display: inline;
 }
 
-.white-steamboat th .short-day {
+.white-steamboat th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .white-steamboat td {
-    background-color: white;
-    color: var(--ws-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid rgba(52, 152, 219, 0.3);
+    background-color: var(--steamboat-primary);
+    color: var(--steamboat-text);
+    padding: 1rem;
+    border: 1px solid var(--steamboat-accent4);
     height: 90px;
     vertical-align: top;
-    transition: all var(--ws-transition);
+    transition: all var(--steamboat-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--steamboat-radius);
+}
+
+.white-steamboat td .date-number {
+    color: var(--steamboat-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Playfair Display', serif;
 }
 
 .white-steamboat td:hover {
-    background-color: var(--ws-hover);
+    background-color: var(--steamboat-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.white-steamboat .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: var(--ws-text);
-}
-
+/* Current date highlight */
 .white-steamboat td.current-day {
-    background-color: var(--ws-current-day);
-    border: 2px solid var(--ws-primary);
-    color: var(--ws-primary) !important;
-    font-weight: 600;
+    background-color: rgba(41, 128, 185, 0.15);
+    border: 2px solid var(--steamboat-accent1);
+    animation: steamboat-pulse 3s infinite;
 }
 
 .white-steamboat td.current-day .date-number {
-    color: var(--ws-primary) !important;
+    color: var(--steamboat-text) !important;
     font-weight: 700;
 }
 
 .white-steamboat td.current-day::before {
-    content: "📍";
+    content: "⚓";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--ws-red);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    color: var(--steamboat-accent1);
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -358,38 +383,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--ws-primary);
+    background-color: var(--steamboat-accent1);
     margin: 0 1px;
-    transition: all var(--ws-transition);
-    border: 1px solid white;
+    transition: all var(--steamboat-transition);
 }
 
 .white-steamboat .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--ws-secondary);
-}
-
-.white-steamboat .event-marker.holiday {
-    background-color: var(--ws-red);
-}
-
-.white-steamboat .event-marker.historic {
-    background-color: var(--ws-brown);
-}
-
-.white-steamboat .event-marker.patriotic {
-    background-color: var(--ws-gold);
+    transform: scale(1.4);
+    background-color: var(--steamboat-accent2);
+    box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .white-steamboat .modal-content {
     position: relative;
-    background-color: white;
-    border: 2px solid var(--ws-primary);
+    background-color: var(--steamboat-primary);
+    border: 1px solid var(--steamboat-accent4);
     padding: 25px;
-    color: var(--ws-text);
-    box-shadow: 0 5px 20px var(--ws-shadow);
-    border-radius: var(--ws-radius);
+    color: var(--steamboat-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--steamboat-radius);
+    animation: steamboat-rise 0.3s ease-out;
 }
 
 .white-steamboat .modal-content::before {
@@ -400,102 +414,143 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--ws-primary),
-            var(--ws-teal));
+            var(--steamboat-accent1) 0%,
+            var(--steamboat-accent2) 50%,
+            var(--steamboat-accent1) 100%);
 }
 
 .white-steamboat .modal-content h2 {
-    color: var(--ws-primary);
+    color: var(--steamboat-text);
     font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 15px;
     font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
-.white-steamboat .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* Modal date display */
+.white-steamboat .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--steamboat-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--steamboat-accent4);
 }
 
-.white-steamboat .modal-content .event-time {
-    display: block;
+/* Event list */
+.white-steamboat .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.white-steamboat .event-item {
+    background-color: var(--steamboat-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--steamboat-accent1);
+    border-radius: var(--steamboat-radius);
+    transition: all var(--steamboat-transition);
+}
+
+.white-steamboat .event-item:hover {
+    background-color: var(--steamboat-layer3);
+    transform: translateX(3px);
+}
+
+.white-steamboat .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--steamboat-text);
     font-weight: 600;
-    color: var(--ws-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
 }
 
-.white-steamboat .modal-content .event-description {
-    background-color: rgba(52, 152, 219, 0.1);
-    padding: 15px;
-    border-left: 3px solid var(--ws-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--ws-radius) var(--ws-radius) 0;
+.white-steamboat .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--steamboat-text);
+}
+
+.white-steamboat .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--steamboat-text);
+    opacity: 0.9;
 }
 
 .white-steamboat .modal-content button {
-    background-color: var(--ws-primary);
+    background-color: var(--steamboat-accent1);
     color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--ws-transition);
-    border-radius: var(--ws-radius);
+    transition: all var(--steamboat-transition);
+    letter-spacing: 0.5px;
     font-family: 'Lato', sans-serif;
+    border-radius: var(--steamboat-radius);
 }
 
 .white-steamboat .modal-content button:hover {
-    background-color: var(--ws-secondary);
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px var(--ws-shadow);
+    background-color: var(--steamboat-hover);
+    box-shadow: 0 3px 10px rgba(41, 128, 185, 0.2);
 }
 
+/* Close Button */
 .white-steamboat .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--ws-primary);
-    border: 1px solid var(--ws-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--steamboat-primary);
+    color: var(--steamboat-text);
+    border: 1px solid var(--steamboat-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--ws-transition);
+    transition: all var(--steamboat-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .white-steamboat .modal .close-button:hover {
-    background-color: var(--ws-primary);
-    color: white;
+    background-color: var(--steamboat-text);
+    color: var(--steamboat-accent1);
+    border-color: var(--steamboat-text);
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .white-steamboat .button,
 .white-steamboat .transparent-button {
-    border: 1px solid var(--ws-primary);
-    color: var(--ws-primary);
+    border: 1px solid var(--steamboat-accent1);
+    color: var(--steamboat-text);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
+    padding: 0.8rem 1.5rem;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--ws-transition);
+    transition: all var(--steamboat-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--ws-radius);
+    margin: 0.4rem;
+    border-radius: var(--steamboat-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .white-steamboat .button:hover,
 .white-steamboat .transparent-button:hover {
-    background-color: var(--ws-primary);
+    background-color: var(--steamboat-accent1);
     color: white;
-    box-shadow: 0 2px 5px var(--ws-shadow);
+    box-shadow: 0 3px 10px rgba(41, 128, 185, 0.15);
 }
 
 .white-steamboat .controls {
@@ -503,42 +558,50 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .white-steamboat #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 0.8rem;
     min-width: 200px;
     z-index: 1000;
 }
 
 .white-steamboat #theme-switcher {
-    background-color: white;
-    color: var(--ws-primary) !important;
-    border: 1px solid var(--ws-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    background-color: var(--steamboat-primary);
+    color: var(--steamboat-text) !important;
+    border: 1px solid var(--steamboat-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
     font-family: 'Lato', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     width: 100%;
-    border-radius: var(--ws-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233498DB'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C3E50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--ws-transition);
-    box-shadow: 0 1px 3px 0 var(--ws-shadow);
+    transition: all var(--steamboat-transition);
+    border-radius: var(--steamboat-radius);
+}
+
+.white-steamboat #theme-switcher option {
+    background-color: var(--steamboat-primary) !important;
+    color: var(--steamboat-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
 }
 
 .white-steamboat #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+    border-color: var(--steamboat-accent1);
+    box-shadow: 0 0 0 2px rgba(41, 128, 185, 0.2);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -547,46 +610,41 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--ws-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
-    color: var(--ws-primary);
-    background-color: white;
+    color: white;
+    background-color: var(--steamboat-accent1);
     cursor: pointer;
-    transition: all var(--ws-transition);
+    transition: all var(--steamboat-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--ws-radius);
-    box-shadow: 0 2px 5px var(--ws-shadow);
+    border-radius: var(--steamboat-radius);
+    box-shadow: 0 2px 8px rgba(41, 128, 185, 0.3);
 }
 
 .white-steamboat #backToTopBtn:hover {
-    background-color: var(--ws-primary);
-    color: white;
+    background-color: var(--steamboat-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .white-steamboat footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--ws-primary);
-    color: var(--ws-text);
-    font-size: 0.8rem;
-}
-
-.white-steamboat footer::before {
-    content: "⚓";
-    color: var(--ws-primary);
+    border-top: 1px solid var(--steamboat-accent4);
+    color: var(--steamboat-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .white-steamboat .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .white-steamboat #calendar-title {
@@ -601,13 +659,81 @@
         font-size: 1.1rem;
     }
 
-    .white-steamboat th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
+    .white-steamboat .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .white-steamboat .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
+    .white-steamboat {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .white-steamboat .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .white-steamboat th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .white-steamboat th span.full-day-name {
+        display: none;
+    }
+
+    .white-steamboat th abbr {
+        display: inline;
+    }
+
+    .white-steamboat td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .white-steamboat td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .white-steamboat td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .white-steamboat #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .white-steamboat #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .white-steamboat .modal-content {
+        padding: 20px;
+    }
+
+    .white-steamboat .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
     .white-steamboat .container {
         padding: 1rem;
     }
@@ -616,113 +742,71 @@
         font-size: 1.7rem;
     }
 
+    .white-steamboat #current-date {
+        font-size: 1.3rem;
+    }
+
+    .white-steamboat #today-weather {
+        font-size: 1rem;
+    }
+
     .white-steamboat .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Switch to short day names */
-    .white-steamboat th .full-day {
-        display: none;
-    }
-
-    .white-steamboat th .short-day {
-        display: inline;
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
     }
 
     .white-steamboat th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .white-steamboat td {
-        padding: 0.6rem 0.15rem;
+        padding: 0.6rem;
         height: 70px;
         font-size: 0.8rem;
     }
 
-    .white-steamboat #backToTopBtn {
-        right: 15px;
-        bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+    .white-steamboat td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
 
     .white-steamboat #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
-        min-width: 170px;
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
     .white-steamboat .modal-content {
         padding: 15px;
     }
 
-    .white-steamboat .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .white-steamboat .container {
-        padding: 0.8rem;
+    .white-steamboat .modal-date {
+        font-size: 1.2rem;
     }
 
-    .white-steamboat #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .white-steamboat #current-date {
-        font-size: 1.1rem;
-    }
-
-    .white-steamboat #today-weather {
+    .white-steamboat .event-time {
         font-size: 0.9rem;
-    }
-
-    .white-steamboat .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .white-steamboat th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .white-steamboat td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .white-steamboat td.current-day::before {
-        font-size: 0.7rem;
-    }
-
-    .white-steamboat #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .white-steamboat th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .white-steamboat td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 60px;
+    }
+
+    .white-steamboat td .date-number {
+        font-size: 0.9rem;
     }
 
     .white-steamboat #theme-switcher {
         min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .white-steamboat #calendar-title {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 }
