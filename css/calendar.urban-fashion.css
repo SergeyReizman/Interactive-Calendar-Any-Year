@@ -1,52 +1,55 @@
 /* ==========================================================================
-   Urban Fashion Theme - Stylish Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Urban color scheme
-   - Fashion-forward design
-   - Mobile-responsive layout
-   - Streetwear-inspired accents
-   - Enhanced readability
-   - Trendy aesthetic
-   - High contrast elements
+   Urban Fashion Theme - Metropolitan Calendar with Streetwear Edge
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Urban color palette with bold contrasts
+   - Streetwear-inspired design elements
+   - Modern typography with industrial accents
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Urbanist:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;700&display=swap');
 
 :root {
-    /* Urban Color Palette */
-    --uf-bg: #121212;
-    --uf-text: #f0f0f0;
-    --uf-primary: #333333;
-    --uf-secondary: #555555;
+    /* Urban Fashion Color Palette */
+    --urban-bg: #F0F0F0;
+    --urban-text: #222222;
+    --urban-primary: #FFFFFF;
+    --urban-secondary: #E5E5E5;
+    --urban-date-number: #E74C3C;
 
-    /* Accent Colors */
-    --uf-accent-red: #ff3366;
-    --uf-accent-white: #ffffff;
-    --uf-accent-gold: #ffd700;
-    --uf-accent-purple: #9b59b6;
-    --uf-accent-teal: #1abc9c;
+    /* Urban Layer Colors */
+    --urban-layer1: #E5E5E5;
+    --urban-layer2: #D9D9D9;
+    --urban-layer3: #CCCCCC;
+    --urban-layer4: #BFBFBF;
+    --urban-layer5: #B3B3B3;
 
-    /* Gradient Colors */
-    --uf-gradient-start: #1a1a1a;
-    --uf-gradient-end: #2a2a2a;
+    /* Street Accent Colors */
+    --urban-accent1: #2C3E50;
+    /* Midnight Blue */
+    --urban-accent2: #E74C3C;
+    /* Signal Red */
+    --urban-accent3: #7F8C8D;
+    /* Asphalt */
+    --urban-accent4: rgba(44, 62, 80, 0.7);
+    --urban-accent5: rgba(231, 76, 60, 0.5);
 
     /* Theme Variables */
-    --uf-shadow: rgba(51, 51, 51, 0.3);
-    --uf-radius: 8px;
-    --uf-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --uf-hover: #2a2a2a;
-    --uf-current-day: #3a3a3a;
-    --uf-line-size: 1px;
+    --urban-shadow: rgba(44, 62, 80, 0.15);
+    --urban-radius: 4px;
+    --urban-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --urban-hover: #1A252F;
+    --urban-glow: 0 0 12px rgba(44, 62, 80, 0.25);
+    --urban-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><rect width="1200" height="6" fill="%232C3E50" opacity="0.1"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes uf-pulse {
+@keyframes urban-fade {
 
     0%,
     100% {
-        opacity: 0.8;
+        opacity: 0.95;
     }
 
     50% {
@@ -54,58 +57,65 @@
     }
 }
 
-@keyframes uf-glowing-border {
+@keyframes urban-slide {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes urban-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--urban-shadow);
+    }
+
+    50% {
+        box-shadow: var(--urban-glow);
+    }
+}
+
+@keyframes urban-grid {
     0% {
-        box-shadow: 0 0 5px var(--uf-accent-gold);
-    }
-
-    50% {
-        box-shadow: 0 0 15px var(--uf-accent-gold);
+        background-position: 0 0;
     }
 
     100% {
-        box-shadow: 0 0 5px var(--uf-accent-gold);
-    }
-}
-
-@keyframes uf-fade {
-
-    0%,
-    100% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 1;
+        background-position: 40px 40px;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .urban-fashion {
-    font-family: 'Urbanist', sans-serif;
-    color: var(--uf-text);
-    line-height: 1.6;
-    background: var(--uf-bg);
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--urban-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--urban-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        linear-gradient(to bottom,
-            var(--uf-gradient-start),
-            var(--uf-gradient-end));
+        url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" opacity="0.05"><rect x="0" y="0" width="40" height="1" fill="%23222222"/><rect x="0" y="0" width="1" height="40" fill="%23222222"/></svg>'),
+        linear-gradient(to bottom, var(--urban-bg), var(--urban-layer5));
+    background-repeat: repeat;
+    animation: urban-grid 60s linear infinite;
 }
 
 .urban-fashion .container {
-    background-color: rgba(18, 18, 18, 0.95);
+    background-color: var(--urban-primary);
     padding: 2rem;
-    border: 1px solid var(--uf-primary);
-    box-shadow: 0 0 20px var(--uf-shadow);
+    border: 1px solid var(--urban-accent4);
+    box-shadow: var(--urban-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--uf-radius);
-    z-index: 1;
+    border-radius: var(--urban-radius);
 }
 
 .urban-fashion .container::before {
@@ -116,128 +126,120 @@
     right: 0;
     height: 3px;
     background: linear-gradient(90deg,
-            transparent,
-            var(--uf-primary),
-            var(--uf-secondary),
-            transparent);
+            var(--urban-accent1) 0%,
+            var(--urban-accent2) 50%,
+            var(--urban-accent1) 100%);
 }
 
-/* Street pattern overlay */
 .urban-fashion .container::after {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 25px 25px;
-    pointer-events: none;
-    z-index: -1;
+    height: 6px;
+    background-image: var(--urban-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .urban-fashion #calendar-title {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--uf-text);
+    font-family: 'Oswald', sans-serif;
+    color: var(--urban-text);
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
     position: relative;
-    text-shadow: 0 0 5px var(--uf-shadow);
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-.urban-fashion #calendar-title::before,
 .urban-fashion #calendar-title::after {
-    content: "✧";
+    content: "🛹";
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--uf-secondary);
-    font-size: 1.5rem;
-}
-
-.urban-fashion #calendar-title::before {
-    left: 1rem;
-}
-
-.urban-fashion #calendar-title::after {
-    right: 1rem;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .urban-fashion #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(51, 51, 51, 0.1);
-    border: 1px solid var(--uf-primary);
-    border-radius: var(--uf-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--urban-primary);
+    border: 1px solid var(--urban-accent4);
+    border-radius: var(--urban-radius);
     position: relative;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.urban-fashion #date-weather-container::before {
+    content: "STREET CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--urban-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--urban-text);
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
 }
 
 .urban-fashion #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--uf-primary),
-            transparent);
+    background: linear-gradient(90deg, transparent, var(--urban-accent1), transparent);
 }
 
 .urban-fashion #current-date {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--uf-text);
+    font-family: 'Oswald', sans-serif;
+    color: var(--urban-text);
     font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .urban-fashion #today-weather {
-    font-family: 'Urbanist', sans-serif;
-    color: var(--uf-secondary);
+    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--urban-text);
     font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+    font-weight: 400;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .urban-fashion #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .urban-fashion .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--uf-primary);
+    border: 6px solid var(--urban-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--uf-bg);
-    box-shadow:
-        0 0 10px var(--uf-shadow),
-        inset 0 0 5px rgba(255, 255, 255, 0.05);
-}
-
-/* Clock numerals */
-.urban-fashion .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.5"><text x="50" y="18" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23f0f0f0">12</text><text x="82" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23f0f0f0">3</text><text x="50" y="92" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23f0f0f0">6</text><text x="18" y="55" text-anchor="middle" font-family="Montserrat" font-size="12" fill="%23f0f0f0">9</text></svg>');
+    background-color: var(--urban-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="48" y="5" width="4" height="10" fill="%232C3E50" opacity="0.3"/><rect x="48" y="85" width="4" height="10" fill="%232C3E50" opacity="0.3"/><rect x="5" y="48" width="10" height="4" fill="%232C3E50" opacity="0.3"/><rect x="85" y="48" width="10" height="4" fill="%232C3E50" opacity="0.3"/></svg>');
 }
 
 .urban-fashion .hand {
@@ -246,126 +248,135 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .urban-fashion .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--uf-text);
-    margin-top: -2px;
+    height: 6px;
+    background: var(--urban-accent1);
+    margin-top: -3px;
 }
 
 .urban-fashion .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--uf-secondary);
-    margin-top: -1px;
+    height: 4px;
+    background: var(--urban-accent3);
+    margin-top: -2px;
 }
 
 .urban-fashion .second-hand {
     width: 48%;
     left: 2%;
-    height: 1px;
-    background: var(--uf-accent-red);
-    margin-top: -0.5px;
+    height: 2px;
+    background: var(--urban-accent2);
+    margin-top: -1px;
 }
 
-/* Clock center */
+/* Clock center ornament */
 .urban-fashion .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background-color: var(--uf-text);
+    width: 12px;
+    height: 12px;
+    background-color: var(--urban-accent1);
     border-radius: 50%;
-    border: 1px solid var(--uf-primary);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--urban-primary);
 }
 
 /* ==================== CALENDAR TABLE ==================== */
 .urban-fashion table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(25, 25, 25, 0.9);
-    border: 1px solid var(--uf-primary);
-    border-radius: var(--uf-radius);
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
+/* DAY OF WEEK HEADERS */
 .urban-fashion th {
-    background-color: rgba(51, 51, 51, 0.2);
-    color: var(--uf-text) !important;
-    font-family: 'Urbanist', sans-serif;
+    background-color: var(--urban-accent1);
+    color: white !important;
+    font-family: 'Oswald', sans-serif;
     font-weight: 600;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--uf-primary);
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--urban-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.urban-fashion th .full-day {
+.urban-fashion th span.full-day-name {
     display: inline;
 }
 
-.urban-fashion th .short-day {
+.urban-fashion th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .urban-fashion td {
-    background-color: rgba(20, 20, 20, 0.9);
-    color: var(--uf-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--uf-primary);
+    background-color: var(--urban-primary);
+    color: var(--urban-text);
+    padding: 1rem;
+    border: 1px solid var(--urban-accent4);
     height: 90px;
     vertical-align: top;
-    transition: all var(--uf-transition);
+    transition: all var(--urban-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--urban-radius);
+}
+
+.urban-fashion td .date-number {
+    color: var(--urban-date-number) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Oswald', sans-serif;
 }
 
 .urban-fashion td:hover {
-    background-color: var(--uf-hover);
-    box-shadow: inset 0 0 10px var(--uf-shadow);
+    background-color: var(--urban-secondary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.urban-fashion .date-number {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 3px;
-    color: var(--uf-text);
-}
-
+/* Current date highlight */
 .urban-fashion td.current-day {
-    background-color: var(--uf-current-day);
-    border: 2px solid var(--uf-accent-gold);
-    color: var(--uf-accent-gold) !important;
-    font-weight: 600;
-    animation: uf-glowing-border 3s infinite;
+    background-color: rgba(44, 62, 80, 0.15);
+    border: 2px solid var(--urban-accent1);
+    animation: urban-pulse 3s infinite;
 }
 
 .urban-fashion td.current-day .date-number {
-    color: var(--uf-accent-gold) !important;
+    color: var(--urban-text) !important;
     font-weight: 700;
 }
 
 .urban-fashion td.current-day::before {
-    content: "✧";
+    content: "📍";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--uf-accent-gold);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    color: var(--urban-accent2);
+    font-weight: bold;
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -374,40 +385,27 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--uf-primary);
+    background-color: var(--urban-accent1);
     margin: 0 1px;
-    box-shadow: 0 0 3px var(--uf-shadow);
-    transition: all var(--uf-transition);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--urban-transition);
 }
 
 .urban-fashion .event-marker:hover {
-    transform: scale(1.5);
-    background-color: var(--uf-secondary);
-}
-
-/* Special event types */
-.urban-fashion .event-marker.holiday {
-    background-color: var(--uf-accent-gold);
-}
-
-.urban-fashion .event-marker.fashion {
-    background-color: var(--uf-accent-purple);
-}
-
-.urban-fashion .event-marker.sale {
-    background-color: var(--uf-accent-teal);
+    transform: scale(1.4);
+    background-color: var(--urban-accent2);
+    box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .urban-fashion .modal-content {
     position: relative;
-    background-color: rgba(25, 25, 25, 0.98);
-    border: 1px solid var(--uf-primary);
+    background-color: var(--urban-primary);
+    border: 1px solid var(--urban-accent4);
     padding: 25px;
-    color: var(--uf-text);
-    box-shadow: 0 0 20px var(--uf-shadow);
-    border-radius: var(--uf-radius);
+    color: var(--urban-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--urban-radius);
+    animation: urban-slide 0.3s ease-out;
 }
 
 .urban-fashion .modal-content::before {
@@ -418,227 +416,250 @@
     right: 0;
     height: 4px;
     background: linear-gradient(90deg,
-            var(--uf-primary),
-            var(--uf-secondary),
-            var(--uf-accent-gold));
+            var(--urban-accent1) 0%,
+            var(--urban-accent2) 50%,
+            var(--urban-accent1) 100%);
 }
 
 .urban-fashion .modal-content h2 {
-    color: var(--uf-text);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.8em;
+    color: var(--urban-text);
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
     margin-bottom: 15px;
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.urban-fashion .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
-}
-
-.urban-fashion .modal-content .event-time {
-    display: block;
+/* Modal date display */
+.urban-fashion .modal-date {
+    font-family: 'Oswald', sans-serif;
+    color: var(--urban-text);
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--uf-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--urban-accent4);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.urban-fashion .modal-content .event-description {
-    background-color: rgba(51, 51, 51, 0.15);
-    padding: 15px;
-    border-left: 3px solid var(--uf-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--uf-radius) var(--uf-radius) 0;
+/* Event list */
+.urban-fashion .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.urban-fashion .event-item {
+    background-color: var(--urban-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--urban-accent1);
+    border-radius: var(--urban-radius);
+    transition: all var(--urban-transition);
+}
+
+.urban-fashion .event-item:hover {
+    background-color: var(--urban-layer3);
+    transform: translateX(3px);
+}
+
+.urban-fashion .event-time {
+    font-family: 'Oswald', sans-serif;
+    color: var(--urban-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.urban-fashion .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--urban-text);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.03em;
+}
+
+.urban-fashion .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--urban-text);
+    opacity: 0.9;
 }
 
 .urban-fashion .modal-content button {
-    background-color: var(--uf-primary);
-    color: var(--uf-text);
+    background-color: var(--urban-accent1);
+    color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--uf-transition);
-    border-radius: var(--uf-radius);
-    font-family: 'Urbanist', sans-serif;
+    transition: all var(--urban-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: var(--urban-radius);
+    text-transform: uppercase;
 }
 
 .urban-fashion .modal-content button:hover {
-    background-color: var(--uf-secondary);
-    box-shadow: 0 4px 6px -1px var(--uf-shadow);
+    background-color: var(--urban-hover);
+    box-shadow: 0 3px 10px rgba(44, 62, 80, 0.2);
 }
 
+/* Close Button */
 .urban-fashion .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--uf-text);
-    border: 1px solid var(--uf-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--urban-primary);
+    color: var(--urban-text);
+    border: 1px solid var(--urban-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--uf-transition);
+    transition: all var(--urban-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .urban-fashion .modal .close-button:hover {
-    background-color: var(--uf-primary);
-    color: var(--uf-bg);
+    background-color: var(--urban-text);
+    color: var(--urban-accent1);
+    border-color: var(--urban-text);
 }
 
-/* ==================== BUTTON STYLES ==================== */
-.urban-fashion button {
-    font-family: 'Urbanist', sans-serif;
-    background: linear-gradient(135deg, var(--uf-primary), var(--uf-secondary));
-    color: var(--uf-text);
-    border: none;
-    padding: 10px 24px;
-    font-size: 0.95em;
+/* ==================== BUTTONS & CONTROLS ==================== */
+.urban-fashion .button,
+.urban-fashion .transparent-button {
+    border: 1px solid var(--urban-accent1);
+    color: var(--urban-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--uf-transition);
-    border-radius: var(--uf-radius);
+    transition: all var(--urban-transition);
     position: relative;
     overflow: hidden;
-    box-shadow:
-        0 2px 5px var(--uf-shadow),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    margin: 0.4rem;
+    border-radius: var(--urban-radius);
     letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
 }
 
-.urban-fashion button:hover {
-    background: linear-gradient(135deg, var(--uf-secondary), var(--uf-primary));
-    box-shadow:
-        0 4px 8px var(--uf-shadow),
-        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-    transform: translateY(-2px);
+.urban-fashion .button:hover,
+.urban-fashion .transparent-button:hover {
+    background-color: var(--urban-accent1);
+    color: white;
+    box-shadow: 0 3px 10px rgba(44, 62, 80, 0.15);
 }
 
-.urban-fashion button:active {
-    transform: translateY(0);
-    box-shadow:
-        0 1px 3px var(--uf-shadow),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-}
-
-/* Button effect */
-.urban-fashion button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 70%);
-    transform: scale(0);
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-}
-
-.urban-fashion button:hover::before {
-    transform: scale(1);
-}
-
-/* Special button variants */
-.urban-fashion button.secondary {
-    background: linear-gradient(135deg, rgba(51, 51, 51, 0.1), rgba(85, 85, 85, 0.2));
-    color: var(--uf-secondary);
-    border: 1px solid var(--uf-primary);
-    box-shadow: none;
-}
-
-.urban-fashion button.secondary:hover {
-    background: linear-gradient(135deg, rgba(51, 51, 51, 0.2), rgba(85, 85, 85, 0.3));
-    color: var(--uf-text);
-}
-
-.urban-fashion button.danger {
-    background: linear-gradient(135deg, #ff3366, #ff6699);
-    box-shadow: 0 2px 5px rgba(255, 51, 102, 0.3);
-}
-
-.urban-fashion button.danger:hover {
-    background: linear-gradient(135deg, #ff6699, #ff3366);
-    box-shadow: 0 4px 8px rgba(255, 51, 102, 0.4);
-}
-
-/* Button with icon */
-.urban-fashion button.with-icon::after {
-    content: "→";
-    margin-left: 8px;
-    display: inline-block;
-}
-
-/* Small buttons */
-.urban-fashion button.small {
-    padding: 6px 12px;
-    font-size: 0.8em;
-}
-
-/* Button group styling */
-.urban-fashion .button-group {
+.urban-fashion .controls {
     display: flex;
-    gap: 12px;
-    margin: 20px 0;
-}
-
-.urban-fashion .button-group button {
-    flex: 1;
-}
-
-/* Floating action button */
-.urban-fashion .fab {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 1.5em;
-    padding: 0;
-    box-shadow:
-        0 4px 8px var(--uf-shadow),
-        0 0 15px rgba(51, 51, 51, 0.3);
-    z-index: 100;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
 }
 
-.urban-fashion .fab:hover {
-    transform: translateY(-2px) scale(1.05);
+/* ==================== THEME SWITCHER ==================== */
+.urban-fashion #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
 }
 
-/* Pulsing effect for important buttons */
-.urban-fashion button.important {
-    animation: uf-pulse 2s infinite;
+.urban-fashion #theme-switcher {
+    background-color: var(--urban-primary);
+    color: var(--urban-text) !important;
+    border: 1px solid var(--urban-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222222'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--urban-transition);
+    border-radius: var(--urban-radius);
 }
 
-/* Disabled button */
-.urban-fashion button:disabled {
-    background: rgba(51, 51, 51, 0.1);
-    color: rgba(240, 240, 240, 0.5);
-    cursor: not-allowed;
-    transform: none !important;
-    box-shadow: none !important;
+.urban-fashion #theme-switcher option {
+    background-color: var(--urban-primary) !important;
+    color: var(--urban-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.urban-fashion #theme-switcher:focus {
+    outline: none;
+    border-color: var(--urban-accent1);
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.urban-fashion #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--urban-accent1);
+    cursor: pointer;
+    transition: all var(--urban-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--urban-radius);
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
+    text-transform: uppercase;
+}
+
+.urban-fashion #backToTopBtn:hover {
+    background-color: var(--urban-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.urban-fashion footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--urban-accent4);
+    color: var(--urban-text);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .urban-fashion .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .urban-fashion #calendar-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .urban-fashion #current-date {
@@ -649,92 +670,154 @@
         font-size: 1.1rem;
     }
 
-    .urban-fashion th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
+    .urban-fashion .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .urban-fashion .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .urban-fashion .container {
-        padding: 1rem;
-    }
-
-    .urban-fashion #calendar-title {
-        font-size: 1.7rem;
+    .urban-fashion {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .urban-fashion .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    .urban-fashion th .full-day {
-        display: none;
-    }
-
-    .urban-fashion th .short-day {
-        display: inline;
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
     }
 
     .urban-fashion th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .urban-fashion th span.full-day-name {
+        display: none;
+    }
+
+    .urban-fashion th abbr {
+        display: inline;
     }
 
     .urban-fashion td {
-        padding: 0.6rem 0.15rem;
-        height: 70px;
-        font-size: 0.8rem;
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .urban-fashion td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .urban-fashion td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .urban-fashion #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .urban-fashion #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .urban-fashion .modal-content {
+        padding: 20px;
+    }
+
+    .urban-fashion .event-item {
+        padding: 0.8rem;
     }
 }
 
 @media (max-width: 576px) {
     .urban-fashion .container {
-        padding: 0.8rem;
+        padding: 1rem;
     }
 
     .urban-fashion #calendar-title {
-        font-size: 1.4rem;
+        font-size: 2rem;
     }
 
     .urban-fashion #current-date {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .urban-fashion #today-weather {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .urban-fashion .clock-face {
-        width: 110px;
-        height: 110px;
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
     }
 
     .urban-fashion th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
 
     .urban-fashion td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .urban-fashion td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .urban-fashion #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .urban-fashion .modal-content {
+        padding: 15px;
+    }
+
+    .urban-fashion .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .urban-fashion .event-time {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 400px) {
     .urban-fashion th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .urban-fashion td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 60px;
     }
 
-    .urban-fashion #calendar-title {
-        font-size: 1.2rem;
+    .urban-fashion td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .urban-fashion #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
     }
 }
