@@ -1,60 +1,55 @@
 /* ==========================================================================
-   Sweet Misty Morning Theme - Calendar UI
-   Version: 4.1
-   Updated: 2025-06-25
-   Features:
-   - Soft pastel color scheme
-   - Optimized weekday headers
-   - Mobile-responsive design
-   - Nature-inspired UI elements
-   - Gentle animation effects
-   - Enhanced accessibility
-   - Subtle watercolor textures
-   - Fluid typography
+   Sweet Misty Morning Theme - Soft Pastel Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Gentle pastel color palette
+   - Soft misty design elements with morning motifs
+   - Delicate typography with dreamy influences
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Quicksand:wght@400;500;600&display=swap');
 
 :root {
-    /* Pastel Color Palette */
-    --misty-bg: #f8f5f2;
-    --misty-text: #5a5a72;
-    --misty-primary: #b8a9c9;
+    /* Misty Morning Color Palette */
+    --mist-bg: #F8F5F9;
+    --mist-text: #5A5A72;
+    --mist-primary: #FDFCFD;
+    --mist-secondary: #F9F7FA;
+    --mist-date-number: #A78AAC;
+
+    /* Soft Layer Colors */
+    --mist-layer1: #F9F7FA;
+    --mist-layer2: #F5F2F7;
+    --mist-layer3: #F1EDF4;
+    --mist-layer4: #EDE9F1;
+    --mist-layer5: #E9E4EE;
+
+    /* Pastel Accent Colors */
+    --mist-accent1: #A78AAC;
     /* Lavender */
-    --misty-secondary: #d4e2d4;
-    /* Mint */
-
-    /* Gradient Colors */
-    --misty-gradient-start: #f0e6f6;
-    --misty-gradient-end: #e6f6f0;
-
-    /* Accent Colors */
-    --misty-pink: #f2c2c2;
+    --mist-accent2: #B5C7D3;
+    /* Soft Blue */
+    --mist-accent3: #D4B8BF;
     /* Blush */
-    --misty-yellow: #f5e6c8;
-    /* Buttercream */
-    --misty-green: #c8e3d4;
-    /* Sage */
-    --misty-blue: #c2d4f2;
-    /* Sky */
-    --misty-peach: #f2d4c2;
-    /* Peach */
+    --mist-accent4: rgba(167, 138, 172, 0.7);
+    --mist-accent5: rgba(181, 199, 211, 0.5);
 
     /* Theme Variables */
-    --misty-shadow: rgba(184, 169, 201, 0.2);
-    --misty-radius: 8px;
-    /* Soft edges */
-    --misty-transition: 0.3s ease-in-out;
-    --misty-hover: #f0eaea;
-    --misty-current-day: #e6e0f0;
+    --mist-shadow: rgba(167, 138, 172, 0.15);
+    --mist-radius: 8px;
+    --mist-transition: 0.3s ease-in-out;
+    --mist-hover: #8C6E91;
+    --mist-glow: 0 0 12px rgba(167, 138, 172, 0.15);
+    --mist-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V120H1200V0Z" opacity=".05" fill="%23A78AAC"/></svg>');
 }
 
 /* ==================== ANIMATIONS ==================== */
-@keyframes misty-fade {
+@keyframes mist-fade {
 
     0%,
     100% {
-        opacity: 0.9;
+        opacity: 0.95;
     }
 
     50% {
@@ -62,75 +57,64 @@
     }
 }
 
-@keyframes watercolor-flow {
+@keyframes mist-slide {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes mist-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--mist-shadow);
+    }
+
+    50% {
+        box-shadow: var(--mist-glow);
+    }
+}
+
+@keyframes mist-scroll {
     0% {
         background-position: 0 0;
     }
 
     100% {
-        background-position: 100px 100px;
-    }
-}
-
-@keyframes misty-float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
+        background-position: 1000px 0;
     }
 }
 
 /* ==================== BASE STYLES ==================== */
 .sweet-misty-morning {
     font-family: 'Quicksand', sans-serif;
-    color: var(--misty-text);
+    color: var(--mist-text);
     line-height: 1.6;
-    background: var(--misty-bg);
+    font-size: 1rem;
+    background-color: var(--mist-bg);
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
     background-image:
-        radial-gradient(circle at 10% 20%,
-            rgba(184, 169, 201, 0.05) 0%,
-            transparent 20%),
-        radial-gradient(circle at 90% 80%,
-            rgba(212, 226, 212, 0.05) 0%,
-            transparent 20%);
-    background-size: 100px 100px;
-    animation: watercolor-flow 30s linear infinite;
-}
-
-.sweet-misty-morning::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        linear-gradient(135deg,
-            var(--misty-gradient-start) 0%,
-            var(--misty-gradient-end) 100%);
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 0;
+        url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" opacity="0.03"><path d="M30,30 Q50,10 70,30 T90,70 Q70,90 50,70 T10,30 Q30,10 50,30 T90,30" fill="%23A78AAC"/></svg>'),
+        linear-gradient(to bottom, var(--mist-bg), var(--mist-layer5));
+    background-repeat: repeat;
 }
 
 .sweet-misty-morning .container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--mist-primary);
     padding: 2rem;
-    border: 1px solid var(--misty-primary);
-    box-shadow: 0 5px 15px var(--misty-shadow);
+    border: 1px solid var(--mist-accent1);
+    box-shadow: var(--mist-glow);
     position: relative;
     overflow: hidden;
     max-width: 1600px;
     margin: 0 auto;
-    border-radius: var(--misty-radius);
-    z-index: 1;
+    border-radius: var(--mist-radius);
 }
 
 .sweet-misty-morning .container::before {
@@ -141,119 +125,120 @@
     right: 0;
     height: 3px;
     background: linear-gradient(90deg,
-            transparent,
-            var(--misty-primary),
-            var(--misty-secondary),
-            transparent);
+            var(--mist-accent1) 0%,
+            var(--mist-accent2) 50%,
+            var(--mist-accent1) 100%);
     opacity: 0.7;
+}
+
+.sweet-misty-morning .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-image: var(--mist-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+    animation: mist-scroll 60s linear infinite;
 }
 
 /* ==================== HEADER & TITLE ==================== */
 .sweet-misty-morning #calendar-title {
     font-family: 'Playfair Display', serif;
-    color: var(--misty-primary);
+    color: var(--mist-accent1);
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
     letter-spacing: 0.05em;
     position: relative;
-    animation: misty-fade 5s infinite;
+    font-weight: 500;
 }
 
-.sweet-misty-morning #calendar-title::before,
 .sweet-misty-morning #calendar-title::after {
-    content: "🌸";
+    content: "☁";
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--misty-secondary);
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.5rem;
-    opacity: 0.7;
-}
-
-.sweet-misty-morning #calendar-title::before {
-    left: 1rem;
-}
-
-.sweet-misty-morning #calendar-title::after {
-    right: 1rem;
+    opacity: 0.6;
+    color: var(--mist-text);
 }
 
 /* ==================== DATE & WEATHER DISPLAY ==================== */
 .sweet-misty-morning #date-weather-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: rgba(184, 169, 201, 0.1);
-    border: 1px solid var(--misty-primary);
-    border-radius: var(--misty-radius);
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--mist-primary);
+    border: 1px solid var(--mist-accent1);
+    border-radius: var(--mist-radius);
     position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sweet-misty-morning #date-weather-container::before {
+    content: "Morning";
+    position: absolute;
+    top: -16px;
+    right: 20px;
+    background-color: var(--mist-primary);
+    padding: 0 10px;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--mist-accent1);
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
 }
 
 .sweet-misty-morning #date-weather-container::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--misty-primary),
-            transparent);
-    opacity: 0.5;
+    background: linear-gradient(90deg, transparent, var(--mist-accent1), transparent);
+    opacity: 0.3;
 }
 
 .sweet-misty-morning #current-date {
     font-family: 'Playfair Display', serif;
-    color: var(--misty-primary);
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
+    color: var(--mist-text);
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
 }
 
 .sweet-misty-morning #today-weather {
     font-family: 'Quicksand', sans-serif;
-    color: var(--misty-secondary);
+    color: var(--mist-text);
     font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.03em;
 }
 
 /* ==================== ANALOG CLOCK ==================== */
 .sweet-misty-morning #analog-watch {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 1.8rem 0;
 }
 
 .sweet-misty-morning .clock-face {
     width: 180px;
     height: 180px;
-    border: 1px solid var(--misty-primary);
+    border: 4px solid var(--mist-accent1);
     border-radius: 50%;
     position: relative;
-    background-color: var(--misty-bg);
-    box-shadow:
-        0 0 15px var(--misty-shadow),
-        inset 0 0 10px rgba(184, 169, 201, 0.1);
+    background-color: var(--mist-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
     background-image:
-        radial-gradient(circle at center,
-            transparent 65%,
-            rgba(184, 169, 201, 0.1) 100%);
-}
-
-/* Floral numerals for clock */
-.sweet-misty-morning .clock-face::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.2"><text x="50" y="18" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">12</text><text x="82" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">3</text><text x="50" y="92" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">6</text><text x="18" y="55" text-anchor="middle" font-family="Playfair Display" font-size="12" fill="%23b8a9c9">9</text></svg>');
+        radial-gradient(circle at center, transparent 65%, var(--mist-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23A78AAC" stroke-width="0.5" opacity="0.2"/></svg>');
 }
 
 .sweet-misty-morning .hand {
@@ -262,129 +247,138 @@
     transform-origin: 100%;
     transform: rotate(90deg);
     transition: all 0.05s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .sweet-misty-morning .hour-hand {
     width: 40%;
     left: 10%;
-    height: 4px;
-    background: var(--misty-primary);
-    margin-top: -2px;
+    height: 5px;
+    background: var(--mist-accent1);
+    margin-top: -2.5px;
+    border-radius: 3px;
+    opacity: 0.8;
 }
 
 .sweet-misty-morning .minute-hand {
     width: 48%;
     left: 2%;
-    height: 2px;
-    background: var(--misty-secondary);
-    margin-top: -1px;
+    height: 3px;
+    background: var(--mist-accent3);
+    margin-top: -1.5px;
+    border-radius: 2px;
 }
 
 .sweet-misty-morning .second-hand {
     width: 48%;
     left: 2%;
     height: 1px;
-    background: var(--misty-pink);
+    background: var(--mist-accent2);
     margin-top: -0.5px;
 }
 
-/* Clock center - Floral center */
+/* Clock center ornament */
 .sweet-misty-morning .clock-face::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
-    background-color: var(--misty-peach);
+    background-color: var(--mist-accent1);
     border-radius: 50%;
-    border: 1px solid var(--misty-secondary);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--mist-primary);
+    opacity: 0.8;
 }
 
-/* ==================== CALENDAR TABLE - OPTIMIZED HEADERS ==================== */
+/* ==================== CALENDAR TABLE ==================== */
 .sweet-misty-morning table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 2rem auto;
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--misty-primary);
-    border-radius: var(--misty-radius);
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
     table-layout: fixed;
 }
 
-/* Weekday headers - responsive solution */
+/* DAY OF WEEK HEADERS */
 .sweet-misty-morning th {
-    background-color: rgba(184, 169, 201, 0.15);
-    color: var(--misty-primary) !important;
-    font-family: 'Quicksand', sans-serif;
+    background-color: var(--mist-accent1);
+    color: white !important;
+    font-family: 'Playfair Display', serif;
     font-weight: 500;
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--misty-primary);
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--mist-radius);
     position: relative;
-    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
 }
 
-/* Full names for desktop */
-.sweet-misty-morning th .full-day {
+.sweet-misty-morning th span.full-day-name {
     display: inline;
 }
 
-/* Short names for mobile */
-.sweet-misty-morning th .short-day {
+.sweet-misty-morning th abbr {
     display: none;
+    text-decoration: none;
+    border-bottom: none;
 }
 
+/* DATE NUMBER STYLES */
 .sweet-misty-morning td {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: var(--misty-text);
-    padding: 0.8rem 0.3rem;
-    border: 1px solid var(--misty-primary);
+    background-color: var(--mist-primary);
+    color: var(--mist-text);
+    padding: 1rem;
+    border: 1px solid var(--mist-accent1);
     height: 90px;
     vertical-align: top;
-    transition: all var(--misty-transition);
+    transition: all var(--mist-transition);
     position: relative;
-    font-size: 0.85rem;
+    border-radius: var(--mist-radius);
+}
+
+.sweet-misty-morning td .date-number {
+    color: var(--mist-date-number) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Playfair Display', serif;
 }
 
 .sweet-misty-morning td:hover {
-    background-color: var(--misty-hover);
-    box-shadow: inset 0 0 15px var(--misty-shadow);
+    background-color: var(--mist-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.sweet-misty-morning .date-number {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 3px;
-    color: var(--misty-text);
-}
-
+/* Current date highlight */
 .sweet-misty-morning td.current-day {
-    background-color: var(--misty-current-day);
-    border: 2px solid var(--misty-secondary);
-    color: var(--misty-primary) !important;
-    font-weight: 600;
+    background-color: rgba(167, 138, 172, 0.1);
+    border: 1px solid var(--mist-accent2);
+    animation: mist-pulse 3s infinite;
 }
 
 .sweet-misty-morning td.current-day .date-number {
-    color: var(--misty-primary) !important;
-    font-weight: 700;
+    color: var(--mist-text) !important;
+    font-weight: 600;
 }
 
 .sweet-misty-morning td.current-day::before {
-    content: "🌿";
+    content: "☀";
     position: absolute;
-    top: 3px;
-    left: 3px;
-    color: var(--misty-secondary);
+    top: 5px;
+    right: 5px;
     z-index: 1;
-    opacity: 0.8;
-    font-size: 0.9rem;
-    animation: misty-float 3s infinite;
+    font-size: 1.1rem;
+    color: var(--mist-accent1);
 }
 
 /* ==================== EVENT MARKERS ==================== */
@@ -393,41 +387,28 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--misty-primary);
+    background-color: var(--mist-accent1);
     margin: 0 1px;
-    box-shadow: 0 0 5px var(--misty-shadow);
-    transition: all var(--misty-transition);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all var(--mist-transition);
+    opacity: 0.7;
 }
 
 .sweet-misty-morning .event-marker:hover {
-    transform: scale(1.8);
-    background-color: var(--misty-secondary);
-    box-shadow: 0 0 15px var(--misty-primary);
-}
-
-/* Special event types */
-.sweet-misty-morning .event-marker.holiday {
-    background-color: var(--misty-yellow);
-}
-
-.sweet-misty-morning .event-marker.historic {
-    background-color: var(--misty-blue);
-}
-
-.sweet-misty-morning .event-marker.patriotic {
-    background-color: var(--misty-pink);
+    transform: scale(1.4);
+    background-color: var(--mist-accent2);
+    box-shadow: 0 0 6px rgba(181, 199, 211, 0.3);
 }
 
 /* ==================== MODAL STYLES ==================== */
 .sweet-misty-morning .modal-content {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.98);
-    border: 1px solid var(--misty-primary);
+    background-color: var(--mist-primary);
+    border: 1px solid var(--mist-accent1);
     padding: 25px;
-    color: var(--misty-text);
-    box-shadow: 0 5px 20px var(--misty-shadow);
-    border-radius: var(--misty-radius);
+    color: var(--mist-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border-radius: var(--mist-radius);
+    animation: mist-slide 0.3s ease-out;
 }
 
 .sweet-misty-morning .modal-content::before {
@@ -436,123 +417,150 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg,
-            var(--misty-primary),
-            var(--misty-secondary),
-            var(--misty-pink));
+            var(--mist-accent1) 0%,
+            var(--mist-accent2) 50%,
+            var(--mist-accent1) 100%);
     opacity: 0.7;
 }
 
 .sweet-misty-morning .modal-content h2 {
-    color: var(--misty-primary);
+    color: var(--mist-text);
     font-family: 'Playfair Display', serif;
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 15px;
-    font-weight: 400;
+    font-weight: 500;
+    letter-spacing: 0.05em;
 }
 
-.sweet-misty-morning .modal-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* Modal date display */
+.sweet-misty-morning .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--mist-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--mist-accent1);
+    opacity: 0.8;
 }
 
-.sweet-misty-morning .modal-content .event-time {
-    display: block;
+/* Event list */
+.sweet-misty-morning .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sweet-misty-morning .event-item {
+    background-color: var(--mist-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--mist-accent1);
+    border-radius: var(--mist-radius);
+    transition: all var(--mist-transition);
+}
+
+.sweet-misty-morning .event-item:hover {
+    background-color: var(--mist-layer3);
+    transform: translateX(3px);
+}
+
+.sweet-misty-morning .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--mist-text);
     font-weight: 600;
-    color: var(--misty-secondary);
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    opacity: 0.8;
 }
 
-.sweet-misty-morning .modal-content .event-description {
-    background-color: rgba(184, 169, 201, 0.15);
-    padding: 15px;
-    border-left: 3px solid var(--misty-primary);
-    margin: 15px 0;
-    border-radius: 0 var(--misty-radius) var(--misty-radius) 0;
+.sweet-misty-morning .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--mist-text);
+}
+
+.sweet-misty-morning .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--mist-text);
+    opacity: 0.8;
 }
 
 .sweet-misty-morning .modal-content button {
-    background-color: var(--misty-primary);
+    background-color: var(--mist-accent1);
     color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 0.9em;
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--misty-transition);
-    border-radius: var(--misty-radius);
+    transition: all var(--mist-transition);
+    letter-spacing: 0.5px;
     font-family: 'Quicksand', sans-serif;
+    border-radius: var(--mist-radius);
 }
 
 .sweet-misty-morning .modal-content button:hover {
-    background-color: var(--misty-secondary);
-    box-shadow: 0 4px 6px -1px var(--misty-shadow);
+    background-color: var(--mist-hover);
+    box-shadow: 0 3px 10px rgba(167, 138, 172, 0.1);
 }
 
+/* Close Button */
 .sweet-misty-morning .modal .close-button {
     position: absolute;
     top: 12px;
     right: 12px;
-    background-color: transparent;
-    color: var(--misty-primary);
-    border: 1px solid var(--misty-primary);
-    width: 28px;
-    height: 28px;
+    background-color: var(--mist-primary);
+    color: var(--mist-text);
+    border: 1px solid var(--mist-text);
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    transition: all var(--misty-transition);
+    transition: all var(--mist-transition);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    font-weight: bold;
+    opacity: 0.7;
 }
 
 .sweet-misty-morning .modal .close-button:hover {
-    background-color: var(--misty-primary);
-    color: white;
+    background-color: var(--mist-text);
+    color: var(--mist-accent1);
+    border-color: var(--mist-text);
+    opacity: 1;
 }
 
 /* ==================== BUTTONS & CONTROLS ==================== */
 .sweet-misty-morning .button,
 .sweet-misty-morning .transparent-button {
-    border: 1px solid var(--misty-primary);
-    color: var(--misty-primary);
+    border: 1px solid var(--mist-accent1);
+    color: var(--mist-text);
     background-color: transparent;
-    padding: 0.7rem 1.4rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--misty-transition);
+    transition: all var(--mist-transition);
     position: relative;
     overflow: hidden;
-    margin: 0.5rem;
-    border-radius: var(--misty-radius);
-    letter-spacing: 0.05em;
-}
-
-.sweet-misty-morning .button::before,
-.sweet-misty-morning .transparent-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(184, 169, 201, 0.1), transparent);
-    transition: 0.5s;
+    margin: 0.4rem;
+    border-radius: var(--mist-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
 }
 
 .sweet-misty-morning .button:hover,
 .sweet-misty-morning .transparent-button:hover {
-    background-color: var(--misty-primary);
+    background-color: var(--mist-accent1);
     color: white;
-    box-shadow: 0 4px 6px -1px var(--misty-shadow);
-}
-
-.sweet-misty-morning .button:hover::before,
-.sweet-misty-morning .transparent-button:hover::before {
-    left: 100%;
+    box-shadow: 0 3px 10px rgba(167, 138, 172, 0.1);
 }
 
 .sweet-misty-morning .controls {
@@ -560,55 +568,50 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 /* ==================== THEME SWITCHER ==================== */
 .sweet-misty-morning #theme-switcher-container {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 0.8rem;
     min-width: 200px;
     z-index: 1000;
 }
 
 .sweet-misty-morning #theme-switcher {
-    background-color: var(--misty-bg);
-    color: var(--misty-primary) !important;
-    border: 1px solid var(--misty-primary);
-    padding: 0.7rem 2.2rem 0.7rem 0.9rem;
+    background-color: var(--mist-primary);
+    color: var(--mist-text) !important;
+    border: 1px solid var(--mist-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
     font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     width: 100%;
-    border-radius: var(--misty-radius);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b8a9c9'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235A5A72'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 0.9rem;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
     cursor: pointer;
-    transition: all var(--misty-transition);
-    box-shadow: 0 1px 3px 0 var(--misty-shadow);
+    transition: all var(--mist-transition);
+    border-radius: var(--mist-radius);
 }
 
 .sweet-misty-morning #theme-switcher option {
-    background-color: var(--misty-bg) !important;
-    color: var(--misty-primary) !important;
-    font-size: 0.9rem;
-    font-weight: 500;
+    background-color: var(--mist-primary) !important;
+    color: var(--mist-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
     padding: 10px 12px !important;
-}
-
-.sweet-misty-morning #theme-switcher option:hover {
-    background-color: var(--misty-primary) !important;
-    color: white !important;
 }
 
 .sweet-misty-morning #theme-switcher:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(184, 169, 201, 0.3);
+    border-color: var(--mist-accent1);
+    box-shadow: 0 0 0 2px rgba(167, 138, 172, 0.1);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
@@ -617,50 +620,46 @@
     right: 25px;
     bottom: 25px;
     z-index: 9999;
-    border: 1px solid var(--misty-primary);
-    padding: 0.9rem 1.6rem;
-    font-size: 0.9rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    color: var(--misty-primary);
-    background-color: var(--misty-bg);
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--mist-accent1);
     cursor: pointer;
-    transition: all var(--misty-transition);
+    transition: all var(--mist-transition);
     opacity: 0.9;
     display: none;
-    border-radius: var(--misty-radius);
-    box-shadow: 0 4px 6px -1px var(--misty-shadow);
+    border-radius: var(--mist-radius);
+    box-shadow: 0 2px 8px rgba(167, 138, 172, 0.2);
 }
 
 .sweet-misty-morning #backToTopBtn:hover {
-    background-color: var(--misty-primary);
-    color: white;
+    background-color: var(--mist-hover);
     opacity: 1;
 }
 
 /* ==================== FOOTER ==================== */
 .sweet-misty-morning footer {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     padding-top: 1.2rem;
-    border-top: 1px solid var(--misty-primary);
-    color: var(--misty-text);
-    font-size: 0.8rem;
-}
-
-.sweet-misty-morning footer::before {
-    content: "🌼 ";
-    color: var(--misty-primary);
+    border-top: 1px solid var(--mist-accent1);
+    color: var(--mist-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.8;
 }
 
 /* ==================== MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
     .sweet-misty-morning .container {
-        padding: 1.2rem;
+        padding: 1.5rem;
     }
 
     .sweet-misty-morning #calendar-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .sweet-misty-morning #current-date {
@@ -671,128 +670,154 @@
         font-size: 1.1rem;
     }
 
-    .sweet-misty-morning th {
-        font-size: 0.75rem;
-        padding: 0.7rem 0.2rem;
+    .sweet-misty-morning .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .sweet-misty-morning .event-title {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .sweet-misty-morning .container {
-        padding: 1rem;
-    }
-
-    .sweet-misty-morning #calendar-title {
-        font-size: 1.7rem;
+    .sweet-misty-morning {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .sweet-misty-morning .clock-face {
-        width: 140px;
-        height: 140px;
-    }
-
-    /* Switch to short day names */
-    .sweet-misty-morning th .full-day {
-        display: none;
-    }
-
-    .sweet-misty-morning th .short-day {
-        display: inline;
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
     }
 
     .sweet-misty-morning th {
-        font-size: 0.7rem;
-        padding: 0.6rem 0.15rem;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .sweet-misty-morning th span.full-day-name {
+        display: none;
+    }
+
+    .sweet-misty-morning th abbr {
+        display: inline;
     }
 
     .sweet-misty-morning td {
-        padding: 0.6rem 0.15rem;
-        height: 70px;
-        font-size: 0.8rem;
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .sweet-misty-morning td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .sweet-misty-morning td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
     }
 
     .sweet-misty-morning #backToTopBtn {
         right: 15px;
         bottom: 15px;
-        padding: 0.7rem 1.3rem;
-        font-size: 0.8rem;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     .sweet-misty-morning #theme-switcher {
-        padding: 0.6rem 1.8rem 0.6rem 0.7rem;
-        font-size: 0.8rem;
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
         min-width: 170px;
+    }
+
+    .sweet-misty-morning .modal-content {
+        padding: 20px;
+    }
+
+    .sweet-misty-morning .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .sweet-misty-morning .container {
+        padding: 1rem;
+    }
+
+    .sweet-misty-morning #calendar-title {
+        font-size: 2rem;
+    }
+
+    .sweet-misty-morning #current-date {
+        font-size: 1.3rem;
+    }
+
+    .sweet-misty-morning #today-weather {
+        font-size: 1rem;
+    }
+
+    .sweet-misty-morning .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .sweet-misty-morning th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .sweet-misty-morning td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .sweet-misty-morning td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .sweet-misty-morning #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
     }
 
     .sweet-misty-morning .modal-content {
         padding: 15px;
     }
 
-    .sweet-misty-morning .modal-content h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 576px) {
-    .sweet-misty-morning .container {
-        padding: 0.8rem;
+    .sweet-misty-morning .modal-date {
+        font-size: 1.2rem;
     }
 
-    .sweet-misty-morning #calendar-title {
-        font-size: 1.4rem;
-    }
-
-    .sweet-misty-morning #current-date {
-        font-size: 1.1rem;
-    }
-
-    .sweet-misty-morning #today-weather {
+    .sweet-misty-morning .event-time {
         font-size: 0.9rem;
-    }
-
-    .sweet-misty-morning .clock-face {
-        width: 110px;
-        height: 110px;
-    }
-
-    .sweet-misty-morning th {
-        font-size: 0.65rem;
-        padding: 0.5rem 0.1rem;
-    }
-
-    .sweet-misty-morning td {
-        padding: 0.4rem 0.1rem;
-        height: 60px;
-        font-size: 0.75rem;
-    }
-
-    .sweet-misty-morning td.current-day::before {
-        font-size: 0.7rem;
-    }
-
-    .sweet-misty-morning #theme-switcher {
-        min-width: 150px;
-        font-size: 0.75rem;
     }
 }
 
 @media (max-width: 400px) {
     .sweet-misty-morning th {
-        font-size: 0.6rem;
-        padding: 0.4rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
 
     .sweet-misty-morning td {
-        height: 50px;
-        font-size: 0.7rem;
+        height: 60px;
+    }
+
+    .sweet-misty-morning td .date-number {
+        font-size: 0.9rem;
     }
 
     .sweet-misty-morning #theme-switcher {
         min-width: 130px;
-        font-size: 0.7rem;
-    }
-
-    .sweet-misty-morning #calendar-title {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 }
