@@ -1,385 +1,814 @@
-/* ============================
-    Wild Wonders Theme - Natural, Adventurous, and Vibrant!
-    Purpose: Styles specific to the Wild Wonders theme for the calendar.
-    ============================ */
+/* ==========================================================================
+   Wild Wonders Theme - Nature-Inspired Calendar Celebrating Earth's Beauty
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Earthy natural color palette
+   - Wildlife and foliage elements
+   - Organic textures and patterns
+   ========================================================================== */
 
-    :root {
-        --wild-wonders-bg-color: #f0f4f8; /* Light natural background */
-        --wild-wonders-text-color: #2c3e50; /* Deep blue-gray for text */
-        --wild-wonders-primary-color: #27ae60; /* Bright green */
-        --wild-wonders-secondary-color: #2ecc71; /* Lighter green */
-        --wild-wonders-accent-color-1: #16a085; /* Muted teal */
-        --wild-wonders-accent-color-2: #1abc9c; /* Bright teal */
-        --wild-wonders-accent-color-3: #2980b9; /* Deep blue */
-        --wild-wonders-accent-color-4: #3498db; /* Light blue */
-        --wild-wonders-accent-color-5: #8e44ad; /* Vibrant purple */
-        --wild-wonders-shadow-color: rgba(0, 0, 0, 0.2);
-        --wild-wonders-border-radius: 20px;
-        --wild-wonders-gradient-start: #f0f4f8;
-        --wild-wonders-gradient-end: #dfe6e9;
-        --wild-wonders-hover-color: #2ecc71; /* Brighter green for hover */
-        --wild-wonders-current-day-bg: #27ae60; /* Bright green for current day */
-        --transition-duration: 0.3s;
-        --transition-easing: ease-in-out;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+:root {
+    /* Wild Wonders Color Palette */
+    --wild-bg: #F5F7F2;
+    --wild-text: #3A4A3D;
+    --wild-primary: #EDF2E9;
+    --wild-secondary: #E2E8DD;
+    --wild-date-number: #5A8F6B;
+
+    /* Nature Layer Colors */
+    --wild-layer1: #E2E8DD;
+    --wild-layer2: #D4DFCA;
+    --wild-layer3: #C6D6B8;
+    --wild-layer4: #B8CDA6;
+    --wild-layer5: #AAC494;
+
+    /* Earthy Accent Colors */
+    --wild-accent1: #6B8F5A;
+    /* Forest Green */
+    --wild-accent2: #D4A55E;
+    /* Amber */
+    --wild-accent3: #8B7862;
+    /* Bark */
+    --wild-accent4: rgba(107, 143, 90, 0.7);
+    --wild-accent5: rgba(212, 165, 94, 0.5);
+
+    /* Theme Variables */
+    --wild-shadow: rgba(107, 143, 90, 0.15);
+    --wild-radius: 10px;
+    --wild-transition: 0.3s ease-in-out;
+    --wild-hover: #5A7F4B;
+    --wild-glow: 0 0 12px rgba(107, 143, 90, 0.25);
+    --wild-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%236B8F5A"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%236B8F5A"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%236B8F5A"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes wild-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
     }
-    
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes wild-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes wild-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--wild-shadow);
+    }
+
+    50% {
+        box-shadow: var(--wild-glow);
+    }
+}
+
+@keyframes wild-leaf-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.wild-wonders {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--wild-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--wild-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" opacity="0.05"><path d="M30,10 Q40,5 50,20 Q60,5 70,10 Q80,15 75,30 Q90,40 70,50 Q90,60 75,70 Q80,85 70,90 Q60,95 50,80 Q40,95 30,90 Q20,85 25,70 Q10,60 30,50 Q10,40 25,30 Q20,15 30,10" fill="%236B8F5A"/></svg>'),
+        linear-gradient(to bottom, var(--wild-bg), var(--wild-layer5));
+    background-repeat: repeat;
+}
+
+.wild-wonders .container {
+    background-color: var(--wild-primary);
+    padding: 2rem;
+    border: 1px solid var(--wild-accent4);
+    box-shadow: var(--wild-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--wild-radius);
+}
+
+.wild-wonders .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--wild-accent1) 0%,
+            var(--wild-accent2) 50%,
+            var(--wild-accent1) 100%);
+}
+
+.wild-wonders .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--wild-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.wild-wonders #calendar-title {
+    font-family: 'Merriweather', serif;
+    color: var(--wild-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+}
+
+.wild-wonders #calendar-title::after {
+    content: "🌿";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.wild-wonders #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--wild-primary);
+    border: 1px solid var(--wild-accent4);
+    border-radius: var(--wild-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wild-wonders #date-weather-container::before {
+    content: "NATURE CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--wild-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--wild-text);
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+}
+
+.wild-wonders #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--wild-accent1), transparent);
+}
+
+.wild-wonders #current-date {
+    font-family: 'Merriweather', serif;
+    color: var(--wild-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.wild-wonders #today-weather {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--wild-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.wild-wonders #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.wild-wonders .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--wild-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--wild-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--wild-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%236B8F5A" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.wild-wonders .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.wild-wonders .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--wild-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.wild-wonders .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--wild-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.wild-wonders .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--wild-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.wild-wonders .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--wild-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--wild-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.wild-wonders table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.wild-wonders th {
+    background-color: var(--wild-accent1);
+    color: white !important;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--wild-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.wild-wonders th span.full-day-name {
+    display: inline;
+}
+
+.wild-wonders th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.wild-wonders td {
+    background-color: var(--wild-primary);
+    color: var(--wild-text);
+    padding: 1rem;
+    border: 1px solid var(--wild-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--wild-transition);
+    position: relative;
+    border-radius: var(--wild-radius);
+}
+
+.wild-wonders td .date-number {
+    color: var(--wild-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Merriweather', serif;
+}
+
+.wild-wonders td:hover {
+    background-color: var(--wild-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.wild-wonders td.current-day {
+    background-color: rgba(107, 143, 90, 0.15);
+    border: 2px solid var(--wild-accent1);
+    animation: wild-pulse 3s infinite;
+}
+
+.wild-wonders td.current-day .date-number {
+    color: var(--wild-text) !important;
+    font-weight: 700;
+}
+
+.wild-wonders td.current-day::before {
+    content: "🌲";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--wild-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.wild-wonders .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--wild-accent1);
+    margin: 0 1px;
+    transition: all var(--wild-transition);
+}
+
+.wild-wonders .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--wild-accent2);
+    box-shadow: 0 0 6px rgba(212, 165, 94, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.wild-wonders .modal-content {
+    position: relative;
+    background-color: var(--wild-primary);
+    border: 1px solid var(--wild-accent4);
+    padding: 25px;
+    color: var(--wild-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--wild-radius);
+    animation: wild-rise 0.3s ease-out;
+}
+
+.wild-wonders .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--wild-accent1) 0%,
+            var(--wild-accent2) 50%,
+            var(--wild-accent1) 100%);
+}
+
+.wild-wonders .modal-content h2 {
+    color: var(--wild-text);
+    font-family: 'Merriweather', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Modal date display */
+.wild-wonders .modal-date {
+    font-family: 'Merriweather', serif;
+    color: var(--wild-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--wild-accent4);
+}
+
+/* Event list */
+.wild-wonders .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wild-wonders .event-item {
+    background-color: var(--wild-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--wild-accent1);
+    border-radius: var(--wild-radius);
+    transition: all var(--wild-transition);
+}
+
+.wild-wonders .event-item:hover {
+    background-color: var(--wild-layer3);
+    transform: translateX(3px);
+}
+
+.wild-wonders .event-time {
+    font-family: 'Merriweather', serif;
+    color: var(--wild-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.wild-wonders .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--wild-text);
+}
+
+.wild-wonders .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--wild-text);
+    opacity: 0.9;
+}
+
+.wild-wonders .modal-content button {
+    background-color: var(--wild-accent1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--wild-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: var(--wild-radius);
+}
+
+.wild-wonders .modal-content button:hover {
+    background-color: var(--wild-hover);
+    box-shadow: 0 3px 10px rgba(107, 143, 90, 0.2);
+}
+
+/* Close Button */
+.wild-wonders .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--wild-primary);
+    color: var(--wild-text);
+    border: 1px solid var(--wild-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--wild-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.wild-wonders .modal .close-button:hover {
+    background-color: var(--wild-text);
+    color: var(--wild-accent1);
+    border-color: var(--wild-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.wild-wonders .button,
+.wild-wonders .transparent-button {
+    border: 1px solid var(--wild-accent1);
+    color: var(--wild-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--wild-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--wild-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.wild-wonders .button:hover,
+.wild-wonders .transparent-button:hover {
+    background-color: var(--wild-accent1);
+    color: white;
+    box-shadow: 0 3px 10px rgba(107, 143, 90, 0.15);
+}
+
+.wild-wonders .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.wild-wonders #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.wild-wonders #theme-switcher {
+    background-color: var(--wild-primary);
+    color: var(--wild-text) !important;
+    border: 1px solid var(--wild-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A4A3D'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--wild-transition);
+    border-radius: var(--wild-radius);
+}
+
+.wild-wonders #theme-switcher option {
+    background-color: var(--wild-primary) !important;
+    color: var(--wild-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.wild-wonders #theme-switcher:focus {
+    outline: none;
+    border-color: var(--wild-accent1);
+    box-shadow: 0 0 0 2px rgba(107, 143, 90, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.wild-wonders #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--wild-accent1);
+    cursor: pointer;
+    transition: all var(--wild-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--wild-radius);
+    box-shadow: 0 2px 8px rgba(107, 143, 90, 0.3);
+}
+
+.wild-wonders #backToTopBtn:hover {
+    background-color: var(--wild-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.wild-wonders footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--wild-accent4);
+    color: var(--wild-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
     .wild-wonders .container {
-        background: linear-gradient(to bottom, var(--wild-wonders-gradient-start), var(--wild-wonders-gradient-end));
-        color: var(--wild-wonders-text-color);
-        font-family: 'Montserrat', sans-serif; /* Modern, adventurous font */
+        padding: 1.5rem;
+    }
+
+    .wild-wonders #calendar-title {
+        font-size: 2rem;
+    }
+
+    .wild-wonders #current-date {
+        font-size: 1.5rem;
+    }
+
+    .wild-wonders #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .wild-wonders .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .wild-wonders .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .wild-wonders {
+        font-size: 0.95rem;
         line-height: 1.5;
-        padding: 30px;
-        border-radius: var(--wild-wonders-border-radius);
-        box-shadow: 8px 8px 20px var(--wild-wonders-shadow-color);
-        border: 3px solid var(--wild-wonders-secondary-color);
     }
-    
-    .wild-wonders .calendar-container {
-        padding: 25px;
-        background: linear-gradient(145deg, var(--wild-wonders-accent-color-1), var(--wild-wonders-accent-color-2));
-        border-radius: var(--wild-wonders-border-radius);
-        border: 2px dashed var(--wild-wonders-primary-color);
+
+    .wild-wonders .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
     }
-    
-    .wild-wonders table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 25px auto;
-        box-shadow: 5px 5px 15px var(--wild-wonders-shadow-color);
-        border-radius: var(--wild-wonders-border-radius);
-        overflow: hidden;
-        background-color: white;
-        border: 2px solid var(--wild-wonders-secondary-color);
-        table-layout: fixed;
-    }
-    
-    .wild-wonders th,
-    .wild-wonders td {
-        border: 2px solid var(--wild-wonders-secondary-color);
-        padding: 10px;
-        text-align: center;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing);
-        word-wrap: break-word;
-    }
-    
+
     .wild-wonders th {
-        background: linear-gradient(to bottom, var(--wild-wonders-accent-color-3), var(--wild-wonders-accent-color-4));
-        color: white;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 1.1em;
-        letter-spacing: 1px;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
     }
-    
+
+    .wild-wonders th span.full-day-name {
+        display: none;
+    }
+
+    .wild-wonders th abbr {
+        display: inline;
+    }
+
     .wild-wonders td {
-        background-color: #ffffff;
-        color: var(--wild-wonders-text-color);
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
     }
-    
-    .wild-wonders td:hover {
-        background: linear-gradient(to bottom, var(--wild-wonders-hover-color), var(--wild-wonders-accent-color-5));
-        transform: scale(1.05);
-        box-shadow: 0 5px 10px var(--wild-wonders-shadow-color);
-        border: 2px solid var(--wild-wonders-primary-color);
-        color: white;
+
+    .wild-wonders td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
     }
-    
-    .wild-wonders td.current-day {
-        background: linear-gradient(to bottom, var(--wild-wonders-current-day-bg), var(--wild-wonders-accent-color-1));
-        border: 3px solid var(--wild-wonders-primary-color);
-        font-weight: 700;
-        color: white;
-        box-shadow: inset 0 0 10px var(--wild-wonders-shadow-color);
-        animation: pulse 2s infinite;
+
+    .wild-wonders td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
     }
-    
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-        }
-    
-        50% {
-            transform: scale(1.05);
-        }
-    
-        100% {
-            transform: scale(1);
-        }
-    }
-    
-    /* Event marker styling */
-    .wild-wonders .event-marker {
-        background-color: var(--wild-wonders-primary-color);
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        transition: transform var(--transition-duration) var(--transition-easing);
-        box-shadow: 0 0 5px var(--wild-wonders-shadow-color);
-    }
-    
-    .wild-wonders .event-marker:hover {
-        background-color: var(--wild-wonders-accent-color-3);
-        transform: scale(1.6);
-        box-shadow: 0 0 15px var(--wild-wonders-primary-color);
-    }
-    
-    /* Modal window styling */
-    .wild-wonders .modal-content {
-        background-color: rgba(240, 244, 248, 0.9); /* Slightly transparent light natural background */
-        backdrop-filter: blur(8px);
-        border: 2px solid var(--wild-wonders-secondary-color);
-        border-radius: var(--wild-wonders-border-radius);
-        box-shadow: 0 12px 24px var(--wild-wonders-shadow-color);
-        padding: 25px;
-        color: var(--wild-wonders-text-color);
-        animation: slideIn 0.5s var(--transition-easing);
-    }
-    
-    @keyframes slideIn {
-        from {
-            transform: translateY(-20px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    .wild-wonders .modal .close-button {
-        background-color: var(--wild-wonders-primary-color);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing);
-        box-shadow: 0 0 5px var(--wild-wonders-shadow-color);
-    }
-    
-    .wild-wonders .modal .close-button:hover {
-        background-color: var(--wild-wonders-accent-color-3);
-        color: black;
-        transform: rotate(90deg);
-        box-shadow: 0 0 10px var(--wild-wonders-primary-color);
-    }
-    
-    .wild-wonders .event-list li {
-        padding: 12px 0;
-        border-bottom: 2px dashed var(--wild-wonders-secondary-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--wild-wonders-text-color);
-    }
-    
-    .wild-wonders .event-list li:last-child {
-        border-bottom: none;
-    }
-    
-    .wild-wonders .event-list button {
-        background: linear-gradient(to bottom, var(--wild-wonders-primary-color), var(--wild-wonders-accent-color-2));
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: var(--wild-wonders-border-radius);
-        cursor: pointer;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        box-shadow: 0 2px 5px var(--wild-wonders-shadow-color);
-    }
-    
-    .wild-wonders .event-list button:hover {
-        background: linear-gradient(to bottom, var(--wild-wonders-accent-color-3), var(--wild-wonders-accent-color-5));
-        transform: scale(1.1);
-        box-shadow: 0 4px 8px var(--wild-wonders-shadow-color);
-    }
-    
-    .wild-wonders .button,
-    .wild-wonders .transparent-button,
+
     .wild-wonders #backToTopBtn {
-        border-radius: var(--wild-wonders-border-radius);
-        padding: 14px 24px;
-        font-size: 1.2em;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        cursor: pointer;
-        border: 3px solid var(--wild-wonders-primary-color);
-        color: white;
-        background: linear-gradient(to bottom, var(--wild-wonders-accent-color-4), var(--wild-wonders-accent-color-5));
-        box-shadow: 5px 5px 15px var(--wild-wonders-shadow-color);
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
     }
-    
-    .wild-wonders .button:hover,
-    .wild-wonders .transparent-button:hover,
-    .wild-wonders #backToTopBtn:hover {
-        background: linear-gradient(to bottom, var(--wild-wonders-hover-color), var(--wild-wonders-accent-color-2));
-        color: white;
-        box-shadow: 6px 6px 20px var(--wild-wonders-shadow-color);
-        transform: scale(1.05);
+
+    .wild-wonders #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
     }
-    
-    .wild-wonders .button.secondary {
-        background: linear-gradient(to bottom, var(--wild-wonders-secondary-color), var(--wild-wonders-accent-color-3));
-        border: none;
-        color: white;
+
+    .wild-wonders .modal-content {
+        padding: 20px;
     }
-    
-    .wild-wonders .button.secondary:hover {
-        background: linear-gradient(to bottom, var(--wild-wonders-accent-color-5), var(--wild-wonders-accent-color-1));
+
+    .wild-wonders .event-item {
+        padding: 0.8rem;
     }
-    
-    .wild-wonders .calendar-navigation button {
-        background: linear-gradient(to bottom, var(--wild-wonders-accent-color-2), var(--wild-wonders-accent-color-4));
-        border: none;
-        font-size: 1.2em;
-        padding: 7px 14px;
-        cursor: pointer;
-        color: var(--wild-wonders-primary-color);
-        transition: color 0.2s ease-in-out;
-        box-shadow: 0 4px 8px var(--wild-wonders-shadow-color);
+}
+
+@media (max-width: 576px) {
+    .wild-wonders .container {
+        padding: 1rem;
     }
-    
-    .wild-wonders .calendar-navigation button:hover {
-        color: var(--wild-wonders-accent-color-3);
-        transform: scale(1.1);
+
+    .wild-wonders #calendar-title {
+        font-size: 1.7rem;
     }
-    
-    .wild-wonders .calendar-header {
-        text-align: center;
-        font-size: 1.6em;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: var(--wild-wonders-primary-color);
-        text-shadow: 2px 2px 4px var(--wild-wonders-shadow-color);
+
+    .wild-wonders #current-date {
+        font-size: 1.3rem;
     }
-    
+
+    .wild-wonders #today-weather {
+        font-size: 1rem;
+    }
+
+    .wild-wonders .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
     .wild-wonders th {
-        font-family: 'Montserrat', sans-serif;
-        text-transform: uppercase;
-        font-size: 1.1em;
-        color: white;
-        padding: 12px;
-        letter-spacing: 1px;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
-    
-    .wild-wonders .calendar-title {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 1.4em;
-        font-style: italic;
-        color: var(--wild-wonders-text-color);
-        text-shadow: 1px 1px 2px var(--wild-wonders-shadow-color);
+
+    .wild-wonders td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
-    
-    .wild-wonders .modal-close {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        font-size: 1.2em;
-        cursor: pointer;
-        color: var(--wild-wonders-primary-color);
-        background: none;
-        border: none;
-        padding: 5px;
-        transition: color 0.2s ease-in-out;
+
+    .wild-wonders td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
-    
-    .wild-wonders .modal-close:hover {
-        color: var(--wild-wonders-accent-color-1);
-        transform: scale(1.2);
+
+    .wild-wonders #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
     }
-    
-    .wild-wonders .week-number {
-        color: #777;
-        font-size: 0.9em;
-        padding: 2px 5px;
-        background: linear-gradient(to bottom, var(--wild-wonders-accent-color-5), var(--wild-wonders-accent-color-2));
-        border-radius: 5px;
-        margin: 2px;
+
+    .wild-wonders .modal-content {
+        padding: 15px;
     }
-    
-    .wild-wonders .no-events {
-        font-style: italic;
-        color: #888;
-        text-align: center;
-        margin-top: 8px;
-        font-size: 1em;
+
+    .wild-wonders .modal-date {
+        font-size: 1.2rem;
     }
-    
-    /* Media Queries for Responsiveness */
-    
-    @media (max-width: 575.98px) {
-        .wild-wonders table {
-            font-size: 0.8em;
-            table-layout: fixed;
-        }
-    
-        .wild-wonders th,
-        .wild-wonders td {
-            padding: 8px;
-            border: 1px solid var(--wild-wonders-secondary-color);
-        }
-    
-        .wild-wonders th:nth-child(1),
-        .wild-wonders td:nth-child(1) {
-            width: 14%;
-        }
-    
-        .wild-wonders th:nth-child(2),
-        .wild-wonders td:nth-child(2) {
-            width: 16%;
-        }
-    
-        .wild-wonders th:nth-child(3),
-        .wild-wonders td:nth-child(3) {
-            width: 16%;
-        }
-    
-        .wild-wonders th:nth-child(4),
-        .wild-wonders td:nth-child(4) {
-            width: 16%;
-        }
-    
-        .wild-wonders th:nth-child(5),
-        .wild-wonders td:nth-child(5) {
-            width: 16%;
-        }
-    
-        .wild-wonders th:nth-child(6),
-        .wild-wonders td:nth-child(6) {
-            width: 16%;
-        }
-    
-        .wild-wonders th:nth-child(7),
-        .wild-wonders td:nth-child(7) {
-            width: 6%;
-        }
-    
-        .wild-wonders .event-marker-container {
-            flex-direction: row;
-            gap: 4px;
-        }
-    
-        .wild-wonders .event-marker {
-            width: 10px;
-            height: 10px;
-        }
-    
-        .wild-wonders .calendar-container {
-            padding: 15px;
-        }
-    
-        .wild-wonders .button,
-        .wild-wonders .transparent-button,
-        .wild-wonders #backToTopBtn {
-            padding: 12px 20px;
-            font-size: 1.1em;
-        }
+
+    .wild-wonders .event-time {
+        font-size: 0.9rem;
     }
+}
+
+@media (max-width: 400px) {
+    .wild-wonders th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .wild-wonders td {
+        height: 60px;
+    }
+
+    .wild-wonders td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .wild-wonders #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
