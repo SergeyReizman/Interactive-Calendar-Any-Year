@@ -1,0 +1,852 @@
+/* ==========================================================================
+   Tech Innovator Theme - Futuristic Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Futuristic tech color palette (dark blues, neon accents)
+   - Clean, minimalist design with tech-inspired elements
+   - Cyberpunk-inspired aesthetic with glowing accents
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    /* Tech Color Palette */
+    --tech-bg: #0a0e17;
+    --tech-text: #e0e0e0;
+    --tech-primary: #121a2b;
+    --tech-secondary: #1a2438;
+    --tech-date-number: #00f0ff;
+
+    /* Tech Layer Colors */
+    --tech-layer1: #121a2b;
+    --tech-layer2: #1a2438;
+    --tech-layer3: #222e45;
+    --tech-layer4: #2a3852;
+    --tech-layer5: #32425f;
+
+    /* Tech Accent Colors */
+    --tech-accent1: #00f0ff;
+    /* Neon Cyan */
+    --tech-accent2: #7d7dff;
+    /* Soft Blue */
+    --tech-accent3: #ff2a6d;
+    /* Neon Pink */
+    --tech-accent4: rgba(0, 240, 255, 0.7);
+    --tech-accent5: rgba(125, 125, 255, 0.5);
+
+    /* Theme Variables */
+    --tech-shadow: rgba(0, 240, 255, 0.2);
+    --tech-radius: 4px;
+    --tech-transition: 0.15s ease-out;
+    --tech-hover: #4df8ff;
+    --tech-glow: 0 0 15px rgba(0, 240, 255, 0.4);
+    --tech-circuit: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%2300f0ff"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%2300f0ff"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%2300f0ff"/></svg>');
+    --tech-grid: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 L1200,0 L1200,120 L0,120 Z" fill="none" stroke="%2300f0ff" stroke-width="1" stroke-dasharray="5,5" opacity="0.2"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes tech-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes tech-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes tech-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--tech-shadow);
+    }
+
+    50% {
+        box-shadow: var(--tech-glow);
+    }
+}
+
+@keyframes tech-scan {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 1000px;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.tech-innovator {
+    font-family: 'Inter', sans-serif;
+    color: var(--tech-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--tech-bg);
+    min-height: 100vh;
+    background-image: var(--tech-grid),
+        linear-gradient(to bottom, var(--tech-bg), var(--tech-layer5));
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: tech-scan 60s linear infinite;
+}
+
+.tech-innovator .container {
+    background-color: var(--tech-primary);
+    padding: 2rem;
+    border: 1px solid var(--tech-accent4);
+    box-shadow: var(--tech-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--tech-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.tech-innovator .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--tech-accent1) 0%,
+            var(--tech-accent2) 50%,
+            var(--tech-accent3) 100%);
+}
+
+.tech-innovator .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--tech-circuit);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* Circuit decorations */
+.tech-innovator .circuit-node {
+    position: absolute;
+    color: var(--tech-accent1);
+    animation: blink 2s ease-in-out infinite;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.tech-innovator #calendar-title {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--tech-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tech-innovator #calendar-title::after {
+    content: "⟁";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.tech-innovator #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--tech-primary);
+    border: 1px solid var(--tech-accent4);
+    border-radius: var(--tech-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tech-innovator #date-weather-container::before {
+    content: "TECH PROGRESS";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--tech-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--tech-text);
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.tech-innovator #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tech-accent1), transparent);
+}
+
+.tech-innovator #current-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--tech-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tech-innovator #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--tech-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.tech-innovator #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.tech-innovator .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--tech-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--tech-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--tech-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300f0ff" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.tech-innovator .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.tech-innovator .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--tech-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.tech-innovator .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--tech-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.tech-innovator .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--tech-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.tech-innovator .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--tech-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--tech-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.tech-innovator table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.tech-innovator th {
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
+    color: var(--tech-text) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--tech-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.tech-innovator th span.full-day-name {
+    display: inline;
+}
+
+.tech-innovator th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.tech-innovator td {
+    background-color: var(--tech-primary);
+    color: var(--tech-text);
+    padding: 1rem;
+    border: 1px solid var(--tech-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--tech-transition);
+    position: relative;
+    border-radius: var(--tech-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.tech-innovator td .date-number {
+    color: var(--tech-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.tech-innovator td:hover {
+    background-color: var(--tech-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.tech-innovator td.current-day {
+    background-color: rgba(0, 240, 255, 0.15);
+    border: 2px solid var(--tech-accent1);
+    animation: tech-pulse 3s infinite;
+}
+
+.tech-innovator td.current-day .date-number {
+    color: var(--tech-text) !important;
+    font-weight: 700;
+}
+
+.tech-innovator td.current-day::before {
+    content: "⚡";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--tech-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.tech-innovator .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--tech-accent1);
+    margin: 0 1px;
+    transition: all var(--tech-transition);
+}
+
+.tech-innovator .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--tech-accent3);
+    box-shadow: 0 0 6px rgba(255, 42, 109, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.tech-innovator .modal-content {
+    position: relative;
+    background-color: var(--tech-primary);
+    border: 1px solid var(--tech-accent4);
+    padding: 25px;
+    color: var(--tech-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--tech-radius);
+    animation: tech-rise 0.3s ease-out;
+}
+
+.tech-innovator .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--tech-accent1) 0%,
+            var(--tech-accent2) 50%,
+            var(--tech-accent3) 100%);
+}
+
+.tech-innovator .modal-content h2 {
+    color: var(--tech-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.tech-innovator .modal-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--tech-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--tech-accent4);
+}
+
+/* Event list */
+.tech-innovator .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tech-innovator .event-item {
+    background-color: var(--tech-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--tech-accent1);
+    border-radius: var(--tech-radius);
+    transition: all var(--tech-transition);
+}
+
+.tech-innovator .event-item:hover {
+    background-color: var(--tech-layer3);
+    transform: translateX(3px);
+}
+
+.tech-innovator .event-time {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--tech-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.tech-innovator .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--tech-text);
+}
+
+.tech-innovator .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--tech-text);
+    opacity: 0.9;
+}
+
+.tech-innovator .modal-content button {
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
+    color: var(--tech-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--tech-radius);
+}
+
+.tech-innovator .modal-content button:hover {
+    background: linear-gradient(to right,
+            var(--tech-hover),
+            #7d7dff);
+    box-shadow: 0 3px 10px rgba(0, 240, 255, 0.2);
+}
+
+/* Close Button */
+.tech-innovator .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--tech-primary);
+    color: var(--tech-text);
+    border: 1px solid var(--tech-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.tech-innovator .modal .close-button:hover {
+    background-color: var(--tech-text);
+    color: var(--tech-accent1);
+    border-color: var(--tech-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.tech-innovator .button,
+.tech-innovator .transparent-button {
+    border: 1px solid var(--tech-accent1);
+    color: var(--tech-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--tech-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.tech-innovator .button:hover,
+.tech-innovator .transparent-button:hover {
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
+    color: var(--tech-text);
+    box-shadow: 0 3px 10px rgba(0, 240, 255, 0.15);
+}
+
+.tech-innovator .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.tech-innovator #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.tech-innovator #theme-switcher {
+    background-color: var(--tech-primary);
+    color: var(--tech-text) !important;
+    border: 1px solid var(--tech-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    border-radius: var(--tech-radius);
+}
+
+.tech-innovator #theme-switcher option {
+    background-color: var(--tech-primary) !important;
+    color: var(--tech-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.tech-innovator #theme-switcher:focus {
+    outline: none;
+    border-color: var(--tech-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.tech-innovator #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--tech-text);
+    background: linear-gradient(to right,
+            var(--tech-accent1),
+            var(--tech-accent2));
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--tech-radius);
+    box-shadow: 0 2px 8px rgba(0, 240, 255, 0.3);
+}
+
+.tech-innovator #backToTopBtn:hover {
+    background: linear-gradient(to right,
+            var(--tech-hover),
+            #7d7dff);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.tech-innovator footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--tech-accent4);
+    color: var(--tech-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .tech-innovator .container {
+        padding: 1.5rem;
+    }
+
+    .tech-innovator #calendar-title {
+        font-size: 2rem;
+    }
+
+    .tech-innovator #current-date {
+        font-size: 1.5rem;
+    }
+
+    .tech-innovator #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .tech-innovator .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .tech-innovator .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tech-innovator {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .tech-innovator .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .tech-innovator th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .tech-innovator th span.full-day-name {
+        display: none;
+    }
+
+    .tech-innovator th abbr {
+        display: inline;
+    }
+
+    .tech-innovator td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .tech-innovator td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .tech-innovator td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .tech-innovator #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .tech-innovator #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .tech-innovator .modal-content {
+        padding: 20px;
+    }
+
+    .tech-innovator .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tech-innovator .container {
+        padding: 1rem;
+    }
+
+    .tech-innovator #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .tech-innovator #current-date {
+        font-size: 1.3rem;
+    }
+
+    .tech-innovator #today-weather {
+        font-size: 1rem;
+    }
+
+    .tech-innovator .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .tech-innovator th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .tech-innovator td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .tech-innovator td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .tech-innovator #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .tech-innovator .modal-content {
+        padding: 15px;
+    }
+
+    .tech-innovator .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .tech-innovator .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .tech-innovator th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .tech-innovator td {
+        height: 60px;
+    }
+
+    .tech-innovator td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .tech-innovator #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}

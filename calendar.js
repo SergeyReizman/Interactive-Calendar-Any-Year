@@ -190,7 +190,7 @@ const applyTheme = (theme) => {
     'summer-breeze', 'summer-vibes', 'sunny-beach',
     'sunset-magic', 'surfing-club', 'sweet-misty-morning',
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer',
-    'technological-future', 'technological-might',
+    'tech-innovator', 'technological-future', 'technological-might',
     'the-art-of-visible', 'the-best-mood', 'the-best-of-fashion', 'the-black-spruce', 
     'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
     'the-desert-line', 'the-element-of-surprise','the-final-step',
