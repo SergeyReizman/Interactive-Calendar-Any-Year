@@ -207,7 +207,7 @@ const applyTheme = (theme) => {
     'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden', 'underwater-life',
     'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 
-    'upcoming-dream', 'urban-fashion', 'velvety-dark', 'vibrant-colors',
+    'upcoming-dream', 'urban-fashion', 'urban-jungle', 'velvety-dark', 'vibrant-colors',
     'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 
     'wild-flower','wild-rose', 'wild-tropics',
