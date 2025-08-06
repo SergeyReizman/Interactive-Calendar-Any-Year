@@ -1,375 +1,852 @@
-/* ============================
-    Shaolin Monastery Theme - Earthy, Traditional, and Serene!
-    Purpose: Styles specific to the Shaolin Monastery theme for the calendar.
-    ============================ */
+/* ==========================================================================
+   Shaolin Monastery Theme - Zen Warrior Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Earthy zen color palette (deep reds, golden yellows, dark woods)
+   - Traditional Chinese and Buddhist-inspired elements
+   - Peaceful, disciplined design aesthetic
+   ========================================================================== */
 
-    :root {
-        --shaolin-bg-color: #f5f5dc; /* Light beige background */
-        --shaolin-text-color: #4e342e; /* Deep brown for text */
-        --shaolin-primary-color: #8b4513; /* Saddle brown */
-        --shaolin-secondary-color: #a0522d; /* Sienna */
-        --shaolin-accent-color-1: #cd853f; /* Peru */
-        --shaolin-accent-color-2: #d2b48c; /* Tan */
-        --shaolin-accent-color-3: #8b0000; /* Dark red */
-        --shaolin-accent-color-4: #b22222; /* Firebrick */
-        --shaolin-accent-color-5: #ffd700; /* Gold */
-        --shaolin-shadow-color: rgba(0, 0, 0, 0.2);
-        --shaolin-border-radius: 20px;
-        --shaolin-gradient-start: #f5f5dc;
-        --shaolin-gradient-end: #d2b48c;
-        --shaolin-hover-color: #a0522d; /* Sienna for hover */
-        --shaolin-current-day-bg: #8b4513; /* Saddle brown for current day */
-        --transition-duration: 0.3s;
-        --transition-easing: ease-in-out;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Ma+Shan+Zheng&display=swap');
+
+:root {
+    /* Monastery Color Palette */
+    --temple-bg: #1a0a0a;
+    --temple-text: #e8d8b0;
+    --temple-primary: #2a100f;
+    --temple-secondary: #3a1815;
+    --temple-date-number: #d4a017;
+
+    /* Temple Layer Colors */
+    --temple-layer1: #2a100f;
+    --temple-layer2: #3a1815;
+    --temple-layer3: #4a201b;
+    --temple-layer4: #5a2821;
+    --temple-layer5: #6a3027;
+
+    /* Temple Accent Colors */
+    --temple-accent1: #d4a017;
+    /* Goldenrod */
+    --temple-accent2: #b87333;
+    /* Copper */
+    --temple-accent3: #8b0000;
+    /* Dark Red */
+    --temple-accent4: rgba(212, 160, 23, 0.7);
+    --temple-accent5: rgba(184, 115, 51, 0.5);
+
+    /* Theme Variables */
+    --temple-shadow: rgba(212, 160, 23, 0.2);
+    --temple-radius: 0px;
+    --temple-transition: 0.3s ease-in-out;
+    --temple-hover: #e8b020;
+    --temple-glow: 0 0 15px rgba(212, 160, 23, 0.3);
+    --temple-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23d4a017"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23d4a017"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23d4a017"/></svg>');
+    --temple-bamboo: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 C150,90 300,110 450,90 C600,70 750,100 900,80 C1050,60 1200,90 1200,80 L1200,120 L0,120 Z" fill="%23d4a017" opacity="0.3"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes temple-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
     }
-    
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes temple-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes temple-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--temple-shadow);
+    }
+
+    50% {
+        box-shadow: var(--temple-glow);
+    }
+}
+
+@keyframes temple-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes monk-sway {
+
+    0%,
+    100% {
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.shaolin-monastery {
+    font-family: 'Ma Shan Zheng', cursive;
+    color: var(--temple-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--temple-bg);
+    min-height: 100vh;
+    background-image: var(--temple-bamboo),
+        linear-gradient(to bottom, var(--temple-bg), var(--temple-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: temple-drift 60s linear infinite;
+}
+
+.shaolin-monastery .container {
+    background-color: var(--temple-primary);
+    padding: 2rem;
+    border: 1px solid var(--temple-accent4);
+    box-shadow: var(--temple-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--temple-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.shaolin-monastery .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--temple-accent1) 0%,
+            var(--temple-accent2) 50%,
+            var(--temple-accent3) 100%);
+}
+
+.shaolin-monastery .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--temple-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* Bamboo decorations */
+.shaolin-monastery .bamboo {
+    position: absolute;
+    color: var(--temple-accent1);
+    animation: monk-sway 8s ease-in-out infinite;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.shaolin-monastery #calendar-title {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--temple-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.shaolin-monastery #calendar-title::after {
+    content: "☯";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.shaolin-monastery #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--temple-primary);
+    border: 1px solid var(--temple-accent4);
+    border-radius: var(--temple-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.shaolin-monastery #date-weather-container::before {
+    content: "少林寺";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--temple-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--temple-text);
+    font-weight: 700;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.shaolin-monastery #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--temple-accent1), transparent);
+}
+
+.shaolin-monastery #current-date {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--temple-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.shaolin-monastery #today-weather {
+    font-family: 'Ma Shan Zheng', cursive;
+    color: var(--temple-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.shaolin-monastery #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.shaolin-monastery .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--temple-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--temple-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--temple-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23d4a017" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.shaolin-monastery .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.shaolin-monastery .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--temple-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.shaolin-monastery .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--temple-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.shaolin-monastery .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--temple-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.shaolin-monastery .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--temple-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--temple-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.shaolin-monastery table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.shaolin-monastery th {
+    background: linear-gradient(to right,
+            var(--temple-accent1),
+            var(--temple-accent2));
+    color: var(--temple-text) !important;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--temple-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.shaolin-monastery th span.full-day-name {
+    display: inline;
+}
+
+.shaolin-monastery th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.shaolin-monastery td {
+    background-color: var(--temple-primary);
+    color: var(--temple-text);
+    padding: 1rem;
+    border: 1px solid var(--temple-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--temple-transition);
+    position: relative;
+    border-radius: var(--temple-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.shaolin-monastery td .date-number {
+    color: var(--temple-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-family: 'Noto Serif SC', serif;
+}
+
+.shaolin-monastery td:hover {
+    background-color: var(--temple-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Current date highlight */
+.shaolin-monastery td.current-day {
+    background-color: rgba(212, 160, 23, 0.15);
+    border: 2px solid var(--temple-accent1);
+    animation: temple-pulse 3s infinite;
+}
+
+.shaolin-monastery td.current-day .date-number {
+    color: var(--temple-text) !important;
+    font-weight: 700;
+}
+
+.shaolin-monastery td.current-day::before {
+    content: "卍";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--temple-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.shaolin-monastery .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--temple-accent1);
+    margin: 0 1px;
+    transition: all var(--temple-transition);
+}
+
+.shaolin-monastery .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--temple-accent3);
+    box-shadow: 0 0 6px rgba(139, 0, 0, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.shaolin-monastery .modal-content {
+    position: relative;
+    background-color: var(--temple-primary);
+    border: 1px solid var(--temple-accent4);
+    padding: 25px;
+    color: var(--temple-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: var(--temple-radius);
+    animation: temple-rise 0.3s ease-out;
+}
+
+.shaolin-monastery .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--temple-accent1) 0%,
+            var(--temple-accent2) 50%,
+            var(--temple-accent3) 100%);
+}
+
+.shaolin-monastery .modal-content h2 {
+    color: var(--temple-text);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal date display */
+.shaolin-monastery .modal-date {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--temple-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--temple-accent4);
+}
+
+/* Event list */
+.shaolin-monastery .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.shaolin-monastery .event-item {
+    background-color: var(--temple-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--temple-accent1);
+    border-radius: var(--temple-radius);
+    transition: all var(--temple-transition);
+}
+
+.shaolin-monastery .event-item:hover {
+    background-color: var(--temple-layer3);
+    transform: translateX(3px);
+}
+
+.shaolin-monastery .event-time {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--temple-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.shaolin-monastery .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--temple-text);
+}
+
+.shaolin-monastery .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--temple-text);
+    opacity: 0.9;
+}
+
+.shaolin-monastery .modal-content button {
+    background: linear-gradient(to right,
+            var(--temple-accent1),
+            var(--temple-accent2));
+    color: var(--temple-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--temple-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Ma Shan Zheng', cursive;
+    border-radius: var(--temple-radius);
+}
+
+.shaolin-monastery .modal-content button:hover {
+    background: linear-gradient(to right,
+            var(--temple-hover),
+            #E8C020);
+    box-shadow: 0 3px 10px rgba(212, 160, 23, 0.2);
+}
+
+/* Close Button */
+.shaolin-monastery .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--temple-primary);
+    color: var(--temple-text);
+    border: 1px solid var(--temple-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--temple-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.shaolin-monastery .modal .close-button:hover {
+    background-color: var(--temple-text);
+    color: var(--temple-accent1);
+    border-color: var(--temple-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.shaolin-monastery .button,
+.shaolin-monastery .transparent-button {
+    border: 1px solid var(--temple-accent1);
+    color: var(--temple-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--temple-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--temple-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.shaolin-monastery .button:hover,
+.shaolin-monastery .transparent-button:hover {
+    background: linear-gradient(to right,
+            var(--temple-accent1),
+            var(--temple-accent2));
+    color: var(--temple-text);
+    box-shadow: 0 3px 10px rgba(212, 160, 23, 0.15);
+}
+
+.shaolin-monastery .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.shaolin-monastery #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.shaolin-monastery #theme-switcher {
+    background-color: var(--temple-primary);
+    color: var(--temple-text) !important;
+    border: 1px solid var(--temple-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e8d8b0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--temple-transition);
+    border-radius: var(--temple-radius);
+}
+
+.shaolin-monastery #theme-switcher option {
+    background-color: var(--temple-primary) !important;
+    color: var(--temple-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.shaolin-monastery #theme-switcher:focus {
+    outline: none;
+    border-color: var(--temple-accent1);
+    box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.shaolin-monastery #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-weight: 600;
+    color: var(--temple-text);
+    background: linear-gradient(to right,
+            var(--temple-accent1),
+            var(--temple-accent2));
+    cursor: pointer;
+    transition: all var(--temple-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--temple-radius);
+    box-shadow: 0 2px 8px rgba(212, 160, 23, 0.3);
+}
+
+.shaolin-monastery #backToTopBtn:hover {
+    background: linear-gradient(to right,
+            var(--temple-hover),
+            #E8C020);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.shaolin-monastery footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--temple-accent4);
+    color: var(--temple-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
     .shaolin-monastery .container {
-        background: linear-gradient(to bottom, var(--shaolin-gradient-start), var(--shaolin-gradient-end));
-        color: var(--shaolin-text-color);
-        font-family: 'Noto Serif', serif; /* Traditional serif font */
+        padding: 1.5rem;
+    }
+
+    .shaolin-monastery #calendar-title {
+        font-size: 2rem;
+    }
+
+    .shaolin-monastery #current-date {
+        font-size: 1.5rem;
+    }
+
+    .shaolin-monastery #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .shaolin-monastery .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .shaolin-monastery .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .shaolin-monastery {
+        font-size: 0.95rem;
         line-height: 1.5;
-        padding: 30px;
-        border-radius: var(--shaolin-border-radius);
-        box-shadow: 8px 8px 20px var(--shaolin-shadow-color);
-        border: 3px solid var(--shaolin-secondary-color);
     }
-    
-    .shaolin-monastery .calendar-container {
-        padding: 25px;
-        background: linear-gradient(145deg, var(--shaolin-accent-color-1), var(--shaolin-accent-color-2));
-        border-radius: var(--shaolin-border-radius);
-        border: 2px dashed var(--shaolin-primary-color);
+
+    .shaolin-monastery .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
     }
-    
-    .shaolin-monastery table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 25px auto;
-        box-shadow: 5px 5px 15px var(--shaolin-shadow-color);
-        border-radius: var(--shaolin-border-radius);
-        overflow: hidden;
-        background-color: white;
-        border: 2px solid var(--shaolin-secondary-color);
-        table-layout: fixed;
-    }
-    
-    .shaolin-monastery th,
-    .shaolin-monastery td {
-        border: 2px solid var(--shaolin-secondary-color);
-        padding: 10px;
-        text-align: center;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing);
-        word-wrap: break-word;
-    }
-    
+
     .shaolin-monastery th {
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-3), var(--shaolin-accent-color-4));
-        color: white; /* White text for better contrast */
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 1.1em;
-        letter-spacing: 1px;
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
     }
-    
+
+    .shaolin-monastery th span.full-day-name {
+        display: none;
+    }
+
+    .shaolin-monastery th abbr {
+        display: inline;
+    }
+
     .shaolin-monastery td {
-        background-color: #ffffff;
-        color: var(--shaolin-text-color); /* Deep brown text */
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
     }
-    
-    .shaolin-monastery td:hover {
-        background: linear-gradient(to bottom, var(--shaolin-hover-color), var(--shaolin-accent-color-5));
-        transform: scale(1.05);
-        box-shadow: 0 5px 10px var(--shaolin-shadow-color);
-        border: 2px solid var(--shaolin-primary-color);
-        color: white; /* White text for better contrast on hover */
+
+    .shaolin-monastery td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
     }
-    
-    .shaolin-monastery td.current-day {
-        background: linear-gradient(to bottom, var(--shaolin-current-day-bg), var(--shaolin-accent-color-1));
-        border: 3px solid var(--shaolin-primary-color);
-        font-weight: 700;
-        color: white; /* White text for better contrast */
-        box-shadow: inset 0 0 10px var(--shaolin-shadow-color);
-        animation: pulse 2s infinite;
+
+    .shaolin-monastery td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
     }
-    
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-        }
-    
-        50% {
-            transform: scale(1.05);
-        }
-    
-        100% {
-            transform: scale(1);
-        }
-    }
-    
-    .shaolin-monastery .event-marker-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 5px;
-        gap: 4px;
-    }
-    
-    .shaolin-monastery .event-marker {
-        background: linear-gradient(to bottom, var(--shaolin-primary-color), var(--shaolin-accent-color-2));
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            transform var(--transition-duration) var(--transition-easing);
-        box-shadow: 0 0 5px var(--shaolin-shadow-color);
-    }
-    
-    .shaolin-monastery .event-marker:hover {
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-1), var(--shaolin-accent-color-3));
-        transform: scale(1.3);
-    }
-    
-    .shaolin-monastery .modal-content {
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-2), var(--shaolin-accent-color-4));
-        backdrop-filter: blur(10px);
-        color: var(--shaolin-text-color);
-        border: 3px solid var(--shaolin-primary-color);
-        border-radius: var(--shaolin-border-radius);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        padding: 30px;
-    }
-    
-    .shaolin-monastery .modal-title {
-        color: var(--shaolin-primary-color);
-        font-weight: 700;
-        margin-bottom: 25px;
-        text-shadow: 2px 2px 4px var(--shaolin-shadow-color);
-    }
-    
-    .shaolin-monastery .event-list {
-        margin: 20px 0;
-        padding: 0;
-        list-style: none;
-    }
-    
-    .shaolin-monastery .event-list li {
-        padding: 12px 0;
-        border-bottom: 2px dashed var(--shaolin-secondary-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .shaolin-monastery .event-list li:last-child {
-        border-bottom: none;
-    }
-    
-    .shaolin-monastery .event-list button:hover {
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-3), var(--shaolin-accent-color-5));
-        transform: scale(1.1);
-    }
-    
-    .shaolin-monastery .button,
-    .shaolin-monastery .transparent-button,
+
     .shaolin-monastery #backToTopBtn {
-        border-radius: var(--shaolin-border-radius);
-        padding: 14px 24px;
-        font-size: 1.2em;
-        transition: background-color var(--transition-duration) var(--transition-easing),
-            color var(--transition-duration) var(--transition-easing),
-            box-shadow var(--transition-duration) var(--transition-easing);
-        cursor: pointer;
-        border: 3px solid var(--shaolin-primary-color);
-        color: white; /* White text for better contrast */
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-4), var(--shaolin-accent-color-5));
-        box-shadow: 5px 5px 15px var(--shaolin-shadow-color);
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
     }
-    
-    .shaolin-monastery .button:hover,
-    .shaolin-monastery .transparent-button:hover,
-    .shaolin-monastery #backToTopBtn:hover {
-        background: linear-gradient(to bottom, var(--shaolin-hover-color), var(--shaolin-accent-color-2));
-        color: white; /* White text for better contrast */
-        box-shadow: 6px 6px 20px var(--shaolin-shadow-color);
-        transform: scale(1.05);
+
+    .shaolin-monastery #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
     }
-    
-    .shaolin-monastery .button.secondary {
-        background: linear-gradient(to bottom, var(--shaolin-secondary-color), var(--shaolin-accent-color-3));
-        border: none;
-        color: white; /* White text for better contrast */
+
+    .shaolin-monastery .modal-content {
+        padding: 20px;
     }
-    
-    .shaolin-monastery .button.secondary:hover {
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-5), var(--shaolin-accent-color-1));
+
+    .shaolin-monastery .event-item {
+        padding: 0.8rem;
     }
-    
-    .shaolin-monastery .calendar-navigation button {
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-2), var(--shaolin-accent-color-4));
-        border: none;
-        font-size: 1.2em;
-        padding: 7px 14px;
-        cursor: pointer;
-        color: var(--shaolin-primary-color);
-        transition: color 0.2s ease-in-out;
-        box-shadow: 0 4px 8px var(--shaolin-shadow-color);
+}
+
+@media (max-width: 576px) {
+    .shaolin-monastery .container {
+        padding: 1rem;
     }
-    
-    .shaolin-monastery .calendar-navigation button:hover {
-        color: var(--shaolin-accent-color-3);
-        transform: scale(1.1);
+
+    .shaolin-monastery #calendar-title {
+        font-size: 1.7rem;
     }
-    
-    .shaolin-monastery .calendar-header {
-        text-align: center;
-        font-size: 1.6em;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: var(--shaolin-primary-color);
-        text-shadow: 2px 2px 4px var(--shaolin-shadow-color);
+
+    .shaolin-monastery #current-date {
+        font-size: 1.3rem;
     }
-    
+
+    .shaolin-monastery #today-weather {
+        font-size: 1rem;
+    }
+
+    .shaolin-monastery .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
     .shaolin-monastery th {
-        font-family: 'Noto Serif', serif; /* Traditional serif font */
-        text-transform: uppercase;
-        font-size: 1.1em;
-        color: white; /* White text for better contrast */
-        padding: 12px;
-        letter-spacing: 1px;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
     }
-    
-    .shaolin-monastery .calendar-title {
-        font-family: 'Noto Serif', serif; /* Traditional serif font */
-        font-size: 1.4em;
-        font-style: italic;
-        color: var(--shaolin-text-color);
-        text-shadow: 1px 1px 2px var(--shaolin-shadow-color);
+
+    .shaolin-monastery td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
     }
-    
-    .shaolin-monastery .modal-close {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        font-size: 1.2em;
-        cursor: pointer;
-        color: var(--shaolin-primary-color);
-        background: none;
-        border: none;
-        padding: 5px;
-        transition: color 0.2s ease-in-out;
+
+    .shaolin-monastery td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
     }
-    
-    .shaolin-monastery .modal-close:hover {
-        color: var(--shaolin-accent-color-1);
-        transform: scale(1.2);
+
+    .shaolin-monastery #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
     }
-    
-    .shaolin-monastery .week-number {
-        color: #777;
-        font-size: 0.9em;
-        padding: 2px 5px;
-        background: linear-gradient(to bottom, var(--shaolin-accent-color-5), var(--shaolin-accent-color-2));
-        border-radius: 5px;
-        margin: 2px;
+
+    .shaolin-monastery .modal-content {
+        padding: 15px;
     }
-    
-    .shaolin-monastery .no-events {
-        font-style: italic;
-        color: #888;
-        text-align: center;
-        margin-top: 8px;
-        font-size: 1em;
+
+    .shaolin-monastery .modal-date {
+        font-size: 1.2rem;
     }
-    
-    /* Media Queries for Responsiveness */
-    
-    @media (max-width: 575.98px) {
-        .shaolin-monastery table {
-            font-size: 0.8em;
-            table-layout: fixed;
-        }
-    
-        .shaolin-monastery th,
-        .shaolin-monastery td {
-            padding: 8px;
-            border: 1px solid var(--shaolin-secondary-color);
-        }
-    
-        .shaolin-monastery th:nth-child(1),
-        .shaolin-monastery td:nth-child(1) {
-            width: 14%;
-        }
-    
-        .shaolin-monastery th:nth-child(2),
-        .shaolin-monastery td:nth-child(2) {
-            width: 16%;
-        }
-    
-        .shaolin-monastery th:nth-child(3),
-        .shaolin-monastery td:nth-child(3) {
-            width: 16%;
-        }
-    
-        .shaolin-monastery th:nth-child(4),
-        .shaolin-monastery td:nth-child(4) {
-            width: 16%;
-        }
-    
-        .shaolin-monastery th:nth-child(5),
-        .shaolin-monastery td:nth-child(5) {
-            width: 16%;
-        }
-    
-        .shaolin-monastery th:nth-child(6),
-        .shaolin-monastery td:nth-child(6) {
-            width: 16%;
-        }
-    
-        .shaolin-monastery th:nth-child(7),
-        .shaolin-monastery td:nth-child(7) {
-            width: 6%;
-        }
-    
-        .shaolin-monastery .event-marker-container {
-            flex-direction: row;
-            gap: 4px;
-        }
-    
-        .shaolin-monastery .event-marker {
-            width: 10px;
-            height: 10px;
-        }
-    
-        .shaolin-monastery .calendar-container {
-            padding: 15px;
-        }
-    
-        .shaolin-monastery .button,
-        .shaolin-monastery .transparent-button,
-        .shaolin-monastery #backToTopBtn {
-            padding: 12px 20px;
-            font-size: 1.1em;
-        }
+
+    .shaolin-monastery .event-time {
+        font-size: 0.9rem;
     }
-    
-    @media (min-width: 576px) and (max-width: 767.98px) {
-        .shaolin-monastery th,
-        .shaolin-monastery td {
-            padding: 12px;
-        }
-    
-        .shaolin-monastery table {
-            font-size: 0.9em;
-        }
-    
-        .shaolin-monastery .button,
-        .shaolin-monastery .transparent-button,
-        .shaolin-monastery #backToTopBtn {
-            padding: 14px 24px;
-            font-size: 1.2em;
-        }
+}
+
+@media (max-width: 400px) {
+    .shaolin-monastery th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
     }
+
+    .shaolin-monastery td {
+        height: 60px;
+    }
+
+    .shaolin-monastery td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .shaolin-monastery #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
