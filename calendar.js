@@ -109,7 +109,7 @@ const applyTheme = (theme) => {
     'enjoy-the-journey', 'essential-oils', 'everest-view', 'every-little-step-counts',
     'excellent-mood', 'excellent-performance', 'executive-management',
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
-    'extraordinary-achievement', 'fairytale-charm', 
+    'extraordinary-achievement', 'fabulous-evening', 'fairytale-charm', 
     'fairytale-town', 'fast-track', 'fiji-islands',
     'finish-line', 'fir-balsam', 'flamingo-sky', 'forgotten-dreams', 'formula-one',
     'for-the-last-time',
