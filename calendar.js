@@ -214,7 +214,7 @@ const applyTheme = (theme) => {
     'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 
     'wild-flower','wild-rose', 'wild-tropics',
-    'wild-wonders', 'winter-wonderland', 'wonderful-experience',
+    'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
     'world-champion', 'work-of-art', 'yellow-eyed-penguin', 'your-dreamland',
     'your-wildest-dreams', 'your-wildest-guess', 'zodiac-constellations'
 
