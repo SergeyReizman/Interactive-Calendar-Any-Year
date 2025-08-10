@@ -191,7 +191,7 @@ const applyTheme = (theme) => {
     'strawberry-moon', 'street-art-installation', 
     'street-fashion-style', 'strength-of-spirit', 'strong-foundation',
     'style-spectrum', 'success-key','success-motivation', 'success-story', 
-    'summer-breeze', 'summer-vibes', 'sunny-beach',
+    'summer-breeze', 'summer-vibes', 'sunny-beach', 'sunrise-over-the-ocean',
     'sunset-magic', 'supreme-level', 'surfing-club', 'sweet-misty-morning',
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer',
     'tech-innovator', 'technological-future', 'technological-might',
