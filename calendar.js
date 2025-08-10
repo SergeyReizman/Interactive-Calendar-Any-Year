@@ -132,7 +132,7 @@ const applyTheme = (theme) => {
     'iceland-volcanoes' , 'imaginary-world', 'indigo-jeans', 'in-my-style', 
     'inspiration-line', 'intelligence-quotient','in-the-dusk', 'in-the-mountains',
     'in-the-raspberry-dawn','into-the-jungle','into-the-night', 
-    'invincible-zone', 'in-your-dreams',
+    'invincible-zone', 'in-your-dreams', 'island-beauty',
     'island-breeze', 'island-of-rainbows', 'japan-emperor', 'jungle-nature',
     'just-around-the-bend',
     'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'kilimanjaro-outskirts', 
