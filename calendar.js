@@ -104,7 +104,7 @@ const applyTheme = (theme) => {
     'doterra-new', 'doterra-power', 'dragonfire',
     'dragon-flame', 'dragonfly', 'dragon-well',
     'dramatic-coastline.css', 'dream-adventure', 
-    'dream-islands', 'eagle-creek', 'eagle-swoop', 'early-dreams',
+    'dream-islands', 'eagle-creek', 'eagle-swoop', 'early-dreams', 'eighty-mile-beach',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 'endless-summer', 
     'enjoy-the-journey', 'essential-oils', 'everest-view', 'every-little-step-counts',
     'excellent-mood', 'excellent-performance', 'executive-management',
