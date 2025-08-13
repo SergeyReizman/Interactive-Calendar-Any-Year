@@ -98,7 +98,7 @@ const applyTheme = (theme) => {
     'deep-forest', 'deep-ocean','deep-space', 'desert-between-us', 'desert-miracle', 
     'desert-mirage', 'desert-rose', 'desert-water', 'destiny-to-succeed',
     'developers-zone', 'diamond-planet', 'different-perspective',
-    'digital-excellence', 'digital-ocean',
+    'digital-excellence', 'digital-interface', 'digital-ocean',
     'digital-progress', 'distant-skies','divi-divi-trees',
     'domino-dancing', 'domino-effect',
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green', 

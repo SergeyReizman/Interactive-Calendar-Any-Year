@@ -1,0 +1,850 @@
+/* ==========================================================================
+   Digital Interface Theme - Futuristic UI Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Digital color palette (dark backgrounds with neon accents)
+   - Clean tech interface elements
+   - Modern, data-driven design aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Orbitron:wght@400;500;700&display=swap');
+
+:root {
+    /* Interface Color Palette */
+    --digital-bg: #0A0A12;
+    --digital-text: #E0E0FF;
+    --digital-primary: #121220;
+    --digital-secondary: #1A1A2E;
+    --digital-date-number: #4D79F6;
+
+    /* UI Layer Colors */
+    --digital-layer1: #181828;
+    --digital-layer2: #202038;
+    --digital-layer3: #282848;
+    --digital-layer4: #303058;
+    --digital-layer5: #383868;
+
+    /* Neon Interface Colors */
+    --digital-accent1: #4D79F6;
+    /* Electric Blue */
+    --digital-accent2: #9D4DF6;
+    /* Neon Purple */
+    --digital-accent3: #F64D4D;
+    /* Alert Red */
+    --digital-accent4: rgba(77, 121, 246, 0.7);
+    --digital-accent5: rgba(157, 77, 246, 0.5);
+
+    /* Theme Variables */
+    --digital-shadow: rgba(77, 121, 246, 0.15);
+    --digital-radius: 4px;
+    --digital-transition: 0.15s ease-out;
+    --digital-hover: #3A5BD9;
+    --digital-glow: 0 0 12px rgba(77, 121, 246, 0.35);
+    --digital-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234D79F6"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%234D79F6"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%234D79F6"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes digital-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes digital-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes digital-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--digital-shadow);
+    }
+
+    50% {
+        box-shadow: var(--digital-glow);
+    }
+}
+
+@keyframes digital-scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 1000px;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.digital-interface {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--digital-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--digital-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(to bottom,
+            rgba(10, 10, 18, 0.9) 0%,
+            rgba(18, 18, 32, 0.9) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1200 1200" preserveAspectRatio="none" opacity="0.03"><rect width="1200" height="1200" fill="none" stroke="%234D79F6" stroke-width="1" stroke-dasharray="5,5"/></svg>');
+    animation: digital-scanline 60s linear infinite;
+}
+
+.digital-interface .container {
+    background-color: var(--digital-primary);
+    padding: 2rem;
+    border: 1px solid var(--digital-accent4);
+    box-shadow: var(--digital-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--digital-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(77, 121, 246, 0.05), transparent);
+}
+
+.digital-interface .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--digital-accent1) 50%,
+            transparent 100%);
+    box-shadow: 0 0 10px var(--digital-accent1);
+}
+
+.digital-interface .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--digital-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.digital-interface #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--digital-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 500;
+    text-shadow: 0 0 8px var(--digital-accent1);
+}
+
+.digital-interface #calendar-title::after {
+    content: "💻";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.digital-interface #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--digital-primary);
+    border: 1px solid var(--digital-accent4);
+    border-radius: var(--digital-radius);
+    position: relative;
+    box-shadow: 0 0 15px rgba(77, 121, 246, 0.2);
+}
+
+.digital-interface #date-weather-container::before {
+    content: "SYSTEM CALENDAR";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--digital-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--digital-accent1);
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.digital-interface #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--digital-accent1), transparent);
+    box-shadow: 0 0 5px var(--digital-accent1);
+}
+
+.digital-interface #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--digital-text);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 5px var(--digital-accent1);
+}
+
+.digital-interface #today-weather {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--digital-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== DIGITAL CLOCK ==================== */
+.digital-interface #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.digital-interface .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--digital-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--digital-primary);
+    box-shadow: 0 0 20px rgba(77, 121, 246, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--digital-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234D79F6" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/></svg>');
+}
+
+.digital-interface .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.digital-interface .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--digital-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--digital-accent1);
+}
+
+.digital-interface .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--digital-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 5px var(--digital-accent2);
+}
+
+.digital-interface .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--digital-accent3);
+    margin-top: -0.5px;
+    box-shadow: 0 0 5px var(--digital-accent3);
+}
+
+/* Clock center ornament */
+.digital-interface .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--digital-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow:
+        0 0 0 2px var(--digital-primary),
+        0 0 10px var(--digital-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.digital-interface table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.digital-interface th {
+    background-color: var(--digital-layer3);
+    color: var(--digital-text) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--digital-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--digital-accent1);
+}
+
+.digital-interface th span.full-day-name {
+    display: inline;
+}
+
+.digital-interface th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.digital-interface td {
+    background-color: var(--digital-layer1);
+    color: var(--digital-text);
+    padding: 1rem;
+    border: 1px solid var(--digital-layer3);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--digital-transition);
+    position: relative;
+    border-radius: var(--digital-radius);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.digital-interface td .date-number {
+    color: var(--digital-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 0 5px var(--digital-accent1);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.digital-interface td:hover {
+    background-color: var(--digital-layer2);
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.3),
+        0 0 15px var(--digital-accent4);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.digital-interface td.current-day {
+    background-color: rgba(77, 121, 246, 0.15);
+    border: 1px solid var(--digital-accent1);
+    animation: digital-pulse 3s infinite;
+}
+
+.digital-interface td.current-day .date-number {
+    color: var(--digital-text) !important;
+    font-weight: 700;
+}
+
+.digital-interface td.current-day::before {
+    content: "🖥️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--digital-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.digital-interface .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--digital-accent1);
+    margin: 0 1px;
+    transition: all var(--digital-transition);
+    box-shadow: 0 0 5px var(--digital-accent1);
+}
+
+.digital-interface .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--digital-accent2);
+    box-shadow: 0 0 8px var(--digital-accent2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.digital-interface .modal-content {
+    position: relative;
+    background-color: var(--digital-layer1);
+    border: 1px solid var(--digital-accent1);
+    padding: 25px;
+    color: var(--digital-text);
+    box-shadow: 0 0 30px rgba(77, 121, 246, 0.3);
+    border-radius: var(--digital-radius);
+    animation: digital-rise 0.3s ease-out;
+}
+
+.digital-interface .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--digital-accent1) 50%,
+            transparent 100%);
+    box-shadow: 0 0 10px var(--digital-accent1);
+}
+
+.digital-interface .modal-content h2 {
+    color: var(--digital-text);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 5px var(--digital-accent1);
+}
+
+/* Modal date display */
+.digital-interface .modal-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--digital-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--digital-layer3);
+}
+
+/* Event list */
+.digital-interface .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.digital-interface .event-item {
+    background-color: var(--digital-layer2);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--digital-accent1);
+    border-radius: var(--digital-radius);
+    transition: all var(--digital-transition);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.digital-interface .event-item:hover {
+    background-color: var(--digital-layer3);
+    transform: translateX(3px);
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--digital-accent4);
+}
+
+.digital-interface .event-time {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--digital-accent1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.digital-interface .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--digital-text);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.digital-interface .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--digital-text);
+    opacity: 0.9;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.digital-interface .modal-content button {
+    background-color: var(--digital-accent1);
+    color: var(--digital-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--digital-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: var(--digital-radius);
+    text-transform: uppercase;
+    box-shadow: 0 0 10px var(--digital-accent1);
+}
+
+.digital-interface .modal-content button:hover {
+    background-color: var(--digital-hover);
+    box-shadow: 0 0 15px var(--digital-accent1);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.digital-interface .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--digital-layer1);
+    color: var(--digital-text);
+    border: 1px solid var(--digital-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--digital-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow: 0 0 5px var(--digital-accent1);
+}
+
+.digital-interface .modal .close-button:hover {
+    background-color: var(--digital-accent1);
+    color: var(--digital-text);
+    border-color: var(--digital-accent1);
+    box-shadow: 0 0 10px var(--digital-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.digital-interface .button,
+.digital-interface .transparent-button {
+    border: 1px solid var(--digital-accent1);
+    color: var(--digital-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--digital-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--digital-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.digital-interface .button:hover,
+.digital-interface .transparent-button:hover {
+    background-color: var(--digital-accent1);
+    color: var(--digital-text);
+    box-shadow: 0 0 15px var(--digital-accent1);
+    transform: translateY(-2px);
+}
+
+.digital-interface .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.digital-interface #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.digital-interface #theme-switcher {
+    background-color: var(--digital-layer1);
+    color: var(--digital-text) !important;
+    border: 1px solid var(--digital-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--digital-transition);
+    border-radius: var(--digital-radius);
+}
+
+.digital-interface #theme-switcher option {
+    background-color: var(--digital-layer1) !important;
+    color: var(--digital-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.digital-interface #theme-switcher:focus {
+    outline: none;
+    border-color: var(--digital-accent1);
+    box-shadow: 0 0 0 2px var(--digital-accent4);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.digital-interface #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    color: var(--digital-text);
+    background-color: var(--digital-accent1);
+    cursor: pointer;
+    transition: all var(--digital-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--digital-radius);
+    box-shadow: 0 0 15px var(--digital-accent1);
+    text-transform: uppercase;
+}
+
+.digital-interface #backToTopBtn:hover {
+    background-color: var(--digital-hover);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ==================== FOOTER ==================== */
+.digital-interface footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--digital-layer3);
+    color: var(--digital-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .digital-interface .container {
+        padding: 1.5rem;
+    }
+
+    .digital-interface #calendar-title {
+        font-size: 2rem;
+    }
+
+    .digital-interface #current-date {
+        font-size: 1.5rem;
+    }
+
+    .digital-interface #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .digital-interface .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .digital-interface .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .digital-interface {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .digital-interface .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
+    }
+
+    .digital-interface th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .digital-interface th span.full-day-name {
+        display: none;
+    }
+
+    .digital-interface th abbr {
+        display: inline;
+    }
+
+    .digital-interface td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .digital-interface td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .digital-interface td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .digital-interface #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .digital-interface #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .digital-interface .modal-content {
+        padding: 20px;
+    }
+
+    .digital-interface .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .digital-interface .container {
+        padding: 1rem;
+    }
+
+    .digital-interface #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .digital-interface #current-date {
+        font-size: 1.3rem;
+    }
+
+    .digital-interface #today-weather {
+        font-size: 1rem;
+    }
+
+    .digital-interface .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .digital-interface th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .digital-interface td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .digital-interface td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .digital-interface #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .digital-interface .modal-content {
+        padding: 15px;
+    }
+
+    .digital-interface .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .digital-interface .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .digital-interface th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .digital-interface td {
+        height: 60px;
+    }
+
+    .digital-interface td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .digital-interface #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
