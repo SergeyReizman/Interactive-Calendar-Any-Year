@@ -1,0 +1,889 @@
+/* ==========================================================================
+   Technological Innovation Theme - Futuristic Digital Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Cyberpunk color palette (electric blues, neon purples, dark backgrounds)
+   - Digital and tech interface elements
+   - Futuristic design aesthetic with glowing effects
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400;600&display=swap');
+
+:root {
+    /* Tech Color Palette */
+    --tech-bg: #0A0A12;
+    --tech-text: #E0E0FF;
+    --tech-primary: #121220;
+    --tech-secondary: #1A1A2E;
+    --tech-date-number: #4D79F6;
+
+    /* Interface Layer Colors */
+    --tech-layer1: #181828;
+    --tech-layer2: #202038;
+    --tech-layer3: #282848;
+    --tech-layer4: #303058;
+    --tech-layer5: #383868;
+
+    /* Neon Accent Colors */
+    --tech-accent1: #4D79F6;
+    /* Electric Blue */
+    --tech-accent2: #9D4DF6;
+    /* Neon Purple */
+    --tech-accent3: #F64D4D;
+    /* Alert Red */
+    --tech-accent4: rgba(77, 121, 246, 0.7);
+    --tech-accent5: rgba(157, 77, 246, 0.5);
+
+    /* Theme Variables */
+    --tech-shadow: rgba(77, 121, 246, 0.15);
+    --tech-radius: 6px;
+    --tech-transition: 0.2s ease-out;
+    --tech-hover: #3A5BD9;
+    --tech-glow: 0 0 12px rgba(77, 121, 246, 0.35);
+    --tech-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234D79F6"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%234D79F6"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%234D79F6"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes tech-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes tech-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes tech-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--tech-shadow);
+    }
+
+    50% {
+        box-shadow: var(--tech-glow);
+    }
+}
+
+@keyframes tech-scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 1000px;
+    }
+}
+
+@keyframes tech-flicker {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        opacity: 1;
+    }
+
+    20%,
+    22%,
+    24%,
+    55% {
+        opacity: 0.7;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.technological-innovation {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--tech-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--tech-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(to bottom,
+            rgba(10, 10, 18, 0.9) 0%,
+            rgba(18, 18, 32, 0.9) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1200 1200" preserveAspectRatio="none" opacity="0.03"><rect width="1200" height="1200" fill="none" stroke="%234D79F6" stroke-width="1" stroke-dasharray="5,5"/></svg>');
+    animation: tech-scanline 60s linear infinite;
+}
+
+.technological-innovation .container {
+    background-color: var(--tech-primary);
+    padding: 2rem;
+    border: 1px solid var(--tech-accent4);
+    box-shadow: var(--tech-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--tech-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(77, 121, 246, 0.05), transparent);
+}
+
+.technological-innovation .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--tech-accent1) 50%,
+            transparent 100%);
+    box-shadow: 0 0 10px var(--tech-accent1);
+}
+
+.technological-innovation .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--tech-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.technological-innovation #calendar-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 8px var(--tech-accent1);
+    animation: tech-flicker 5s infinite;
+}
+
+.technological-innovation #calendar-title::after {
+    content: "⚡";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.technological-innovation #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--tech-primary);
+    border: 1px solid var(--tech-accent4);
+    border-radius: var(--tech-radius);
+    position: relative;
+    box-shadow: 0 0 15px rgba(77, 121, 246, 0.2);
+}
+
+.technological-innovation #date-weather-container::before {
+    content: "DIGITAL INTERFACE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--tech-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--tech-accent1);
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.technological-innovation #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tech-accent1), transparent);
+    box-shadow: 0 0 5px var(--tech-accent1);
+}
+
+.technological-innovation #current-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 5px var(--tech-accent1);
+}
+
+.technological-innovation #today-weather {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--tech-text);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== DIGITAL CLOCK ==================== */
+.technological-innovation #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.technological-innovation .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--tech-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--tech-primary);
+    box-shadow: 0 0 20px rgba(77, 121, 246, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--tech-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%234D79F6" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.5"/></svg>');
+}
+
+.technological-innovation .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.technological-innovation .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--tech-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--tech-accent1);
+}
+
+.technological-innovation .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--tech-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 5px var(--tech-accent2);
+}
+
+.technological-innovation .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--tech-accent3);
+    margin-top: -0.5px;
+    box-shadow: 0 0 5px var(--tech-accent3);
+}
+
+/* Clock center ornament */
+.technological-innovation .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--tech-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow:
+        0 0 0 2px var(--tech-primary),
+        0 0 10px var(--tech-accent1);
+}
+
+/* Clock markers */
+.technological-innovation .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 3px;
+    height: 10px;
+    background-color: var(--tech-accent1);
+    transform: translateX(-50%);
+    box-shadow:
+        0 30px 0 0 var(--tech-accent1),
+        0 60px 0 0 var(--tech-accent1),
+        0 90px 0 0 var(--tech-accent1),
+        0 120px 0 0 var(--tech-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.technological-innovation table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.technological-innovation th {
+    background-color: var(--tech-layer3);
+    color: var(--tech-text) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--tech-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--tech-accent1);
+}
+
+.technological-innovation th span.full-day-name {
+    display: inline;
+}
+
+.technological-innovation th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.technological-innovation td {
+    background-color: var(--tech-layer1);
+    color: var(--tech-text);
+    padding: 1rem;
+    border: 1px solid var(--tech-layer3);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--tech-transition);
+    position: relative;
+    border-radius: var(--tech-radius);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.technological-innovation td .date-number {
+    color: var(--tech-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 0 5px var(--tech-accent1);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.technological-innovation td:hover {
+    background-color: var(--tech-layer2);
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.3),
+        0 0 15px var(--tech-accent4);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.technological-innovation td.current-day {
+    background-color: rgba(77, 121, 246, 0.15);
+    border: 1px solid var(--tech-accent1);
+    animation: tech-pulse 3s infinite;
+}
+
+.technological-innovation td.current-day .date-number {
+    color: var(--tech-text) !important;
+    font-weight: 700;
+}
+
+.technological-innovation td.current-day::before {
+    content: "🖥️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--tech-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.technological-innovation .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--tech-accent1);
+    margin: 0 1px;
+    transition: all var(--tech-transition);
+    box-shadow: 0 0 5px var(--tech-accent1);
+}
+
+.technological-innovation .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--tech-accent2);
+    box-shadow: 0 0 8px var(--tech-accent2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.technological-innovation .modal-content {
+    position: relative;
+    background-color: var(--tech-layer1);
+    border: 1px solid var(--tech-accent1);
+    padding: 25px;
+    color: var(--tech-text);
+    box-shadow: 0 0 30px rgba(77, 121, 246, 0.3);
+    border-radius: var(--tech-radius);
+    animation: tech-rise 0.3s ease-out;
+}
+
+.technological-innovation .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--tech-accent1) 50%,
+            transparent 100%);
+    box-shadow: 0 0 10px var(--tech-accent1);
+}
+
+.technological-innovation .modal-content h2 {
+    color: var(--tech-text);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 5px var(--tech-accent1);
+}
+
+/* Modal date display */
+.technological-innovation .modal-date {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--tech-layer3);
+}
+
+/* Event list */
+.technological-innovation .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.technological-innovation .event-item {
+    background-color: var(--tech-layer2);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--tech-accent1);
+    border-radius: var(--tech-radius);
+    transition: all var(--tech-transition);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.technological-innovation .event-item:hover {
+    background-color: var(--tech-layer3);
+    transform: translateX(3px);
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--tech-accent4);
+}
+
+.technological-innovation .event-time {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--tech-accent1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.technological-innovation .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--tech-text);
+    font-family: 'Roboto Mono', monospace;
+}
+
+.technological-innovation .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--tech-text);
+    opacity: 0.9;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.technological-innovation .modal-content button {
+    background-color: var(--tech-accent1);
+    color: var(--tech-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Roboto Mono', monospace;
+    border-radius: var(--tech-radius);
+    text-transform: uppercase;
+    box-shadow: 0 0 10px var(--tech-accent1);
+}
+
+.technological-innovation .modal-content button:hover {
+    background-color: var(--tech-hover);
+    box-shadow: 0 0 15px var(--tech-accent1);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.technological-innovation .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--tech-layer1);
+    color: var(--tech-text);
+    border: 1px solid var(--tech-accent1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow: 0 0 5px var(--tech-accent1);
+}
+
+.technological-innovation .modal .close-button:hover {
+    background-color: var(--tech-accent1);
+    color: var(--tech-text);
+    border-color: var(--tech-accent1);
+    box-shadow: 0 0 10px var(--tech-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.technological-innovation .button,
+.technological-innovation .transparent-button {
+    border: 1px solid var(--tech-accent1);
+    color: var(--tech-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--tech-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+.technological-innovation .button:hover,
+.technological-innovation .transparent-button:hover {
+    background-color: var(--tech-accent1);
+    color: var(--tech-text);
+    box-shadow: 0 0 15px var(--tech-accent1);
+    transform: translateY(-2px);
+}
+
+.technological-innovation .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.technological-innovation #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.technological-innovation #theme-switcher {
+    background-color: var(--tech-layer1);
+    color: var(--tech-text) !important;
+    border: 1px solid var(--tech-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    border-radius: var(--tech-radius);
+}
+
+.technological-innovation #theme-switcher option {
+    background-color: var(--tech-layer1) !important;
+    color: var(--tech-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.technological-innovation #theme-switcher:focus {
+    outline: none;
+    border-color: var(--tech-accent1);
+    box-shadow: 0 0 0 2px var(--tech-accent4);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.technological-innovation #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    color: var(--tech-text);
+    background-color: var(--tech-accent1);
+    cursor: pointer;
+    transition: all var(--tech-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--tech-radius);
+    box-shadow: 0 0 15px var(--tech-accent1);
+    text-transform: uppercase;
+}
+
+.technological-innovation #backToTopBtn:hover {
+    background-color: var(--tech-hover);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ==================== FOOTER ==================== */
+.technological-innovation footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--tech-layer3);
+    color: var(--tech-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .technological-innovation .container {
+        padding: 1.5rem;
+    }
+
+    .technological-innovation #calendar-title {
+        font-size: 2rem;
+    }
+
+    .technological-innovation #current-date {
+        font-size: 1.5rem;
+    }
+
+    .technological-innovation #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .technological-innovation .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .technological-innovation .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .technological-innovation {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .technological-innovation .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
+    }
+
+    .technological-innovation th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .technological-innovation th span.full-day-name {
+        display: none;
+    }
+
+    .technological-innovation th abbr {
+        display: inline;
+    }
+
+    .technological-innovation td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .technological-innovation td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .technological-innovation td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .technological-innovation #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .technological-innovation #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .technological-innovation .modal-content {
+        padding: 20px;
+    }
+
+    .technological-innovation .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .technological-innovation .container {
+        padding: 1rem;
+    }
+
+    .technological-innovation #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .technological-innovation #current-date {
+        font-size: 1.3rem;
+    }
+
+    .technological-innovation #today-weather {
+        font-size: 1rem;
+    }
+
+    .technological-innovation .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .technological-innovation th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .technological-innovation td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .technological-innovation td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .technological-innovation #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .technological-innovation .modal-content {
+        padding: 15px;
+    }
+
+    .technological-innovation .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .technological-innovation .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .technological-innovation th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .technological-innovation td {
+        height: 60px;
+    }
+
+    .technological-innovation td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .technological-innovation #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
