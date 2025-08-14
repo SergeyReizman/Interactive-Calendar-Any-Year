@@ -109,7 +109,7 @@ const applyTheme = (theme) => {
     'dream-islands', 'eagle-creek', 'eagle-swoop', 'early-dreams', 'eighty-mile-beach',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 'endless-summer', 
     'enjoy-the-journey', 'essential-oils', 'everest-view', 'every-little-step-counts',
-    'excellent-mood', 'excellent-performance', 'executive-management',
+    'excellent-mood', 'excellent-performance', 'exceptional-quality', 'executive-management',
     'exotic-island', 'expedient-path', 'exponential-acceleration',  
     'extraordinary-achievement', 'fabulous-evening', 'fairytale-charm', 
     'fairytale-town', 'fast-track', 'fiji-islands',
