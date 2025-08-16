@@ -200,7 +200,7 @@ const applyTheme = (theme) => {
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer',
     'tech-innovator', 'technological-future', 'technological-innovation', 'technological-might',
     'the-art-of-visible', 'the-best-kind-of-view',
-    'the-best-mood', 'the-best-of-fashion', 'the-black-spruce', 
+    'the-best-mood', 'the-best-of-fashion', 'the-black-lake', 'the-black-spruce', 
     'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
     'the-desert-line', 'the-element-of-surprise','the-final-step',
     'the-finest-green-tea', 'the-first-prize',
