@@ -86,7 +86,7 @@ const applyTheme = (theme) => {
     'city-of-angels', 'city-of-dreams', 'city-of-night', 
     'clean-code', 'clean-energy', 'coastal-atlantic', 'coastal-beauty',
     'coastal-pacific', 'coconut-islands', 'coffee-for-leaders', 'color-of-my-dreams',
-    'color-symphony','collaboration-idea', 'competitive-advantage',
+    'colors-of-a-dream', 'color-symphony','collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-garden',
     'coral-reef', 'cosmic-nebula', 'cosmic-perspective',
     'cracked-ice', 'creative-content', 'crimson-sky', 
