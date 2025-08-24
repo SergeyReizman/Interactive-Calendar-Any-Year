@@ -1,0 +1,848 @@
+/* ==========================================================================
+   The Adriatic Shores Theme - Mediterranean Coastal-Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Coastal color palette with azure blues and sandy accents
+   - Wave patterns and seaside-inspired design elements
+   - Refreshing, breezy animations
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+:root {
+    /* Coastal Color Palette */
+    --shore-bg: #F5FCFF;
+    --shore-text: #2C3E50;
+    --shore-primary: #FFFFFF;
+    --shore-secondary: #F0F8FF;
+    --shore-date-number: #2C3E50;
+
+    /* Depth Layer Colors */
+    --shore-layer1: #E1F5FE;
+    --shore-layer2: #B3E5FC;
+    --shore-layer3: #81D4FA;
+    --shore-layer4: #4FC3F7;
+    --shore-layer5: #29B6F6;
+
+    /* Coastal Accent Colors */
+    --shore-accent1: #0288D1;
+    /* Deep Azure */
+    --shore-accent2: #0097A7;
+    /* Teal Blue */
+    --shore-accent3: #00BCD4;
+    /* Bright Cyan */
+    --shore-accent4: rgba(2, 136, 209, 0.7);
+    --shore-accent5: rgba(0, 151, 167, 0.5);
+
+    /* Sandy Colors */
+    --shore-sand1: #FFE0B2;
+    --shore-sand2: #FFCC80;
+    --shore-sand3: #FFB74D;
+
+    /* Theme Variables */
+    --shore-shadow: rgba(2, 136, 209, 0.15);
+    --shore-radius: 8px;
+    --shore-transition: 0.3s ease-in-out;
+    --shore-hover: #039BE5;
+    --shore-glow: 0 0 12px rgba(2, 136, 209, 0.25);
+    --shore-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%230288D1"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%230288D1"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%230288D1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes shore-ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(2, 136, 209, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 0 20px rgba(2, 136, 209, 0);
+    }
+}
+
+@keyframes shore-fade {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes shore-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shore-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--shore-shadow);
+    }
+
+    50% {
+        box-shadow: var(--shore-glow);
+    }
+}
+
+@keyframes shore-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes shore-wave {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.adriatic-shores {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--shore-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--shore-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L200,80 L400,100 L600,60 L800,80 L1000,40 L1200,60 L1200,120 Z" fill="%23FFFFFF" opacity="0.3"/></svg>'),
+        linear-gradient(to bottom, var(--shore-bg), var(--shore-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: shore-drift 80s linear infinite;
+}
+
+.adriatic-shores .container {
+    background-color: var(--shore-primary);
+    padding: 2rem;
+    border: 1px solid var(--shore-accent4);
+    box-shadow: var(--shore-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--shore-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.adriatic-shores .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--shore-accent1) 0%,
+            var(--shore-accent2) 50%,
+            var(--shore-accent1) 100%);
+}
+
+.adriatic-shores .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--shore-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.15;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.adriatic-shores #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--shore-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.adriatic-shores #calendar-title::after {
+    content: "~";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.6;
+    color: var(--shore-accent1);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.adriatic-shores #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--shore-primary);
+    border: 1px solid var(--shore-accent4);
+    border-radius: var(--shore-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.adriatic-shores #date-weather-container::before {
+    content: "ADRIATIC SHORES";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--shore-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--shore-accent1);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.adriatic-shores #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--shore-accent2), transparent);
+}
+
+.adriatic-shores #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--shore-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.adriatic-shores #today-weather {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--shore-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.adriatic-shores #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.adriatic-shores .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--shore-accent2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--shore-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--shore-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%230097A7" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.adriatic-shores .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.adriatic-shores .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--shore-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.adriatic-shores .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--shore-accept2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.adriatic-shores .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--shore-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.adriatic-shores .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--shore-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--shore-primary);
+    animation: shore-ripple 3s infinite;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.adriatic-shores table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.adriatic-shores th {
+    background-color: var(--shore-accent2);
+    color: var(--shore-text) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--shore-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.adriatic-shores th span.full-day-name {
+    display: inline;
+}
+
+.adriatic-shores th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.adriatic-shores td {
+    background-color: var(--shore-primary);
+    color: var(--shore-text);
+    padding: 1rem;
+    border: 1px solid var(--shore-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--shore-transition);
+    position: relative;
+    border-radius: var(--shore-radius);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.adriatic-shores td .date-number {
+    color: var(--shore-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Playfair Display', serif;
+}
+
+.adriatic-shores td:hover {
+    background-color: var(--shore-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.adriatic-shores td.current-day {
+    background-color: rgba(0, 151, 167, 0.15);
+    border: 2px solid var(--shore-accent1);
+    animation: shore-pulse 3s infinite;
+}
+
+.adriatic-shores td.current-day .date-number {
+    color: var(--shore-accent3) !important;
+    font-weight: 700;
+}
+
+.adriatic-shores td.current-day::before {
+    content: "●";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--shore-accent3);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.adriatic-shores .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--shore-accent1);
+    margin: 0 1px;
+    transition: all var(--shore-transition);
+}
+
+.adriatic-shores .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--shore-accent3);
+    box-shadow: 0 0 6px rgba(0, 188, 212, 0.6);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.adriatic-shores .modal-content {
+    position: relative;
+    background-color: var(--shore-primary);
+    border: 1px solid var(--shore-accent4);
+    padding: 25px;
+    color: var(--shore-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--shore-radius);
+    animation: shore-rise 0.3s ease-out;
+}
+
+.adriatic-shores .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--shore-accent1) 0%,
+            var(--shore-accent2) 50%,
+            var(--shore-accent1) 100%);
+}
+
+.adriatic-shores .modal-content h2 {
+    color: var(--shore-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal date display */
+.adriatic-shores .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--shore-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--shore-accent2);
+}
+
+/* Event list */
+.adriatic-shores .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.adriatic-shores .event-item {
+    background-color: var(--shore-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--shore-accent1);
+    border-radius: var(--shore-radius);
+    transition: all var(--shore-transition);
+}
+
+.adriatic-shores .event-item:hover {
+    background-color: var(--shore-layer3);
+    transform: translateX(3px);
+}
+
+.adriatic-shores .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--shore-accent3);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.adriatic-shores .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--shore-text);
+}
+
+.adriatic-shores .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--shore-text);
+    opacity: 0.9;
+}
+
+.adriatic-shores .modal-content button {
+    background-color: var(--shore-accent1);
+    color: var(--shore-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--shore-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: var(--shore-radius);
+}
+
+.adriatic-shores .modal-content button:hover {
+    background-color: var(--shore-hover);
+    box-shadow: 0 3px 10px rgba(2, 136, 209, 0.3);
+}
+
+/* Close Button */
+.adriatic-shores .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--shore-primary);
+    color: var(--shore-text);
+    border: 1px solid var(--shore-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--shore-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.adriatic-shores .modal .close-button:hover {
+    background-color: var(--shore-text);
+    color: var(--shore-accent1);
+    border-color: var(--shore-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.adriatic-shores .button,
+.adriatic-shores .transparent-button {
+    border: 1px solid var(--shore-accent1);
+    color: var(--shore-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--shore-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--shore-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.adriatic-shores .button:hover,
+.adriatic-shores .transparent-button:hover {
+    background-color: var(--shore-accent1);
+    color: var(--shore-text);
+    box-shadow: 0 3px 10px rgba(2, 136, 209, 0.2);
+}
+
+.adriatic-shores .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.adriatic-shores #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.adriatic-shores #theme-switcher {
+    background-color: var(--shore-primary);
+    color: var(--shore-text) !important;
+    border: 1px solid var(--shore-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C3E50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--shore-transition);
+    border-radius: var(--shore-radius);
+}
+
+.adriatic-shores #theme-switcher option {
+    background-color: var(--shore-primary) !important;
+    color: var(--shore-text) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.adriatic-shores #theme-switcher:focus {
+    outline: none;
+    border-color: var(--shore-accent1);
+    box-shadow: 0 0 0 2px rgba(2, 136, 209, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.adriatic-shores #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 500;
+    color: var(--shore-text);
+    background-color: var(--shore-accent1);
+    cursor: pointer;
+    transition: all var(--shore-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--shore-radius);
+    box-shadow: 0 2px 8px rgba(2, 136, 209, 0.4);
+}
+
+.adriatic-shores #backToTopBtn:hover {
+    background-color: var(--shore-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.adriatic-shores footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--shore-accent4);
+    color: var(--shore-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .adriatic-shores .container {
+        padding: 1.5rem;
+    }
+
+    .adriatic-shores #calendar-title {
+        font-size: 2rem;
+    }
+
+    .adriatic-shores #current-date {
+        font-size: 1.5rem;
+    }
+
+    .adriatic-shores #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .adriatic-shores .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .adriatic-shores .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .adriatic-shores {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .adriatic-shores .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .adriatic-shores th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .adriatic-shores th span.full-day-name {
+        display: none;
+    }
+
+    .adriatic-shores th abbr {
+        display: inline;
+    }
+
+    .adriatic-shores td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .adriatic-shores td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .adriatic-shores td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .adriatic-shores #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .adriatic-shores #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .adriatic-shores .modal-content {
+        padding: 20px;
+    }
+
+    .adriatic-shores .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .adriatic-shores .container {
+        padding: 1rem;
+    }
+
+    .adriatic-shores #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .adriatic-shores #current-date {
+        font-size: 1.3rem;
+    }
+
+    .adriatic-shores #today-weather {
+        font-size: 1rem;
+    }
+
+    .adriatic-shores .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .adriatic-shores th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .adriatic-shores td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .adriatic-shores td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .adriatic-shores #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .adriatic-shores .modal-content {
+        padding: 15px;
+    }
+
+    .adriatic-shores .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .adriatic-shores .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .adriatic-shores th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .adriatic-shores td {
+        height: 60px;
+    }
+
+    .adriatic-shores td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .adriatic-shores #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
