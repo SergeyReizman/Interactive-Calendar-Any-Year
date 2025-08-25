@@ -53,7 +53,8 @@ const applyTheme = (theme) => {
   body.classList.remove(
     'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
     'action-time', 'adelaide-skyline', 'a-desert-island', 'adriatic-sea', 
-    'adriatic-shores', 'adriatic-stars', 'a-foraging-trip', 'a-forward-move',
+    'adriatic-shores', 'adriatic-skies',
+    'adriatic-stars', 'a-foraging-trip', 'a-forward-move',
     'a-good-chapter', 'a-good-idea', 'a-great-experience', 'a-huge-moment', 'air-power',
     'a-king-of-stone', 'aloe-vera', 'alone-in-paradise', 'a-lovely-day',
     'alpha-centauri', 'alpine-landscape', 'amazing-opportunity', 
