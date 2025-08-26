@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'andromeda-galaxy', 'a-new-chapter', 'a-new-opportunity', 'antarctic-ice',
     'antarctic-snowdrifts', 'aqua-marina',
     'a-quiet-creek', 'arctic-glow', 'arctic-snowfall', 
-    'art-studio', 'a-simple-task', 'a-solitude-moment', 'a-thing-of-beauty', 
+    'art-studio', 'a-simple-task', 'a-solitude-moment', 'a-stunning-shoreline', 'a-thing-of-beauty', 
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
     'back-in-the-game', 'back-on-track', 'back-to-paradise', 'bamboo-flute',
     'battle-of-the-ice', 'bermuda-triangle', 
