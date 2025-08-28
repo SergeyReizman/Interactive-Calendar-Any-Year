@@ -125,7 +125,7 @@ const applyTheme = (theme) => {
     'golden-gate', 'golden-horizon', 'golden-lights', 'golden-opportunity', 
     'golden-summer', 'gold-mine', 'gradual-improvement', 'grand-prix', 'great-idea',
     'great-lakes', 'greece-is-bliss', 'green-city', 'green-coffee', 'green-heaven',
-    'greenland-icebergs', 'green-light', 'green-tea',
+    'greenland-icebergs', 'green-light', 'green-river', 'green-tea',
     'greyscale', 'group-11',
     'guangzhou-lights', 'haute-couture', 'hawaiian-blue',
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
