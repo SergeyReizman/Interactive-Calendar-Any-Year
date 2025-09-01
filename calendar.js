@@ -149,7 +149,7 @@ const applyTheme = (theme) => {
     'magellanic-penguin', 'magic-colors', 'magic-fly', 'magnificent-symbol', 'main-stream',
     'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment', 'midnight-alchemy', 
-    'midnight-black', 'midnight-train', 'midnight-elegance',
+    'midnight-black', 'midnight-sun', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'mirror-lake', 'modern-technology',
     'monochrome-ink', 'moon-bridge',
     'moonlit-path', 'morning-coffee', 'morning-forest', 'mountain-lake', 'mountain-landscape', 
