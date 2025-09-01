@@ -140,7 +140,7 @@ const applyTheme = (theme) => {
     'island-breeze', 'island-of-rainbows', 'japan-emperor', 'jungle-nature',
     'just-around-the-bend',
     'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'kilimanjaro-outskirts', 
-    'lady-blue', 'last-chance',
+    'lady-blue', 'lake-mcdonald', 'last-chance',
     'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
     'life-quality', 'light-and-shadows', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence', 'love-and-passion',
