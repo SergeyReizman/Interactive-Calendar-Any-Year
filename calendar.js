@@ -192,7 +192,7 @@ const applyTheme = (theme) => {
     'smiley-world', 'snake-river', 'snow-leopard',
     'solar-flare', 'something-special', 
     'spark-of-knowledge', 'spring-meadow', 'spring-silence',
-    'statue-of-liberty', 'stay-cool', 'stay-curious', 'stay-positive',
+    'statue-of-liberty', 'stay-cool', 'stay-curious', 'stay-positive', 'stay-that-way',
     'steel-shadows', 'still-a-highlight', 'stockholm-roofs', 'straight-to-the-point',
     'strategic-advantage', 'strategic-planning',
     'strawberry-moon', 'street-art-installation', 
