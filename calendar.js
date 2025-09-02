@@ -79,7 +79,7 @@ const applyTheme = (theme) => {
     'blue-ice', 'blue-island-waters', 'blue-lagoon', 
     'blue-mountains','blue-ocean', 'blue-planet', 'blue-sky', 'blue-stars', 'blue-system',
     'blue-whale', 'blue-white', 'blue-window',
-    'bold-vision', 'bora-bora', 'box-of-surprises', 'breaking-point', 
+    'bold-vision', 'bora-bora', 'box-of-surprises', 'breaking-point', 'break-the-night',
     'breathtaking-view','bright-line', 'brilliant-white', 'bronze-horseman', 'cacao-plantation', 
     'cafe-de-colombia', 'california-sunshine',
     'camomile-flowers', 'canary-islands', 'can-do-attitude', 'candy-world',

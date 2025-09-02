@@ -1,0 +1,880 @@
+/* ==========================================================================
+   Break The Night Theme - Neon Noir Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Dark background with vibrant neon accents
+   - Cyberpunk inspired design elements
+   - Futuristic noir aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Break The Night Color Palette */
+    --night-bg: #0A0A12;
+    --night-text: #E0E0FF;
+    --night-primary: #1A1A2E;
+    --night-secondary: #2D2D4D;
+    --night-date-number: #00FF88;
+
+    /* Neon Layer Colors */
+    --night-layer1: #1A1A2E;
+    --night-layer2: #2D2D4D;
+    --night-layer3: #40406A;
+    --night-layer4: #535386;
+    --night-layer5: #6666A2;
+
+    /* Vibrant Neon Accent Colors */
+    --night-accent1: #00FF88;
+    /* Electric Green */
+    --night-accent2: #00CC6D;
+    /* Darker Green */
+    --night-accent3: #FF00FF;
+    /* Magenta */
+    --night-accent4: rgba(0, 255, 136, 0.3);
+    --night-accent5: rgba(255, 0, 255, 0.3);
+
+    /* Theme Variables */
+    --night-shadow: rgba(0, 255, 136, 0.15);
+    --night-radius: 8px;
+    --night-transition: 0.2s ease-in-out;
+    --night-hover: #33FF99;
+    --night-glow: 0 0 15px rgba(0, 255, 136, 0.5);
+    --night-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%2300FF88"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%2300FF88"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%2300FF88"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes night-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes night-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes night-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--night-shadow);
+    }
+
+    50% {
+        box-shadow: var(--night-glow);
+    }
+}
+
+@keyframes night-ripple {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes night-wave {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes neon-glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 2px var(--night-accent1));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 8px var(--night-accent1)) drop-shadow(0 0 12px var(--night-accent3));
+    }
+}
+
+@keyframes neon-flicker {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        opacity: 1;
+    }
+
+    20%,
+    24%,
+    55% {
+        opacity: 0.7;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.break-the-night {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--night-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--night-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(to bottom, var(--night-bg), var(--night-layer5)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%231A1A2E" opacity="0.6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: night-ripple 80s linear infinite;
+}
+
+.break-the-night .container {
+    background-color: var(--night-primary);
+    padding: 2rem;
+    border: 1px solid var(--night-accent4);
+    box-shadow: var(--night-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--night-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.break-the-night .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--night-accent1) 0%,
+            var(--night-accent3) 50%,
+            var(--night-accent1) 100%);
+    animation: neon-flicker 3s infinite;
+}
+
+.break-the-night .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--night-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.break-the-night #calendar-title {
+    font-family: 'Orbitron', monospace;
+    color: var(--night-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--night-accent1);
+    animation: neon-glow 2s infinite;
+}
+
+.break-the-night #calendar-title::after {
+    content: "🔋";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.9;
+    animation: neon-flicker 3s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.break-the-night #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--night-primary);
+    border: 1px solid var(--night-accent4);
+    border-radius: var(--night-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.break-the-night #date-weather-container::before {
+    content: "🔋 NEON OVERVIEW";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--night-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--night-text);
+    font-weight: 700;
+    font-family: 'Orbitron', monospace;
+    text-shadow: 0 0 5px var(--night-accent1);
+}
+
+.break-the-night #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--night-accent1), transparent);
+}
+
+.break-the-night #current-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--night-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 5px var(--night-accent1);
+}
+
+.break-the-night #today-weather {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--night-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 3px var(--night-accent1);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.break-the-night #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.break-the-night .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--night-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--night-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3), 0 0 10px var(--night-accent4);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--night-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300FF88" stroke-width="0.5" opacity="0.3"/></svg>');
+    animation: neon-glow 3s infinite;
+}
+
+.break-the-night .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.break-the-night .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--night-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+    box-shadow: 0 0 3px var(--night-accent1);
+}
+
+.break-the-night .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--night-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 3px var(--night-accent2);
+}
+
+.break-the-night .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--night-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 3px var(--night-accent3);
+}
+
+/* Clock center ornament */
+.break-the-night .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--night-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--night-primary), 0 0 5px var(--night-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.break-the-night table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.break-the-night th {
+    background-color: var(--night-accent1);
+    color: var(--night-bg) !important;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--night-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.break-the-night th span.full-day-name {
+    display: inline;
+}
+
+.break-the-night th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.break-the-night td {
+    background-color: var(--night-primary);
+    color: var(--night-text);
+    padding: 1rem;
+    border: 1px solid var(--night-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--night-transition);
+    position: relative;
+    border-radius: var(--night-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.break-the-night td .date-number {
+    color: var(--night-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 0 3px var(--night-accent1);
+    font-family: 'Orbitron', monospace;
+}
+
+.break-the-night td:hover {
+    background-color: var(--night-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 5px var(--night-accent4);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.break-the-night td.current-day {
+    background-color: rgba(0, 255, 136, 0.15);
+    border: 2px solid var(--night-accent1);
+    animation: night-pulse 3s infinite;
+}
+
+.break-the-night td.current-day .date-number {
+    color: var(--night-text) !important;
+    font-weight: 700;
+}
+
+.break-the-night td.current-day::before {
+    content: "⚡";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--night-accent1);
+    font-weight: bold;
+    animation: neon-flicker 2s infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.break-the-night .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--night-accent1);
+    margin: 0 1px;
+    transition: all var(--night-transition);
+    box-shadow: 0 0 2px var(--night-accent1);
+}
+
+.break-the-night .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--night-accent3);
+    box-shadow: 0 0 6px var(--night-accent3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.break-the-night .modal-content {
+    position: relative;
+    background-color: var(--night-primary);
+    border: 1px solid var(--night-accent4);
+    padding: 25px;
+    color: var(--night-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 10px var(--night-accent4);
+    border-radius: var(--night-radius);
+    animation: night-rise 0.3s ease-out;
+}
+
+.break-the-night .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--night-accent1) 0%,
+            var(--night-accent3) 50%,
+            var(--night-accent1) 100%);
+    animation: neon-flicker 3s infinite;
+}
+
+.break-the-night .modal-content h2 {
+    color: var(--night-text);
+    font-family: 'Orbitron', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 5px var(--night-accent1);
+}
+
+/* Modal date display */
+.break-the-night .modal-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--night-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--night-accent4);
+    text-shadow: 0 0 3px var(--night-accent1);
+}
+
+/* Event list */
+.break-the-night .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.break-the-night .event-item {
+    background-color: var(--night-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--night-accent1);
+    border-radius: var(--night-radius);
+    transition: all var(--night-transition);
+}
+
+.break-the-night .event-item:hover {
+    background-color: var(--night-layer3);
+    transform: translateX(3px);
+    box-shadow: 0 0 5px var(--night-accent4);
+}
+
+.break-the-night .event-time {
+    font-family: 'Orbitron', monospace;
+    color: var(--night-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 0 0 2px var(--night-accent1);
+}
+
+.break-the-night .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--night-text);
+}
+
+.break-the-night .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--night-text);
+    opacity: 0.9;
+}
+
+.break-the-night .modal-content button {
+    background-color: var(--night-accent1);
+    color: var(--night-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--night-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Rajdhani', sans-serif;
+    border-radius: var(--night-radius);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.break-the-night .modal-content button:hover {
+    background-color: var(--night-hover);
+    box-shadow: 0 3px 10px rgba(51, 255, 153, 0.3), 0 0 5px var(--night-accent1);
+}
+
+/* Close Button */
+.break-the-night .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--night-primary);
+    color: var(--night-text);
+    border: 1px solid var(--night-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--night-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.break-the-night .modal .close-button:hover {
+    background-color: var(--night-text);
+    color: var(--night-primary);
+    border-color: var(--night-text);
+}
+
+/* ==================== BUTTONs & CONTROLS ==================== */
+.break-the-night .button,
+.break-the-night .transparent-button {
+    border: 1px solid var(--night-accent1);
+    color: var(--night-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--night-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--night-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    text-shadow: 0 0 2px var(--night-accent1);
+}
+
+.break-the-night .button:hover,
+.break-the-night .transparent-button:hover {
+    background-color: var(--night-accent1);
+    color: var(--night-bg);
+    box-shadow: 0 3px 10px rgba(0, 255, 136, 0.3), 0 0 5px var(--night-accent1);
+}
+
+.break-the-night .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.break-the-night #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.break-the-night #theme-switcher {
+    background-color: var(--night-primary);
+    color: var(--night-text) !important;
+    border: 1px solid var(--night-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E0E0FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--night-transition);
+    border-radius: var(--night-radius);
+    text-shadow: 0 0 2px var(--night-accent1);
+}
+
+.break-the-night #theme-switcher option {
+    background-color: var(--night-primary) !important;
+    color: var(--night-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.break-the-night #theme-switcher:focus {
+    outline: none;
+    border-color: var(--night-accent1);
+    box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.3), 0 0 5px var(--night-accent1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.break-the-night #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    color: var(--night-bg);
+    background-color: var(--night-accent1);
+    cursor: pointer;
+    transition: all var(--night-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--night-radius);
+    box-shadow: 0 2px 8px rgba(0, 255, 136, 0.4), 0 0 5px var(--night-accent1);
+}
+
+.break-the-night #backToTopBtn:hover {
+    background-color: var(--night-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.break-the-night footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--night-accept4);
+    color: var(--night-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-shadow: 0 0 2px var(--night-accent1);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .break-the-night .container {
+        padding: 1.5rem;
+    }
+
+    .break-the-night #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .break-the-night #current-date {
+        font-size: 1.5rem;
+    }
+
+    .break-the-night #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .break-the-night .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .break-the-night .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .break-the-night {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .break-the-night .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .break-the-night th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .break-the-night th span.full-day-name {
+        display: none;
+    }
+
+    .break-the-night th abbr {
+        display: inline;
+    }
+
+    .break-the-night td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .break-the-night td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .break-the-night td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .break-the-night #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .break-the-night #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .break-the-night .modal-content {
+        padding: 20px;
+    }
+
+    .break-the-night .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .break-the-night .container {
+        padding: 1rem;
+    }
+
+    .break-the-night #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .break-the-night #current-date {
+        font-size: 1.3rem;
+    }
+
+    .break-the-night #today-weather {
+        font-size: 1rem;
+    }
+
+    .break-the-night .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .break-the-night th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .break-the-night td {
+        padding: 0.6rem;
+        height: 70px;
+    }
+
+    .break-the-night td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .break-the-night #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .break-the-night .modal-content {
+        padding: 15px;
+    }
+
+    .break-the-night .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .break-the-night .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .break-the-night th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .break-the-night td {
+        height: 60px;
+    }
+
+    .break-the-night td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .break-the-night #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
