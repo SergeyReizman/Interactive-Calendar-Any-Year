@@ -223,7 +223,7 @@ const applyTheme = (theme) => {
     'unexpected-layout', 'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 'velvety-dark', 'vibrant-colors',
     'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
-    'we-fly-higher', 'west-hollywood',
+    'we-fly-higher', 'west-hollywood', 'when-style-speaks-first',
     'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 
     'wild-flower','wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
