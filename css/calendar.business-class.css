@@ -1,0 +1,819 @@
+/* ==========================================================================
+   Business Class Theme - Professional Corporate Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Sophisticated corporate color palette
+   - Professional minimalist design
+   - Executive business aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Business Class Color Palette */
+    --business-bg: #F8F9FA;
+    --business-text: #2D3436;
+    --business-primary: #FFFFFF;
+    --business-secondary: #E9ECEF;
+    --business-date-number: #495057;
+
+    /* Business Layer Colors */
+    --business-layer1: #F1F3F5;
+    --business-layer2: #E9ECEF;
+    --business-layer3: #DEE2E6;
+    --business-layer4: #CED4DA;
+    --business-layer5: #ADB5BD;
+
+    /* Business Accent Colors */
+    --business-accent1: #2C3E50;
+    /* Primary Navy Blue */
+    --business-accent2: #34495E;
+    /* Secondary Navy Blue */
+    --business-accent3: #7F8C8D;
+    /* Steel Gray */
+    --business-accent4: rgba(44, 62, 80, 0.7);
+    --business-accent5: rgba(52, 73, 94, 0.5);
+
+    /* Theme Variables */
+    --business-shadow: rgba(44, 62, 80, 0.1);
+    --business-radius: 8px;
+    --business-transition: 0.2s ease-in-out;
+    --business-hover: #1A252F;
+    --business-glow: 0 0 8px rgba(44, 62, 80, 0.15);
+    --business-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%232C3E50"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".2" fill="%232C3E50"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".3" fill="%232C3E50"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes business-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes business-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes business-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--business-shadow);
+    }
+
+    50% {
+        box-shadow: var(--business-glow);
+    }
+}
+
+@keyframes business-wave {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.business-class {
+    font-family: 'Inter', sans-serif;
+    color: var(--business-text);
+    line-height: 1.5;
+    font-size: 1rem;
+    background-color: var(--business-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%23FFFFFF" opacity="0.3"/></svg>'),
+        linear-gradient(to bottom, var(--business-bg), var(--business-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: business-wave 60s linear infinite;
+}
+
+.business-class .container {
+    background-color: var(--business-primary);
+    padding: 2rem;
+    border: 1px solid var(--business-accent4);
+    box-shadow: var(--business-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--business-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.business-class .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--business-accent1) 0%,
+            var(--business-accent2) 50%,
+            var(--business-accent1) 100%);
+}
+
+.business-class .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-image: var(--business-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.business-class #calendar-title {
+    font-family: 'Roboto Slab', serif;
+    color: var(--business-text);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.business-class #calendar-title::after {
+    content: "📅";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.business-class #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--business-primary);
+    border: 1px solid var(--business-accent4);
+    border-radius: var(--business-radius);
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.business-class #date-weather-container::before {
+    content: "📊 BUSINESS CALENDAR OVERVIEW";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--business-primary);
+    padding: 0 8px;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--business-text);
+    font-weight: 600;
+    font-family: 'Roboto Slab', serif;
+}
+
+.business-class #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--business-accent1), transparent);
+}
+
+.business-class #current-date {
+    font-family: 'Roboto Slab', serif;
+    color: var(--business-text);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.business-class #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--business-text);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.business-class #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.business-class .clock-face {
+    width: 160px;
+    height: 160px;
+    border: 4px solid var(--business-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--business-primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--business-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%232C3E50" stroke-width="0.5" opacity="0.2"/></svg>');
+}
+
+.business-class .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.business-class .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--business-accent1);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.business-class .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--business-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.business-class .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1.5px;
+    background: var(--business-accent3);
+    margin-top: -0.75px;
+}
+
+/* Clock center ornament */
+.business-class .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--business-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--business-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.business-class table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.business-class th {
+    background-color: var(--business-accent1);
+    color: var(--business-primary) !important;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    padding: 0.7rem 0.4rem;
+    border-radius: var(--business-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+}
+
+.business-class th span.full-day-name {
+    display: inline;
+}
+
+.business-class th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.business-class td {
+    background-color: var(--business-primary);
+    color: var(--business-text);
+    padding: 0.9rem;
+    border: 1px solid var(--business-accent4);
+    height: 85px;
+    vertical-align: top;
+    transition: all var(--business-transition);
+    position: relative;
+    border-radius: var(--business-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.business-class td .date-number {
+    color: var(--business-date-number) !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-family: 'Roboto Slab', serif;
+}
+
+.business-class td:hover {
+    background-color: var(--business-secondary);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Current date highlight */
+.business-class td.current-day {
+    background-color: rgba(44, 62, 80, 0.1);
+    border: 2px solid var(--business-accent1);
+    animation: business-pulse 3s infinite;
+}
+
+.business-class td.current-day .date-number {
+    color: var(--business-text) !important;
+    font-weight: 700;
+}
+
+.business-class td.current-day::before {
+    content: "📍";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1rem;
+    color: var(--business-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.business-class .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--business-accent1);
+    margin: 0 1px;
+    transition: all var(--business-transition);
+}
+
+.business-class .event-marker:hover {
+    transform: scale(1.3);
+    background-color: var(--business-accent2);
+    box-shadow: 0 0 4px rgba(52, 73, 94, 0.3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.business-class .modal-content {
+    position: relative;
+    background-color: var(--business-primary);
+    border: 1px solid var(--business-accent4);
+    padding: 22px;
+    color: var(--business-text);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    border-radius: var(--business-radius);
+    animation: business-rise 0.3s ease-out;
+}
+
+.business-class .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--business-accent1) 0%,
+            var(--business-accent2) 50%,
+            var(--business-accent1) 100%);
+}
+
+.business-class .modal-content h2 {
+    color: var(--business-text);
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Modal date display */
+.business-class .modal-date {
+    font-family: 'Roboto Slab', serif;
+    color: var(--business-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--business-accent4);
+}
+
+/* Event list */
+.business-class .event-list {
+    margin: 1.3rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.business-class .event-item {
+    background-color: var(--business-secondary);
+    padding: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-left: 3px solid var(--business-accent1);
+    border-radius: var(--business-radius);
+    transition: all var(--business-transition);
+}
+
+.business-class .event-item:hover {
+    background-color: var(--business-layer3);
+    transform: translateX(2px);
+}
+
+.business-class .event-time {
+    font-family: 'Roboto Slab', serif;
+    color: var(--business-text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.business-class .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--business-text);
+}
+
+.business-class .event-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--business-text);
+    opacity: 0.9;
+}
+
+.business-class .modal-content button {
+    background-color: var(--business-accent1);
+    color: var(--business-primary);
+    border: none;
+    padding: 9px 18px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--business-transition);
+    letter-spacing: 0.4px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--business-radius);
+}
+
+.business-class .modal-content button:hover {
+    background-color: var(--business-hover);
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.15);
+}
+
+/* Close Button */
+.business-class .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--business-primary);
+    color: var(--business-text);
+    border: 1px solid var(--business-text);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--business-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.business-class .modal .close-button:hover {
+    background-color: var(--business-text);
+    color: var(--business-primary);
+    border-color: var(--business-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.business-class .button,
+.business-class .transparent-button {
+    border: 1px solid var(--business-accent1);
+    color: var(--business-text);
+    background-color: transparent;
+    padding: 0.7rem 1.3rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--business-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: var(--business-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
+.business-class .button:hover,
+.business-class .transparent-button:hover {
+    background-color: var(--business-accent1);
+    color: var(--business-primary);
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.1);
+}
+
+.business-class .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.business-class #theme-switcher-container {
+    position: relative;
+    margin: 0 0.7rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.business-class #theme-switcher {
+    background-color: var(--business-primary);
+    color: var(--business-text) !important;
+    border: 1px solid var(--business-accent1);
+    padding: 0.7rem 2rem 0.7rem 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232D3436'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--business-transition);
+    border-radius: var(--business-radius);
+}
+
+.business-class #theme-switcher option {
+    background-color: var(--business-primary) !important;
+    color: var(--business-text) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 9px 11px !important;
+}
+
+.business-class #theme-switcher:focus {
+    outline: none;
+    border-color: var(--business-accent1);
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.15);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.business-class #backToTopBtn {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--business-primary);
+    background-color: var(--business-accent1);
+    cursor: pointer;
+    transition: all var(--business-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--business-radius);
+    box-shadow: 0 1px 5px rgba(44, 62, 80, 0.2);
+}
+
+.business-class #backToTopBtn:hover {
+    background-color: var(--business-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.business-class footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--business-accent4);
+    color: var(--business-text);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .business-class .container {
+        padding: 1.3rem;
+    }
+
+    .business-class #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .business-class #current-date {
+        font-size: 1.4rem;
+    }
+
+    .business-class #today-weather {
+        font-size: 1rem;
+    }
+
+    .business-class .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .business-class .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .business-class {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .business-class .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+
+    .business-class th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .business-class th span.full-day-name {
+        display: none;
+    }
+
+    .business-class th abbr {
+        display: inline;
+    }
+
+    .business-class td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .business-class td .date-number {
+        font-size: 1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .business-class td.current-day::before {
+        font-size: 0.9rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .business-class #backToTopBtn {
+        right: 12px;
+        bottom: 12px;
+        padding: 0.8rem 1.3rem;
+        font-size: 0.85rem;
+    }
+
+    .business-class #theme-switcher {
+        padding: 0.6rem 1.6rem 0.6rem 0.7rem;
+        font-size: 0.85rem;
+        min-width: 160px;
+    }
+
+    .business-class .modal-content {
+        padding: 18px;
+    }
+
+    .business-class .event-item {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .business-class .container {
+        padding: 1rem;
+    }
+
+    .business-class #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .business-class #current-date {
+        font-size: 1.2rem;
+    }
+
+    .business-class #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .business-class .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 3px;
+    }
+
+    .business-class th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .business-class td {
+        padding: 0.5rem;
+        height: 65px;
+        font-size: 0.75rem;
+    }
+
+    .business-class td .date-number {
+        font-size: 0.9rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .business-class #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+
+    .business-class .modal-content {
+        padding: 15px;
+    }
+
+    .business-class .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .business-class .event-time {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .business-class th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .business-class td {
+        height: 55px;
+    }
+
+    .business-class td .date-number {
+        font-size: 0.85rem;
+    }
+
+    .business-class #theme-switcher {
+        min-width: 120px;
+        font-size: 0.75rem;
+    }
+}
