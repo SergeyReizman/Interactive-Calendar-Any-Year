@@ -86,7 +86,7 @@ const applyTheme = (theme) => {
     'cardinals-guards', 'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
     'cherry-garden', 'cinnamon-street', 'citrus-blaze', 
     'city-of-angels', 'city-of-dreams', 'city-of-night', 
-    'clean-code', 'clean-energy', 'coastal-atlantic', 'coastal-beauty',
+    'clean-code', 'clean-energy', 'coastal-atlantic', 'coastal-beauty', 'coastal-gulf',
     'coastal-pacific', 'coconut-islands', 'coffee-for-leaders', 'color-of-my-dreams',
     'colors-of-a-dream', 'color-symphony','collaboration-idea', 'competitive-advantage',
     'continuous-growth', 'coral-garden',
