@@ -212,7 +212,7 @@ const applyTheme = (theme) => {
     'the-prince-of-monaco', 'the-real-luxury',
     'the-silver-sword', 'the-spirit-of-innovation', 
     'the-unstoppable-mindset', 'the-west-coast', 
-    'the-world-of-nature', 'tide-of-dreams',
+    'the-world-of-nature', 'think-different', 'tide-of-dreams',
     'time-complexity', 'time-machine', 'time-to-chill', 'tokyo-at-night',
     'too-beautiful-to-be-true', 'tropical-islands', 'tropical-jungle', 
     'tropical-nature', 'tropical-paradise',
