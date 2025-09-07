@@ -188,7 +188,7 @@ const applyTheme = (theme) => {
     'silver-dragon', 'sky-diving', 'sky-eagle', 'sky-hawk', 
     'skylight-window', 'small-happiness', 'small-success', 
     'smiley-world', 'snake-river', 'snow-leopard',
-    'solar-flare', 'something-special', 
+    'soft-balance', 'solar-flare', 'something-special', 
     'spark-of-knowledge', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'stay-cool', 'stay-curious', 'stay-positive', 'stay-that-way',
     'stay-your-way',
