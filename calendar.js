@@ -222,8 +222,8 @@ const applyTheme = (theme) => {
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 'velvety-dark', 'vibrant-colors',
     'viking-helmet','viktoria-falls', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'west-hollywood', 'when-style-speaks-first',
-    'white-shark', 'white-steamboat', 'white-sun-of-the-desert', 
-    'wild-flower','wild-rose', 'wild-tropics',
+    'white-cherry-tree', 'white-shark', 'white-steamboat', 
+    'white-sun-of-the-desert', 'wild-flower','wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
     'world-champion', 'work-of-art', 'yellow-eyed-penguin', 'your-dreamland',
     'your-wildest-dreams', 'your-wildest-guess', 'zodiac-constellations'
