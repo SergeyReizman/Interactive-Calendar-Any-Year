@@ -83,7 +83,7 @@ const applyTheme = (theme) => {
     'breathtaking-view','bright-line', 'brilliant-white', 'bronze-horseman', 
     'business-class', 'cacao-plantation', 'cafe-de-colombia', 'california-sunshine',
     'camomile-flowers', 'canary-islands', 'can-do-attitude', 'candy-world',
-    'cardinals-guards', 'caribbean-beaches',
+    'captains-choice', 'cardinals-guards', 'caribbean-beaches',
     'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
     'cherry-garden', 'cinnamon-street', 'citrus-blaze', 
     'city-of-angels', 'city-of-dreams', 'city-of-night', 
