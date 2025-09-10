@@ -76,7 +76,7 @@ const applyTheme = (theme) => {
     'black-orange', 'black-panther', 'black-pear', 'black-pearl', 'black-style',
     'black-velvet', 'black-violet', 'blue-banana', 'blue-bird', 
     'blue-bliss', 'blue-dragon', 'blue-frost', 'blue-gold',
-    'blue-horizon', 'blue-ice', 'blue-island-waters', 'blue-lagoon', 
+    'blue-horizon', 'blue-ice', 'blue-island-waters', 'blue-lagoon', 'blue-marine',
     'blue-mountains','blue-ocean', 'blue-planet', 'blue-sky', 'blue-stars', 'blue-system',
     'blue-whale', 'blue-white', 'blue-window',
     'bold-vision', 'bora-bora', 'box-of-surprises', 'breaking-point', 'break-the-night',
