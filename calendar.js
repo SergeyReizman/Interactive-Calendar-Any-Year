@@ -170,7 +170,7 @@ const applyTheme = (theme) => {
     'one-way-ticket', 'on-the-island', 'on-the-wild-side','orange-country', 
     'orange-dragon', 'orion-constellation', 'our-favorite-hangout', 'out-of-the-blue',
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
-    'pacific-ocean', 'palm-beach',
+    'pacific-division', 'pacific-ocean', 'palm-beach',
     'palma-de-mallorca', 'patagonian-shores', 'patagonian-sky', 'perfect-afternoon',
     'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'planet-of-robots', 'point-nemo',
