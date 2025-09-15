@@ -192,7 +192,7 @@ const applyTheme = (theme) => {
     'shaolin-monastery','shift-in-perception', 'significant-improvement', 'silicon-valley', 
     'silver-dragon', 'sky-diving', 'sky-eagle', 'sky-hawk', 
     'skylight-window', 'small-happiness', 'small-success', 
-    'smiley-world', 'snake-river', 'snow-leopard',
+    'smiley-world', 'snake-river', 'snoopy-white', 'snow-leopard',
     'soft-balance', 'solar-flare', 'something-special', 
     'spark-of-knowledge', 'spring-meadow', 'spring-silence',
     'statue-of-liberty', 'stay-cool', 'stay-curious', 'stay-positive', 'stay-that-way',
