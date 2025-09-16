@@ -185,7 +185,7 @@ const applyTheme = (theme) => {
     'remote-island','right-on-track', 'rising-sun',
     'robin-good', 'rocky-mountains',
     'royal-caribbean', 'royal-crown', 'samurai-path', 
-    'san-francisco-sunrise', 'science-fiction',
+    'saint-tropez-moon', 'san-francisco-sunrise', 'science-fiction',
     'sea-breeze', 'seabreeze-avenue', 'sea-diamonds', 
     'seahorse', 'sea-lions', 'sea-star', 'secret-item',
     'secret-night', 'secretive-ninja', 'selfless-programmer', 
