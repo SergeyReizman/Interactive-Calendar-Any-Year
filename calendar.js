@@ -154,7 +154,7 @@ const applyTheme = (theme) => {
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment', 'midnight-alchemy', 
     'midnight-black', 'midnight-sun', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'mirror-lake', 'modern-technology',
-    'monochrome-ink', 'moon-bridge',
+    'mogren-beach', 'monochrome-ink', 'moon-bridge',
     'moonlit-path', 'morning-coffee', 'morning-forest', 'mountain-lake', 'mountain-landscape', 
     'mountain-mood', 'mountain-of-dreams', 'mountain-peak', 
     'mountain-sunset','mountain-view',
