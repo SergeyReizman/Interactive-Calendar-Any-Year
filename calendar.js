@@ -63,7 +63,7 @@ const applyTheme = (theme) => {
     'amazing-sunrise', 'amazon-dolphin', 'amazon-rainforest',
     'amazon-river', 'american-dream',
     'andromeda-galaxy', 'a-new-chapter', 'a-new-opportunity', 'antarctic-ice',
-    'antarctic-snowdrifts', 'aqua-marina', 'aqua-spirit',
+    'antarctic-snowdrifts', 'apple-in-honey', 'aqua-marina', 'aqua-spirit',
     'a-quiet-creek', 'arctic-glow', 'arctic-snowfall', 
     'art-studio', 'a-simple-task', 'a-solitude-moment', 'a-stunning-shoreline', 'a-thing-of-beauty', 
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
