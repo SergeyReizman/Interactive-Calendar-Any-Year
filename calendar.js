@@ -148,7 +148,7 @@ const applyTheme = (theme) => {
     'lady-blue', 'lake-mcdonald', 'last-chance',
     'lavender-bliss', 'lemongrass-sky', 'lemon-lime', 'level-of-comfort',
     'life-quality', 'light-and-shadows', 'like-a-bird',
-    'limited-edition', 'lions-mane', 'logical-intelligence', 
+    'limited-edition', 'lions-mane', 'logical-intelligence', 'long-beach',
     'los-angeles-lakers', 'los-angeles-sky', 'love-and-passion',
     'love-of-yesterday','love-station', 'lucid-dream', 'lunar-eclipse',
     'lush-green-mountains', 'luxury-design', 'luxury-life', 'macaroni-penguin',
