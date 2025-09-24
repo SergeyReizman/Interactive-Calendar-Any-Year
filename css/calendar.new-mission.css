@@ -1,0 +1,937 @@
+/* ==========================================================================
+   New Mission Theme - Modern Tech Calendar
+   Version: 1.2
+   Updated: 2024-06-10
+   Changes:
+   - Enhanced text visibility in modal, calendar dates, and theme switcher
+   - Improved contrast ratios for all interactive elements
+   - Fixed all text readability issues
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* New Mission Color Palette */
+    --mission-bg: #0A0F2D;
+    --mission-text: #E0F7FA;
+    --mission-primary: #1A1F3D;
+    --mission-secondary: #2A2F4D;
+    --mission-date-number: #B3E5FC;
+
+    /* Tech Layer Colors */
+    --mission-layer1: #2A2F4D;
+    --mission-layer2: #3A3F5D;
+    --mission-layer3: #4A4F6D;
+    --mission-layer4: #5A5F7D;
+    --mission-layer5: #6A6F8D;
+
+    /* Tech Accent Colors - Enhanced for maximum contrast */
+    --mission-accent1: #00E5FF;
+    /* Cyan */
+    --mission-accent2: #76FF03;
+    /* Lime Green */
+    --mission-accent3: #FF4081;
+    /* Pink */
+    --mission-accent4: rgba(0, 229, 255, 0.4);
+    --mission-accent5: rgba(118, 255, 3, 0.3);
+
+    /* High Contrast Text Colors */
+    --mission-text-on-dark: #E0F7FA;
+    --mission-text-on-light: #0A0F2D;
+    --mission-text-on-cyan: #0A0F2D;
+    --mission-text-on-green: #0A0F2D;
+
+    /* Theme Variables */
+    --mission-shadow: rgba(0, 0, 0, 0.8);
+    --mission-radius: 6px;
+    --mission-transition: 0.3s ease-in-out;
+    --mission-hover: #00B8D4;
+    --mission-glow: 0 0 20px rgba(0, 229, 255, 0.6);
+    --mission-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".3" fill="%2300E5FF"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes mission-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes mission-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes mission-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--mission-shadow);
+    }
+
+    50% {
+        box-shadow: var(--mission-glow);
+    }
+}
+
+@keyframes mission-scan {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes mission-glow {
+    0% {
+        text-shadow: 0 0 5px var(--mission-accent1);
+    }
+
+    50% {
+        text-shadow: 0 0 15px var(--mission-accent1), 0 0 20px var(--mission-accent1);
+    }
+
+    100% {
+        text-shadow: 0 0 5px var(--mission-accent1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.new-mission {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--mission-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--mission-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(135deg, var(--mission-bg) 0%, var(--mission-layer3) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.new-mission .container {
+    background-color: var(--mission-primary);
+    padding: 2rem;
+    border: 1px solid var(--mission-accent4);
+    box-shadow: var(--mission-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--mission-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(0, 229, 255, 0.05), transparent);
+}
+
+.new-mission .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--mission-accent1) 50%,
+            transparent 100%);
+}
+
+.new-mission .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-image: var(--mission-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.new-mission #calendar-title {
+    font-family: 'Orbitron', monospace;
+    color: var(--mission-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--mission-accent1);
+    animation: mission-glow 3s ease-in-out infinite;
+}
+
+.new-mission #calendar-title::after {
+    content: "🚀";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.new-mission #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--mission-primary);
+    border: 1px solid var(--mission-accent4);
+    border-radius: var(--mission-radius);
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(0, 229, 255, 0.1);
+}
+
+.new-mission #date-weather-container::before {
+    content: "MISSION CONTROL";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--mission-primary);
+    padding: 0 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--mission-accent1);
+    font-weight: 700;
+    font-family: 'Orbitron', monospace;
+    text-shadow: 0 0 8px var(--mission-accent1);
+}
+
+.new-mission #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mission-accent1), transparent);
+}
+
+.new-mission #current-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--mission-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 8px var(--mission-accent1);
+    letter-spacing: 0.05em;
+}
+
+.new-mission #today-weather {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--mission-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 6px var(--mission-accent1);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.new-mission #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.new-mission .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--mission-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mission-primary);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 229, 255, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--mission-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%2300E5FF" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.new-mission .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.new-mission .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--mission-accent1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--mission-accent1);
+}
+
+.new-mission .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--mission-accent2);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 5px var(--mission-accent2);
+}
+
+.new-mission .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--mission-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 5px var(--mission-accent3);
+}
+
+/* Clock center ornament */
+.new-mission .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--mission-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 3px var(--mission-primary), 0 0 10px var(--mission-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.new-mission table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS - HIGH CONTRAST */
+.new-mission th {
+    background: linear-gradient(135deg, var(--mission-accent1) 0%, #00B8D4 100%);
+    color: var(--mission-text-on-cyan) !important;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--mission-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--mission-accent2);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 800;
+    box-shadow: 0 2px 8px rgba(0, 229, 255, 0.4);
+}
+
+.new-mission th span.full-day-name {
+    display: inline;
+}
+
+.new-mission th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES - ENHANCED VISIBILITY */
+.new-mission td {
+    background-color: var(--mission-primary);
+    color: var(--mission-text);
+    padding: 1rem;
+    border: 1px solid var(--mission-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--mission-transition);
+    position: relative;
+    border-radius: var(--mission-radius);
+    box-shadow: inset 0 1px 0 rgba(0, 229, 255, 0.1);
+}
+
+.new-mission td .date-number {
+    color: var(--mission-text) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 0 6px var(--mission-accent1);
+    font-family: 'Orbitron', monospace;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 8px;
+    border-radius: 3px;
+    min-width: 30px;
+    text-align: center;
+    border: 1px solid var(--mission-accent4);
+}
+
+.new-mission td:hover {
+    background-color: var(--mission-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.new-mission td:hover .date-number {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--mission-accent1) !important;
+    border-color: var(--mission-accent1);
+}
+
+/* Current date highlight */
+.new-mission td.current-day {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.15) 0%, rgba(0, 184, 212, 0.1) 100%);
+    border: 2px solid var(--mission-accent1);
+    animation: mission-pulse 3s infinite;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.new-mission td.current-day .date-number {
+    color: var(--mission-text-on-cyan) !important;
+    font-weight: 800;
+    background: var(--mission-accent1);
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px var(--mission-accent1);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.new-mission td.current-day::before {
+    content: "⦿";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.2rem;
+    color: var(--mission-accent1);
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--mission-accent1);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.new-mission .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--mission-accent1);
+    margin: 0 2px;
+    transition: all var(--mission-transition);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px var(--mission-accent1);
+}
+
+.new-mission .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--mission-accent2);
+    box-shadow: 0 0 8px var(--mission-accent2);
+}
+
+/* ==================== MODAL STYLES - ENHANCED VISIBILITY */
+.new-mission .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--mission-primary) 0%, var(--mission-layer2) 100%);
+    border: 2px solid var(--mission-accent1);
+    padding: 30px;
+    color: var(--mission-text);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 255, 0.3);
+    border-radius: var(--mission-radius);
+    animation: mission-rise 0.3s ease-out;
+}
+
+.new-mission .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--mission-accent1) 50%,
+            transparent 100%);
+}
+
+.new-mission .modal-content h2 {
+    color: var(--mission-text);
+    font-family: 'Orbitron', monospace;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px var(--mission-accent1);
+    text-align: center;
+}
+
+/* Modal date display */
+.new-mission .modal-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--mission-accent1);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--mission-accent1);
+    text-shadow: 0 0 8px var(--mission-accent1);
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+/* Event list */
+.new-mission .event-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.new-mission .event-item {
+    background: linear-gradient(135deg, var(--mission-secondary) 0%, var(--mission-layer3) 100%);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--mission-accent1);
+    border-radius: var(--mission-radius);
+    transition: all var(--mission-transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.new-mission .event-item:hover {
+    background: linear-gradient(135deg, var(--mission-layer3) 0%, var(--mission-layer4) 100%);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.new-mission .event-time {
+    font-family: 'Orbitron', monospace;
+    color: var(--mission-accent1);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-shadow: 0 0 6px var(--mission-accent1);
+    letter-spacing: 0.05em;
+}
+
+.new-mission .event-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--mission-text);
+    text-shadow: 0 0 6px var(--mission-accent1);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.new-mission .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--mission-text);
+    opacity: 0.95;
+    text-shadow: 0 0 4px var(--mission-accent1);
+}
+
+/* BUTTONS - HIGH CONTRAST */
+.new-mission .modal-content button {
+    background: linear-gradient(135deg, var(--mission-accent1) 0%, #00B8D4 100%);
+    color: var(--mission-text-on-cyan) !important;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--mission-transition);
+    letter-spacing: 0.1em;
+    font-family: 'Orbitron', monospace;
+    border-radius: var(--mission-radius);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    margin-top: 1rem;
+}
+
+.new-mission .modal-content button:hover {
+    background: linear-gradient(135deg, #00B8D4 0%, var(--mission-accent1) 100%);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6), 0 0 10px var(--mission-accent1);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.new-mission .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--mission-accent1) 0%, #00B8D4 100%);
+    color: var(--mission-text-on-cyan) !important;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: all var(--mission-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 800;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    font-family: 'Orbitron', monospace;
+}
+
+.new-mission .modal .close-button:hover {
+    background: linear-gradient(135deg, #00B8D4 0%, var(--mission-accent1) 100%);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 8px var(--mission-accent1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.new-mission .button,
+.new-mission .transparent-button {
+    border: 2px solid var(--mission-accent1);
+    color: var(--mission-text-on-cyan) !important;
+    background: linear-gradient(135deg, var(--mission-accent1) 0%, #00B8D4 100%);
+    padding: 1rem 2rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--mission-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--mission-radius);
+    letter-spacing: 0.1em;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.new-mission .transparent-button {
+    background: transparent;
+    color: var(--mission-accent1) !important;
+    border: 2px solid var(--mission-accent1);
+    text-shadow: 0 0 6px var(--mission-accent1);
+}
+
+.new-mission .button:hover,
+.new-mission .transparent-button:hover {
+    background: linear-gradient(135deg, #00B8D4 0%, var(--mission-accent1) 100%);
+    color: var(--mission-text-on-cyan) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6), 0 0 10px var(--mission-accent1);
+    transform: translateY(-2px);
+}
+
+.new-mission .transparent-button:hover {
+    background: var(--mission-accent1);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.new-mission .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER - ENHANCED VISIBILITY */
+.new-mission #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.new-mission #theme-switcher {
+    background: linear-gradient(135deg, var(--mission-primary) 0%, var(--mission-layer2) 100%);
+    color: var(--mission-text) !important;
+    border: 2px solid var(--mission-accent1);
+    padding: 1rem 3rem 1rem 1.5rem;
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300E5FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--mission-transition);
+    border-radius: var(--mission-radius);
+    text-shadow: 0 0 6px var(--mission-accent1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.05em;
+}
+
+.new-mission #theme-switcher option {
+    background-color: var(--mission-primary) !important;
+    color: var(--mission-text) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 15px !important;
+    text-shadow: 0 0 6px var(--mission-accent1);
+    font-family: 'Orbitron', monospace;
+}
+
+.new-mission #theme-switcher:focus {
+    outline: none;
+    border-color: var(--mission-accent2);
+    box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.new-mission #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    color: var(--mission-text-on-cyan) !important;
+    background: linear-gradient(135deg, var(--mission-accent1) 0%, #00B8D4 100%);
+    cursor: pointer;
+    transition: all var(--mission-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: var(--mission-radius);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1em;
+}
+
+.new-mission #backToTopBtn:hover {
+    background: linear-gradient(135deg, #00B8D4 0%, var(--mission-accent1) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 15px var(--mission-accent1);
+}
+
+/* ==================== FOOTER ==================== */
+.new-mission footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--mission-accent4);
+    color: var(--mission-text);
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 0 6px var(--mission-accent1);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .new-mission .container {
+        padding: 1.5rem;
+    }
+
+    .new-mission #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .new-mission #current-date {
+        font-size: 1.6rem;
+    }
+
+    .new-mission #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .new-mission .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .new-mission .event-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-mission {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .new-mission .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
+    }
+
+    .new-mission th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .new-mission th span.full-day-name {
+        display: none;
+    }
+
+    .new-mission th abbr {
+        display: inline;
+        color: var(--mission-text-on-cyan) !important;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        font-weight: 800;
+        font-family: 'Orbitron', monospace;
+    }
+
+    .new-mission td {
+        padding: 0.8rem;
+        height: 80px;
+        font-size: 0.9rem;
+    }
+
+    .new-mission td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+        padding: 2px 6px;
+    }
+
+    .new-mission td.current-day .date-number {
+        padding: 2px 8px;
+        font-size: 1rem;
+    }
+
+    .new-mission td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .new-mission #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .new-mission #theme-switcher {
+        padding: 0.9rem 2.5rem 0.9rem 1.2rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+    }
+
+    .new-mission .modal-content {
+        padding: 25px;
+    }
+
+    .new-mission .event-item {
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .new-mission .container {
+        padding: 1rem;
+    }
+
+    .new-mission #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .new-mission #current-date {
+        font-size: 1.4rem;
+    }
+
+    .new-mission #today-weather {
+        font-size: 1rem;
+    }
+
+    .new-mission .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .new-mission th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .new-mission td {
+        padding: 0.7rem;
+        height: 70px;
+        font-size: 0.85rem;
+    }
+
+    .new-mission td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+        padding: 1px 5px;
+    }
+
+    .new-mission td.current-day .date-number {
+        padding: 2px 6px;
+        font-size: 0.95rem;
+    }
+
+    .new-mission #theme-switcher {
+        min-width: 180px;
+        font-size: 0.9rem;
+    }
+
+    .new-mission .modal-content {
+        padding: 20px;
+    }
+
+    .new-mission .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .new-mission .event-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .new-mission th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .new-mission td {
+        height: 60px;
+    }
+
+    .new-mission td .date-number {
+        font-size: 0.9rem;
+        padding: 1px 4px;
+    }
+
+    .new-mission td.current-day .date-number {
+        font-size: 0.85rem;
+        padding: 1px 4px;
+    }
+
+    .new-mission #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+}
