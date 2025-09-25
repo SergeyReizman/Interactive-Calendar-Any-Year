@@ -150,7 +150,7 @@ const applyTheme = (theme) => {
     'mammoth-tusk', 'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment', 'midnight-alchemy', 
     'midnight-black', 'midnight-sun', 'midnight-train', 'midnight-elegance',
-    'migratory-birds', 'mirror-lake', 'modern-technology',
+    'migratory-birds', 'mirror-lake', 'mission-completed', 'modern-technology',
     'mogren-beach', 'monochrome-ink', 'monte-carlo', 'moon-bridge',
     'moonlit-path', 'morning-coffee', 'morning-forest', 'mountain-lake', 'mountain-landscape', 
     'mountain-mood', 'mountain-of-dreams', 'mountain-peak', 
