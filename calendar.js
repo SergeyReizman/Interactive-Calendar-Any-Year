@@ -207,7 +207,7 @@ const applyTheme = (theme) => {
     'strong-and-free', 'strong-foundation',
     'style-spectrum', 'success-key','success-motivation', 'success-story', 
     'summer-breeze', 'summer-sky', 'summer-vibes', 'sunny-beach', 'sunrise-over-the-ocean',
-    'sunset-magic', 'supreme-level', 'surfing-club', 'sweet-misty-morning',
+    'sunset-magic', 'supreme-level', 'surfing-club', 'sweet-misty-morning', 'swiss-train',
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer',
     'tech-innovator', 'technological-future', 'technological-innovation', 'technological-might',
     'the-art-of-visible', 'the-best-kind-of-view',
