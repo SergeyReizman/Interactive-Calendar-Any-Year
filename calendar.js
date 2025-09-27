@@ -185,7 +185,7 @@ const applyTheme = (theme) => {
     'real-results', 'red-desert', 'red-lake', 'red-squirrel', 'remarkable-city',
     'remote-island','right-on-track', 'rising-sun',
     'robin-good', 'rocky-mountains',
-    'royal-caribbean', 'royal-crown', 'samurai-path', 
+    'royal-caribbean', 'royal-crown', 'sacramento-kings', 'samurai-path', 
     'saint-tropez-moon', 'san-francisco-lights',
     'san-francisco-sunrise', 'science-fiction',
     'sea-breeze', 'seabreeze-avenue', 'sea-diamonds', 

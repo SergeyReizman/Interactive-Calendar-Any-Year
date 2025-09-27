@@ -1,0 +1,818 @@
+/* ==========================================================================
+   Sacramento Kings Theme - Basketball Team-Inspired Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Sacramento Kings team color palette inspired by NBA basketball
+   - Modern, royal design with basketball legacy elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Kings Color Palette */
+    --kings-bg: #F5F5F5;
+    --kings-text: #000000;
+    --kings-primary: #FFFFFF;
+    --kings-secondary: #F0F0F0;
+    --kings-date-number: #5A2D81;
+
+    /* Court Texture Colors */
+    --kings-texture1: #EAEAEA;
+    --kings-texture2: #E0E0E0;
+    --kings-texture3: #D6D6D6;
+    --kings-texture4: #CCCCCC;
+    --kings-texture5: #C2C2C2;
+
+    /* Team Accent Colors */
+    --kings-accent1: #5A2D81;
+    --kings-accent2: #4A256B;
+    --kings-accent3: #3A1D55;
+    --kings-accent4: rgba(90, 45, 129, 0.7);
+    --kings-accent5: rgba(90, 45, 129, 0.5);
+
+    /* Secondary Colors */
+    --kings-gold: #B59A5F;
+    --kings-white: #FFFFFF;
+    --kings-black: #000000;
+    --kings-silver: #C0C0C0;
+
+    /* Theme Variables */
+    --kings-shadow: rgba(90, 45, 129, 0.15);
+    --kings-radius: 8px;
+    --kings-transition: 0.25s ease;
+    --kings-hover: #4A256B;
+    --kings-glow: 0 0 12px rgba(90, 45, 129, 0.3);
+    --kings-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%235A2D81"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".25" fill="%235A2D81"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".35" fill="%235A2D81"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes kings-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes kings-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes kings-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--kings-shadow);
+    }
+
+    50% {
+        box-shadow: var(--kings-glow);
+    }
+}
+
+@keyframes kings-bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.sacramento-kings {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--kings-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--kings-bg);
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%235A2D81" opacity="0.1"/><circle cx="70" cy="30" r="2" fill="%23B59A5F" opacity="0.1"/><circle cx="30" cy="70" r="2" fill="%235A2D81" opacity="0.1"/><circle cx="80" cy="80" r="2" fill="%23B59A5F" opacity="0.1"/></svg>');
+}
+
+.sacramento-kings .container {
+    background-color: var(--kings-primary);
+    padding: 2rem;
+    border: 1px solid var(--kings-accent4);
+    box-shadow: var(--kings-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--kings-radius);
+}
+
+.sacramento-kings .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--kings-accent1) 0%,
+            var(--kings-gold) 50%,
+            var(--kings-black) 100%);
+}
+
+.sacramento-kings .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--kings-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.sacramento-kings #calendar-title {
+    font-family: 'Oswald', sans-serif;
+    color: var(--kings-accent1);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.sacramento-kings #calendar-title::after {
+    content: "👑";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+    animation: kings-bounce 2s infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.sacramento-kings #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--kings-primary);
+    border: 1px solid var(--kings-accent4);
+    border-radius: var(--kings-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sacramento-kings #date-weather-container::before {
+    content: "KINGS KINGDOM 🏀";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--kings-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--kings-accent1);
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+.sacramento-kings #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--kings-accent2), transparent);
+}
+
+.sacramento-kings #current-date {
+    font-family: 'Oswald', sans-serif;
+    color: var(--kings-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.03em;
+}
+
+.sacramento-kings #today-weather {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--kings-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.sacramento-kings #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.sacramento-kings .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--kings-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--kings-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sacramento-kings .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.sacramento-kings .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 5px;
+    background: var(--kings-black);
+    margin-top: -2.5px;
+    border-radius: 2px;
+}
+
+.sacramento-kings .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--kings-accent1);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.sacramento-kings .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--kings-gold);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.sacramento-kings table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.sacramento-kings th {
+    background: linear-gradient(135deg, var(--kings-accent1) 0%, var(--kings-black) 100%);
+    color: var(--kings-primary) !important;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--kings-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.sacramento-kings th span.full-day-name {
+    display: inline;
+}
+
+.sacramento-kings th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.sacramento-kings td {
+    background-color: var(--kings-primary);
+    color: var(--kings-text);
+    padding: 1rem;
+    border: 1px solid var(--kings-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--kings-transition);
+    position: relative;
+    border-radius: var(--kings-radius);
+    box-shadow: inset 0 0 0 1px rgba(90, 45, 129, 0.1);
+}
+
+.sacramento-kings td .date-number {
+    color: var(--kings-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.sacramento-kings td:hover {
+    background-color: var(--kings-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Current date highlight */
+.sacramento-kings td.current-day {
+    background-color: rgba(90, 45, 129, 0.1);
+    border: 2px solid var(--kings-accent2);
+    animation: kings-pulse 3s infinite;
+}
+
+.sacramento-kings td.current-day .date-number {
+    color: var(--kings-date-number) !important;
+    font-weight: 700;
+}
+
+.sacramento-kings td.current-day::before {
+    content: "🏆";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--kings-accent1);
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.sacramento-kings .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--kings-accent2);
+    margin: 0 1px;
+    transition: all var(--kings-transition);
+}
+
+.sacramento-kings .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--kings-accent2);
+    box-shadow: 0 0 6px rgba(90, 45, 129, 0.3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.sacramento-kings .modal-content {
+    position: relative;
+    background-color: var(--kings-primary);
+    border: 1px solid var(--kings-accent4);
+    padding: 25px;
+    color: var(--kings-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--kings-radius);
+    animation: kings-slide 0.2s ease-out;
+}
+
+.sacramento-kings .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--kings-accent1) 0%,
+            var(--kings-gold) 50%,
+            var(--kings-accent1) 100%);
+}
+
+.sacramento-kings .modal-content h2 {
+    color: var(--kings-accent1);
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Modal date display */
+.sacramento-kings .modal-date {
+    font-family: 'Oswald', sans-serif;
+    color: var(--kings-accent1);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--kings-accent4);
+    letter-spacing: 0.03em;
+}
+
+/* Event list */
+.sacramento-kings .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sacramento-kings .event-item {
+    background-color: var(--kings-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--kings-accent1);
+    border-radius: var(--kings-radius);
+    transition: all var(--kings-transition);
+}
+
+.sacramento-kings .event-item:hover {
+    background-color: var(--kings-texture3);
+    transform: translateX(3px);
+}
+
+.sacramento-kings .event-time {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--kings-accent1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.sacramento-kings .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--kings-text);
+}
+
+.sacramento-kings .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--kings-text);
+    opacity: 0.9;
+}
+
+.sacramento-kings .modal-content button {
+    background-color: var(--kings-accent1);
+    color: var(--kings-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--kings-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--kings-radius);
+    text-transform: uppercase;
+}
+
+.sacramento-kings .modal-content button:hover {
+    background-color: var(--kings-hover);
+    box-shadow: 0 3px 10px rgba(90, 45, 129, 0.2);
+}
+
+/* Close Button */
+.sacramento-kings .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--kings-primary);
+    color: var(--kings-text);
+    border: 1px solid var(--kings-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--kings-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.sacramento-kings .modal .close-button:hover {
+    background-color: var(--kings-text);
+    color: var(--kings-accent1);
+    border-color: var(--kings-text);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.sacramento-kings .button,
+.sacramento-kings .transparent-button {
+    border: 1px solid var(--kings-accent1);
+    color: var(--kings-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--kings-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--kings-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.sacramento-kings .button:hover,
+.sacramento-kings .transparent-button:hover {
+    background-color: var(--kings-accent1);
+    color: var(--kings-primary);
+    box-shadow: 0 3px 10px rgba(90, 45, 129, 0.2);
+}
+
+.sacramento-kings .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.sacramento-kings #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.sacramento-kings #theme-switcher {
+    background-color: var(--kings-primary);
+    color: var(--kings-text) !important;
+    border: 1px solid var(--kings-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--kings-transition);
+    border-radius: var(--kings-radius);
+}
+
+.sacramento-kings #theme-switcher option {
+    background-color: var(--kings-primary) !important;
+    color: var(--kings-text) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.sacramento-kings #theme-switcher:focus {
+    outline: none;
+    border-color: var(--kings-accent1);
+    box-shadow: 0 0 0 2px rgba(90, 45, 129, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.sacramento-kings #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--kings-primary);
+    background-color: var(--kings-accent1);
+    cursor: pointer;
+    transition: all var(--kings-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--kings-radius);
+    box-shadow: 0 2px 8px rgba(90, 45, 129, 0.3);
+}
+
+.sacramento-kings #backToTopBtn:hover {
+    background-color: var(--kings-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.sacramento-kings footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--kings-accent4);
+    color: var(--kings-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .sacramento-kings .container {
+        padding: 1.5rem;
+    }
+
+    .sacramento-kings #calendar-title {
+        font-size: 2rem;
+    }
+
+    .sacramento-kings #current-date {
+        font-size: 1.5rem;
+    }
+
+    .sacramento-kings #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .sacramento-kings .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .sacramento-kings .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sacramento-kings {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .sacramento-kings .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .sacramento-kings th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .sacramento-kings th span.full-day-name {
+        display: none;
+    }
+
+    .sacramento-kings th abbr {
+        display: inline;
+    }
+
+    .sacramento-kings td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .sacramento-kings td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .sacramento-kings td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .sacramento-kings #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .sacramento-kings #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .sacramento-kings .modal-content {
+        padding: 20px;
+    }
+
+    .sacramento-kings .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .sacramento-kings .container {
+        padding: 1rem;
+    }
+
+    .sacramento-kings #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .sacramento-kings #current-date {
+        font-size: 1.3rem;
+    }
+
+    .sacramento-kings #today-weather {
+        font-size: 1rem;
+    }
+
+    .sacramento-kings .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .sacramento-kings th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .sacramento-kings td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .sacramento-kings td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .sacramento-kings #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .sacramento-kings .modal-content {
+        padding: 15px;
+    }
+
+    .sacramento-kings .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .sacramento-kings .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .sacramento-kings th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .sacramento-kings td {
+        height: 60px;
+    }
+
+    .sacramento-kings td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .sacramento-kings #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
