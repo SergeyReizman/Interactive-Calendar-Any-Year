@@ -82,7 +82,7 @@ const applyTheme = (theme) => {
     'camomile-flowers', 'canary-islands', 'can-do-attitude', 'candy-world',
     'captains-choice', 'cardinals-guards', 'caribbean-beaches',
     'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
-    'cherry-garden', 'cinnamon-street', 'citrus-blaze', 
+    'cherry-garden', 'chicago-bulls', 'cinnamon-street', 'citrus-blaze', 
     'city-of-angels', 'city-of-dreams', 'city-of-night', 
     'clean-code', 'clean-energy', 'coastal-atlantic', 'coastal-beauty', 'coastal-gulf',
     'coastal-pacific', 'coconut-islands', 'coffee-for-leaders', 'color-of-my-dreams',
