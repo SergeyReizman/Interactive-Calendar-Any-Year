@@ -166,7 +166,7 @@ const applyTheme = (theme) => {
     'north-pole-icebreaker', 'now-is-your-moment', 'ocean-beach', 'ocean-dreams',
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 
     'ocean-view-drive', 'ocean-vortex','okinawa-breeze', 'old-lighthouse',
-    'one-dream','one-step-ahead', 'one-step-at-a-time', 
+    'olimpia-milano', 'one-dream','one-step-ahead', 'one-step-at-a-time', 
     'one-way-ticket', 'on-the-island', 'on-the-wild-side','orange-country', 
     'orange-dragon', 'orion-constellation', 'our-favorite-hangout', 'out-of-the-blue',
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
