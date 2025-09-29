@@ -119,7 +119,7 @@ const applyTheme = (theme) => {
     'frozen-wilderness', 'full-pink-moon', 'fun-activity',
     'galactic-glow', 'game-changer', 'games-are-fun', 'genghis-khan-arrow',
     'giant-petrel', 'global-impact',
-    'glorious-day', 'golden-century', 'golden-coast', 'golden-eagle',
+    'glorious-day', 'gold-coast', 'golden-century', 'golden-eagle',
     'golden-gate', 'golden-hillsides', 'golden-horizon', 'golden-langur',
     'golden-lights', 'golden-opportunity', 'golden-state-warriors',
     'golden-summer', 'golden-time',
