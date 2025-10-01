@@ -217,7 +217,7 @@ const applyTheme = (theme) => {
     'the-silver-sword', 'the-spirit-of-innovation', 'the-unstoppable-mindset', 'the-west-coast', 
     'the-world-of-nature', 'think-different', 'tide-of-dreams', 'tiger-design',
     'time-complexity', 'time-machine', 'time-to-chill', 'tokyo-at-night',
-    'too-beautiful-to-be-true', 'toronto-raptors',
+    'too-beautiful-to-be-true', 'toronto-raptors', 'tropical-horizon',
     'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden', 'underwater-life',
     'unexpected-layout', 'unforgettable-moments', 'unseen-wonders', 'untouched-paradise', 
