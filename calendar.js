@@ -131,7 +131,7 @@ const applyTheme = (theme) => {
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
     'high-energy', 'high-intelligence', 'highline-trail', 'high-performance', 
     'high-speed-rail', 'high-speed-train', 'high-style', 'high-tech-industry',
-    'hometown-vibes', 'honolulu-weekend', 'hot-desert-summer',
+    'hometown-vibes', 'honolulu-hawaii', 'honolulu-weekend', 'hot-desert-summer',
     'hurricane-clouds', 'hyperloop', 'iceberg-lake', 'ice-giant', 'ice-palace',
     'iceland-volcanoes' , 'imaginary-world', 
     'in-adriatic-waters', 'indigo-jeans', 'in-my-style', 
