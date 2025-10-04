@@ -173,7 +173,7 @@ const applyTheme = (theme) => {
     'orange-dragon', 'orion-constellation', 'our-favorite-hangout', 'out-of-the-blue',
     'out-of-the-box', 'overnight-train', 'over-the-seven-seas', 
     'pacific-division', 'pacific-ocean', 
-    'palma-de-mallorca','palm-beach', 'palm-beach-aruba',
+    'palma-de-mallorca','palm-beach', 'palm-beach-aruba', 'palm-tree',
     'patagonian-shores', 'patagonian-sky', 'perfect-afternoon',
     'perfect-world', 'pink-flamingo', 'pink-lady', 'pink-lake', 'pirate-ship', 
     'planet-of-robots', 'point-nemo',
