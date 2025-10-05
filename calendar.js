@@ -163,7 +163,7 @@ const applyTheme = (theme) => {
     'mount-cook', 'mount-fuji', 'my-beautiful-village', 'my-dream-country', 'my-dream-home',
     'my-tomorrow', 'natural-wonders', 'neon-nights', 'new-ai', 'new-black', 'new-millenium', 
     'new-mission', 'new-strategy', 'new-style', 'next-level', 'next-steps',
-    'niagara-falls', 'night-dragon', 'night-mode-design', 'night-sky', 
+    'niagara-falls', 'night-dragon', 'night-mode-design', 'night-ninja', 'night-sky', 
     'no-place-like-home', 'northern-lights', 'northern-nights','north-pole', 
     'north-pole-icebreaker', 'now-is-your-moment', 'ocean-beach', 'ocean-dreams',
     'oceanfront-elegance', 'ocean-parkway', 'ocean-surf', 'ocean-view', 
