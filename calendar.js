@@ -154,7 +154,7 @@ const applyTheme = (theme) => {
     'mammoth-tusk', 'manchester-city', 'manchester-united', 
     'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment', 
-    'middle-of-nowhere', 'midnight-alchemy', 
+    'middle-amazonia', 'middle-of-nowhere', 'midnight-alchemy', 
     'midnight-black', 'midnight-sun', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'mirror-lake', 'mission-completed', 'modern-technology',
     'mogren-beach', 'monochrome-ink', 'monte-carlo', 'moon-bridge',
