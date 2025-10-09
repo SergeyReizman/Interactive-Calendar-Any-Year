@@ -118,7 +118,7 @@ const applyTheme = (theme) => {
     'finish-line', 'fir-balsam', 'flamingo-sky',
     'flamingo-sky', 'forgotten-dreams', 'formula-one',
     'for-the-last-time', 'forward-thinking', 'free-flight', 'fresh-start', 'frontier-unknown',
-    'frozen-wilderness', 'full-pink-moon', 'fun-activity',
+    'frozen-magic', 'frozen-wilderness', 'full-pink-moon', 'fun-activity',
     'galactic-glow', 'game-changer', 'games-are-fun', 'genghis-khan-arrow',
     'giant-petrel', 'global-impact',
     'glorious-day', 'gold-coast', 'golden-century', 'golden-eagle',
