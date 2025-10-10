@@ -94,7 +94,7 @@ const applyTheme = (theme) => {
     'cracked-ice', 'creative-content', 'crimson-sky', 
     'crisp-mountain-air', 'critical-thinking', 
     'crossroads-stone','crystal-snowfall', 'crystal-stream',
-    'cyber-pulse', 'dark-code','dark-mode', 'darkness-blue',
+    'cyber-pulse', 'dark-chocolate', 'dark-code','dark-mode', 'darkness-blue',
     'dark-star', 'dartagnans-rapier', 'daruma-doll', 
     'deep-forest', 'deep-ocean','deep-space', 'deep-tropics',
     'desert-between-us', 'desert-miracle', 

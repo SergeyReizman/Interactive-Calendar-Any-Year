@@ -1,0 +1,855 @@
+/* ==========================================================================
+   Dark Chocolate Theme - Rich Cocoa Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Rich chocolate and cocoa color palette
+   - Sweet and indulgent elements
+   - Warm comforting design aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+    /* Dark Chocolate Color Palette */
+    --chocolate-bg: #FBE9E7;
+    --chocolate-text: #4E342E;
+    --chocolate-primary: #D7CCC8;
+    --chocolate-secondary: #BCAAA4;
+    --chocolate-date-number: #5D4037;
+
+    /* Cocoa Layer Colors */
+    --chocolate-layer1: #D7CCC8;
+    --chocolate-layer2: #BCAAA4;
+    --chocolate-layer3: #A1887F;
+    --chocolate-layer4: #8D6E63;
+    --chocolate-layer5: #795548;
+
+    /* Sweet Accent Colors */
+    --chocolate-accent1: #5D4037;
+    /* Dark Chocolate */
+    --chocolate-accent2: #4E342E;
+    /* Bitter Chocolate */
+    --chocolate-accent3: #8D6E63;
+    /* Milk Chocolate */
+    --chocolate-accent4: #D7CCC8;
+    /* Cream */
+    --chocolate-accent5: rgba(93, 64, 55, 0.3);
+    --chocolate-accent6: rgba(141, 110, 99, 0.3);
+
+    /* Theme Variables */
+    --chocolate-shadow: rgba(93, 64, 55, 0.15);
+    --chocolate-radius: 12px;
+    --chocolate-transition: 0.3s ease-in-out;
+    --chocolate-hover: #4E342E;
+    --chocolate-glow: 0 0 12px rgba(93, 64, 55, 0.25);
+    --chocolate-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%235D4037"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%235D4037"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%235D4037"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes chocolate-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes chocolate-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes chocolate-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--chocolate-shadow);
+    }
+
+    50% {
+        box-shadow: var(--chocolate-glow);
+    }
+}
+
+@keyframes chocolate-ripple {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes chocolate-wave {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes chocolate-melt {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes chocolate-drip {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.dark-chocolate {
+    font-family: 'Inter', sans-serif;
+    color: var(--chocolate-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--chocolate-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%23D7CCC8" opacity="0.5"/></svg>'),
+        linear-gradient(to bottom, var(--chocolate-bg), var(--chocolate-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: chocolate-ripple 80s linear infinite;
+}
+
+.dark-chocolate .container {
+    background-color: var(--chocolate-primary);
+    padding: 2rem;
+    border: 1px solid var(--chocolate-accent5);
+    box-shadow: var(--chocolate-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--chocolate-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.dark-chocolate .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--chocolate-accent1) 0%,
+            var(--chocolate-accent3) 50%,
+            var(--chocolate-accent1) 100%);
+}
+
+.dark-chocolate .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--chocolate-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.dark-chocolate #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--chocolate-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark-chocolate #calendar-title::after {
+    content: "🍫";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+    animation: chocolate-melt 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.dark-chocolate #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--chocolate-primary);
+    border: 1px solid var(--chocolate-accent5);
+    border-radius: var(--chocolate-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dark-chocolate #date-weather-container::before {
+    content: "☕ CHOCOLATE OVERVIEW";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--chocolate-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--chocolate-text);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.dark-chocolate #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--chocolate-accent1), transparent);
+}
+
+.dark-chocolate #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--chocolate-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark-chocolate #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--chocolate-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.dark-chocolate #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.dark-chocolate .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--chocolate-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--chocolate-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--chocolate-accent5) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%235D4037" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.dark-chocolate .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.dark-chocolate .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--chocolate-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.dark-chocolate .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--chocolate-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.dark-chocolate .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--chocolate-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.dark-chocolate .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--chocolate-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--chocolate-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.dark-chocolate table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.dark-chocolate th {
+    background-color: var(--chocolate-accent1);
+    color: white !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--chocolate-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.dark-chocolate th span.full-day-name {
+    display: inline;
+}
+
+.dark-chocolate th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.dark-chocolate td {
+    background-color: var(--chocolate-primary);
+    color: var(--chocolate-text);
+    padding: 1rem;
+    border: 1px solid var(--chocolate-accent5);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--chocolate-transition);
+    position: relative;
+    border-radius: var(--chocolate-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.dark-chocolate td .date-number {
+    color: var(--chocolate-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Playfair Display', serif;
+}
+
+.dark-chocolate td:hover {
+    background-color: var(--chocolate-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.dark-chocolate td.current-day {
+    background-color: rgba(93, 64, 55, 0.15);
+    border: 2px solid var(--chocolate-accent1);
+    animation: chocolate-pulse 3s infinite;
+}
+
+.dark-chocolate td.current-day .date-number {
+    color: var(--chocolate-text) !important;
+    font-weight: 700;
+}
+
+.dark-chocolate td.current-day::before {
+    content: "🍫";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--chocolate-accent1);
+    font-weight: bold;
+    animation: chocolate-drip 2s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.dark-chocolate .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--chocolate-accent1);
+    margin: 0 1px;
+    transition: all var(--chocolate-transition);
+}
+
+.dark-chocolate .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--chocolate-accent2);
+    box-shadow: 0 0 6px rgba(78, 52, 46, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.dark-chocolate .modal-content {
+    position: relative;
+    background-color: var(--chocolate-primary);
+    border: 1px solid var(--chocolate-accent5);
+    padding: 25px;
+    color: var(--chocolate-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--chocolate-radius);
+    animation: chocolate-rise 0.3s ease-out;
+}
+
+.dark-chocolate .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--chocolate-accent1) 0%,
+            var(--chocolate-accent3) 50%,
+            var(--chocolate-accent1) 100%);
+}
+
+.dark-chocolate .modal-content h2 {
+    color: var(--chocolate-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal date display */
+.dark-chocolate .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--chocolate-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--chocolate-accent5);
+}
+
+/* Event list */
+.dark-chocolate .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dark-chocolate .event-item {
+    background-color: var(--chocolate-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--chocolate-accent1);
+    border-radius: var(--chocolate-radius);
+    transition: all var(--chocolate-transition);
+}
+
+.dark-chocolate .event-item:hover {
+    background-color: var(--chocolate-layer3);
+    transform: translateX(3px);
+}
+
+.dark-chocolate .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--chocolate-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.dark-chocolate .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--chocolate-text);
+}
+
+.dark-chocolate .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--chocolate-text);
+    opacity: 0.9;
+}
+
+.dark-chocolate .modal-content button {
+    background-color: var(--chocolate-accent1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--chocolate-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--chocolate-radius);
+}
+
+.dark-chocolate .modal-content button:hover {
+    background-color: var(--chocolate-hover);
+    box-shadow: 0 3px 10px rgba(78, 52, 46, 0.2);
+}
+
+/* Close Button */
+.dark-chocolate .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--chocolate-primary);
+    color: var(--chocolate-text);
+    border: 1px solid var(--chocolate-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--chocolate-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.dark-chocolate .modal .close-button:hover {
+    background-color: var(--chocolate-text);
+    color: var(--chocolate-primary);
+    border-color: var(--chocolate-text);
+}
+
+/* ==================== BUTTONs & CONTROLS ==================== */
+.dark-chocolate .button,
+.dark-chocolate .transparent-button {
+    border: 1px solid var(--chocolate-accent1);
+    color: var(--chocolate-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--chocolate-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--chocolate-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.dark-chocolate .button:hover,
+.dark-chocolate .transparent-button:hover {
+    background-color: var(--chocolate-accent1);
+    color: white;
+    box-shadow: 0 3px 10px rgba(93, 64, 55, 0.15);
+}
+
+.dark-chocolate .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.dark-chocolate #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.dark-chocolate #theme-switcher {
+    background-color: var(--chocolate-primary);
+    color: var(--chocolate-text) !important;
+    border: 1px solid var(--chocolate-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234E342E'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--chocolate-transition);
+    border-radius: var(--chocolate-radius);
+}
+
+.dark-chocolate #theme-switcher option {
+    background-color: var(--chocolate-primary) !important;
+    color: var(--chocolate-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.dark-chocolate #theme-switcher:focus {
+    outline: none;
+    border-color: var(--chocolate-accent1);
+    box-shadow: 0 0 0 2px rgba(93, 64, 55, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.dark-chocolate #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: white;
+    background-color: var(--chocolate-accent1);
+    cursor: pointer;
+    transition: all var(--chocolate-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--chocolate-radius);
+    box-shadow: 0 2px 8px rgba(93, 64, 55, 0.3);
+}
+
+.dark-chocolate #backToTopBtn:hover {
+    background-color: var(--chocolate-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.dark-chocolate footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--chocolate-accent5);
+    color: var(--chocolate-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .dark-chocolate .container {
+        padding: 1.5rem;
+    }
+
+    .dark-chocolate #calendar-title {
+        font-size: 2rem;
+    }
+
+    .dark-chocolate #current-date {
+        font-size: 1.5rem;
+    }
+
+    .dark-chocolate #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .dark-chocolate .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .dark-chocolate .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dark-chocolate {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .dark-chocolate .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .dark-chocolate th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .dark-chocolate th span.full-day-name {
+        display: none;
+    }
+
+    .dark-chocolate th abbr {
+        display: inline;
+    }
+
+    .dark-chocolate td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .dark-chocolate td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .dark-chocolate td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .dark-chocolate #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .dark-chocolate #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .dark-chocolate .modal-content {
+        padding: 20px;
+    }
+
+    .dark-chocolate .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .dark-chocolate .container {
+        padding: 1rem;
+    }
+
+    .dark-chocolate #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .dark-chocolate #current-date {
+        font-size: 1.3rem;
+    }
+
+    .dark-chocolate #today-weather {
+        font-size: 1rem;
+    }
+
+    .dark-chocolate .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .dark-chocolate th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .dark-chocolate td {
+        padding: 0.6rem;
+        height: 70px;
+    }
+
+    .dark-chocolate td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .dark-chocolate #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .dark-chocolate .modal-content {
+        padding: 15px;
+    }
+
+    .dark-chocolate .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .dark-chocolate .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .dark-chocolate th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .dark-chocolate td {
+        height: 60px;
+    }
+
+    .dark-chocolate td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .dark-chocolate #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
