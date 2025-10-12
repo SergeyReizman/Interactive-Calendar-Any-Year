@@ -231,7 +231,7 @@ const applyTheme = (theme) => {
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 'velvety-dark', 'vibrant-colors',
     'viking-helmet','viktoria-falls', 'watermelon', 
     'waikiki-beach', 'weekend-downtime', 'weekend-mindset',
-    'we-fly-higher', 'west-hollywood', 'when-style-speaks-first',
+    'we-fly-higher', 'west-hollywood', 'whale-shark', 'when-style-speaks-first',
     'white-cherry-tree', 'white-shark', 'white-steamboat', 
     'white-sun-of-the-desert', 'wild-flower', 'wild-orange', 'wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
