@@ -208,7 +208,7 @@ const applyTheme = (theme) => {
     'strength-of-spirit', 'strings-of-sunrays', 'strong-and-free', 'strong-foundation',
     'style-spectrum', 'success-key','success-motivation', 'success-story', 
     'summer-breeze', 'summer-sky', 'summer-vibes', 
-    'sunflower-fields', 'sunny-beach', 'sunrise-over-the-ocean',
+    'sunflower-fields', 'sunny-beach', 'sunrise-over-the-ocean', 'sunset-beach',
     'sunset-magic', 'sunset-point', 'supreme-level', 'surfing-club', 'sweet-misty-morning', 'swiss-train',
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer', 'tea-garden', 
     'tech-innovator', 'technological-future', 'technological-innovation', 'technological-might',
