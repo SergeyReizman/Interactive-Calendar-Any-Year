@@ -1,0 +1,869 @@
+/* ==========================================================================
+   Blue Angels Theme - Aviation Inspired Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Aviation and sky color palette
+   - Flight and speed elements
+   - Precision military design aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500&display=swap');
+
+:root {
+    /* Blue Angels Color Palette */
+    --aviation-bg: #003366;
+    --aviation-text: #FFFFFF;
+    --aviation-primary: #004080;
+    --aviation-secondary: #0055AA;
+    --aviation-date-number: #FFD700;
+
+    /* Sky Layer Colors */
+    --aviation-layer1: #004080;
+    --aviation-layer2: #0055AA;
+    --aviation-layer3: #0066CC;
+    --aviation-layer4: #0077DD;
+    --aviation-layer5: #0088EE;
+
+    /* Aviation Accent Colors */
+    --aviation-accent1: #FFD700;
+    /* Gold */
+    --aviation-accent2: #FF6B00;
+    /* Orange */
+    --aviation-accent3: #00BFFF;
+    /* Deep Sky Blue */
+    --aviation-accent4: #87CEEB;
+    /* Sky Blue */
+    --aviation-accent5: rgba(255, 215, 0, 0.3);
+    --aviation-accent6: rgba(0, 191, 255, 0.3);
+
+    /* Theme Variables */
+    --aviation-shadow: rgba(255, 215, 0, 0.15);
+    --aviation-radius: 8px;
+    --aviation-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --aviation-hover: #FF6B00;
+    --aviation-glow: 0 0 20px rgba(255, 215, 0, 0.4);
+    --aviation-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23FFD700"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23FFD700"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23FFD700"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes aviation-fade {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes aviation-rise {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes aviation-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--aviation-shadow);
+    }
+
+    50% {
+        box-shadow: var(--aviation-glow);
+    }
+}
+
+@keyframes aviation-sonic {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes aviation-streak {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-25px);
+    }
+}
+
+@keyframes aviation-hover {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes aviation-spin {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.blue-angels {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--aviation-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--aviation-bg);
+    min-height: 100vh;
+    background-image:
+        linear-gradient(45deg, transparent 49%, var(--aviation-accent5) 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, var(--aviation-accent5) 50%, transparent 51%);
+    background-size: 30px 30px;
+    animation: aviation-sonic 40s linear infinite;
+}
+
+.blue-angels .container {
+    background-color: var(--aviation-primary);
+    padding: 2rem;
+    border: 1px solid var(--aviation-accent5);
+    box-shadow: var(--aviation-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--aviation-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 215, 0, 0.1), transparent);
+}
+
+.blue-angels .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--aviation-accent1) 0%,
+            var(--aviation-accent2) 50%,
+            var(--aviation-accent1) 100%);
+    animation: aviation-pulse 2s ease-in-out infinite;
+}
+
+.blue-angels .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--aviation-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.blue-angels #calendar-title {
+    font-family: 'Orbitron', monospace;
+    color: var(--aviation-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.blue-angels #calendar-title::after {
+    content: "✈️";
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6rem;
+    opacity: 0.8;
+    animation: aviation-hover 2s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.blue-angels #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--aviation-primary);
+    border: 1px solid var(--aviation-accent5);
+    border-radius: var(--aviation-radius);
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.blue-angels #date-weather-container::before {
+    content: "🛩️ FLIGHT OVERVIEW";
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--aviation-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--aviation-text);
+    font-weight: 700;
+    font-family: 'Orbitron', monospace;
+}
+
+.blue-angels #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--aviation-accent1), transparent);
+}
+
+.blue-angels #current-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--aviation-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.blue-angels #today-weather {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--aviation-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.blue-angels #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.blue-angels .clock-face {
+    width: 190px;
+    height: 190px;
+    border: 6px solid var(--aviation-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--aviation-primary);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    background-image:
+        radial-gradient(circle at center, transparent 60%, var(--aviation-accent5) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23FFD700" stroke-width="0.5" opacity="0.4"/></svg>');
+}
+
+.blue-angels .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.blue-angels .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 6px;
+    background: var(--aviation-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px var(--aviation-accent1);
+}
+
+.blue-angels .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 4px;
+    background: var(--aviation-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--aviation-accent2);
+}
+
+.blue-angels .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--aviation-accent3);
+    margin-top: -1px;
+    box-shadow: 0 0 5px var(--aviation-accent3);
+}
+
+/* Clock center ornament */
+.blue-angels .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    background-color: var(--aviation-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 3px var(--aviation-primary), 0 0 15px var(--aviation-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.blue-angels table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.blue-angels th {
+    background: linear-gradient(135deg, var(--aviation-accent1), var(--aviation-accent2));
+    color: var(--aviation-bg) !important;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: var(--aviation-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.blue-angels th span.full-day-name {
+    display: inline;
+}
+
+.blue-angels th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.blue-angels td {
+    background-color: var(--aviation-primary);
+    color: var(--aviation-text);
+    padding: 1.2rem;
+    border: 1px solid var(--aviation-accent5);
+    height: 95px;
+    vertical-align: top;
+    transition: all var(--aviation-transition);
+    position: relative;
+    border-radius: var(--aviation-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.1);
+}
+
+.blue-angels td .date-number {
+    color: var(--aviation-date-number) !important;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+.blue-angels td:hover {
+    background-color: var(--aviation-secondary);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.blue-angels td.current-day {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 0, 0.1));
+    border: 2px solid var(--aviation-accent1);
+    animation: aviation-pulse 3s infinite;
+}
+
+.blue-angels td.current-day .date-number {
+    color: var(--aviation-text) !important;
+    font-weight: 700;
+}
+
+.blue-angels td.current-day::before {
+    content: "⚡";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.2rem;
+    font-weight: bold;
+    animation: aviation-spin 1s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.blue-angels .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--aviation-accent1), var(--aviation-accent2));
+    margin: 0 2px;
+    transition: all var(--aviation-transition);
+    box-shadow: 0 0 6px var(--aviation-accent1);
+}
+
+.blue-angels .event-marker:hover {
+    transform: scale(1.5);
+    background: linear-gradient(135deg, var(--aviation-accent2), var(--aviation-accent1));
+    box-shadow: 0 0 12px rgba(255, 107, 0, 0.7);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.blue-angels .modal-content {
+    position: relative;
+    background-color: var(--aviation-primary);
+    border: 1px solid var(--aviation-accent5);
+    padding: 25px;
+    color: var(--aviation-text);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-radius: var(--aviation-radius);
+    animation: aviation-rise 0.3s ease-out;
+    backdrop-filter: blur(10px);
+}
+
+.blue-angels .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--aviation-accent1) 0%,
+            var(--aviation-accent2) 50%,
+            var(--aviation-accent1) 100%);
+}
+
+.blue-angels .modal-content h2 {
+    color: var(--aviation-text);
+    font-family: 'Orbitron', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Modal date display */
+.blue-angels .modal-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--aviation-text);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--aviation-accent5);
+}
+
+/* Event list */
+.blue-angels .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.blue-angels .event-item {
+    background: linear-gradient(135deg, var(--aviation-secondary), transparent);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--aviation-accent1);
+    border-radius: var(--aviation-radius);
+    transition: all var(--aviation-transition);
+}
+
+.blue-angels .event-item:hover {
+    background: linear-gradient(135deg, var(--aviation-layer3), transparent);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.blue-angels .event-time {
+    font-family: 'Orbitron', monospace;
+    color: var(--aviation-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.blue-angels .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--aviation-text);
+}
+
+.blue-angels .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--aviation-text);
+    opacity: 0.9;
+}
+
+.blue-angels .modal-content button {
+    background: linear-gradient(135deg, var(--aviation-accent1), var(--aviation-accent2));
+    color: var(--aviation-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--aviation-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Exo 2', sans-serif;
+    border-radius: var(--aviation-radius);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.blue-angels .modal-content button:hover {
+    background: linear-gradient(135deg, var(--aviation-accent2), var(--aviation-accent1));
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.blue-angels .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--aviation-primary);
+    color: var(--aviation-text);
+    border: 1px solid var(--aviation-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--aviation-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.blue-angels .modal .close-button:hover {
+    background-color: var(--aviation-text);
+    color: var(--aviation-primary);
+    border-color: var(--aviation-text);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONs & CONTROLS ==================== */
+.blue-angels .button,
+.blue-angels .transparent-button {
+    border: 1px solid var(--aviation-accent1);
+    color: var(--aviation-text);
+    background-color: transparent;
+    padding: 0.9rem 1.6rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--aviation-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--aviation-radius);
+    letter-spacing: 0.03em;
+    font-size: 0.95rem;
+}
+
+.blue-angels .button:hover,
+.blue-angels .transparent-button:hover {
+    background: linear-gradient(135deg, var(--aviation-accent1), var(--aviation-accent2));
+    color: var(--aviation-bg);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.blue-angels .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.blue-angels #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.blue-angels #theme-switcher {
+    background-color: var(--aviation-primary);
+    color: var(--aviation-text) !important;
+    border: 1px solid var(--aviation-accent1);
+    padding: 0.9rem 2.2rem 0.9rem 1rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--aviation-transition);
+    border-radius: var(--aviation-radius);
+}
+
+.blue-angels #theme-switcher option {
+    background-color: var(--aviation-primary) !important;
+    color: var(--aviation-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.blue-angels #theme-switcher:focus {
+    outline: none;
+    border-color: var(--aviation-accent1);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.blue-angels #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.8rem;
+    font-size: 0.95rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    color: var(--aviation-bg);
+    background: linear-gradient(135deg, var(--aviation-accent1), var(--aviation-accent2));
+    cursor: pointer;
+    transition: all var(--aviation-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--aviation-radius);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+.blue-angels #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--aviation-accent2), var(--aviation-accent1));
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ==================== FOOTER ==================== */
+.blue-angels footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--aviation-accent5);
+    color: var(--aviation-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .blue-angels .container {
+        padding: 1.8rem;
+    }
+
+    .blue-angels #calendar-title {
+        font-size: 2.3rem;
+    }
+
+    .blue-angels #current-date {
+        font-size: 1.6rem;
+    }
+
+    .blue-angels #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .blue-angels .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .blue-angels .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blue-angels {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .blue-angels .clock-face {
+        width: 160px;
+        height: 160px;
+        border-width: 5px;
+    }
+
+    .blue-angels th {
+        font-size: 0.85rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .blue-angels th span.full-day-name {
+        display: none;
+    }
+
+    .blue-angels th abbr {
+        display: inline;
+    }
+
+    .blue-angels td {
+        padding: 0.8rem;
+        height: 85px;
+    }
+
+    .blue-angels td .date-number {
+        font-size: 1.2rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .blue-angels td.current-day::before {
+        font-size: 1.1rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .blue-angels #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 0.9rem 1.6rem;
+        font-size: 0.9rem;
+    }
+
+    .blue-angels #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 0.9rem;
+        font-size: 0.9rem;
+        min-width: 180px;
+    }
+
+    .blue-angels .modal-content {
+        padding: 20px;
+    }
+
+    .blue-angels .event-item {
+        padding: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .blue-angels .container {
+        padding: 1.5rem;
+    }
+
+    .blue-angels #calendar-title {
+        font-size: 2rem;
+    }
+
+    .blue-angels #current-date {
+        font-size: 1.4rem;
+    }
+
+    .blue-angels #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .blue-angels .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 4px;
+    }
+
+    .blue-angels th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .blue-angels td {
+        padding: 0.7rem;
+        height: 75px;
+    }
+
+    .blue-angels td .date-number {
+        font-size: 1.1rem;
+        top: 7px;
+        left: 7px;
+    }
+
+    .blue-angels #theme-switcher {
+        min-width: 160px;
+        font-size: 0.85rem;
+    }
+
+    .blue-angels .modal-content {
+        padding: 18px;
+    }
+
+    .blue-angels .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .blue-angels .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .blue-angels th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .blue-angels td {
+        height: 65px;
+    }
+
+    .blue-angels td .date-number {
+        font-size: 1rem;
+    }
+
+    .blue-angels #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+}
