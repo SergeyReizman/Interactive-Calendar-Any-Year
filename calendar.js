@@ -144,7 +144,7 @@ const applyTheme = (theme) => {
     'inspiration-line', 'intelligence-quotient','in-the-dusk', 'in-the-mountains',
     'in-the-raspberry-dawn','into-the-jungle','into-the-night', 
     'invincible-zone', 'in-your-dreams', 'island-bay',
-    'island-beauty', 'island-breeze', 'island-glow',
+    'iron-silence', 'island-beauty', 'island-breeze', 'island-glow',
     'island-of-rainbows', 'japan-emperor', 'jungle-nature', 'just-around-the-bend',
     'keep-cool', 'keep-it-simple', 'keep-on-smiling', 'keep-shining', 
     'kilimanjaro-outskirts', 'lady-blue', 'lake-mcdonald', 'land-of-tomorrow', 
