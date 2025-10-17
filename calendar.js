@@ -96,7 +96,7 @@ const applyTheme = (theme) => {
     'coral-reef', 'coral-sunset', 'core', 'cosmic-nebula', 'cosmic-perspective',
     'cracked-ice', 'creative-content', 'crimson-sky', 
     'crisp-mountain-air', 'critical-thinking', 
-    'crossroads-stone','crystal-snowfall', 'crystal-stream',
+    'crossroads-stone','crystal-snowfall', 'crystal-stream', 'cultural-escape',
     'cyber-pulse', 'dark-chocolate', 'dark-code','dark-mode', 'darkness-blue',
     'dark-star', 'dartagnans-rapier', 'daruma-doll', 
     'deep-forest', 'deep-ocean','deep-space', 'deep-tropics',
