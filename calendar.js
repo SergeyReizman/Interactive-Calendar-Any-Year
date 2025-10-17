@@ -215,7 +215,7 @@ const applyTheme = (theme) => {
     'sunset-magic', 'sunset-point', 'supreme-level', 'surfing-club', 'sweet-misty-morning', 'swiss-train',
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer', 'tea-garden', 
     'tech-innovator', 'technological-future', 'technological-innovation', 'technological-might',
-    'the-art-of-visible', 'the-best-kind-of-view',
+    'the-art-of-visible', 'the-best-escape', 'the-best-kind-of-view',
     'the-best-mood', 'the-best-of-fashion', 'the-black-lake', 'the-black-spruce', 
     'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
     'the-desert-line', 'the-element-of-surprise','the-final-step',
