@@ -141,7 +141,7 @@ const applyTheme = (theme) => {
     'golden-hillsides', 'golden-horizon', 'golden-langur',
     'golden-lights', 'golden-opportunity', 'golden-state-warriors',
     'golden-summer', 'golden-time',
-    'gold-mine', 'gradual-improvement', 'grand-prix', 'great-idea',
+    'gold-mine', 'gradual-improvement', 'grand-prix', 'great-britain', 'great-idea',
     'great-lakes', 'greece-is-bliss', 'green-city', 'green-coffee', 'green-heaven',
     'greenland-icebergs', 'green-light', 'green-river', 'green-tea',
     'greyscale', 'group-11',
