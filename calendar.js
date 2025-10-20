@@ -181,7 +181,7 @@ const applyTheme = (theme) => {
     'mountain-mood', 'mountain-of-dreams', 'mountain-peak', 'mountain-sunset', 'mountain-view',
     'mount-cook', 'mount-fuji', 'my-beautiful-village', 'my-dream-country', 'my-dream-home',
     'my-tomorrow', 'natural-wonders', 'neon-nights', 'new-ai', 'new-black', 'new-millenium',
-    'new-mission', 'new-strategy', 'new-style', 'next-level', 'next-steps',
+    'new-mission', 'new-strategy', 'new-style', 'new-wings', 'next-level', 'next-steps',
     'niagara-falls', 'night-dragon', 'night-mode-design', 'night-ninja', 'night-sky',
     'no-place-like-home', 'northern-lights', 'northern-nights', 'north-pole',
     'north-pole-icebreaker', 'now-is-your-moment', 'ocean-beach', 'ocean-dreams',
