@@ -210,7 +210,7 @@ const applyTheme = (theme) => {
     'quiet-confidence', 'quiet-evening', 'quiet-progress',
     'race-ready', 'rainbow-dream', 'rainforest-jungle', 'rain-waltz',
     'random-coincidence', 'real-madrid',
-    'real-results', 'red-desert', 'red-lake', 
+    'real-results', 'red-desert', 'red-grapefruit', 'red-lake', 
     'red-morning-light', 'red-squirrel', 'remarkable-city',
     'remote-island', 'right-on-track', 'rising-sun', 'robin-good', 'rocky-mountains',
     'royal-caribbean', 'royal-crown', 'sacramento-kings',
