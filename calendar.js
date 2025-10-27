@@ -125,7 +125,7 @@ const applyTheme = (theme) => {
     'double-rainbow', 'dragonfire',
     'dragon-flame', 'dragonfly', 'dragon-well', 'dramatic-coastline.css', 'dream-adventure',
     'dream-islands', 'dream-lagoon', 'eagle-beach-aruba', 'eagle-creek', 'eagle-river',
-    'eagle-swoop', 'early-dreams', 'eco-friendly', 'eighty-mile-beach',
+    'eagle-swoop', 'early-dreams', 'eco-friendly', 'eighty-mile-beach', 'emerald-lake',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 'endless-horizon', 'endless-summer',
     'enjoy-the-journey', 'essential-oils', 'everest-view', 'every-little-step-counts',
     'excellent-mood', 'excellent-performance', 'exceptional-quality', 'executive-management',
