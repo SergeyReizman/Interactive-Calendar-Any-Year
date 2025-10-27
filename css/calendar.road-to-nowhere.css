@@ -1,0 +1,916 @@
+/* ==========================================================================
+   Road to Nowhere Theme - Global Journey Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Mysterious desert and road color palette
+   - Wandering and exploratory elements
+   - Endless journey design aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+    /* Road to Nowhere Color Palette */
+    --road-bg: #2C1A1D;
+    --road-text: #F5E6D3;
+    --road-primary: #3C2A2D;
+    --road-secondary: #4C3A3D;
+    --road-date-number: #D4AF37;
+
+    /* Desert Layer Colors */
+    --road-layer1: #3C2A2D;
+    --road-layer2: #4C3A3D;
+    --road-layer3: #5C4A4D;
+    --road-layer4: #6C5A5D;
+    --road-layer5: #7C6A6D;
+
+    /* Road Accent Colors */
+    --road-accent1: #D4AF37;
+    /* Golden */
+    --road-accent2: #B8860B;
+    /* Dark Golden */
+    --road-accent3: #FFD700;
+    /* Bright Gold */
+    --road-accent4: #F0E68C;
+    /* Khaki */
+    --road-accent5: rgba(212, 175, 55, 0.3);
+    --road-accent6: rgba(184, 134, 11, 0.3);
+
+    /* Theme Variables */
+    --road-shadow: rgba(212, 175, 55, 0.15);
+    --road-radius: 12px;
+    --road-transition: 0.3s ease-in-out;
+    --road-hover: #B8860B;
+    --road-glow: 0 0 15px rgba(212, 175, 55, 0.3);
+    --road-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23D4AF37"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23D4AF37"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23D4AF37"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes road-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes road-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes road-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--road-shadow);
+    }
+
+    50% {
+        box-shadow: var(--road-glow);
+    }
+}
+
+@keyframes road-journey {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes road-compass {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-15px);
+    }
+}
+
+@keyframes road-passport {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes road-flight {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes road-mystery {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes road-whisper {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-2px) rotate(-1deg);
+    }
+
+    75% {
+        transform: translateX(2px) rotate(1deg);
+    }
+}
+
+@keyframes road-horizon {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.road-to-nowhere {
+    font-family: 'Inter', sans-serif;
+    color: var(--road-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--road-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,100 L200,110 L300,95 L400,105 L500,90 L600,100 L700,85 L800,95 L900,80 L1000,90 L1100,75 L1200,85 L1200,120 Z" fill="%233C2A2D" opacity="0.6"/></svg>'),
+        linear-gradient(to bottom, var(--road-bg), var(--road-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: road-journey 90s linear infinite;
+    position: relative;
+}
+
+.road-to-nowhere::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    animation: road-mystery 6s ease-in-out infinite;
+}
+
+.road-to-nowhere .container {
+    background-color: var(--road-primary);
+    padding: 2rem;
+    border: 1px solid var(--road-accent5);
+    box-shadow: var(--road-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--road-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 1;
+}
+
+.road-to-nowhere .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--road-accent1) 0%,
+            var(--road-accent2) 33%,
+            var(--road-accent3) 66%,
+            var(--road-accent1) 100%);
+}
+
+.road-to-nowhere .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--road-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.road-to-nowhere #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--road-text);
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.road-to-nowhere #calendar-title::after {
+    content: "🛣️";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: road-passport 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.road-to-nowhere #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--road-primary);
+    border: 1px solid var(--road-accent5);
+    border-radius: var(--road-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.road-to-nowhere #date-weather-container::before {
+    content: "🏜️ DESERT UPDATE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--road-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--road-text);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.road-to-nowhere #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--road-accent1), transparent);
+}
+
+.road-to-nowhere #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--road-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.road-to-nowhere #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--road-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.road-to-nowhere #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.road-to-nowhere .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--road-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--road-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--road-accent5) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.3"/></svg>');
+    animation: road-whisper 4s ease-in-out infinite;
+}
+
+.road-to-nowhere .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.road-to-nowhere .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--road-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.road-to-nowhere .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--road-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.road-to-nowhere .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--road-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.road-to-nowhere .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--road-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--road-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.road-to-nowhere table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.road-to-nowhere th {
+    background: linear-gradient(135deg, var(--road-accent1), var(--road-accent2), var(--road-accent3));
+    color: var(--road-bg) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--road-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.road-to-nowhere th span.full-day-name {
+    display: inline;
+}
+
+.road-to-nowhere th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.road-to-nowhere td {
+    background-color: var(--road-primary);
+    color: var(--road-text);
+    padding: 1rem;
+    border: 1px solid var(--road-accent5);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--road-transition);
+    position: relative;
+    border-radius: var(--road-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.road-to-nowhere td .date-number {
+    color: var(--road-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Playfair Display', serif;
+}
+
+.road-to-nowhere td:hover {
+    background-color: var(--road-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.road-to-nowhere td.current-day {
+    background-color: rgba(212, 175, 55, 0.15);
+    border: 2px solid var(--road-accent1);
+    animation: road-pulse 3s infinite;
+}
+
+.road-to-nowhere td.current-day .date-number {
+    color: var(--road-text) !important;
+    font-weight: 700;
+}
+
+.road-to-nowhere td.current-day::before {
+    content: "🧭";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    font-weight: bold;
+    animation: road-flight 2s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.road-to-nowhere .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--road-accent1);
+    margin: 0 1px;
+    transition: all var(--road-transition);
+}
+
+.road-to-nowhere .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--road-accent4);
+    box-shadow: 0 0 6px rgba(240, 230, 140, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.road-to-nowhere .modal-content {
+    position: relative;
+    background-color: var(--road-primary);
+    border: 1px solid var(--road-accent5);
+    padding: 25px;
+    color: var(--road-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: var(--road-radius);
+    animation: road-rise 0.3s ease-out;
+}
+
+.road-to-nowhere .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--road-accent1) 0%,
+            var(--road-accent2) 33%,
+            var(--road-accent3) 66%,
+            var(--road-accent1) 100%);
+}
+
+.road-to-nowhere .modal-content h2 {
+    color: var(--road-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal date display */
+.road-to-nowhere .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--road-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--road-accent5);
+}
+
+/* Event list */
+.road-to-nowhere .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.road-to-nowhere .event-item {
+    background-color: var(--road-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--road-accent1);
+    border-radius: var(--road-radius);
+    transition: all var(--road-transition);
+}
+
+.road-to-nowhere .event-item:hover {
+    background-color: var(--road-layer3);
+    transform: translateX(3px);
+}
+
+.road-to-nowhere .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--road-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.road-to-nowhere .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--road-text);
+}
+
+.road-to-nowhere .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--road-text);
+    opacity: 0.9;
+}
+
+.road-to-nowhere .modal-content button {
+    background: linear-gradient(135deg, var(--road-accent1), var(--road-accent2));
+    color: var(--road-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--road-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--road-radius);
+}
+
+.road-to-nowhere .modal-content button:hover {
+    background: linear-gradient(135deg, var(--road-hover), var(--road-accent2));
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Close Button */
+.road-to-nowhere .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--road-primary);
+    color: var(--road-text);
+    border: 1px solid var(--road-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--road-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.road-to-nowhere .modal .close-button:hover {
+    background-color: var(--road-text);
+    color: var(--road-primary);
+    border-color: var(--road-text);
+}
+
+/* ==================== BUTTONs & CONTROLS ==================== */
+.road-to-nowhere .button,
+.road-to-nowhere .transparent-button {
+    border: 1px solid var(--road-accent1);
+    color: var(--road-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--road-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--road-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.road-to-nowhere .button:hover,
+.road-to-nowhere .transparent-button:hover {
+    background: linear-gradient(135deg, var(--road-accent1), var(--road-accent2));
+    color: var(--road-bg);
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.15);
+}
+
+.road-to-nowhere .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.road-to-nowhere #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.road-to-nowhere #theme-switcher {
+    background-color: var(--road-primary);
+    color: var(--road-text) !important;
+    border: 1px solid var(--road-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--road-transition);
+    border-radius: var(--road-radius);
+}
+
+.road-to-nowhere #theme-switcher option {
+    background-color: var(--road-primary) !important;
+    color: var(--road-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.road-to-nowhere #theme-switcher:focus {
+    outline: none;
+    border-color: var(--road-accent1);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.road-to-nowhere #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--road-bg);
+    background: linear-gradient(135deg, var(--road-accent1), var(--road-accent2));
+    cursor: pointer;
+    transition: all var(--road-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--road-radius);
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.road-to-nowhere #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--road-hover), var(--road-accent2));
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.road-to-nowhere footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--road-accent5);
+    color: var(--road-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .road-to-nowhere .container {
+        padding: 1.5rem;
+    }
+
+    .road-to-nowhere #calendar-title {
+        font-size: 2rem;
+    }
+
+    .road-to-nowhere #current-date {
+        font-size: 1.5rem;
+    }
+
+    .road-to-nowhere #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .road-to-nowhere .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .road-to-nowhere .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .road-to-nowhere {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .road-to-nowhere .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .road-to-nowhere th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .road-to-nowhere th span.full-day-name {
+        display: none;
+    }
+
+    .road-to-nowhere th abbr {
+        display: inline;
+    }
+
+    .road-to-nowhere td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .road-to-nowhere td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .road-to-nowhere td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .road-to-nowhere #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .road-to-nowhere #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .road-to-nowhere .modal-content {
+        padding: 20px;
+    }
+
+    .road-to-nowhere .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .road-to-nowhere .container {
+        padding: 1rem;
+    }
+
+    .road-to-nowhere #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .road-to-nowhere #current-date {
+        font-size: 1.3rem;
+    }
+
+    .road-to-nowhere #today-weather {
+        font-size: 1rem;
+    }
+
+    .road-to-nowhere .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .road-to-nowhere th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .road-to-nowhere td {
+        padding: 0.6rem;
+        height: 70px;
+    }
+
+    .road-to-nowhere td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .road-to-nowhere #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .road-to-nowhere .modal-content {
+        padding: 15px;
+    }
+
+    .road-to-nowhere .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .road-to-nowhere .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .road-to-nowhere th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .road-to-nowhere td {
+        height: 60px;
+    }
+
+    .road-to-nowhere td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .road-to-nowhere #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
