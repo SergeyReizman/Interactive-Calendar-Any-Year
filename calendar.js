@@ -122,7 +122,7 @@ const applyTheme = (theme) => {
     'domino-dancing', 'domino-effect',
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green',
     'doterra-magic', 'doterra-natural', 'doterra-new', 'doterra-power',
-    'double-rainbow', 'dragonfire',
+    'double-rainbow', 'dragon-clouds', 'dragonfire',
     'dragon-flame', 'dragonfly', 'dragon-well', 'dramatic-coastline.css', 'dream-adventure',
     'dream-islands', 'dream-lagoon', 'eagle-beach-aruba', 'eagle-creek', 'eagle-river',
     'eagle-swoop', 'early-dreams', 'eco-friendly', 'eighty-mile-beach', 'emerald-lake',
