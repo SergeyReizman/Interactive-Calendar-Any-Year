@@ -1,0 +1,923 @@
+/* ==========================================================================
+   Dust in the Wind Theme - Global Journey Calendar
+   Version: 1.0
+   Updated: 2024-06-10
+   Changes:
+   - Earthy desert and wind color palette
+   - Transient and ephemeral elements
+   - Nomadic design aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+    /* Dust in the Wind Color Palette */
+    --dust-bg: #3E2723;
+    --dust-text: #F5F5DC;
+    --dust-primary: #4E3723;
+    --dust-secondary: #5E4733;
+    --dust-date-number: #D7CCC8;
+
+    /* Desert Layer Colors */
+    --dust-layer1: #4E3723;
+    --dust-layer2: #5E4733;
+    --dust-layer3: #6E5743;
+    --dust-layer4: #7E6753;
+    --dust-layer5: #8E7763;
+
+    /* Dust Accent Colors */
+    --dust-accent1: #D7CCC8;
+    /* Light Beige */
+    --dust-accent2: #BCAAA4;
+    /* Medium Beige */
+    --dust-accent3: #A1887F;
+    /* Dark Beige */
+    --dust-accent4: #8D6E63;
+    /* Brown Beige */
+    --dust-accent5: rgba(215, 204, 200, 0.3);
+    --dust-accent6: rgba(188, 170, 164, 0.3);
+
+    /* Theme Variables */
+    --dust-shadow: rgba(215, 204, 200, 0.15);
+    --dust-radius: 12px;
+    --dust-transition: 0.3s ease-in-out;
+    --dust-hover: #BCAAA4;
+    --dust-glow: 0 0 15px rgba(215, 204, 200, 0.3);
+    --dust-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23D7CCC8"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23D7CCC8"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23D7CCC8"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes dust-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes dust-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dust-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--dust-shadow);
+    }
+
+    50% {
+        box-shadow: var(--dust-glow);
+    }
+}
+
+@keyframes dust-journey {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes dust-compass {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-15px);
+    }
+}
+
+@keyframes dust-passport {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes dust-flight {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes dust-mystery {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes dust-whisper {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-2px) rotate(-1deg);
+    }
+
+    75% {
+        transform: translateX(2px) rotate(1deg);
+    }
+}
+
+@keyframes dust-swirl {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateX(5px) rotate(180deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(0) rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.dust-in-the-wind {
+    font-family: 'Inter', sans-serif;
+    color: var(--dust-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--dust-bg);
+    min-height: 100vh;
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(215, 204, 200, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(188, 170, 164, 0.1) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,100 L200,110 L300,95 L400,105 L500,90 L600,100 L700,85 L800,95 L900,80 L1000,90 L1100,75 L1200,85 L1200,120 Z" fill="%234E3723" opacity="0.6"/></svg>'),
+        linear-gradient(to bottom, var(--dust-bg), var(--dust-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: dust-journey 90s linear infinite;
+    position: relative;
+}
+
+.dust-in-the-wind::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(215, 204, 200, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(188, 170, 164, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(161, 136, 127, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    animation: dust-mystery 6s ease-in-out infinite;
+}
+
+.dust-in-the-wind .container {
+    background-color: var(--dust-primary);
+    padding: 2rem;
+    border: 1px solid var(--dust-accent5);
+    box-shadow: var(--dust-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--dust-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 1;
+}
+
+.dust-in-the-wind .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--dust-accent1) 0%,
+            var(--dust-accent2) 33%,
+            var(--dust-accent3) 66%,
+            var(--dust-accent1) 100%);
+}
+
+.dust-in-the-wind .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--dust-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.dust-in-the-wind #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--dust-text);
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dust-in-the-wind #calendar-title::after {
+    content: "💨";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: dust-passport 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.dust-in-the-wind #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--dust-primary);
+    border: 1px solid var(--dust-accent5);
+    border-radius: var(--dust-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dust-in-the-wind #date-weather-container::before {
+    content: "🏜️ DUST STORM UPDATE";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--dust-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--dust-text);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.dust-in-the-wind #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--dust-accent1), transparent);
+}
+
+.dust-in-the-wind #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--dust-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dust-in-the-wind #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--dust-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.dust-in-the-wind #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.dust-in-the-wind .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--dust-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dust-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--dust-accent5) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%23D7CCC8" stroke-width="0.5" opacity="0.3"/></svg>');
+    animation: dust-whisper 4s ease-in-out infinite;
+}
+
+.dust-in-the-wind .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.dust-in-the-wind .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--dust-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.dust-in-the-wind .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--dust-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.dust-in-the-wind .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--dust-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.dust-in-the-wind .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--dust-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--dust-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.dust-in-the-wind table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.dust-in-the-wind th {
+    background: linear-gradient(135deg, var(--dust-accent1), var(--dust-accent2), var(--dust-accent3));
+    color: var(--dust-bg) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--dust-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.dust-in-the-wind th span.full-day-name {
+    display: inline;
+}
+
+.dust-in-the-wind th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.dust-in-the-wind td {
+    background-color: var(--dust-primary);
+    color: var(--dust-text);
+    padding: 1rem;
+    border: 1px solid var(--dust-accent5);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--dust-transition);
+    position: relative;
+    border-radius: var(--dust-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dust-in-the-wind td .date-number {
+    color: var(--dust-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Playfair Display', serif;
+}
+
+.dust-in-the-wind td:hover {
+    background-color: var(--dust-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Current date highlight */
+.dust-in-the-wind td.current-day {
+    background-color: rgba(215, 204, 200, 0.15);
+    border: 2px solid var(--dust-accent1);
+    animation: dust-pulse 3s infinite;
+}
+
+.dust-in-the-wind td.current-day .date-number {
+    color: var(--dust-text) !important;
+    font-weight: 700;
+}
+
+.dust-in-the-wind td.current-day::before {
+    content: "🌪️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    font-weight: bold;
+    animation: dust-flight 2s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.dust-in-the-wind .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--dust-accent1);
+    margin: 0 1px;
+    transition: all var(--dust-transition);
+}
+
+.dust-in-the-wind .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--dust-accent4);
+    box-shadow: 0 0 6px rgba(141, 110, 99, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.dust-in-the-wind .modal-content {
+    position: relative;
+    background-color: var(--dust-primary);
+    border: 1px solid var(--dust-accent5);
+    padding: 25px;
+    color: var(--dust-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: var(--dust-radius);
+    animation: dust-rise 0.3s ease-out;
+}
+
+.dust-in-the-wind .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--dust-accent1) 0%,
+            var(--dust-accent2) 33%,
+            var(--dust-accent3) 66%,
+            var(--dust-accent1) 100%);
+}
+
+.dust-in-the-wind .modal-content h2 {
+    color: var(--dust-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal date display */
+.dust-in-the-wind .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--dust-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--dust-accent5);
+}
+
+/* Event list */
+.dust-in-the-wind .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dust-in-the-wind .event-item {
+    background-color: var(--dust-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--dust-accent1);
+    border-radius: var(--dust-radius);
+    transition: all var(--dust-transition);
+}
+
+.dust-in-the-wind .event-item:hover {
+    background-color: var(--dust-layer3);
+    transform: translateX(3px);
+}
+
+.dust-in-the-wind .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--dust-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.dust-in-the-wind .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--dust-text);
+}
+
+.dust-in-the-wind .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--dust-text);
+    opacity: 0.9;
+}
+
+.dust-in-the-wind .modal-content button {
+    background: linear-gradient(135deg, var(--dust-accent1), var(--dust-accent2));
+    color: var(--dust-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dust-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--dust-radius);
+}
+
+.dust-in-the-wind .modal-content button:hover {
+    background: linear-gradient(135deg, var(--dust-hover), var(--dust-accent2));
+    box-shadow: 0 3px 10px rgba(215, 204, 200, 0.2);
+}
+
+/* Close Button */
+.dust-in-the-wind .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--dust-primary);
+    color: var(--dust-text);
+    border: 1px solid var(--dust-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--dust-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.dust-in-the-wind .modal .close-button:hover {
+    background-color: var(--dust-text);
+    color: var(--dust-primary);
+    border-color: var(--dust-text);
+}
+
+/* ==================== BUTTONs & CONTROLS ==================== */
+.dust-in-the-wind .button,
+.dust-in-the-wind .transparent-button {
+    border: 1px solid var(--dust-accent1);
+    color: var(--dust-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--dust-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--dust-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.dust-in-the-wind .button:hover,
+.dust-in-the-wind .transparent-button:hover {
+    background: linear-gradient(135deg, var(--dust-accent1), var(--dust-accent2));
+    color: var(--dust-bg);
+    box-shadow: 0 3px 10px rgba(215, 204, 200, 0.15);
+}
+
+.dust-in-the-wind .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.dust-in-the-wind #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.dust-in-the-wind #theme-switcher {
+    background-color: var(--dust-primary);
+    color: var(--dust-text) !important;
+    border: 1px solid var(--dust-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D7CCC8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--dust-transition);
+    border-radius: var(--dust-radius);
+}
+
+.dust-in-the-wind #theme-switcher option {
+    background-color: var(--dust-primary) !important;
+    color: var(--dust-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.dust-in-the-wind #theme-switcher:focus {
+    outline: none;
+    border-color: var(--dust-accent1);
+    box-shadow: 0 0 0 2px rgba(215, 204, 200, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.dust-in-the-wind #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--dust-bg);
+    background: linear-gradient(135deg, var(--dust-accent1), var(--dust-accent2));
+    cursor: pointer;
+    transition: all var(--dust-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--dust-radius);
+    box-shadow: 0 2px 8px rgba(215, 204, 200, 0.3);
+}
+
+.dust-in-the-wind #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--dust-hover), var(--dust-accent2));
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.dust-in-the-wind footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--dust-accent5);
+    color: var(--dust-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .dust-in-the-wind .container {
+        padding: 1.5rem;
+    }
+
+    .dust-in-the-wind #calendar-title {
+        font-size: 2rem;
+    }
+
+    .dust-in-the-wind #current-date {
+        font-size: 1.5rem;
+    }
+
+    .dust-in-the-wind #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .dust-in-the-wind .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .dust-in-the-wind .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dust-in-the-wind {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .dust-in-the-wind .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .dust-in-the-wind th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .dust-in-the-wind th span.full-day-name {
+        display: none;
+    }
+
+    .dust-in-the-wind th abbr {
+        display: inline;
+    }
+
+    .dust-in-the-wind td {
+        padding: 0.7rem;
+        height: 80px;
+    }
+
+    .dust-in-the-wind td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .dust-in-the-wind td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .dust-in-the-wind #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .dust-in-the-wind #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .dust-in-the-wind .modal-content {
+        padding: 20px;
+    }
+
+    .dust-in-the-wind .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .dust-in-the-wind .container {
+        padding: 1rem;
+    }
+
+    .dust-in-the-wind #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .dust-in-the-wind #current-date {
+        font-size: 1.3rem;
+    }
+
+    .dust-in-the-wind #today-weather {
+        font-size: 1rem;
+    }
+
+    .dust-in-the-wind .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .dust-in-the-wind th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .dust-in-the-wind td {
+        padding: 0.6rem;
+        height: 70px;
+    }
+
+    .dust-in-the-wind td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .dust-in-the-wind #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .dust-in-the-wind .modal-content {
+        padding: 15px;
+    }
+
+    .dust-in-the-wind .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .dust-in-the-wind .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .dust-in-the-wind th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .dust-in-the-wind td {
+        height: 60px;
+    }
+
+    .dust-in-the-wind td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .dust-in-the-wind #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
