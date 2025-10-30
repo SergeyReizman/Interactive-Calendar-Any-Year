@@ -182,7 +182,7 @@ const applyTheme = (theme) => {
     'midnight-black', 'midnight-jungle',
     'midnight-sun', 'midnight-train', 'midnight-elegance',
     'migratory-birds', 'mirror-lake', 'mission-completed', 'modern-technology',
-    'mogren-beach', 'monochrome-ink', 'monte-carlo', 'moon-bridge',
+    'mogren-beach', 'monochrome-ink', 'monte-carlo', 'montego-bay', 'moon-bridge',
     'moonlit-path', 'morning-coffee', 'morning-forest', 'mountain-lake', 'mountain-landscape',
     'mountain-mood', 'mountain-of-dreams', 'mountain-peak', 'mountain-sunset', 'mountain-view',
     'mount-cook', 'mount-fuji', 'moving-forward',
