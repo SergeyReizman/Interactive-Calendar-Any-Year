@@ -148,7 +148,7 @@ const applyTheme = (theme) => {
     'great-lakes', 'greece-is-bliss', 'green-city', 'green-coffee', 'green-heaven',
     'greenland-icebergs', 'green-light', 'green-river', 'green-tea',
     'greyscale', 'group-11',
-    'guangzhou-lights', 'haute-couture', 'hawaiian-blue',
+    'guangzhou-lights', 'halloween-night-mode', 'haute-couture', 'hawaiian-blue',
     'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
     'high-energy', 'high-intelligence', 'highline-trail', 'high-performance',
     'high-speed-rail', 'high-speed-train', 'high-style', 'high-tech-industry',
