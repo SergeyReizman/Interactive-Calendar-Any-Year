@@ -136,12 +136,12 @@ HTML5 • CSS3 (Flexbox & Grid) • JavaScript (ES6+) • LocalStorage API
 
 ## 🤝 Contributing
 
-We welcome contributions!
-
-1.Fork the repo
-2.Create a feature branch (git checkout -b feature/AmazingFeature)
-3.Commit changes (git commit -m 'Add AmazingFeature')
-4.Push & open a Pull Request
+# 1. Fork the repo
+# 2. Create your branch
+git checkout -b feature/AmazingFeature
+# 3. Commit changes
+git commit -m "Add AmazingFeature"
+# 4. Push & open a PR
 
 ## 📜 License
 Licensed under the MIT License — see the LICENSE file for details.
@@ -152,7 +152,7 @@ Licensed under the MIT License — see the LICENSE file for details.
 ✨ Reclaim your time with Interactive Calendar — built for focus, flow, and flexibility.
 “This isn’t just a calendar — it’s your time, your way.”
 
-🙋‍♂️ Author & Links
+👨‍💻 Author & Links
 
 👨‍💻 Built ❤️ by Sergey Reizman https://www.linkedin.com/in/sergey-reizman/
 🌍 Live Demo https://interactive-calendar-any-year.netlify.app/
@@ -164,17 +164,24 @@ Request Features: Feature Requests
 Live Demo: Netlify Deployment
 
 🎯 Why Choose Interactive Calendar?
+
 For Individuals
-✅ Stay Organized - Never miss important dates
-✅ Reduce Stress - Clean, intuitive interface
-✅ Personalize Everything - 600+ themes to match your style
-✅ Work Anywhere - Fully responsive across all devices
+
+✅ Stay organized — never miss a date
+✅ Reduce stress — clean & intuitive interface
+✅ Personalize everything — 600+ themes
+✅ Work anywhere — desktop to mobile
 
 For Developers
-✅ Clean Code - Well-structured and documented
-✅ No Dependencies - Pure vanilla JavaScript
-✅ Accessibility Focused - Built for all users
-✅ Easy to Extend - Modular architecture
+
+✅ Clean, modular code
+✅ Zero dependencies
+✅ Accessibility-focused
+✅ Easy to extend
+
+💡 Purpose & Vision
+
+To turn time management from chaos into clarity — empowering users to focus, plan, and achieve with ease.
 
 <div align="center">
 Ready to transform your time management?
