@@ -149,7 +149,7 @@ const applyTheme = (theme) => {
     'greenland-icebergs', 'green-light', 'green-river', 'green-tea',
     'greyscale', 'group-11',
     'guangzhou-lights', 'halloween-night-mode', 'haute-couture', 'hawaiian-blue',
-    'heavy-rain', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
+    'heavy-rain', 'hidden-gem', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
     'high-energy', 'high-intelligence', 'highline-trail', 'high-performance',
     'high-speed-rail', 'high-speed-train', 'high-style', 'high-tech-industry',
     'hometown-vibes', 'honolulu-hawaii', 'honolulu-weekend', 'hot-desert-summer',
