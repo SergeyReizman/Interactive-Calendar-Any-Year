@@ -82,6 +82,7 @@ const applyTheme = (theme) => {
     'battle-of-the-ice', 'bermuda-triangle', 'best-kept-secret', 
     'best-of-technology', 'best-practice', 'best-response', 'beyond-the-ordinary',
     'be-yourself', 'bigboss-style', 'big-crown', 'big-dream', 'big-fashion', 'big-pacific',
+    'bitter-coffee-of-the-middle-east',
     'black-fashion', 'black-bird', 'black-classic', 'black-coffee', 'black-diamond',
     'black-hacker', 'black-hawk', 'black-hole', 'black-magic', 'black-mountain',
     'black-orange', 'black-orchid', 'black-panther', 'black-pear', 'black-pearl',
