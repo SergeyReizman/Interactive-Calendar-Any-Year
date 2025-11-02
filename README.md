@@ -6,8 +6,6 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![LocalStorage](https://img.shields.io/badge/LocalStorage-API-blue?logo=javascript)
 
-🧭 A beautifully designed, fully responsive web calendar that makes scheduling effortless — with 600+ themes, live weather, and event management built with pure HTML, CSS, and JavaScript.
-
 # 🗓️ Interactive Calendar: Your Ultimate Scheduling Companion
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f16a0b9f-b963-4ce6-99ec-65f5a3d518e8/deploy-status)](https://app.netlify.com/projects/interactive-calendar-any-year/deploys)
@@ -18,9 +16,10 @@
 
 🧭 Overview
 
-A beautifully designed, fully responsive web calendar that makes scheduling effortless — with 600+ themes, real-time weather, event management, and local storage persistence, built with pure HTML, CSS, and JavaScript.
+A fully responsive, theme-rich web calendar built with HTML, CSS, and JavaScript.
+It offers 600+ themes, real-time weather updates, event management, and persistent local storage — no frameworks, no dependencies.
 
-It’s not just a calendar — it’s your personalized productivity hub.
+A minimalist yet powerful calendar built for focus, flow, and flexibility.
 
 ✨ Key Highlights
 
