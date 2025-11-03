@@ -1,4 +1,4 @@
-🗓️ Interactive Calendar: Your Ultimate Scheduling Companion
+# 🗓️ Interactive Calendar: Your Ultimate Scheduling Companion
 
 ## 🧰 Built With
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
@@ -6,7 +6,6 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![LocalStorage](https://img.shields.io/badge/LocalStorage-API-blue?logo=javascript)
 
-# 🗓️ Interactive Calendar: Your Ultimate Scheduling Companion
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f16a0b9f-b963-4ce6-99ec-65f5a3d518e8/deploy-status)](https://app.netlify.com/projects/interactive-calendar-any-year/deploys)
 ![GitHub](https://img.shields.io/github/license/SergeyReizman/Interactive-Calendar-Any-Year)
