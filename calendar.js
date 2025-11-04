@@ -128,6 +128,7 @@ const applyTheme = (theme) => {
     'dream-islands', 'dream-lagoon', 'dust-in-the-wind',
     'eagle-beach-aruba', 'eagle-creek', 'eagle-river',
     'eagle-swoop', 'early-dreams', 'eco-friendly', 'eighty-mile-beach', 'emerald-lake',
+    'emerald-ocean',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 'endless-horizon', 'endless-summer',
     'enjoy-the-journey', 'essential-oils', 'everest-view', 'every-little-step-counts',
     'excellent-mood', 'excellent-performance', 'exceptional-quality', 'executive-management',
