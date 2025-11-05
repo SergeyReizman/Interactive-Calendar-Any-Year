@@ -120,7 +120,7 @@ const applyTheme = (theme) => {
     'developers-zone', 'diamond-planet', 'different-perspective',
     'digital-excellence', 'digital-interface', 'digital-ocean',
     'digital-progress', 'distant-skies', 'divi-divi-trees',
-    'domino-dancing', 'domino-effect',
+    'domino-dancing', 'domino-effect', 'do-something-great',
     'doterra-black', 'doterra-colors', 'doterra-gold', 'doterra-green',
     'doterra-magic', 'doterra-natural', 'doterra-new', 'doterra-power',
     'double-rainbow', 'dragon-clouds', 'dragonfire',
