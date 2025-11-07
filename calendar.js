@@ -233,6 +233,7 @@ const applyTheme = (theme) => {
     'statue-of-liberty', 'stay-cool', 'stay-curious', 'stay-positive', 'stay-that-way',
     'stay-your-way', 'steel-shadows', 'still-a-highlight', 'stockholm-roofs',
     'straight-to-the-point', 'strategic-advantage', 'strategic-planning',
+    'strawberry-fields',
     'strawberry-moon', 'street-art-installation', 'street-fashion-style',
     'strength-of-spirit', 'strings-of-sunrays', 'strong-and-free', 'strong-foundation',
     'style-spectrum', 'success-key', 'success-motivation', 'success-story',
