@@ -215,7 +215,7 @@ const applyTheme = (theme) => {
     'race-ready', 'rainbow-dream', 'rainforest-jungle', 'rain-waltz',
     'random-coincidence', 'real-madrid',
     'real-results', 'red-desert', 'red-grapefruit', 'red-lake', 
-    'red-morning-light', 'red-squirrel', 'remarkable-city',
+    'red-morning-light', 'red-squirrel', 'red-tape', 'remarkable-city',
     'remote-island', 'right-on-track', 'rising-sun', 
     'road-to-nowhere', 'robin-good', 'rocky-mountains',
     'royal-caribbean', 'royal-crown', 'sacramento-kings',
