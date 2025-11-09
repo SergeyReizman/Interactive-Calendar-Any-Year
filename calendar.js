@@ -79,6 +79,7 @@ const applyTheme = (theme) => {
     'art-studio', 'a-simple-task', 'a-solitude-moment', 'a-stunning-shoreline', 'a-thing-of-beauty',
     'a-turning-point', 'autumn-harvest', 'away-from-home', 'a-world-beyond-borders',
     'back-in-black', 'back-in-the-game', 'back-on-track', 'back-to-paradise', 'bamboo-flute',
+    'banana-republic',
     'battle-of-the-ice', 'bermuda-triangle', 'best-kept-secret', 
     'best-of-technology', 'best-practice', 'best-response', 'beyond-the-ordinary',
     'be-yourself', 'bigboss-style', 'big-crown', 'big-dream', 'big-fashion', 'big-pacific',
