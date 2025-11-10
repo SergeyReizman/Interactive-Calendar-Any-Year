@@ -114,7 +114,7 @@ const applyTheme = (theme) => {
     'crisp-mountain-air', 'critical-thinking',
     'crossroads-stone', 'crystal-snowfall', 'crystal-stream', 'cultural-escape',
     'cyber-pulse', 'dark-chocolate', 'dark-code', 'dark-mode', 'darkness-blue',
-    'dark-star', 'dartagnans-rapier', 'daruma-doll',
+    'dark-star', 'dartagnans-rapier', 'daruma-doll', 'day-dream-mode',
     'deep-forest', 'deep-ocean', 'deep-space', 'deep-tropics',
     'desert-between-us', 'desert-miracle',
     'desert-mirage', 'desert-rose', 'desert-water', 'destiny-to-succeed',
