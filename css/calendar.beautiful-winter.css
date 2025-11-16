@@ -1,0 +1,860 @@
+/* ==========================================================================
+   Beautiful Winter Theme - Frosty Winter Wonderland Inspired Calendar
+   Version: 1.0
+   Updated: 2024-12-19
+   Changes:
+   - Icy blue and white winter color palette
+   - Snowflake and frost elements
+   - Winter wonderland design aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+    /* Beautiful Winter Color Palette */
+    --winter-bg: #F0F8FF;
+    --winter-text: #2C3E50;
+    --winter-primary: #E6F2FF;
+    --winter-secondary: #DAEBFF;
+    --winter-date-number: #4A6572;
+
+    /* Frost Layer Colors */
+    --winter-layer1: #E3F2FD;
+    --winter-layer2: #BBDEFB;
+    --winter-layer3: #90CAF9;
+    --winter-layer4: #64B5F6;
+    --winter-layer5: #42A5F5;
+
+    /* Winter Accent Colors */
+    --winter-accent1: #1976D2;
+    /* Deep Blue */
+    --winter-accent2: #26C6DA;
+    /* Ice Blue */
+    --winter-accent3: #FF7043;
+    /* Winter Berry */
+    --winter-accent4: rgba(25, 118, 210, 0.7);
+    --winter-accent5: rgba(38, 198, 218, 0.5);
+
+    /* Theme Variables */
+    --winter-shadow: rgba(25, 118, 210, 0.15);
+    --winter-radius: 12px;
+    --winter-transition: 0.3s ease-in-out;
+    --winter-hover: #1565C0;
+    --winter-glow: 0 0 12px rgba(38, 198, 218, 0.25);
+    --winter-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%231976D2"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%231976D2"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%231976D2"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes winter-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes winter-rise {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes winter-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--winter-shadow);
+    }
+
+    50% {
+        box-shadow: var(--winter-glow);
+    }
+}
+
+@keyframes winter-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes snowflake-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.beautiful-winter {
+    font-family: 'Inter', sans-serif;
+    color: var(--winter-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--winter-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 L100,80 L200,100 L300,60 L400,90 L500,40 L600,70 L700,30 L800,60 L900,20 L1000,50 L1100,10 L1200,40 L1200,120 Z" fill="%23E6F2FF" opacity="0.5"/></svg>'),
+        linear-gradient(to bottom, var(--winter-bg), var(--winter-layer5));
+    background-repeat: no-repeat;
+    background-position: bottom;
+    animation: winter-drift 80s linear infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Snowflake animation elements */
+.beautiful-winter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2342A5F5" opacity="0.3"><path d="M12 2L13.4 5.8L17.5 5.2L14.7 8.1L15.8 12L12 10.1L8.2 12L9.3 8.1L6.5 5.2L10.6 5.8L12 2Z"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2390CAF9" opacity="0.2"><path d="M12 2L13.4 5.8L17.5 5.2L14.7 8.1L15.8 12L12 10.1L8.2 12L9.3 8.1L6.5 5.2L10.6 5.8L12 2Z"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23BBDEFB" opacity="0.1"><path d="M12 2L13.4 5.8L17.5 5.2L14.7 8.1L15.8 12L12 10.1L8.2 12L9.3 8.1L6.5 5.2L10.6 5.8L12 2Z"/></svg>');
+    background-size: 20px 20px, 15px 15px, 10px 10px;
+    animation: winter-drift 120s linear infinite;
+    z-index: 1;
+}
+
+.beautiful-winter .container {
+    background-color: var(--winter-primary);
+    padding: 2rem;
+    border: 1px solid var(--winter-accent4);
+    box-shadow: var(--winter-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--winter-radius);
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    z-index: 2;
+}
+
+.beautiful-winter .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--winter-accent1) 0%,
+            var(--winter-accent2) 50%,
+            var(--winter-accent1) 100%);
+}
+
+.beautiful-winter .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--winter-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.1;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.beautiful-winter #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--winter-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.beautiful-winter #calendar-title::after {
+    content: "❄️";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.beautiful-winter #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--winter-primary);
+    border: 1px solid var(--winter-accent4);
+    border-radius: var(--winter-radius);
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.beautiful-winter #date-weather-container::before {
+    content: "❄️ WINTER WEATHER OVERVIEW";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--winter-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--winter-text);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.beautiful-winter #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--winter-accent1), transparent);
+}
+
+.beautiful-winter #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--winter-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.beautiful-winter #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--winter-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.beautiful-winter #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.beautiful-winter .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 6px solid var(--winter-accent1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--winter-primary);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    background-image:
+        radial-gradient(circle at center, transparent 65%, var(--winter-accent4) 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="%231976D2" stroke-width="0.5" opacity="0.3"/></svg>');
+}
+
+.beautiful-winter .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.beautiful-winter .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 6px;
+    background: var(--winter-accent1);
+    margin-top: -3px;
+    border-radius: 3px;
+}
+
+.beautiful-winter .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 4px;
+    background: var(--winter-accent2);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.beautiful-winter .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--winter-accent3);
+    margin-top: -1px;
+}
+
+/* Clock center ornament */
+.beautiful-winter .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--winter-accent1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--winter-primary);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.beautiful-winter table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.beautiful-winter th {
+    background-color: var(--winter-accent1);
+    color: var(--winter-text) !important;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--winter-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+}
+
+.beautiful-winter th span.full-day-name {
+    display: inline;
+}
+
+.beautiful-winter th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.beautiful-winter td {
+    background-color: var(--winter-primary);
+    color: var(--winter-text);
+    padding: 1rem;
+    border: 1px solid var(--winter-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--winter-transition);
+    position: relative;
+    border-radius: var(--winter-radius);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.beautiful-winter td .date-number {
+    color: var(--winter-date-number) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: 'Playfair Display', serif;
+}
+
+.beautiful-winter td:hover {
+    background-color: var(--winter-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Current date highlight */
+.beautiful-winter td.current-day {
+    background-color: rgba(25, 118, 210, 0.15);
+    border: 2px solid var(--winter-accent1);
+    animation: winter-pulse 3s infinite;
+}
+
+.beautiful-winter td.current-day .date-number {
+    color: var(--winter-text) !important;
+    font-weight: 700;
+}
+
+.beautiful-winter td.current-day::before {
+    content: "⛄";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--winter-accent1);
+    font-weight: bold;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.beautiful-winter .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--winter-accent1);
+    margin: 0 1px;
+    transition: all var(--winter-transition);
+}
+
+.beautiful-winter .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--winter-accent3);
+    box-shadow: 0 0 6px rgba(255, 112, 67, 0.4);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.beautiful-winter .modal-content {
+    position: relative;
+    background-color: var(--winter-primary);
+    border: 1px solid var(--winter-accent4);
+    padding: 25px;
+    color: var(--winter-text);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--winter-radius);
+    animation: winter-rise 0.3s ease-out;
+}
+
+.beautiful-winter .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--winter-accent1) 0%,
+            var(--winter-accent2) 50%,
+            var(--winter-accent1) 100%);
+}
+
+.beautiful-winter .modal-content h2 {
+    color: var(--winter-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal date display */
+.beautiful-winter .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--winter-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--winter-accent4);
+}
+
+/* Event list */
+.beautiful-winter .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.beautiful-winter .event-item {
+    background-color: var(--winter-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--winter-accent1);
+    border-radius: var(--winter-radius);
+    transition: all var(--winter-transition);
+}
+
+.beautiful-winter .event-item:hover {
+    background-color: var(--winter-layer3);
+    transform: translateX(3px);
+}
+
+.beautiful-winter .event-time {
+    font-family: 'Playfair Display', serif;
+    color: var(--winter-text);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.beautiful-winter .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--winter-text);
+}
+
+.beautiful-winter .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--winter-text);
+    opacity: 0.9;
+}
+
+.beautiful-winter .modal-content button {
+    background-color: var(--winter-accent1);
+    color: var(--winter-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--winter-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--winter-radius);
+}
+
+.beautiful-winter .modal-content button:hover {
+    background-color: var(--winter-hover);
+    box-shadow: 0 3px 10px rgba(25, 118, 210, 0.2);
+}
+
+/* Close Button */
+.beautiful-winter .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--winter-primary);
+    color: var(--winter-text);
+    border: 1px solid var(--winter-text);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--winter-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.beautiful-winter .modal .close-button:hover {
+    background-color: var(--winter-text);
+    color: var(--winter-accent1);
+    border-color: var(--winter-text);
+}
+
+/* ==================== BUTTONs & CONTROLS ==================== */
+.beautiful-winter .button,
+.beautiful-winter .transparent-button {
+    border: 1px solid var(--winter-accent1);
+    color: var(--winter-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--winter-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--winter-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.beautiful-winter .button:hover,
+.beautiful-winter .transparent-button:hover {
+    background-color: var(--winter-accent1);
+    color: var(--winter-text);
+    box-shadow: 0 3px 10px rgba(25, 118, 210, 0.15);
+}
+
+.beautiful-winter .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.beautiful-winter #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.beautiful-winter #theme-switcher {
+    background-color: var(--winter-primary);
+    color: var(--winter-text) !important;
+    border: 1px solid var(--winter-accent1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232C3E50'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--winter-transition);
+    border-radius: var(--winter-radius);
+}
+
+.beautiful-winter #theme-switcher option {
+    background-color: var(--winter-primary) !important;
+    color: var(--winter-text) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.beautiful-winter #theme-switcher:focus {
+    outline: none;
+    border-color: var(--winter-accent1);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.beautiful-winter #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: var(--winter-text);
+    background-color: var(--winter-accent1);
+    cursor: pointer;
+    transition: all var(--winter-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--winter-radius);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.beautiful-winter #backToTopBtn:hover {
+    background-color: var(--winter-hover);
+    opacity: 1;
+}
+
+/* ==================== FOOTER ==================== */
+.beautiful-winter footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--winter-accent4);
+    color: var(--winter-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .beautiful-winter .container {
+        padding: 1.5rem;
+    }
+
+    .beautiful-winter #calendar-title {
+        font-size: 2rem;
+    }
+
+    .beautiful-winter #current-date {
+        font-size: 1.5rem;
+    }
+
+    .beautiful-winter #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .beautiful-winter .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .beautiful-winter .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .beautiful-winter {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .beautiful-winter .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 5px;
+    }
+
+    .beautiful-winter th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .beautiful-winter th span.full-day-name {
+        display: none;
+    }
+
+    .beautiful-winter th abbr {
+        display: inline;
+    }
+
+    .beautiful-winter td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .beautiful-winter td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .beautiful-winter td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .beautiful-winter #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .beautiful-winter #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .beautiful-winter .modal-content {
+        padding: 20px;
+    }
+
+    .beautiful-winter .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .beautiful-winter .container {
+        padding: 1rem;
+    }
+
+    .beautiful-winter #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .beautiful-winter #current-date {
+        font-size: 1.3rem;
+    }
+
+    .beautiful-winter #today-weather {
+        font-size: 1rem;
+    }
+
+    .beautiful-winter .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .beautiful-winter th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .beautiful-winter td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .beautiful-winter td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .beautiful-winter #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .beautiful-winter .modal-content {
+        padding: 15px;
+    }
+
+    .beautiful-winter .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .beautiful-winter .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .beautiful-winter th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .beautiful-winter td {
+        height: 60px;
+    }
+
+    .beautiful-winter td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .beautiful-winter #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
