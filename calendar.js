@@ -140,7 +140,7 @@ const applyTheme = (theme) => {
     'exotic-escape', 'exotic-island', 'expedient-path', 'expedition-north',
     'exponential-acceleration', 'extraordinary-achievement', 'fabulous-evening',
     'fairytale-charm', 'fairytale-town', 'fast-track', 'fiji-islands',
-    'finish-line', 'fir-balsam', 'flamingo-sky',
+    'finish-line', 'fir-balsam', 'first-project', 'flamingo-sky',
     'flamingo-sky', 'forgotten-dreams', 'formula-one',
     'for-the-last-time', 'forward-thinking', 'free-flight', 'fresh-start', 'frontier-unknown',
     'frozen-magic', 'frozen-wilderness', 'full-pink-moon', 'fun-activity',
