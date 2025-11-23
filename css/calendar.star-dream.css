@@ -1,0 +1,864 @@
+/* ==========================================================================
+   Star Dream Theme - Cosmic Night Sky Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Deep space color palette with celestial accents
+   - Ethereal, dreamy design with starry elements
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Cosmic Color Palette */
+    --sd-bg: #0A0B1D;
+    --sd-text: #E6E6FF;
+    --sd-primary: #1A1B2F;
+    --sd-secondary: #2A2B45;
+    --sd-date-number: #E6E6FF;
+
+    /* Celestial Colors */
+    --sd-star1: #FFFFFF;
+    --sd-star2: #B8B8FF;
+    --sd-star3: #9B9BFF;
+    --sd-star4: rgba(184, 184, 255, 0.7);
+    --sd-star5: rgba(184, 184, 255, 0.5);
+
+    /* Nebula Accents */
+    --sd-accent1: #8A2BE2;
+    --sd-accent2: #4B0082;
+    --sd-accent3: #483D8B;
+    --sd-accent4: rgba(138, 43, 226, 0.7);
+    --sd-accent5: rgba(138, 43, 226, 0.5);
+
+    /* Cosmic Blues */
+    --sd-cosmic1: #4169E1;
+    --sd-cosmic2: #1E90FF;
+    --sd-cosmic3: #00BFFF;
+    --sd-cosmic4: rgba(30, 144, 255, 0.3);
+    --sd-cosmic5: rgba(30, 144, 255, 0.1);
+
+    /* Theme Variables */
+    --sd-shadow: rgba(184, 184, 255, 0.15);
+    --sd-radius: 8px;
+    --sd-transition: 0.3s ease;
+    --sd-hover: #9370DB;
+    --sd-glow: 0 0 15px rgba(184, 184, 255, 0.3);
+    --sd-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23B8B8FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%23B8B8FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%23B8B8FF"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes sd-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes sd-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes sd-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--sd-shadow);
+    }
+
+    50% {
+        box-shadow: var(--sd-glow);
+    }
+}
+
+@keyframes sd-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes sd-constellation {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.star-dream {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--sd-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--sd-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="0.5" fill="%23B8B8FF" opacity="0.3"/><circle cx="70" cy="30" r="0.7" fill="%23B8B8FF" opacity="0.4"/><circle cx="30" cy="70" r="0.3" fill="%23FFFFFF" opacity="0.5"/><circle cx="80" cy="80" r="0.6" fill="%23B8B8FF" opacity="0.3"/><circle cx="50" cy="50" r="0.4" fill="%23FFFFFF" opacity="0.6"/><circle cx="10" cy="90" r="0.5" fill="%23B8B8FF" opacity="0.4"/><circle cx="90" cy="10" r="0.8" fill="%23FFFFFF" opacity="0.5"/></svg>');
+    animation: sd-constellation 60s linear infinite;
+}
+
+.star-dream .container {
+    background-color: var(--sd-primary);
+    padding: 2rem;
+    border: 1px solid var(--sd-accent4);
+    box-shadow: var(--sd-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--sd-radius);
+    background-image:
+        radial-gradient(circle at 20% 80%, var(--sd-accent4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--sd-cosmic4) 0%, transparent 50%);
+}
+
+.star-dream .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--sd-star2) 25%,
+            var(--sd-accent1) 50%,
+            var(--sd-star2) 75%,
+            transparent 100%);
+}
+
+.star-dream .container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background-image: var(--sd-pattern);
+    background-size: 1200px 100%;
+    opacity: 0.2;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.star-dream #calendar-title {
+    font-family: 'Orbitron', monospace;
+    color: var(--sd-star1);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 600;
+    text-shadow: 0 0 10px var(--sd-star2);
+}
+
+.star-dream #calendar-title::after {
+    content: "✦";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+    color: var(--sd-star2);
+    animation: sd-twinkle 2s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.star-dream #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--sd-primary);
+    border: 1px solid var(--sd-accent4);
+    border-radius: var(--sd-radius);
+    position: relative;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    background-image:
+        radial-gradient(circle at 10% 10%, var(--sd-cosmic5) 0%, transparent 50%);
+}
+
+.star-dream #date-weather-container::before {
+    content: "COSMIC VIEW";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--sd-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--sd-star2);
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.star-dream #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sd-star2), transparent);
+}
+
+.star-dream #current-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--sd-star1);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 5px var(--sd-star2);
+}
+
+.star-dream #today-weather {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--sd-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.star-dream #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.star-dream .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--sd-star2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--sd-primary);
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(184, 184, 255, 0.1),
+        0 0 20px rgba(138, 43, 226, 0.2);
+}
+
+.star-dream .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.star-dream .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--sd-star1);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px var(--sd-star2);
+}
+
+.star-dream .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 2px;
+    background: var(--sd-star2);
+    margin-top: -1px;
+    border-radius: 1px;
+    box-shadow: 0 0 3px var(--sd-star2);
+}
+
+.star-dream .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--sd-accent1);
+    margin-top: -0.5px;
+    box-shadow: 0 0 2px var(--sd-accent1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.star-dream table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.star-dream th {
+    background: linear-gradient(135deg, var(--sd-accent1) 0%, var(--sd-cosmic1) 100%);
+    color: var(--sd-star1) !important;
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--sd-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.star-dream th span.full-day-name {
+    display: inline;
+}
+
+.star-dream th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.star-dream td {
+    background-color: var(--sd-primary);
+    color: var(--sd-text);
+    padding: 1rem;
+    border: 1px solid var(--sd-accent4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--sd-transition);
+    position: relative;
+    border-radius: var(--sd-radius);
+    box-shadow: inset 0 0 0 1px rgba(184, 184, 255, 0.1);
+    background-image:
+        radial-gradient(circle at 30% 30%, var(--sd-cosmic5) 0%, transparent 50%);
+}
+
+.star-dream td .date-number {
+    color: var(--sd-text) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Orbitron', monospace;
+}
+
+.star-dream td:hover {
+    background-color: var(--sd-secondary);
+    box-shadow:
+        0 2px 12px rgba(184, 184, 255, 0.2),
+        inset 0 0 20px rgba(138, 43, 226, 0.1);
+    border-color: var(--sd-star2);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.star-dream td.current-day {
+    background-color: rgba(184, 184, 255, 0.1);
+    border: 2px solid var(--sd-star2);
+    animation: sd-pulse 3s infinite;
+    background-image:
+        radial-gradient(circle at 70% 30%, var(--sd-accent5) 0%, transparent 50%);
+}
+
+.star-dream td.current-day .date-number {
+    color: var(--sd-star1) !important;
+    font-weight: 700;
+    text-shadow: 0 0 5px var(--sd-star2);
+}
+
+.star-dream td.current-day::before {
+    content: "⭐";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    color: var(--sd-star1);
+    font-weight: bold;
+    animation: sd-twinkle 2s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.star-dream .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--sd-star2);
+    margin: 0 1px;
+    transition: all var(--sd-transition);
+    box-shadow: 0 0 3px var(--sd-star2);
+    animation: sd-twinkle 3s ease-in-out infinite;
+}
+
+.star-dream .event-marker:hover {
+    transform: scale(1.6);
+    background-color: var(--sd-accent1);
+    box-shadow: 0 0 8px var(--sd-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.star-dream .modal-content {
+    position: relative;
+    background-color: var(--sd-primary);
+    border: 1px solid var(--sd-accent4);
+    padding: 25px;
+    color: var(--sd-text);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border-radius: var(--sd-radius);
+    animation: sd-slide 0.3s ease-out;
+    background-image:
+        radial-gradient(circle at 20% 80%, var(--sd-accent5) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--sd-cosmic5) 0%, transparent 50%);
+}
+
+.star-dream .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--sd-accent1) 0%,
+            var(--sd-star2) 50%,
+            var(--sd-accent1) 100%);
+}
+
+.star-dream .modal-content h2 {
+    color: var(--sd-star1);
+    font-family: 'Orbitron', monospace;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 8px var(--sd-star2);
+}
+
+/* Modal date display */
+.star-dream .modal-date {
+    font-family: 'Orbitron', monospace;
+    color: var(--sd-star1);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--sd-accent4);
+    letter-spacing: 0.02em;
+}
+
+/* Event list */
+.star-dream .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.star-dream .event-item {
+    background-color: var(--sd-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--sd-star2);
+    border-radius: var(--sd-radius);
+    transition: all var(--sd-transition);
+    background-image:
+        radial-gradient(circle at 10% 10%, var(--sd-cosmic5) 0%, transparent 50%);
+}
+
+.star-dream .event-item:hover {
+    background-color: rgba(184, 184, 255, 0.1);
+    transform: translateX(5px);
+    border-left-color: var(--sd-accent1);
+    box-shadow: 0 3px 15px rgba(184, 184, 255, 0.2);
+}
+
+.star-dream .event-time {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--sd-star2);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.star-dream .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--sd-star1);
+}
+
+.star-dream .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--sd-text);
+    opacity: 0.9;
+}
+
+.star-dream .modal-content button {
+    background: linear-gradient(135deg, var(--sd-accent1) 0%, var(--sd-cosmic1) 100%);
+    color: var(--sd-star1);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Space Grotesk', sans-serif;
+    border-radius: var(--sd-radius);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.star-dream .modal-content button:hover {
+    background: linear-gradient(135deg, var(--sd-hover) 0%, var(--sd-cosmic2) 100%);
+    box-shadow: 0 3px 15px rgba(184, 184, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.star-dream .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--sd-primary);
+    color: var(--sd-star2);
+    border: 1px solid var(--sd-star2);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.star-dream .modal .close-button:hover {
+    background-color: var(--sd-star2);
+    color: var(--sd-primary);
+    border-color: var(--sd-star2);
+    box-shadow: 0 0 10px var(--sd-star2);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.star-dream .button,
+.star-dream .transparent-button {
+    border: 1px solid var(--sd-star2);
+    color: var(--sd-star2);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--sd-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.star-dream .button:hover,
+.star-dream .transparent-button:hover {
+    background-color: var(--sd-star2);
+    color: var(--sd-primary);
+    box-shadow: 0 3px 15px rgba(184, 184, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.star-dream .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.star-dream #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.star-dream #theme-switcher {
+    background-color: var(--sd-primary);
+    color: var(--sd-star2) !important;
+    border: 1px solid var(--sd-star2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B8B8FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    border-radius: var(--sd-radius);
+}
+
+.star-dream #theme-switcher option {
+    background-color: var(--sd-primary) !important;
+    color: var(--sd-star2) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.star-dream #theme-switcher:focus {
+    outline: none;
+    border-color: var(--sd-star2);
+    box-shadow: 0 0 0 2px rgba(184, 184, 255, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.star-dream #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    color: var(--sd-primary);
+    background: linear-gradient(135deg, var(--sd-accent1) 0%, var(--sd-cosmic1) 100%);
+    cursor: pointer;
+    transition: all var(--sd-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--sd-radius);
+    box-shadow: 0 2px 12px rgba(184, 184, 255, 0.3);
+}
+
+.star-dream #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--sd-hover) 0%, var(--sd-cosmic2) 100%);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ==================== FOOTER ==================== */
+.star-dream footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--sd-accent4);
+    color: var(--sd-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .star-dream .container {
+        padding: 1.5rem;
+    }
+
+    .star-dream #calendar-title {
+        font-size: 2rem;
+    }
+
+    .star-dream #current-date {
+        font-size: 1.5rem;
+    }
+
+    .star-dream #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .star-dream .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .star-dream .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .star-dream {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .star-dream .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
+    }
+
+    .star-dream th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .star-dream th span.full-day-name {
+        display: none;
+    }
+
+    .star-dream th abbr {
+        display: inline;
+    }
+
+    .star-dream td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .star-dream td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .star-dream td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .star-dream #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .star-dream #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .star-dream .modal-content {
+        padding: 20px;
+    }
+
+    .star-dream .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .star-dream .container {
+        padding: 1rem;
+    }
+
+    .star-dream #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .star-dream #current-date {
+        font-size: 1.3rem;
+    }
+
+    .star-dream #today-weather {
+        font-size: 1rem;
+    }
+
+    .star-dream .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 1px;
+    }
+
+    .star-dream th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .star-dream td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .star-dream td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .star-dream #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .star-dream .modal-content {
+        padding: 15px;
+    }
+
+    .star-dream .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .star-dream .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .star-dream th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .star-dream td {
+        height: 60px;
+    }
+
+    .star-dream td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .star-dream #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
