@@ -256,7 +256,7 @@ const applyTheme = (theme) => {
     'the-best-mood', 'the-best-of-fashion', 
     'the-best-offer', 'the-black-lake', 'the-black-spruce',
     'the-burning-heart-of-the-sahara', 'the-dead-sea', 'the-deepest-point',
-    'the-desert-line', 'the-element-of-surprise', 'the-final-step',
+    'the-desert-line', 'the-element-of-surprise', 'the-final-match', 'the-final-step',
     'the-finest-green-tea', 'the-first-prize', 'the-gold-standard',
     'the-great-silk-road', 'the-great-wall', 'the-green-mist',
     'the-hidden-jem', 'the-highest-level', 'the-highest-peak', 'the-huge-event',
