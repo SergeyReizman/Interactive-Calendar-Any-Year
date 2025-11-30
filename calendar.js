@@ -163,7 +163,7 @@ const applyTheme = (theme) => {
     'hurricane-clouds', 'hyperloop', 'iceberg-edge',
     'iceberg-lake', 'ice-giant', 'ice-palace',
     'iceland-volcanoes', 'imaginary-world',
-    'in-adriatic-waters', 'indigo-jeans', 'in-my-style',
+    'in-adriatic-waters', 'indigo-jeans', 'in-my-control', 'in-my-style',
     'inspiration-line', 'intelligence-quotient', 
     'inter-miami', 'in-the-dusk', 'in-the-mountains',
     'in-the-raspberry-dawn', 'into-the-jungle', 'into-the-night',
