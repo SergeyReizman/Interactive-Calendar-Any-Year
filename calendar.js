@@ -278,6 +278,7 @@ const applyTheme = (theme) => {
     'viking-helmet', 'viktoria-falls', 'watermelon', 'waikiki-after-dark',
     'waikiki-beach', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'west-hollywood', 'whale-shark', 'when-style-speaks-first',
+    'where-the-ocean-begins',
     'white-cherry-tree', 'white-shark', 'white-steamboat',
     'white-sun-of-the-desert', 'wild-escape',
     'wild-flower', 'wild-orange', 'wild-rose', 'wild-tropics',
