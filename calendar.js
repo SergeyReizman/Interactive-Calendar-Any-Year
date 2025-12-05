@@ -180,7 +180,7 @@ const applyTheme = (theme) => {
     'love-of-yesterday', 'love-station', 'lucid-dream', 'lunar-eclipse',
     'lush-green-mountains', 'luxury-design', 'luxury-life', 'macaroni-penguin',
     'magellanic-penguin', 'magic-colors', 'magic-fly', 
-    'magic-island', 'magnificent-symbol', 'main-stream',
+    'magic-island', 'magic-square', 'magnificent-symbol', 'main-stream',
     'mammoth-tusk', 'manchester-city', 'manchester-united',
     'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment',

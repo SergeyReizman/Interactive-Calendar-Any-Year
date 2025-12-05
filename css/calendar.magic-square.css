@@ -1,0 +1,842 @@
+/* ==========================================================================
+   Magic Square Theme - Enchanted Mathematical Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Mystical color palette with mathematical precision and arcane accents
+   - Structured, grid-based design inspired by ancient magic squares
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Mystical Grid Palette */
+    --ms-bg: #0A0A12;
+    --ms-text: #F0F0FF;
+    --ms-primary: #1A1A2E;
+    --ms-secondary: #252540;
+    --ms-date-number: #F0F0FF;
+
+    /* Magical Blues */
+    --ms-magic1: #4169E1;
+    --ms-magic2: #6A5ACD;
+    --ms-magic3: #483D8B;
+    --ms-magic4: rgba(65, 105, 225, 0.7);
+    --ms-magic5: rgba(65, 105, 225, 0.5);
+
+    /* Arcane Purples */
+    --ms-arcane1: #9370DB;
+    --ms-arcane2: #8A2BE2;
+    --ms-arcane3: #4B0082;
+    --ms-arcane4: rgba(147, 112, 219, 0.7);
+    --ms-arcane5: rgba(147, 112, 219, 0.5);
+
+    /* Mystical Golds */
+    --ms-gold1: #FFD700;
+    --ms-gold2: #DAA520;
+    --ms-gold3: #B8860B;
+    --ms-gold4: rgba(255, 215, 0, 0.3);
+    --ms-gold5: rgba(255, 215, 0, 0.1);
+
+    /* Theme Variables */
+    --ms-shadow: rgba(65, 105, 225, 0.15);
+    --ms-radius: 0px;
+    --ms-transition: 0.3s ease;
+    --ms-hover: #6495ED;
+    --ms-glow: 0 0 15px rgba(65, 105, 225, 0.3);
+    --ms-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%234169E1"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".3" fill="%234169E1"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".4" fill="%234169E1"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ms-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes ms-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ms-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--ms-shadow);
+    }
+
+    50% {
+        box-shadow: var(--ms-glow);
+    }
+}
+
+@keyframes ms-grid-glow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes ms-rotate {
+
+    0%,
+    100% {
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes progress-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.magic-square {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--ms-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--ms-bg);
+    min-height: 100vh;
+    background-image:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="15" y="15" width="2" height="2" fill="%234169E1" opacity="0.3"/><rect x="85" y="25" width="1.5" height="1.5" fill="%239370DB" opacity="0.4"/><rect x="25" y="75" width="2" height="2" fill="%234169E1" opacity="0.5"/><rect x="75" y="85" width="1.5" height="1.5" fill="%23FFD700" opacity="0.3"/><rect x="50" y="50" width="1" height="1" fill="%238A2BE2" opacity="0.4"/></svg>');
+}
+
+.magic-square .container {
+    background-color: var(--ms-primary);
+    padding: 2rem;
+    border: 1px solid var(--ms-magic4);
+    box-shadow: var(--ms-glow);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--ms-radius);
+    background-image:
+        linear-gradient(0deg, transparent 24%, rgba(65, 105, 225, 0.05) 25%, rgba(65, 105, 225, 0.05) 26%, transparent 27%, transparent 74%, rgba(65, 105, 225, 0.05) 75%, rgba(65, 105, 225, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(65, 105, 225, 0.05) 25%, rgba(65, 105, 225, 0.05) 26%, transparent 27%, transparent 74%, rgba(65, 105, 225, 0.05) 75%, rgba(65, 105, 225, 0.05) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+}
+
+.magic-square .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--ms-magic1) 0%,
+            var(--ms-arcane1) 50%,
+            var(--ms-gold1) 100%);
+    animation: ms-grid-glow 4s ease-in-out infinite;
+}
+
+.magic-square .container::after {
+    content: "◈";
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.1;
+    animation: ms-rotate 3s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.magic-square #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--ms-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.magic-square #calendar-title::after {
+    content: "✦";
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.magic-square #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.2rem;
+    background-color: var(--ms-primary);
+    border: 1px solid var(--ms-magic4);
+    border-radius: var(--ms-radius);
+    position: relative;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    background-image:
+        linear-gradient(45deg, transparent 45%, rgba(255, 215, 0, 0.05) 45%, rgba(255, 215, 0, 0.05) 55%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, rgba(255, 215, 0, 0.05) 45%, rgba(255, 215, 0, 0.05) 55%, transparent 55%);
+}
+
+.magic-square #date-weather-container::before {
+    content: "MAGIC CONSTANT";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--ms-primary);
+    padding: 0 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ms-magic1);
+    font-weight: 600;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.magic-square #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ms-magic2), transparent);
+}
+
+.magic-square #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--ms-text);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+}
+
+.magic-square #today-weather {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--ms-text);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.magic-square #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.magic-square .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 4px solid var(--ms-magic2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ms-primary);
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.3),
+        inset 0 0 25px rgba(65, 105, 225, 0.1);
+}
+
+.magic-square .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.magic-square .hour-hand {
+    width: 40%;
+    left: 10%;
+    height: 4px;
+    background: var(--ms-magic1);
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.magic-square .minute-hand {
+    width: 48%;
+    left: 2%;
+    height: 3px;
+    background: var(--ms-arcane1);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.magic-square .second-hand {
+    width: 48%;
+    left: 2%;
+    height: 1px;
+    background: var(--ms-gold1);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.magic-square table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.magic-square th {
+    background: linear-gradient(135deg, var(--ms-magic1) 0%, var(--ms-arcane1) 100%);
+    color: var(--ms-text) !important;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--ms-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+.magic-square th span.full-day-name {
+    display: inline;
+}
+
+.magic-square th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.magic-square td {
+    background-color: var(--ms-primary);
+    color: var(--ms-text);
+    padding: 1rem;
+    border: 1px solid var(--ms-magic4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--ms-transition);
+    position: relative;
+    border-radius: var(--ms-radius);
+    box-shadow: inset 0 0 0 1px rgba(65, 105, 225, 0.1);
+    background-image:
+        linear-gradient(45deg, transparent 45%, rgba(147, 112, 219, 0.05) 45%, rgba(147, 112, 219, 0.05) 55%, transparent 55%);
+}
+
+.magic-square td .date-number {
+    color: var(--ms-text) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.magic-square td:hover {
+    background-color: var(--ms-secondary);
+    box-shadow: 0 4px 15px rgba(65, 105, 225, 0.2);
+    border-color: var(--ms-magic1);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.magic-square td.current-day {
+    background-color: rgba(65, 105, 225, 0.1);
+    border: 2px solid var(--ms-magic2);
+    animation: ms-pulse 3s infinite;
+    background-image:
+        linear-gradient(-45deg, transparent 45%, rgba(255, 215, 0, 0.05) 45%, rgba(255, 215, 0, 0.05) 55%, transparent 55%);
+}
+
+.magic-square td.current-day .date-number {
+    color: var(--ms-text) !important;
+    font-weight: 700;
+}
+
+.magic-square td.current-day::before {
+    content: "◈";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.magic-square .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ms-arcane1);
+    margin: 0 1px;
+    transition: all var(--ms-transition);
+}
+
+.magic-square .event-marker:hover {
+    transform: scale(1.4);
+    background-color: var(--ms-magic1);
+    box-shadow: 0 0 6px rgba(65, 105, 225, 0.3);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.magic-square .modal-content {
+    position: relative;
+    background-color: var(--ms-primary);
+    border: 1px solid var(--ms-magic4);
+    padding: 25px;
+    color: var(--ms-text);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-radius: var(--ms-radius);
+    animation: ms-slide 0.3s ease-out;
+    background-image:
+        linear-gradient(0deg, transparent 24%, rgba(65, 105, 225, 0.05) 25%, rgba(65, 105, 225, 0.05) 26%, transparent 27%, transparent 74%, rgba(65, 105, 225, 0.05) 75%, rgba(65, 105, 225, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(147, 112, 219, 0.05) 25%, rgba(147, 112, 219, 0.05) 26%, transparent 27%, transparent 74%, rgba(147, 112, 219, 0.05) 75%, rgba(147, 112, 219, 0.05) 76%, transparent 77%, transparent);
+    background-size: 30px 30px;
+}
+
+.magic-square .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--ms-magic1) 0%,
+            var(--ms-arcane1) 50%,
+            var(--ms-gold1) 100%);
+}
+
+.magic-square .modal-content h2 {
+    color: var(--ms-text);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Modal date display */
+.magic-square .modal-date {
+    font-family: 'Cinzel', serif;
+    color: var(--ms-text);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ms-magic4);
+}
+
+/* Event list */
+.magic-square .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.magic-square .event-item {
+    background-color: var(--ms-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--ms-magic1);
+    border-radius: var(--ms-radius);
+    transition: all var(--ms-transition);
+}
+
+.magic-square .event-item:hover {
+    background-color: rgba(65, 105, 225, 0.1);
+    transform: translateX(5px);
+    border-left-color: var(--ms-arcane1);
+    box-shadow: 0 3px 15px rgba(65, 105, 225, 0.2);
+}
+
+.magic-square .event-time {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--ms-magic1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.magic-square .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ms-text);
+}
+
+.magic-square .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ms-text);
+    opacity: 0.9;
+}
+
+.magic-square .modal-content button {
+    background: linear-gradient(135deg, var(--ms-magic1) 0%, var(--ms-arcane1) 100%);
+    color: var(--ms-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ms-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Source Code Pro', monospace;
+    border-radius: var(--ms-radius);
+}
+
+.magic-square .modal-content button:hover {
+    background: linear-gradient(135deg, var(--ms-hover) 0%, var(--ms-arcane2) 100%);
+    box-shadow: 0 3px 15px rgba(65, 105, 225, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.magic-square .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--ms-primary);
+    color: var(--ms-magic1);
+    border: 1px solid var(--ms-magic1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--ms-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.magic-square .modal .close-button:hover {
+    background-color: var(--ms-magic1);
+    color: var(--ms-primary);
+    border-color: var(--ms-magic1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.magic-square .button,
+.magic-square .transparent-button {
+    border: 1px solid var(--ms-magic1);
+    color: var(--ms-magic1);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--ms-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--ms-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
+
+.magic-square .button:hover,
+.magic-square .transparent-button:hover {
+    background-color: var(--ms-magic1);
+    color: var(--ms-primary);
+    box-shadow: 0 3px 15px rgba(65, 105, 225, 0.3);
+    transform: translateY(-2px);
+}
+
+.magic-square .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.magic-square #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.magic-square #theme-switcher {
+    background-color: var(--ms-primary);
+    color: var(--ms-magic1) !important;
+    border: 1px solid var(--ms-magic1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234169E1'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ms-transition);
+    border-radius: var(--ms-radius);
+}
+
+.magic-square #theme-switcher option {
+    background-color: var(--ms-primary) !important;
+    color: var(--ms-magic1) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.magic-square #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ms-magic1);
+    box-shadow: 0 0 0 2px rgba(65, 105, 225, 0.3);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.magic-square #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+    color: var(--ms-text);
+    background: linear-gradient(135deg, var(--ms-magic1) 0%, var(--ms-arcane1) 100%);
+    cursor: pointer;
+    transition: all var(--ms-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ms-radius);
+    box-shadow: 0 2px 12px rgba(65, 105, 225, 0.3);
+}
+
+.magic-square #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--ms-hover) 0%, var(--ms-arcane2) 100%);
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ==================== FOOTER ==================== */
+.magic-square footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--ms-magic4);
+    color: var(--ms-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .magic-square .container {
+        padding: 1.5rem;
+    }
+
+    .magic-square #calendar-title {
+        font-size: 2rem;
+    }
+
+    .magic-square #current-date {
+        font-size: 1.5rem;
+    }
+
+    .magic-square #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .magic-square .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .magic-square .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .magic-square {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .magic-square .clock-face {
+        width: 150px;
+        height: 150px;
+        border-width: 3px;
+    }
+
+    .magic-square th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .magic-square th span.full-day-name {
+        display: none;
+    }
+
+    .magic-square th abbr {
+        display: inline;
+    }
+
+    .magic-square td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .magic-square td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .magic-square td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .magic-square #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .magic-square #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .magic-square .modal-content {
+        padding: 20px;
+    }
+
+    .magic-square .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .magic-square .container {
+        padding: 1rem;
+    }
+
+    .magic-square #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .magic-square #current-date {
+        font-size: 1.3rem;
+    }
+
+    .magic-square #today-weather {
+        font-size: 1rem;
+    }
+
+    .magic-square .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 2px;
+    }
+
+    .magic-square th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .magic-square td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .magic-square td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .magic-square #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .magic-square .modal-content {
+        padding: 15px;
+    }
+
+    .magic-square .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .magic-square .event-time {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .magic-square th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .magic-square td {
+        height: 60px;
+    }
+
+    .magic-square td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .magic-square #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+}
