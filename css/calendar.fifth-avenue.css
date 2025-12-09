@@ -1,0 +1,1062 @@
+/* ==========================================================================
+   Fifth Avenue Theme - Elegant & Modern Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Sophisticated, minimalist design with Fifth Avenue luxury aesthetic
+   - Clean lines, premium typography, and refined color palette
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Fifth Avenue Luxury Palette */
+    --fa-bg: #FFFFFF;
+    --fa-text: #1A1A1A;
+    --fa-primary: #F5F5F5;
+    --fa-secondary: #E8E8E8;
+    --fa-date-number: #1A1A1A;
+
+    /* Gold Accents */
+    --fa-gold1: #C9A96E;
+    --fa-gold2: #B89446;
+    --fa-gold3: #A47C3C;
+    --fa-gold4: rgba(201, 169, 110, 0.7);
+    --fa-gold5: rgba(201, 169, 110, 0.5);
+
+    /* Black & Charcoal */
+    --fa-black1: #1A1A1A;
+    --fa-black2: #2D2D2D;
+    --fa-black3: #404040;
+    --fa-black4: rgba(26, 26, 26, 0.7);
+    --fa-black5: rgba(26, 26, 26, 0.5);
+
+    /* Neutral Grays */
+    --fa-gray1: #8C8C8C;
+    --fa-gray2: #A6A6A6;
+    --fa-gray3: #BFBFBF;
+    --fa-gray4: rgba(140, 140, 140, 0.7);
+    --fa-gray5: rgba(140, 140, 140, 0.5);
+
+    /* Theme Variables */
+    --fa-shadow: rgba(140, 140, 140, 0.1);
+    --fa-radius: 8px;
+    --fa-transition: 0.2s ease;
+    --fa-hover: #E0C896;
+    --fa-glow: 0 0 0 1px rgba(201, 169, 110, 0.1);
+    --fa-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".05" fill="%23C9A96E"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".08" fill="%23C9A96E"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".1" fill="%23C9A96E"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fa-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes fa-slide {
+    from {
+        transform: translateY(3px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fa-pulse {
+
+    0%,
+    100% {
+        box-shadow: var(--fa-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 0 1px rgba(201, 169, 110, 0.3);
+    }
+}
+
+@keyframes fa-glow {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes fa-underline {
+    0% {
+        width: 0;
+        left: 50%;
+    }
+
+    50% {
+        width: 80%;
+        left: 10%;
+    }
+
+    100% {
+        width: 0;
+        left: 50%;
+    }
+}
+
+@keyframes fa-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.fifth-avenue {
+    font-family: 'Inter', sans-serif;
+    color: var(--fa-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--fa-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.fifth-avenue::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(135deg, rgba(201, 169, 110, 0.03) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(26, 26, 26, 0.02) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect x="50" y="50" width="1" height="1" fill="%238C8C8C" opacity="0.2"/><rect x="100" y="100" width="1" height="1" fill="%23C9A96E" opacity="0.2"/><rect x="150" y="150" width="1" height="1" fill="%231A1A1A" opacity="0.1"/></svg>');
+    pointer-events: none;
+    z-index: 1;
+}
+
+.fifth-avenue .container {
+    background-color: var(--fa-bg);
+    padding: 2.5rem;
+    border: 1px solid var(--fa-gray3);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.04),
+        0 1px 2px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.fifth-avenue .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--fa-gold1) 50%,
+            transparent 100%);
+    animation: fa-underline 6s ease-in-out infinite;
+}
+
+.fifth-avenue .container::after {
+    content: "⋆";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 1.2rem;
+    color: var(--fa-gold5);
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.fifth-avenue #calendar-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--fa-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+    font-weight: 500;
+    padding-bottom: 1rem;
+}
+
+.fifth-avenue #calendar-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--fa-gold1);
+}
+
+.fifth-avenue #calendar-title::before {
+    content: "FIFTH AVENUE";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--fa-gray1);
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.fifth-avenue #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--fa-primary);
+    border: 1px solid var(--fa-gray3);
+    border-radius: var(--fa-radius);
+    position: relative;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.fifth-avenue #date-weather-container::before {
+    content: "TODAY";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--fa-bg);
+    padding: 0 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--fa-gray1);
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.fifth-avenue #current-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--fa-text);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.fifth-avenue #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--fa-gray1);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.fifth-avenue #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.fifth-avenue .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--fa-gray2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--fa-bg);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(201, 169, 110, 0.1);
+}
+
+.fifth-avenue .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: var(--fa-gold1);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.fifth-avenue .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.fifth-avenue .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: var(--fa-black1);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+}
+
+.fifth-avenue .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: var(--fa-black2);
+    margin-top: -1px;
+    border-radius: 1px;
+}
+
+.fifth-avenue .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--fa-gold1);
+    margin-top: -0.5px;
+}
+
+/* Clock numbers */
+.fifth-avenue .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background:
+        conic-gradient(from 0deg at 50% 50%,
+            transparent 0deg 7.5deg,
+            var(--fa-gray3) 7.5deg 12.5deg,
+            transparent 12.5deg 30deg,
+            transparent 30deg 37.5deg,
+            var(--fa-gray3) 37.5deg 42.5deg,
+            transparent 42.5deg 60deg,
+            transparent 60deg 67.5deg,
+            var(--fa-gray3) 67.5deg 72.5deg,
+            transparent 72.5deg 90deg,
+            transparent 90deg 97.5deg,
+            var(--fa-gray3) 97.5deg 102.5deg,
+            transparent 102.5deg 120deg,
+            transparent 120deg 127.5deg,
+            var(--fa-gray3) 127.5deg 132.5deg,
+            transparent 132.5deg 150deg,
+            transparent 150deg 157.5deg,
+            var(--fa-gray3) 157.5deg 162.5deg,
+            transparent 162.5deg 180deg,
+            transparent 180deg 187.5deg,
+            var(--fa-gray3) 187.5deg 192.5deg,
+            transparent 192.5deg 210deg,
+            transparent 210deg 217.5deg,
+            var(--fa-gray3) 217.5deg 222.5deg,
+            transparent 222.5deg 240deg,
+            transparent 240deg 247.5deg,
+            var(--fa-gray3) 247.5deg 252.5deg,
+            transparent 252.5deg 270deg,
+            transparent 270deg 277.5deg,
+            var(--fa-gray3) 277.5deg 282.5deg,
+            transparent 282.5deg 300deg,
+            transparent 300deg 307.5deg,
+            var(--fa-gray3) 307.5deg 312.5deg,
+            transparent 312.5deg 330deg,
+            transparent 330deg 337.5deg,
+            var(--fa-gray3) 337.5deg 342.5deg,
+            transparent 342.5deg 360deg);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.fifth-avenue table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.fifth-avenue th {
+    background-color: var(--fa-primary);
+    color: var(--fa-gray1) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 1rem 0.5rem;
+    border-bottom: 2px solid var(--fa-gray3);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.fifth-avenue th span.full-day-name {
+    display: inline;
+}
+
+.fifth-avenue th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.fifth-avenue th::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--fa-gold1);
+    transition: width 0.3s ease;
+}
+
+.fifth-avenue th:hover::after {
+    width: 100%;
+}
+
+/* DATE NUMBER STYLES */
+.fifth-avenue td {
+    background-color: var(--fa-bg);
+    color: var(--fa-text);
+    padding: 1rem;
+    border: 1px solid var(--fa-gray3);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--fa-transition);
+    position: relative;
+    border-radius: var(--fa-radius);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.fifth-avenue td .date-number {
+    color: var(--fa-text) !important;
+    font-weight: 400;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.fifth-avenue td:hover {
+    background-color: var(--fa-primary);
+    border-color: var(--fa-gold4);
+    transform: translateY(-1px);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+/* Current date highlight */
+.fifth-avenue td.current-day {
+    background-color: var(--fa-bg);
+    border: 2px solid var(--fa-gold1);
+    background-image:
+        linear-gradient(135deg, rgba(201, 169, 110, 0.05) 0%, transparent 50%);
+}
+
+.fifth-avenue td.current-day .date-number {
+    color: var(--fa-gold1) !important;
+    font-weight: 500;
+}
+
+.fifth-avenue td.current-day::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--fa-gold1);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.fifth-avenue .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 1px;
+    background-color: var(--fa-gold1);
+    margin: 0 1px;
+    transition: all var(--fa-transition);
+    transform: rotate(45deg);
+}
+
+.fifth-avenue .event-marker:hover {
+    transform: rotate(45deg) scale(1.3);
+    background-color: var(--fa-black1);
+    box-shadow: 0 0 0 1px rgba(201, 169, 110, 0.2);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.fifth-avenue .modal-content {
+    position: relative;
+    background-color: var(--fa-bg);
+    border: 1px solid var(--fa-gray3);
+    padding: 2rem;
+    color: var(--fa-text);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    animation: fa-slide 0.3s ease-out;
+    background-image:
+        linear-gradient(135deg, rgba(201, 169, 110, 0.02) 0%, transparent 50%);
+}
+
+.fifth-avenue .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--fa-gold1) 50%,
+            transparent 100%);
+}
+
+.fifth-avenue .modal-content h2 {
+    color: var(--fa-text);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+/* Modal date display */
+.fifth-avenue .modal-date {
+    font-family: 'Playfair Display', serif;
+    color: var(--fa-text);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--fa-gray3);
+}
+
+/* Event list */
+.fifth-avenue .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fifth-avenue .event-item {
+    background-color: var(--fa-primary);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid var(--fa-gold1);
+    border-radius: var(--fa-radius);
+    transition: all var(--fa-transition);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.02),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.fifth-avenue .event-item:hover {
+    background-color: var(--fa-bg);
+    transform: translateX(2px);
+    border-left-color: var(--fa-black1);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.04),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.fifth-avenue .event-time {
+    font-family: 'Inter', sans-serif;
+    color: var(--fa-gray1);
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    display: block;
+    letter-spacing: 0.02em;
+}
+
+.fifth-avenue .event-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--fa-text);
+}
+
+.fifth-avenue .event-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--fa-gray1);
+    opacity: 0.9;
+}
+
+.fifth-avenue .modal-content button {
+    background-color: var(--fa-black1);
+    color: var(--fa-bg);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--fa-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--fa-radius);
+    text-transform: uppercase;
+}
+
+.fifth-avenue .modal-content button:hover {
+    background-color: var(--fa-gold1);
+    color: var(--fa-black1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Close Button */
+.fifth-avenue .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--fa-bg);
+    color: var(--fa-gray1);
+    border: 1px solid var(--fa-gray3);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--fa-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.fifth-avenue .modal .close-button:hover {
+    background-color: var(--fa-black1);
+    color: var(--fa-bg);
+    border-color: var(--fa-black1);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.fifth-avenue .button,
+.fifth-avenue .transparent-button {
+    border: 1px solid var(--fa-gray3);
+    color: var(--fa-text);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--fa-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: var(--fa-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    min-width: 120px;
+}
+
+.fifth-avenue .button::before,
+.fifth-avenue .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.fifth-avenue .button:hover,
+.fifth-avenue .transparent-button:hover {
+    border-color: var(--fa-gold1);
+    color: var(--fa-gold1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.fifth-avenue .button:hover::before,
+.fifth-avenue .transparent-button:hover::before {
+    left: 100%;
+}
+
+.fifth-avenue .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.fifth-avenue #theme-switcher-container {
+    position: relative;
+    margin: 0 0.5rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.fifth-avenue #theme-switcher {
+    background-color: var(--fa-bg);
+    color: var(--fa-text) !important;
+    border: 1px solid var(--fa-gray3);
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238C8C8C'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--fa-transition);
+    border-radius: var(--fa-radius);
+}
+
+.fifth-avenue #theme-switcher option {
+    background-color: var(--fa-bg) !important;
+    color: var(--fa-text) !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 10px 12px !important;
+}
+
+.fifth-avenue #theme-switcher:focus {
+    outline: none;
+    border-color: var(--fa-gold1);
+    box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.fifth-avenue #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--fa-bg);
+    background-color: var(--fa-black1);
+    cursor: pointer;
+    transition: all var(--fa-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--fa-radius);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.02);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.fifth-avenue #backToTopBtn:hover {
+    background-color: var(--fa-gold1);
+    color: var(--fa-black1);
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ==================== FOOTER ==================== */
+.fifth-avenue footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--fa-gray3);
+    color: var(--fa-gray1);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .fifth-avenue .container {
+        padding: 2rem;
+    }
+
+    .fifth-avenue #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .fifth-avenue #current-date {
+        font-size: 1.5rem;
+    }
+
+    .fifth-avenue #today-weather {
+        font-size: 1rem;
+    }
+
+    .fifth-avenue .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .fifth-avenue .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .fifth-avenue {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .fifth-avenue .clock-face {
+        width: 150px;
+        height: 150px;
+    }
+
+    .fifth-avenue th {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.4rem;
+    }
+
+    .fifth-avenue th span.full-day-name {
+        display: none;
+    }
+
+    .fifth-avenue th abbr {
+        display: inline;
+    }
+
+    .fifth-avenue td {
+        padding: 0.8rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .fifth-avenue td .date-number {
+        font-size: 1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .fifth-avenue td.current-day::before {
+        width: 5px;
+        height: 5px;
+        top: 4px;
+        right: 4px;
+    }
+
+    .fifth-avenue #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .fifth-avenue #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.85rem;
+        min-width: 160px;
+    }
+
+    .fifth-avenue .modal-content {
+        padding: 1.5rem;
+    }
+
+    .fifth-avenue .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .fifth-avenue .container {
+        padding: 1.5rem;
+    }
+
+    .fifth-avenue #calendar-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .fifth-avenue #calendar-title::before {
+        top: -20px;
+        font-size: 0.6rem;
+    }
+
+    .fifth-avenue #current-date {
+        font-size: 1.3rem;
+    }
+
+    .fifth-avenue #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .fifth-avenue .clock-face {
+        width: 130px;
+        height: 130px;
+    }
+
+    .fifth-avenue th {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .fifth-avenue td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .fifth-avenue td .date-number {
+        font-size: 0.9rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .fifth-avenue #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+
+    .fifth-avenue .modal-content {
+        padding: 1.2rem;
+    }
+
+    .fifth-avenue .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .fifth-avenue .event-time {
+        font-size: 0.85rem;
+    }
+
+    .fifth-avenue .button,
+    .fifth-avenue .transparent-button {
+        min-width: 100px;
+        padding: 0.7rem 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .fifth-avenue .container {
+        padding: 1rem;
+    }
+
+    .fifth-avenue th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .fifth-avenue td {
+        height: 60px;
+        padding: 0.5rem;
+    }
+
+    .fifth-avenue td .date-number {
+        font-size: 0.85rem;
+    }
+
+    .fifth-avenue #theme-switcher {
+        min-width: 120px;
+        font-size: 0.75rem;
+    }
+
+    .fifth-avenue .controls {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .fifth-avenue .button,
+    .fifth-avenue .transparent-button {
+        width: 100%;
+        margin: 0.1rem 0;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .fifth-avenue {
+        --fa-gold1: #000000;
+        --fa-gray3: #000000;
+    }
+
+    .fifth-avenue td.current-day {
+        border: 3px solid var(--fa-black1);
+    }
+
+    .fifth-avenue .modal-content {
+        border: 2px solid var(--fa-black1);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .fifth-avenue *,
+    .fifth-avenue *::before,
+    .fifth-avenue *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .fifth-avenue {
+        --fa-bg: #1A1A1A;
+        --fa-text: #F5F5F5;
+        --fa-primary: #2D2D2D;
+        --fa-secondary: #404040;
+        --fa-date-number: #F5F5F5;
+        --fa-black1: #F5F5F5;
+        --fa-black2: #E0E0E0;
+        --fa-black3: #CCCCCC;
+        --fa-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    .fifth-avenue .container,
+    .fifth-avenue td {
+        box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.2),
+            0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+}
