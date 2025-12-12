@@ -1,0 +1,1250 @@
+/* ==========================================================================
+   Land of Fire and Ice Theme - Nordic & Elemental Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Stark contrast between fiery reds and icy blues, inspired by Nordic landscapes
+   - Elemental design with volcanic and glacial aesthetics
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Land of Fire and Ice Palette */
+    --lofi-bg: #0A0F1C;
+    --lofi-text: #E8F4F8;
+    --lofi-primary: #1A1F2C;
+    --lofi-secondary: #2A2F3C;
+    --lofi-date-number: #E8F4F8;
+
+    /* Fire Elements */
+    --lofi-fire1: #FF4500;
+    --lofi-fire2: #FF0000;
+    --lofi-fire3: #CC0000;
+    --lofi-fire4: rgba(255, 69, 0, 0.7);
+    --lofi-fire5: rgba(255, 69, 0, 0.5);
+
+    /* Ice Elements */
+    --lofi-ice1: #00BFFF;
+    --lofi-ice2: #1E90FF;
+    --lofi-ice3: #4169E1;
+    --lofi-ice4: rgba(0, 191, 255, 0.7);
+    --lofi-ice5: rgba(0, 191, 255, 0.5);
+
+    /* Lava & Magma */
+    --lofi-lava1: #FF6347;
+    --lofi-lava2: #FF4500;
+    --lofi-lava3: #DC143C;
+    --lofi-lava4: rgba(255, 99, 71, 0.7);
+    --lofi-lava5: rgba(255, 99, 71, 0.5);
+
+    /* Frost & Glacier */
+    --lofi-frost1: #87CEEB;
+    --lofi-frost2: #4682B4;
+    --lofi-frost3: #2F4F4F;
+    --lofi-frost4: rgba(135, 206, 235, 0.7);
+    --lofi-frost5: rgba(135, 206, 235, 0.5);
+
+    /* Theme Variables */
+    --lofi-shadow: rgba(255, 69, 0, 0.3);
+    --lofi-radius: 10px;
+    --lofi-transition: 0.25s ease;
+    --lofi-hover: #FF5500;
+    --lofi-glow: 0 0 25px rgba(255, 69, 0, 0.4);
+    --lofi-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".15" fill="%23FF4500"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".2" fill="%2300BFFF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".25" fill="%23FF6347"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes lofi-fade {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes lofi-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes lofi-pulse-fire {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
+    }
+}
+
+@keyframes lofi-pulse-ice {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.7);
+    }
+}
+
+@keyframes lofi-fire-flicker {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes lofi-ice-shimmer {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes lofi-eruption {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes lofi-northern-lights {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes lofi-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes lofi-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.the-land-of-fire-and-ice {
+    font-family: 'Raleway', sans-serif;
+    color: var(--lofi-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--lofi-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.the-land-of-fire-and-ice::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg,
+            rgba(255, 69, 0, 0.05) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 69, 0, 0.05) 50%,
+            rgba(255, 69, 0, 0.05) 75%,
+            transparent 75%,
+            transparent),
+        linear-gradient(-45deg,
+            rgba(0, 191, 255, 0.05) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(0, 191, 255, 0.05) 50%,
+            rgba(0, 191, 255, 0.05) 75%,
+            transparent 75%,
+            transparent),
+        radial-gradient(circle at 30% 20%, rgba(255, 69, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(0, 191, 255, 0.1) 0%, transparent 50%);
+    background-size:
+        60px 60px,
+        60px 60px,
+        300px 300px,
+        300px 300px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.the-land-of-fire-and-ice .container {
+    background-color: var(--lofi-primary);
+    padding: 2rem;
+    border: 1px solid var(--lofi-fire4);
+    box-shadow:
+        var(--lofi-glow),
+        inset 0 0 20px rgba(255, 69, 0, 0.1),
+        0 0 0 1px rgba(0, 191, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.the-land-of-fire-and-ice .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--lofi-fire1) 0%,
+            var(--lofi-ice1) 50%,
+            var(--lofi-lava1) 100%);
+    animation: lofi-pulse-fire 2s ease-in-out infinite;
+}
+
+.the-land-of-fire-and-ice .container::after {
+    content: "⚔️";
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    opacity: 0.5;
+    animation: lofi-float 3s ease-in-out infinite;
+}
+
+/* Northern lights effect */
+.the-land-of-fire-and-ice .northern-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--lofi-ice1),
+            var(--lofi-fire1),
+            var(--lofi-lava1),
+            transparent);
+    background-size: 200% 100%;
+    animation: lofi-northern-lights 6s linear infinite;
+    opacity: 0.3;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.the-land-of-fire-and-ice #calendar-title {
+    font-family: 'Cinzel', serif;
+    color: var(--lofi-text);
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.1em;
+    position: relative;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: lofi-ice-shimmer 3s linear infinite;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(255, 69, 0, 0.2);
+}
+
+.the-land-of-fire-and-ice #calendar-title::after {
+    content: "🔥❄️";
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    opacity: 0.8;
+    animation: lofi-fire-flicker 2s ease-in-out infinite;
+}
+
+.the-land-of-fire-and-ice #calendar-title::before {
+    content: "LAND OF FIRE & ICE";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--lofi-ice1);
+    font-weight: 500;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.the-land-of-fire-and-ice #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.5rem;
+    background-color: var(--lofi-primary);
+    border: 1px solid var(--lofi-fire4);
+    border-radius: var(--lofi-radius);
+    position: relative;
+    box-shadow:
+        0 0 20px rgba(255, 69, 0, 0.2),
+        inset 0 0 10px rgba(255, 69, 0, 0.1),
+        0 0 0 1px rgba(0, 191, 255, 0.1);
+    overflow: hidden;
+}
+
+.the-land-of-fire-and-ice #date-weather-container::before {
+    content: "ELEMENTAL REALM";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--lofi-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--lofi-fire1);
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
+}
+
+.the-land-of-fire-and-ice #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--lofi-fire1), var(--lofi-ice1), transparent);
+}
+
+.the-land-of-fire-and-ice #current-date {
+    font-family: 'Cinzel', serif;
+    color: var(--lofi-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 5px rgba(255, 69, 0, 0.2);
+}
+
+.the-land-of-fire-and-ice #today-weather {
+    font-family: 'Raleway', sans-serif;
+    color: var(--lofi-ice1);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 3px rgba(0, 191, 255, 0.3);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.the-land-of-fire-and-ice #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.the-land-of-fire-and-ice .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--lofi-fire1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--lofi-primary);
+    box-shadow:
+        0 0 30px rgba(255, 69, 0, 0.3),
+        inset 0 0 20px rgba(255, 69, 0, 0.1),
+        0 0 0 1px rgba(0, 191, 255, 0.2);
+    overflow: hidden;
+}
+
+.the-land-of-fire-and-ice .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at center, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+        0 0 15px rgba(255, 69, 0, 0.5),
+        0 0 5px rgba(0, 191, 255, 0.5);
+}
+
+.the-land-of-fire-and-ice .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background:
+        conic-gradient(from 0deg at 50% 50%,
+            var(--lofi-fire4) 0deg 30deg,
+            var(--lofi-ice4) 30deg 60deg,
+            var(--lofi-lava4) 60deg 90deg,
+            var(--lofi-frost4) 90deg 120deg,
+            var(--lofi-fire4) 120deg 150deg,
+            var(--lofi-ice4) 150deg 180deg,
+            var(--lofi-lava4) 180deg 210deg,
+            var(--lofi-frost4) 210deg 240deg,
+            var(--lofi-fire4) 240deg 270deg,
+            var(--lofi-ice4) 270deg 300deg,
+            var(--lofi-lava4) 300deg 330deg,
+            var(--lofi-frost4) 330deg 360deg);
+    opacity: 0.2;
+}
+
+.the-land-of-fire-and-ice .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.the-land-of-fire-and-ice .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--lofi-fire1) 0%, transparent 100%);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--lofi-fire1);
+}
+
+.the-land-of-fire-and-ice .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lofi-ice1) 0%, transparent 100%);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 10px var(--lofi-ice1);
+}
+
+.the-land-of-fire-and-ice .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--lofi-lava1) 0%, transparent 100%);
+    margin-top: -0.5px;
+    box-shadow: 0 0 10px var(--lofi-lava1);
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.the-land-of-fire-and-ice table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.the-land-of-fire-and-ice th {
+    background: linear-gradient(135deg, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    color: var(--lofi-primary) !important;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-radius: var(--lofi-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+}
+
+.the-land-of-fire-and-ice th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+}
+
+.the-land-of-fire-and-ice th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.the-land-of-fire-and-ice th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.the-land-of-fire-and-ice td {
+    background-color: var(--lofi-primary);
+    color: var(--lofi-text);
+    padding: 1rem;
+    border: 1px solid var(--lofi-fire4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--lofi-transition);
+    position: relative;
+    border-radius: var(--lofi-radius);
+    box-shadow:
+        inset 0 0 10px rgba(255, 69, 0, 0.1),
+        0 0 10px rgba(255, 69, 0, 0.1),
+        inset 0 0 0 1px rgba(0, 191, 255, 0.1);
+}
+
+.the-land-of-fire-and-ice td .date-number {
+    color: var(--lofi-text) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Cinzel', serif;
+    text-shadow: 0 0 3px var(--lofi-fire1);
+}
+
+.the-land-of-fire-and-ice td:hover {
+    background-color: var(--lofi-secondary);
+    box-shadow:
+        0 0 20px rgba(255, 69, 0, 0.3),
+        inset 0 0 15px rgba(255, 69, 0, 0.2),
+        0 0 0 1px rgba(0, 191, 255, 0.2);
+    border-color: var(--lofi-fire1);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.the-land-of-fire-and-ice td.current-day {
+    background-color: rgba(255, 69, 0, 0.1);
+    border: 2px solid var(--lofi-fire1);
+    animation: lofi-pulse-fire 2s infinite;
+    box-shadow:
+        0 0 25px rgba(255, 69, 0, 0.4),
+        inset 0 0 15px rgba(255, 69, 0, 0.2),
+        0 0 0 1px rgba(0, 191, 255, 0.3);
+}
+
+.the-land-of-fire-and-ice td.current-day .date-number {
+    color: var(--lofi-fire1) !important;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--lofi-fire1);
+}
+
+.the-land-of-fire-and-ice td.current-day::before {
+    content: "🌋";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    animation: lofi-eruption 2s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.the-land-of-fire-and-ice .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    margin: 0 1px;
+    transition: all var(--lofi-transition);
+    animation: lofi-pulse-fire 1.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px var(--lofi-fire1);
+}
+
+.the-land-of-fire-and-ice .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--lofi-text);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.the-land-of-fire-and-ice .event-marker:hover {
+    transform: scale(1.5);
+    background: radial-gradient(circle at center, var(--lofi-ice1) 0%, var(--lofi-lava1) 100%);
+    box-shadow: 0 0 10px var(--lofi-lava1);
+    animation: lofi-pulse-ice 1.5s ease-in-out infinite;
+}
+
+/* ==================== MODAL STYLES ==================== */
+.the-land-of-fire-and-ice .modal-content {
+    position: relative;
+    background-color: var(--lofi-primary);
+    border: 1px solid var(--lofi-fire4);
+    padding: 25px;
+    color: var(--lofi-text);
+    box-shadow:
+        0 0 40px rgba(255, 69, 0, 0.3),
+        inset 0 0 20px rgba(255, 69, 0, 0.1),
+        0 0 0 1px rgba(0, 191, 255, 0.2);
+    border-radius: 12px;
+    animation: lofi-slide 0.3s ease-out;
+    background-image:
+        linear-gradient(45deg, rgba(255, 69, 0, 0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 69, 0, 0.1) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255, 69, 0, 0.1) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255, 69, 0, 0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    overflow: hidden;
+}
+
+.the-land-of-fire-and-ice .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--lofi-fire1) 0%,
+            var(--lofi-ice1) 50%,
+            var(--lofi-lava1) 100%);
+    animation: lofi-pulse-fire 2s ease-in-out infinite;
+}
+
+.the-land-of-fire-and-ice .modal-content h2 {
+    color: var(--lofi-text);
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+/* Modal date display */
+.the-land-of-fire-and-ice .modal-date {
+    font-family: 'Cinzel', serif;
+    color: var(--lofi-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--lofi-fire4);
+    text-shadow: 0 0 5px var(--lofi-fire1);
+}
+
+/* Event list */
+.the-land-of-fire-and-ice .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.the-land-of-fire-and-ice .event-item {
+    background-color: var(--lofi-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--lofi-fire1);
+    border-radius: var(--lofi-radius);
+    transition: all var(--lofi-transition);
+    box-shadow:
+        0 0 15px rgba(255, 69, 0, 0.1),
+        inset 0 0 10px rgba(255, 69, 0, 0.05),
+        0 0 0 1px rgba(0, 191, 255, 0.1);
+}
+
+.the-land-of-fire-and-ice .event-item:hover {
+    background-color: rgba(255, 69, 0, 0.1);
+    transform: translateX(5px);
+    border-left-color: var(--lofi-ice1);
+    box-shadow:
+        0 0 25px rgba(0, 191, 255, 0.3),
+        inset 0 0 15px rgba(0, 191, 255, 0.1),
+        0 0 0 1px rgba(255, 69, 0, 0.2);
+}
+
+.the-land-of-fire-and-ice .event-time {
+    font-family: 'Raleway', sans-serif;
+    color: var(--lofi-fire1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 0 0 3px var(--lofi-fire1);
+}
+
+.the-land-of-fire-and-ice .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--lofi-text);
+    text-shadow: 0 0 2px var(--lofi-ice1);
+}
+
+.the-land-of-fire-and-ice .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--lofi-text);
+    opacity: 0.9;
+}
+
+.the-land-of-fire-and-ice .modal-content button {
+    background: linear-gradient(135deg, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    color: var(--lofi-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--lofi-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Cinzel', serif;
+    border-radius: var(--lofi-radius);
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+}
+
+.the-land-of-fire-and-ice .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.the-land-of-fire-and-ice .modal-content button:hover::before {
+    left: 100%;
+}
+
+.the-land-of-fire-and-ice .modal-content button:hover {
+    background: linear-gradient(135deg, var(--lofi-hover) 0%, var(--lofi-ice2) 100%);
+    box-shadow:
+        0 0 25px rgba(255, 69, 0, 0.5),
+        0 0 10px rgba(0, 191, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.the-land-of-fire-and-ice .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--lofi-primary);
+    color: var(--lofi-fire1);
+    border: 1px solid var(--lofi-fire1);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--lofi-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow:
+        0 0 10px rgba(255, 69, 0, 0.3),
+        inset 0 0 5px rgba(255, 69, 0, 0.1);
+}
+
+.the-land-of-fire-and-ice .modal .close-button:hover {
+    background-color: var(--lofi-fire1);
+    color: var(--lofi-primary);
+    border-color: var(--lofi-fire1);
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.the-land-of-fire-and-ice .button,
+.the-land-of-fire-and-ice .transparent-button {
+    border: 1px solid var(--lofi-fire1);
+    color: var(--lofi-fire1);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--lofi-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--lofi-radius);
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    box-shadow:
+        0 0 10px rgba(255, 69, 0, 0.3),
+        inset 0 0 5px rgba(255, 69, 0, 0.1);
+}
+
+.the-land-of-fire-and-ice .button::before,
+.the-land-of-fire-and-ice .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 69, 0, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.the-land-of-fire-and-ice .button:hover::before,
+.the-land-of-fire-and-ice .transparent-button:hover::before {
+    left: 100%;
+}
+
+.the-land-of-fire-and-ice .button:hover,
+.the-land-of-fire-and-ice .transparent-button:hover {
+    background-color: var(--lofi-fire1);
+    color: var(--lofi-primary);
+    box-shadow:
+        0 0 20px rgba(255, 69, 0, 0.5),
+        inset 0 0 10px rgba(255, 69, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.the-land-of-fire-and-ice .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+    gap: 0.5rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.the-land-of-fire-and-ice #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.the-land-of-fire-and-ice #theme-switcher {
+    background-color: var(--lofi-primary);
+    color: var(--lofi-fire1) !important;
+    border: 1px solid var(--lofi-fire1);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF4500'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--lofi-transition);
+    border-radius: var(--lofi-radius);
+    text-transform: uppercase;
+    box-shadow:
+        0 0 10px rgba(255, 69, 0, 0.3),
+        inset 0 0 5px rgba(255, 69, 0, 0.1);
+}
+
+.the-land-of-fire-and-ice #theme-switcher option {
+    background-color: var(--lofi-primary) !important;
+    color: var(--lofi-fire1) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.the-land-of-fire-and-ice #theme-switcher:focus {
+    outline: none;
+    border-color: var(--lofi-fire1);
+    box-shadow:
+        0 0 0 3px rgba(255, 69, 0, 0.3),
+        0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.the-land-of-fire-and-ice #backToTopBtn {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.7rem;
+    font-size: 0.95rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    color: var(--lofi-primary);
+    background: linear-gradient(135deg, var(--lofi-fire1) 0%, var(--lofi-ice1) 100%);
+    cursor: pointer;
+    transition: all var(--lofi-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--lofi-radius);
+    box-shadow:
+        0 0 25px rgba(255, 69, 0, 0.5),
+        0 0 10px rgba(0, 191, 255, 0.3);
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.the-land-of-fire-and-ice #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--lofi-hover) 0%, var(--lofi-ice2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 35px rgba(255, 69, 0, 0.7),
+        0 0 15px rgba(0, 191, 255, 0.5);
+}
+
+/* ==================== FOOTER ==================== */
+.the-land-of-fire-and-ice footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--lofi-fire4);
+    color: var(--lofi-fire1);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 0 0 3px var(--lofi-fire1);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .the-land-of-fire-and-ice .container {
+        padding: 1.5rem;
+    }
+
+    .the-land-of-fire-and-ice #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .the-land-of-fire-and-ice #current-date {
+        font-size: 1.5rem;
+    }
+
+    .the-land-of-fire-and-ice #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .the-land-of-fire-and-ice .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .the-land-of-fire-and-ice .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .the-land-of-fire-and-ice {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .the-land-of-fire-and-ice .clock-face {
+        width: 150px;
+        height: 150px;
+    }
+
+    .the-land-of-fire-and-ice th {
+        font-size: 0.85rem;
+        padding: 0.7rem 0.3rem;
+    }
+
+    .the-land-of-fire-and-ice th span.full-day-name {
+        display: none;
+    }
+
+    .the-land-of-fire-and-ice th abbr {
+        display: inline;
+    }
+
+    .the-land-of-fire-and-ice td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.85rem;
+    }
+
+    .the-land-of-fire-and-ice td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .the-land-of-fire-and-ice td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .the-land-of-fire-and-ice #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .the-land-of-fire-and-ice #theme-switcher {
+        padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .the-land-of-fire-and-ice .modal-content {
+        padding: 20px;
+    }
+
+    .the-land-of-fire-and-ice .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .the-land-of-fire-and-ice .container {
+        padding: 1rem;
+    }
+
+    .the-land-of-fire-and-ice #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .the-land-of-fire-and-ice #current-date {
+        font-size: 1.3rem;
+    }
+
+    .the-land-of-fire-and-ice #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .the-land-of-fire-and-ice .clock-face {
+        width: 130px;
+        height: 130px;
+    }
+
+    .the-land-of-fire-and-ice th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .the-land-of-fire-and-ice td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .the-land-of-fire-and-ice td .date-number {
+        font-size: 0.9rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .the-land-of-fire-and-ice #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+    }
+
+    .the-land-of-fire-and-ice .modal-content {
+        padding: 15px;
+    }
+
+    .the-land-of-fire-and-ice .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .the-land-of-fire-and-ice .event-time {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .the-land-of-fire-and-ice th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .the-land-of-fire-and-ice td {
+        height: 60px;
+    }
+
+    .the-land-of-fire-and-ice td .date-number {
+        font-size: 0.85rem;
+    }
+
+    .the-land-of-fire-and-ice #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+
+    .the-land-of-fire-and-ice .controls {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .the-land-of-fire-and-ice .button,
+    .the-land-of-fire-and-ice .transparent-button {
+        width: 100%;
+        margin: 0.1rem 0;
+        text-transform: uppercase;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .the-land-of-fire-and-ice {
+        --lofi-fire1: #FF0000;
+        --lofi-ice1: #00FFFF;
+        --lofi-lava1: #FF5500;
+    }
+
+    .the-land-of-fire-and-ice td.current-day {
+        border: 3px solid var(--lofi-fire1);
+        background-color: rgba(255, 0, 0, 0.15);
+    }
+
+    .the-land-of-fire-and-ice th {
+        background: var(--lofi-fire1);
+        color: var(--lofi-primary) !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .the-land-of-fire-and-ice *,
+    .the-land-of-fire-and-ice *::before,
+    .the-land-of-fire-and-ice *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .the-land-of-fire-and-ice .hand {
+        transition: none;
+    }
+
+    .the-land-of-fire-and-ice .container::before,
+    .the-land-of-fire-and-ice .modal-content::before {
+        animation: none;
+    }
+}
+
+/* Light mode support (alternative) */
+@media (prefers-color-scheme: light) {
+    .the-land-of-fire-and-ice {
+        --lofi-bg: #F0F8FF;
+        --lofi-text: #1A1A1A;
+        --lofi-primary: #FFFFFF;
+        --lofi-secondary: #F5F5F5;
+        --lofi-date-number: #1A1A1A;
+    }
+
+    .the-land-of-fire-and-ice .container,
+    .the-land-of-fire-and-ice td {
+        box-shadow:
+            0 8px 30px rgba(255, 69, 0, 0.2),
+            inset 0 0 10px rgba(255, 69, 0, 0.1),
+            0 0 0 1px rgba(0, 191, 255, 0.1);
+    }
+
+    .the-land-of-fire-and-ice .modal-content {
+        box-shadow:
+            0 15px 50px rgba(255, 69, 0, 0.2),
+            inset 0 0 10px rgba(255, 69, 0, 0.1),
+            0 0 0 1px rgba(0, 191, 255, 0.1);
+    }
+
+    .the-land-of-fire-and-ice .button,
+    .the-land-of-fire-and-ice .transparent-button {
+        box-shadow:
+            0 2px 8px rgba(255, 69, 0, 0.2),
+            inset 0 0 5px rgba(255, 69, 0, 0.1);
+    }
+}
