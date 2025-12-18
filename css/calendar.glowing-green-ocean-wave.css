@@ -1,0 +1,1085 @@
+/* ==========================================================================
+   Glowing Green Ocean Wave Theme - Bioluminescent Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --ggow-bg: #001122;
+    --ggow-text: #E0F7FF;
+    --ggow-primary: #002233;
+    --ggow-secondary: #003344;
+    --ggow-date-number: #E0F7FF;
+    --ggow-wave1: #00FF9D;
+    --ggow-wave2: #00CC7D;
+    --ggow-wave3: #00995C;
+    --ggow-wave4: rgba(0, 255, 157, 0.7);
+    --ggow-wave5: rgba(0, 255, 157, 0.5);
+    --ggow-deep1: #009688;
+    --ggow-deep2: #00796B;
+    --ggow-deep3: #004D40;
+    --ggow-deep4: rgba(0, 150, 136, 0.7);
+    --ggow-deep5: rgba(0, 150, 136, 0.5);
+    --ggow-glow1: #64FFDA;
+    --ggow-glow2: #1DE9B6;
+    --ggow-glow3: #00BFA5;
+    --ggow-glow4: rgba(100, 255, 218, 0.7);
+    --ggow-glow5: rgba(100, 255, 218, 0.5);
+    --ggow-foam1: #80DEEA;
+    --ggow-foam2: #4DD0E1;
+    --ggow-foam3: #26C6DA;
+    --ggow-foam4: rgba(128, 222, 234, 0.7);
+    --ggow-foam5: rgba(128, 222, 234, 0.5);
+    --ggow-shadow: rgba(0, 255, 157, 0.3);
+    --ggow-radius: 12px;
+    --ggow-transition: 0.3s ease;
+    --ggow-hover: #00E676;
+    --ggow-glow: 0 0 25px rgba(0, 255, 157, 0.4);
+}
+
+@keyframes ggow-wave {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+@keyframes ggow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 255, 157, 0.7);
+    }
+}
+
+@keyframes ggow-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes ggow-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.glowing-green-ocean-wave {
+    font-family: 'Inter', sans-serif;
+    color: var(--ggow-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--ggow-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.glowing-green-ocean-wave::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--ggow-wave5) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, var(--ggow-deep5) 0%, transparent 50%),
+        linear-gradient(90deg,
+            transparent 49%,
+            rgba(0, 255, 157, 0.05) 50%,
+            transparent 51%);
+    background-size:
+        300px 300px,
+        300px 300px,
+        30px 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.glowing-green-ocean-wave .container {
+    background-color: var(--ggow-primary);
+    padding: 2rem;
+    border: 1px solid var(--ggow-wave4);
+    box-shadow:
+        var(--ggow-glow),
+        inset 0 0 20px rgba(0, 255, 157, 0.1);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 16px;
+    z-index: 2;
+}
+
+.glowing-green-ocean-wave .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--ggow-wave1) 0%,
+            var(--ggow-glow1) 50%,
+            var(--ggow-foam1) 100%);
+    animation: ggow-wave 3s linear infinite;
+    background-size: 200px 100%;
+}
+
+.glowing-green-ocean-wave .container::after {
+    content: "🌊";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: ggow-float 4s ease-in-out infinite;
+}
+
+.glowing-green-ocean-wave #calendar-title {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--ggow-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    font-weight: 600;
+    text-shadow:
+        0 0 10px rgba(0, 255, 157, 0.3),
+        0 0 20px rgba(0, 255, 157, 0.2);
+    background: linear-gradient(135deg, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: ggow-shimmer 3s linear infinite;
+}
+
+.glowing-green-ocean-wave #calendar-title::after {
+    content: "✨";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: ggow-float 2s ease-in-out infinite;
+}
+
+.glowing-green-ocean-wave #calendar-title::before {
+    content: "BIOLUMINESCENT";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--ggow-wave1);
+    font-weight: 400;
+    font-family: 'Source Code Pro', monospace;
+    text-transform: uppercase;
+}
+
+.glowing-green-ocean-wave #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.8rem;
+    background-color: var(--ggow-primary);
+    border: 1px solid var(--ggow-wave4);
+    border-radius: var(--ggow-radius);
+    position: relative;
+    box-shadow:
+        0 0 20px rgba(0, 255, 157, 0.2),
+        inset 0 0 10px rgba(0, 255, 157, 0.1);
+    overflow: hidden;
+}
+
+.glowing-green-ocean-wave #date-weather-container::before {
+    content: "OCEAN DEPTHS";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--ggow-primary);
+    padding: 0 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--ggow-wave1);
+    font-weight: 500;
+    font-family: 'Source Code Pro', monospace;
+    text-transform: uppercase;
+}
+
+.glowing-green-ocean-wave #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ggow-wave1), transparent);
+}
+
+.glowing-green-ocean-wave #current-date {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--ggow-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 5px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--ggow-glow1);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 3px var(--ggow-glow1);
+}
+
+.glowing-green-ocean-wave #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.glowing-green-ocean-wave .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--ggow-wave1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--ggow-primary);
+    box-shadow:
+        0 0 30px rgba(0, 255, 157, 0.3),
+        inset 0 0 20px rgba(0, 255, 157, 0.1);
+    overflow: hidden;
+}
+
+.glowing-green-ocean-wave .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at center, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+        0 0 15px rgba(0, 255, 157, 0.5),
+        inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.glowing-green-ocean-wave .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background:
+        conic-gradient(from 0deg at 50% 50%,
+            rgba(0, 255, 157, 0.2) 0deg 30deg,
+            rgba(100, 255, 218, 0.2) 30deg 60deg,
+            rgba(0, 150, 136, 0.2) 60deg 90deg,
+            rgba(128, 222, 234, 0.2) 90deg 120deg,
+            rgba(0, 255, 157, 0.2) 120deg 150deg,
+            rgba(100, 255, 218, 0.2) 150deg 180deg,
+            rgba(0, 150, 136, 0.2) 180deg 210deg,
+            rgba(128, 222, 234, 0.2) 210deg 240deg,
+            rgba(0, 255, 157, 0.2) 240deg 270deg,
+            rgba(100, 255, 218, 0.2) 270deg 300deg,
+            rgba(0, 150, 136, 0.2) 300deg 330deg,
+            rgba(128, 222, 234, 0.2) 330deg 360deg);
+}
+
+.glowing-green-ocean-wave .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.glowing-green-ocean-wave .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ggow-wave1) 0%, transparent 100%);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ggow-glow1) 0%, transparent 100%);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 0 10px var(--ggow-glow1);
+}
+
+.glowing-green-ocean-wave .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--ggow-deep1) 0%, transparent 100%);
+    margin-top: -0.5px;
+    box-shadow: 0 0 10px var(--ggow-deep1);
+}
+
+.glowing-green-ocean-wave table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+.glowing-green-ocean-wave th {
+    background: linear-gradient(135deg, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    color: var(--ggow-primary) !important;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+    padding: 1.2rem 0.5rem;
+    border-radius: var(--ggow-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+}
+
+.glowing-green-ocean-wave th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+}
+
+.glowing-green-ocean-wave th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.glowing-green-ocean-wave th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.glowing-green-ocean-wave td {
+    background-color: var(--ggow-primary);
+    color: var(--ggow-text);
+    padding: 1.2rem;
+    border: 1px solid var(--ggow-wave4);
+    height: 95px;
+    vertical-align: top;
+    transition: all var(--ggow-transition);
+    position: relative;
+    border-radius: var(--ggow-radius);
+    box-shadow:
+        inset 0 0 10px rgba(0, 255, 157, 0.1),
+        0 0 10px rgba(0, 255, 157, 0.1);
+}
+
+.glowing-green-ocean-wave td .date-number {
+    color: var(--ggow-text) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Source Code Pro', monospace;
+    text-shadow: 0 0 3px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave td:hover {
+    background-color: var(--ggow-secondary);
+    box-shadow:
+        0 0 25px rgba(0, 255, 157, 0.3),
+        inset 0 0 15px rgba(0, 255, 157, 0.2);
+    border-color: var(--ggow-wave1);
+    transform: translateY(-3px);
+}
+
+.glowing-green-ocean-wave td.current-day {
+    background-color: rgba(0, 255, 157, 0.1);
+    border: 2px solid var(--ggow-wave1);
+    animation: ggow-pulse 2s infinite;
+    box-shadow:
+        0 0 30px rgba(0, 255, 157, 0.4),
+        inset 0 0 15px rgba(0, 255, 157, 0.2);
+}
+
+.glowing-green-ocean-wave td.current-day .date-number {
+    color: var(--ggow-wave1) !important;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave td.current-day::before {
+    content: "🐚";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1.2rem;
+    animation: ggow-float 3s ease-in-out infinite;
+}
+
+.glowing-green-ocean-wave .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    margin: 0 1px;
+    transition: all var(--ggow-transition);
+    animation: ggow-pulse 1.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--ggow-text);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.glowing-green-ocean-wave .event-marker:hover {
+    transform: scale(1.5);
+    background: radial-gradient(circle at center, var(--ggow-glow1) 0%, var(--ggow-deep1) 100%);
+    box-shadow: 0 0 10px var(--ggow-deep1);
+}
+
+.glowing-green-ocean-wave .modal-content {
+    position: relative;
+    background-color: var(--ggow-primary);
+    border: 1px solid var(--ggow-wave4);
+    padding: 2.5rem;
+    color: var(--ggow-text);
+    box-shadow:
+        0 0 40px rgba(0, 255, 157, 0.3),
+        inset 0 0 20px rgba(0, 255, 157, 0.1);
+    border-radius: 16px;
+    background-image:
+        radial-gradient(circle at 20% 80%, var(--ggow-wave5) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--ggow-glow5) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.glowing-green-ocean-wave .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--ggow-wave1) 0%,
+            var(--ggow-glow1) 50%,
+            var(--ggow-foam1) 100%);
+    animation: ggow-wave 3s linear infinite;
+    background-size: 200px 100%;
+}
+
+.glowing-green-ocean-wave .modal-content h2 {
+    color: var(--ggow-text);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 2.2em;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+}
+
+.glowing-green-ocean-wave .modal-date {
+    font-family: 'Source Code Pro', monospace;
+    color: var(--ggow-text);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--ggow-wave4);
+    text-shadow: 0 0 5px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave .event-list {
+    margin: 1.8rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.glowing-green-ocean-wave .event-item {
+    background-color: var(--ggow-secondary);
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--ggow-wave1);
+    border-radius: var(--ggow-radius);
+    transition: all var(--ggow-transition);
+    box-shadow:
+        0 0 15px rgba(0, 255, 157, 0.1),
+        inset 0 0 10px rgba(0, 255, 157, 0.05);
+}
+
+.glowing-green-ocean-wave .event-item:hover {
+    background-color: rgba(0, 255, 157, 0.1);
+    transform: translateX(5px);
+    border-left-color: var(--ggow-glow1);
+    box-shadow:
+        0 0 25px rgba(100, 255, 218, 0.3),
+        inset 0 0 15px rgba(100, 255, 218, 0.1);
+}
+
+.glowing-green-ocean-wave .event-time {
+    font-family: 'Inter', sans-serif;
+    color: var(--ggow-wave1);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 0 0 3px var(--ggow-wave1);
+}
+
+.glowing-green-ocean-wave .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ggow-text);
+    text-shadow: 0 0 2px var(--ggow-glow1);
+}
+
+.glowing-green-ocean-wave .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ggow-text);
+    opacity: 0.9;
+}
+
+.glowing-green-ocean-wave .modal-content button {
+    background: linear-gradient(135deg, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    color: var(--ggow-primary);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ggow-transition);
+    letter-spacing: 0.05em;
+    font-family: 'Source Code Pro', monospace;
+    border-radius: var(--ggow-radius);
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+}
+
+.glowing-green-ocean-wave .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.glowing-green-ocean-wave .modal-content button:hover::before {
+    left: 100%;
+}
+
+.glowing-green-ocean-wave .modal-content button:hover {
+    background: linear-gradient(135deg, var(--ggow-hover) 0%, var(--ggow-glow2) 100%);
+    box-shadow:
+        0 0 25px rgba(0, 255, 157, 0.5),
+        0 0 10px rgba(100, 255, 218, 0.3);
+    transform: translateY(-2px);
+}
+
+.glowing-green-ocean-wave .modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--ggow-primary);
+    color: var(--ggow-wave1);
+    border: 1px solid var(--ggow-wave1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--ggow-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow:
+        0 0 10px rgba(0, 255, 157, 0.3),
+        inset 0 0 5px rgba(0, 255, 157, 0.1);
+}
+
+.glowing-green-ocean-wave .modal .close-button:hover {
+    background-color: var(--ggow-wave1);
+    color: var(--ggow-primary);
+    border-color: var(--ggow-wave1);
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+.glowing-green-ocean-wave .button,
+.glowing-green-ocean-wave .transparent-button {
+    border: 1px solid var(--ggow-wave1);
+    color: var(--ggow-wave1);
+    background-color: transparent;
+    padding: 0.9rem 1.8rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ggow-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--ggow-radius);
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    box-shadow:
+        0 0 10px rgba(0, 255, 157, 0.3),
+        inset 0 0 5px rgba(0, 255, 157, 0.1);
+}
+
+.glowing-green-ocean-wave .button::before,
+.glowing-green-ocean-wave .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.glowing-green-ocean-wave .button:hover::before,
+.glowing-green-ocean-wave .transparent-button:hover::before {
+    left: 100%;
+}
+
+.glowing-green-ocean-wave .button:hover,
+.glowing-green-ocean-wave .transparent-button:hover {
+    background-color: var(--ggow-wave1);
+    color: var(--ggow-primary);
+    box-shadow:
+        0 0 20px rgba(0, 255, 157, 0.5),
+        inset 0 0 10px rgba(0, 255, 157, 0.2);
+    transform: translateY(-2px);
+}
+
+.glowing-green-ocean-wave .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.8rem;
+}
+
+.glowing-green-ocean-wave #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.glowing-green-ocean-wave #theme-switcher {
+    background-color: var(--ggow-primary);
+    color: var(--ggow-wave1) !important;
+    border: 1px solid var(--ggow-wave1);
+    padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300FF9D'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--ggow-transition);
+    border-radius: var(--ggow-radius);
+    text-transform: uppercase;
+    box-shadow:
+        0 0 10px rgba(0, 255, 157, 0.3),
+        inset 0 0 5px rgba(0, 255, 157, 0.1);
+}
+
+.glowing-green-ocean-wave #theme-switcher option {
+    background-color: var(--ggow-primary) !important;
+    color: var(--ggow-wave1) !important;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 12px 15px !important;
+}
+
+.glowing-green-ocean-wave #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ggow-wave1);
+    box-shadow:
+        0 0 0 3px rgba(0, 255, 157, 0.3),
+        0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+.glowing-green-ocean-wave #backToTopBtn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    border: none;
+    padding: 1.2rem 2rem;
+    font-size: 0.95rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+    color: var(--ggow-primary);
+    background: linear-gradient(135deg, var(--ggow-wave1) 0%, var(--ggow-glow1) 100%);
+    cursor: pointer;
+    transition: all var(--ggow-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--ggow-radius);
+    box-shadow:
+        0 0 25px rgba(0, 255, 157, 0.5),
+        0 0 10px rgba(100, 255, 218, 0.3);
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.05em;
+}
+
+.glowing-green-ocean-wave #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--ggow-hover) 0%, var(--ggow-glow2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 35px rgba(0, 255, 157, 0.7),
+        0 0 15px rgba(100, 255, 218, 0.5);
+}
+
+.glowing-green-ocean-wave footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ggow-wave4);
+    color: var(--ggow-wave1);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 0 0 3px var(--ggow-wave1);
+}
+
+@media (max-width: 992px) {
+    .glowing-green-ocean-wave .container {
+        padding: 1.8rem;
+    }
+
+    .glowing-green-ocean-wave #calendar-title {
+        font-size: 2.3rem;
+    }
+
+    .glowing-green-ocean-wave #current-date {
+        font-size: 1.6rem;
+    }
+
+    .glowing-green-ocean-wave #today-weather {
+        font-size: 1.05rem;
+    }
+
+    .glowing-green-ocean-wave .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .glowing-green-ocean-wave .event-title {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .glowing-green-ocean-wave {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .glowing-green-ocean-wave .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .glowing-green-ocean-wave th {
+        font-size: 0.85rem;
+        padding: 1rem 0.4rem;
+    }
+
+    .glowing-green-ocean-wave th span.full-day-name {
+        display: none;
+    }
+
+    .glowing-green-ocean-wave th abbr {
+        display: inline;
+    }
+
+    .glowing-green-ocean-wave td {
+        padding: 1rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .glowing-green-ocean-wave td .date-number {
+        font-size: 1.1rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .glowing-green-ocean-wave td.current-day::before {
+        font-size: 1.1rem;
+        top: 6px;
+        right: 6px;
+    }
+
+    .glowing-green-ocean-wave #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    .glowing-green-ocean-wave #theme-switcher {
+        padding: 0.8rem 2rem 0.8rem 1rem;
+        font-size: 0.9rem;
+        min-width: 200px;
+    }
+
+    .glowing-green-ocean-wave .modal-content {
+        padding: 2rem;
+    }
+
+    .glowing-green-ocean-wave .event-item {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .glowing-green-ocean-wave .container {
+        padding: 1.5rem;
+    }
+
+    .glowing-green-ocean-wave #calendar-title {
+        font-size: 1.9rem;
+    }
+
+    .glowing-green-ocean-wave #current-date {
+        font-size: 1.4rem;
+    }
+
+    .glowing-green-ocean-wave #today-weather {
+        font-size: 1rem;
+    }
+
+    .glowing-green-ocean-wave .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .glowing-green-ocean-wave th {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .glowing-green-ocean-wave td {
+        padding: 0.8rem;
+        height: 75px;
+        font-size: 0.85rem;
+    }
+
+    .glowing-green-ocean-wave td .date-number {
+        font-size: 1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .glowing-green-ocean-wave #theme-switcher {
+        min-width: 180px;
+        font-size: 0.85rem;
+    }
+
+    .glowing-green-ocean-wave .modal-content {
+        padding: 1.5rem;
+    }
+
+    .glowing-green-ocean-wave .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .glowing-green-ocean-wave .event-time {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .glowing-green-ocean-wave .container {
+        padding: 1.2rem;
+    }
+
+    .glowing-green-ocean-wave th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .glowing-green-ocean-wave td {
+        height: 65px;
+        padding: 0.7rem;
+    }
+
+    .glowing-green-ocean-wave td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .glowing-green-ocean-wave #theme-switcher {
+        min-width: 160px;
+        font-size: 0.8rem;
+    }
+
+    .glowing-green-ocean-wave .controls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .glowing-green-ocean-wave .button,
+    .glowing-green-ocean-wave .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .glowing-green-ocean-wave {
+        --ggow-wave1: #00FF00;
+        --ggow-glow1: #00FFFF;
+        --ggow-deep1: #008000;
+    }
+
+    .glowing-green-ocean-wave td.current-day {
+        border: 3px solid var(--ggow-wave1);
+        background-color: rgba(0, 255, 0, 0.15);
+    }
+
+    .glowing-green-ocean-wave th {
+        background: var(--ggow-wave1);
+        color: var(--ggow-primary) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .glowing-green-ocean-wave *,
+    .glowing-green-ocean-wave *::before,
+    .glowing-green-ocean-wave *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .glowing-green-ocean-wave .hand {
+        transition: none;
+    }
+
+    .glowing-green-ocean-wave .container::before,
+    .glowing-green-ocean-wave .modal-content::before {
+        animation: none;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .glowing-green-ocean-wave {
+        --ggow-bg: #E0F7FF;
+        --ggow-text: #003344;
+        --ggow-primary: #FFFFFF;
+        --ggow-secondary: #F0F8FF;
+        --ggow-date-number: #003344;
+    }
+
+    .glowing-green-ocean-wave .container,
+    .glowing-green-ocean-wave td {
+        box-shadow:
+            0 8px 30px rgba(0, 255, 157, 0.2),
+            inset 0 0 10px rgba(0, 255, 157, 0.1);
+    }
+
+    .glowing-green-ocean-wave .modal-content {
+        box-shadow:
+            0 15px 50px rgba(0, 255, 157, 0.2),
+            inset 0 0 10px rgba(0, 255, 157, 0.1);
+    }
+
+    .glowing-green-ocean-wave .button,
+    .glowing-green-ocean-wave .transparent-button {
+        box-shadow:
+            0 2px 8px rgba(0, 255, 157, 0.2),
+            inset 0 0 5px rgba(0, 255, 157, 0.1);
+    }
+}
