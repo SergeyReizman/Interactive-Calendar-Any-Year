@@ -1,0 +1,1186 @@
+/* ==========================================================================
+   Fireplace Dream Theme - Cozy Calendar
+   Version: 1.3
+   Updated: 2024-06-08
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Quicksand:wght@300;400;500&display=swap');
+
+:root {
+    --fireplace-bg: #1A0F0A;
+    --fireplace-text: #F5E9D8;
+    --fireplace-primary: #2C1810;
+    --fireplace-secondary: #3A2015;
+    --fireplace-date-number: #F5E9D8;
+    --fireplace-orange1: #FF6B35;
+    --fireplace-orange2: #E55A2B;
+    --fireplace-orange3: #CC4A22;
+    --fireplace-orange4: rgba(255, 107, 53, 0.7);
+    --fireplace-orange5: rgba(255, 107, 53, 0.5);
+    --fireplace-red1: #D93B3B;
+    --fireplace-red2: #C22A2A;
+    --fireplace-red3: #A61919;
+    --fireplace-red4: rgba(217, 59, 59, 0.7);
+    --fireplace-red5: rgba(217, 59, 59, 0.5);
+    --fireplace-yellow1: #FFC857;
+    --fireplace-yellow2: #E6B447;
+    --fireplace-yellow3: #CC9F37;
+    --fireplace-yellow4: rgba(255, 200, 87, 0.7);
+    --fireplace-yellow5: rgba(255, 200, 87, 0.5);
+    --fireplace-brown1: #8B5A2B;
+    --fireplace-brown2: #7A4920;
+    --fireplace-brown3: #693815;
+    --fireplace-brown4: rgba(139, 90, 43, 0.7);
+    --fireplace-brown5: rgba(139, 90, 43, 0.5);
+    --fireplace-shadow: rgba(255, 107, 53, 0.3);
+    --fireplace-radius: 12px;
+    --fireplace-transition: 0.4s ease;
+    --fireplace-hover: #FF8C42;
+    --fireplace-glow: 0 0 25px rgba(255, 107, 53, 0.5);
+    --fireplace-flame: 0 0 40px rgba(255, 107, 53, 0.6);
+}
+
+@keyframes fireplace-flicker {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    25% {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    75% {
+        opacity: 0.85;
+        transform: scale(0.98);
+    }
+}
+
+@keyframes ember-drift {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fireplace-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(255, 107, 53, 0.7);
+    }
+}
+
+.fireplace-dream {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--fireplace-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--fireplace-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 80%, var(--fireplace-brown5) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--fireplace-red5) 0%, transparent 50%);
+}
+
+.fireplace-dream::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 90, 43, 0.05) 2px, rgba(139, 90, 43, 0.05) 4px),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path d="M50,10 Q70,30 50,50 Q30,70 50,90" stroke="%23FF6B35" fill="none"/></svg>');
+    pointer-events: none;
+    z-index: 1;
+}
+
+.fireplace-dream .container {
+    background-color: var(--fireplace-primary);
+    padding: 2.5rem;
+    border: 1px solid var(--fireplace-brown4);
+    box-shadow:
+        var(--fireplace-glow),
+        inset 0 0 30px rgba(255, 107, 53, 0.15);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 2rem auto;
+    border-radius: 20px;
+    z-index: 2;
+    background-image:
+        linear-gradient(135deg, transparent 30%, rgba(255, 107, 53, 0.05) 100%);
+}
+
+.fireplace-dream .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--fireplace-orange1) 0%,
+            var(--fireplace-red1) 33%,
+            var(--fireplace-yellow1) 66%,
+            var(--fireplace-orange1) 100%);
+    animation: fireplace-flicker 2s infinite;
+    z-index: 3;
+}
+
+.fireplace-dream .container::after {
+    content: "🔥";
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    animation: fireplace-flicker 1.5s infinite;
+}
+
+.fireplace-dream #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--fireplace-text);
+    text-align: center;
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 600;
+    text-shadow:
+        0 2px 4px rgba(255, 107, 53, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem 0;
+}
+
+.fireplace-dream #calendar-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--fireplace-orange1),
+            var(--fireplace-red1),
+            var(--fireplace-orange1),
+            transparent);
+    border-radius: 2px;
+    animation: fireplace-flicker 3s infinite;
+}
+
+.fireplace-dream #calendar-title::after {
+    content: "❄️";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.fireplace-dream #date-weather-container {
+    text-align: center;
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background-color: var(--fireplace-primary);
+    border: 1px solid var(--fireplace-brown4);
+    border-radius: var(--fireplace-radius);
+    position: relative;
+    box-shadow:
+        0 8px 32px rgba(255, 107, 53, 0.2),
+        inset 0 0 20px rgba(255, 107, 53, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.fireplace-dream #date-weather-container::before {
+    content: "BY THE FIRE";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--fireplace-primary);
+    padding: 0 20px;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--fireplace-orange1);
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.fireplace-dream #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--fireplace-orange1),
+            var(--fireplace-red1),
+            var(--fireplace-orange1));
+    animation: fireplace-flicker 2s infinite;
+}
+
+.fireplace-dream #current-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--fireplace-text);
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 4px rgba(255, 107, 53, 0.2);
+}
+
+.fireplace-dream #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--fireplace-yellow1);
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    animation: fireplace-flicker 3s infinite;
+}
+
+.fireplace-dream #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.fireplace-dream .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--fireplace-orange1);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--fireplace-primary);
+    box-shadow:
+        0 8px 25px rgba(255, 107, 53, 0.3),
+        inset 0 0 30px rgba(255, 107, 53, 0.1);
+    overflow: hidden;
+}
+
+.fireplace-dream .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle at center, var(--fireplace-orange1) 0%, var(--fireplace-yellow1) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+        0 0 10px rgba(255, 107, 53, 0.3),
+        inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.fireplace-dream .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background:
+        conic-gradient(from 0deg at 50% 50%,
+            var(--fireplace-orange4) 0deg 30deg,
+            var(--fireplace-red4) 30deg 60deg,
+            var(--fireplace-yellow4) 60deg 90deg,
+            var(--fireplace-brown4) 90deg 120deg,
+            var(--fireplace-orange4) 120deg 150deg,
+            var(--fireplace-red4) 150deg 180deg,
+            var(--fireplace-yellow4) 180deg 210deg,
+            var(--fireplace-brown4) 210deg 240deg,
+            var(--fireplace-orange4) 240deg 270deg,
+            var(--fireplace-red4) 270deg 300deg,
+            var(--fireplace-yellow4) 300deg 330deg,
+            var(--fireplace-brown4) 330deg 360deg);
+    opacity: 0.3;
+}
+
+.fireplace-dream .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.fireplace-dream .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--fireplace-orange1) 0%, var(--fireplace-red1) 100%);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(255, 107, 53, 0.3);
+}
+
+.fireplace-dream .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fireplace-red1) 0%, var(--fireplace-yellow1) 100%);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 3px rgba(217, 59, 59, 0.3);
+}
+
+.fireplace-dream .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--fireplace-yellow1) 0%, var(--fireplace-orange1) 100%);
+    margin-top: -0.5px;
+}
+
+.fireplace-dream table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin: 2.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+.fireplace-dream th {
+    background: linear-gradient(135deg,
+            var(--fireplace-orange1) 0%,
+            var(--fireplace-red1) 50%,
+            var(--fireplace-orange1) 100%);
+    color: var(--fireplace-primary) !important;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    padding: 1.4rem 0.5rem;
+    border-radius: var(--fireplace-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 3px rgba(255, 107, 53, 0.3);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.fireplace-dream th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+    animation: fireplace-flicker 4s infinite;
+}
+
+.fireplace-dream th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.fireplace-dream th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.fireplace-dream td {
+    background-color: var(--fireplace-primary);
+    color: var(--fireplace-text);
+    padding: 1.4rem;
+    border: 1px solid var(--fireplace-brown4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--fireplace-transition);
+    position: relative;
+    border-radius: var(--fireplace-radius);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 107, 53, 0.1),
+        0 4px 15px rgba(255, 107, 53, 0.1);
+}
+
+.fireplace-dream td::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 60%, rgba(255, 107, 53, 0.05) 100%);
+    border-radius: var(--fireplace-radius);
+    pointer-events: none;
+}
+
+.fireplace-dream td .date-number {
+    color: var(--fireplace-text) !important;
+    font-weight: 600;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    text-shadow: 0 1px 3px rgba(255, 107, 53, 0.2);
+}
+
+.fireplace-dream td:hover {
+    background-color: var(--fireplace-secondary);
+    box-shadow:
+        var(--fireplace-flame),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-color: var(--fireplace-orange1);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.fireplace-dream td.current-day {
+    background-color: rgba(255, 107, 53, 0.1);
+    border: 2px solid var(--fireplace-orange1);
+    animation: fireplace-glow 4s infinite;
+    background-image:
+        radial-gradient(circle at 30% 30%, var(--fireplace-orange5) 0%, transparent 70%),
+        radial-gradient(circle at 70% 70%, var(--fireplace-red5) 0%, transparent 70%);
+}
+
+.fireplace-dream td.current-day .date-number {
+    color: var(--fireplace-orange1) !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.fireplace-dream td.current-day::after {
+    content: "🔥";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    font-size: 1.3rem;
+    animation: fireplace-flicker 2s infinite;
+}
+
+.fireplace-dream .event-marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,
+            var(--fireplace-orange1) 0%,
+            var(--fireplace-yellow1) 100%);
+    margin: 0 2px;
+    transition: all var(--fireplace-transition);
+    animation: fireplace-flicker 2s infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+}
+
+.fireplace-dream .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--fireplace-text);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.fireplace-dream .event-marker:hover {
+    transform: scale(1.6);
+    background: linear-gradient(135deg,
+            var(--fireplace-yellow1) 0%,
+            var(--fireplace-red1) 100%);
+    box-shadow: 0 0 15px rgba(255, 200, 87, 0.6);
+}
+
+.fireplace-dream .modal-content {
+    position: relative;
+    background-color: var(--fireplace-primary);
+    border: 1px solid var(--fireplace-brown4);
+    padding: 3rem;
+    color: var(--fireplace-text);
+    box-shadow:
+        var(--fireplace-flame),
+        inset 0 0 20px rgba(255, 107, 53, 0.1);
+    border-radius: 20px;
+    animation: fireplace-slide 0.4s ease-out;
+    background-image:
+        linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(217, 59, 59, 0.05) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.fireplace-dream .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--fireplace-orange1),
+            var(--fireplace-red1),
+            var(--fireplace-yellow1),
+            var(--fireplace-orange1));
+    animation: fireplace-flicker 2s infinite;
+}
+
+.fireplace-dream .modal-content h2 {
+    color: var(--fireplace-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5em;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 4px rgba(255, 107, 53, 0.2);
+}
+
+.fireplace-dream .modal-date {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--fireplace-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--fireplace-orange4);
+    position: relative;
+}
+
+.fireplace-dream .modal-date::after {
+    content: "🕯️";
+    position: absolute;
+    right: 0;
+    font-size: 1.5rem;
+    animation: fireplace-flicker 3s infinite;
+}
+
+.fireplace-dream .event-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fireplace-dream .event-item {
+    background-color: var(--fireplace-secondary);
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    border-left: 5px solid var(--fireplace-orange1);
+    border-radius: var(--fireplace-radius);
+    transition: all var(--fireplace-transition);
+    box-shadow:
+        0 4px 15px rgba(255, 107, 53, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.fireplace-dream .event-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--fireplace-orange1),
+            transparent);
+}
+
+.fireplace-dream .event-item:hover {
+    background-color: rgba(255, 107, 53, 0.08);
+    transform: translateX(8px);
+    border-left-color: var(--fireplace-yellow1);
+    box-shadow:
+        0 8px 30px rgba(255, 107, 53, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.fireplace-dream .event-time {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--fireplace-orange1);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    animation: fireplace-flicker 4s infinite;
+}
+
+.fireplace-dream .event-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--fireplace-text);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.fireplace-dream .event-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--fireplace-text);
+    opacity: 0.9;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.fireplace-dream .modal-content button {
+    background: linear-gradient(135deg,
+            var(--fireplace-orange1) 0%,
+            var(--fireplace-red1) 100%);
+    color: var(--fireplace-text);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--fireplace-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--fireplace-radius);
+    text-shadow: 0 1px 3px rgba(255, 107, 53, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.fireplace-dream .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.7s;
+}
+
+.fireplace-dream .modal-content button:hover::before {
+    left: 100%;
+}
+
+.fireplace-dream .modal-content button:hover {
+    background: linear-gradient(135deg,
+            var(--fireplace-hover) 0%,
+            var(--fireplace-orange2) 100%);
+    box-shadow:
+        var(--fireplace-flame),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.fireplace-dream .modal .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--fireplace-primary);
+    color: var(--fireplace-orange1);
+    border: 1px solid var(--fireplace-orange1);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all var(--fireplace-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow:
+        0 4px 12px rgba(255, 107, 53, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    font-size: 1.2rem;
+}
+
+.fireplace-dream .modal .close-button:hover {
+    background-color: var(--fireplace-orange1);
+    color: var(--fireplace-primary);
+    border-color: var(--fireplace-orange1);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow:
+        0 0 20px rgba(255, 107, 53, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.fireplace-dream .button,
+.fireplace-dream .transparent-button {
+    border: 1px solid var(--fireplace-orange1);
+    color: var(--fireplace-orange1);
+    background-color: transparent;
+    padding: 1rem 2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--fireplace-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+    border-radius: var(--fireplace-radius);
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+    box-shadow:
+        0 4px 15px rgba(255, 107, 53, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.fireplace-dream .button::before,
+.fireplace-dream .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+    transition: left 0.7s;
+}
+
+.fireplace-dream .button:hover::before,
+.fireplace-dream .transparent-button:hover::before {
+    left: 100%;
+}
+
+.fireplace-dream .button:hover,
+.fireplace-dream .transparent-button:hover {
+    background-color: rgba(255, 107, 53, 0.1);
+    color: var(--fireplace-orange1);
+    box-shadow:
+        var(--fireplace-glow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    border-color: var(--fireplace-yellow1);
+}
+
+.fireplace-dream .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: rgba(42, 24, 16, 0.5);
+    border-radius: var(--fireplace-radius);
+    border: 1px solid var(--fireplace-brown4);
+}
+
+.fireplace-dream #theme-switcher-container {
+    position: relative;
+    margin: 0 1rem;
+    min-width: 240px;
+    z-index: 1000;
+}
+
+.fireplace-dream #theme-switcher {
+    background-color: var(--fireplace-primary);
+    color: var(--fireplace-orange1) !important;
+    border: 1px solid var(--fireplace-orange1);
+    padding: 1rem 2.8rem 1rem 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B35'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.4rem;
+    cursor: pointer;
+    transition: all var(--fireplace-transition);
+    border-radius: var(--fireplace-radius);
+    box-shadow:
+        0 4px 15px rgba(255, 107, 53, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.fireplace-dream #theme-switcher option {
+    background-color: var(--fireplace-primary) !important;
+    color: var(--fireplace-orange1) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 15px 20px !important;
+}
+
+.fireplace-dream #theme-switcher:focus {
+    outline: none;
+    border-color: var(--fireplace-yellow1);
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 53, 0.3),
+        var(--fireplace-glow);
+}
+
+.fireplace-dream #backToTopBtn {
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    z-index: 9999;
+    border: none;
+    padding: 1.4rem 2.4rem;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: var(--fireplace-text);
+    background: linear-gradient(135deg,
+            var(--fireplace-orange1) 0%,
+            var(--fireplace-red1) 100%);
+    cursor: pointer;
+    transition: all var(--fireplace-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--fireplace-radius);
+    box-shadow:
+        var(--fireplace-flame),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 3px rgba(255, 107, 53, 0.3);
+}
+
+.fireplace-dream #backToTopBtn:hover {
+    background: linear-gradient(135deg,
+            var(--fireplace-hover) 0%,
+            var(--fireplace-orange2) 100%);
+    opacity: 1;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 0 40px rgba(255, 107, 53, 0.6),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.fireplace-dream footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--fireplace-orange4);
+    color: var(--fireplace-orange1);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+.fireplace-dream footer::before {
+    content: "🪵";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    background-color: var(--fireplace-bg);
+    padding: 0 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .fireplace-dream .container {
+        padding: 2rem;
+    }
+
+    .fireplace-dream #calendar-title {
+        font-size: 2.8rem;
+    }
+
+    .fireplace-dream #current-date {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .fireplace-dream .container {
+        padding: 1.8rem;
+    }
+
+    .fireplace-dream #calendar-title {
+        font-size: 2.5rem;
+    }
+
+    .fireplace-dream #current-date {
+        font-size: 1.8rem;
+    }
+
+    .fireplace-dream #today-weather {
+        font-size: 1.2rem;
+    }
+
+    .fireplace-dream .modal-date {
+        font-size: 1.6rem;
+    }
+
+    .fireplace-dream .event-title {
+        font-size: 1.15rem;
+    }
+
+    .fireplace-dream td {
+        height: 95px;
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .fireplace-dream {
+        font-size: 0.95rem;
+    }
+
+    .fireplace-dream #calendar-title {
+        font-size: 2.2rem;
+        padding: 1rem 0;
+    }
+
+    .fireplace-dream th {
+        font-size: 0.9rem;
+        padding: 1.2rem 0.4rem;
+    }
+
+    .fireplace-dream th span.full-day-name {
+        display: none;
+    }
+
+    .fireplace-dream th abbr {
+        display: inline;
+    }
+
+    .fireplace-dream td {
+        padding: 1rem;
+        height: 85px;
+        font-size: 0.9rem;
+    }
+
+    .fireplace-dream td .date-number {
+        font-size: 1.1rem;
+        top: 10px;
+        left: 10px;
+    }
+
+    .fireplace-dream td.current-day::after {
+        font-size: 1.1rem;
+        top: 8px;
+        right: 8px;
+    }
+
+    .fireplace-dream #backToTopBtn {
+        right: 20px;
+        bottom: 20px;
+        padding: 1.2rem 2rem;
+    }
+
+    .fireplace-dream #theme-switcher {
+        padding: 0.9rem 2.4rem 0.9rem 1.2rem;
+        min-width: 220px;
+    }
+
+    .fireplace-dream .modal-content {
+        padding: 2rem;
+    }
+
+    .fireplace-dream .event-item {
+        padding: 1.2rem;
+    }
+
+    .fireplace-dream .controls {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .fireplace-dream .container {
+        padding: 1.2rem;
+        margin: 1rem auto;
+    }
+
+    .fireplace-dream #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .fireplace-dream #current-date {
+        font-size: 1.5rem;
+    }
+
+    .fireplace-dream #today-weather {
+        font-size: 1rem;
+    }
+
+    .fireplace-dream .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .fireplace-dream th {
+        padding: 0.9rem 0.3rem;
+        font-size: 0.8rem;
+    }
+
+    .fireplace-dream td {
+        padding: 0.8rem;
+        height: 75px;
+    }
+
+    .fireplace-dream td .date-number {
+        font-size: 1rem;
+        top: 8px;
+        left: 8px;
+    }
+
+    .fireplace-dream .modal-content {
+        padding: 1.5rem;
+    }
+
+    .fireplace-dream .modal-date {
+        font-size: 1.4rem;
+    }
+
+    .fireplace-dream .event-item {
+        padding: 1rem;
+    }
+
+    .fireplace-dream #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 1rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    .fireplace-dream #theme-switcher {
+        min-width: 200px;
+        padding: 0.8rem 2.2rem 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .fireplace-dream .button,
+    .fireplace-dream .transparent-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .fireplace-dream footer {
+        font-size: 0.9rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .fireplace-dream #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .fireplace-dream #current-date {
+        font-size: 1.3rem;
+    }
+
+    .fireplace-dream #theme-switcher {
+        min-width: 180px;
+    }
+
+    .fireplace-dream td {
+        height: 70px;
+        padding: 0.6rem;
+    }
+
+    .fireplace-dream .event-marker {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Animations */
+@keyframes fireplace-slide {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+        filter: blur(5px);
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes fireplace-scale {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Additional decorative elements */
+.fireplace-dream .log-decoration {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 8px;
+    background: linear-gradient(90deg,
+            var(--fireplace-brown3),
+            var(--fireplace-brown2),
+            var(--fireplace-brown1),
+            var(--fireplace-brown2),
+            var(--fireplace-brown3));
+    border-radius: 4px;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.fireplace-dream .log-decoration::before,
+.fireplace-dream .log-decoration::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--fireplace-brown2);
+    border-radius: 50%;
+    top: -4px;
+}
+
+.fireplace-dream .log-decoration::before {
+    left: 20%;
+}
+
+.fireplace-dream .log-decoration::after {
+    right: 20%;
+}
