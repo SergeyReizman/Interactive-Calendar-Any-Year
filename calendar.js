@@ -165,7 +165,7 @@ const applyTheme = (theme) => {
     'hometown-vibes', 'honolulu-hawaii', 'honolulu-weekend', 'hot-desert-summer',
     'hurricane-clouds', 'hyperloop', 'iceberg-edge',
     'iceberg-lake', 'ice-giant', 'ice-palace',
-    'iceland-volcanoes', 'imaginary-world',
+    'iceland-volcanoes', 'imaginary-world', 'impressive-monuriki',
     'in-adriatic-waters', 'indigo-jeans', 'in-my-control', 'in-my-style',
     'inspiration-line', 'intelligence-quotient', 
     'inter-miami', 'in-the-dusk', 'in-the-mountains',
