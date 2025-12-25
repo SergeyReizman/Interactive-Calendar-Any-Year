@@ -179,7 +179,7 @@ const applyTheme = (theme) => {
     'level-of-comfort', 'life-quality', 'light-and-shadows', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence', 'long-beach',
     'long-beach-fiji', 'los-angeles',
-    'los-angeles-lakers', 'los-angeles-sky', 'love-and-passion',
+    'los-angeles-lakers', 'los-angeles-sky', 'lost-borders', 'love-and-passion',
     'love-of-yesterday', 'love-station', 'lucid-dream', 'lunar-eclipse',
     'lush-green-mountains', 'luxury-design', 'luxury-life', 'macaroni-penguin',
     'magellanic-penguin', 'magic-colors', 'magic-fly', 
