@@ -184,7 +184,7 @@ const applyTheme = (theme) => {
     'lush-green-mountains', 'luxury-design', 'luxury-life', 'macaroni-penguin',
     'magellanic-penguin', 'magic-colors', 'magic-fly', 
     'magic-island', 'magic-square', 'magnificent-symbol', 'main-stream',
-    'mammoth-tusk', 'manchester-city', 'manchester-united',
+    'mamanuca-islands', 'mammoth-tusk', 'manchester-city', 'manchester-united',
     'maple-leaf-fall', 'maple-syrup', 'medieval-knights',
     'mediterranean-dreams', 'melting-glaciers', 'microtactic-environment',
     'middle-amazonia', 'middle-of-nowhere', 
