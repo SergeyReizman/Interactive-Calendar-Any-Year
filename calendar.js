@@ -290,7 +290,8 @@ const applyTheme = (theme) => {
     'white-sun-of-the-desert', 'wild-escape',
     'wild-flower', 'wild-orange', 'wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
-    'world-champion', 'work-of-art', 'yellow-eyed-penguin', 'your-dreamland',
+    'world-champion', 'work-of-art', 'yasawa-islands',
+    'yellow-eyed-penguin', 'your-dreamland',
     'your-wildest-dreams', 'your-wildest-guess', 'zodiac-constellations'
 
   );
