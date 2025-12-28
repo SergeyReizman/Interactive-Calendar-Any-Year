@@ -288,7 +288,7 @@ const applyTheme = (theme) => {
     'where-the-ocean-begins',
     'white-cherry-tree', 'white-shark', 'white-steamboat',
     'white-sun-of-the-desert', 'wild-escape',
-    'wild-flower', 'wild-orange', 'wild-rose', 'wild-tropics',
+    'wild-flower', 'wild-orange', 'wild-reef', 'wild-rose', 'wild-tropics',
     'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
     'world-champion', 'work-of-art', 'yasawa-islands',
     'yellow-eyed-penguin', 'your-dreamland',
