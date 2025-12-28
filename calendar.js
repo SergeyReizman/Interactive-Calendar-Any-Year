@@ -93,7 +93,7 @@ const applyTheme = (theme) => {
     'blue-angels', 'blue-banana', 'blue-bird',
     'blue-bliss', 'blue-dragon', 'blue-frost', 'blue-gold',
     'blue-horizon', 'blue-ice', 'blue-island-waters', 'blue-lagoon', 'blue-marine',
-    'blue-mountains', 'blue-ocean', 'blue-planet',
+    'blue-moon', 'blue-mountains', 'blue-ocean', 'blue-planet',
     'blue-rocky-roads', 'blue-sky', 'blue-stars', 'blue-system',
     'blue-whale', 'blue-white', 'blue-window',
     'bold-vision', 'bora-bora', 'boston-celtics',
