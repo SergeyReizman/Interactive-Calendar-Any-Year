@@ -103,7 +103,7 @@ const applyTheme = (theme) => {
     'cakobau-the-first-king-of-fiji', 'california-sunshine',
     'camomile-flowers', 'canary-islands', 'can-do-attitude', 'candy-world',
     'captains-choice', 'cardinals-guards', 'caribbean-beaches',
-    'caribbean-sea', 'celestial-objects', 'centaurus-constellation',
+    'caribbean-sea', 'celestial-objects', 'centaurus-constellation', 'central-division',
     'cherry-garden', 'chicago-bulls', 'cinnamon-street', 'citrus-blaze',
     'city-of-angels', 'city-of-dreams', 'city-of-night', 'city-skyline', 'classic-escape',
     'clean-code', 'clean-energy', 'clouds-and-sea',
