@@ -97,7 +97,7 @@ const applyTheme = (theme) => {
     'blue-moon', 'blue-mountains', 'blue-ocean', 'blue-planet',
     'blue-rocky-roads', 'blue-sky', 'blue-stars', 'blue-system',
     'blue-whale', 'blue-white', 'blue-window',
-    'bold-vision', 'bora-bora', 'boston-celtics',
+    'bold-vision', 'boost-your-mood', 'bora-bora', 'boston-celtics',
     'box-of-surprises', 'breaking-point', 'break-the-night',
     'breathtaking-view', 'bright-line', 'brilliant-white', 'bronze-horseman',
     'business-class', 'cacao-plantation', 'cafe-de-colombia', 
