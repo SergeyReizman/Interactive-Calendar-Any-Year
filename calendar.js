@@ -233,7 +233,7 @@ const applyTheme = (theme) => {
     'real-results', 'record-demand', 'red-desert', 'red-grapefruit', 'red-lake', 
     'red-morning-light', 'red-squirrel', 'red-tape', 'remarkable-city',
     'remote-island', 'right-on-track', 'rising-sun', 
-    'road-to-nowhere', 'robin-good', 'rocky-mountains',
+    'road-to-nowhere', 'robin-good', 'rocky-mountains', 'rotuma-island',
     'royal-caribbean', 'royal-crown', 'sacramento-kings',
     'saint-tropez-moon', 'samurai-path',
     'san-francisco-lights', 'san-francisco-sunrise',
