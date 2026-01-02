@@ -214,7 +214,7 @@ const applyTheme = (theme) => {
     'one-way-ticket', 'on-the-island', 'on-the-moon',
     'on-the-wild-side', 'orange-country',
     'orange-dragon', 'orion-constellation', 'our-favorite-hangout', 'out-of-the-blue',
-    'out-of-the-box', 'overnight-train', 'over-the-seven-seas',
+    'out-of-the-box', 'ovalau-island', 'overnight-train', 'over-the-seven-seas',
     'pacific-division', 'pacific-ocean',
     'palma-de-mallorca', 'palm-beach', 'palm-beach-aruba', 'palm-tree',
     'panther-lake', 'park-avenue-new-york',
