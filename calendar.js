@@ -280,6 +280,7 @@ const applyTheme = (theme) => {
     'the-state-of-hawaii', 'the-unstoppable-mindset',
     'the-west-coast', 'the-world-of-nature', 'think-different', 'tide-of-dreams',
     'tiger-design', 'time-complexity', 'time-machine', 'time-to-chill', 'tokyo-at-night',
+    'tokoriki-island',
     'too-beautiful-to-be-true', 'toronto-raptors', 
     'totoya-island', 'trails-of-spring', 'tropical-horizon',
     'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
