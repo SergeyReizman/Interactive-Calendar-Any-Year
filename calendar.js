@@ -282,7 +282,7 @@ const applyTheme = (theme) => {
     'tiger-design', 'time-complexity', 'time-machine', 'time-to-chill', 'tokyo-at-night',
     'tokoriki-island',
     'too-beautiful-to-be-true', 'toronto-raptors', 
-    'totoya-island', 'trails-of-spring', 'tropical-horizon',
+    'totoya-island', 'trails-of-spring', 'treasure-island', 'tropical-horizon',
     'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden', 
     'under-the-sun', 'underwater-life',
