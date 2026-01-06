@@ -110,7 +110,7 @@ const applyTheme = (theme) => {
     'clean-code', 'clean-energy', 'clouds-and-sea',
     'coastal-atlantic', 'coastal-beauty', 'coastal-gulf',
     'coastal-pacific', 'coconut-islands', 'coconut-shores',
-    'coffee-for-leaders', 'color-of-my-dreams',
+    'coffee-for-leaders', 'color-between-rain', 'color-of-my-dreams',
     'colors-of-a-dream', 'color-symphony', 'collaboration-idea',
     'colombian-jungle', 'competitive-advantage', 'continuous-growth',
     'cool-atlantic-waves', 'coral-garden',
