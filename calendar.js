@@ -176,7 +176,7 @@ const applyTheme = (theme) => {
     'island-of-rainbows', 'japan-emperor', 'jungle-nature', 'just-around-the-bend',
     'keep-cool', 'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'key-to-progress',
     'kingdom-of-britain',
-    'kilimanjaro-outskirts', 'lady-blue', 'lake-mcdonald', 'land-of-dreams', 
+    'kilimanjaro-outskirts', 'lady-blue', 'lakeba-island', 'lake-mcdonald', 'land-of-dreams', 
     'land-of-tomorrow', 'last-chance', 'lavender-bliss', 'lemongrass-sky', 'lemon-lime',
     'level-of-comfort', 'life-quality', 'light-and-shadows', 'like-a-bird',
     'limited-edition', 'lions-mane', 'logical-intelligence', 'long-beach',
