@@ -81,7 +81,7 @@ const applyTheme = (theme) => {
     'a-turning-point', 'autumn-harvest', 'away-from-home', 
     'a-world-beyond-borders', 'back-in-black', 'back-in-line',
     'back-in-the-game', 'back-on-track', 'back-to-paradise', 'bamboo-flute',
-    'banana-republic', 'battle-of-the-ice', 'beachfront-paradise', 
+    'banana-republic', 'batiki-island', 'battle-of-the-ice', 'beachfront-paradise', 
     'beautiful-winter', 'bee-farm', 'bermuda-triangle', 'best-kept-secret', 
     'best-of-technology', 'best-practice', 'best-response', 'beyond-the-ordinary',
     'be-yourself', 'bigboss-style', 'big-crown', 'big-dream', 'big-fashion', 'big-pacific',

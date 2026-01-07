@@ -1,0 +1,1470 @@
+/* ==========================================================================
+   Batiki Island Theme - Tropical Paradise Calendar
+   Version: 1.3
+   Updated: 2024-06-08
+   Changes:
+   - Tropical island paradise aesthetic with vibrant colors
+   - Beach, ocean, and palm tree design elements
+   - Enhanced contrast for better readability
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+:root {
+    /* Batiki Island Color Palette */
+    --batiki-bg: #E8F5E9;
+    --batiki-text: #1B5E20;
+    --batiki-primary: #FFFFFF;
+    --batiki-secondary: #F1F8E9;
+    --batiki-date-number: #1B5E20;
+
+    /* Ocean Blues */
+    --batiki-ocean1: #00BCD4;
+    --batiki-ocean2: #0097A7;
+    --batiki-ocean3: #006064;
+    --batiki-ocean4: rgba(0, 188, 212, 0.7);
+    --batiki-ocean5: rgba(0, 188, 212, 0.5);
+
+    /* Sand Colors */
+    --batiki-sand1: #FFE082;
+    --batiki-sand2: #FFD54F;
+    --batiki-sand3: #FFB300;
+    --batiki-sand4: rgba(255, 224, 130, 0.7);
+    --batiki-sand5: rgba(255, 224, 130, 0.5);
+
+    /* Palm Green */
+    --batiki-palm1: #4CAF50;
+    --batiki-palm2: #388E3C;
+    --batiki-palm3: #2E7D32;
+    --batiki-palm4: rgba(76, 175, 80, 0.7);
+    --batiki-palm5: rgba(76, 175, 80, 0.5);
+
+    /* Tropical Fruits */
+    --batiki-fruit1: #FF5252;
+    /* Red */
+    --batiki-fruit2: #FF9800;
+    /* Orange */
+    --batiki-fruit3: #FFEB3B;
+    /* Yellow */
+    --batiki-fruit4: #9C27B0;
+    /* Purple */
+
+    /* Theme Variables */
+    --batiki-shadow: rgba(0, 150, 136, 0.15);
+    --batiki-radius: 12px;
+    --batiki-transition: 0.3s ease;
+    --batiki-hover: #0097A7;
+    --batiki-glow: 0 0 20px rgba(0, 150, 136, 0.2);
+    --batiki-wave-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".1" fill="%23009688"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".15" fill="%23009688"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".2" fill="%23009688"/></svg>');
+    --batiki-palm-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,10 Q55,5 60,10 Q65,15 70,10 Q75,5 80,10 L80,90 L20,90 L20,10 Q25,5 30,10 Q35,15 40,10 Q45,5 50,10 Z" fill="%23388E3C" opacity="0.2"/><path d="M50,20 L55,40 L60,60 L55,80 L50,100 L45,80 L40,60 L45,40 Z" fill="%232E7D32" opacity="0.2"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes batiki-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes batiki-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes batiki-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--batiki-shadow);
+    }
+
+    50% {
+        box-shadow: var(--batiki-glow);
+    }
+}
+
+@keyframes batiki-wave {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes batiki-ocean-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes batiki-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes batiki-sway {
+
+    0%,
+    100% {
+        transform: rotate(-2deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes batiki-sunshine {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes batiki-ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes batiki-coconut-fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+@keyframes batiki-parrot-fly {
+    0% {
+        transform: translateX(-100px) translateY(0);
+    }
+
+    50% {
+        transform: translateX(50px) translateY(-20px);
+    }
+
+    100% {
+        transform: translateX(200px) translateY(0);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.batiki-island {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--batiki-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background-color: var(--batiki-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 10% 20%, var(--batiki-ocean5) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, var(--batiki-sand5) 0%, transparent 50%),
+        var(--batiki-palm-pattern);
+    background-size: cover;
+}
+
+.batiki-island::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(45deg, transparent 49%, var(--batiki-ocean4) 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, var(--batiki-ocean4) 50%, transparent 51%);
+    background-size: 60px 60px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.batiki-island .container {
+    background-color: var(--batiki-primary);
+    padding: 2rem;
+    border: 1px solid var(--batiki-ocean4);
+    box-shadow:
+        var(--batiki-glow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 16px;
+    z-index: 2;
+    background-image:
+        radial-gradient(circle at 10% 20%, var(--batiki-sand5) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, var(--batiki-ocean5) 0%, transparent 50%);
+}
+
+.batiki-island .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--batiki-ocean1) 0%,
+            var(--batiki-sand1) 25%,
+            var(--batiki-palm1) 50%,
+            var(--batiki-fruit1) 75%,
+            var(--batiki-ocean1) 100%);
+    animation: batiki-wave 3s linear infinite;
+    background-size: 200% 100%;
+}
+
+.batiki-island .container::after {
+    content: "🏝️";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    opacity: 0.3;
+    animation: batiki-sway 5s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.batiki-island #calendar-title {
+    font-family: 'Pacifico', cursive;
+    color: var(--batiki-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    font-weight: 400;
+    text-shadow:
+        0 2px 4px rgba(0, 150, 136, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.8);
+    background: linear-gradient(135deg,
+            var(--batiki-ocean2) 0%,
+            var(--batiki-palm2) 40%,
+            var(--batiki-sand3) 70%,
+            var(--batiki-fruit1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+}
+
+.batiki-island #calendar-title::after {
+    content: "🌴";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    animation: batiki-float 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.batiki-island #date-weather-container {
+    text-align: center;
+    margin: 1.8rem 0;
+    padding: 1.5rem;
+    background-color: var(--batiki-primary);
+    border: 1px solid var(--batiki-ocean4);
+    border-radius: var(--batiki-radius);
+    position: relative;
+    box-shadow:
+        0 4px 20px rgba(0, 150, 136, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+}
+
+.batiki-island #date-weather-container::before {
+    content: "BATIKI ISLAND";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background-color: var(--batiki-primary);
+    padding: 0 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--batiki-ocean2);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.batiki-island #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--batiki-ocean2), transparent);
+}
+
+.batiki-island #current-date {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--batiki-text);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.batiki-island #today-weather {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--batiki-ocean2);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.batiki-island #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.8rem 0;
+}
+
+.batiki-island .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--batiki-ocean2);
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--batiki-primary);
+    box-shadow:
+        0 8px 25px rgba(0, 150, 136, 0.2),
+        inset 0 0 30px rgba(0, 150, 136, 0.1);
+    overflow: hidden;
+}
+
+.batiki-island .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: linear-gradient(135deg, var(--batiki-ocean2) 0%, var(--batiki-palm2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+        0 0 10px rgba(0, 150, 136, 0.3),
+        inset 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.batiki-island .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, rgba(0, 150, 136, 0.05) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 29deg,
+            rgba(0, 150, 136, 0.1) 30deg 30deg);
+}
+
+.batiki-island .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.batiki-island .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--batiki-ocean2) 0%, var(--batiki-palm2) 100%);
+    margin-top: -2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 150, 136, 0.3);
+}
+
+.batiki-island .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--batiki-palm2) 0%, var(--batiki-sand2) 100%);
+    margin-top: -1.5px;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 3px rgba(56, 142, 60, 0.3);
+}
+
+.batiki-island .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--batiki-primary) 0%, var(--batiki-fruit2) 100%);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.batiki-island table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 1.8rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS - ENHANCED CONTRAST */
+.batiki-island th {
+    background: linear-gradient(135deg, var(--batiki-ocean2) 0%, var(--batiki-palm2) 100%);
+    color: #FFFFFF !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 1rem 0.5rem;
+    border-radius: var(--batiki-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.batiki-island th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+}
+
+.batiki-island th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.batiki-island th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.batiki-island td {
+    background-color: var(--batiki-primary);
+    color: var(--batiki-text);
+    padding: 1rem;
+    border: 1px solid var(--batiki-ocean4);
+    height: 90px;
+    vertical-align: top;
+    transition: all var(--batiki-transition);
+    position: relative;
+    border-radius: var(--batiki-radius);
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 188, 212, 0.1),
+        0 2px 10px rgba(0, 188, 212, 0.08);
+}
+
+.batiki-island td .date-number {
+    color: var(--batiki-text) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.batiki-island td:hover {
+    background-color: var(--batiki-secondary);
+    box-shadow:
+        0 8px 25px rgba(0, 188, 212, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    border-color: var(--batiki-ocean2);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.batiki-island td.current-day {
+    background-color: rgba(0, 188, 212, 0.08);
+    border: 2px solid var(--batiki-ocean2);
+    animation: batiki-pulse 3s infinite;
+    background-image:
+        radial-gradient(circle at 70% 30%, var(--batiki-sand5) 0%, transparent 50%);
+}
+
+.batiki-island td.current-day .date-number {
+    color: var(--batiki-ocean3) !important;
+    font-weight: 700;
+}
+
+.batiki-island td.current-day::before {
+    content: "🌊";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    font-size: 1.1rem;
+    animation: batiki-float 2s ease-in-out infinite;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.batiki-island .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--batiki-ocean2) 0%, var(--batiki-palm2) 100%);
+    margin: 0 1px;
+    transition: all var(--batiki-transition);
+    animation: batiki-pulse 2s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgba(0, 150, 136, 0.3);
+}
+
+.batiki-island .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--batiki-primary);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.batiki-island .event-marker:hover {
+    transform: scale(1.4);
+    background: linear-gradient(135deg, var(--batiki-palm2) 0%, var(--batiki-ocean2) 100%);
+    box-shadow: 0 0 8px rgba(0, 150, 136, 0.5);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.batiki-island .modal-content {
+    position: relative;
+    background-color: var(--batiki-primary);
+    border: 1px solid var(--batiki-ocean4);
+    padding: 25px;
+    color: var(--batiki-text);
+    box-shadow:
+        0 15px 50px rgba(0, 150, 136, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    animation: batiki-slide 0.3s ease-out;
+    background-image:
+        radial-gradient(circle at 20% 80%, var(--batiki-sand5) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--batiki-ocean5) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.batiki-island .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--batiki-ocean1) 0%,
+            var(--batiki-sand1) 25%,
+            var(--batiki-palm1) 50%,
+            var(--batiki-fruit1) 75%,
+            var(--batiki-ocean1) 100%);
+    animation: batiki-wave 3s linear infinite;
+    background-size: 200% 100%;
+}
+
+.batiki-island .modal-content h2 {
+    color: var(--batiki-text);
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg,
+            var(--batiki-ocean2) 0%,
+            var(--batiki-palm2) 40%,
+            var(--batiki-sand3) 70%,
+            var(--batiki-fruit1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Modal date display */
+.batiki-island .modal-date {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--batiki-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--batiki-ocean4);
+}
+
+/* Event list */
+.batiki-island .event-list {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.batiki-island .event-item {
+    background-color: var(--batiki-secondary);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--batiki-ocean2);
+    border-radius: var(--batiki-radius);
+    transition: all var(--batiki-transition);
+    box-shadow:
+        0 2px 10px rgba(0, 150, 136, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.batiki-island .event-item:hover {
+    background-color: rgba(0, 188, 212, 0.05);
+    transform: translateX(5px);
+    border-left-color: var(--batiki-palm2);
+    box-shadow:
+        0 4px 20px rgba(0, 150, 136, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.batiki-island .event-time {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--batiki-ocean2);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.batiki-island .event-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--batiki-text);
+}
+
+.batiki-island .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--batiki-text);
+    opacity: 0.9;
+}
+
+.batiki-island .modal-content button {
+    background: linear-gradient(135deg, var(--batiki-ocean2) 0%, var(--batiki-palm2) 100%);
+    color: var(--batiki-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: var(--batiki-radius);
+    text-shadow: 0 1px 2px rgba(0, 150, 136, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.batiki-island .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.batiki-island .modal-content button:hover::before {
+    left: 100%;
+}
+
+.batiki-island .modal-content button:hover {
+    background: linear-gradient(135deg, var(--batiki-hover) 0%, var(--batiki-palm1) 100%);
+    box-shadow:
+        0 6px 25px rgba(0, 150, 136, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.batiki-island .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--batiki-primary);
+    color: var(--batiki-ocean2);
+    border: 1px solid var(--batiki-ocean2);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow:
+        0 2px 8px rgba(0, 150, 136, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.batiki-island .modal .close-button:hover {
+    background-color: var(--batiki-ocean2);
+    color: var(--batiki-primary);
+    border-color: var(--batiki-ocean2);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.batiki-island .button,
+.batiki-island .transparent-button {
+    border: 1px solid var(--batiki-ocean2);
+    color: var(--batiki-ocean2);
+    background-color: transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: var(--batiki-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    box-shadow:
+        0 2px 8px rgba(0, 150, 136, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.batiki-island .button::before,
+.batiki-island .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.batiki-island .button:hover::before,
+.batiki-island .transparent-button:hover::before {
+    left: 100%;
+}
+
+.batiki-island .button:hover,
+.batiki-island .transparent-button:hover {
+    background-color: var(--batiki-ocean2);
+    color: var(--batiki-primary);
+    box-shadow:
+        0 6px 20px rgba(0, 150, 136, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+}
+
+.batiki-island .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.2rem 0;
+    gap: 0.5rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.batiki-island #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.batiki-island #theme-switcher {
+    background-color: var(--batiki-primary);
+    color: var(--batiki-ocean2) !important;
+    border: 1px solid var(--batiki-ocean2);
+    padding: 0.8rem 2.2rem 0.8rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230097A7'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    border-radius: var(--batiki-radius);
+    box-shadow:
+        0 2px 8px rgba(0, 150, 136, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.batiki-island #theme-switcher option {
+    background-color: var(--batiki-primary) !important;
+    color: var(--batiki-ocean2) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.batiki-island #theme-switcher:focus {
+    outline: none;
+    border-color: var(--batiki-ocean2);
+    box-shadow:
+        0 0 0 3px rgba(0, 150, 136, 0.2),
+        0 6px 20px rgba(0, 150, 136, 0.15);
+}
+
+.batiki-island #theme-switcher-container::after {
+    content: "🌺";
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.batiki-island #theme-switcher:hover {
+    background-color: var(--batiki-secondary);
+    box-shadow:
+        0 4px 15px rgba(0, 150, 136, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+/* ==================== NAVIGATION BUTTONS ==================== */
+.batiki-island .nav-button {
+    background: linear-gradient(135deg, var(--batiki-ocean2) 0%, var(--batiki-palm2) 100%);
+    color: var(--batiki-primary) !important;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    box-shadow:
+        0 3px 12px rgba(0, 150, 136, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.batiki-island .nav-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.batiki-island .nav-button:hover::before {
+    left: 100%;
+}
+
+.batiki-island .nav-button:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow:
+        0 6px 25px rgba(0, 150, 136, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(135deg, var(--batiki-palm2) 0%, var(--batiki-ocean2) 100%);
+}
+
+.batiki-island #today-button {
+    background: linear-gradient(135deg, var(--batiki-palm2) 0%, var(--batiki-sand2) 100%);
+    min-width: 100px;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.batiki-island #today-button:hover {
+    background: linear-gradient(135deg, var(--batiki-palm1) 0%, var(--batiki-sand1) 100%);
+}
+
+/* ==================== SEARCH BAR ==================== */
+.batiki-island #search-bar {
+    background-color: var(--batiki-primary);
+    border: 1px solid var(--batiki-ocean4);
+    color: var(--batiki-text);
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    width: 250px;
+    transition: all var(--batiki-transition);
+    border-radius: var(--batiki-radius);
+    box-shadow:
+        inset 0 2px 6px rgba(0, 150, 136, 0.08),
+        0 2px 8px rgba(0, 150, 136, 0.1);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%230097A7'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 0.8rem center;
+    background-size: 1.2rem;
+}
+
+.batiki-island #search-bar:focus {
+    outline: none;
+    border-color: var(--batiki-ocean2);
+    box-shadow:
+        0 0 0 3px rgba(0, 150, 136, 0.2),
+        inset 0 2px 6px rgba(0, 150, 136, 0.12);
+    background-color: var(--batiki-secondary);
+}
+
+.batiki-island #search-bar::placeholder {
+    color: var(--batiki-ocean4);
+    font-weight: 400;
+}
+
+/* ==================== COCONUT EFFECTS ==================== */
+.batiki-island .coconut {
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--batiki-sand3), var(--batiki-fruit2));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: batiki-coconut-fall 3s linear infinite;
+    opacity: 0;
+    transform-origin: center;
+}
+
+.batiki-island .coconut::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    width: 3px;
+    height: 8px;
+    background-color: var(--batiki-palm3);
+    border-radius: 2px;
+    transform: rotate(-30deg);
+}
+
+/* ==================== EVENT EDITING ==================== */
+.batiki-island .event-editor {
+    background-color: var(--batiki-secondary);
+    border: 1px solid var(--batiki-ocean4);
+    border-radius: var(--batiki-radius);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 4px 20px rgba(0, 150, 136, 0.1);
+}
+
+.batiki-island .event-editor h3 {
+    font-family: 'Pacifico', cursive;
+    color: var(--batiki-text);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.batiki-island .event-input {
+    background-color: var(--batiki-primary);
+    border: 1px solid var(--batiki-ocean4);
+    color: var(--batiki-text);
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    transition: all var(--batiki-transition);
+}
+
+.batiki-island .event-input:focus {
+    outline: none;
+    border-color: var(--batiki-ocean2);
+    box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.2);
+}
+
+.batiki-island .color-picker {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.batiki-island .color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    border: 2px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.batiki-island .color-option:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.batiki-island .color-option.selected {
+    border-color: var(--batiki-text);
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.3);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+    .batiki-island .container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .batiki-island #calendar-title {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .batiki-island .container {
+        padding: 1rem;
+        margin: 0.5rem;
+        border-radius: 12px;
+    }
+
+    .batiki-island #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .batiki-island th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.3rem;
+    }
+
+    .batiki-island td {
+        height: 70px;
+        padding: 0.5rem;
+    }
+
+    .batiki-island td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .batiki-island .controls {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .batiki-island #search-bar,
+    .batiki-island #theme-switcher-container {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .batiki-island .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .batiki-island #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .batiki-island #current-date {
+        font-size: 1.4rem;
+    }
+
+    .batiki-island th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.2rem;
+    }
+
+    .batiki-island th span.full-day-name {
+        display: none;
+    }
+
+    .batiki-island th abbr {
+        display: inline;
+        font-size: 0.8rem;
+    }
+
+    .batiki-island td {
+        height: 60px;
+    }
+
+    .batiki-island td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .batiki-island .event-marker {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+
+    .batiki-island .container::before,
+    .batiki-island .container::after,
+    .batiki-island #calendar-title::after,
+    .batiki-island .modal .close-button,
+    .batiki-island .controls,
+    .batiki-island #search-bar,
+    .batiki-island #theme-switcher-container {
+        display: none !important;
+    }
+
+    .batiki-island .container {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+
+    .batiki-island td {
+        border: 1px solid #ddd !important;
+        background-color: white !important;
+    }
+
+    .batiki-island th {
+        background-color: #f0f0f0 !important;
+        color: #333 !important;
+    }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+@media (prefers-color-scheme: dark) {
+    .batiki-island {
+        --batiki-bg: #0a140a;
+        --batiki-text: #e0ffe0;
+        --batiki-primary: #1a2e1a;
+        --batiki-secondary: #2a3e2a;
+        --batiki-date-number: #e0ffe0;
+    }
+
+    .batiki-island .container {
+        border-color: var(--batiki-ocean3);
+    }
+
+    .batiki-island td {
+        border-color: var(--batiki-ocean3);
+    }
+
+    .batiki-island #search-bar,
+    .batiki-island .event-input {
+        background-color: var(--batiki-secondary);
+        color: var(--batiki-text);
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+.batiki-island .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.batiki-island button:focus-visible,
+.batiki-island input:focus-visible,
+.batiki-island select:focus-visible {
+    outline: 3px solid var(--batiki-ocean2);
+    outline-offset: 2px;
+}
+
+.batiki-island .high-contrast {
+    --batiki-text: #000000;
+    --batiki-bg: #ffffff;
+    --batiki-primary: #ffffff;
+    --batiki-secondary: #f0f0f0;
+    --batiki-ocean1: #006064;
+    --batiki-ocean2: #004d40;
+    --batiki-ocean3: #003322;
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+.batiki-island ::-webkit-scrollbar {
+    width: 10px;
+}
+
+.batiki-island ::-webkit-scrollbar-track {
+    background: var(--batiki-secondary);
+    border-radius: 5px;
+}
+
+.batiki-island ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--batiki-ocean2), var(--batiki-palm2));
+    border-radius: 5px;
+    border: 2px solid var(--batiki-secondary);
+}
+
+.batiki-island ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--batiki-ocean1), var(--batiki-palm1));
+}
+
+/* ==================== LOADING STATES ==================== */
+.batiki-island .loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.batiki-island .loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+/* ==================== FOOTER ==================== */
+.batiki-island .calendar-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--batiki-ocean4);
+    color: var(--batiki-ocean2);
+    font-size: 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.batiki-island .calendar-footer a {
+    color: var(--batiki-palm2);
+    text-decoration: none;
+    transition: all var(--batiki-transition);
+}
+
+.batiki-island .calendar-footer a:hover {
+    color: var(--batiki-ocean2);
+    text-decoration: underline;
+}
+
+/* ==================== TOOLTIPS ==================== */
+.batiki-island [data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+.batiki-island [data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--batiki-ocean3);
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.batiki-island [data-tooltip]::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--batiki-ocean3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.batiki-island [data-tooltip]:hover::before,
+.batiki-island [data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: calc(100% + 10px);
+}
+
+/* ==================== ANIMATION CONTROLS ==================== */
+.batiki-island .animation-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.batiki-island .animation-toggle {
+    background-color: var(--batiki-secondary);
+    border: 1px solid var(--batiki-ocean4);
+    color: var(--batiki-text);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all var(--batiki-transition);
+    font-size: 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.batiki-island .animation-toggle.active {
+    background-color: var(--batiki-ocean2);
+    color: var(--batiki-primary);
+    border-color: var(--batiki-ocean2);
+}
+
+.batiki-island .animation-toggle:hover:not(.active) {
+    background-color: rgba(0, 188, 212, 0.1);
+    border-color: var(--batiki-ocean2);
+}
+
+/* ==================== FINAL POLISH ==================== */
+.batiki-island {
+    scroll-behavior: smooth;
+}
+
+.batiki-island * {
+    box-sizing: border-box;
+}
+
+.batiki-island img {
+    max-width: 100%;
+    height: auto;
+}
+
+.batiki-island .text-center {
+    text-align: center;
+}
+
+.batiki-island .mt-2 {
+    margin-top: 2rem;
+}
+
+.batiki-island .mb-2 {
+    margin-bottom: 2rem;
+}
+
+.batiki-island .pt-2 {
+    padding-top: 2rem;
+}
+
+.batiki-island .pb-2 {
+    padding-bottom: 2rem;
+}
+
+/* ==================== SUN EFFECT ==================== */
+.batiki-island .sun {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, var(--batiki-fruit3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: batiki-sunshine 10s linear infinite;
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ==================== PARROT DECORATION ==================== */
+.batiki-island .parrot {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: batiki-parrot-fly 15s linear infinite;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==================== END OF STYLES ==================== */
