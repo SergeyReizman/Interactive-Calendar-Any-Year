@@ -66,7 +66,7 @@ const applyTheme = (theme) => {
     'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
     'action-time', 'adelaide-skyline', 'a-desert-island',
     'adriatic-coastline', 'adriatic-sea', 'adriatic-shores', 'adriatic-skies',
-    'adriatic-stars', 'a-foraging-trip', 'a-forward-move',
+    'adriatic-stars', 'a-foraging-trip', 'a-forward-move', 'after-the-rain',
     'a-good-chapter', 'a-good-idea', 'a-great-experience', 'a-huge-moment', 'air-power',
     'a-king-of-stone', 'alaska-glacial-water', 'alaska-highway',
     'aloe-vera', 'alone-in-paradise', 'a-lovely-day',
