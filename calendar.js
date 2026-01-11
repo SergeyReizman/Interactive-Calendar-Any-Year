@@ -132,7 +132,7 @@ const applyTheme = (theme) => {
     'double-rainbow', 'dragon-clouds', 'dragonfire',
     'dragon-flame', 'dragonfly', 'dragon-well', 'dramatic-coastline.css', 'dream-adventure',
     'dream-islands', 'dream-lagoon', 'dust-in-the-wind',
-    'eagle-beach-aruba', 'eagle-creek', 'eagle-river',
+    'eagle-above-the-storm', 'eagle-beach-aruba', 'eagle-creek', 'eagle-river',
     'eagle-swoop', 'early-dreams', 'eco-friendly', 'eighty-mile-beach', 'emerald-lake',
     'emerald-ocean',
     'emerald-stream', 'emerald-water', 'emperor-penguin', 
