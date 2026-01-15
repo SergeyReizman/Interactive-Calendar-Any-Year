@@ -299,7 +299,8 @@ const applyTheme = (theme) => {
     'white-cherry-tree', 'white-shark', 'white-steamboat',
     'white-sun-of-the-desert', 'wild-escape',
     'wild-flower', 'wild-orange', 'wild-reef', 'wild-rose', 'wild-tropics',
-    'wild-wonders', 'winter-trails', 'winter-wonderland', 'wonderful-experience',
+    'wild-wonders', 'winds-of-the-60th-parallel', 
+    'winter-trails', 'winter-wonderland', 'wonderful-experience',
     'world-champion', 'work-of-art', 'yasawa-islands',
     'yellow-eyed-penguin', 'your-dreamland',
     'your-wildest-dreams', 'your-wildest-guess', 'zodiac-constellations'
