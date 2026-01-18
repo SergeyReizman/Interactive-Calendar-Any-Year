@@ -63,7 +63,7 @@ const generateStars = () => {
 // Theme Management
 const applyTheme = (theme) => {
   body.classList.remove(
-    'abandoned-castle', 'a-bright-future', 'a-brilliant-mind',
+    'abandoned-castle', 'above-the-clouds', 'a-bright-future', 'a-brilliant-mind',
     'action-time', 'adelaide-skyline', 'a-desert-island',
     'adriatic-coastline', 'adriatic-sea', 'adriatic-shores', 'adriatic-skies',
     'adriatic-stars', 'a-foraging-trip', 'a-forward-move', 'after-the-rain',

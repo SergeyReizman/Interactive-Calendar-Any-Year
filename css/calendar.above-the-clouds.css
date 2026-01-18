@@ -1,0 +1,1219 @@
+/* ==========================================================================
+   Above the Clouds Theme - Sky & Cloud Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Sky and cloud design with aerial aesthetics
+   - Sky blue, cloud white, and sunrise palette with cloud patterns
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Catamaran:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Above the Clouds Palette */
+    --atc-bg: #E3F2FD;
+    --atc-text: #1A237E;
+    --atc-primary: #FFFFFF;
+    --atc-secondary: #F5F9FF;
+    --atc-date-number: #1A237E;
+
+    /* Sky Blue */
+    --atc-sky1: #64B5F6;
+    --atc-sky2: #42A5F5;
+    --atc-sky3: #2196F3;
+    --atc-sky4: rgba(100, 181, 246, 0.7);
+    --atc-sky5: rgba(100, 181, 246, 0.3);
+
+    /* Cloud White */
+    --atc-cloud1: #FFFFFF;
+    --atc-cloud2: #F5F5F5;
+    --atc-cloud3: #EEEEEE;
+    --atc-cloud4: rgba(255, 255, 255, 0.7);
+    --atc-cloud5: rgba(255, 255, 255, 0.3);
+
+    /* Sunrise Orange */
+    --atc-sunrise1: #FFB74D;
+    --atc-sunrise2: #FFA726;
+    --atc-sunrise3: #FF9800;
+    --atc-sunrise4: rgba(255, 183, 77, 0.7);
+    --atc-sunrise5: rgba(255, 183, 77, 0.3);
+
+    /* High Altitude Purple */
+    --atc-altitude1: #9575CD;
+    --atc-altitude2: #7E57C2;
+    --atc-altitude3: #673AB7;
+    --atc-altitude4: rgba(149, 117, 205, 0.7);
+    --atc-altitude5: rgba(149, 117, 205, 0.3);
+
+    /* Bird Wing Gray */
+    --atc-wing1: #90A4AE;
+    --atc-wing2: #78909C;
+    --atc-wing3: #607D8B;
+    --atc-wing4: rgba(144, 164, 174, 0.7);
+    --atc-wing5: rgba(144, 164, 174, 0.3);
+
+    /* Horizon Pink */
+    --atc-horizon1: #F48FB1;
+    --atc-horizon2: #F06292;
+    --atc-horizon3: #EC407A;
+    --atc-horizon4: rgba(244, 143, 177, 0.7);
+    --atc-horizon5: rgba(244, 143, 177, 0.3);
+
+    /* Theme Variables */
+    --atc-shadow: rgba(100, 181, 246, 0.15);
+    --atc-radius: 12px;
+    --atc-transition: 0.25s ease;
+    --atc-hover: #42A5F5;
+    --atc-glow: 0 0 15px rgba(100, 181, 246, 0.2);
+    --atc-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".04" fill="%2364B5F6"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".05" fill="%2364B5F6"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".07" fill="%2364B5F6"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes atc-fade {
+
+    0%,
+    100% {
+        opacity: 0.95;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes atc-slide {
+    from {
+        transform: translateY(3px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes atc-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--atc-shadow);
+    }
+
+    50% {
+        box-shadow: var(--atc-glow);
+    }
+}
+
+@keyframes atc-cloud-drift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes atc-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes atc-ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes atc-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes atc-cloud-float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-3px) translateX(2px);
+    }
+}
+
+@keyframes atc-bubble {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes atc-sunrise {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(20px) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes atc-bird-fly {
+    0% {
+        transform: translateX(-100%) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(100vw) rotate(5deg);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.above-the-clouds {
+    font-family: 'Catamaran', sans-serif;
+    color: var(--atc-text);
+    line-height: 1.5;
+    font-size: 0.95rem;
+    background-color: var(--atc-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.above-the-clouds::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--atc-sky5) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, var(--atc-cloud5) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,40 Q30,30 50,40 Q70,50 90,40" stroke="%2364B5F6" fill="none" stroke-width="0.3" opacity="0.08"/><path d="M5,60 Q25,50 45,60 Q65,70 85,60" stroke="%23FFFFFF" fill="none" stroke-width="0.3" opacity="0.05"/><path d="M15,80 Q35,70 55,80 Q75,90 95,80" stroke="%23FFB74D" fill="none" stroke-width="0.3" opacity="0.04"/></svg>');
+    background-size: 150px 150px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Bird flying animation in background */
+.above-the-clouds::after {
+    content: "🕊️";
+    position: absolute;
+    top: 10%;
+    left: -50px;
+    font-size: 2rem;
+    opacity: 0.1;
+    animation: atc-bird-fly 20s linear infinite;
+    z-index: 0;
+}
+
+.above-the-clouds .container {
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    padding: 1.5rem;
+    border: 1px solid var(--atc-sky4);
+    box-shadow:
+        var(--atc-glow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 14px;
+    z-index: 2;
+    background-image:
+        radial-gradient(circle at 10% 20%, var(--atc-sky5) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, var(--atc-cloud5) 0%, transparent 50%);
+}
+
+.above-the-clouds .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--atc-sky1) 0%,
+            var(--atc-cloud1) 50%,
+            var(--atc-sunrise1) 100%);
+    animation: atc-cloud-drift 4s linear infinite;
+    background-size: 200% 100%;
+}
+
+.above-the-clouds .container::after {
+    content: "☁️";
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    animation: atc-cloud-float 4s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.above-the-clouds #calendar-title {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--atc-text);
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    font-weight: 600;
+    text-shadow:
+        0 1px 2px rgba(255, 255, 255, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, var(--atc-sky1) 0%, var(--atc-sunrise1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: atc-shimmer 4s linear infinite;
+}
+
+.above-the-clouds #calendar-title::after {
+    content: "☁️";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    animation: atc-cloud-float 3s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.above-the-clouds #date-weather-container {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    border: 1px solid var(--atc-sky4);
+    border-radius: var(--atc-radius);
+    position: relative;
+    box-shadow:
+        0 2px 12px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+.above-the-clouds #date-weather-container::before {
+    content: "ABOVE CLOUDS";
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--atc-sky2);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    border: 1px solid var(--atc-sky4);
+    border-radius: 4px;
+}
+
+.above-the-clouds #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--atc-sky2), transparent);
+}
+
+.above-the-clouds #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--atc-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.above-the-clouds #today-weather {
+    font-family: 'Catamaran', sans-serif;
+    color: var(--atc-sky2);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.above-the-clouds #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.above-the-clouds .clock-face {
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--atc-sky2);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    box-shadow:
+        0 4px 15px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+.above-the-clouds .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-sunrise2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+        0 0 5px var(--atc-shadow),
+        inset 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.above-the-clouds .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--atc-sky5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 29deg,
+            var(--atc-sky5) 30deg 30deg);
+}
+
+.above-the-clouds .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.above-the-clouds .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--atc-sunrise2) 0%, var(--atc-sky2) 100%);
+    margin-top: -1.5px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.above-the-clouds .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--atc-sky2) 0%, var(--atc-cloud2) 100%);
+    margin-top: -1px;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.above-the-clouds .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--atc-primary) 0%, var(--atc-horizon1) 100%);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.above-the-clouds table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin: 1.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.above-the-clouds th {
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-altitude2) 100%);
+    color: var(--atc-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--atc-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.above-the-clouds th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 100%);
+    pointer-events: none;
+}
+
+.above-the-clouds th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.above-the-clouds th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.above-the-clouds td {
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    color: var(--atc-text);
+    padding: 0.8rem;
+    border: 1px solid var(--atc-sky4);
+    height: 80px;
+    vertical-align: top;
+    transition: all var(--atc-transition);
+    position: relative;
+    border-radius: var(--atc-radius);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 1px 5px var(--atc-shadow);
+}
+
+.above-the-clouds td .date-number {
+    color: var(--atc-text) !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.above-the-clouds td:hover {
+    background: linear-gradient(135deg, var(--atc-secondary) 0%, #E8F4FF 100%);
+    box-shadow:
+        0 4px 15px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    border-color: var(--atc-sky2);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.above-the-clouds td.current-day {
+    background: linear-gradient(135deg, rgba(100, 181, 246, 0.1) 0%, rgba(255, 183, 77, 0.1) 100%);
+    border: 1px solid var(--atc-sky2);
+    animation: atc-pulse 4s infinite;
+    background-image:
+        radial-gradient(circle at 70% 30%, var(--atc-cloud5) 0%, transparent 50%);
+}
+
+.above-the-clouds td.current-day .date-number {
+    color: var(--atc-sky2) !important;
+    font-weight: 700;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.above-the-clouds td.current-day::before {
+    content: "☁️";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 1;
+    font-size: 1rem;
+    animation: atc-cloud-float 2s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.above-the-clouds .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-altitude2) 100%);
+    margin: 0 1px;
+    transition: all var(--atc-transition);
+    animation: atc-pulse 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 0 2px var(--atc-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.above-the-clouds .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+    background-color: var(--atc-primary);
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.above-the-clouds .event-marker:hover {
+    transform: scale(1.3);
+    background: linear-gradient(135deg, var(--atc-altitude2) 0%, var(--atc-sky2) 100%);
+    box-shadow:
+        0 0 5px var(--atc-shadow),
+        0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.above-the-clouds .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    border: 1px solid var(--atc-sky4);
+    padding: 20px;
+    color: var(--atc-text);
+    box-shadow:
+        0 10px 30px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    animation: atc-slide 0.25s ease-out;
+    overflow: hidden;
+}
+
+.above-the-clouds .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--atc-sky1) 0%,
+            var(--atc-cloud1) 50%,
+            var(--atc-sunrise1) 100%);
+    animation: atc-cloud-drift 4s linear infinite;
+    background-size: 200% 100%;
+}
+
+.above-the-clouds .modal-content h2 {
+    color: var(--atc-text);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.8em;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, var(--atc-sky1) 0%, var(--atc-sunrise1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Modal date display */
+.above-the-clouds .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--atc-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--atc-sky4);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Event list */
+.above-the-clouds .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.above-the-clouds .event-item {
+    background: linear-gradient(135deg, var(--atc-secondary) 0%, #E8F4FF 100%);
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid var(--atc-sky2);
+    border-radius: var(--atc-radius);
+    transition: all var(--atc-transition);
+    box-shadow:
+        0 1px 5px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.above-the-clouds .event-item:hover {
+    background: linear-gradient(135deg, rgba(100, 181, 246, 0.1) 0%, rgba(255, 183, 77, 0.1) 100%);
+    transform: translateX(3px);
+    border-left-color: var(--atc-sunrise2);
+    box-shadow:
+        0 2px 12px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.above-the-clouds .event-time {
+    font-family: 'Catamaran', sans-serif;
+    color: var(--atc-sky2);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    display: block;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.above-the-clouds .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--atc-text);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.above-the-clouds .event-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--atc-text);
+    opacity: 0.9;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.above-the-clouds .modal-content button {
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-altitude2) 100%);
+    color: var(--atc-primary);
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--atc-transition);
+    letter-spacing: 0.3px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: var(--atc-radius);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.above-the-clouds .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.above-the-clouds .modal-content button:hover::before {
+    left: 100%;
+}
+
+.above-the-clouds .modal-content button:hover {
+    background: linear-gradient(135deg, var(--atc-hover) 0%, var(--atc-altitude3) 100%);
+    box-shadow:
+        0 4px 15px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.above-the-clouds .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    color: var(--atc-sky2);
+    border: 1px solid var(--atc-sky2);
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: all var(--atc-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: normal;
+    box-shadow:
+        0 1px 5px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.above-the-clouds .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-altitude2) 100%);
+    color: var(--atc-primary);
+    border-color: var(--atc-sky2);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.above-the-clouds .button,
+.above-the-clouds .transparent-button {
+    border: 1px solid var(--atc-sky2);
+    color: var(--atc-sky2);
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    padding: 0.6rem 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--atc-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: var(--atc-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    box-shadow:
+        0 1px 5px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.above-the-clouds .button::before,
+.above-the-clouds .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--atc-sky5), transparent);
+    transition: left 0.6s;
+}
+
+.above-the-clouds .button:hover::before,
+.above-the-clouds .transparent-button:hover::before {
+    left: 100%;
+}
+
+.above-the-clouds .button:hover,
+.above-the-clouds .transparent-button:hover {
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-altitude2) 100%);
+    color: var(--atc-primary);
+    box-shadow:
+        0 3px 12px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+}
+
+.above-the-clouds .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    gap: 0.4rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.above-the-clouds #theme-switcher-container {
+    position: relative;
+    margin: 0 0.6rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.above-the-clouds #theme-switcher {
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%);
+    color: var(--atc-sky2) !important;
+    border: 1px solid var(--atc-sky2);
+    padding: 0.6rem 1.8rem 0.6rem 0.8rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364B5F6'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--atc-transition);
+    border-radius: var(--atc-radius);
+    box-shadow:
+        0 1px 5px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.above-the-clouds #theme-switcher option {
+    background: linear-gradient(135deg, var(--atc-primary) 0%, var(--atc-secondary) 100%) !important;
+    color: var(--atc-sky2) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 10px !important;
+}
+
+.above-the-clouds #theme-switcher:focus {
+    outline: none;
+    border-color: var(--atc-sky2);
+    box-shadow:
+        0 0 0 2px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.above-the-clouds #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    color: var(--atc-primary);
+    background: linear-gradient(135deg, var(--atc-sky2) 0%, var(--atc-altitude2) 100%);
+    cursor: pointer;
+    transition: all var(--atc-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--atc-radius);
+    box-shadow:
+        0 2px 12px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.above-the-clouds #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--atc-hover) 0%, var(--atc-altitude3) 100%);
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 20px var(--atc-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== FOOTER ==================== */
+.above-the-clouds footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--atc-sky4);
+    color: var(--atc-sky2);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .above-the-clouds .container {
+        padding: 1.2rem;
+    }
+
+    .above-the-clouds #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .above-the-clouds #current-date {
+        font-size: 1.3rem;
+    }
+
+    .above-the-clouds #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .above-the-clouds .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .above-the-clouds .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .above-the-clouds {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .above-the-clouds .clock-face {
+        width: 130px;
+        height: 130px;
+        border-width: 1.5px;
+    }
+
+    .above-the-clouds th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .above-the-clouds th span.full-day-name {
+        display: none;
+    }
+
+    .above-the-clouds th abbr {
+        display: inline;
+    }
+
+    .above-the-clouds td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .above-the-clouds td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .above-the-clouds td.current-day::before {
+        font-size: 0.9rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .above-the-clouds #backToTopBtn {
+        right: 12px;
+        bottom: 12px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.85rem;
+    }
+
+    .above-the-clouds #theme-switcher {
+        padding: 0.5rem 1.5rem 0.5rem 0.6rem;
+        font-size: 0.85rem;
+        min-width: 160px;
+    }
+
+    .above-the-clouds .modal-content {
+        padding: 16px;
+    }
+
+    .above-the-clouds .event-item {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .above-the-clouds .container {
+        padding: 1rem;
+    }
+
+    .above-the-clouds #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .above-the-clouds #current-date {
+        font-size: 1.2rem;
+    }
+
+    .above-the-clouds #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .above-the-clouds .clock-face {
+        width: 110px;
+        height: 110px;
+        border-width: 1.5px;
+    }
+
+    .above-the-clouds th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .above-the-clouds td {
+        padding: 0.5rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .above-the-clouds td .date-number {
+        font-size: 0.9rem;
+        top: 4px;
+        left: 4px;
+    }
+
+    .above-the-clouds #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+
+    .above-the-clouds .modal-content {
+        padding: 12px;
+    }
+
+    .above-the-clouds .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .above-the-clouds .event-time {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .above-the-clouds th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .above-the-clouds td {
+        height: 55px;
+    }
+
+    .above-the-clouds td .date-number {
+        font-size: 0.85rem;
+    }
+
+    .above-the-clouds #theme-switcher {
+        min-width: 120px;
+        font-size: 0.75rem;
+    }
+
+    .above-the-clouds .controls {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .above-the-clouds .button,
+    .above-the-clouds .transparent-button {
+        width: 100%;
+        margin: 0.15rem 0;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .above-the-clouds {
+        --atc-sky2: #1E88E5;
+        --atc-altitude2: #5E35B1;
+    }
+
+    .above-the-clouds td.current-day {
+        border: 2px solid var(--atc-sky2);
+        background: linear-gradient(135deg, rgba(30, 136, 229, 0.2) 0%, rgba(94, 53, 177, 0.2) 100%);
+    }
+
+    .above-the-clouds th {
+        background: var(--atc-sky2);
+    }
+
+    .above-the-clouds #calendar-title,
+    .above-the-clouds #current-date,
+    .above-the-clouds .event-title,
+    .above-the-clouds .event-description,
+    .above-the-clouds .modal-date {
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .above-the-clouds *,
+    .above-the-clouds *::before,
+    .above-the-clouds *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .above-the-clouds .hand {
+        transition: none;
+    }
+
+    .above-the-clouds .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .above-the-clouds {
+        --atc-bg: #0D1B2A;
+        --atc-text: #E3F2FD;
+        --atc-primary: #1E3A5F;
+        --atc-secondary: #2D4A7A;
+        --atc-date-number: #E3F2FD;
+        --atc-shadow: rgba(100, 181, 246, 0.2);
+    }
+
+    .above-the-clouds .container,
+    .above-the-clouds td {
+        box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 1px var(--atc-shadow);
+    }
+
+    .above-the-clouds .modal-content {
+        box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 1px var(--atc-shadow);
+    }
+
+    .above-the-clouds .button,
+    .above-the-clouds .transparent-button {
+        box-shadow:
+            0 1px 5px rgba(0, 0, 0, 0.2),
+            inset 0 0 0 1px var(--atc-shadow);
+    }
+
+    .above-the-clouds #calendar-title,
+    .above-the-clouds #current-date,
+    .above-the-clouds .event-title,
+    .above-the-clouds .event-description,
+    .above-the-clouds .modal-date {
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    }
+}
