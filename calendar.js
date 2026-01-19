@@ -289,7 +289,7 @@ const applyTheme = (theme) => {
     'totoya-island', 'trails-of-spring', 'treasure-island', 'tropical-horizon',
     'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
     'tropical-sunset', 'turquoise-frontier', 'twilight-garden', 
-    'under-the-sun', 'underwater-life',
+    'two-shades-of-yellow', 'under-the-sun', 'underwater-life',
     'unexpected-layout', 'unforgettable-moments', 'unseen-wonders', 'untouched-paradise',
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 
     'vacation-beach', 'vatoa-island', 'velvety-dark', 'vibrant-colors',
