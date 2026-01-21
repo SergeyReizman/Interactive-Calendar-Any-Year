@@ -228,7 +228,7 @@ const applyTheme = (theme) => {
     'perfect-afternoon', 'perfect-level', 'perfect-world', 'pink-flamingo',
     'pink-lady', 'pink-lake', 'pink-sunrise',
     'pirate-ship', 'planet-of-robots', 'point-nemo',
-    'polar-bear', 'porcupine-quill', 'port-victoria', 
+    'polar-bear', 'polar-star', 'porcupine-quill', 'port-victoria', 
     'positive-attitude', 'positive-energy', 'power-play',
     'practical-experience', 'practice-makes-perfect',
     'precious-question', 'premium-quality', 'pristine-lake', 'progressive-decision', 
