@@ -1,0 +1,1183 @@
+/* ==========================================================================
+   One Point of Reference Theme - Minimalist Calendar
+   Version: 1.2
+   Updated: 2024-06-08
+   Changes:
+   - Minimalist design with single reference point
+   - Monochromatic palette with focused hierarchy
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400&display=swap');
+
+:root {
+    /* One Point of Reference Palette */
+    --opr-bg: #FAFAFA;
+    --opr-text: #212121;
+    --opr-primary: #FFFFFF;
+    --opr-secondary: #F5F5F5;
+    --opr-date-number: #212121;
+
+    /* Primary Gray */
+    --opr-gray1: #9E9E9E;
+    --opr-gray2: #757575;
+    --opr-gray3: #616161;
+    --opr-gray4: rgba(158, 158, 158, 0.7);
+    --opr-gray5: rgba(158, 158, 158, 0.3);
+
+    /* Accent Blue */
+    --opr-accent1: #2196F3;
+    --opr-accent2: #1976D2;
+    --opr-accent3: #0D47A1;
+    --opr-accent4: rgba(33, 150, 243, 0.7);
+    --opr-accent5: rgba(33, 150, 243, 0.3);
+
+    /* Secondary Gray */
+    --opr-gray6: #E0E0E0;
+    --opr-gray7: #BDBDBD;
+    --opr-gray8: #424242;
+    --opr-gray9: rgba(224, 224, 224, 0.7);
+    --opr-gray10: rgba(224, 224, 224, 0.3);
+
+    /* Focus Orange */
+    --opr-focus1: #FF9800;
+    --opr-focus2: #F57C00;
+    --opr-focus3: #E65100;
+    --opr-focus4: rgba(255, 152, 0, 0.7);
+    --opr-focus5: rgba(255, 152, 0, 0.3);
+
+    /* Background Variants */
+    --opr-bg1: #EEEEEE;
+    --opr-bg2: #E0E0E0;
+    --opr-bg3: #BDBDBD;
+    --opr-bg4: rgba(238, 238, 238, 0.7);
+    --opr-bg5: rgba(238, 238, 238, 0.3);
+
+    /* Theme Variables */
+    --opr-shadow: rgba(0, 0, 0, 0.08);
+    --opr-radius: 8px;
+    --opr-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --opr-hover: #1976D2;
+    --opr-glow: 0 0 0 1px rgba(33, 150, 243, 0.1);
+    --opr-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="1" fill="%239E9E9E" opacity="0.1"/><line x1="50" y1="0" x2="50" y2="100" stroke="%239E9E9E" stroke-width="0.2" opacity="0.05"/><line x1="0" y1="50" x2="100" y2="50" stroke="%239E9E9E" stroke-width="0.2" opacity="0.05"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes opr-fade {
+    0% {
+        opacity: 0.95;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opr-slide {
+    from {
+        transform: translateY(2px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes opr-pulse {
+
+    0%,
+    100% {
+        box-shadow: var(--opr-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);
+    }
+}
+
+@keyframes opr-focus {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes opr-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes opr-ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes opr-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes opr-line-draw {
+    0% {
+        stroke-dashoffset: 100;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes opr-bubble {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes opr-focus-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.one-point-of-reference {
+    font-family: 'Inter', sans-serif;
+    color: var(--opr-text);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    background-color: var(--opr-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.one-point-of-reference::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(90deg, transparent 49%, var(--opr-gray5) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, var(--opr-gray5) 50%, transparent 51%),
+        radial-gradient(circle at center, var(--opr-gray5) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 100px 100px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.one-point-of-reference .container {
+    background: var(--opr-primary);
+    padding: 2rem;
+    border: 1px solid var(--opr-gray6);
+    box-shadow:
+        0 1px 3px var(--opr-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    position: relative;
+    overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.one-point-of-reference .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--opr-gray4), transparent);
+    pointer-events: none;
+}
+
+.one-point-of-reference .container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--opr-gray4), transparent);
+    pointer-events: none;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.one-point-of-reference #calendar-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--opr-text);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    font-weight: 600;
+    text-shadow: none;
+    background: none;
+    -webkit-text-fill-color: var(--opr-text);
+}
+
+.one-point-of-reference #calendar-title::after {
+    content: "•";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: var(--opr-accent2);
+    opacity: 0.8;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.one-point-of-reference #date-weather-container {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    background: var(--opr-secondary);
+    border: 1px solid var(--opr-gray6);
+    border-radius: var(--opr-radius);
+    position: relative;
+    box-shadow:
+        0 1px 2px var(--opr-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+.one-point-of-reference #date-weather-container::before {
+    content: "REFERENCE";
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    background: var(--opr-primary);
+    padding: 0 8px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--opr-gray2);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    border: 1px solid var(--opr-gray6);
+    border-radius: 4px;
+}
+
+.one-point-of-reference #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--opr-gray4), transparent);
+}
+
+.one-point-of-reference #current-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--opr-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-shadow: none;
+}
+
+.one-point-of-reference #today-weather {
+    font-family: 'Inter', sans-serif;
+    color: var(--opr-gray2);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: none;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.one-point-of-reference #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.one-point-of-reference .clock-face {
+    width: 140px;
+    height: 140px;
+    border: 1px solid var(--opr-gray6);
+    border-radius: 50%;
+    position: relative;
+    background: var(--opr-primary);
+    box-shadow:
+        0 1px 3px var(--opr-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+    overflow: hidden;
+}
+
+.one-point-of-reference .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: var(--opr-accent2);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95);
+}
+
+.one-point-of-reference .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: var(--opr-text);
+    border-radius: 50%;
+    z-index: 11;
+}
+
+.one-point-of-reference .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.one-point-of-reference .hour-hand {
+    width: 30%;
+    left: 20%;
+    height: 2px;
+    background: var(--opr-text);
+    margin-top: -1px;
+    border-radius: 1px;
+}
+
+.one-point-of-reference .minute-hand {
+    width: 40%;
+    left: 10%;
+    height: 1.5px;
+    background: var(--opr-gray2);
+    margin-top: -0.75px;
+    border-radius: 1px;
+}
+
+.one-point-of-reference .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: var(--opr-accent2);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.one-point-of-reference table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 3px;
+    margin: 1.5rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.one-point-of-reference th {
+    background: var(--opr-secondary);
+    color: var(--opr-text) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 0.8rem 0.4rem;
+    border-radius: var(--opr-radius);
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-shadow: none;
+    border: 1px solid var(--opr-gray6);
+}
+
+.one-point-of-reference th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--opr-accent2);
+    pointer-events: none;
+}
+
+.one-point-of-reference th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.one-point-of-reference th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.one-point-of-reference td {
+    background: var(--opr-primary);
+    color: var(--opr-text);
+    padding: 0.8rem;
+    border: 1px solid var(--opr-gray6);
+    height: 80px;
+    vertical-align: top;
+    transition: all var(--opr-transition);
+    position: relative;
+    border-radius: var(--opr-radius);
+    box-shadow: 0 1px 2px var(--opr-shadow);
+}
+
+.one-point-of-reference td .date-number {
+    color: var(--opr-text) !important;
+    font-weight: 500;
+    font-size: 1rem;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-family: 'Inter', sans-serif;
+    text-shadow: none;
+}
+
+.one-point-of-reference td:hover {
+    background: var(--opr-secondary);
+    box-shadow: 0 2px 4px var(--opr-shadow);
+    border-color: var(--opr-gray5);
+    transform: translateY(-1px);
+}
+
+/* Current date highlight */
+.one-point-of-reference td.current-day {
+    background: var(--opr-primary);
+    border: 2px solid var(--opr-accent2);
+    animation: opr-pulse 2s infinite;
+}
+
+.one-point-of-reference td.current-day .date-number {
+    color: var(--opr-accent2) !important;
+    font-weight: 700;
+}
+
+.one-point-of-reference td.current-day::before {
+    content: "•";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 1;
+    font-size: 1.2rem;
+    color: var(--opr-accent2);
+    opacity: 0.8;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.one-point-of-reference .event-marker {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--opr-accent2);
+    margin: 0 1px;
+    transition: all var(--opr-transition);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.95);
+}
+
+.one-point-of-reference .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 1px;
+    background-color: var(--opr-primary);
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.one-point-of-reference .event-marker:hover {
+    transform: scale(1.2);
+    background: var(--opr-accent3);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.one-point-of-reference .modal-content {
+    position: relative;
+    background: var(--opr-primary);
+    border: 1px solid var(--opr-gray6);
+    padding: 20px;
+    color: var(--opr-text);
+    box-shadow: 0 4px 12px var(--opr-shadow);
+    border-radius: 12px;
+    animation: opr-slide 0.2s ease-out;
+    overflow: hidden;
+}
+
+.one-point-of-reference .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--opr-gray4), transparent);
+}
+
+.one-point-of-reference .modal-content h2 {
+    color: var(--opr-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6em;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    background: none;
+    -webkit-text-fill-color: var(--opr-text);
+    text-shadow: none;
+}
+
+/* Modal date display */
+.one-point-of-reference .modal-date {
+    font-family: 'Inter', sans-serif;
+    color: var(--opr-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--opr-gray6);
+    text-shadow: none;
+}
+
+/* Event list */
+.one-point-of-reference .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.one-point-of-reference .event-item {
+    background: var(--opr-secondary);
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-left: 2px solid var(--opr-accent2);
+    border-radius: var(--opr-radius);
+    transition: all var(--opr-transition);
+    box-shadow: 0 1px 2px var(--opr-shadow);
+    border: 1px solid var(--opr-gray6);
+}
+
+.one-point-of-reference .event-item:hover {
+    background: var(--opr-primary);
+    transform: translateX(2px);
+    border-left-color: var(--opr-accent3);
+    box-shadow: 0 2px 4px var(--opr-shadow);
+}
+
+.one-point-of-reference .event-time {
+    font-family: 'Inter', sans-serif;
+    color: var(--opr-gray2);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    display: block;
+    text-shadow: none;
+}
+
+.one-point-of-reference .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--opr-text);
+    text-shadow: none;
+}
+
+.one-point-of-reference .event-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--opr-text);
+    opacity: 0.9;
+    text-shadow: none;
+}
+
+.one-point-of-reference .modal-content button {
+    background: var(--opr-accent2);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--opr-transition);
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--opr-radius);
+    text-shadow: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.one-point-of-reference .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.one-point-of-reference .modal-content button:hover::before {
+    left: 100%;
+}
+
+.one-point-of-reference .modal-content button:hover {
+    background: var(--opr-accent3);
+    box-shadow: 0 2px 4px var(--opr-shadow);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.one-point-of-reference .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--opr-primary);
+    color: var(--opr-gray2);
+    border: 1px solid var(--opr-gray6);
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: all var(--opr-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: normal;
+    box-shadow: 0 1px 2px var(--opr-shadow);
+}
+
+.one-point-of-reference .modal .close-button:hover {
+    background: var(--opr-accent2);
+    color: white;
+    border-color: var(--opr-accent2);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.one-point-of-reference .button,
+.one-point-of-reference .transparent-button {
+    border: 1px solid var(--opr-gray6);
+    color: var(--opr-text);
+    background: var(--opr-primary);
+    padding: 0.6rem 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--opr-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: var(--opr-radius);
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 2px var(--opr-shadow);
+}
+
+.one-point-of-reference .button::before,
+.one-point-of-reference .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--opr-gray5), transparent);
+    transition: left 0.6s;
+}
+
+.one-point-of-reference .button:hover::before,
+.one-point-of-reference .transparent-button:hover::before {
+    left: 100%;
+}
+
+.one-point-of-reference .button:hover,
+.one-point-of-reference .transparent-button:hover {
+    background: var(--opr-secondary);
+    color: var(--opr-text);
+    box-shadow: 0 2px 4px var(--opr-shadow);
+    transform: translateY(-1px);
+}
+
+.one-point-of-reference .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    gap: 0.4rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.one-point-of-reference #theme-switcher-container {
+    position: relative;
+    margin: 0 0.6rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.one-point-of-reference #theme-switcher {
+    background: var(--opr-primary);
+    color: var(--opr-text) !important;
+    border: 1px solid var(--opr-gray6);
+    padding: 0.6rem 1.8rem 0.6rem 0.8rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23616161'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--opr-transition);
+    border-radius: var(--opr-radius);
+    box-shadow: 0 1px 2px var(--opr-shadow);
+}
+
+.one-point-of-reference #theme-switcher option {
+    background: var(--opr-primary) !important;
+    color: var(--opr-text) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 10px !important;
+}
+
+.one-point-of-reference #theme-switcher:focus {
+    outline: none;
+    border-color: var(--opr-accent2);
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.one-point-of-reference #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: white;
+    background: var(--opr-accent2);
+    cursor: pointer;
+    transition: all var(--opr-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: var(--opr-radius);
+    box-shadow: 0 2px 4px var(--opr-shadow);
+}
+
+.one-point-of-reference #backToTopBtn:hover {
+    background: var(--opr-accent3);
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--opr-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.one-point-of-reference footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--opr-gray6);
+    color: var(--opr-gray2);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-shadow: none;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .one-point-of-reference
+ .container {
+        padding: 1.5rem;
+    }
+
+    .one-point-of-reference
+ #calendar-title {
+        font-size: 1.7rem;
+    }
+
+    .one-point-of-reference
+ #current-date {
+        font-size: 1.2rem;
+    }
+
+    .one-point-of-reference
+ #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .one-point-of-reference
+ .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .one-point-of-reference
+ .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .one-point-of-reference
+ {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .one-point-of-reference
+ .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .one-point-of-reference
+ th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .one-point-of-reference
+ th span.full-day-name {
+        display: none;
+    }
+
+    .one-point-of-reference
+ th abbr {
+        display: inline;
+    }
+
+    .one-point-of-reference
+ td {
+        padding: 0.6rem;
+        height: 70px;
+        font-size: 0.8rem;
+    }
+
+    .one-point-of-reference
+ td .date-number {
+        font-size: 0.9rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .one-point-of-reference
+ td.current-day::before {
+        font-size: 1rem;
+        top: 3px;
+        right: 3px;
+    }
+
+    .one-point-of-reference
+ #backToTopBtn {
+        right: 12px;
+        bottom: 12px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.85rem;
+    }
+
+    .one-point-of-reference
+ #theme-switcher {
+        padding: 0.5rem 1.5rem 0.5rem 0.6rem;
+        font-size: 0.85rem;
+        min-width: 160px;
+    }
+
+    .one-point-of-reference
+ .modal-content {
+        padding: 16px;
+    }
+
+    .one-point-of-reference
+ .event-item {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .one-point-of-reference
+ .container {
+        padding: 1.2rem;
+    }
+
+    .one-point-of-reference
+ #calendar-title {
+        font-size: 1.5rem;
+    }
+
+    .one-point-of-reference
+ #current-date {
+        font-size: 1.1rem;
+    }
+
+    .one-point-of-reference
+ #today-weather {
+        font-size: 0.85rem;
+    }
+
+    .one-point-of-reference
+ .clock-face {
+        width: 100px;
+        height: 100px;
+    }
+
+    .one-point-of-reference
+ th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .one-point-of-reference
+ td {
+        padding: 0.5rem;
+        height: 60px;
+        font-size: 0.75rem;
+    }
+
+    .one-point-of-reference
+ td .date-number {
+        font-size: 0.85rem;
+        top: 4px;
+        left: 4px;
+    }
+
+    .one-point-of-reference
+ #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+    }
+
+    .one-point-of-reference
+ .modal-content {
+        padding: 12px;
+    }
+
+    .one-point-of-reference
+ .modal-date {
+        font-size: 1rem;
+    }
+
+    .one-point-of-reference
+ .event-time {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .one-point-of-reference
+ th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .one-point-of-reference
+ td {
+        height: 55px;
+    }
+
+    .one-point-of-reference
+ td .date-number {
+        font-size: 0.8rem;
+    }
+
+    .one-point-of-reference
+ #theme-switcher {
+        min-width: 120px;
+        font-size: 0.75rem;
+    }
+
+    .one-point-of-reference
+ .controls {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .one-point-of-reference
+ .button,
+    .one-point-of-reference
+ .transparent-button {
+        width: 100%;
+        margin: 0.15rem 0;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .one-point-of-reference
+ {
+        --opr-accent2: #1565C0;
+        --opr-gray2: #424242;
+    }
+
+    .one-point-of-reference
+ td.current-day {
+        border: 2px solid var(--opr-accent2);
+        background: white;
+    }
+
+    .one-point-of-reference
+ th {
+        background: var(--opr-gray2);
+        color: white !important;
+    }
+
+    .one-point-of-reference
+ #calendar-title,
+    .one-point-of-reference
+ #current-date,
+    .one-point-of-reference
+ .event-title,
+    .one-point-of-reference
+ .event-description,
+    .one-point-of-reference
+ .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .one-point-of-reference
+ *,
+    .one-point-of-reference
+ *::before,
+    .one-point-of-reference
+ *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .one-point-of-reference
+ .hand {
+        transition: none;
+    }
+
+    .one-point-of-reference
+ .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .one-point-of-reference
+ {
+        --opr-bg: #121212;
+        --opr-text: #E0E0E0;
+        --opr-primary: #1E1E1E;
+        --opr-secondary: #2D2D2D;
+        --opr-date-number: #E0E0E0;
+        --opr-shadow: rgba(0, 0, 0, 0.3);
+        --opr-gray6: #424242;
+    }
+
+    .one-point-of-reference
+ .container,
+    .one-point-of-reference
+ td {
+        box-shadow: 0 2px 4px var(--opr-shadow);
+    }
+
+    .one-point-of-reference
+ .modal-content {
+        box-shadow: 0 4px 12px var(--opr-shadow);
+    }
+
+    .one-point-of-reference
+ .button,
+    .one-point-of-reference
+ .transparent-button {
+        box-shadow: 0 1px 2px var(--opr-shadow);
+    }
+
+    .one-point-of-reference
+ #calendar-title,
+    .one-point-of-reference
+ #current-date,
+    .one-point-of-reference
+ .event-title,
+    .one-point-of-reference
+ .event-description,
+    .one-point-of-reference
+ .modal-date {
+        text-shadow: none;
+    }
+}
