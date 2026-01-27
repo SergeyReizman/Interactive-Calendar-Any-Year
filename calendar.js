@@ -180,7 +180,7 @@ const applyTheme = (theme) => {
     'kabara-island',
     'keep-cool', 'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'key-to-progress',
     'kilimanjaro-outskirts', 'kingdom-of-britain', 'king-of-the-jungle',
-    'koro-island', 'kuata-island',
+    'kookaburra', 'koro-island', 'kuata-island',
     'lady-blue', 'lakeba-island', 'lake-mcdonald', 'land-of-dreams', 
     'land-of-tomorrow', 'last-chance', 'lavender-bliss', 'lemongrass-sky', 'lemon-lime',
     'level-of-comfort', 'life-quality', 'light-and-shadows', 'like-a-bird',
