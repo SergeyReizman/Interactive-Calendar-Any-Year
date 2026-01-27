@@ -257,7 +257,7 @@ const applyTheme = (theme) => {
     'snake-river', 'snoopy-white', 'snow-leopard', 'soft-balance',
     'solar-flare', 'something-special', 'south-sea-island',
     'space-force', 'spark-of-knowledge', 
-    'spring-meadow', 'spring-silence', 'star-dream',
+    'spring-meadow', 'spring-silence', 'star-dream', 'state-of-mind',
     'statue-of-liberty', 'stay-cool', 'stay-curious', 'stay-positive', 'stay-that-way',
     'stay-your-way', 'steel-shadows', 'still-a-highlight', 'stockholm-roofs', 'straight-into-paradise',
     'straight-to-the-point', 'strategic-advantage', 'strategic-planning', 'strawberry-fields',
