@@ -268,7 +268,7 @@ const applyTheme = (theme) => {
     'success-key', 'success-motivation', 'success-story',
     'summer-breeze', 'summer-is-back', 'summer-sky', 'summer-vibes',
     'sunflower-fields', 'sunny-beach', 'sunny-garden',
-    'sunrise-over-the-ocean', 'sunset-beach',
+    'sunrise-glow-of-patagonia', 'sunrise-over-the-ocean', 'sunset-beach',
     'sunset-magic', 'sunset-point', 'supreme-level', 'surfing-club', 'sweet-misty-morning', 'swiss-train',
     'sword-of-fate', 'tactical-advantage', 'tactical-command', 'take-me-to-summer', 
     'taste-of-victory', 'tea-garden',
