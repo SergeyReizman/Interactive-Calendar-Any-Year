@@ -159,7 +159,7 @@ const applyTheme = (theme) => {
     'golden-summer', 'golden-time', 'gold-mine', 'good-game',
     'gradual-improvement', 'grand-prix', 'great-britain', 'great-idea',
     'great-lakes', 'greece-is-bliss', 'green-city', 'green-coffee', 'green-heaven',
-    'greenland-icebergs', 'green-light', 'green-ocean',
+    'greenland-icebergs', 'green-is-good', 'green-light', 'green-ocean',
     'green-river', 'green-tea', 'greyscale', 'group-11',
     'guangzhou-lights', 'halloween-night-mode', 'haute-couture', 'hawaiian-blue',
     'heavy-rain', 'hidden-gem', 'hidden-gems', 'hidden-paradise', 'hidden-trail',
