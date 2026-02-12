@@ -105,7 +105,7 @@ const applyTheme = (theme) => {
     'business-class', 'cacao-plantation', 'cafe-de-colombia', 
     'cakobau-the-first-king-of-fiji', 'california-sunshine',
     'camomile-flowers', 'canary-islands', 'can-do-attitude', 'candy-world',
-    'captains-choice', 'cardinals-guards', 'caribbean-beaches',
+    'captains-choice', 'cardinals-guards', 'caribbean-beaches', 'caribbean-sands',
     'caribbean-sea', 'celestial-objects', 'centaurus-constellation', 'central-division',
     'cherry-garden', 'chicago-bulls', 'chinese-mandarin-orange', 'cinnamon-street', 'citrus-blaze',
     'city-of-angels', 'city-of-dreams', 'city-of-night', 'city-skyline', 'classic-escape',
