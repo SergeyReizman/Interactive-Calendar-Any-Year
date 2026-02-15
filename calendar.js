@@ -168,7 +168,7 @@ const applyTheme = (theme) => {
     'high-speed-rail', 'high-speed-train', 'high-style', 'high-tech-industry',
     'hometown-vibes', 'honolulu-hawaii', 'honolulu-weekend', 'hot-desert-summer',
     'hurricane-clouds', 'hyperloop', 'iceberg-edge',
-    'iceberg-lake', 'ice-giant', 'ice-palace',
+    'iceberg-lake', 'ice-breaker', 'ice-giant', 'ice-palace',
     'iceland-volcanoes', 'imaginary-world', 'impressive-monuriki',
     'in-adriatic-waters', 'indigo-jeans', 'in-my-control', 'in-my-style',
     'inspiration-line', 'intelligence-quotient', 
