@@ -227,7 +227,7 @@ const applyTheme = (theme) => {
     'out-of-the-box', 'ovalau-island', 'overnight-train', 'over-the-seven-seas',
     'pacific-division', 'pacific-ocean',
     'palma-de-mallorca', 'palm-beach', 'palm-beach-aruba', 'palm-tree',
-    'panther-lake', 'park-avenue-new-york',
+    'panther-lake', 'paradise-island', 'park-avenue-new-york',
     'patagonian-shores', 'patagonian-sky', 'penguins-of-the-60th-parallel', 
     'perfect-afternoon', 'perfect-level', 'perfect-world', 'pink-flamingo',
     'pink-lady', 'pink-lake', 'pink-sunrise',
