@@ -178,7 +178,7 @@ const applyTheme = (theme) => {
     'invincible-zone', 'in-your-dreams', 
     'iron-silence', 'island-bay', 'island-beauty', 'island-breeze', 'island-glow',
     'island-of-rainbows', 'island-shark',
-    'japan-emperor', 'jungle-nature', 'just-around-the-bend', 'kabara-island',
+    'japan-emperor', 'jungle-nights', 'just-around-the-bend', 'kabara-island',
     'keep-cool', 'keep-it-simple', 'keep-on-smiling', 'keep-shining', 'key-to-progress',
     'kilimanjaro-outskirts', 'kingdom-of-britain', 'king-of-the-jungle',
     'kookaburra', 'koro-island', 'kuata-island',
