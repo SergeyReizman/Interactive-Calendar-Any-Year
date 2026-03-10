@@ -253,7 +253,7 @@ const applyTheme = (theme) => {
     'senior-management', 'serene-shores', 'shades-of-blue', 'shaolin-monastery',
     'shaping-the-future', 'shark-bay',
     'shift-in-perception', 'significant-improvement',
-    'silent-code', 'silicon-valley',
+    'silent-code', 'silent-morning', 'silicon-valley',
     'silver-dragon', 'six-seven',
     'sky-diving', 'sky-eagle', 'sky-hawk', 'skylight-window',
     'small-happiness', 'small-success', 'smiley-world',
