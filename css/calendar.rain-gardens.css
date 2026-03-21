@@ -1,0 +1,1243 @@
+/* ==========================================================================
+   Rain Gardens Theme - Serene Urban Rain Garden Calendar
+   Version: 1.0
+   Updated: 2026-03-21
+   Changes:
+   - Calming rain garden design with lush greens, silvery waters, and stone pathways
+   - Misty grays, rain-drop blues, fern greens, and clay accents
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Rain Garden Palette */
+    --rg-bg: #EFF7F0;
+    --rg-text: #2C553C;
+    --rg-primary: #FFFFFF;
+    --rg-secondary: #F5FBF0;
+    --rg-date-number: #3B6E4A;
+
+    /* Raindrop Blue */
+    --rg-rain1: #7FCDCD;
+    --rg-rain2: #6BB5B5;
+    --rg-rain3: #549C9C;
+    --rg-rain4: rgba(127, 205, 205, 0.7);
+    --rg-rain5: rgba(127, 205, 205, 0.3);
+
+    /* Fern Green */
+    --rg-fern1: #6A9C78;
+    --rg-fern2: #558B66;
+    --rg-fern3: #407354;
+    --rg-fern4: rgba(106, 156, 120, 0.7);
+    --rg-fern5: rgba(106, 156, 120, 0.3);
+
+    /* Stone Gray */
+    --rg-stone1: #B7B7A4;
+    --rg-stone2: #A5A592;
+    --rg-stone3: #8F8F7A;
+    --rg-stone4: rgba(183, 183, 164, 0.7);
+    --rg-stone5: rgba(183, 183, 164, 0.3);
+
+    /* Clay Terra */
+    --rg-clay1: #CD9777;
+    --rg-clay2: #BC8766;
+    --rg-clay3: #A87654;
+    --rg-clay4: rgba(205, 151, 119, 0.7);
+    --rg-clay5: rgba(205, 151, 119, 0.3);
+
+    /* Misty White */
+    --rg-mist1: #E8F0E6;
+    --rg-mist2: #DCE8D9;
+    --rg-mist3: #CCDEC8;
+    --rg-mist4: rgba(232, 240, 230, 0.7);
+    --rg-mist5: rgba(232, 240, 230, 0.3);
+
+    /* Wet Pebble */
+    --rg-pebble1: #8A9A8B;
+    --rg-pebble2: #6F8270;
+    --rg-pebble3: #5A6B5B;
+    --rg-pebble4: rgba(138, 154, 139, 0.7);
+    --rg-pebble5: rgba(138, 154, 139, 0.3);
+
+    /* Theme Variables */
+    --rg-shadow: rgba(106, 156, 120, 0.15);
+    --rg-radius: 14px;
+    --rg-transition: 0.3s ease;
+    --rg-hover: #6A9C78;
+    --rg-glow: 0 0 20px rgba(127, 205, 205, 0.2);
+    --rg-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".04" fill="%237FCDCD"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".05" fill="%236A9C78"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" opacity=".07" fill="%23CD9777"/></svg>');
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes rg-ripple {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes rg-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rg-drizzle {
+
+    0%,
+    100% {
+        box-shadow: 0 0 3px var(--rg-shadow);
+    }
+
+    50% {
+        box-shadow: var(--rg-glow);
+    }
+}
+
+@keyframes rg-flow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes rg-float-leaf {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(2deg);
+    }
+}
+
+@keyframes rg-pulse-moss {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes rg-shimmer-mist {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes rg-sway-fern {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes rg-bubble-rain {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-12px) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-24px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes rg-sun-break {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: rotate(180deg) scale(1.1);
+        opacity: 0;
+    }
+}
+
+@keyframes rg-trickle {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.rain-gardens {
+    font-family: 'Nunito', sans-serif;
+    color: var(--rg-text);
+    line-height: 1.6;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--rg-bg) 0%, #E0EFDF 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.rain-gardens::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 25% 35%, var(--rg-rain5) 0%, transparent 55%),
+        radial-gradient(circle at 75% 65%, var(--rg-fern5) 0%, transparent 55%),
+        radial-gradient(circle at 45% 45%, var(--rg-stone5) 0%, transparent 55%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M45,50 Q55,35 65,50 Q75,65 65,80 Q55,95 45,80 Q35,65 45,50" fill="%237FCDCD" opacity="0.04"/><path d="M25,60 Q35,45 45,60 Q55,75 45,90 Q35,105 25,90 Q15,75 25,60" fill="%236A9C78" opacity="0.04"/></svg>');
+    background-size: 220px 220px, 190px 190px, 160px 160px, 130px 130px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rain-gardens .container {
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--rg-rain4);
+    box-shadow:
+        0 8px 32px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 28px;
+    z-index: 2;
+    background-image:
+        radial-gradient(circle at 15% 25%, var(--rg-rain5) 0%, transparent 55%),
+        radial-gradient(circle at 85% 75%, var(--rg-fern5) 0%, transparent 55%);
+}
+
+.rain-gardens .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--rg-rain1) 0%,
+            var(--rg-fern1) 33%,
+            var(--rg-clay1) 66%,
+            var(--rg-pebble1) 100%);
+    animation: rg-flow 8s linear infinite;
+    background-size: 300% 100%;
+}
+
+.rain-gardens .container::after {
+    content: "🍃";
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    opacity: 0.2;
+    animation: rg-sway-fern 5s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.rain-gardens #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--rg-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.01em;
+    position: relative;
+    font-weight: 600;
+    text-shadow:
+        2px 2px 4px rgba(255, 255, 255, 0.7),
+        1px 1px 0 rgba(0, 0, 0, 0.03);
+    background: linear-gradient(135deg, var(--rg-rain1) 0%, var(--rg-fern1) 50%, var(--rg-clay1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: rg-shimmer-mist 7s linear infinite;
+}
+
+.rain-gardens #calendar-title::after {
+    content: "🌧️";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.5;
+    animation: rg-float-leaf 4s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.rain-gardens #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    border: 1px solid var(--rg-rain4);
+    border-radius: 60px;
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+}
+
+.rain-gardens #date-weather-container::before {
+    content: "RAIN GARDEN";
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    padding: 0 15px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--rg-rain2);
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    border: 1px solid var(--rg-rain4);
+    border-radius: 20px;
+}
+
+.rain-gardens #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rg-rain2), transparent);
+}
+
+.rain-gardens #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--rg-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.7);
+}
+
+.rain-gardens #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--rg-rain2);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.rain-gardens #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.rain-gardens .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--rg-rain1);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    box-shadow:
+        0 8px 30px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+}
+
+.rain-gardens .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, var(--rg-clay1) 0%, var(--rg-stone2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+        0 0 8px var(--rg-clay1),
+        inset 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.rain-gardens .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--rg-rain5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 5deg,
+            var(--rg-mist5) 6deg 7deg,
+            transparent 8deg 15deg);
+}
+
+.rain-gardens .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.rain-gardens .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rg-rain2) 0%, var(--rg-fern2) 100%);
+    margin-top: -2px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.rain-gardens .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rg-fern2) 0%, var(--rg-clay2) 100%);
+    margin-top: -1.5px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.rain-gardens .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--rg-mist2) 0%, var(--rg-pebble1) 100%);
+    margin-top: -1px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.rain-gardens table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.rain-gardens th {
+    background: linear-gradient(135deg, var(--rg-rain1) 0%, var(--rg-pebble1) 100%);
+    color: var(--rg-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    border-radius: 30px 30px 12px 12px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.rain-gardens th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.3) 100%);
+    pointer-events: none;
+}
+
+.rain-gardens th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.rain-gardens th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.rain-gardens td {
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    color: var(--rg-text);
+    padding: 1rem;
+    border: 1px solid var(--rg-rain4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--rg-transition);
+    position: relative;
+    border-radius: 20px;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9),
+        0 4px 12px var(--rg-shadow);
+}
+
+.rain-gardens td .date-number {
+    color: var(--rg-text) !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.rain-gardens td:hover {
+    background: linear-gradient(135deg, #F4FBF0 0%, #EAF9E8 100%);
+    box-shadow:
+        0 8px 24px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+    border-color: var(--rg-rain2);
+    transform: translateY(-4px);
+}
+
+/* Current date highlight */
+.rain-gardens td.current-day {
+    background: linear-gradient(135deg, rgba(127, 205, 205, 0.1) 0%, rgba(106, 156, 120, 0.1) 100%);
+    border: 2px solid var(--rg-rain1);
+    animation: rg-drizzle 3s infinite;
+    background-image:
+        radial-gradient(circle at 70% 30%, var(--rg-pebble5) 0%, transparent 55%);
+}
+
+.rain-gardens td.current-day .date-number {
+    color: var(--rg-rain2) !important;
+    font-weight: 800;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.rain-gardens td.current-day::before {
+    content: "💧";
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 1;
+    font-size: 1.1rem;
+    animation: rg-float-leaf 2.5s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.rain-gardens .event-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--rg-fern1) 0%, var(--rg-clay1) 100%);
+    margin: 0 2px;
+    transition: all var(--rg-transition);
+    animation: rg-pulse-moss 2.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 0 5px var(--rg-fern1),
+        0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.rain-gardens .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--rg-primary);
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.rain-gardens .event-marker:hover {
+    transform: scale(1.5);
+    background: radial-gradient(circle, var(--rg-clay1) 0%, var(--rg-fern1) 100%);
+    box-shadow:
+        0 0 10px var(--rg-fern1),
+        0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.rain-gardens .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    border: 1px solid var(--rg-rain4);
+    padding: 20px;
+    color: var(--rg-text);
+    box-shadow:
+        0 10px 30px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+    border-radius: 28px;
+    animation: rg-slide 0.25s ease-out;
+    overflow: hidden;
+}
+
+.rain-gardens .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            var(--rg-rain1) 0%,
+            var(--rg-fern1) 33%,
+            var(--rg-clay1) 66%,
+            var(--rg-pebble1) 100%);
+    animation: rg-flow 8s linear infinite;
+    background-size: 300% 100%;
+}
+
+.rain-gardens .modal-content h2 {
+    color: var(--rg-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, var(--rg-rain1) 0%, var(--rg-fern1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+}
+
+/* Modal date display */
+.rain-gardens .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--rg-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px dashed var(--rg-rain3);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Event list */
+.rain-gardens .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rain-gardens .event-item {
+    background: linear-gradient(135deg, rgba(245, 251, 240, 0.7) 0%, rgba(232, 240, 230, 0.7) 100%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--rg-fern1);
+    border-radius: 16px;
+    transition: all var(--rg-transition);
+    box-shadow:
+        0 2px 12px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.rain-gardens .event-item:hover {
+    background: linear-gradient(135deg, rgba(240, 248, 235, 0.8) 0%, rgba(225, 238, 220, 0.8) 100%);
+    transform: translateX(5px);
+    border-left-color: var(--rg-clay2);
+    box-shadow:
+        0 4px 20px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.rain-gardens .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--rg-rain2);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.rain-gardens .event-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--rg-text);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.rain-gardens .event-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--rg-text);
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.rain-gardens .modal-content button {
+    background: linear-gradient(135deg, var(--rg-rain1) 0%, var(--rg-pebble1) 100%);
+    color: var(--rg-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--rg-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.rain-gardens .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.rain-gardens .modal-content button:hover::before {
+    left: 100%;
+}
+
+.rain-gardens .modal-content button:hover {
+    background: linear-gradient(135deg, var(--rg-hover) 0%, var(--rg-fern2) 100%);
+    box-shadow:
+        0 6px 20px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Close Button */
+.rain-gardens .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    color: var(--rg-fern1);
+    border: 2px solid var(--rg-fern1);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: all var(--rg-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    box-shadow:
+        0 2px 10px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.rain-gardens .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--rg-fern1) 0%, var(--rg-clay1) 100%);
+    color: var(--rg-primary);
+    border-color: var(--rg-fern1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.rain-gardens .button,
+.rain-gardens .transparent-button {
+    border: 2px solid var(--rg-rain1);
+    color: var(--rg-rain1);
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--rg-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: 50px;
+    letter-spacing: 0.03em;
+    font-size: 1rem;
+    box-shadow:
+        0 2px 12px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.rain-gardens .button::before,
+.rain-gardens .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--rg-rain5), transparent);
+    transition: left 0.6s;
+}
+
+.rain-gardens .button:hover::before,
+.rain-gardens .transparent-button:hover::before {
+    left: 100%;
+}
+
+.rain-gardens .button:hover,
+.rain-gardens .transparent-button:hover {
+    background: linear-gradient(135deg, var(--rg-rain1) 0%, var(--rg-pebble1) 100%);
+    color: var(--rg-primary);
+    box-shadow:
+        0 4px 20px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+}
+
+.rain-gardens .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.6rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.rain-gardens #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.rain-gardens #theme-switcher {
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%);
+    color: var(--rg-rain1) !important;
+    border: 2px solid var(--rg-rain1);
+    padding: 0.8rem 2rem 0.8rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237FCDCD'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--rg-transition);
+    border-radius: 50px;
+    box-shadow:
+        0 2px 12px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.rain-gardens #theme-switcher option {
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-secondary) 100%) !important;
+    color: var(--rg-rain1) !important;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 12px !important;
+}
+
+.rain-gardens #theme-switcher:focus {
+    outline: none;
+    border-color: var(--rg-fern1);
+    box-shadow:
+        0 0 0 4px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.95);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.rain-gardens #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 1rem 1.8rem;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: var(--rg-primary);
+    background: linear-gradient(135deg, var(--rg-rain1) 0%, var(--rg-pebble1) 100%);
+    cursor: pointer;
+    transition: all var(--rg-transition);
+    opacity: 0.95;
+    display: none;
+    border-radius: 50px;
+    box-shadow:
+        0 4px 20px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.rain-gardens #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--rg-hover) 0%, var(--rg-fern2) 100%);
+    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow:
+        0 6px 30px var(--rg-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+/* ==================== FOOTER ==================== */
+.rain-gardens footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px dashed var(--rg-rain4);
+    color: var(--rg-rain2);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .rain-gardens .container {
+        padding: 1.5rem;
+    }
+
+    .rain-gardens #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .rain-gardens #current-date {
+        font-size: 1.5rem;
+    }
+
+    .rain-gardens #today-weather {
+        font-size: 1.1rem;
+    }
+
+    .rain-gardens .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .rain-gardens .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .rain-gardens .event-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rain-gardens {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .rain-gardens .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 2px;
+    }
+
+    .rain-gardens th {
+        font-size: 0.9rem;
+        padding: 0.8rem 0.3rem;
+    }
+
+    .rain-gardens th span.full-day-name {
+        display: none;
+    }
+
+    .rain-gardens th abbr {
+        display: inline;
+    }
+
+    .rain-gardens td {
+        padding: 0.8rem;
+        height: 85px;
+        font-size: 0.85rem;
+    }
+
+    .rain-gardens td .date-number {
+        font-size: 1.1rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .rain-gardens td.current-day::before {
+        font-size: 1rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .rain-gardens #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .rain-gardens #theme-switcher {
+        padding: 0.6rem 1.8rem 0.6rem 0.8rem;
+        font-size: 0.95rem;
+        min-width: 180px;
+    }
+
+    .rain-gardens .modal-content {
+        padding: 16px;
+    }
+
+    .rain-gardens .event-item {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .rain-gardens .container {
+        padding: 1rem;
+    }
+
+    .rain-gardens #calendar-title {
+        font-size: 2rem;
+    }
+
+    .rain-gardens #current-date {
+        font-size: 1.3rem;
+    }
+
+    .rain-gardens #today-weather {
+        font-size: 1rem;
+    }
+
+    .rain-gardens .clock-face {
+        width: 120px;
+        height: 120px;
+        border-width: 2px;
+    }
+
+    .rain-gardens th {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .rain-gardens td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .rain-gardens td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .rain-gardens #theme-switcher {
+        min-width: 160px;
+        font-size: 0.9rem;
+        padding: 0.5rem 1.5rem 0.5rem 0.7rem;
+    }
+
+    .rain-gardens .modal-content {
+        padding: 12px;
+    }
+
+    .rain-gardens .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .rain-gardens .event-time {
+        font-size: 0.9rem;
+    }
+
+    .rain-gardens .event-title {
+        font-size: 0.95rem;
+    }
+
+    .rain-gardens .event-description {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .rain-gardens th {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .rain-gardens td {
+        height: 70px;
+        padding: 0.5rem;
+    }
+
+    .rain-gardens td .date-number {
+        font-size: 0.95rem;
+    }
+
+    .rain-gardens #theme-switcher {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+
+    .rain-gardens .controls {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .rain-gardens .button,
+    .rain-gardens .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.7rem 1.2rem;
+    }
+
+    .rain-gardens #backToTopBtn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .rain-gardens {
+        --rg-rain2: #2C553C;
+        --rg-fern2: #407354;
+    }
+
+    .rain-gardens td.current-day {
+        border: 3px solid var(--rg-rain2);
+        background: linear-gradient(135deg, rgba(44, 85, 60, 0.2) 0%, rgba(64, 115, 84, 0.2) 100%);
+    }
+
+    .rain-gardens th {
+        background: var(--rg-rain2);
+    }
+
+    .rain-gardens #calendar-title,
+    .rain-gardens #current-date,
+    .rain-gardens .event-title,
+    .rain-gardens .event-description,
+    .rain-gardens .modal-date {
+        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .rain-gardens *,
+    .rain-gardens *::before,
+    .rain-gardens *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .rain-gardens .hand {
+        transition: none;
+    }
+
+    .rain-gardens .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .rain-gardens {
+        --rg-bg: #1A2A1F;
+        --rg-text: #E0F2E6;
+        --rg-primary: #2A3A2A;
+        --rg-secondary: #3A4A35;
+        --rg-date-number: #E0F2E6;
+        --rg-shadow: rgba(127, 205, 205, 0.25);
+    }
+
+    .rain-gardens .container,
+    .rain-gardens td {
+        background: linear-gradient(135deg, #2A3A2A 0%, #3A4A35 100%);
+        border-color: var(--rg-rain3);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 2px var(--rg-shadow);
+    }
+
+    .rain-gardens .modal-content {
+        background: linear-gradient(135deg, #2A3A2A 0%, #3A4A35 100%);
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            inset 0 0 0 2px var(--rg-shadow);
+    }
+
+    .rain-gardens .button,
+    .rain-gardens .transparent-button {
+        background: linear-gradient(135deg, #2A3A2A 0%, #3A4A35 100%);
+        border-color: var(--rg-rain2);
+        color: var(--rg-rain1);
+        box-shadow:
+            0 2px 12px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 2px var(--rg-shadow);
+    }
+
+    .rain-gardens .event-item {
+        background: linear-gradient(135deg, #2A3A2A 0%, #3A4A35 100%);
+    }
+
+    .rain-gardens #calendar-title,
+    .rain-gardens #current-date,
+    .rain-gardens .event-title,
+    .rain-gardens .event-description,
+    .rain-gardens .modal-date {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+}
