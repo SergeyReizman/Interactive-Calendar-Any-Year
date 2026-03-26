@@ -1,0 +1,1202 @@
+/* ==========================================================================
+   Code Red Theme - High-Contrast Developer Calendar
+   Version: 1.0
+   Updated: 2026-03-26
+   Changes:
+   - Bold red/black/white color scheme inspired by code editors and error states
+   - Terminal-style aesthetics with matrix-like accents and developer-focused design
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Code Red Palette - Terminal/IDE Theme */
+    --cr-bg: #0A0A0F;
+    --cr-text: #F0F0F0;
+    --cr-primary: #1A1A1F;
+    --cr-secondary: #0F0F14;
+    --cr-date-number: #FF5555;
+
+    /* Code Red - Primary Red */
+    --cr-red1: #FF4444;
+    --cr-red2: #FF3333;
+    --cr-red3: #FF2222;
+    --cr-red4: rgba(255, 68, 68, 0.7);
+    --cr-red5: rgba(255, 68, 68, 0.25);
+
+    /* Matrix Black */
+    --cr-black1: #1E1E1E;
+    --cr-black2: #2D2D2D;
+    --cr-black3: #3A3A3A;
+    --cr-black4: rgba(30, 30, 30, 0.7);
+    --cr-black5: rgba(30, 30, 30, 0.25);
+
+    /* Terminal White */
+    --cr-white1: #F8F8F2;
+    --cr-white2: #E6E6E6;
+    --cr-white3: #CCCCCC;
+    --cr-white4: rgba(248, 248, 242, 0.7);
+    --cr-white5: rgba(248, 248, 242, 0.25);
+
+    /* Debug Yellow */
+    --cr-yellow1: #FFD966;
+    --cr-yellow2: #FFCC44;
+    --cr-yellow3: #FFBB22;
+    --cr-yellow4: rgba(255, 217, 102, 0.7);
+    --cr-yellow5: rgba(255, 217, 102, 0.25);
+
+    /* Console Green */
+    --cr-green1: #50FA7B;
+    --cr-green2: #40E06B;
+    --cr-green3: #30C65B;
+    --cr-green4: rgba(80, 250, 123, 0.7);
+    --cr-green5: rgba(80, 250, 123, 0.25);
+
+    /* Syntax Purple */
+    --cr-purple1: #BD93F9;
+    --cr-purple2: #A97DF5;
+    --cr-purple3: #9567E9;
+    --cr-purple4: rgba(189, 147, 249, 0.7);
+    --cr-purple5: rgba(189, 147, 249, 0.25);
+
+    /* Theme Variables */
+    --cr-shadow: rgba(255, 68, 68, 0.2);
+    --cr-radius: 8px;
+    --cr-transition: 0.15s ease;
+    --cr-hover: #FF5555;
+    --cr-glow: 0 0 15px rgba(255, 68, 68, 0.4);
+    --cr-pattern: repeating-linear-gradient(45deg, rgba(255, 68, 68, 0.03) 0px, rgba(255, 68, 68, 0.03) 2px, transparent 2px, transparent 8px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes cr-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes cr-slide {
+    from {
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes cr-pulse-red {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--cr-red4);
+    }
+
+    50% {
+        box-shadow: var(--cr-glow);
+    }
+}
+
+@keyframes cr-scan {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes cr-typing {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-2px);
+    }
+}
+
+@keyframes cr-glitch {
+
+    0%,
+    100% {
+        transform: skew(0deg);
+        opacity: 1;
+    }
+
+    95% {
+        transform: skew(0deg);
+        opacity: 1;
+    }
+
+    96% {
+        transform: skew(2deg);
+        opacity: 0.8;
+    }
+
+    97% {
+        transform: skew(-1deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes cr-terminal-cursor {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes cr-loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cr-matrix-rain {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes cr-error-shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-2px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(2px);
+    }
+}
+
+@keyframes cr-code-flicker {
+    0% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.code-red {
+    font-family: 'Fira Code', 'JetBrains Mono', monospace;
+    color: var(--cr-text);
+    line-height: 1.5;
+    font-size: 0.95rem;
+    background: var(--cr-bg);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.code-red::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(var(--cr-red5) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cr-red5) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.2;
+}
+
+.code-red .container {
+    background: linear-gradient(135deg, var(--cr-primary) 0%, var(--cr-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--cr-red4);
+    box-shadow:
+        0 8px 32px var(--cr-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--cr-radius);
+    z-index: 2;
+    background-image: var(--cr-pattern);
+}
+
+.code-red .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--cr-red1) 0%,
+            var(--cr-yellow1) 33%,
+            var(--cr-green1) 66%,
+            var(--cr-purple1) 100%);
+    animation: cr-scan 4s linear infinite;
+    background-size: 300% 100%;
+}
+
+.code-red .container::after {
+    content: "</>";
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    font-family: 'Fira Code', monospace;
+    animation: cr-code-flicker 2s ease-in-out infinite;
+    letter-spacing: -0.5px;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.code-red #calendar-title {
+    font-family: 'Fira Code', monospace;
+    color: var(--cr-text);
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+    font-weight: 600;
+    text-shadow: 0 0 5px var(--cr-red4);
+    background: linear-gradient(135deg, var(--cr-red1) 0%, var(--cr-purple1) 50%, var(--cr-green1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: cr-scan 5s linear infinite;
+}
+
+.code-red #calendar-title::after {
+    content: "{}";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    font-family: 'Fira Code', monospace;
+    animation: cr-terminal-cursor 1s step-end infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.code-red #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--cr-primary) 0%, var(--cr-secondary) 100%);
+    border: 1px solid var(--cr-red4);
+    border-radius: var(--cr-radius);
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--cr-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.code-red #date-weather-container::before {
+    content: ">_ TERMINAL";
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--cr-primary);
+    padding: 0 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--cr-red1);
+    font-weight: 700;
+    font-family: 'Fira Code', monospace;
+    border: 1px solid var(--cr-red4);
+    border-radius: 4px;
+}
+
+.code-red #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cr-red2), transparent);
+}
+
+.code-red #current-date {
+    font-family: 'Fira Code', monospace;
+    color: var(--cr-green1);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 3px var(--cr-green5);
+}
+
+.code-red #today-weather {
+    font-family: 'Fira Code', monospace;
+    color: var(--cr-yellow1);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.code-red #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.code-red .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--cr-red1);
+    border-radius: 50%;
+    position: relative;
+    background: var(--cr-primary);
+    box-shadow:
+        0 8px 30px var(--cr-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.code-red .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, var(--cr-red1) 0%, var(--cr-red3) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 8px var(--cr-red1);
+}
+
+.code-red .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--cr-red5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 3deg,
+            var(--cr-black5) 4deg 5deg,
+            transparent 6deg 12deg);
+}
+
+.code-red .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.code-red .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cr-red1) 0%, var(--cr-red2) 100%);
+    margin-top: -1.5px;
+    border-radius: 2px;
+    box-shadow: 0 0 4px var(--cr-red4);
+}
+
+.code-red .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cr-yellow1) 0%, var(--cr-yellow2) 100%);
+    margin-top: -1px;
+    border-radius: 2px;
+    box-shadow: 0 0 4px var(--cr-yellow4);
+}
+
+.code-red .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cr-green1) 0%, var(--cr-green2) 100%);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.code-red table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.code-red th {
+    background: linear-gradient(135deg, var(--cr-black1) 0%, var(--cr-black2) 100%);
+    color: var(--cr-red1) !important;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    padding: 0.9rem 0.5rem;
+    border-radius: 6px 6px 4px 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--cr-red3);
+}
+
+.code-red th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 68, 68, 0.1) 100%);
+    pointer-events: none;
+}
+
+.code-red th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.code-red th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.code-red td {
+    background: linear-gradient(135deg, var(--cr-primary) 0%, var(--cr-secondary) 100%);
+    color: var(--cr-text);
+    padding: 0.9rem;
+    border: 1px solid var(--cr-black2);
+    height: 95px;
+    vertical-align: top;
+    transition: all var(--cr-transition);
+    position: relative;
+    border-radius: 6px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+        0 2px 8px var(--cr-shadow);
+}
+
+.code-red td .date-number {
+    color: var(--cr-date-number) !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Fira Code', monospace;
+}
+
+.code-red td:hover {
+    background: linear-gradient(135deg, #252530 0%, #1A1A25 100%);
+    box-shadow:
+        0 4px 16px var(--cr-shadow),
+        inset 0 0 0 1px var(--cr-red4);
+    border-color: var(--cr-red2);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.code-red td.current-day {
+    background: linear-gradient(135deg, rgba(255, 68, 68, 0.1) 0%, rgba(255, 68, 68, 0.05) 100%);
+    border: 1px solid var(--cr-red1);
+    animation: cr-pulse-red 2s infinite;
+    position: relative;
+}
+
+.code-red td.current-day .date-number {
+    color: var(--cr-red1) !important;
+    font-weight: 700;
+}
+
+.code-red td.current-day::before {
+    content: "▶";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    z-index: 1;
+    font-size: 0.9rem;
+    animation: cr-blink 1s step-end infinite;
+    opacity: 0.7;
+    font-family: 'Fira Code', monospace;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.code-red .event-marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 1px;
+    background: var(--cr-red1);
+    margin: 0 1px;
+    transition: all var(--cr-transition);
+    animation: cr-blink 1.5s step-end infinite;
+    position: relative;
+    box-shadow: 0 0 2px var(--cr-red1);
+}
+
+.code-red .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+    background-color: var(--cr-primary);
+    border-radius: 0;
+}
+
+.code-red .event-marker:hover {
+    transform: scale(1.3);
+    background: var(--cr-yellow1);
+    box-shadow: 0 0 6px var(--cr-yellow1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.code-red .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--cr-primary) 0%, var(--cr-secondary) 100%);
+    border: 1px solid var(--cr-red4);
+    padding: 20px;
+    color: var(--cr-text);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border-radius: var(--cr-radius);
+    animation: cr-slide 0.2s ease-out;
+    overflow: hidden;
+}
+
+.code-red .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--cr-red1) 0%,
+            var(--cr-yellow1) 33%,
+            var(--cr-green1) 66%,
+            var(--cr-purple1) 100%);
+    animation: cr-scan 4s linear infinite;
+    background-size: 300% 100%;
+}
+
+.code-red .modal-content h2 {
+    color: var(--cr-red1);
+    font-family: 'Fira Code', monospace;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Modal date display */
+.code-red .modal-date {
+    font-family: 'Fira Code', monospace;
+    color: var(--cr-green1);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--cr-red3);
+}
+
+/* Event list */
+.code-red .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.code-red .event-item {
+    background: var(--cr-black1);
+    padding: 0.9rem;
+    margin-bottom: 0.8rem;
+    border-left: 3px solid var(--cr-red1);
+    border-radius: 4px;
+    transition: all var(--cr-transition);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--cr-black2);
+}
+
+.code-red .event-item:hover {
+    background: var(--cr-black2);
+    transform: translateX(4px);
+    border-left-color: var(--cr-yellow1);
+    box-shadow: 0 2px 8px var(--cr-shadow);
+}
+
+.code-red .event-time {
+    font-family: 'Fira Code', monospace;
+    color: var(--cr-yellow1);
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.code-red .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--cr-text);
+    font-family: 'Inter', sans-serif;
+}
+
+.code-red .event-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--cr-white2);
+    font-family: 'Inter', sans-serif;
+}
+
+.code-red .modal-content button {
+    background: linear-gradient(135deg, var(--cr-red1) 0%, var(--cr-red2) 100%);
+    color: var(--cr-primary);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--cr-transition);
+    letter-spacing: 0;
+    font-family: 'Fira Code', monospace;
+    border-radius: 4px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-red .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.4s;
+}
+
+.code-red .modal-content button:hover::before {
+    left: 100%;
+}
+
+.code-red .modal-content button:hover {
+    background: linear-gradient(135deg, var(--cr-red2) 0%, var(--cr-red3) 100%);
+    box-shadow: 0 4px 12px var(--cr-shadow);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.code-red .modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--cr-black1);
+    color: var(--cr-red1);
+    border: 1px solid var(--cr-red3);
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: all var(--cr-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: monospace;
+}
+
+.code-red .modal .close-button:hover {
+    background: var(--cr-red1);
+    color: var(--cr-primary);
+    border-color: var(--cr-red1);
+    transform: scale(1.05);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.code-red .button,
+.code-red .transparent-button {
+    border: 1px solid var(--cr-red3);
+    color: var(--cr-red1);
+    background: var(--cr-primary);
+    padding: 0.7rem 1.3rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--cr-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: 4px;
+    letter-spacing: 0;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.code-red .button::before,
+.code-red .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--cr-red5), transparent);
+    transition: left 0.4s;
+}
+
+.code-red .button:hover::before,
+.code-red .transparent-button:hover::before {
+    left: 100%;
+}
+
+.code-red .button:hover,
+.code-red .transparent-button:hover {
+    background: var(--cr-red1);
+    color: var(--cr-primary);
+    box-shadow: 0 2px 8px var(--cr-shadow);
+    transform: translateY(-1px);
+    border-color: var(--cr-red1);
+}
+
+.code-red .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.code-red #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.code-red #theme-switcher {
+    background: var(--cr-primary);
+    color: var(--cr-red1) !important;
+    border: 1px solid var(--cr-red3);
+    padding: 0.7rem 1.8rem 0.7rem 0.8rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF4444'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--cr-transition);
+    border-radius: 4px;
+}
+
+.code-red #theme-switcher option {
+    background: var(--cr-primary) !important;
+    color: var(--cr-red1) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 10px !important;
+}
+
+.code-red #theme-switcher:focus {
+    outline: none;
+    border-color: var(--cr-red1);
+    box-shadow: 0 0 0 2px var(--cr-shadow);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.code-red #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    color: var(--cr-primary);
+    background: var(--cr-red1);
+    cursor: pointer;
+    transition: all var(--cr-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px var(--cr-shadow);
+    text-transform: uppercase;
+}
+
+.code-red #backToTopBtn:hover {
+    background: var(--cr-red2);
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--cr-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.code-red footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--cr-red3);
+    color: var(--cr-red2);
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: 'Fira Code', monospace;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .code-red .container {
+        padding: 1.5rem;
+    }
+
+    .code-red #calendar-title {
+        font-size: 2rem;
+    }
+
+    .code-red #current-date {
+        font-size: 1.4rem;
+    }
+
+    .code-red #today-weather {
+        font-size: 1rem;
+    }
+
+    .code-red .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .code-red .modal-date {
+        font-size: 1.2rem;
+    }
+
+    .code-red .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .code-red {
+        font-size: 0.9rem;
+    }
+
+    .code-red .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 2px;
+    }
+
+    .code-red th {
+        font-size: 0.8rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .code-red th span.full-day-name {
+        display: none;
+    }
+
+    .code-red th abbr {
+        display: inline;
+    }
+
+    .code-red td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.8rem;
+    }
+
+    .code-red td .date-number {
+        font-size: 1rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .code-red td.current-day::before {
+        font-size: 0.8rem;
+        top: 4px;
+        right: 4px;
+    }
+
+    .code-red #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .code-red #theme-switcher {
+        padding: 0.6rem 1.6rem 0.6rem 0.7rem;
+        font-size: 0.85rem;
+        min-width: 160px;
+    }
+
+    .code-red .modal-content {
+        padding: 14px;
+    }
+
+    .code-red .event-item {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .code-red .container {
+        padding: 1rem;
+    }
+
+    .code-red #calendar-title {
+        font-size: 1.6rem;
+    }
+
+    .code-red #current-date {
+        font-size: 1.2rem;
+    }
+
+    .code-red #today-weather {
+        font-size: 0.9rem;
+    }
+
+    .code-red .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .code-red th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .code-red td {
+        padding: 0.5rem;
+        height: 70px;
+        font-size: 0.75rem;
+    }
+
+    .code-red td .date-number {
+        font-size: 0.9rem;
+        top: 4px;
+        left: 4px;
+    }
+
+    .code-red #theme-switcher {
+        min-width: 140px;
+        font-size: 0.8rem;
+        padding: 0.5rem 1.4rem 0.5rem 0.6rem;
+    }
+
+    .code-red .modal-content {
+        padding: 10px;
+    }
+
+    .code-red .modal-date {
+        font-size: 1rem;
+    }
+
+    .code-red .event-time {
+        font-size: 0.8rem;
+    }
+
+    .code-red .event-title {
+        font-size: 0.85rem;
+    }
+
+    .code-red .event-description {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .code-red th {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .code-red td {
+        height: 65px;
+        padding: 0.4rem;
+    }
+
+    .code-red td .date-number {
+        font-size: 0.85rem;
+    }
+
+    .code-red #theme-switcher {
+        min-width: 120px;
+        font-size: 0.75rem;
+    }
+
+    .code-red .controls {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .code-red .button,
+    .code-red .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.6rem 1rem;
+    }
+
+    .code-red #backToTopBtn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .code-red {
+        --cr-red1: #FF0000;
+        --cr-red2: #CC0000;
+        --cr-green1: #00FF00;
+        --cr-yellow1: #FFFF00;
+    }
+
+    .code-red td.current-day {
+        border: 2px solid var(--cr-red1);
+        background: rgba(255, 0, 0, 0.15);
+    }
+
+    .code-red th {
+        background: var(--cr-black1);
+        color: var(--cr-red1) !important;
+    }
+
+    .code-red #calendar-title,
+    .code-red #current-date,
+    .code-red .event-title,
+    .code-red .event-description,
+    .code-red .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .code-red *,
+    .code-red *::before,
+    .code-red *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .code-red .hand {
+        transition: none;
+    }
+
+    .code-red .clock-face::before {
+        animation: none;
+    }
+
+    .code-red td.current-day {
+        animation: none;
+    }
+}
+
+/* Dark mode support - already dark theme, but ensure consistency */
+@media (prefers-color-scheme: dark) {
+    .code-red {
+        --cr-bg: #0A0A0F;
+        --cr-primary: #1A1A1F;
+        --cr-secondary: #0F0F14;
+    }
+
+    .code-red .container,
+    .code-red td {
+        background: linear-gradient(135deg, #1A1A1F 0%, #0F0F14 100%);
+    }
+
+    .code-red .modal-content {
+        background: linear-gradient(135deg, #1A1A1F 0%, #0F0F14 100%);
+    }
+
+    .code-red .button,
+    .code-red .transparent-button {
+        background: #1A1A1F;
+    }
+
+    .code-red .event-item {
+        background: #1A1A1F;
+    }
+}
