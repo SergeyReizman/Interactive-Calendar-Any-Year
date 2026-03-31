@@ -188,7 +188,7 @@ const applyTheme = (theme) => {
     'limited-edition', 'lions-mane', 'logical-intelligence', 'long-beach',
     'long-beach-fiji', 'los-angeles',
     'los-angeles-lakers', 'los-angeles-sky', 'lost-borders', 'love-and-passion',
-    'love-of-yesterday', 'love-station', 'lucid-dream', 'lunar-eclipse',
+    'love-of-yesterday', 'love-station', 'low-sun', 'lucid-dream', 'lunar-eclipse',
     'lush-green-mountains', 'luxury-design', 'luxury-life', 'macaroni-penguin',
     'magellanic-penguin', 'magic-colors', 'magic-fly', 
     'magic-island', 'magic-square', 'magnificent-symbol', 'main-stream', 'makogai-island',

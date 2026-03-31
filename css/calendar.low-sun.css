@@ -1,0 +1,1209 @@
+/* ==========================================================================
+   Low Sun Theme - Golden Hour / Subdued Light Calendar
+   Version: 1.0
+   Updated: 2026-03-31
+   Changes:
+   - Warm golden hour color palette with low-contrast, hazy aesthetic
+   - Soft ambers, dusty oranges, muted browns, and twilight shadows
+   - Gentle transitions inspired by fading daylight and long shadows
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Low Sun Palette - Golden Hour / Dusk */
+    --ls-bg: #FDF8F0;
+    --ls-text: #7A5A4B;
+    --ls-primary: #FFFCF5;
+    --ls-secondary: #FEF7EA;
+    --ls-date-number: #B87C5A;
+
+    /* Sunlight Amber */
+    --ls-amber1: #E6B87E;
+    --ls-amber2: #DAA569;
+    --ls-amber3: #CD8E54;
+    --ls-amber4: rgba(230, 184, 126, 0.7);
+    --ls-amber5: rgba(230, 184, 126, 0.25);
+
+    /* Dusty Rose */
+    --ls-rose1: #D4B4A4;
+    --ls-rose2: #C4A08C;
+    --ls-rose3: #B48C74;
+    --ls-rose4: rgba(212, 180, 164, 0.7);
+    --ls-rose5: rgba(212, 180, 164, 0.25);
+
+    /* Twilight Taupe */
+    --ls-taupe1: #A58E7A;
+    --ls-taupe2: #8F7864;
+    --ls-taupe3: #7A624E;
+    --ls-taupe4: rgba(165, 142, 122, 0.7);
+    --ls-taupe5: rgba(165, 142, 122, 0.25);
+
+    /* Shadow Brown */
+    --ls-brown1: #8B6B4F;
+    --ls-brown2: #735A42;
+    --ls-brown3: #5B4535;
+    --ls-brown4: rgba(139, 107, 79, 0.7);
+    --ls-brown5: rgba(139, 107, 79, 0.25);
+
+    /* Horizon Gold */
+    --ls-gold1: #E8C99E;
+    --ls-gold2: #DEB887;
+    --ls-gold3: #D2A679;
+    --ls-gold4: rgba(232, 201, 158, 0.7);
+    --ls-gold5: rgba(232, 201, 158, 0.25);
+
+    /* Dusk Purple */
+    --ls-purple1: #B8A9C9;
+    --ls-purple2: #A493B8;
+    --ls-purple3: #907DA7;
+    --ls-purple4: rgba(184, 169, 201, 0.7);
+    --ls-purple5: rgba(184, 169, 201, 0.25);
+
+    /* Theme Variables */
+    --ls-shadow: rgba(139, 107, 79, 0.12);
+    --ls-radius: 16px;
+    --ls-transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    --ls-hover: #DAA569;
+    --ls-glow: 0 0 25px rgba(230, 184, 126, 0.2);
+    --ls-pattern: radial-gradient(circle at 20% 40%, rgba(232, 201, 158, 0.08) 0%, transparent 50%);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ls-fade {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes ls-rise {
+    from {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ls-glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--ls-amber4);
+    }
+
+    50% {
+        box-shadow: var(--ls-glow);
+    }
+}
+
+@keyframes ls-sunset {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes ls-drift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-3px);
+    }
+}
+
+@keyframes ls-soft-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes ls-shimmer-warm {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes ls-sway {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes ls-dust-mote {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-40px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes ls-ray {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes ls-shadow-lengthen {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.low-sun {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ls-text);
+    line-height: 1.65;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--ls-bg) 0%, #FCF5E8 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.low-sun::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 30% 40%, var(--ls-amber5) 0%, transparent 60%),
+        radial-gradient(circle at 70% 80%, var(--ls-rose5) 0%, transparent 60%),
+        radial-gradient(circle at 45% 20%, var(--ls-gold5) 0%, transparent 55%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="25" fill="%23E6B87E" opacity="0.03"/><path d="M30,80 L60,40 L90,80 Z" fill="%23D4B4A4" opacity="0.03"/></svg>');
+    background-size: 250px 250px, 200px 200px, 180px 180px, 100px 100px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.low-sun .container {
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--ls-amber4);
+    box-shadow:
+        0 8px 32px var(--ls-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 32px;
+    z-index: 2;
+    background-image: var(--ls-pattern);
+}
+
+.low-sun .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--ls-amber1) 0%,
+            var(--ls-gold1) 33%,
+            var(--ls-rose1) 66%,
+            var(--ls-purple1) 100%);
+    animation: ls-sunset 10s linear infinite;
+    background-size: 300% 100%;
+}
+
+.low-sun .container::after {
+    content: "☀️";
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.6rem;
+    opacity: 0.12;
+    animation: ls-sway 6s ease-in-out infinite;
+    filter: blur(0.5px);
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.low-sun #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ls-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    font-weight: 500;
+    text-shadow:
+        1px 1px 3px rgba(255, 255, 255, 0.8),
+        2px 2px 0 rgba(0, 0, 0, 0.02);
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-rose1) 50%, var(--ls-gold1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: ls-shimmer-warm 8s linear infinite;
+}
+
+.low-sun #calendar-title::after {
+    content: "🌇";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+    opacity: 0.45;
+    animation: ls-drift 5s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.low-sun #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.3rem;
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    border: 1px solid var(--ls-amber4);
+    border-radius: 80px;
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--ls-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+.low-sun #date-weather-container::before {
+    content: "GOLDEN HOUR";
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    padding: 0 14px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--ls-amber2);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    border: 1px solid var(--ls-amber4);
+    border-radius: 20px;
+}
+
+.low-sun #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ls-amber2), transparent);
+}
+
+.low-sun #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--ls-text);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.low-sun #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ls-amber2);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.low-sun #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.low-sun .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--ls-amber1);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    box-shadow:
+        0 8px 30px var(--ls-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+.low-sun .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, var(--ls-gold1) 0%, var(--ls-amber2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 8px var(--ls-amber1);
+}
+
+.low-sun .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--ls-amber5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 5deg,
+            var(--ls-gold5) 6deg 7deg,
+            transparent 8deg 15deg);
+}
+
+.low-sun .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.low-sun .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ls-amber2) 0%, var(--ls-brown1) 100%);
+    margin-top: -1.5px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.low-sun .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--ls-rose2) 0%, var(--ls-taupe1) 100%);
+    margin-top: -1.25px;
+    border-radius: 2.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.low-sun .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--ls-gold2) 0%, var(--ls-amber3) 100%);
+    margin-top: -0.75px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.low-sun table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.low-sun th {
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-gold1) 100%);
+    color: var(--ls-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.9rem 0.5rem;
+    border-radius: 30px 30px 12px 12px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.low-sun th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.3) 100%);
+    pointer-events: none;
+}
+
+.low-sun th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.low-sun th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.low-sun td {
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    color: var(--ls-text);
+    padding: 0.9rem;
+    border: 1px solid var(--ls-amber4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ls-transition);
+    position: relative;
+    border-radius: 20px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 4px 12px var(--ls-shadow);
+}
+
+.low-sun td .date-number {
+    color: var(--ls-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.low-sun td:hover {
+    background: linear-gradient(135deg, #FFFBF0 0%, #FEF5E5 100%);
+    box-shadow:
+        0 8px 24px var(--ls-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+    border-color: var(--ls-amber2);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.low-sun td.current-day {
+    background: linear-gradient(135deg, rgba(230, 184, 126, 0.08) 0%, rgba(212, 180, 164, 0.08) 100%);
+    border: 1px solid var(--ls-amber1);
+    animation: ls-glow-pulse 3s infinite;
+    background-image: radial-gradient(circle at 70% 30%, var(--ls-gold5) 0%, transparent 60%);
+}
+
+.low-sun td.current-day .date-number {
+    color: var(--ls-amber2) !important;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.low-sun td.current-day::before {
+    content: "🌅";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1rem;
+    animation: ls-drift 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.low-sun .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--ls-amber1) 0%, var(--ls-gold2) 100%);
+    margin: 0 2px;
+    transition: all var(--ls-transition);
+    animation: ls-soft-pulse 2.5s ease-in-out infinite;
+    position: relative;
+    box-shadow: 0 0 3px var(--ls-amber1);
+}
+
+.low-sun .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--ls-primary);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.low-sun .event-marker:hover {
+    transform: scale(1.4);
+    background: radial-gradient(circle, var(--ls-gold1) 0%, var(--ls-amber2) 100%);
+    box-shadow: 0 0 8px var(--ls-gold1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.low-sun .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    border: 1px solid var(--ls-amber4);
+    padding: 22px;
+    color: var(--ls-text);
+    box-shadow:
+        0 12px 32px var(--ls-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    border-radius: 28px;
+    animation: ls-rise 0.3s ease-out;
+    overflow: hidden;
+}
+
+.low-sun .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--ls-amber1) 0%,
+            var(--ls-gold1) 33%,
+            var(--ls-rose1) 66%,
+            var(--ls-purple1) 100%);
+    animation: ls-sunset 8s linear infinite;
+    background-size: 300% 100%;
+}
+
+.low-sun .modal-content h2 {
+    color: var(--ls-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-rose1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Modal date display */
+.low-sun .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--ls-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--ls-amber2);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Event list */
+.low-sun .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.low-sun .event-item {
+    background: linear-gradient(135deg, rgba(253, 248, 240, 0.8) 0%, rgba(254, 247, 234, 0.8) 100%);
+    padding: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-left: 3px solid var(--ls-amber1);
+    border-radius: 16px;
+    transition: all var(--ls-transition);
+    box-shadow: 0 2px 8px var(--ls-shadow);
+    border: 1px solid rgba(230, 184, 126, 0.2);
+}
+
+.low-sun .event-item:hover {
+    background: linear-gradient(135deg, rgba(252, 245, 230, 0.9) 0%, rgba(255, 250, 235, 0.9) 100%);
+    transform: translateX(4px);
+    border-left-color: var(--ls-gold1);
+    box-shadow: 0 4px 16px var(--ls-shadow);
+}
+
+.low-sun .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ls-amber2);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.low-sun .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--ls-text);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.low-sun .event-description {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--ls-taupe1);
+}
+
+.low-sun .modal-content button {
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-gold1) 100%);
+    color: var(--ls-primary);
+    border: none;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ls-transition);
+    letter-spacing: 0.3px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.low-sun .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.low-sun .modal-content button:hover::before {
+    left: 100%;
+}
+
+.low-sun .modal-content button:hover {
+    background: linear-gradient(135deg, var(--ls-amber2) 0%, var(--ls-gold2) 100%);
+    box-shadow: 0 4px 16px var(--ls-shadow);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.low-sun .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    color: var(--ls-amber2);
+    border: 1px solid var(--ls-amber2);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--ls-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px var(--ls-shadow);
+}
+
+.low-sun .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-gold1) 100%);
+    color: var(--ls-primary);
+    border-color: var(--ls-amber1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.low-sun .button,
+.low-sun .transparent-button {
+    border: 1px solid var(--ls-amber2);
+    color: var(--ls-amber2);
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    padding: 0.75rem 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ls-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: 50px;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px var(--ls-shadow);
+}
+
+.low-sun .button::before,
+.low-sun .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--ls-amber5), transparent);
+    transition: left 0.5s;
+}
+
+.low-sun .button:hover::before,
+.low-sun .transparent-button:hover::before {
+    left: 100%;
+}
+
+.low-sun .button:hover,
+.low-sun .transparent-button:hover {
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-gold1) 100%);
+    color: var(--ls-primary);
+    box-shadow: 0 4px 14px var(--ls-shadow);
+    transform: translateY(-1px);
+    border-color: var(--ls-amber1);
+}
+
+.low-sun .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.6rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.low-sun #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 190px;
+    z-index: 1000;
+}
+
+.low-sun #theme-switcher {
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+    color: var(--ls-amber2) !important;
+    border: 1px solid var(--ls-amber2);
+    padding: 0.75rem 2rem 0.75rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E6B87E'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ls-transition);
+    border-radius: 50px;
+    box-shadow: 0 2px 8px var(--ls-shadow);
+}
+
+.low-sun #theme-switcher option {
+    background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%) !important;
+    color: var(--ls-amber2) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.low-sun #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ls-amber1);
+    box-shadow: 0 0 0 3px var(--ls-amber5);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.low-sun #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.6rem;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: var(--ls-primary);
+    background: linear-gradient(135deg, var(--ls-amber1) 0%, var(--ls-gold1) 100%);
+    cursor: pointer;
+    transition: all var(--ls-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px var(--ls-shadow);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.low-sun #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--ls-amber2) 0%, var(--ls-gold2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--ls-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.low-sun footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--ls-amber3);
+    color: var(--ls-taupe1);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .low-sun .container {
+        padding: 1.5rem;
+    }
+
+    .low-sun #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .low-sun #current-date {
+        font-size: 1.5rem;
+    }
+
+    .low-sun #today-weather {
+        font-size: 1.05rem;
+    }
+
+    .low-sun .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .low-sun .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .low-sun .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .low-sun {
+        font-size: 0.95rem;
+    }
+
+    .low-sun .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 2px;
+    }
+
+    .low-sun th {
+        font-size: 0.85rem;
+        padding: 0.75rem 0.3rem;
+    }
+
+    .low-sun th span.full-day-name {
+        display: none;
+    }
+
+    .low-sun th abbr {
+        display: inline;
+    }
+
+    .low-sun td {
+        padding: 0.75rem;
+        height: 85px;
+        font-size: 0.85rem;
+    }
+
+    .low-sun td .date-number {
+        font-size: 1.05rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .low-sun td.current-day::before {
+        font-size: 0.9rem;
+        top: 4px;
+        right: 6px;
+    }
+
+    .low-sun #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.75rem 1.3rem;
+        font-size: 0.9rem;
+    }
+
+    .low-sun #theme-switcher {
+        padding: 0.65rem 1.8rem 0.65rem 0.9rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .low-sun .modal-content {
+        padding: 16px;
+    }
+
+    .low-sun .event-item {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .low-sun .container {
+        padding: 1rem;
+    }
+
+    .low-sun #calendar-title {
+        font-size: 2rem;
+    }
+
+    .low-sun #current-date {
+        font-size: 1.3rem;
+    }
+
+    .low-sun #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .low-sun .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .low-sun th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .low-sun td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .low-sun td .date-number {
+        font-size: 0.95rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .low-sun #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+        padding: 0.55rem 1.6rem 0.55rem 0.8rem;
+    }
+
+    .low-sun .modal-content {
+        padding: 12px;
+    }
+
+    .low-sun .modal-date {
+        font-size: 1.15rem;
+    }
+
+    .low-sun .event-time {
+        font-size: 0.85rem;
+    }
+
+    .low-sun .event-title {
+        font-size: 0.9rem;
+    }
+
+    .low-sun .event-description {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .low-sun th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .low-sun td {
+        height: 70px;
+        padding: 0.5rem;
+    }
+
+    .low-sun td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .low-sun #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+
+    .low-sun .controls {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .low-sun .button,
+    .low-sun .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.65rem 1.1rem;
+    }
+
+    .low-sun #backToTopBtn {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .low-sun {
+        --ls-amber2: #B87C5A;
+        --ls-amber1: #CD8E54;
+        --ls-text: #4A3A2F;
+    }
+
+    .low-sun td.current-day {
+        border: 2px solid var(--ls-amber2);
+        background: rgba(184, 124, 90, 0.1);
+    }
+
+    .low-sun th {
+        background: var(--ls-amber2);
+        color: white !important;
+    }
+
+    .low-sun #calendar-title,
+    .low-sun #current-date,
+    .low-sun .event-title,
+    .low-sun .event-description,
+    .low-sun .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .low-sun *,
+    .low-sun *::before,
+    .low-sun *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .low-sun .hand {
+        transition: none;
+    }
+
+    .low-sun .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support - warm dark adaptation */
+@media (prefers-color-scheme: dark) {
+    .low-sun {
+        --ls-bg: #2A241F;
+        --ls-text: #E8D9CC;
+        --ls-primary: #3A322A;
+        --ls-secondary: #2F2822;
+        --ls-date-number: #E8C99E;
+        --ls-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    .low-sun .container,
+    .low-sun td {
+        background: linear-gradient(135deg, #3A322A 0%, #2F2822 100%);
+        border-color: var(--ls-amber3);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .low-sun .modal-content {
+        background: linear-gradient(135deg, #3A322A 0%, #2F2822 100%);
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .low-sun .button,
+    .low-sun .transparent-button {
+        background: linear-gradient(135deg, #3A322A 0%, #2F2822 100%);
+        border-color: var(--ls-amber2);
+        color: var(--ls-amber1);
+    }
+
+    .low-sun .event-item {
+        background: linear-gradient(135deg, #3A322A 0%, #2F2822 100%);
+    }
+
+    .low-sun #calendar-title,
+    .low-sun #current-date,
+    .low-sun .event-title,
+    .low-sun .event-description,
+    .low-sun .modal-date {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+}
