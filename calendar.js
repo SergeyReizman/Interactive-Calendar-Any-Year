@@ -117,7 +117,7 @@ const applyTheme = (theme) => {
     'colombian-jungle', 'competitive-advantage', 'continuous-growth',
     'cool-atlantic-waves', 'copacabana-rio-de-janeiro', 'coral-garden',
     'coral-reef', 'coral-sunset', 'core', 'cosmic-nebula', 'cosmic-perspective',
-    'cracked-ice', 'creative-content', 'crimson-sky',
+    'cracked-ice', 'crater-lake-oregon', 'creative-content', 'crimson-sky',
     'crisp-mountain-air', 'critical-thinking',
     'crossroads-stone', 'crystal-snowfall', 'crystal-stream', 'cultural-escape',
     'cyber-pulse', 'dark-chocolate', 'dark-code', 'dark-mode', 'darkness-blue',
