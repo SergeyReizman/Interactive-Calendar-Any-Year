@@ -123,7 +123,7 @@ const applyTheme = (theme) => {
     'cyber-pulse', 'dark-chocolate', 'dark-code', 'dark-mode', 'darkness-blue',
     'dark-star', 'dartagnans-rapier', 'daruma-doll', 'day-dream-mode',
     'deep-focus-work', 'deep-forest', 'deep-ocean', 'deep-space', 
-    'deep-tropics', 'desert-between-us', 'desert-miracle',
+    'deep-tropics', 'desert-between-us', 'desert-eagle', 'desert-miracle',
     'desert-mirage', 'desert-rose', 'desert-water', 'destiny-to-succeed',
     'developers-zone', 'diamond-planet', 'different-perspective',
     'digital-excellence', 'digital-interface', 'digital-ocean',
