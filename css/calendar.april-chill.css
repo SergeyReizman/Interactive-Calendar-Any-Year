@@ -1,0 +1,1220 @@
+/* ==========================================================================
+   April Chill Theme - Cool Spring / Transitional Weather Calendar
+   Version: 1.0
+   Updated: 2026-04-04
+   Changes:
+   - Cool spring palette with misty mornings, soft rain, and budding greenery
+   - Tranquil grays, fresh aquas, gentle lavenders, and cozy sweater weather tones
+   - Transitional aesthetic between winter's end and spring's promise
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* April Chill Palette - Cool Spring Transition */
+    --ac-bg: #F0F4F8;
+    --ac-text: #4A5B6E;
+    --ac-primary: #FFFFFF;
+    --ac-secondary: #F8FAFE;
+    --ac-date-number: #6B9BBF;
+
+    /* Misty Morning */
+    --ac-mist1: #C8D8E8;
+    --ac-mist2: #B8CCE0;
+    --ac-mist3: #A8C0D8;
+    --ac-mist4: rgba(200, 216, 232, 0.7);
+    --ac-mist5: rgba(200, 216, 232, 0.25);
+
+    /* April Rain */
+    --ac-rain1: #8FBBE8;
+    --ac-rain2: #7AADDF;
+    --ac-rain3: #659FD6;
+    --ac-rain4: rgba(143, 187, 232, 0.7);
+    --ac-rain5: rgba(143, 187, 232, 0.25);
+
+    /* Budding Green */
+    --ac-green1: #A8D0B0;
+    --ac-green2: #94C49C;
+    --ac-green3: #80B888;
+    --ac-green4: rgba(168, 208, 176, 0.7);
+    --ac-green5: rgba(168, 208, 176, 0.25);
+
+    /* Cozy Sweater */
+    --ac-sweater1: #C4B8CC;
+    --ac-sweater2: #B4A8BC;
+    --ac-sweater3: #A498AC;
+    --ac-sweater4: rgba(196, 184, 204, 0.7);
+    --ac-sweater5: rgba(196, 184, 204, 0.25);
+
+    /* Storm Cloud */
+    --ac-cloud1: #9AAEBF;
+    --ac-cloud2: #8A9EB0;
+    --ac-cloud3: #7A8EA0;
+    --ac-cloud4: rgba(154, 174, 191, 0.7);
+    --ac-cloud5: rgba(154, 174, 191, 0.25);
+
+    /* Crocus Purple */
+    --ac-purple1: #C5B8E0;
+    --ac-purple2: #B5A8D4;
+    --ac-purple3: #A598C8;
+    --ac-purple4: rgba(197, 184, 224, 0.7);
+    --ac-purple5: rgba(197, 184, 224, 0.25);
+
+    /* Theme Variables */
+    --ac-shadow: rgba(106, 126, 146, 0.12);
+    --ac-radius: 20px;
+    --ac-transition: 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    --ac-hover: #7AADDF;
+    --ac-glow: 0 0 20px rgba(143, 187, 232, 0.25);
+    --ac-pattern: repeating-linear-gradient(135deg, rgba(200, 216, 232, 0.05) 0px, rgba(200, 216, 232, 0.05) 2px, transparent 2px, transparent 12px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes ac-rain-drizzle {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes ac-cloud-drift {
+    from {
+        transform: translateY(12px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes ac-puddle-ripple {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--ac-rain4);
+    }
+
+    50% {
+        box-shadow: var(--ac-glow);
+    }
+}
+
+@keyframes ac-spring-shower {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes ac-bud-sway {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-2px);
+    }
+}
+
+@keyframes ac-soft-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes ac-mist-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes ac-umbrella-tilt {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes ac-raindrop {
+    0% {
+        transform: translateY(0) scale(0.4);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-18px) scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-36px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes ac-wind-sweep {
+    0% {
+        transform: translateX(-30px) translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.4;
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateX(30px) translateY(-8px);
+        opacity: 0;
+    }
+}
+
+@keyframes ac-chill-breeze {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.april-chill {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ac-text);
+    line-height: 1.65;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--ac-bg) 0%, #E8EEF5 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.april-chill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 25% 45%, var(--ac-mist5) 0%, transparent 55%),
+        radial-gradient(circle at 75% 55%, var(--ac-rain5) 0%, transparent 55%),
+        radial-gradient(circle at 50% 80%, var(--ac-green5) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><path d="M60,40 Q75,50 70,65 Q60,75 50,65 Q45,50 60,40" fill="%23C8D8E8" opacity="0.06"/><path d="M40,80 L55,65 L70,80 L55,95 Z" fill="%23A8D0B0" opacity="0.05"/></svg>');
+    background-size: 280px 280px, 240px 240px, 200px 200px, 140px 140px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.april-chill .container {
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--ac-mist4);
+    box-shadow:
+        0 8px 32px var(--ac-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 36px;
+    z-index: 2;
+    background-image: var(--ac-pattern);
+}
+
+.april-chill .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--ac-mist1) 0%,
+            var(--ac-rain1) 25%,
+            var(--ac-green1) 50%,
+            var(--ac-purple1) 75%,
+            var(--ac-cloud1) 100%);
+    animation: ac-spring-shower 12s linear infinite;
+    background-size: 300% 100%;
+}
+
+.april-chill .container::after {
+    content: "☔";
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.6rem;
+    opacity: 0.15;
+    animation: ac-umbrella-tilt 6s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.april-chill #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ac-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    font-weight: 500;
+    text-shadow:
+        2px 2px 4px rgba(255, 255, 255, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.02);
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 50%, var(--ac-purple1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: ac-mist-shimmer 10s linear infinite;
+}
+
+.april-chill #calendar-title::after {
+    content: "🌧️";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+    opacity: 0.4;
+    animation: ac-bud-sway 5s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.april-chill #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.4rem;
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    border: 1px solid var(--ac-mist4);
+    border-radius: 80px;
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--ac-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+}
+
+.april-chill #date-weather-container::before {
+    content: "APRIL CHILL";
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    padding: 0 14px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--ac-rain2);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    border: 1px solid var(--ac-mist4);
+    border-radius: 20px;
+}
+
+.april-chill #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ac-rain2), transparent);
+}
+
+.april-chill #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--ac-text);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.april-chill #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ac-rain2);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.april-chill #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.april-chill .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--ac-mist1);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    box-shadow:
+        0 8px 30px var(--ac-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+.april-chill .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, var(--ac-purple1) 0%, var(--ac-rain2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 8px var(--ac-purple1);
+}
+
+.april-chill .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--ac-mist5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 5deg,
+            var(--ac-green5) 6deg 7deg,
+            transparent 8deg 15deg);
+}
+
+.april-chill .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.april-chill .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ac-rain2) 0%, var(--ac-cloud1) 100%);
+    margin-top: -1.5px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.april-chill .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--ac-green2) 0%, var(--ac-sweater2) 100%);
+    margin-top: -1.25px;
+    border-radius: 2.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.april-chill .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--ac-purple2) 0%, var(--ac-mist2) 100%);
+    margin-top: -0.75px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.april-chill table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.april-chill th {
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    color: var(--ac-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.9rem 0.5rem;
+    border-radius: 30px 30px 12px 12px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.april-chill th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.25) 100%);
+    pointer-events: none;
+}
+
+.april-chill th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.april-chill th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.april-chill td {
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    color: var(--ac-text);
+    padding: 0.9rem;
+    border: 1px solid var(--ac-mist4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--ac-transition);
+    position: relative;
+    border-radius: 20px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 4px 12px var(--ac-shadow);
+}
+
+.april-chill td .date-number {
+    color: var(--ac-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.april-chill td:hover {
+    background: linear-gradient(135deg, #FCFEFF 0%, #F8FAFE 100%);
+    box-shadow:
+        0 8px 24px var(--ac-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+    border-color: var(--ac-rain2);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.april-chill td.current-day {
+    background: linear-gradient(135deg, rgba(200, 216, 232, 0.08) 0%, rgba(143, 187, 232, 0.08) 100%);
+    border: 1px solid var(--ac-mist1);
+    animation: ac-puddle-ripple 3s infinite;
+    background-image: radial-gradient(circle at 70% 30%, var(--ac-mist5) 0%, transparent 60%);
+}
+
+.april-chill td.current-day .date-number {
+    color: var(--ac-rain2) !important;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.april-chill td.current-day::before {
+    content: "🌸";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1rem;
+    animation: ac-rain-drizzle 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.april-chill .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    margin: 0 2px;
+    transition: all var(--ac-transition);
+    animation: ac-soft-pulse 2.5s ease-in-out infinite;
+    position: relative;
+    box-shadow: 0 0 3px var(--ac-mist1);
+}
+
+.april-chill .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--ac-primary);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.april-chill .event-marker:hover {
+    transform: scale(1.4);
+    background: radial-gradient(circle, var(--ac-rain1) 0%, var(--ac-purple1) 100%);
+    box-shadow: 0 0 8px var(--ac-purple1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.april-chill .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    border: 1px solid var(--ac-mist4);
+    padding: 22px;
+    color: var(--ac-text);
+    box-shadow:
+        0 12px 32px var(--ac-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    border-radius: 28px;
+    animation: ac-cloud-drift 0.3s ease-out;
+    overflow: hidden;
+}
+
+.april-chill .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--ac-mist1) 0%,
+            var(--ac-rain1) 25%,
+            var(--ac-green1) 50%,
+            var(--ac-purple1) 75%,
+            var(--ac-cloud1) 100%);
+    animation: ac-spring-shower 10s linear infinite;
+    background-size: 300% 100%;
+}
+
+.april-chill .modal-content h2 {
+    color: var(--ac-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Modal date display */
+.april-chill .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--ac-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--ac-rain2);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Event list */
+.april-chill .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.april-chill .event-item {
+    background: linear-gradient(135deg, rgba(248, 250, 254, 0.8) 0%, rgba(240, 244, 248, 0.8) 100%);
+    padding: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-left: 3px solid var(--ac-mist1);
+    border-radius: 16px;
+    transition: all var(--ac-transition);
+    box-shadow: 0 2px 8px var(--ac-shadow);
+    border: 1px solid rgba(200, 216, 232, 0.2);
+}
+
+.april-chill .event-item:hover {
+    background: linear-gradient(135deg, rgba(252, 254, 255, 0.9) 0%, rgba(245, 248, 252, 0.9) 100%);
+    transform: translateX(4px);
+    border-left-color: var(--ac-rain1);
+    box-shadow: 0 4px 16px var(--ac-shadow);
+}
+
+.april-chill .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--ac-rain2);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.april-chill .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--ac-text);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.april-chill .event-description {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--ac-cloud2);
+}
+
+.april-chill .modal-content button {
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    color: var(--ac-primary);
+    border: none;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    letter-spacing: 0.3px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.april-chill .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: left 0.5s;
+}
+
+.april-chill .modal-content button:hover::before {
+    left: 100%;
+}
+
+.april-chill .modal-content button:hover {
+    background: linear-gradient(135deg, var(--ac-mist2) 0%, var(--ac-rain2) 100%);
+    box-shadow: 0 4px 16px var(--ac-shadow);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.april-chill .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    color: var(--ac-rain2);
+    border: 1px solid var(--ac-rain2);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px var(--ac-shadow);
+}
+
+.april-chill .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    color: var(--ac-primary);
+    border-color: var(--ac-mist1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.april-chill .button,
+.april-chill .transparent-button {
+    border: 1px solid var(--ac-rain2);
+    color: var(--ac-rain2);
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    padding: 0.75rem 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: 50px;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px var(--ac-shadow);
+}
+
+.april-chill .button::before,
+.april-chill .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--ac-mist5), transparent);
+    transition: left 0.5s;
+}
+
+.april-chill .button:hover::before,
+.april-chill .transparent-button:hover::before {
+    left: 100%;
+}
+
+.april-chill .button:hover,
+.april-chill .transparent-button:hover {
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    color: var(--ac-primary);
+    box-shadow: 0 4px 14px var(--ac-shadow);
+    transform: translateY(-1px);
+    border-color: var(--ac-mist1);
+}
+
+.april-chill .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.6rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.april-chill #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 190px;
+    z-index: 1000;
+}
+
+.april-chill #theme-switcher {
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%);
+    color: var(--ac-rain2) !important;
+    border: 1px solid var(--ac-rain2);
+    padding: 0.75rem 2rem 0.75rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238FBBE8'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    border-radius: 50px;
+    box-shadow: 0 2px 8px var(--ac-shadow);
+}
+
+.april-chill #theme-switcher option {
+    background: linear-gradient(135deg, var(--ac-primary) 0%, var(--ac-secondary) 100%) !important;
+    color: var(--ac-rain2) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.april-chill #theme-switcher:focus {
+    outline: none;
+    border-color: var(--ac-mist1);
+    box-shadow: 0 0 0 3px var(--ac-mist5);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.april-chill #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.6rem;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: var(--ac-primary);
+    background: linear-gradient(135deg, var(--ac-mist1) 0%, var(--ac-rain1) 100%);
+    cursor: pointer;
+    transition: all var(--ac-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px var(--ac-shadow);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.april-chill #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--ac-mist2) 0%, var(--ac-rain2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--ac-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.april-chill footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--ac-mist3);
+    color: var(--ac-cloud2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .april-chill .container {
+        padding: 1.5rem;
+    }
+
+    .april-chill #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .april-chill #current-date {
+        font-size: 1.5rem;
+    }
+
+    .april-chill #today-weather {
+        font-size: 1.05rem;
+    }
+
+    .april-chill .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .april-chill .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .april-chill .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .april-chill {
+        font-size: 0.95rem;
+    }
+
+    .april-chill .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 2px;
+    }
+
+    .april-chill th {
+        font-size: 0.85rem;
+        padding: 0.75rem 0.3rem;
+    }
+
+    .april-chill th span.full-day-name {
+        display: none;
+    }
+
+    .april-chill th abbr {
+        display: inline;
+    }
+
+    .april-chill td {
+        padding: 0.75rem;
+        height: 85px;
+        font-size: 0.85rem;
+    }
+
+    .april-chill td .date-number {
+        font-size: 1.05rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .april-chill td.current-day::before {
+        font-size: 0.9rem;
+        top: 4px;
+        right: 6px;
+    }
+
+    .april-chill #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.75rem 1.3rem;
+        font-size: 0.9rem;
+    }
+
+    .april-chill #theme-switcher {
+        padding: 0.65rem 1.8rem 0.65rem 0.9rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .april-chill .modal-content {
+        padding: 16px;
+    }
+
+    .april-chill .event-item {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .april-chill .container {
+        padding: 1rem;
+    }
+
+    .april-chill #calendar-title {
+        font-size: 2rem;
+    }
+
+    .april-chill #current-date {
+        font-size: 1.3rem;
+    }
+
+    .april-chill #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .april-chill .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .april-chill th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .april-chill td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .april-chill td .date-number {
+        font-size: 0.95rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .april-chill #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+        padding: 0.55rem 1.6rem 0.55rem 0.8rem;
+    }
+
+    .april-chill .modal-content {
+        padding: 12px;
+    }
+
+    .april-chill .modal-date {
+        font-size: 1.15rem;
+    }
+
+    .april-chill .event-time {
+        font-size: 0.85rem;
+    }
+
+    .april-chill .event-title {
+        font-size: 0.9rem;
+    }
+
+    .april-chill .event-description {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .april-chill th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .april-chill td {
+        height: 70px;
+        padding: 0.5rem;
+    }
+
+    .april-chill td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .april-chill #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+
+    .april-chill .controls {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .april-chill .button,
+    .april-chill .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.65rem 1.1rem;
+    }
+
+    .april-chill #backToTopBtn {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .april-chill {
+        --ac-rain2: #659FD6;
+        --ac-mist1: #A8C0D8;
+        --ac-text: #2D4055;
+    }
+
+    .april-chill td.current-day {
+        border: 2px solid var(--ac-rain2);
+        background: rgba(101, 159, 214, 0.1);
+    }
+
+    .april-chill th {
+        background: var(--ac-rain2);
+        color: white !important;
+    }
+
+    .april-chill #calendar-title,
+    .april-chill #current-date,
+    .april-chill .event-title,
+    .april-chill .event-description,
+    .april-chill .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .april-chill *,
+    .april-chill *::before,
+    .april-chill *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .april-chill .hand {
+        transition: none;
+    }
+
+    .april-chill .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support - evening spring adaptation */
+@media (prefers-color-scheme: dark) {
+    .april-chill {
+        --ac-bg: #1A2428;
+        --ac-text: #D8E2EA;
+        --ac-primary: #2A353C;
+        --ac-secondary: #222E34;
+        --ac-date-number: #8FBBE8;
+        --ac-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    .april-chill .container,
+    .april-chill td {
+        background: linear-gradient(135deg, #2A353C 0%, #222E34 100%);
+        border-color: var(--ac-mist3);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .april-chill .modal-content {
+        background: linear-gradient(135deg, #2A353C 0%, #222E34 100%);
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .april-chill .button,
+    .april-chill .transparent-button {
+        background: linear-gradient(135deg, #2A353C 0%, #222E34 100%);
+        border-color: var(--ac-rain2);
+        color: var(--ac-rain1);
+    }
+
+    .april-chill .event-item {
+        background: linear-gradient(135deg, #2A353C 0%, #222E34 100%);
+    }
+
+    .april-chill #calendar-title,
+    .april-chill #current-date,
+    .april-chill .event-title,
+    .april-chill .event-description,
+    .april-chill .modal-date {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+}

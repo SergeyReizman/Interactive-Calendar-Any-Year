@@ -75,7 +75,7 @@ const applyTheme = (theme) => {
     'amazon-dolphin', 'amazon-rainforest', 'amazon-river', 'american-dream',
     'andromeda-galaxy', 'a-new-chapter', 'a-new-opportunity', 
     'antarctic-expedition', 'antarctic-ice',
-    'antarctic-sun', 'antarctic-snowdrifts', 
+    'antarctic-sun', 'antarctic-snowdrifts', 'april-chill',
     'apple-in-honey', 'aqua-marina', 'aqua-spirit',
     'a-quiet-creek', 'arctic-glow', 'arctic-panorama-resort', 'arctic-snowfall',
     'art-studio', 'a-simple-task', 'a-solitude-moment', 
