@@ -1,0 +1,1220 @@
+/* ==========================================================================
+   Hong Kong Theme - Neon Metropolis / Victoria Harbour Calendar
+   Version: 1.0
+   Updated: 2026-04-09
+   Changes:
+   - Dynamic Hong Kong palette with neon city lights and Victoria Harbour deep blues
+   - Bamboo scaffolding greens, bauhinia flower golds, and tram red accents
+   - Urban jungle aesthetic blending skyscrapers with traditional motifs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Hong Kong Palette - Neon Metropolis */
+    --hk-bg: #F0F2F5;
+    --hk-text: #2D3E50;
+    --hk-primary: #FFFFFF;
+    --hk-secondary: #F8FAFD;
+    --hk-date-number: #E63946;
+
+    /* Victoria Harbour Deep Blue */
+    --hk-harbour1: #1D4E89;
+    --hk-harbour2: #18406E;
+    --hk-harbour3: #133253;
+    --hk-harbour4: rgba(29, 78, 137, 0.7);
+    --hk-harbour5: rgba(29, 78, 137, 0.2);
+
+    /* Bauhinia Flower Gold */
+    --hk-bauhinia1: #F4A261;
+    --hk-bauhinia2: #E08D45;
+    --hk-bauhinia3: #CC7835;
+    --hk-bauhinia4: rgba(244, 162, 97, 0.7);
+    --hk-bauhinia5: rgba(244, 162, 97, 0.25);
+
+    /* Bamboo Scaffolding Green */
+    --hk-bamboo1: #5A8F4C;
+    --hk-bamboo2: #4A7A3E;
+    --hk-bamboo3: #3A6530;
+    --hk-bamboo4: rgba(90, 143, 76, 0.7);
+    --hk-bamboo5: rgba(90, 143, 76, 0.2);
+
+    /* Tram Red */
+    --hk-tram1: #E63946;
+    --hk-tram2: #D62C3A;
+    --hk-tram3: #C61F2E;
+    --hk-tram4: rgba(230, 57, 70, 0.7);
+    --hk-tram5: rgba(230, 57, 70, 0.2);
+
+    /* Neon Purple */
+    --hk-neon1: #9B5DE5;
+    --hk-neon2: #8A4FD4;
+    --hk-neon3: #7941C3;
+    --hk-neon4: rgba(155, 93, 229, 0.7);
+    --hk-neon5: rgba(155, 93, 229, 0.25);
+
+    /* Skyline Silver */
+    --hk-silver1: #B0B8C5;
+    --hk-silver2: #9AA3B2;
+    --hk-silver3: #848E9F;
+    --hk-silver4: rgba(176, 184, 197, 0.7);
+    --hk-silver5: rgba(176, 184, 197, 0.25);
+
+    /* Theme Variables */
+    --hk-shadow: rgba(29, 78, 137, 0.12);
+    --hk-radius: 20px;
+    --hk-transition: 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    --hk-hover: #18406E;
+    --hk-glow: 0 0 20px rgba(244, 162, 97, 0.3);
+    --hk-pattern: repeating-linear-gradient(135deg, rgba(244, 162, 97, 0.04) 0px, rgba(244, 162, 97, 0.04) 2px, transparent 2px, transparent 12px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes hk-neon-pulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+        text-shadow: 0 0 2px var(--hk-bauhinia4);
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--hk-bauhinia1);
+    }
+}
+
+@keyframes hk-skyline-rise {
+    from {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes hk-harbour-ripple {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--hk-harbour4);
+    }
+
+    50% {
+        box-shadow: var(--hk-glow);
+    }
+}
+
+@keyframes hk-star-ferry {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes hk-bamboo-sway {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+}
+
+@keyframes hk-dragon-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes hk-neon-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes hk-tram-sway {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(0.5deg);
+    }
+}
+
+@keyframes hk-firework-burst {
+    0% {
+        transform: translateY(0) scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-40px) scale(1.3);
+        opacity: 0;
+    }
+}
+
+@keyframes hk-peak-soar {
+    0% {
+        transform: translateX(-35px) translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateX(35px) translateY(-10px);
+        opacity: 0;
+    }
+}
+
+@keyframes hk-harbour-drift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.hong-kong {
+    font-family: 'Nunito', sans-serif;
+    color: var(--hk-text);
+    line-height: 1.65;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--hk-bg) 0%, #E8ECF2 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.hong-kong::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 25% 40%, var(--hk-harbour5) 0%, transparent 55%),
+        radial-gradient(circle at 75% 50%, var(--hk-bamboo5) 0%, transparent 55%),
+        radial-gradient(circle at 50% 85%, var(--hk-neon5) 0%, transparent 50%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><path d="M60,30 Q80,45 75,65 Q60,80 45,65 Q40,45 60,30" fill="%231D4E89" opacity="0.06"/><path d="M50,85 L65,70 L80,85 L65,100 Z" fill="%235A8F4C" opacity="0.05"/><circle cx="60" cy="55" r="6" fill="%23F4A261" opacity="0.06"/></svg>');
+    background-size: 280px 280px, 240px 240px, 200px 200px, 140px 140px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hong-kong .container {
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--hk-harbour4);
+    box-shadow:
+        0 8px 32px var(--hk-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: 36px;
+    z-index: 2;
+    background-image: var(--hk-pattern);
+}
+
+.hong-kong .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--hk-harbour1) 0%,
+            var(--hk-bauhinia1) 25%,
+            var(--hk-bamboo1) 50%,
+            var(--hk-tram1) 75%,
+            var(--hk-neon1) 100%);
+    animation: hk-star-ferry 12s linear infinite;
+    background-size: 300% 100%;
+}
+
+.hong-kong .container::after {
+    content: "🌃";
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.8rem;
+    opacity: 0.15;
+    animation: hk-tram-sway 6s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.hong-kong #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--hk-text);
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    position: relative;
+    font-weight: 500;
+    text-shadow:
+        2px 2px 4px rgba(255, 255, 255, 0.8),
+        1px 1px 0 rgba(0, 0, 0, 0.02);
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-tram1) 50%, var(--hk-bauhinia1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: hk-neon-shimmer 10s linear infinite;
+}
+
+.hong-kong #calendar-title::after {
+    content: "🇭🇰";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.4;
+    animation: hk-bamboo-sway 5s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.hong-kong #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.4rem;
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    border: 1px solid var(--hk-harbour4);
+    border-radius: 80px;
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--hk-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+}
+
+.hong-kong #date-weather-container::before {
+    content: "HONG KONG";
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    padding: 0 14px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--hk-harbour2);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    border: 1px solid var(--hk-harbour4);
+    border-radius: 20px;
+}
+
+.hong-kong #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hk-bauhinia2), transparent);
+}
+
+.hong-kong #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--hk-text);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.hong-kong #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--hk-tram2);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.hong-kong #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.hong-kong .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--hk-bauhinia1);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    box-shadow:
+        0 8px 30px var(--hk-shadow),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+.hong-kong .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, var(--hk-tram1) 0%, var(--hk-bauhinia2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 8px var(--hk-tram1);
+}
+
+.hong-kong .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--hk-harbour5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 5deg,
+            var(--hk-bamboo5) 6deg 7deg,
+            transparent 8deg 15deg);
+}
+
+.hong-kong .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.hong-kong .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hk-harbour2) 0%, var(--hk-silver1) 100%);
+    margin-top: -1.5px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.hong-kong .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--hk-bamboo2) 0%, var(--hk-silver2) 100%);
+    margin-top: -1.25px;
+    border-radius: 2.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.hong-kong .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--hk-neon2) 0%, var(--hk-bauhinia2) 100%);
+    margin-top: -0.75px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.hong-kong table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.hong-kong th {
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-bamboo1) 100%);
+    color: var(--hk-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    padding: 0.9rem 0.5rem;
+    border-radius: 30px 30px 12px 12px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hong-kong th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.25) 100%);
+    pointer-events: none;
+}
+
+.hong-kong th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.hong-kong th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.hong-kong td {
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    color: var(--hk-text);
+    padding: 0.9rem;
+    border: 1px solid var(--hk-harbour4);
+    height: 100px;
+    vertical-align: top;
+    transition: all var(--hk-transition);
+    position: relative;
+    border-radius: 20px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 4px 12px var(--hk-shadow);
+}
+
+.hong-kong td .date-number {
+    color: var(--hk-date-number) !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.hong-kong td:hover {
+    background: linear-gradient(135deg, #FCFDFE 0%, #F8FAFD 100%);
+    box-shadow:
+        0 8px 24px var(--hk-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.85);
+    border-color: var(--hk-bauhinia2);
+    transform: translateY(-3px);
+}
+
+/* Current date highlight */
+.hong-kong td.current-day {
+    background: linear-gradient(135deg, rgba(29, 78, 137, 0.08) 0%, rgba(244, 162, 97, 0.08) 100%);
+    border: 1px solid var(--hk-harbour1);
+    animation: hk-harbour-ripple 3s infinite;
+    background-image: radial-gradient(circle at 70% 30%, var(--hk-bauhinia5) 0%, transparent 60%);
+}
+
+.hong-kong td.current-day .date-number {
+    color: var(--hk-harbour2) !important;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.hong-kong td.current-day::before {
+    content: "🌆";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    z-index: 1;
+    font-size: 1rem;
+    animation: hk-neon-pulse 3s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.hong-kong .event-marker {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--hk-harbour1) 0%, var(--hk-bauhinia1) 100%);
+    margin: 0 2px;
+    transition: all var(--hk-transition);
+    animation: hk-dragon-pulse 2.5s ease-in-out infinite;
+    position: relative;
+    box-shadow: 0 0 3px var(--hk-harbour1);
+}
+
+.hong-kong .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3px;
+    height: 3px;
+    background-color: var(--hk-primary);
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.hong-kong .event-marker:hover {
+    transform: scale(1.4);
+    background: radial-gradient(circle, var(--hk-tram1) 0%, var(--hk-neon1) 100%);
+    box-shadow: 0 0 8px var(--hk-neon1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.hong-kong .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    border: 1px solid var(--hk-harbour4);
+    padding: 22px;
+    color: var(--hk-text);
+    box-shadow:
+        0 12px 32px var(--hk-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    border-radius: 28px;
+    animation: hk-skyline-rise 0.3s ease-out;
+    overflow: hidden;
+}
+
+.hong-kong .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--hk-harbour1) 0%,
+            var(--hk-bauhinia1) 25%,
+            var(--hk-bamboo1) 50%,
+            var(--hk-tram1) 75%,
+            var(--hk-neon1) 100%);
+    animation: hk-star-ferry 10s linear infinite;
+    background-size: 300% 100%;
+}
+
+.hong-kong .modal-content h2 {
+    color: var(--hk-text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-tram1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Modal date display */
+.hong-kong .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--hk-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--hk-bauhinia2);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Event list */
+.hong-kong .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hong-kong .event-item {
+    background: linear-gradient(135deg, rgba(248, 250, 253, 0.8) 0%, rgba(240, 242, 245, 0.8) 100%);
+    padding: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-left: 3px solid var(--hk-harbour1);
+    border-radius: 16px;
+    transition: all var(--hk-transition);
+    box-shadow: 0 2px 8px var(--hk-shadow);
+    border: 1px solid rgba(29, 78, 137, 0.2);
+}
+
+.hong-kong .event-item:hover {
+    background: linear-gradient(135deg, rgba(252, 253, 254, 0.9) 0%, rgba(245, 247, 250, 0.9) 100%);
+    transform: translateX(4px);
+    border-left-color: var(--hk-bauhinia1);
+    box-shadow: 0 4px 16px var(--hk-shadow);
+}
+
+.hong-kong .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--hk-tram2);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.hong-kong .event-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--hk-text);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.hong-kong .event-description {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--hk-silver2);
+}
+
+.hong-kong .modal-content button {
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-bamboo1) 100%);
+    color: var(--hk-primary);
+    border: none;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    letter-spacing: 0.3px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hong-kong .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: left 0.5s;
+}
+
+.hong-kong .modal-content button:hover::before {
+    left: 100%;
+}
+
+.hong-kong .modal-content button:hover {
+    background: linear-gradient(135deg, var(--hk-harbour2) 0%, var(--hk-bamboo2) 100%);
+    box-shadow: 0 4px 16px var(--hk-shadow);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.hong-kong .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    color: var(--hk-tram2);
+    border: 1px solid var(--hk-tram2);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px var(--hk-shadow);
+}
+
+.hong-kong .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-tram1) 100%);
+    color: var(--hk-primary);
+    border-color: var(--hk-harbour1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.hong-kong .button,
+.hong-kong .transparent-button {
+    border: 1px solid var(--hk-harbour2);
+    color: var(--hk-harbour2);
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    padding: 0.75rem 1.4rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.4rem;
+    border-radius: 50px;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px var(--hk-shadow);
+}
+
+.hong-kong .button::before,
+.hong-kong .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--hk-harbour5), transparent);
+    transition: left 0.5s;
+}
+
+.hong-kong .button:hover::before,
+.hong-kong .transparent-button:hover::before {
+    left: 100%;
+}
+
+.hong-kong .button:hover,
+.hong-kong .transparent-button:hover {
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-bamboo1) 100%);
+    color: var(--hk-primary);
+    box-shadow: 0 4px 14px var(--hk-shadow);
+    transform: translateY(-1px);
+    border-color: var(--hk-harbour1);
+}
+
+.hong-kong .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.6rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.hong-kong #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 190px;
+    z-index: 1000;
+}
+
+.hong-kong #theme-switcher {
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%);
+    color: var(--hk-harbour2) !important;
+    border: 1px solid var(--hk-harbour2);
+    padding: 0.75rem 2rem 0.75rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231D4E89'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    border-radius: 50px;
+    box-shadow: 0 2px 8px var(--hk-shadow);
+}
+
+.hong-kong #theme-switcher option {
+    background: linear-gradient(135deg, var(--hk-primary) 0%, var(--hk-secondary) 100%) !important;
+    color: var(--hk-harbour2) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 10px 12px !important;
+}
+
+.hong-kong #theme-switcher:focus {
+    outline: none;
+    border-color: var(--hk-harbour1);
+    box-shadow: 0 0 0 3px var(--hk-harbour5);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.hong-kong #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.9rem 1.6rem;
+    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    color: var(--hk-primary);
+    background: linear-gradient(135deg, var(--hk-harbour1) 0%, var(--hk-bamboo1) 100%);
+    cursor: pointer;
+    transition: all var(--hk-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px var(--hk-shadow);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hong-kong #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--hk-harbour2) 0%, var(--hk-bamboo2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--hk-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.hong-kong footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--hk-harbour3);
+    color: var(--hk-silver2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .hong-kong .container {
+        padding: 1.5rem;
+    }
+
+    .hong-kong #calendar-title {
+        font-size: 2.4rem;
+    }
+
+    .hong-kong #current-date {
+        font-size: 1.5rem;
+    }
+
+    .hong-kong #today-weather {
+        font-size: 1.05rem;
+    }
+
+    .hong-kong .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .hong-kong .modal-date {
+        font-size: 1.3rem;
+    }
+
+    .hong-kong .event-title {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hong-kong {
+        font-size: 0.95rem;
+    }
+
+    .hong-kong .clock-face {
+        width: 140px;
+        height: 140px;
+        border-width: 2px;
+    }
+
+    .hong-kong th {
+        font-size: 0.85rem;
+        padding: 0.75rem 0.3rem;
+    }
+
+    .hong-kong th span.full-day-name {
+        display: none;
+    }
+
+    .hong-kong th abbr {
+        display: inline;
+    }
+
+    .hong-kong td {
+        padding: 0.75rem;
+        height: 85px;
+        font-size: 0.85rem;
+    }
+
+    .hong-kong td .date-number {
+        font-size: 1.05rem;
+        top: 6px;
+        left: 6px;
+    }
+
+    .hong-kong td.current-day::before {
+        font-size: 0.9rem;
+        top: 4px;
+        right: 6px;
+    }
+
+    .hong-kong #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.75rem 1.3rem;
+        font-size: 0.9rem;
+    }
+
+    .hong-kong #theme-switcher {
+        padding: 0.65rem 1.8rem 0.65rem 0.9rem;
+        font-size: 0.9rem;
+        min-width: 170px;
+    }
+
+    .hong-kong .modal-content {
+        padding: 16px;
+    }
+
+    .hong-kong .event-item {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hong-kong .container {
+        padding: 1rem;
+    }
+
+    .hong-kong #calendar-title {
+        font-size: 2rem;
+    }
+
+    .hong-kong #current-date {
+        font-size: 1.3rem;
+    }
+
+    .hong-kong #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .hong-kong .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hong-kong th {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.2rem;
+    }
+
+    .hong-kong td {
+        padding: 0.6rem;
+        height: 75px;
+        font-size: 0.8rem;
+    }
+
+    .hong-kong td .date-number {
+        font-size: 0.95rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .hong-kong #theme-switcher {
+        min-width: 150px;
+        font-size: 0.85rem;
+        padding: 0.55rem 1.6rem 0.55rem 0.8rem;
+    }
+
+    .hong-kong .modal-content {
+        padding: 12px;
+    }
+
+    .hong-kong .modal-date {
+        font-size: 1.15rem;
+    }
+
+    .hong-kong .event-time {
+        font-size: 0.85rem;
+    }
+
+    .hong-kong .event-title {
+        font-size: 0.9rem;
+    }
+
+    .hong-kong .event-description {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .hong-kong th {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .hong-kong td {
+        height: 70px;
+        padding: 0.5rem;
+    }
+
+    .hong-kong td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .hong-kong #theme-switcher {
+        min-width: 130px;
+        font-size: 0.8rem;
+    }
+
+    .hong-kong .controls {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .hong-kong .button,
+    .hong-kong .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.65rem 1.1rem;
+    }
+
+    .hong-kong #backToTopBtn {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .hong-kong {
+        --hk-harbour2: #133253;
+        --hk-harbour1: #18406E;
+        --hk-text: #1A2E3A;
+    }
+
+    .hong-kong td.current-day {
+        border: 2px solid var(--hk-harbour2);
+        background: rgba(19, 50, 83, 0.1);
+    }
+
+    .hong-kong th {
+        background: var(--hk-harbour2);
+        color: white !important;
+    }
+
+    .hong-kong #calendar-title,
+    .hong-kong #current-date,
+    .hong-kong .event-title,
+    .hong-kong .event-description,
+    .hong-kong .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .hong-kong *,
+    .hong-kong *::before,
+    .hong-kong *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hong-kong .hand {
+        transition: none;
+    }
+
+    .hong-kong .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support - neon night adaptation */
+@media (prefers-color-scheme: dark) {
+    .hong-kong {
+        --hk-bg: #1A1E24;
+        --hk-text: #E0E4EA;
+        --hk-primary: #2A2E34;
+        --hk-secondary: #22262C;
+        --hk-date-number: #E63946;
+        --hk-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    .hong-kong .container,
+    .hong-kong td {
+        background: linear-gradient(135deg, #2A2E34 0%, #22262C 100%);
+        border-color: var(--hk-harbour3);
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .hong-kong .modal-content {
+        background: linear-gradient(135deg, #2A2E34 0%, #22262C 100%);
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.4),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .hong-kong .button,
+    .hong-kong .transparent-button {
+        background: linear-gradient(135deg, #2A2E34 0%, #22262C 100%);
+        border-color: var(--hk-harbour2);
+        color: var(--hk-harbour1);
+    }
+
+    .hong-kong .event-item {
+        background: linear-gradient(135deg, #2A2E34 0%, #22262C 100%);
+    }
+
+    .hong-kong #calendar-title,
+    .hong-kong #current-date,
+    .hong-kong .event-title,
+    .hong-kong .event-description,
+    .hong-kong .modal-date {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+}
