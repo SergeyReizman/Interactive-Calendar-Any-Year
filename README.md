@@ -22,7 +22,7 @@ A minimalist yet powerful calendar built for focus, flow, and flexibility.
 
 ✨ Key Highlights
 
-🎨 600+ Themes – From Ocean View to Cyber Pulse
+🎨 800+ Themes – From Ocean View to Cyber Pulse
 📱 Fully Responsive – Works flawlessly across desktop, tablet & mobile
 💾 Local Storage – Your data stays safe between sessions
 ♿ Accessibility-First – WCAG-compliant & keyboard-friendly
@@ -91,15 +91,15 @@ Interactive-Calendar-Any-Year/
 ├── 📁 css/
 │   ├── 🎨 calendar.variables.css          # CSS Variables & Theme System
 │   ├── 📌 calendar.core.css               # Core Layout & Components
-│   ├── 📱 calendar.responsive.css         # Responsive Design
+│   ├── 📱 calendar.responsive.css          # Responsive Design
 │   ├── 🏰 calendar.abandoned-castle.css   # Abandoned Castle Theme
 │   ├── 🌊 calendar.adriatic-sea.css       # Adriatic Sea Theme
 │   ├── 🌿 calendar.aloe-vera.css          # Aloe Vera Theme
-│   └── ...600+ additional theme files
+│   └── ...800+ additional theme files
 ├── ⚡ calendar.js                         # Main Application Logic
-├── 📄 index.html                         # Application Entry Point
-├── 📸 screenshot.png                     # Project Screenshot
-└── 📖 README.md                          # Project Documentation
+├── 📄 index.html                          # Application Entry Point
+├── 📸 screenshot.png                      # Project Screenshot
+└── 📖 README.md                           # Project Documentation
 
 🎨 Popular Themes
 Category	Featured Themes
@@ -107,7 +107,7 @@ Category	Featured Themes
 💻 Modern	Cyber Pulse, Silicon Valley, Dark Mode
 ❄️ Seasonal	Winter Wonderland, Tropical Sunset
 🖤 Elegant	Black Velvet, Monochrome Ink, Pure Light
-*Explore all 600+ themes in the live application!*
+*Explore all 800+ themes in the live application!*
 
 ## ⚙️ Technical Details
 
@@ -187,6 +187,16 @@ Ready to transform your time management?
 🚀 Try the Live Demo • 📖 View Source Code
 
 Built ❤️ by Sergey Reizman
+
+💡 Philosophy
+
+“Simple tools, done exceptionally well.”
+
+This project focuses on:
+
+- clarity over complexity
+- performance over frameworks
+- user experience over bloat
 
 😫 Feeling overwhelmed by your schedule?
 ✨ Reclaim your time with the Interactive Calendar!
@@ -414,6 +424,16 @@ Modify the CSS files to customize themes.
 
 🏁 Conclusion
 The Themed Calendar Web App offers an aesthetically pleasing and highly functional experience, enabling users to manage their schedules efficiently with a variety of themes and a responsive design. Future updates will focus on enhanced interactivity, user personalization, and seamless event synchronization.
+
+A clean, fast, fully customizable calendar designed for focus, flow, and flexibility.
+
+💡 Why I built it:
+
+I wanted something simple…
+…but powerful enough to actually enjoy using every day.
+
+Something that doesn’t get in your way —
+but helps you stay organized, calm, and in control.
 
 💡 Transform your scheduling experience today!
 🌍 Try the Live Demo 
