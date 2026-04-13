@@ -33,10 +33,6 @@ A minimalist yet powerful calendar built for focus, flow, and flexibility.
 
 **🌍 Explore the Calendar:** [https://interactive-calendar-any-year.netlify.app/](https://interactive-calendar-any-year.netlify.app/)
 
-## 📸 Preview
-📸 Screenshots
-![Interactive Calendar Screenshot](screenshot.png)
-
 🧩 Features Overview
 
 📅 Core Calendar
