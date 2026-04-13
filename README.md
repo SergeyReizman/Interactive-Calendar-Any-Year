@@ -419,9 +419,6 @@ Modify the CSS files to customize themes.
 
 📱 Progressive Web App (PWA) Support: Enable offline use and installation as a web app.
 
-📸 Screenshots
-![Interactive Calendar Screenshot](screenshot.png)
-
 🏁 Conclusion
 The Themed Calendar Web App offers an aesthetically pleasing and highly functional experience, enabling users to manage their schedules efficiently with a variety of themes and a responsive design. Future updates will focus on enhanced interactivity, user personalization, and seamless event synchronization.
 
