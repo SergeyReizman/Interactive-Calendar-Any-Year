@@ -9,9 +9,6 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f16a0b9f-b963-4ce6-99ec-65f5a3d518e8/deploy-status)](https://app.netlify.com/projects/interactive-calendar-any-year/deploys)
 ![GitHub](https://img.shields.io/github/license/SergeyReizman/Interactive-Calendar-Any-Year)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
 🧭 Overview
 
@@ -73,13 +70,6 @@ cd Interactive-Calendar-Any-Year
 
 # Open in browser
 open index.html
-
-Basic Usage
-1.Navigate Years: Use the Previous/Next year buttons
-2.Add Events: Click any date to add or edit events
-3.Switch Themes: Use the theme selector for 600+ options
-4.Toggle Dark Mode: Click the dark/light mode toggle
-5.View Weather: Check today's weather for better planning
 
 ## 🗂️ Folder Structure
 
@@ -173,10 +163,6 @@ For Developers
 ✅ Accessibility-focused
 ✅ Easy to extend
 
-💡 Purpose & Vision
-
-To turn time management from chaos into clarity — empowering users to focus, plan, and achieve with ease.
-
 <div align="center">
 Ready to transform your time management?
 
@@ -198,10 +184,6 @@ This project focuses on:
 ✨ Reclaim your time with the Interactive Calendar!
 
 💡 Simplify your life with a clean, modern web app — built for focus, flow, and flexibility.
-
-🎯 Purpose & Vision
-To turn time management from chaos into clarity.
-Whether planning projects, setting goals, or just surviving the week — this calendar helps you stay organized and in control.
 
 🌐 Key Features
 
@@ -294,16 +276,6 @@ Current Date: The calendar automatically highlights today's date and displays it
 
 Weather Display: The weather for today is fetched and displayed in Celsius alongside the date, helping you plan your activities better.
 
-📖 How to Use:
-1️⃣ Navigate Between Years: Use the Previous and Next buttons.
-2️⃣ Add Events: Click on any date to add, edit, or view reminders.
-3️⃣ Highlight Today: The current date is automatically highlighted.
-4️⃣ Toggle Themes: Switch between themes (Light, Dark, Ocean View, or Grayscale).
-5️⃣ Dark Mode: Toggle dark mode for comfortable nighttime viewing.
-6️⃣ Event Clearing: Clear all events for a specific date or reset the calendar.
-7️⃣ Event Persistence: Your events are saved in your browser and stay intact across sessions.
-8️⃣ Today's Weather: Shows real-time weather updates in Celsius (e.g., "Sunny, 24°C") in a stylish, easy-to-read format.
-
 Want to see it in action?
 
 🌍 Explore the Calendar:
@@ -319,48 +291,17 @@ https://github.com/SergeyReizman/Interactive-Calendar-Any-Year
 
 *A snapshot of the Interactive Calendar in action.*
 
-## Technologies Used
+📖 How to Use:
+1️⃣ Navigate Between Years: Use the Previous and Next buttons.
+2️⃣ Add Events: Click on any date to add, edit, or view reminders.
+3️⃣ Highlight Today: The current date is automatically highlighted.
+4️⃣ Toggle Themes: Switch between themes (Light, Dark, Ocean View, or Grayscale).
+5️⃣ Dark Mode: Toggle dark mode for comfortable nighttime viewing.
+6️⃣ Event Clearing: Clear all events for a specific date or reset the calendar.
+7️⃣ Event Persistence: Your events are saved in your browser and stay intact across sessions.
+8️⃣ Today's Weather: Shows real-time weather updates in Celsius (e.g., "Sunny, 24°C") in a stylish, easy-to-read format.
 
-- **HTML5:** Structures the calendar layout and content.
-- **CSS3:** Creates visually appealing and responsive styles.
-- **JavaScript:** Enables dynamic calendar generation and user interaction.
-
-📖 How to Use
-
-1️⃣ Download the Application
-
-Choose one of the following options:
-
-Clone the repository using Git:
-
-git clone https://github.com/SergeyReizman/Interactive-Calendar-Any-Year.git  
-Download the ZIP file and extract it to your preferred directory.
-
-2️⃣ Open in Browser
-Navigate to the extracted folder and open the index.html file in your favorite browser.
-
-3️⃣ Explore the Features
-
-- **Year Navigation:** Use the Previous Year and Next Year buttons to view different years.
-- **Adding Events:** Click on any date to add a custom event or reminder.
-- **Editing Events:** Modify or update existing events by clicking on the same date.
-- **Today's Highlight:** The current date is automatically distinguished for quick identification.
-- **Clearing Events:** Remove all events for a specific date or reset the calendar entirely with ease.
-- **Dark Mode:** Toggle dark mode for a night-friendly view, and your preference will be remembered between sessions.
-- **🔝 Back to Top:** Use the Back to Top button to smoothly scroll back to the top of the calendar.
-- **Event Modal Window** Manage your events with an easy-to-use modal window for adding, editing, and deleting events.
-- **TAB Enhancement** Easy scroll months with the "TAB" button.
-
-4️⃣ Event Persistence
-Your events are stored in your browser's local storage and remain intact between sessions.
-
-🌟 What’s Next?
-Stay tuned for upcoming updates, including:
-
-Monthly Navigation
-Custom Themes
-Enhanced Event Filtering
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 Enjoy using the Interactive Calendar to stay organized and productive! 🚀
 
@@ -376,28 +317,6 @@ Develop a fully functional web-based calendar.
 Provide multiple themes for a personalized user experience.
 Ensure responsiveness across various devices.
 Implement a modular and maintainable CSS structure.
-
-🌟 Features
-
-🌈 Multiple Themes: Users can switch between a variety of pre-defined themes.
-📱 Responsive Design: Adapts seamlessly to different screen sizes and devices.
-📅 Event Management: Add, edit, and remove events effortlessly.
-🌑 Dark/Light Mode Support: Includes distinct styles for light and dark modes.
-🤬 Minimalist UI: A clean and intuitive interface for easy navigation.
-
-🛠 Technologies Used
-
-HTML5: Structuring the calendar interface.
-CSS3: Styling, themes, and responsive design.
-JavaScript: Handling calendar logic and interactivity.
-
-⚙️ Setup Instructions
-
-Clone the repository.
-
-Open index.html in a web browser.
-
-Modify the CSS files to customize themes.
 
 🚀 Future Enhancements
 
@@ -427,6 +346,9 @@ I wanted something simple…
 
 Something that doesn’t get in your way —
 but helps you stay organized, calm, and in control.
+
+🎯 Purpose & Vision
+To turn time management from chaos into clarity — empowering users to focus, plan, and achieve with ease.
 
 💡 Transform your scheduling experience today!
 🌍 Try the Live Demo 
