@@ -209,7 +209,7 @@ const applyTheme = (theme) => {
     'mount-cook', 'mount-fuji', 'moving-forward',
     'my-beautiful-village', 'my-dream-country', 'my-dream-home',
     'my-tomorrow', 'natural-wonders', 'neon-nights', 'new-ai', 'new-black', 
-    'new-island', 'new-millenium',
+    'new-era-new-times', 'new-island', 'new-millenium',
     'new-mission', 'new-strategy', 'new-style', 'new-wings', 'next-level', 'next-steps',
     'niagara-falls', 'night-dragon', 'night-fireflies',
     'night-mode-design', 'night-ninja', 'night-sky',
