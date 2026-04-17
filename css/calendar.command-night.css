@@ -1,0 +1,1201 @@
+/* ==========================================================================
+   Command Night Theme - Elite Terminal / Mission Control Calendar
+   Version: 1.0
+   Updated: 2026-04-17
+   Changes:
+   - Dark terminal aesthetic with command blues, signal oranges, and deep violets
+   - Mission control palette with neon accents and elite tactical interface design
+   - High-contrast command-line atmosphere for precision operations
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Command Night Palette - Elite Terminal Interface */
+    --net-bg: #0B0F1A;
+    --net-text: #E6EAF2;
+    --net-primary: #121826;
+    --net-secondary: #0F1422;
+    --net-date-number: #7DA2FF;
+
+    /* Command Blue - Sharper Tactical */
+    --net-tech1: #3A86FF;
+    --net-tech2: #2F6FE0;
+    --net-tech3: #1F4FCC;
+    --net-tech4: rgba(58, 134, 255, 0.7);
+    --net-tech5: rgba(58, 134, 255, 0.2);
+
+    /* Signal Orange - Mission Alert */
+    --net-sunrise1: #FF7A00;
+    --net-sunrise2: #E66800;
+    --net-sunrise3: #CC5800;
+    --net-sunrise4: rgba(255, 122, 0, 0.7);
+    --net-sunrise5: rgba(255, 122, 0, 0.2);
+
+    /* Deep Violet - Elite Operations */
+    --net-dawn1: #7B61FF;
+    --net-dawn2: #684EE6;
+    --net-dawn3: #523BCC;
+    --net-dawn4: rgba(123, 97, 255, 0.7);
+    --net-dawn5: rgba(123, 97, 255, 0.2);
+
+    /* Neon Accent - Critical Systems */
+    --net-accent1: #00F5D4;
+    --net-accent2: #00D9BE;
+    --net-accent3: #00BFA6;
+    --net-accent4: rgba(0, 245, 212, 0.7);
+    --net-accent5: rgba(0, 245, 212, 0.2);
+
+    /* Terminal Neutrals */
+    --net-mist1: #1A2236;
+    --net-mist2: #151C2E;
+    --net-mist3: #101726;
+    --net-mist4: rgba(26, 34, 54, 0.7);
+    --net-mist5: rgba(26, 34, 54, 0.25);
+
+    /* Silver Interface */
+    --net-silver1: #8A94A8;
+    --net-silver2: #6E788C;
+    --net-silver3: #525C70;
+    --net-silver4: rgba(138, 148, 168, 0.7);
+    --net-silver5: rgba(138, 148, 168, 0.2);
+
+    /* Theme Variables */
+    --net-shadow: rgba(0, 0, 0, 0.5);
+    --net-radius: 12px;
+    --net-transition: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    --net-hover: #3A86FF;
+    --net-glow: 0 0 30px rgba(58, 134, 255, 0.35);
+    --net-pattern: repeating-linear-gradient(135deg, rgba(58, 134, 255, 0.03) 0px, rgba(58, 134, 255, 0.03) 1px, transparent 1px, transparent 8px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes net-dawn-break {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        filter: blur(0px);
+    }
+
+    50% {
+        opacity: 1;
+        filter: blur(0.3px);
+    }
+}
+
+@keyframes net-horizon-rise {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes net-future-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--net-dawn4);
+    }
+
+    50% {
+        box-shadow: var(--net-glow);
+    }
+}
+
+@keyframes net-new-dawn {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes net-digital-sway {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(1px);
+    }
+}
+
+@keyframes net-progress-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes net-hologram-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes net-transform-rotate {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(0.5deg);
+    }
+}
+
+@keyframes net-spark-ascend {
+    0% {
+        transform: translateY(0) scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-16px) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-32px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes net-phoenix-glide {
+    0% {
+        transform: translateX(-30px) translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateX(30px) translateY(-8px);
+        opacity: 0;
+    }
+}
+
+@keyframes net-change-drift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.command-night {
+    font-family: 'Nunito', sans-serif;
+    color: var(--net-text);
+    line-height: 1.65;
+    font-size: 0.95rem;
+    background: linear-gradient(135deg, var(--net-bg) 0%, #0A0E18 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.command-night::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--net-sunrise5) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, var(--net-dawn5) 0%, transparent 60%),
+        radial-gradient(circle at 50% 85%, var(--net-tech5) 0%, transparent 55%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,25 L70,45 L60,45 L65,70 L50,60 L35,70 L40,45 L30,45 Z" fill="%233A86FF" opacity="0.04"/><rect x="45" y="50" width="10" height="10" fill="%23FF7A00" opacity="0.04"/><circle cx="50" cy="50" r="8" fill="none" stroke="%237B61FF" stroke-width="0.5" opacity="0.04"/></svg>');
+    background-size: 250px 250px, 220px 220px, 180px 180px, 120px 120px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.command-night .container {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--net-tech4);
+    box-shadow:
+        0 8px 32px var(--net-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--net-radius);
+    z-index: 2;
+    background-image: var(--net-pattern);
+}
+
+.command-night .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            var(--net-sunrise1) 0%,
+            var(--net-dawn1) 25%,
+            var(--net-tech1) 50%,
+            var(--net-accent1) 75%,
+            var(--net-silver1) 100%);
+    animation: net-new-dawn 10s linear infinite;
+    background-size: 300% 100%;
+}
+
+.command-night .container::after {
+    content: "$>";
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.2rem;
+    opacity: 0.1;
+    font-family: monospace;
+    animation: net-transform-rotate 5s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.command-night #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--net-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 500;
+    text-shadow:
+        0 0 10px rgba(58, 134, 255, 0.3),
+        1px 1px 0 rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 50%, var(--net-accent1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: net-hologram-shimmer 8s linear infinite;
+}
+
+.command-night #calendar-title::after {
+    content: "⌨️";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    opacity: 0.4;
+    animation: net-digital-sway 4s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.command-night #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    border: 1px solid var(--net-tech4);
+    border-radius: 60px;
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--net-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.command-night #date-weather-container::before {
+    content: ">_ COMMAND_NIGHT";
+    position: absolute;
+    top: -10px;
+    right: 25px;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    padding: 0 12px;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--net-tech2);
+    font-weight: 700;
+    font-family: monospace;
+    text-transform: uppercase;
+    border: 1px solid var(--net-tech4);
+    border-radius: 12px;
+}
+
+.command-night #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--net-accent2), transparent);
+}
+
+.command-night #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--net-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px rgba(58, 134, 255, 0.3);
+}
+
+.command-night #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--net-sunrise2);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 3px rgba(255, 122, 0, 0.3);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.command-night #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.command-night .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--net-tech1);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    box-shadow:
+        0 8px 30px var(--net-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.command-night .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, var(--net-accent1) 0%, var(--net-tech2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 8px var(--net-accent1);
+}
+
+.command-night .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--net-dawn5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 5deg,
+            var(--net-mist5) 6deg 7deg,
+            transparent 8deg 15deg);
+}
+
+.command-night .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.command-night .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--net-tech2) 0%, var(--net-silver1) 100%);
+    margin-top: -1px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.command-night .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--net-dawn2) 0%, var(--net-mist2) 100%);
+    margin-top: -0.75px;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.command-night .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--net-sunrise2) 0%, var(--net-accent2) 100%);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.command-night table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.command-night th {
+    background: linear-gradient(135deg, var(--net-dawn1) 0%, var(--net-tech1) 100%);
+    color: var(--net-primary) !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    padding: 0.8rem 0.5rem;
+    border-radius: 8px 8px 4px 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--net-tech3);
+}
+
+.command-night th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(58, 134, 255, 0.15) 100%);
+    pointer-events: none;
+}
+
+.command-night th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.command-night th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES */
+.command-night td {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    color: var(--net-text);
+    padding: 0.8rem;
+    border: 1px solid var(--net-mist3);
+    height: 95px;
+    vertical-align: top;
+    transition: all var(--net-transition);
+    position: relative;
+    border-radius: 8px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+        0 2px 8px var(--net-shadow);
+}
+
+.command-night td .date-number {
+    color: var(--net-date-number) !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 0 0 3px rgba(58, 134, 255, 0.3);
+}
+
+.command-night td:hover {
+    background: linear-gradient(135deg, #151C2E 0%, #121826 100%);
+    box-shadow:
+        0 4px 16px var(--net-shadow),
+        inset 0 0 0 1px var(--net-tech4);
+    border-color: var(--net-tech2);
+    transform: translateY(-2px);
+}
+
+/* Current date highlight */
+.command-night td.current-day {
+    background: linear-gradient(135deg, rgba(58, 134, 255, 0.08) 0%, rgba(123, 97, 255, 0.08) 100%);
+    border: 1px solid var(--net-tech1);
+    animation: net-future-pulse 2.5s infinite;
+    background-image: radial-gradient(circle at 70% 30%, var(--net-tech5) 0%, transparent 60%);
+}
+
+.command-night td.current-day .date-number {
+    color: var(--net-tech2) !important;
+    font-weight: 800;
+    text-shadow: 0 0 5px rgba(58, 134, 255, 0.5);
+}
+
+.command-night td.current-day::before {
+    content: "▶";
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    z-index: 1;
+    font-size: 0.8rem;
+    animation: net-dawn-break 2s ease-in-out infinite;
+    opacity: 0.7;
+    font-family: monospace;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.command-night .event-marker {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: radial-gradient(circle, var(--net-tech1) 0%, var(--net-sunrise1) 100%);
+    margin: 0 1px;
+    transition: all var(--net-transition);
+    animation: net-progress-pulse 2s ease-in-out infinite;
+    position: relative;
+    box-shadow: 0 0 3px var(--net-tech1);
+}
+
+.command-night .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+    background-color: var(--net-primary);
+    border-radius: 0;
+    opacity: 0.9;
+}
+
+.command-night .event-marker:hover {
+    transform: scale(1.5);
+    background: radial-gradient(circle, var(--net-dawn1) 0%, var(--net-accent1) 100%);
+    box-shadow: 0 0 6px var(--net-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+.command-night .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    border: 1px solid var(--net-tech4);
+    padding: 20px;
+    color: var(--net-text);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    animation: net-horizon-rise 0.25s ease-out;
+    overflow: hidden;
+}
+
+.command-night .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            var(--net-sunrise1) 0%,
+            var(--net-dawn1) 25%,
+            var(--net-tech1) 50%,
+            var(--net-accent1) 75%,
+            var(--net-silver1) 100%);
+    animation: net-new-dawn 8s linear infinite;
+    background-size: 300% 100%;
+}
+
+.command-night .modal-content h2 {
+    color: var(--net-tech1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 5px rgba(58, 134, 255, 0.3);
+}
+
+/* Modal date display */
+.command-night .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--net-accent1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed var(--net-tech3);
+    text-shadow: 0 0 3px rgba(0, 245, 212, 0.3);
+}
+
+/* Event list */
+.command-night .event-list {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.command-night .event-item {
+    background: linear-gradient(135deg, rgba(18, 24, 38, 0.9) 0%, rgba(15, 20, 34, 0.9) 100%);
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-left: 2px solid var(--net-tech1);
+    border-radius: 8px;
+    transition: all var(--net-transition);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(58, 134, 255, 0.15);
+}
+
+.command-night .event-item:hover {
+    background: linear-gradient(135deg, #1A2236 0%, #151C2E 100%);
+    transform: translateX(3px);
+    border-left-color: var(--net-sunrise1);
+    box-shadow: 0 2px 12px var(--net-shadow);
+}
+
+.command-night .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--net-sunrise2);
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    display: block;
+    text-shadow: 0 0 2px rgba(255, 122, 0, 0.3);
+}
+
+.command-night .event-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: var(--net-text);
+    text-shadow: 0 0 2px rgba(230, 234, 242, 0.2);
+}
+
+.command-night .event-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--net-silver2);
+}
+
+.command-night .modal-content button {
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    color: var(--net-primary);
+    border: none;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 30px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.command-night .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(58, 134, 255, 0.3), transparent);
+    transition: left 0.4s;
+}
+
+.command-night .modal-content button:hover::before {
+    left: 100%;
+}
+
+.command-night .modal-content button:hover {
+    background: linear-gradient(135deg, var(--net-tech2) 0%, var(--net-dawn2) 100%);
+    box-shadow: 0 2px 12px var(--net-shadow);
+    transform: translateY(-1px);
+}
+
+/* Close Button */
+.command-night .modal .close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    color: var(--net-tech2);
+    border: 1px solid var(--net-tech2);
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 1px 4px var(--net-shadow);
+}
+
+.command-night .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    color: var(--net-primary);
+    border-color: var(--net-tech1);
+    transform: rotate(90deg);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.command-night .button,
+.command-night .transparent-button {
+    border: 1px solid var(--net-tech3);
+    color: var(--net-tech2);
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    padding: 0.7rem 1.3rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: 30px;
+    letter-spacing: 0.03em;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px var(--net-shadow);
+}
+
+.command-night .button::before,
+.command-night .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--net-tech5), transparent);
+    transition: left 0.4s;
+}
+
+.command-night .button:hover::before,
+.command-night .transparent-button:hover::before {
+    left: 100%;
+}
+
+.command-night .button:hover,
+.command-night .transparent-button:hover {
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    color: var(--net-primary);
+    box-shadow: 0 4px 12px var(--net-shadow);
+    transform: translateY(-1px);
+    border-color: var(--net-tech1);
+}
+
+.command-night .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.command-night #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.command-night #theme-switcher {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    color: var(--net-tech2) !important;
+    border: 1px solid var(--net-tech3);
+    padding: 0.7rem 1.8rem 0.7rem 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233A86FF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    border-radius: 30px;
+    box-shadow: 0 2px 6px var(--net-shadow);
+}
+
+.command-night #theme-switcher option {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%) !important;
+    color: var(--net-tech2) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 10px !important;
+}
+
+.command-night #theme-switcher:focus {
+    outline: none;
+    border-color: var(--net-tech1);
+    box-shadow: 0 0 0 2px var(--net-tech5);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.command-night #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.85rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: var(--net-primary);
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    cursor: pointer;
+    transition: all var(--net-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px var(--net-shadow);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.command-night #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--net-tech2) 0%, var(--net-dawn2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--net-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.command-night footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed var(--net-tech3);
+    color: var(--net-silver2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.03em;
+    font-family: monospace;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .command-night .container {
+        padding: 1.5rem;
+    }
+
+    .command-night #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .command-night #current-date {
+        font-size: 1.4rem;
+    }
+
+    .command-night #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .command-night .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .command-night .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .command-night .event-title {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .command-night {
+        font-size: 0.9rem;
+    }
+
+    .command-night .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .command-night th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .command-night th span.full-day-name {
+        display: none;
+    }
+
+    .command-night th abbr {
+        display: inline;
+    }
+
+    .command-night td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.75rem;
+    }
+
+    .command-night td .date-number {
+        font-size: 0.95rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .command-night td.current-day::before {
+        font-size: 0.7rem;
+        top: 3px;
+        right: 5px;
+    }
+
+    .command-night #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    .command-night #theme-switcher {
+        padding: 0.6rem 1.6rem 0.6rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 160px;
+    }
+
+    .command-night .modal-content {
+        padding: 14px;
+    }
+
+    .command-night .event-item {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .command-night .container {
+        padding: 1rem;
+    }
+
+    .command-night #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .command-night #current-date {
+        font-size: 1.2rem;
+    }
+
+    .command-night #today-weather {
+        font-size: 0.85rem;
+    }
+
+    .command-night .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .command-night th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .command-night td {
+        padding: 0.5rem;
+        height: 70px;
+        font-size: 0.7rem;
+    }
+
+    .command-night td .date-number {
+        font-size: 0.85rem;
+        top: 4px;
+        left: 4px;
+    }
+
+    .command-night #theme-switcher {
+        min-width: 140px;
+        font-size: 0.75rem;
+        padding: 0.5rem 1.4rem 0.5rem 0.7rem;
+    }
+
+    .command-night .modal-content {
+        padding: 10px;
+    }
+
+    .command-night .modal-date {
+        font-size: 1rem;
+    }
+
+    .command-night .event-time {
+        font-size: 0.75rem;
+    }
+
+    .command-night .event-title {
+        font-size: 0.8rem;
+    }
+
+    .command-night .event-description {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .command-night th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .command-night td {
+        height: 65px;
+        padding: 0.4rem;
+    }
+
+    .command-night td .date-number {
+        font-size: 0.8rem;
+    }
+
+    .command-night #theme-switcher {
+        min-width: 120px;
+        font-size: 0.7rem;
+    }
+
+    .command-night .controls {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .command-night .button,
+    .command-night .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.6rem 1rem;
+    }
+
+    .command-night #backToTopBtn {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .command-night {
+        --net-tech2: #1F4FCC;
+        --net-tech1: #2F6FE0;
+        --net-text: #FFFFFF;
+    }
+
+    .command-night td.current-day {
+        border: 2px solid var(--net-tech2);
+        background: rgba(31, 79, 204, 0.15);
+    }
+
+    .command-night th {
+        background: var(--net-tech2);
+        color: black !important;
+    }
+
+    .command-night #calendar-title,
+    .command-night #current-date,
+    .command-night .event-title,
+    .command-night .event-description,
+    .command-night .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .command-night *,
+    .command-night *::before,
+    .command-night *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .command-night .hand {
+        transition: none;
+    }
+
+    .command-night .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support - already dark theme, ensuring consistency */
+@media (prefers-color-scheme: dark) {
+    .command-night {
+        --net-bg: #0B0F1A;
+        --net-primary: #121826;
+        --net-secondary: #0F1422;
+    }
+
+    .command-night .container,
+    .command-night td {
+        background: linear-gradient(135deg, #121826 0%, #0F1422 100%);
+    }
+
+    .command-night .modal-content {
+        background: linear-gradient(135deg, #121826 0%, #0F1422 100%);
+    }
+
+    .command-night .button,
+    .command-night .transparent-button {
+        background: linear-gradient(135deg, #121826 0%, #0F1422 100%);
+    }
+
+    .command-night .event-item {
+        background: linear-gradient(135deg, #121826 0%, #0F1422 100%);
+    }
+}
