@@ -1,13 +1,14 @@
 /* ==========================================================================
    Command Night Theme - Elite Terminal / Mission Control Calendar
-   Version: 1.1
+   Version: 1.2
    Updated: 2026-04-30
    Changes:
    - Dark terminal aesthetic with command blues, signal oranges, and deep violets
    - Mission control palette with neon accents and elite tactical interface design
    - High-contrast command-line atmosphere for precision operations
    - Fixed modal text visibility with improved contrast ratios
-   - FIXED: Calendar date numbers now have enhanced visibility and contrast
+   - CRITICAL FIX: Calendar date numbers now use SOLID COLORS with guaranteed visibility
+   - Removed background-clip: text which was causing invisible date numbers
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
@@ -525,7 +526,8 @@
     border-bottom: none;
 }
 
-/* DATE NUMBER STYLES - FIXED VISIBILITY */
+/* ==================== CRITICAL FIX: DATE NUMBER STYLES ==================== */
+/* Using SOLID colors instead of background-clip: text for guaranteed visibility */
 .command-night td {
     background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
     color: var(--net-text);
@@ -541,36 +543,38 @@
         0 2px 8px var(--net-shadow);
 }
 
-/* Enhanced date number visibility */
+/* PRIMARY DATE NUMBER STYLE - SOLID COLOR, NO GRADIENT TEXT */
 .command-night td .date-number {
-    color: var(--net-date-number) !important;
-    font-weight: 800;
-    font-size: 1.25rem;
     position: absolute;
     top: 8px;
     left: 10px;
     font-family: 'Quicksand', sans-serif;
-    text-shadow: 0 0 4px rgba(58, 134, 255, 0.4);
-    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #A8C4FF !important;
+    text-shadow: 0 0 6px rgba(58, 134, 255, 0.4);
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #A8C4FF !important;
     letter-spacing: 0.5px;
+    z-index: 2;
 }
 
-/* Alternative solid color date number for better readability */
+/* Fallback class for guaranteed visibility */
 .command-night td .date-number-solid {
-    color: var(--net-date-number) !important;
-    font-weight: 800;
-    font-size: 1.25rem;
     position: absolute;
     top: 8px;
     left: 10px;
     font-family: 'Quicksand', sans-serif;
-    text-shadow: 0 0 5px rgba(58, 134, 255, 0.5);
-    letter-spacing: 0.5px;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #A8C4FF !important;
+    text-shadow: 0 0 6px rgba(58, 134, 255, 0.4);
     background: none !important;
-    -webkit-text-fill-color: var(--net-date-number) !important;
+    -webkit-text-fill-color: #A8C4FF !important;
+    letter-spacing: 0.5px;
+    z-index: 2;
 }
 
 .command-night td:hover {
@@ -584,19 +588,18 @@
 
 /* Current date highlight - enhanced visibility */
 .command-night td.current-day {
-    background: linear-gradient(135deg, rgba(58, 134, 255, 0.12) 0%, rgba(123, 97, 255, 0.12) 100%);
+    background: linear-gradient(135deg, rgba(58, 134, 255, 0.15) 0%, rgba(123, 97, 255, 0.15) 100%);
     border: 1px solid var(--net-tech1);
     animation: net-future-pulse 2.5s infinite;
     background-image: radial-gradient(circle at 70% 30%, var(--net-tech5) 0%, transparent 60%);
 }
 
 .command-night td.current-day .date-number {
-    color: var(--net-tech2) !important;
+    color: #3A86FF !important;
     font-weight: 900;
-    text-shadow: 0 0 8px rgba(58, 134, 255, 0.6);
-    -webkit-text-fill-color: var(--net-tech2);
-    background: none;
     font-size: 1.35rem;
+    text-shadow: 0 0 10px rgba(58, 134, 255, 0.6);
+    -webkit-text-fill-color: #3A86FF !important;
 }
 
 .command-night td.current-day::before {
@@ -604,34 +607,46 @@
     position: absolute;
     top: 4px;
     right: 6px;
-    z-index: 1;
+    z-index: 3;
     font-size: 0.8rem;
     animation: net-dawn-break 2s ease-in-out infinite;
-    opacity: 0.7;
+    opacity: 0.8;
     font-family: monospace;
     color: var(--net-tech1);
 }
 
-/* Empty/previous/next month dates visibility */
+/* Previous/next month dates - dimmed but still visible */
 .command-night td.prev-month .date-number,
 .command-night td.next-month .date-number {
-    color: var(--net-silver2) !important;
-    opacity: 0.7;
-    -webkit-text-fill-color: var(--net-silver2);
+    color: #6E788C !important;
+    opacity: 0.8;
     text-shadow: none;
     font-weight: 600;
+    -webkit-text-fill-color: #6E788C !important;
 }
 
 .command-night td.prev-month,
 .command-night td.next-month {
-    background: linear-gradient(135deg, rgba(18, 24, 38, 0.8) 0%, rgba(15, 20, 34, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(18, 24, 38, 0.9) 0%, rgba(15, 20, 34, 0.9) 100%);
+}
+
+/* Event markers container */
+.command-night .event-markers-container {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    right: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    z-index: 2;
 }
 
 /* ==================== EVENT MARKERS ==================== */
 .command-night .event-marker {
     display: inline-block;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 1px;
     background: radial-gradient(circle, var(--net-tech1) 0%, var(--net-sunrise1) 100%);
     margin: 0 1px;
@@ -661,7 +676,6 @@
 }
 
 /* ==================== MODAL STYLES ==================== */
-/* FIXED: Improved modal contrast for better text visibility */
 .command-night .modal-content {
     position: relative;
     background: linear-gradient(135deg, var(--net-modal-bg) 0%, #151C2E 100%);
@@ -703,7 +717,6 @@
     text-shadow: 0 0 5px rgba(58, 134, 255, 0.3);
 }
 
-/* Modal date display - FIXED contrast */
 .command-night .modal-date {
     font-family: 'Quicksand', sans-serif;
     color: var(--net-accent1);
@@ -715,7 +728,6 @@
     text-shadow: 0 0 4px rgba(0, 245, 212, 0.3);
 }
 
-/* Event list - FIXED contrast */
 .command-night .event-list {
     margin: 1.2rem 0;
     padding: 0;
@@ -803,7 +815,6 @@
     transform: translateY(-2px);
 }
 
-/* Close Button - FIXED visibility */
 .command-night .modal .close-button {
     position: absolute;
     top: 12px;
@@ -1196,7 +1207,7 @@
     }
 }
 
-/* High contrast mode support */
+/* ==================== HIGH CONTRAST MODE ==================== */
 @media (prefers-contrast: high) {
     .command-night {
         --net-tech2: #1F4FCC;
@@ -1207,9 +1218,9 @@
 
     .command-night td .date-number,
     .command-night td .date-number-solid {
-        -webkit-text-fill-color: #FFFFFF;
         color: #FFFFFF !important;
         text-shadow: 0 0 2px #000000;
+        -webkit-text-fill-color: #FFFFFF !important;
     }
 
     .command-night td.current-day {
@@ -1218,8 +1229,8 @@
     }
 
     .command-night td.current-day .date-number {
-        -webkit-text-fill-color: #3A86FF;
         color: #3A86FF !important;
+        -webkit-text-fill-color: #3A86FF !important;
     }
 
     .command-night th {
@@ -1236,7 +1247,7 @@
     }
 }
 
-/* Reduced motion support */
+/* ==================== REDUCED MOTION ==================== */
 @media (prefers-reduced-motion: reduce) {
 
     .command-night *,
@@ -1256,7 +1267,7 @@
     }
 }
 
-/* Dark mode support - already dark theme, ensuring consistency */
+/* ==================== DARK MODE CONSISTENCY ==================== */
 @media (prefers-color-scheme: dark) {
     .command-night {
         --net-bg: #0B0F1A;
