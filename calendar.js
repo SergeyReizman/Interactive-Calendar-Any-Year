@@ -98,7 +98,7 @@ const applyTheme = (theme) => {
     'blue-horizon', 'blue-ice', 'blue-island-waters', 'blue-lagoon', 'blue-marine',
     'blue-moon', 'blue-mountains', 'blue-ocean', 'blue-planet',
     'blue-rocky-roads', 'blue-sky', 'blue-stars', 'blue-system',
-    'blue-whale', 'blue-white', 'blue-window',
+    'blue-whale', 'blue-white', 'blue-window', 'bold-idea',
     'bold-vision', 'boost-your-mood', 'bora-bora', 'boston-celtics',
     'box-of-surprises', 'breaking-point', 'break-the-night',
     'breathtaking-view', 'bright-line', 'brilliant-white', 
