@@ -1,0 +1,1289 @@
+/* ==========================================================================
+   Wet Autumn Theme - Rainy Season / Misty Mornings / Golden Drizzle
+   Version: 1.0
+   Updated: 2026-05-06
+   Changes:
+   - Atmospheric wet autumn aesthetic with deep burgundies, muted oranges, and rainy blues
+   - Mist palette with amber accents and cozy rainy season interface design
+   - High-contrast damp atmosphere for precision operations
+   - Fixed modal and date text visibility with superior contrast ratios
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+:root {
+    /* Wet Autumn Palette - Rainy Season Interface */
+    --net-bg: #0F0C0A;
+    --net-text: #F2EBE5;
+    --net-primary: #161210;
+    --net-secondary: #120E0C;
+    /* FIXED: Bright, highly visible date number color - Warm Amber */
+    --net-date-number: #E8A95B;
+
+    /* Damp Burgundy - Rainy Core */
+    --net-tech1: #8B3A3A;
+    --net-tech2: #732D2D;
+    --net-tech3: #5C2323;
+    --net-tech4: rgba(139, 58, 58, 0.7);
+    --net-tech5: rgba(139, 58, 58, 0.25);
+
+    /* Wet Orange - Autumn Drizzle */
+    --net-sunrise1: #D27D4A;
+    --net-sunrise2: #B8683D;
+    --net-sunrise3: #9E5530;
+    --net-sunrise4: rgba(210, 125, 74, 0.7);
+    --net-sunrise5: rgba(210, 125, 74, 0.2);
+
+    /* Golden Harvest - Warm Glow */
+    --net-dawn1: #D4A055;
+    --net-dawn2: #C28D44;
+    --net-dawn3: #AD7835;
+    --net-dawn4: rgba(212, 160, 85, 0.7);
+    --net-dawn5: rgba(212, 160, 85, 0.2);
+
+    /* Storm Blue - Rain Showers */
+    --net-accent1: #5C7E8C;
+    --net-accent2: #4A6A7A;
+    --net-accent3: #3A5668;
+    --net-accent4: rgba(92, 126, 140, 0.7);
+    --net-accent5: rgba(92, 126, 140, 0.2);
+
+    /* Autumn Mists */
+    --net-mist1: #241E1A;
+    --net-mist2: #1E1815;
+    --net-mist3: #181210;
+    --net-mist4: rgba(36, 30, 26, 0.7);
+    --net-mist5: rgba(36, 30, 26, 0.25);
+
+    /* Silver Interface (Foggy Light) */
+    --net-silver1: #B8A99A;
+    --net-silver2: #9C8E80;
+    --net-silver3: #807366;
+    --net-silver4: rgba(184, 169, 154, 0.7);
+    --net-silver5: rgba(184, 169, 154, 0.2);
+
+    /* Modal Specific - Improved Contrast */
+    --net-modal-bg: #241E1A;
+    --net-modal-text: #F7F0EA;
+    --net-modal-border: #8B3A3A;
+
+    /* Theme Variables */
+    --net-shadow: rgba(0, 0, 0, 0.6);
+    --net-radius: 12px;
+    --net-transition: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    --net-hover: #8B3A3A;
+    --net-glow: 0 0 30px rgba(139, 58, 58, 0.35);
+    --net-pattern: repeating-linear-gradient(45deg, rgba(210, 125, 74, 0.03) 0px, rgba(210, 125, 74, 0.03) 1px, transparent 1px, transparent 8px);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes net-dawn-break {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        filter: blur(0px);
+    }
+
+    50% {
+        opacity: 1;
+        filter: blur(0.3px);
+    }
+}
+
+@keyframes net-horizon-rise {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes net-future-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 2px var(--net-dawn4);
+    }
+
+    50% {
+        box-shadow: var(--net-glow);
+    }
+}
+
+@keyframes net-new-dawn {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+@keyframes net-digital-sway {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(1px);
+    }
+}
+
+@keyframes net-progress-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes net-hologram-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes net-transform-rotate {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(0.5deg);
+    }
+}
+
+@keyframes net-spark-ascend {
+    0% {
+        transform: translateY(0) scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-16px) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-32px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes net-phoenix-glide {
+    0% {
+        transform: translateX(-30px) translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateX(30px) translateY(-8px);
+        opacity: 0;
+    }
+}
+
+@keyframes net-change-drift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+}
+
+/* ==================== BASE STYLES ==================== */
+.wet-autumn {
+    font-family: 'Nunito', sans-serif;
+    color: var(--net-text);
+    line-height: 1.65;
+    font-size: 0.95rem;
+    background: linear-gradient(135deg, var(--net-bg) 0%, #0A0806 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.wet-autumn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, var(--net-sunrise5) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, var(--net-dawn5) 0%, transparent 60%),
+        radial-gradient(circle at 50% 85%, var(--net-tech5) 0%, transparent 55%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50,20 L65,40 L55,40 L60,70 L50,55 L40,70 L45,40 L35,40 Z" fill="%238B3A3A" opacity="0.05"/><rect x="45" y="50" width="10" height="10" fill="%23D27D4A" opacity="0.05"/><circle cx="50" cy="50" r="8" fill="none" stroke="%23D4A055" stroke-width="0.5" opacity="0.05"/></svg>');
+    background-size: 250px 250px, 220px 220px, 180px 180px, 120px 120px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.wet-autumn .container {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    padding: 2rem;
+    border: 1px solid var(--net-tech4);
+    box-shadow:
+        0 8px 32px var(--net-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-radius: var(--net-radius);
+    z-index: 2;
+    background-image: var(--net-pattern);
+}
+
+.wet-autumn .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            var(--net-sunrise1) 0%,
+            var(--net-dawn1) 25%,
+            var(--net-tech1) 50%,
+            var(--net-accent1) 75%,
+            var(--net-silver1) 100%);
+    animation: net-new-dawn 10s linear infinite;
+    background-size: 300% 100%;
+}
+
+.wet-autumn .container::after {
+    content: "🌧️";
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    font-family: monospace;
+    animation: net-transform-rotate 5s ease-in-out infinite;
+}
+
+/* ==================== HEADER & TITLE ==================== */
+.wet-autumn #calendar-title {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--net-text);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+    position: relative;
+    font-weight: 500;
+    text-shadow:
+        0 0 10px rgba(112, 66, 20, 0.3),
+        1px 1px 0 rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 50%, var(--net-sunrise1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: net-hologram-shimmer 8s linear infinite;
+}
+
+.wet-autumn #calendar-title::after {
+    content: "🍂";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    opacity: 0.4;
+    animation: net-digital-sway 4s ease-in-out infinite;
+}
+
+/* ==================== DATE & WEATHER DISPLAY ==================== */
+.wet-autumn #date-weather-container {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    border: 1px solid var(--net-tech4);
+    border-radius: 60px;
+    position: relative;
+    box-shadow:
+        0 4px 20px var(--net-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.wet-autumn #date-weather-container::before {
+    content: ">_ WET_AUTUMN";
+    position: absolute;
+    top: -10px;
+    right: 25px;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    padding: 0 12px;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--net-tech2);
+    font-weight: 700;
+    font-family: monospace;
+    text-transform: uppercase;
+    border: 1px solid var(--net-tech4);
+    border-radius: 12px;
+}
+
+.wet-autumn #date-weather-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--net-accent2), transparent);
+}
+
+.wet-autumn #current-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--net-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px rgba(139, 58, 58, 0.4);
+}
+
+.wet-autumn #today-weather {
+    font-family: 'Nunito', sans-serif;
+    color: var(--net-sunrise2);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 3px rgba(210, 125, 74, 0.3);
+}
+
+/* ==================== ANALOG CLOCK ==================== */
+.wet-autumn #analog-watch {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.wet-autumn .clock-face {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--net-tech1);
+    border-radius: 50%;
+    position: relative;
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    box-shadow:
+        0 8px 30px var(--net-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.wet-autumn .clock-face::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, var(--net-accent1) 0%, var(--net-tech2) 100%);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 8px var(--net-accent1);
+}
+
+.wet-autumn .clock-face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at center, transparent 70%, var(--net-dawn5) 100%),
+        repeating-conic-gradient(from 0deg,
+            transparent 0deg 5deg,
+            var(--net-mist5) 6deg 7deg,
+            transparent 8deg 15deg);
+}
+
+.wet-autumn .hand {
+    position: absolute;
+    top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 5;
+}
+
+.wet-autumn .hour-hand {
+    width: 35%;
+    left: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--net-tech2) 0%, var(--net-silver1) 100%);
+    margin-top: -1px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wet-autumn .minute-hand {
+    width: 45%;
+    left: 5%;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--net-dawn2) 0%, var(--net-mist2) 100%);
+    margin-top: -0.75px;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wet-autumn .second-hand {
+    width: 45%;
+    left: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--net-sunrise2) 0%, var(--net-accent2) 100%);
+    margin-top: -0.5px;
+}
+
+/* ==================== CALENDAR TABLE ==================== */
+.wet-autumn table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin: 2rem auto;
+    background-color: transparent;
+    table-layout: fixed;
+}
+
+/* DAY OF WEEK HEADERS */
+.wet-autumn th {
+    background: linear-gradient(135deg, var(--net-dawn1) 0%, var(--net-tech1) 100%);
+    color: #0F0C0A !important;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 800;
+    padding: 0.8rem 0.5rem;
+    border-radius: 8px 8px 4px 4px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-shadow: none;
+    border-bottom: 1px solid var(--net-tech3);
+}
+
+.wet-autumn th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(139, 58, 58, 0.15) 100%);
+    pointer-events: none;
+}
+
+.wet-autumn th span.full-day-name {
+    display: inline;
+    position: relative;
+    z-index: 1;
+}
+
+.wet-autumn th abbr {
+    display: none;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* DATE NUMBER STYLES - EXCELLENT VISIBILITY */
+.wet-autumn td {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    color: var(--net-text);
+    padding: 0.8rem;
+    border: 1px solid var(--net-mist3);
+    height: 95px;
+    vertical-align: top;
+    transition: all var(--net-transition);
+    position: relative;
+    border-radius: 8px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+        0 2px 8px var(--net-shadow);
+}
+
+.wet-autumn td .date-number {
+    /* EXCELLENT VISIBILITY: Warm amber with strong glow */
+    color: var(--net-date-number) !important;
+    font-weight: 800;
+    font-size: 1.35rem;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 0 0 8px rgba(212, 160, 85, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.wet-autumn td:hover {
+    background: linear-gradient(135deg, #241E1A 0%, #1E1815 100%);
+    box-shadow:
+        0 4px 16px var(--net-shadow),
+        inset 0 0 0 1px var(--net-tech4);
+    border-color: var(--net-tech2);
+    transform: translateY(-2px);
+}
+
+.wet-autumn td:hover .date-number {
+    text-shadow: 0 0 12px rgba(212, 160, 85, 0.8);
+    color: #F0C080 !important;
+}
+
+/* Current date highlight - ENHANCED VISIBILITY */
+.wet-autumn td.current-day {
+    background: linear-gradient(135deg, rgba(139, 58, 58, 0.12) 0%, rgba(212, 160, 85, 0.12) 100%);
+    border: 1.5px solid var(--net-tech1);
+    animation: net-future-pulse 2.5s infinite;
+    background-image: radial-gradient(circle at 70% 30%, var(--net-tech5) 0%, transparent 60%);
+}
+
+.wet-autumn td.current-day .date-number {
+    color: #D4A055 !important;
+    font-weight: 900;
+    font-size: 1.45rem;
+    text-shadow: 0 0 10px rgba(212, 160, 85, 0.7);
+}
+
+.wet-autumn td.current-day::before {
+    content: "🍂";
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    z-index: 1;
+    font-size: 0.8rem;
+    animation: net-dawn-break 2s ease-in-out infinite;
+    opacity: 0.7;
+    font-family: monospace;
+}
+
+/* Other months dates - subtle but still visible */
+.wet-autumn td.other-month .date-number {
+    color: var(--net-silver2) !important;
+    text-shadow: 0 0 2px rgba(184, 169, 154, 0.3);
+    opacity: 0.8;
+}
+
+/* ==================== EVENT MARKERS ==================== */
+.wet-autumn .event-marker {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: radial-gradient(circle, var(--net-tech1) 0%, var(--net-sunrise1) 100%);
+    margin: 0 1px;
+    transition: all var(--net-transition);
+    animation: net-progress-pulse 2s ease-in-out infinite;
+    position: relative;
+    box-shadow: 0 0 3px var(--net-tech1);
+}
+
+.wet-autumn .event-marker::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+    background-color: var(--net-primary);
+    border-radius: 0;
+    opacity: 0.9;
+}
+
+.wet-autumn .event-marker:hover {
+    transform: scale(1.5);
+    background: radial-gradient(circle, var(--net-dawn1) 0%, var(--net-accent1) 100%);
+    box-shadow: 0 0 6px var(--net-accent1);
+}
+
+/* ==================== MODAL STYLES ==================== */
+/* FIXED: Improved modal contrast for better text visibility */
+.wet-autumn .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, var(--net-modal-bg) 0%, #1E1815 100%);
+    border: 1px solid var(--net-modal-border);
+    padding: 22px;
+    color: var(--net-modal-text);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 1px rgba(139, 58, 58, 0.15);
+    border-radius: 16px;
+    animation: net-horizon-rise 0.25s ease-out;
+    overflow: hidden;
+}
+
+.wet-autumn .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            var(--net-sunrise1) 0%,
+            var(--net-dawn1) 25%,
+            var(--net-tech1) 50%,
+            var(--net-accent1) 75%,
+            var(--net-silver1) 100%);
+    animation: net-new-dawn 8s linear infinite;
+    background-size: 300% 100%;
+}
+
+.wet-autumn .modal-content h2 {
+    color: var(--net-tech1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 5px rgba(139, 58, 58, 0.4);
+}
+
+/* Modal date display - FIXED contrast */
+.wet-autumn .modal-date {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--net-accent1);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--net-tech3);
+    text-shadow: 0 0 4px rgba(92, 126, 140, 0.3);
+}
+
+/* Event list - FIXED contrast */
+.wet-autumn .event-list {
+    margin: 1.2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wet-autumn .event-item {
+    background: linear-gradient(135deg, rgba(36, 30, 26, 0.95) 0%, rgba(30, 24, 21, 0.95) 100%);
+    padding: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-left: 3px solid var(--net-tech1);
+    border-radius: 8px;
+    transition: all var(--net-transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(139, 58, 58, 0.2);
+}
+
+.wet-autumn .event-item:hover {
+    background: linear-gradient(135deg, #3A2C24 0%, #2C221C 100%);
+    transform: translateX(4px);
+    border-left-color: var(--net-sunrise1);
+    box-shadow: 0 4px 16px var(--net-shadow);
+}
+
+.wet-autumn .event-time {
+    font-family: 'Nunito', sans-serif;
+    color: var(--net-sunrise2);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    text-shadow: 0 0 2px rgba(210, 125, 74, 0.3);
+}
+
+.wet-autumn .event-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--net-modal-text);
+    text-shadow: none;
+}
+
+.wet-autumn .event-description {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--net-silver1);
+}
+
+.wet-autumn .modal-content button {
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    color: #0F0C0A;
+    border: none;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    letter-spacing: 0.5px;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 30px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.wet-autumn .modal-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: left 0.4s;
+}
+
+.wet-autumn .modal-content button:hover::before {
+    left: 100%;
+}
+
+.wet-autumn .modal-content button:hover {
+    background: linear-gradient(135deg, var(--net-tech2) 0%, var(--net-dawn2) 100%);
+    box-shadow: 0 4px 16px var(--net-shadow);
+    transform: translateY(-2px);
+}
+
+/* Close Button - FIXED visibility */
+.wet-autumn .modal .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #241E1A 0%, #1E1815 100%);
+    color: var(--net-tech2);
+    border: 1px solid var(--net-tech3);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px var(--net-shadow);
+}
+
+.wet-autumn .modal .close-button:hover {
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    color: #0F0C0A;
+    border-color: var(--net-tech1);
+    transform: rotate(90deg) scale(1.05);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.wet-autumn .button,
+.wet-autumn .transparent-button {
+    border: 1px solid var(--net-tech3);
+    color: var(--net-tech2);
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    padding: 0.7rem 1.3rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    position: relative;
+    overflow: hidden;
+    margin: 0.3rem;
+    border-radius: 30px;
+    letter-spacing: 0.03em;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px var(--net-shadow);
+}
+
+.wet-autumn .button::before,
+.wet-autumn .transparent-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--net-tech5), transparent);
+    transition: left 0.4s;
+}
+
+.wet-autumn .button:hover::before,
+.wet-autumn .transparent-button:hover::before {
+    left: 100%;
+}
+
+.wet-autumn .button:hover,
+.wet-autumn .transparent-button:hover {
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    color: #0F0C0A;
+    box-shadow: 0 4px 12px var(--net-shadow);
+    transform: translateY(-1px);
+    border-color: var(--net-tech1);
+}
+
+.wet-autumn .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+.wet-autumn #theme-switcher-container {
+    position: relative;
+    margin: 0 0.8rem;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.wet-autumn #theme-switcher {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%);
+    color: var(--net-tech2) !important;
+    border: 1px solid var(--net-tech3);
+    padding: 0.7rem 1.8rem 0.7rem 0.9rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B3A3A'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--net-transition);
+    border-radius: 30px;
+    box-shadow: 0 2px 6px var(--net-shadow);
+}
+
+.wet-autumn #theme-switcher option {
+    background: linear-gradient(135deg, var(--net-primary) 0%, var(--net-secondary) 100%) !important;
+    color: var(--net-tech2) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 10px !important;
+}
+
+.wet-autumn #theme-switcher:focus {
+    outline: none;
+    border-color: var(--net-tech1);
+    box-shadow: 0 0 0 2px var(--net-tech5);
+}
+
+/* ==================== BACK TO TOP BUTTON ==================== */
+.wet-autumn #backToTopBtn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    border: none;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.85rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: #0F0C0A;
+    background: linear-gradient(135deg, var(--net-tech1) 0%, var(--net-dawn1) 100%);
+    cursor: pointer;
+    transition: all var(--net-transition);
+    opacity: 0.9;
+    display: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px var(--net-shadow);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.wet-autumn #backToTopBtn:hover {
+    background: linear-gradient(135deg, var(--net-tech2) 0%, var(--net-dawn2) 100%);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--net-shadow);
+}
+
+/* ==================== FOOTER ==================== */
+.wet-autumn footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed var(--net-tech3);
+    color: var(--net-silver2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.03em;
+    font-family: monospace;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 992px) {
+    .wet-autumn .container {
+        padding: 1.5rem;
+    }
+
+    .wet-autumn #calendar-title {
+        font-size: 2.2rem;
+    }
+
+    .wet-autumn #current-date {
+        font-size: 1.4rem;
+    }
+
+    .wet-autumn #today-weather {
+        font-size: 0.95rem;
+    }
+
+    .wet-autumn .clock-face {
+        width: 160px;
+        height: 160px;
+    }
+
+    .wet-autumn .modal-date {
+        font-size: 1.1rem;
+    }
+
+    .wet-autumn .event-title {
+        font-size: 0.85rem;
+    }
+
+    .wet-autumn td .date-number {
+        font-size: 1.25rem;
+    }
+
+    .wet-autumn td.current-day .date-number {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .wet-autumn {
+        font-size: 0.9rem;
+    }
+
+    .wet-autumn .clock-face {
+        width: 140px;
+        height: 140px;
+    }
+
+    .wet-autumn th {
+        font-size: 0.75rem;
+        padding: 0.7rem 0.2rem;
+    }
+
+    .wet-autumn th span.full-day-name {
+        display: none;
+    }
+
+    .wet-autumn th abbr {
+        display: inline;
+    }
+
+    .wet-autumn td {
+        padding: 0.7rem;
+        height: 80px;
+        font-size: 0.75rem;
+    }
+
+    .wet-autumn td .date-number {
+        font-size: 1.15rem;
+        top: 5px;
+        left: 5px;
+    }
+
+    .wet-autumn td.current-day .date-number {
+        font-size: 1.25rem;
+    }
+
+    .wet-autumn td.current-day::before {
+        font-size: 0.7rem;
+        top: 3px;
+        right: 5px;
+    }
+
+    .wet-autumn #backToTopBtn {
+        right: 15px;
+        bottom: 15px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    .wet-autumn #theme-switcher {
+        padding: 0.6rem 1.6rem 0.6rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 160px;
+    }
+
+    .wet-autumn .modal-content {
+        padding: 14px;
+    }
+
+    .wet-autumn .event-item {
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .wet-autumn .container {
+        padding: 1rem;
+    }
+
+    .wet-autumn #calendar-title {
+        font-size: 1.8rem;
+    }
+
+    .wet-autumn #current-date {
+        font-size: 1.2rem;
+    }
+
+    .wet-autumn #today-weather {
+        font-size: 0.85rem;
+    }
+
+    .wet-autumn .clock-face {
+        width: 120px;
+        height: 120px;
+    }
+
+    .wet-autumn th {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.15rem;
+    }
+
+    .wet-autumn td {
+        padding: 0.5rem;
+        height: 70px;
+        font-size: 0.7rem;
+    }
+
+    .wet-autumn td .date-number {
+        font-size: 1rem;
+        top: 4px;
+        left: 4px;
+    }
+
+    .wet-autumn td.current-day .date-number {
+        font-size: 1.1rem;
+    }
+
+    .wet-autumn #theme-switcher {
+        min-width: 140px;
+        font-size: 0.75rem;
+        padding: 0.5rem 1.4rem 0.5rem 0.7rem;
+    }
+
+    .wet-autumn .modal-content {
+        padding: 10px;
+    }
+
+    .wet-autumn .modal-date {
+        font-size: 1rem;
+    }
+
+    .wet-autumn .event-time {
+        font-size: 0.75rem;
+    }
+
+    .wet-autumn .event-title {
+        font-size: 0.8rem;
+    }
+
+    .wet-autumn .event-description {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .wet-autumn th {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.1rem;
+    }
+
+    .wet-autumn td {
+        height: 65px;
+        padding: 0.4rem;
+    }
+
+    .wet-autumn td .date-number {
+        font-size: 0.9rem;
+    }
+
+    .wet-autumn td.current-day .date-number {
+        font-size: 1rem;
+    }
+
+    .wet-autumn #theme-switcher {
+        min-width: 120px;
+        font-size: 0.7rem;
+    }
+
+    .wet-autumn .controls {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .wet-autumn .button,
+    .wet-autumn .transparent-button {
+        width: 100%;
+        margin: 0.2rem 0;
+        padding: 0.6rem 1rem;
+    }
+
+    .wet-autumn #backToTopBtn {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* High contrast mode support - EXCELLENT visibility */
+@media (prefers-contrast: high) {
+    .wet-autumn {
+        --net-tech2: #5C2323;
+        --net-tech1: #732D2D;
+        --net-text: #FFFFFF;
+        --net-date-number: #E8B870;
+    }
+
+    .wet-autumn td.current-day {
+        border: 2px solid var(--net-tech2);
+        background: rgba(92, 35, 35, 0.2);
+    }
+
+    .wet-autumn td.current-day .date-number {
+        color: #FFD28C !important;
+        text-shadow: none;
+    }
+
+    .wet-autumn th {
+        background: var(--net-tech2);
+        color: black !important;
+    }
+
+    .wet-autumn td .date-number {
+        text-shadow: none;
+        font-weight: 900;
+    }
+
+    .wet-autumn #calendar-title,
+    .wet-autumn #current-date,
+    .wet-autumn .event-title,
+    .wet-autumn .event-description,
+    .wet-autumn .modal-date {
+        text-shadow: none;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .wet-autumn *,
+    .wet-autumn *::before,
+    .wet-autumn *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .wet-autumn .hand {
+        transition: none;
+    }
+
+    .wet-autumn .clock-face::before {
+        animation: none;
+    }
+}
+
+/* Dark mode support - already dark theme, ensuring consistency */
+@media (prefers-color-scheme: dark) {
+    .wet-autumn {
+        --net-bg: #0F0C0A;
+        --net-primary: #161210;
+        --net-secondary: #120E0C;
+        --net-date-number: #E8A95B;
+    }
+
+    .wet-autumn .container,
+    .wet-autumn td {
+        background: linear-gradient(135deg, #161210 0%, #120E0C 100%);
+    }
+
+    .wet-autumn .modal-content {
+        background: linear-gradient(135deg, #161210 0%, #120E0C 100%);
+    }
+
+    .wet-autumn .button,
+    .wet-autumn .transparent-button {
+        background: linear-gradient(135deg, #161210 0%, #120E0C 100%);
+    }
+
+    .wet-autumn .event-item {
+        background: linear-gradient(135deg, #161210 0%, #120E0C 100%);
+    }
+
+    .wet-autumn td .date-number {
+        color: #ECB870 !important;
+    }
+
+    .wet-autumn td.current-day .date-number {
+        color: #E8C080 !important;
+    }
+}
+
+/* Print styles - ensure date visibility on print */
+@media print {
+    .wet-autumn {
+        --net-date-number: #8B4513;
+        --net-text: #000000;
+    }
+
+    .wet-autumn td .date-number {
+        color: #8B4513 !important;
+        text-shadow: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .wet-autumn td.current-day {
+        border: 1px solid #000000 !important;
+        background: #EEEEEE !important;
+    }
+
+    .wet-autumn td.current-day .date-number {
+        color: #000000 !important;
+        font-weight: 900 !important;
+    }
+}
