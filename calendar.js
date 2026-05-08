@@ -146,7 +146,7 @@ const applyTheme = (theme) => {
     'exotic-escape', 'exotic-island', 'expedient-path', 'expedition-north',
     'exponential-acceleration', 'extraordinary-achievement', 'fabulous-evening',
     'fairytale-charm', 'fairytale-town', 'fast-track', 'fifth-avenue', 'fiji-islands',
-    'fine-tuning', 'finish-line', 'fir-balsam', 
+    'fine-tuning', 'finish-in-style', 'finish-line', 'fir-balsam', 
     'fireplace-dream', 'first-project', 'flamingo-sky',
     'flamingo-sky', 'forgotten-dreams', 'formula-one',
     'for-the-last-time', 'forward-thinking', 'free-flight', 'free-imagination', 
