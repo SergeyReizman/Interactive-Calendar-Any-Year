@@ -288,7 +288,7 @@ const applyTheme = (theme) => {
     'the-element-of-surprise', 'the-final-match', 'the-final-step',
     'the-finest-green-tea', 'the-first-prize', 
     'the-game-changer', 'the-garden-island', 'the-gold-standard',
-    'the-great-silk-road', 'the-great-wall', 'the-green-mist',
+    'the-great-silk-road', 'the-great-wall', 'the-green-fireball', 'the-green-mist',
     'the-hidden-jem', 'the-highest-level', 'the-highest-peak', 'the-huge-event',
     'the-knight-of-the-sorrowful-countenance', 'the-land-of-fire-and-ice',
     'the-last-day-of-spring', 'the-last-mohican', 'the-last-paradise',
