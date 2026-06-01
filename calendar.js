@@ -312,7 +312,7 @@ const applyTheme = (theme) => {
     'waikiki-beach', 'wakaya-island', 'watermelon', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'west-hollywood', 'wet-autumn',
     'whale-shark', 'when-style-speaks-first', 'where-the-ocean-begins',
-    'white-cherry-tree', 'white-shark', 'white-steamboat',
+    'white-cherry-tree', 'white-hat-hacker', 'white-shark', 'white-steamboat',
     'white-sun-of-the-desert', 'wild-escape',
     'wild-flower', 'wild-orange', 'wild-reef', 'wild-rose', 'wild-tropics',
     'wild-wonders', 'winds-of-the-60th-parallel', 
