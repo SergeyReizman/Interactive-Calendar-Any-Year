@@ -93,7 +93,7 @@ const applyTheme = (theme) => {
     'black-limpopo', 'black-magic', 'black-mountain',
     'black-orange', 'black-orchid', 'black-panther', 'black-pear', 'black-pearl',
     'black-silver', 'black-style', 'black-velvet', 'black-violet', 'blue-and-violet',
-    'blue-angels', 'blue-banana', 'blue-bird',
+    'blue-agent', 'blue-angels', 'blue-banana', 'blue-bird',
     'blue-bliss', 'blue-dragon', 'blue-frost', 'blue-gold',
     'blue-horizon', 'blue-ice', 'blue-island-waters', 'blue-lagoon', 'blue-marine',
     'blue-moon', 'blue-mountains', 'blue-ocean', 'blue-planet',
