@@ -305,7 +305,7 @@ const applyTheme = (theme) => {
     'too-beautiful-to-be-true', 'toronto-raptors', 
     'totoya-island', 'trails-of-spring', 'treasure-island', 'tropical-horizon',
     'tropical-islands', 'tropical-jungle', 'tropical-nature', 'tropical-paradise',
-    'tropical-sunset', 'turquoise-frontier', 'twilight-garden', 
+    'tropical-sunset', 'trust-the-process', 'turquoise-frontier', 'twilight-garden', 
     'two-shades-of-yellow', 'under-the-sun', 'underwater-life',
     'unexpected-layout', 'unforgettable-moments', 'unseen-wonders', 'untouched-paradise',
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 
