@@ -311,7 +311,7 @@ const applyTheme = (theme) => {
     'unexpected-layout', 'unforgettable-moments', 'unseen-wonders', 'untouched-paradise',
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 
     'vacation-beach', 'vatoa-island', 'velvety-dark', 'vibrant-colors',
-    'viking-helmet', 'viktoria-falls', 'waikiki-after-dark',
+    'viking-helmet', 'viktoria-falls', 'voyager-one', 'waikiki-after-dark',
     'waikiki-beach', 'wakaya-island', 'watermelon', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'west-hollywood', 'wet-autumn',
     'whale-shark', 'when-style-speaks-first', 'where-the-ocean-begins',
