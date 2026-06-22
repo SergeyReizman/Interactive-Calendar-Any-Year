@@ -311,6 +311,7 @@ const applyTheme = (theme) => {
     'unexpected-layout', 'unforgettable-moments', 'unseen-wonders', 'untouched-paradise',
     'upcoming-dream', 'urban-fashion', 'urban-jungle', 
     'vacation-beach', 'vatoa-island', 'velvety-dark', 'vibrant-colors',
+    'villa-in-jungle',
     'viking-helmet', 'viktoria-falls', 'voyager-one', 'waikiki-after-dark',
     'waikiki-beach', 'wakaya-island', 'watermelon', 'weekend-downtime', 'weekend-mindset',
     'we-fly-higher', 'west-hollywood', 'wet-autumn',
