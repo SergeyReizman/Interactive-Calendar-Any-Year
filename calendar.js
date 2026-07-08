@@ -100,7 +100,7 @@ const applyTheme = (theme) => {
     'blue-rocky-roads', 'blue-sky', 'blue-stars', 'blue-system',
     'blue-whale', 'blue-white', 'blue-window', 'bold-idea',
     'bold-vision', 'boost-your-mood', 'bora-bora', 'boston-celtics',
-    'box-of-surprises', 'breaking-point', 'break-the-night',
+    'bottom-up-approach', 'box-of-surprises', 'breaking-point', 'break-the-night',
     'breathtaking-view', 'bright-line', 'brilliant-white', 
     'british-parrot', 'bronze-horseman',
     'business-class', 'cacao-plantation', 'cafe-de-colombia', 
